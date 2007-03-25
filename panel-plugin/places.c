@@ -32,6 +32,7 @@
 #include <libxfcegui4/libxfcegui4.h>
 
 #include "places.h"
+#include "unescape_uri.c"
 
 #define PLUGIN_NAME "places"
 
@@ -149,7 +150,7 @@ places_init_bookmarks_user(PlacesData *pd)
                 g_ptr_array_add(pd->bookmarks_user, places_construct_BookmarkInfo(g_strdup(split[1]), 
                                                                    g_strdup(split[0]), "gnome-fs-directory"));
             }else{
-                g_ptr_array_add(pd->bookmarks_user, places_construct_BookmarkInfo(g_strdup(g_strrstr(lines[i], "/") + sizeof(gchar)), 
+                g_ptr_array_add(pd->bookmarks_user, places_construct_BookmarkInfo(places_unescape_uri_string(g_strrstr(lines[i], "/") + sizeof(gchar)), 
                                                                    g_strdup(lines[i]), "gnome-fs-directory"));
             }
             g_free(split);

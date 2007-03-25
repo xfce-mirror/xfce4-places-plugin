@@ -1,6 +1,6 @@
 INCLUDES =								\
 	-I$(top_srcdir)							\
-	-DG_LOG_DOMAIN=\"xfce4-places-plugin\"			\
+	-DG_LOG_DOMAIN=\"xfce4-places-plugin\"				\
 	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"				\
 	$(PLATFORM_CPPFLAGS)
 
@@ -10,11 +10,12 @@ plugindir =								\
 plugin_PROGRAMS =							\
 	xfce4-places-plugin
 
-xfce4_places_plugin_SOURCES =					\
+xfce4_places_plugin_SOURCES =						\
+	unescape_uri.c							\
 	places.h							\
 	places.c							
 
-xfce4_places_plugin_CFLAGS =					\
+xfce4_places_plugin_CFLAGS =						\
 	$(GTK_CFLAGS)							\
 	$(LIBXFCE4UTIL_CFLAGS)						\
 	$(LIBXFCEGUI4_CFLAGS)						\
