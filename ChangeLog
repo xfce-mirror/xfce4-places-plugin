@@ -1,5 +1,6 @@
 2007-03-25  Diego Ongaro  ongardie@gmail.com
 
+	* Fixed bug 3053 (Plugin doesn't launch thunar) by dropping "/usr/bin/"
 	* Fixed bug 3027 (Places menu showing %20) by copying glib code
 
 2007-03-14  Diego Ongaro  ongardie@gmail.com

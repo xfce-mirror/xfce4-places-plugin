@@ -271,7 +271,7 @@ places_init_panel_menu_user(PlacesData *pd)
 static void
 places_load_thunar(const gchar * path)
 {
-    gchar * cmd = g_strconcat("/usr/bin/thunar ", path, NULL);
+    gchar * cmd = g_strconcat("thunar ", path, NULL);
     xfce_exec(cmd, FALSE, FALSE, NULL);
     g_free(cmd);
 }
