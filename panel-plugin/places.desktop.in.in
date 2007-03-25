@@ -1,0 +1,8 @@
+[Xfce Panel]
+Type=X-XFCE-PanelPlugin
+Encoding=UTF-8
+_Name=Places
+_Comment=A file browser launcher with quick access to bookmarks.
+Icon=file-manager
+X-XFCE-Exec=@libexecdir@/xfce4/panel-plugins/xfce4-places-plugin
+

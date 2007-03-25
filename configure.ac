@@ -1,0 +1,38 @@
+dnl xfce4-places-plugin
+
+dnl version info
+m4_define([places_version], [0.0.9])
+
+dnl initialize autoconf
+AC_COPYRIGHT([Copyright (c) 2007 Diego Ongaro <ongardie@gmail.com>])
+AC_INIT([xfce4-places-plugin], [places_version()], [ongardie@gmail.com])
+AC_PREREQ([2.50])
+
+dnl initialize automake
+AM_INIT_AUTOMAKE()
+AM_CONFIG_HEADER([config.h])
+AM_MAINTAINER_MODE()
+
+dnl check for basic programs
+AC_PROG_CC()
+AC_PROG_LD()
+AC_PROG_INSTALL()
+AC_PROG_INTLTOOL()
+
+dnl check for i18n support
+XDT_I18N([])
+
+dnl check for required packages
+XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.6.0])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.3.99.1])
+XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.3.99.1])
+XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.3.99.1])
+
+XDT_FEATURE_DEBUG()
+
+AC_OUTPUT([
+Makefile
+panel-plugin/Makefile
+po/Makefile.in
+])
+
