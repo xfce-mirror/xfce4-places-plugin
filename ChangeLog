@@ -1,4 +1,10 @@
 2007-04-05	Diego Ongaro <ongardie@gmail.com>
+	
+	* Merged in volumes branch
+	* Adds Thunar VFS dependency.
+	* Uncouples model from view/controller as explained in HACKING.
+
+2007-04-05	Diego Ongaro <ongardie@gmail.com>
 
 	* Releasing version 0.1
 	* With psyBSD's help, i18n is now up and running.
@@ -11,3 +17,6 @@
 2007-03-14	Diego Ongaro <ongardie@gmail.com>
 
 	* initial beta release, packaged outside svn
+
+
+# vi:set ts=8 sw=8 tw=72 noet ai nocindent:

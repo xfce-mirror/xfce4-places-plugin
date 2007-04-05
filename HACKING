@@ -1,0 +1,48 @@
+The Model Infrastructure
+================================================================================
+
+model.h provides a convenient BookmarkInfo struct
+model.c provides the 4 "composite" functions:
+
+  1) static Bookmarks* 
+     places_bookmarks_init();
+
+     * This function is in charge of creating the Bookmarks struct.
+     * It delegates to the children (e.g. system, volumes, user), which are
+       each in charge of creating their own struct.
+
+  2) static void
+     places_bookmarks_visit(Bookmarks *b, gpointer pass_thru, 
+                            item callback, separator callback);
+
+     * This function allows the view to (re-)build it's menu, while keeping it
+       uncoupled from the model.
+     * The model agrees to call the item callback with some pass-thru data and
+       a label, uri, and icon for each item. It fulfills this through 
+       delegation to its children. Each child should then iterate over its
+       bookmarks and call the item callback. Additionally, the model calls the
+       separator callback where it finds appropriate.
+
+  3) static gboolean
+     places_bookmarks_changed(Bookmarks *b);
+
+     * The return value of this function indicates whether the model has been
+       altered since the last call to this function.
+     * The expected side effect of this function, then, is that updates may
+       occur as a result of this trigger, and some state memory should be reset.
+     * The model delegates to its children and OR's the results. It ensures
+       that each child's changed function gets called.
+             
+  4) static void
+     places_bookmarks_finalize(Bookmarks *b);
+
+     * This function is in charge of cleaning up any resources that have been
+       created, either in the init function or later.
+     * It delegates to the children so they can clean up their own resources.
+
+Changes To This File
+================================================================================
+
+2007-04-05  Diego Ongaro  <ongardie@gmail.com>
+
+	* Created file

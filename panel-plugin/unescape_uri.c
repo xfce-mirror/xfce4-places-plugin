@@ -27,6 +27,9 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#ifndef _XFCE_PANEL_PLACES_UNESCAPE_URI_C
+#define _XFCE_PANEL_PLACES_UNESCAPE_URI_C
+
 #include <string.h>
 #include <glib.h>
 
@@ -116,3 +119,5 @@ static gchar *
 places_unescape_uri_string(const gchar* escaped) {
 	return g_unescape_uri_string(escaped, -1, "", FALSE);
 }
+
+#endif

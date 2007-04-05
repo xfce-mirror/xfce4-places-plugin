@@ -4,9 +4,15 @@ plugin_PROGRAMS =							\
 	xfce4-places-plugin
 
 xfce4_places_plugin_SOURCES =						\
-	unescape_uri.c							\
+	places.c							\
 	places.h							\
-	places.c							
+	model.c								\
+	model.h								\
+	model_system.c							\
+	model_volumes.c							\
+	model_user.c							\
+	unescape_uri.c
+
 
 xfce4_places_plugin_CFLAGS =						\
 	-I$(top_builddir)						\
@@ -16,12 +22,14 @@ xfce4_places_plugin_CFLAGS =						\
 	$(LIBXFCE4UTIL_CFLAGS)						\
 	$(LIBXFCEGUI4_CFLAGS)						\
 	$(LIBXFCE4PANEL_CFLAGS)						\
+        $(THUNAR_VFS_CFLAGS)						\
 	$(PLATFORM_CFLAGS)
 
 xfce4_places_plugin_LDADD =						\
 	$(LIBXFCE4UTIL_LIBS)						\
 	$(LIBXFCEGUI4_LIBS)						\
-	$(LIBXFCE4PANEL_LIBS)
+	$(LIBXFCE4PANEL_LIBS)						\
+	@THUNAR_VFS_LIBS@
 
 
 #

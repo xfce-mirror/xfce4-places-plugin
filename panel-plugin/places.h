@@ -33,41 +33,20 @@ typedef struct
   gboolean   panel_menu_open;
   int        panel_size;
 
-  // bookmarks
-  GPtrArray *bookmarks_system;
-  GPtrArray *bookmarks_user;
-  gchar     *bookmarks_user_filename;
-  time_t     bookmarks_user_loaded;
+  gpointer   bookmarks;
 
 } PlacesData;
 
-
-typedef struct
-{
-    gchar *label;
-    gchar *uri;
-    gchar *icon;
-} BookmarkInfo;
-static BookmarkInfo* places_construct_BookmarkInfo(gchar* label, gchar* uri, gchar* icon);
-
 // Init
 static void places_construct(XfcePanelPlugin*);
- static void places_init_bookmarks(PlacesData*);
-  static void places_init_bookmarks_system(PlacesData*);
-  static void places_init_bookmarks_user(PlacesData*);
- static void places_init_ui(PlacesData*);
-  static void places_init_panel_menu(PlacesData*);
-   static void places_init_panel_menu_system(PlacesData*);
-   static void places_init_panel_menu_user(PlacesData*);
-
+static void places_init_ui(PlacesData*);
+static void places_init_panel_menu(PlacesData*);
 
 // Library
 static void places_load_thunar(const gchar*);
-static time_t places_get_bookmarks_user_mtime(PlacesData*);
 
 // UI Helpers
 static void places_close_menu(PlacesData*);
-static GtkWidget* places_bookmark_info_to_gtk_menu_item(BookmarkInfo*);
 static void places_ui_redraw(PlacesData*);
 
 // GTK Callbacks
@@ -75,7 +54,7 @@ static gboolean places_cb_size_changed(XfcePanelPlugin*, int, PlacesData*);
 static void places_cb_menu_position(GtkMenu*, int*, int*, gboolean*, PlacesData*);
 static void places_cb_menu_close(GtkMenuShell*, PlacesData*);
 static gboolean places_cb_menu_open(GtkButton*, GdkEventButton*, PlacesData*);
-static gboolean places_cb_menu_item_act(GtkWidget*, GdkEventButton*, BookmarkInfo*);
+static gboolean places_cb_menu_item_act(GtkWidget*, GdkEventButton*, const gchar*);
 static gboolean places_cb_button_act(GtkWidget*, GdkEventButton*, gpointer);
 static void places_cb_free_data(XfcePanelPlugin*, PlacesData*);
 
