@@ -1,1 +1,13 @@
+2007-04-05
+================================================================================
+xfce4-places-plugin v0.1 released
 
+ * Adds i18n support
+ * Fixes url escaping bug (#3027)
+ * Fixes hard-coded thunar path (#3053)
+
+2007-03-14
+================================================================================
+xfce4-places-plugin v0.0.9 released
+
+ * Reads and watches .gtk-bookmarks for changes

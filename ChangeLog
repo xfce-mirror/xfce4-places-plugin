@@ -1,7 +1,7 @@
 2007-04-05	Diego Ongaro <ongardie@gmail.com>
 
-	* Started trying to work with i18n
-	  but I need help with it...
+	* Releasing version 0.1
+	* With psyBSD's help, i18n is now up and running.
 
 2007-03-25	Diego Ongaro <ongardie@gmail.com>
 
