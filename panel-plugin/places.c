@@ -55,13 +55,16 @@ static void
 places_construct(XfcePanelPlugin *plugin)
 {
     DBG ("Construct: %s", PLUGIN_NAME);
+    
+    xfce_textdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8"); 
+
+    DBG("GETTXT_PACKAGE: %s", GETTEXT_PACKAGE);
+    DBG("PACKAGE_LOCALE_DIR: %s", PACKAGE_LOCALE_DIR);
 
     PlacesData *pd = panel_slice_new0(PlacesData);
     pd->plugin = plugin;
     places_init_bookmarks(pd);
     places_init_ui(pd);
-
-    //xfce_textdomain (GETTEXT_PACKAGE, LOCALEDIR, "UTF-8"); 
 
     g_signal_connect (pd->panel_button, "button-release-event",
                       G_CALLBACK (places_cb_button_act), NULL);
@@ -109,15 +112,15 @@ places_init_bookmarks_system(PlacesData *pd)
                                                 g_strdup(home_dir), "gnome-fs-home"));
 
     // Trash
-    g_ptr_array_add(pd->bookmarks_system, places_construct_BookmarkInfo("Trash", 
+    g_ptr_array_add(pd->bookmarks_system, places_construct_BookmarkInfo(_("Trash"), 
                                                 "trash:///", "gnome-fs-trash-full"));
     
     // Desktop
-    g_ptr_array_add(pd->bookmarks_system, places_construct_BookmarkInfo("Desktop", 
+    g_ptr_array_add(pd->bookmarks_system, places_construct_BookmarkInfo(_("Desktop"), 
                                                 g_build_filename(home_dir, "Desktop", NULL), "gnome-fs-desktop"));
     
     // File System (/)
-    g_ptr_array_add(pd->bookmarks_system, places_construct_BookmarkInfo("File System", 
+    g_ptr_array_add(pd->bookmarks_system, places_construct_BookmarkInfo(_("File System"), 
                                                 "/", "gnome-dev-harddisk"));
 }
 

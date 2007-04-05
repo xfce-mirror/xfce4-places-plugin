@@ -14,13 +14,13 @@ AM_CONFIG_HEADER([config.h])
 AM_MAINTAINER_MODE()
 
 dnl check for basic programs
-AC_PROG_CC()
-AC_PROG_LD()
-AC_PROG_INSTALL()
+AC_PROG_CC
+AC_PROG_INSTALL
+AC_PROG_LIBTOOL
 AC_PROG_INTLTOOL()
 
 dnl check for i18n support
-XDT_I18N([])
+XDT_I18N([de])
 
 dnl check for required packages
 XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.6.0])

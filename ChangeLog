@@ -1,8 +1,13 @@
-2007-03-25  Diego Ongaro  ongardie@gmail.com
+2007-04-05	Diego Ongaro <ongardie@gmail.com>
+
+	* Started trying to work with i18n
+	  but I need help with it...
+
+2007-03-25	Diego Ongaro <ongardie@gmail.com>
 
 	* Fixed bug 3053 (Plugin doesn't launch thunar) by dropping "/usr/bin/"
 	* Fixed bug 3027 (Places menu showing %20) by copying glib code
 
-2007-03-14  Diego Ongaro  ongardie@gmail.com
+2007-03-14	Diego Ongaro <ongardie@gmail.com>
 
 	* initial beta release, packaged outside svn

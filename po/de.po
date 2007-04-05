@@ -1,0 +1,45 @@
+# German translations for xfce4-places-plugin package.
+# Copyright (C) 2007 THE xfce4-places-plugin'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the xfce4-places-plugin package.
+# Automatically generated, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-places-plugin 0.0.9\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-03-31 23:29-0500\n"
+"PO-Revision-Date: 2007-03-31 23:29-0500\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Trash
+# translation from Thunar
+#: ../panel-plugin/places.c:112
+msgid "Trash"
+msgstr "Papierkorb"
+
+#. Desktop
+# translation (or lack thereof) from GNOME
+#: ../panel-plugin/places.c:116
+msgid "Desktop"
+msgstr "Desktop"
+
+#. File System (/)
+# translation from Thunar
+#: ../panel-plugin/places.c:120
+msgid "File System"
+msgstr "Dateisystem"
+
+# fuzzy (babelfish says this means "Access Places")
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "A file browser launcher with quick access to bookmarks."
+msgstr "Auf Orte zugreifen"
+
+# translation from GNOME
+#: ../panel-plugin/places.desktop.in.in.h:2
+msgid "Places"
+msgstr "Orte"

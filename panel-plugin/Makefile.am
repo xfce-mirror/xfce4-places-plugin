@@ -1,12 +1,5 @@
-INCLUDES =								\
-	-I$(top_srcdir)							\
-	-DG_LOG_DOMAIN=\"xfce4-places-plugin\"				\
-	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"				\
-	$(PLATFORM_CPPFLAGS)
+plugindir = $(libexecdir)/xfce4/panel-plugins
 
-plugindir =								\
-	$(libexecdir)/xfce4/panel-plugins
-	
 plugin_PROGRAMS =							\
 	xfce4-places-plugin
 
@@ -16,6 +9,9 @@ xfce4_places_plugin_SOURCES =						\
 	places.c							
 
 xfce4_places_plugin_CFLAGS =						\
+	-I$(top_builddir)						\
+	-I$(top_srcdir)							\
+	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"				\
 	$(GTK_CFLAGS)							\
 	$(LIBXFCE4UTIL_CFLAGS)						\
 	$(LIBXFCEGUI4_CFLAGS)						\
@@ -26,6 +22,7 @@ xfce4_places_plugin_LDADD =						\
 	$(LIBXFCE4UTIL_LIBS)						\
 	$(LIBXFCEGUI4_LIBS)						\
 	$(LIBXFCE4PANEL_LIBS)
+
 
 #
 # Desktop file
