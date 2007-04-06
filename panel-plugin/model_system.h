@@ -17,22 +17,11 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef _XFCE_PANEL_PLACES_MODEL_H
-#define _XFCE_PANEL_PLACES_MODEL_H
+#ifndef _XFCE_PANEL_PLACES_MODEL_SYSTEM_H
+#define _XFCE_PANEL_PLACES_MODEL_SYSTEM_H
 
-#include <glib.h>
-
-#define BOOKMARK_ITEM_FUNC(symbol)      void (*symbol) (gpointer, const gchar*, const gchar*, const gchar*)
-#define BOOKMARK_SEPARATOR_FUNC(symbol) void (*symbol) (gpointer)
-
-typedef struct
-{
-    gchar           *label;
-    gchar           *uri;
-    gchar           *icon;
-    gboolean         show;
-    gpointer        *data;
-} BookmarkInfo;
+typedef struct _BookmarksSystem BookmarksSystem;
+static void places_bookmarks_system_bi_system_mod(BookmarksSystem*, BookmarkInfo*);
 
 #endif
 // vim: ai et tabstop=4

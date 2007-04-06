@@ -9,9 +9,9 @@ xfce4_places_plugin_SOURCES =						\
 	model.c								\
 	model.h								\
 	model_system.c							\
+	model_system.h							\
 	model_volumes.c							\
-	model_user.c							\
-	unescape_uri.c
+	model_user.c
 
 
 xfce4_places_plugin_CFLAGS =						\

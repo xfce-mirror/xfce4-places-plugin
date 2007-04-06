@@ -1,3 +1,10 @@
+2007-04-06	Diego Ongaro <ongardie@gmail.com>
+
+	* Improved consistency with Thunar for user bookmarks
+	  (reading and display)
+	* Dropped unescape_uri.c
+	* Fixed bug 3030 (Places shows missing menu items)
+
 2007-04-05	Diego Ongaro <ongardie@gmail.com>
 	
 	* Merged in volumes branch

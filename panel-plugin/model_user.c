@@ -18,14 +18,24 @@
  */
 
 #include "model.h"
+#include "model_system.h"
 #include <glib/gstdio.h>
-#include "unescape_uri.c"
+
+#define dir_exists(path)    g_file_test(path, G_FILE_TEST_IS_DIR)
 
 typedef struct
 {
   GPtrArray *bookmarks;
   gchar     *filename;
   time_t     loaded;
+
+  const gchar *home;
+  gchar       *trash;
+  gchar       *desktop;
+  gchar       *file_system;
+
+  BookmarksSystem *system;
+
 } BookmarksUser;
 
 
@@ -35,43 +45,66 @@ static void
 places_bookmarks_user_reinit(BookmarksUser *b)
 {
     DBG("initializing");
+    // As of 2007-04-06, this is pretty much taken from/analogous to Thunar
+
     BookmarkInfo *bi;
+    gchar  *name;
+    gchar  *path;
+    gchar   line[2048];
+    FILE   *fp;
+ 
+    fp = fopen(b->filename, "r");
 
-    gchar *contents;
-    gchar **split;
-    gchar **lines;
-    int i;
-    
-    if (!g_file_get_contents(b->filename, &contents, NULL, NULL)) {
+    if(G_UNLIKELY(fp == NULL)){
         DBG("Error opening gtk bookmarks file");
-    }else{
-    
-        lines = g_strsplit (contents, "\n", -1);
-        g_free(contents);
-  
-        for (i = 0; lines[i]; i++) {
-            if(!lines[i][0])
+        return;
+    }
+
+    while( fgets(line, sizeof(line), fp) != NULL )
+    {
+        /* strip leading/trailing whitespace */
+        g_strstrip(line);
+        
+        /* skip over the URI */
+        for (name = line; *name != '\0' && !g_ascii_isspace (*name); ++name)
+            /* pass */;
+        
+        /* zero-terminate the URI */
+        *name++ = '\0';
+        
+        /* check if we have a name */
+        for (; g_ascii_isspace (*name); ++name)
+            /* pass */;
+        
+        /* parse the URI */ // TODO: trash:// URI's
+        path = g_filename_from_uri(line, NULL, NULL);
+        if (G_UNLIKELY(path == NULL || *path == '\0'))
+            continue;
+
+        /* if we don't have a name, find it in the path */
+        if(*name == '\0'){
+            name = g_filename_display_basename(path);
+            if(*name == '\0'){
+                g_free(path);
                 continue;
-    
-            bi = g_new0(BookmarkInfo, 1);
-            bi->icon = "gnome-fs-directory";
-
-            // See if the line is in the form "file:///path" or "file:///path friendly-name"
-            split = g_strsplit(lines[i], " ", 2);
-            if(split[1]){
-                bi->label = g_strdup(split[1]);
-                bi->uri = g_strdup(split[0]);
-            }else{
-                bi->label = places_unescape_uri_string(g_strrstr(lines[i], "/") + sizeof(gchar));
-                bi->uri = g_strdup(lines[i]);
             }
-
-            g_ptr_array_add(b->bookmarks, bi);
-            g_free(split);
+        }else{
+            name = g_strdup(name);
         }
 
-        g_strfreev(lines);
+        /* create the BookmarkInfo container */
+        bi = g_new0(BookmarkInfo, 1);
+        bi->uri = path;
+        bi->label = name;
+        bi->show = dir_exists(bi->uri);
+        bi->icon = g_strdup("gnome-fs-directory");
+
+        places_bookmarks_system_bi_system_mod(b->system, bi);
+
+        g_ptr_array_add(b->bookmarks, bi);
     }
+
+    fclose(fp);
 }
 
 static time_t
@@ -86,11 +119,12 @@ places_bookmarks_user_get_mtime(BookmarksUser *b)
 // external
 
 static BookmarksUser*
-places_bookmarks_user_init()
+places_bookmarks_user_init(BookmarksSystem *system)
 { 
     BookmarksUser *b = g_new0(BookmarksUser, 1);
+    b->system = system;
 
-    b->filename = g_build_filename(xfce_get_homedir(), ".gtk-bookmarks", NULL);
+    b->filename = xfce_get_homefile(".gtk-bookmarks", NULL);
     b->bookmarks = g_ptr_array_new();
     b->loaded = places_bookmarks_user_get_mtime(b);
     
@@ -101,6 +135,7 @@ places_bookmarks_user_init()
 static gboolean
 places_bookmarks_user_changed(BookmarksUser *b)
 {
+    // see if the file has changed
     time_t mtime = places_bookmarks_user_get_mtime(b);
     
     if(mtime > b->loaded){
@@ -111,7 +146,20 @@ places_bookmarks_user_changed(BookmarksUser *b)
         return TRUE;
     }
 
-    return FALSE;
+    // see if any directories have been created or removed
+    guint k;
+    BookmarkInfo *bi;
+    gboolean ret = FALSE;
+
+    for(k=0; k < b->bookmarks->len; k++){
+        bi = g_ptr_array_index(b->bookmarks, k);
+        if(bi->show != dir_exists(bi->uri)){
+            bi->show = !bi->show;
+            ret = TRUE;
+        }
+    }
+
+    return ret;
 }
 
 static void
@@ -125,7 +173,8 @@ places_bookmarks_user_visit(BookmarksUser *b,
     
     for(k=0; k < b->bookmarks->len; k++){
         bi = g_ptr_array_index(b->bookmarks, k);
-        item_func(pass_thru, bi->label, bi->uri, bi->icon);
+        if(bi->show)
+            item_func(pass_thru, bi->label, bi->uri, bi->icon);
     }
 }
 
@@ -136,6 +185,5 @@ places_bookmarks_user_finalize(BookmarksUser *b)
     g_free(b->filename);
     g_free(b);
 }
-
 
 // vim: ai et tabstop=4

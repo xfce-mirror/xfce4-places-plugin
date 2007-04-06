@@ -28,6 +28,7 @@ typedef struct
     BookmarksUser    *user;
 } Bookmarks;
 
+
 static Bookmarks*
 places_bookmarks_init()
 {
@@ -37,7 +38,9 @@ places_bookmarks_init()
 
     b->system = places_bookmarks_system_init();
     b->volumes = places_bookmarks_volumes_init();
-    b->user = places_bookmarks_user_init();
+    b->user = places_bookmarks_user_init(b->system); // user depends on system for 
+                                                     // places_bookmarks_system_bi_system_mod().
+                                                     // It's a sucky aspect of this design...
 
     return b;
 }

@@ -18,12 +18,16 @@
  */
 
 #include "model.h"
+#include "model_system.h"
 #include <libxfce4util/libxfce4util.h>
+#include <string.h>
 
-typedef struct
+#define check_existence data
+
+struct _BookmarksSystem
 {
   GPtrArray *bookmarks;
-} BookmarksSystem;
+};
 
 static BookmarksSystem*
 places_bookmarks_system_init()
@@ -42,6 +46,8 @@ places_bookmarks_system_init()
     bookmark->label = g_strdup(g_get_user_name());
     bookmark->uri = g_strdup(home_dir);
     bookmark->icon = "gnome-fs-home";
+    bookmark->show = TRUE;
+    bookmark->check_existence = NULL;
     g_ptr_array_add(b->bookmarks, bookmark);
 
     // Trash
@@ -49,13 +55,17 @@ places_bookmarks_system_init()
     bookmark->label = _("Trash");
     bookmark->uri = "trash:///";
     bookmark->icon = "gnome-fs-trash-full";
+    bookmark->show = TRUE;
+    bookmark->check_existence = NULL;
     g_ptr_array_add(b->bookmarks, bookmark);
 
     // Desktop
     bookmark = g_new0(BookmarkInfo, 1);
-    bookmark->label = _("Desktop");
     bookmark->uri = g_build_filename(home_dir, "Desktop", NULL);
+    bookmark->label = _("Desktop");
     bookmark->icon = "gnome-fs-desktop";
+    bookmark->show = g_file_test(bookmark->uri, G_FILE_TEST_IS_DIR);
+    bookmark->check_existence = (gpointer) 1;
     g_ptr_array_add(b->bookmarks, bookmark);
     
     // File System (/)
@@ -63,6 +73,8 @@ places_bookmarks_system_init()
     bookmark->label = _("File System");
     bookmark->uri = "/";
     bookmark->icon = "gnome-dev-harddisk";
+    bookmark->show = TRUE;
+    bookmark->check_existence = NULL;
     g_ptr_array_add(b->bookmarks, bookmark);
 
     return b;
@@ -71,7 +83,19 @@ places_bookmarks_system_init()
 static gboolean
 places_bookmarks_system_changed(BookmarksSystem *b)
 {
-    return FALSE;
+    guint k;
+    BookmarkInfo *bi;
+    gboolean ret = FALSE;
+    
+    for(k=0; k < b->bookmarks->len; k++){
+        bi = g_ptr_array_index(b->bookmarks, k);
+        if(bi->check_existence && bi->show != g_file_test(bi->uri, G_FILE_TEST_IS_DIR)){
+            bi->show = !bi->show;
+            ret = TRUE;
+        }
+    }
+    
+    return ret;
 }
 
 static void
@@ -85,7 +109,8 @@ places_bookmarks_system_visit(BookmarksSystem *b,
     
     for(k=0; k < b->bookmarks->len; k++){
         bi = g_ptr_array_index(b->bookmarks, k);
-        item_func(pass_thru, bi->label, bi->uri, bi->icon);
+        if(bi->show)
+            item_func(pass_thru, bi->label, bi->uri, bi->icon);
     }
 }
 
@@ -94,6 +119,43 @@ places_bookmarks_system_finalize(BookmarksSystem *b)
 {
     g_ptr_array_free(b->bookmarks, TRUE);
     g_free(b);
+}
+
+/*
+ * A bookmark with the same path as a system path should have the system icon.
+ * Such a bookmark with its default label should also use the system label.
+ */
+static void
+places_bookmarks_system_bi_system_mod(BookmarksSystem *b, BookmarkInfo *other){
+    g_assert(b != NULL);
+    g_assert(other != NULL);
+    g_assert(other->icon != NULL);
+    g_assert(other->label != NULL);
+
+    gboolean label_is_default;
+    gchar   *default_label;
+    
+    default_label    = g_filename_display_basename(other->uri);
+    label_is_default = (strcmp(default_label, other->label) == 0);
+    g_free(default_label);
+
+    BookmarkInfo *bi;
+    guint k;
+    for(k=0; k < b->bookmarks->len; k++){
+        bi = g_ptr_array_index(b->bookmarks, k);
+
+        if(G_UNLIKELY(strcmp(other->uri, bi->uri) == 0)){
+            g_free(other->icon);
+            other->icon = g_strdup(bi->icon);
+
+            if(label_is_default && strcmp(other->label, bi->label) != 0){
+                g_free(other->label);
+                other->label = g_strdup(bi->label);
+            }
+            
+            return;
+        }
+    }
 }
 
 // vim: ai et tabstop=4
