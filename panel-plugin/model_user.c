@@ -163,10 +163,7 @@ places_bookmarks_user_changed(BookmarksUser *b)
 }
 
 void
-places_bookmarks_user_visit(BookmarksUser *b,
-                            gpointer pass_thru, 
-                            BOOKMARK_ITEM_FUNC(item_func),
-                            BOOKMARK_SEPARATOR_FUNC(separator_func))
+places_bookmarks_user_visit(BookmarksUser *b,  BookmarksVisitor *visitor)
 {
     guint k;
     BookmarkInfo *bi;
@@ -174,7 +171,7 @@ places_bookmarks_user_visit(BookmarksUser *b,
     for(k=0; k < b->bookmarks->len; k++){
         bi = g_ptr_array_index(b->bookmarks, k);
         if(bi->show)
-            item_func(pass_thru, bi->label, bi->uri, bi->icon);
+            visitor->item(visitor->pass_thru, bi->label, bi->uri, bi->icon);
     }
 }
 

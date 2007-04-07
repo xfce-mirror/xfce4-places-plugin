@@ -1,3 +1,7 @@
+2007-04-07	Diego Ongaro <ongardie@gmail.com>
+
+	* Added BookmarksVisitor struct
+
 2007-04-06	Diego Ongaro <ongardie@gmail.com>
 
 	* Improved consistency with Thunar for user bookmarks

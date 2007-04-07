@@ -163,9 +163,11 @@ places_init_panel_menu(PlacesData *pd)
     pd->panel_menu = gtk_menu_new();
     pd->panel_menu_open = FALSE;
     
-    places_bookmarks_visit(pd->bookmarks, pd, 
-                           places_build_menu_item, 
-                           places_build_menu_separator);
+    BookmarksVisitor *visitor = g_new0(BookmarksVisitor, 1);
+    visitor->pass_thru = pd;
+    visitor->item = places_build_menu_item;
+    visitor->separator = places_build_menu_separator;
+    places_bookmarks_visit(pd->bookmarks, visitor);
 
     gtk_widget_show_all(pd->panel_menu);
 

@@ -30,10 +30,7 @@ BookmarksUser*
 places_bookmarks_user_init(const BookmarksSystem *system);
 
 void
-places_bookmarks_user_visit(BookmarksUser *b,
-                            gpointer pass_thru, 
-                            BOOKMARK_ITEM_FUNC(item_func),
-                            BOOKMARK_SEPARATOR_FUNC(separator_func));
+places_bookmarks_user_visit(BookmarksUser *b, BookmarksVisitor *visitor);
 
 gboolean
 places_bookmarks_user_changed(BookmarksUser *b);

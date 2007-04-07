@@ -29,10 +29,7 @@ BookmarksSystem*
 places_bookmarks_system_init();
 
 void
-places_bookmarks_system_visit(BookmarksSystem *b,
-                              gpointer pass_thru, 
-                              BOOKMARK_ITEM_FUNC(item_func),
-                              BOOKMARK_SEPARATOR_FUNC(separator_func));
+places_bookmarks_system_visit(BookmarksSystem *b, BookmarksVisitor *visitor);
 
 gboolean
 places_bookmarks_system_changed(BookmarksSystem *b);
