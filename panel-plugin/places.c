@@ -29,8 +29,8 @@
 #include <libxfce4panel/xfce-panel-convenience.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-#include "model.c"
 #include "places.h"
+#include "model.h"
 
 #define PLUGIN_NAME "places"
 

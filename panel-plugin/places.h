@@ -20,6 +20,8 @@
 #ifndef _XFCE_PANEL_PLACES_H
 #define _XFCE_PANEL_PLACES_H
 
+#include <libxfce4panel/xfce-panel-plugin.h>
+
 typedef struct
 {
   // plugin
@@ -57,7 +59,6 @@ static gboolean places_cb_menu_open(GtkButton*, GdkEventButton*, PlacesData*);
 static gboolean places_cb_menu_item_act(GtkWidget*, GdkEventButton*, const gchar*);
 static gboolean places_cb_button_act(GtkWidget*, GdkEventButton*, gpointer);
 static void places_cb_free_data(XfcePanelPlugin*, PlacesData*);
-
 
 #endif
 // vim: ai et tabstop=4

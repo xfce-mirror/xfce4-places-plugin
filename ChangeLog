@@ -4,6 +4,7 @@
 	  (reading and display)
 	* Dropped unescape_uri.c
 	* Fixed bug 3030 (Places shows missing menu items)
+	* Improved the headers mess
 
 2007-04-05	Diego Ongaro <ongardie@gmail.com>
 	

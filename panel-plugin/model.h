@@ -34,5 +34,23 @@ typedef struct
     gpointer        *data;
 } BookmarkInfo;
 
+typedef struct _Bookmarks Bookmarks;
+
+Bookmarks*
+places_bookmarks_init();
+
+void
+places_bookmarks_visit(Bookmarks *b,
+                       gpointer pass_thru, 
+                       BOOKMARK_ITEM_FUNC(item_func),
+                       BOOKMARK_SEPARATOR_FUNC(separator_func));
+
+gboolean
+places_bookmarks_changed(Bookmarks *b);
+
+void
+places_bookmarks_finalize(Bookmarks *b);
+
+
 #endif
 // vim: ai et tabstop=4

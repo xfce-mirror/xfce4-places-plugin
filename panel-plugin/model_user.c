@@ -17,29 +17,27 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#include "model.h"
 #include "model_system.h"
+#include "model_user.h"
+#include "model.h"
+
+#include <libxfce4util/libxfce4util.h>
 #include <glib/gstdio.h>
 
-#define dir_exists(path)    g_file_test(path, G_FILE_TEST_IS_DIR)
 
-typedef struct
+#define bookmarks_user_dir_exists(path)    g_file_test(path, G_FILE_TEST_IS_DIR)
+
+struct _BookmarksUser
 {
-  GPtrArray *bookmarks;
-  gchar     *filename;
-  time_t     loaded;
+  GPtrArray             *bookmarks;
+  gchar                 *filename;
+  time_t                 loaded;
 
-  const gchar *home;
-  gchar       *trash;
-  gchar       *desktop;
-  gchar       *file_system;
+  const BookmarksSystem *system;
 
-  BookmarksSystem *system;
+};
 
-} BookmarksUser;
-
-
-// internal
+// internal use
 
 static void
 places_bookmarks_user_reinit(BookmarksUser *b)
@@ -96,10 +94,10 @@ places_bookmarks_user_reinit(BookmarksUser *b)
         bi = g_new0(BookmarkInfo, 1);
         bi->uri = path;
         bi->label = name;
-        bi->show = dir_exists(bi->uri);
+        bi->show = bookmarks_user_dir_exists(bi->uri);
         bi->icon = g_strdup("gnome-fs-directory");
 
-        places_bookmarks_system_bi_system_mod(b->system, bi);
+        places_bookmarks_system_bi_system_mod((BookmarksSystem*) b->system, bi);
 
         g_ptr_array_add(b->bookmarks, bi);
     }
@@ -116,12 +114,14 @@ places_bookmarks_user_get_mtime(BookmarksUser *b)
     return 0;
 }
 
-// external
+// external interface
 
-static BookmarksUser*
-places_bookmarks_user_init(BookmarksSystem *system)
+BookmarksUser*
+places_bookmarks_user_init(const BookmarksSystem *system)
 { 
     BookmarksUser *b = g_new0(BookmarksUser, 1);
+    
+    g_assert(system != NULL);
     b->system = system;
 
     b->filename = xfce_get_homefile(".gtk-bookmarks", NULL);
@@ -132,7 +132,7 @@ places_bookmarks_user_init(BookmarksSystem *system)
     return b;
 }
 
-static gboolean
+gboolean
 places_bookmarks_user_changed(BookmarksUser *b)
 {
     // see if the file has changed
@@ -153,7 +153,7 @@ places_bookmarks_user_changed(BookmarksUser *b)
 
     for(k=0; k < b->bookmarks->len; k++){
         bi = g_ptr_array_index(b->bookmarks, k);
-        if(bi->show != dir_exists(bi->uri)){
+        if(bi->show != bookmarks_user_dir_exists(bi->uri)){
             bi->show = !bi->show;
             ret = TRUE;
         }
@@ -162,7 +162,7 @@ places_bookmarks_user_changed(BookmarksUser *b)
     return ret;
 }
 
-static void
+void
 places_bookmarks_user_visit(BookmarksUser *b,
                             gpointer pass_thru, 
                             BOOKMARK_ITEM_FUNC(item_func),
@@ -178,12 +178,13 @@ places_bookmarks_user_visit(BookmarksUser *b,
     }
 }
 
-static void
+void
 places_bookmarks_user_finalize(BookmarksUser *b)
 {
     g_ptr_array_free(b->bookmarks, TRUE);
     g_free(b->filename);
     g_free(b);
 }
+
 
 // vim: ai et tabstop=4

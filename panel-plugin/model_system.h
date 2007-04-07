@@ -20,8 +20,29 @@
 #ifndef _XFCE_PANEL_PLACES_MODEL_SYSTEM_H
 #define _XFCE_PANEL_PLACES_MODEL_SYSTEM_H
 
+#include "model.h"
+#include <glib.h>
+
 typedef struct _BookmarksSystem BookmarksSystem;
-static void places_bookmarks_system_bi_system_mod(BookmarksSystem*, BookmarkInfo*);
+
+BookmarksSystem*
+places_bookmarks_system_init();
+
+void
+places_bookmarks_system_visit(BookmarksSystem *b,
+                              gpointer pass_thru, 
+                              BOOKMARK_ITEM_FUNC(item_func),
+                              BOOKMARK_SEPARATOR_FUNC(separator_func));
+
+gboolean
+places_bookmarks_system_changed(BookmarksSystem *b);
+
+void
+places_bookmarks_system_finalize(BookmarksSystem *b);
+
+void
+places_bookmarks_system_bi_system_mod(BookmarksSystem *b, 
+                                      BookmarkInfo *other);
 
 #endif
 // vim: ai et tabstop=4

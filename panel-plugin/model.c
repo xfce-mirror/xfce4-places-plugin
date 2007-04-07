@@ -17,19 +17,21 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#include "model_system.c"
-#include "model_volumes.c"
-#include "model_user.c"
+#include "model.h"
+#include "model_system.h"
+#include "model_volumes.h"
+#include "model_user.h"
 
-typedef struct
+#include <libxfce4util/libxfce4util.h>
+
+struct _Bookmarks
 {
     BookmarksSystem  *system;
     BookmarksVolumes *volumes;
     BookmarksUser    *user;
-} Bookmarks;
+};
 
-
-static Bookmarks*
+Bookmarks*
 places_bookmarks_init()
 {
     DBG("initializing model");
@@ -45,30 +47,30 @@ places_bookmarks_init()
     return b;
 }
 
-static void
+void
 places_bookmarks_visit(Bookmarks *b,
                        gpointer pass_thru, 
                        BOOKMARK_ITEM_FUNC(item_func),
                        BOOKMARK_SEPARATOR_FUNC(separator_func))
 {
-    places_bookmarks_system_visit(b->system, pass_thru, item_func, separator_func);
-    places_bookmarks_volumes_visit(b->volumes, pass_thru, item_func, separator_func);
-    separator_func(pass_thru);
-    places_bookmarks_user_visit(b->user, pass_thru, item_func, separator_func);
+    places_bookmarks_system_visit  (b->system,  pass_thru, item_func, separator_func);
+    places_bookmarks_volumes_visit (b->volumes, pass_thru, item_func, separator_func);
+    separator_func                 (pass_thru);
+    places_bookmarks_user_visit    (b->user,    pass_thru, item_func, separator_func);
 }
 
-static gboolean
+gboolean
 places_bookmarks_changed(Bookmarks *b)
 {
-    // avoid short-circuit of || since changed() has side-effects
+    // try to avoid short-circuit of || since changed() has side-effects
     gboolean changed = FALSE;
-    changed = places_bookmarks_system_changed(b->system) || changed;
-    changed = places_bookmarks_volumes_changed(b->volumes) || changed;
-    changed = places_bookmarks_user_changed(b->user) || changed;
+    changed = places_bookmarks_system_changed(b->system)    || changed;
+    changed = places_bookmarks_volumes_changed(b->volumes)  || changed;
+    changed = places_bookmarks_user_changed(b->user)        || changed;
     return changed || TRUE;
 }
 
-static void
+void
 places_bookmarks_finalize(Bookmarks *b)
 {
     places_bookmarks_system_finalize(b->system);

@@ -18,29 +18,36 @@
  */
 
 #include "model.h"
+#include "model_volumes.h"
 #include <thunar-vfs/thunar-vfs.h>
+#include <libxfce4util/libxfce4util.h>
 
-typedef struct
+struct _BookmarksVolumes
 {
     GPtrArray *bookmarks;
     gboolean   changed;
     ThunarVfsVolumeManager *volume_manager;
-} BookmarksVolumes;
+};
 
-static gboolean places_show_volume(ThunarVfsVolume *volume);
-static void places_bookmarks_volumes_add(BookmarksVolumes *b, const GList *volumes);
+static gboolean 
+places_bookmarks_volumes_show_volume(ThunarVfsVolume *volume);
+
+static void
+places_bookmarks_volumes_add(BookmarksVolumes *b, const GList *volumes);
 
 
 /********** ThunarVFS Callbacks **********/
 
-static void
-places_cb_volume_changed(ThunarVfsVolume *volume, BookmarksVolumes *b){
+void
+places_bookmarks_volumes_cb_changed(ThunarVfsVolume *volume, 
+                                    BookmarksVolumes *b)
+{
     DBG("volume changed"); 
     // unfortunately there tends to be like 3 of these in a row
 
     guint k;
 
-    if(places_show_volume(volume)){
+    if(places_bookmarks_volumes_show_volume(volume)){
 
         // make sure it's in the array
         for(k = 0; k < b->bookmarks->len; k++){
@@ -75,15 +82,21 @@ places_cb_volume_changed(ThunarVfsVolume *volume, BookmarksVolumes *b){
     }
 }
 
-static void
-places_cb_volumes_added(ThunarVfsVolumeManager *volume_manager, const GList *volumes, BookmarksVolumes *b){
+void
+places_bookmarks_volumes_cb_added(ThunarVfsVolumeManager *volume_manager,
+                                  const GList *volumes, 
+                                  BookmarksVolumes *b)
+{
     DBG("volumes added");
     places_bookmarks_volumes_add(b, volumes);
     b->changed = TRUE;
 }
 
-static void
-places_cb_volumes_removed(ThunarVfsVolumeManager *volume_manager, const GList *volumes, BookmarksVolumes *b){
+void
+places_bookmarks_volumes_cb_removed(ThunarVfsVolumeManager *volume_manager, 
+                                    const GList *volumes, 
+                                    BookmarksVolumes *b)
+{
     DBG("volumes removed");
 
     GList *vol_iter;
@@ -116,7 +129,7 @@ places_cb_volumes_removed(ThunarVfsVolumeManager *volume_manager, const GList *v
 
 // internal
 static gboolean
-places_show_volume(ThunarVfsVolume *volume){
+places_bookmarks_volumes_show_volume(ThunarVfsVolume *volume){
     
     DBG("Volume: %s [mounted=%x removable=%x present=%x]", thunar_vfs_volume_get_name(volume), 
                                                            thunar_vfs_volume_is_mounted(volume),
@@ -140,9 +153,9 @@ places_bookmarks_volumes_add(BookmarksVolumes *b, const GList *volumes)
         volume = THUNAR_VFS_VOLUME(volumes->data);
         
         g_signal_connect (volume, "changed",
-                      G_CALLBACK(places_cb_volume_changed), b);
+                      G_CALLBACK(places_bookmarks_volumes_cb_changed), b);
 
-        if(places_show_volume(volume)){
+        if(places_bookmarks_volumes_show_volume(volume)){
 
             g_object_ref(volume);
 
@@ -161,7 +174,7 @@ places_bookmarks_volumes_add(BookmarksVolumes *b, const GList *volumes)
 
 // external
 
-static BookmarksVolumes*
+BookmarksVolumes*
 places_bookmarks_volumes_init()
 {
     DBG("init");
@@ -176,17 +189,17 @@ places_bookmarks_volumes_init()
     places_bookmarks_volumes_add(b, thunar_vfs_volume_manager_get_volumes(b->volume_manager));
 
     g_signal_connect (b->volume_manager, "volumes-added",
-                      G_CALLBACK (places_cb_volumes_added), b);
+                      G_CALLBACK (places_bookmarks_volumes_cb_added), b);
 
     g_signal_connect (b->volume_manager, "volumes-removed",
-                      G_CALLBACK (places_cb_volumes_removed), b);
+                      G_CALLBACK (places_bookmarks_volumes_cb_removed), b);
 
     DBG("done");
 
     return b;
 }
 
-static void
+void
 places_bookmarks_volumes_finalize(BookmarksVolumes *b)
 {
     guint k;
@@ -204,7 +217,7 @@ places_bookmarks_volumes_finalize(BookmarksVolumes *b)
     g_free(b);
 }
 
-static gboolean
+gboolean
 places_bookmarks_volumes_changed(BookmarksVolumes *b)
 {
     if(b->changed){
@@ -215,7 +228,7 @@ places_bookmarks_volumes_changed(BookmarksVolumes *b)
     }
 }
 
-static void
+void
 places_bookmarks_volumes_visit(BookmarksVolumes *b,
                                gpointer pass_thru, 
                                BOOKMARK_ITEM_FUNC(item_func),
