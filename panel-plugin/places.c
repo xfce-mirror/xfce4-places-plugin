@@ -163,11 +163,28 @@ places_init_panel_menu(PlacesData *pd)
     pd->panel_menu = gtk_menu_new();
     pd->panel_menu_open = FALSE;
     
+    // System, Volumes, User Bookmarks
+
     BookmarksVisitor *visitor = g_new0(BookmarksVisitor, 1);
     visitor->pass_thru = pd;
     visitor->item = places_build_menu_item;
     visitor->separator = places_build_menu_separator;
     places_bookmarks_visit(pd->bookmarks, visitor);
+
+    // Recent Documents
+
+    places_build_menu_separator(pd);
+
+    GtkWidget *recent_menu = gtk_recent_chooser_menu_new();
+    g_signal_connect(recent_menu, "item-activated", 
+                     G_CALLBACK(places_cb_recent_item_activated), pd);
+    
+    GtkWidget *recent_item = gtk_image_menu_item_new_with_label(_("Recent Documents"));
+    gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(recent_item), 
+                                  gtk_image_new_from_stock(GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU));
+    gtk_menu_item_set_submenu(GTK_MENU_ITEM(recent_item), recent_menu);
+    gtk_menu_shell_append(GTK_MENU_SHELL(pd->panel_menu), recent_item);
+
 
     gtk_widget_show_all(pd->panel_menu);
 
@@ -240,6 +257,15 @@ places_ui_redraw(PlacesData *pd)
 }
 
 /********** Gtk Callbacks **********/
+
+static void
+places_cb_recent_item_activated(GtkRecentChooser *chooser, PlacesData *pd)
+{
+    gchar *uri = gtk_recent_chooser_get_current_uri(chooser);
+    places_load_thunar(uri);
+    g_free(uri);
+}
+
 
 static gboolean
 places_cb_size_changed(XfcePanelPlugin *plugin, int size, PlacesData *pd)
