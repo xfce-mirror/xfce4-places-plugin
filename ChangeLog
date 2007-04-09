@@ -1,3 +1,7 @@
+2007-04-09	Diego Ongaro <ongardie@gmail.com>
+
+	* Added menu item to clear Recent Documents
+
 2007-04-08	Diego Ongaro <ongardie@gmail.com>
 
 	* Added Recent Documents via GtkRecentChooserMenu

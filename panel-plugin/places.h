@@ -53,6 +53,7 @@ static void places_ui_redraw(PlacesData*);
 
 // GTK Callbacks
 static void places_cb_recent_item_activated(GtkRecentChooser*, PlacesData*);
+static void places_cb_recent_clear(GtkWidget*, GdkEventButton*, gpointer nu);
 static gboolean places_cb_size_changed(XfcePanelPlugin*, int, PlacesData*);
 static void places_cb_menu_position(GtkMenu*, int*, int*, gboolean*, PlacesData*);
 static void places_cb_menu_close(GtkMenuShell*, PlacesData*);

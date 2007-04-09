@@ -151,7 +151,7 @@ places_build_menu_separator(gpointer _pd)
     g_assert(_pd);
     PlacesData *pd = (PlacesData*) _pd;
     gtk_menu_shell_append(GTK_MENU_SHELL(pd->panel_menu),
-                          gtk_menu_item_new());
+                          gtk_separator_menu_item_new());
 }
 
 static void
@@ -178,6 +178,13 @@ places_init_panel_menu(PlacesData *pd)
     GtkWidget *recent_menu = gtk_recent_chooser_menu_new();
     g_signal_connect(recent_menu, "item-activated", 
                      G_CALLBACK(places_cb_recent_item_activated), pd);
+
+    gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu),
+                          gtk_separator_menu_item_new());
+    GtkWidget *clear_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_CLEAR, NULL);
+    gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu), clear_item);
+    g_signal_connect(clear_item, "button-release-event",
+                     G_CALLBACK(places_cb_recent_clear), NULL);
     
     GtkWidget *recent_item = gtk_image_menu_item_new_with_label(_("Recent Documents"));
     gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(recent_item), 
@@ -266,6 +273,13 @@ places_cb_recent_item_activated(GtkRecentChooser *chooser, PlacesData *pd)
     g_free(uri);
 }
 
+static void
+places_cb_recent_clear(GtkWidget *widget, GdkEventButton *event, gpointer nu)
+{
+    GtkRecentManager *manager = gtk_recent_manager_get_default();
+    gint removed = gtk_recent_manager_purge_items(manager, NULL);
+    DBG("Cleared %d recent items", removed);
+}
 
 static gboolean
 places_cb_size_changed(XfcePanelPlugin *plugin, int size, PlacesData *pd)
