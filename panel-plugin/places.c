@@ -54,13 +54,13 @@ places_construct(XfcePanelPlugin *plugin)
     
     places_init_ui(pd);
 
-    g_signal_connect (pd->panel_button, "button-release-event",
-                      G_CALLBACK (places_cb_button_act), NULL);
+    g_signal_connect (pd->panel_button, "clicked",
+                      G_CALLBACK (places_cb_button_clicked), NULL);
    
     g_signal_connect (pd->panel_menu, "deactivate", 
                       G_CALLBACK(places_cb_menu_close), pd);
    
-    g_signal_connect (pd->panel_arrow, "button-press-event",
+    g_signal_connect (pd->panel_arrow, "clicked",
                       G_CALLBACK (places_cb_menu_open), pd);
 
     g_signal_connect (pd->plugin, "free-data", 
@@ -140,7 +140,7 @@ places_build_menu_item(gpointer _pd, const gchar *label, const gchar *uri, const
         }
     }
 
-    g_signal_connect(item, "button-release-event",
+    g_signal_connect(item, "activate",
                      G_CALLBACK(places_cb_menu_item_act), (gchar*) uri);
     gtk_menu_shell_append(GTK_MENU_SHELL(pd->panel_menu), item);
 }
@@ -183,7 +183,7 @@ places_init_panel_menu(PlacesData *pd)
                           gtk_separator_menu_item_new());
     GtkWidget *clear_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_CLEAR, NULL);
     gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu), clear_item);
-    g_signal_connect(clear_item, "button-release-event",
+    g_signal_connect(clear_item, "activate",
                      G_CALLBACK(places_cb_recent_clear), NULL);
     
     GtkWidget *recent_item = gtk_image_menu_item_new_with_label(_("Recent Documents"));
@@ -207,9 +207,17 @@ places_init_panel_menu(PlacesData *pd)
 static void
 places_load_thunar(const gchar *path)
 {
-    gchar *cmd = g_strconcat("thunar ", path, NULL);
-    xfce_exec(cmd, FALSE, TRUE, NULL);
-    g_free(cmd);
+    if(path != NULL && *path != '\0'){
+
+        gchar *cmd = g_strconcat("thunar \"", path, "\"", NULL);
+        xfce_exec(cmd, FALSE, TRUE, NULL);
+        g_free(cmd);
+
+    }else{
+
+        xfce_exec("thunar", FALSE, TRUE, NULL);
+
+    }
 }
 
 /********** UI Helpers **********/
@@ -360,12 +368,9 @@ places_cb_menu_close(GtkMenuShell *menushell, PlacesData *pd)
     places_close_menu(pd);
 }
 
-static gboolean
-places_cb_menu_open(GtkButton *arrow, GdkEventButton *event, PlacesData *pd){
+static void
+places_cb_menu_open(GtkButton *arrow, PlacesData *pd){
     g_assert(pd != NULL);
-
-    if(event->button == 3)
-        return FALSE;
 
     DBG("opening menu");
 
@@ -396,29 +401,20 @@ places_cb_menu_open(GtkButton *arrow, GdkEventButton *event, PlacesData *pd){
                        0, gtk_get_current_event_time());
         pd->panel_menu_open = TRUE;
     }
-    return TRUE;
 }
 
-static gboolean
-places_cb_menu_item_act(GtkWidget *widget, GdkEventButton *event, const gchar* uri)
+static void
+places_cb_menu_item_act(GtkWidget *widget, const gchar* uri)
 {
     DBG("load thunar for item");
-
     places_load_thunar(uri);
-    
-    return FALSE;
 }
 
-static gboolean
-places_cb_button_act(GtkWidget *button, GdkEventButton *event, gpointer nu)
+static void
+places_cb_button_clicked(GtkWidget *button)
 {
-    if(event->button == 3) // Let the right-click menu come up
-        return FALSE;
-    
     DBG("load thunar at home directory");
-    
     places_load_thunar(NULL);
-    return FALSE;
 }
 
 static void 

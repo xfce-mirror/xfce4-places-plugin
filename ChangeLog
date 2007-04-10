@@ -1,6 +1,9 @@
 2007-04-09	Diego Ongaro <ongardie@gmail.com>
 
 	* Added menu item to clear Recent Documents
+	* Accidentally had the menu always rebuilding
+	* Made some callbacks listen on more appropriate listeners
+	* Added double quotes to paths/URIs sent to Thunar
 
 2007-04-08	Diego Ongaro <ongardie@gmail.com>
 

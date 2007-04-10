@@ -65,7 +65,7 @@ places_bookmarks_changed(Bookmarks *b)
     changed = places_bookmarks_system_changed(b->system)    || changed;
     changed = places_bookmarks_volumes_changed(b->volumes)  || changed;
     changed = places_bookmarks_user_changed(b->user)        || changed;
-    return changed || TRUE;
+    return changed;
 }
 
 void

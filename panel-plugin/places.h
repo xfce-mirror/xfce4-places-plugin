@@ -57,9 +57,9 @@ static void places_cb_recent_clear(GtkWidget*, GdkEventButton*, gpointer nu);
 static gboolean places_cb_size_changed(XfcePanelPlugin*, int, PlacesData*);
 static void places_cb_menu_position(GtkMenu*, int*, int*, gboolean*, PlacesData*);
 static void places_cb_menu_close(GtkMenuShell*, PlacesData*);
-static gboolean places_cb_menu_open(GtkButton*, GdkEventButton*, PlacesData*);
-static gboolean places_cb_menu_item_act(GtkWidget*, GdkEventButton*, const gchar*);
-static gboolean places_cb_button_act(GtkWidget*, GdkEventButton*, gpointer);
+static void places_cb_menu_open(GtkButton*, PlacesData*);
+static void places_cb_menu_item_act(GtkWidget*, const gchar*);
+static void places_cb_button_clicked(GtkWidget*);
 static void places_cb_free_data(XfcePanelPlugin*, PlacesData*);
 
 #endif
