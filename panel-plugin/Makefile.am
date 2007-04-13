@@ -6,6 +6,8 @@ plugin_PROGRAMS =							\
 xfce4_places_plugin_SOURCES =						\
 	places.c							\
 	places.h							\
+	view.c								\
+	view.h								\
 	model.c								\
 	model.h								\
 	model_system.c							\

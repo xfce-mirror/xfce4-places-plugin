@@ -20,14 +20,17 @@
 #ifndef _XFCE_PANEL_PLACES_H
 #define _XFCE_PANEL_PLACES_H
 
+#include <gtk/gtk.h>
 #include <libxfce4panel/xfce-panel-plugin.h>
+
+#define PLUGIN_NAME "places"
 
 typedef struct
 {
   // plugin
   XfcePanelPlugin *plugin;
 
-  // ui
+  // view
   GtkWidget *panel_box;
   GtkWidget *panel_button;
   GtkWidget *panel_arrow;
@@ -35,32 +38,14 @@ typedef struct
   gboolean   panel_menu_open;
   int        panel_size;
 
+  // model
   gpointer   bookmarks;
 
 } PlacesData;
 
-// Init
 static void places_construct(XfcePanelPlugin*);
-static void places_init_ui(PlacesData*);
-static void places_init_panel_menu(PlacesData*);
-
-// Library
-static void places_load_thunar(const gchar*);
-
-// UI Helpers
-static void places_close_menu(PlacesData*);
-static void places_ui_redraw(PlacesData*);
-
-// GTK Callbacks
-static void places_cb_recent_item_activated(GtkRecentChooser*, PlacesData*);
-static void places_cb_recent_clear(GtkWidget*, GdkEventButton*, gpointer nu);
-static gboolean places_cb_size_changed(XfcePanelPlugin*, int, PlacesData*);
-static void places_cb_menu_position(GtkMenu*, int*, int*, gboolean*, PlacesData*);
-static void places_cb_menu_close(GtkMenuShell*, PlacesData*);
-static void places_cb_menu_open(GtkButton*, PlacesData*);
-static void places_cb_menu_item_act(GtkWidget*, const gchar*);
-static void places_cb_button_clicked(GtkWidget*);
-static void places_cb_free_data(XfcePanelPlugin*, PlacesData*);
+static void places_finalize(XfcePanelPlugin*, PlacesData*);
+void places_load_thunar(const gchar*);
 
 #endif
 // vim: ai et tabstop=4
