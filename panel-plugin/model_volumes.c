@@ -203,15 +203,14 @@ void
 places_bookmarks_volumes_finalize(BookmarksVolumes *b)
 {
     guint k;
-    
-    thunar_vfs_shutdown();
-    g_object_unref(b->volume_manager);
-    
+
     for(k = 0; k < b->bookmarks->len; k++){
         BookmarkInfo *bi = g_ptr_array_remove_index(b->bookmarks, k);
-        if(bi->data)
+        if(bi->data != NULL)
             g_object_unref(bi->data);
     }
+    g_object_unref(b->volume_manager);
+    thunar_vfs_shutdown();
 
     g_ptr_array_free(b->bookmarks, TRUE);
     g_free(b);

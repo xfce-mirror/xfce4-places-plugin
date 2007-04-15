@@ -6,6 +6,7 @@
 	  - Removed arrow button
 	  - Added "Places" tooltip
 	  - Added listener for theme changes
+	* model_volumes.c: free volumes data in correct order
 
 2007-04-13	Diego Ongaro <ongardie@gmail.com>
 
