@@ -1,3 +1,12 @@
+2007-04-14	Diego Ongaro <ongardie@gmail.com>
+
+	* view.c: rewrite
+	  - Based on xfdesktop menu, launcher
+	  - Fixes bugs #3124, #3029
+	  - Removed arrow button
+	  - Added "Places" tooltip
+	  - Added listener for theme changes
+
 2007-04-13	Diego Ongaro <ongardie@gmail.com>
 
 	* Split view into its own file

@@ -31,20 +31,16 @@ typedef struct
   XfcePanelPlugin *plugin;
 
   // view
-  GtkWidget *panel_box;
-  GtkWidget *panel_button;
-  GtkWidget *panel_arrow;
-  GtkWidget *panel_menu;
-  gboolean   panel_menu_open;
-  int        panel_size;
+  GtkWidget *view_button;
+  GtkWidget *view_button_image;
+  GtkWidget *view_menu;
+  gulong     view_theme_timeout_id;
 
   // model
   gpointer   bookmarks;
 
 } PlacesData;
 
-static void places_construct(XfcePanelPlugin*);
-static void places_finalize(XfcePanelPlugin*, PlacesData*);
 void places_load_thunar(const gchar*);
 
 #endif

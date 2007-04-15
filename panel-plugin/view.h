@@ -20,41 +20,12 @@
 #ifndef _XFCE_PANEL_PLACES_VIEW_H
 #define _XFCE_PANEL_PLACES_VIEW_H
 
-#include <gtk/gtk.h>
-#include <libxfce4panel/xfce-panel-plugin.h>
+#include <glib.h>
 #include "places.h"
 
 // Init & Finalize
-void            places_view_init(PlacesData*);
-static void     places_view_init_menu(PlacesData*);
-void            places_view_finalize(PlacesData*);
-
-// UI Helpers
-static void     places_view_close_menu(PlacesData*);
-static void     places_view_redraw(PlacesData*);
-
-// GTK Callbacks
-
-//  - Panel
-static gboolean places_view_cb_size_changed(XfcePanelPlugin*, int, PlacesData*);
-
-//  - Menu
-static void     places_view_cb_menu_position(GtkMenu*, int*, int*, gboolean*, PlacesData*);
-static void     places_view_cb_menu_close(GtkMenuShell*, PlacesData*);
-static void     places_view_cb_menu_open(GtkButton*, PlacesData*);
-static void     places_view_cb_menu_item_open(GtkWidget*, const gchar*);
-
-//  - Button
-static void     places_view_cb_button_clicked(GtkWidget*);
-
-//  - Recent Documents
-static void     places_view_cb_recent_item_open(GtkRecentChooser*, PlacesData*);
-static void     places_view_cb_recent_items_clear(GtkWidget*, GdkEventButton*);
-
-// Model Visitor Callbacks
-void            places_view_add_menu_item(gpointer _pd, 
-                                       const gchar *label, const gchar *uri, const gchar *icon);
-void            places_view_add_menu_sep(gpointer _pd);
+void     places_view_init(PlacesData*);
+void     places_view_finalize(PlacesData*);
 
 #endif
 // vim: ai et tabstop=4

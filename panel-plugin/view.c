@@ -2,6 +2,17 @@
  *
  *  Copyright (c) 2007 Diego Ongaro <ongardie@gmail.com>
  *
+ *  Largely based on:
+ *
+ *   - xfdesktop menu plugin
+ *     desktop-menu-plugin.c - xfce4-panel plugin that displays the desktop menu
+ *     Copyright (C) 2004 Brian Tarricone, <bjt23@cornell.edu>
+ *  
+ *   - launcher plugin
+ *     launcher.c - (xfce4-panel plugin that opens programs)
+ *     Copyright (c) 2005-2007 Jasper Huijsmans <jasper@xfce.org>
+ *     Copyright (c) 2006-2007 Nick Schermer <nick@xfce.org>
+ *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 2 of the License, or
@@ -24,14 +35,47 @@
 #include <gtk/gtk.h>
 
 #include <libxfce4panel/xfce-panel-plugin.h>
-#include <libxfce4panel/xfce-arrow-button.h>
-#include <libxfce4panel/xfce-hvbox.h>
 #include <libxfce4panel/xfce-panel-convenience.h>
 #include <libxfcegui4/libxfcegui4.h>
 
 #include "view.h"
 #include "places.h"
 #include "model.h"
+
+// UI Helpers
+static void     places_view_update_menu(PlacesData*);
+static void     places_view_open_menu(PlacesData*);
+static void     places_view_destroy_menu(PlacesData*);
+static void     places_view_button_update(PlacesData*);
+
+// GTK Callbacks
+
+//  - Panel
+static gboolean places_view_cb_size_changed(PlacesData*, guint size);
+static gboolean places_view_cb_theme_changed(GSignalInvocationHint*,
+                             guint n_param_values, const GValue *param_values,
+                             PlacesData*);
+
+//  - Menu
+static void     places_view_cb_menu_position(GtkMenu*, 
+                                             gint *x, gint *y, 
+                                             gboolean *push_in, 
+                                             PlacesData*);
+static void     places_view_cb_menu_deact(PlacesData*, GtkWidget *menu);
+static void     places_view_cb_menu_item_open(GtkWidget *item, const gchar *uri);
+
+//  - Button
+static gboolean places_view_cb_button_pressed(PlacesData*, GdkEventButton *);
+
+//  - Recent Documents
+static void     places_view_cb_recent_item_open(GtkRecentChooser*, PlacesData*);
+static void     places_view_cb_recent_items_clear(GtkWidget *clear_item);
+
+// Model Visitor Callbacks
+static void     places_view_add_menu_item(gpointer _places_data, 
+                                   const gchar *label, const gchar *uri, const gchar *icon);
+static void     places_view_add_menu_sep(gpointer _places_data);
+
 
 /********** Initialization & Finalization **********/
 
@@ -40,168 +84,165 @@ places_view_init(PlacesData *pd)
 {
     DBG("initializing");
     
-    XfceScreenPosition position = xfce_panel_plugin_get_screen_position(pd->plugin);
+    gpointer icon_theme_class;
+    GtkTooltips *tooltips;
+
+    pd->view_menu = NULL;
+
+    tooltips = gtk_tooltips_new(); // TODO: need to ref/unref?
+
+    // init button
+    pd->view_button = xfce_create_panel_toggle_button();    
+    gtk_widget_show (pd->view_button);
+    gtk_container_add(GTK_CONTAINER(pd->plugin), pd->view_button);
+    gtk_button_set_focus_on_click(GTK_BUTTON(pd->view_button), FALSE);
+    gtk_tooltips_set_tip(tooltips, pd->view_button, _("Places"), NULL);
     
-    // init pd->panel_size
-    pd->panel_size = 0;
+    pd->view_button_image = gtk_image_new();
+    // TODO: why does xfdesktop ref the new image?
+    gtk_widget_show(pd->view_button_image);
+    gtk_container_add(GTK_CONTAINER(pd->view_button), pd->view_button_image);
 
-    // init pd->panel_box
+    xfce_panel_plugin_add_action_widget(pd->plugin, pd->view_button);
+
+
+    // signal for icon theme changes
+    icon_theme_class = g_type_class_ref(GTK_TYPE_ICON_THEME);
+    pd->view_theme_timeout_id = g_signal_add_emission_hook(g_signal_lookup("changed", GTK_TYPE_ICON_THEME),
+                                                            0, (GSignalEmissionHook) places_view_cb_theme_changed,
+                                                            pd, NULL);
+    g_type_class_unref(icon_theme_class);
+   
     
-    if(xfce_screen_position_is_horizontal(position))
-        pd->panel_box = xfce_hvbox_new(GTK_ORIENTATION_HORIZONTAL, FALSE, 0);
-    else
-        pd->panel_box = xfce_hvbox_new(GTK_ORIENTATION_VERTICAL, FALSE, 0);
-
-    gtk_container_add(GTK_CONTAINER(pd->plugin), pd->panel_box);
-    xfce_panel_plugin_add_action_widget(pd->plugin, pd->panel_box);
-    
-    // init pd->panel_button
-    pd->panel_button = xfce_create_panel_button();    
-    gtk_widget_show (pd->panel_button);
-    xfce_panel_plugin_add_action_widget(pd->plugin, pd->panel_button);
-    gtk_container_add(GTK_CONTAINER(pd->panel_box), pd->panel_button);
-
-    // init pd->panel_arrow
-    if(xfce_screen_position_is_left(position))
-        pd->panel_arrow = xfce_arrow_button_new(GTK_ARROW_RIGHT);
-    else if(xfce_screen_position_is_right(position))
-        pd->panel_arrow = xfce_arrow_button_new(GTK_ARROW_LEFT);
-    else if(xfce_screen_position_is_bottom(position))
-        pd->panel_arrow = xfce_arrow_button_new(GTK_ARROW_UP);
-    else
-        pd->panel_arrow = xfce_arrow_button_new(GTK_ARROW_DOWN);
-
-    gtk_button_set_relief(GTK_BUTTON(pd->panel_arrow), GTK_RELIEF_NONE);
-    gtk_widget_show(pd->panel_arrow);
-    xfce_panel_plugin_add_action_widget(pd->plugin, pd->panel_arrow);
-    gtk_container_add (GTK_CONTAINER(pd->panel_box), pd->panel_arrow);
-
-    // show the box...
-    gtk_widget_show(pd->panel_box);
-    
-    // init pd->panel_menu, pd->panel_menu_open
-    places_view_init_menu(pd);
-
     // connect the signals
-    g_signal_connect(pd->panel_button, "clicked",
-                     G_CALLBACK(places_view_cb_button_clicked), NULL);
-   
-    g_signal_connect(pd->panel_menu, "deactivate", 
-                     G_CALLBACK(places_view_cb_menu_close), pd);
-   
-    g_signal_connect(pd->panel_arrow, "clicked",
-                     G_CALLBACK(places_view_cb_menu_open), pd);
+    g_signal_connect_swapped(pd->view_button, "button-press-event",
+                             G_CALLBACK(places_view_cb_button_pressed), pd);
 
-    g_signal_connect(pd->plugin, "size-changed", 
-                     G_CALLBACK(places_view_cb_size_changed), pd);
-
+    g_signal_connect_swapped(G_OBJECT(pd->plugin), "size-changed",
+                             G_CALLBACK(places_view_cb_size_changed), pd);
 }
 
-static void
-places_view_init_menu(PlacesData *pd)
-{
-    DBG("initializing");
-    g_assert(pd != NULL);
-    g_assert(pd->panel_menu == NULL);
-
-    // Create a new menu
-    pd->panel_menu = gtk_menu_new();
-    pd->panel_menu_open = FALSE;
-    
-    // Add system, volumes, user bookmarks
-    BookmarksVisitor *visitor = g_new0(BookmarksVisitor, 1);
-    visitor->pass_thru  = pd;
-    visitor->item       = places_view_add_menu_item;
-    visitor->separator  = places_view_add_menu_sep;
-
-    places_bookmarks_visit(pd->bookmarks, visitor);
-
-    // Recent Documents
-
-    places_view_add_menu_sep(pd);
-
-    GtkWidget *recent_menu = gtk_recent_chooser_menu_new();
-    g_signal_connect(recent_menu, "item-activated", 
-                     G_CALLBACK(places_view_cb_recent_item_open), pd);
-
-    gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu),
-                          gtk_separator_menu_item_new());
-    GtkWidget *clear_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_CLEAR, NULL);
-    gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu), clear_item);
-    g_signal_connect(clear_item, "activate",
-                     G_CALLBACK(places_view_cb_recent_items_clear), NULL);
-    
-    GtkWidget *recent_item = gtk_image_menu_item_new_with_label(_("Recent Documents"));
-    gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(recent_item), 
-                                  gtk_image_new_from_stock(GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU));
-    gtk_menu_item_set_submenu(GTK_MENU_ITEM(recent_item), recent_menu);
-    gtk_menu_shell_append(GTK_MENU_SHELL(pd->panel_menu), recent_item);
-
-    // Quit hiding the menu
-    gtk_widget_show_all(pd->panel_menu);
-
-    // This helps allocate resources beforehand so it'll pop up faster the first time
-    gtk_widget_realize(pd->panel_menu);
-    
-    gtk_menu_attach_to_widget(GTK_MENU(pd->panel_menu), pd->panel_arrow, NULL);
-
-}
 
 void 
 places_view_finalize(PlacesData *pd)
 {
-    // no op?
+    places_view_destroy_menu(pd);
+    g_signal_remove_emission_hook(g_signal_lookup("changed", GTK_TYPE_ICON_THEME),
+                                  pd->view_theme_timeout_id);
 }
 
 /********** UI Helpers **********/
 
 static void
-places_view_close_menu(PlacesData *pd)
+places_view_update_menu(PlacesData *pd)
 {
-    DBG("closing menu");
-    if(pd->panel_menu_open == FALSE)
-        DBG("but the menu isn't open");
+    BookmarksVisitor visitor;
+    GtkWidget *recent_menu;
+    GtkWidget *clear_item;
+    GtkWidget *recent_item;
 
-    gtk_widget_hide(pd->panel_menu);
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pd->panel_arrow), FALSE);
-    pd->panel_menu_open = FALSE;  
+    /* destroy the old menu, if it exists */
+    places_view_destroy_menu(pd);
+
+    // Create a new menu
+    pd->view_menu = gtk_menu_new();
+    
+    // Register this menu (for auto-hide)
+    xfce_panel_plugin_register_menu(pd->plugin, GTK_MENU(pd->view_menu)); // TODO why does xfdesktop
+                                                                          // do this on every menu opening?
+
+    /* make sure the menu popups up in right screen */
+    gtk_menu_set_screen (GTK_MENU (pd->view_menu),
+                         gtk_widget_get_screen (GTK_WIDGET (pd->plugin)));
+
+
+    // Add system, volumes, user bookmarks
+    visitor.pass_thru  = pd;
+    visitor.item       = places_view_add_menu_item;
+    visitor.separator  = places_view_add_menu_sep;
+    places_bookmarks_visit(pd->bookmarks, &visitor);
+
+    // Recent Documents
+
+    places_view_add_menu_sep(pd);
+
+    recent_menu = gtk_recent_chooser_menu_new();
+    g_signal_connect(recent_menu, "item-activated", 
+                     G_CALLBACK(places_view_cb_recent_item_open), pd);
+
+    gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu),
+                          gtk_separator_menu_item_new());
+    clear_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_CLEAR, NULL);
+    gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu), clear_item);
+    g_signal_connect(clear_item, "activate",
+                     G_CALLBACK(places_view_cb_recent_items_clear), NULL);
+    
+    recent_item = gtk_image_menu_item_new_with_label(_("Recent Documents"));
+    gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(recent_item), 
+                                  gtk_image_new_from_stock(GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU));
+    gtk_menu_item_set_submenu(GTK_MENU_ITEM(recent_item), recent_menu);
+    gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu), recent_item);
+
+
+    // Quit hiding the menu
+    gtk_widget_show_all(pd->view_menu);
+
+    // This helps allocate resources beforehand so it'll pop up faster the first time
+    gtk_widget_realize(pd->view_menu);
+}
+
+
+static void
+places_view_open_menu(PlacesData *pd)
+{
+    /* check if menu is needed, or it needs an update */
+    if(pd->view_menu == NULL || places_bookmarks_changed(pd->bookmarks))
+        places_view_update_menu(pd);
+
+    /* toggle the button */
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->view_button), TRUE);
+
+    /* connect deactivate signal */
+    g_signal_connect_swapped(pd->view_menu, "deactivate",
+                             G_CALLBACK(places_view_cb_menu_deact), pd);
+    // TODO: in xfdesktop, why do sig_id stuff? why guint, then int? gulong is what it uses
+
+    /* popup menu */
+    gtk_menu_popup (GTK_MENU (pd->view_menu), NULL, NULL,
+                    (GtkMenuPositionFunc) places_view_cb_menu_position,
+                    pd, 0,
+                    gtk_get_current_event_time ());
 }
 
 static void
-places_view_redraw(PlacesData *pd)
+places_view_destroy_menu(PlacesData *pd)
 {
-    DBG ("Drawing at size %d", pd->panel_size);
+    if(pd->view_menu != NULL){
+        g_signal_emit_by_name(G_OBJECT(pd->view_menu), "deactivate");
+        gtk_widget_destroy(pd->view_menu);
+        pd->view_menu = NULL;
+    }
+}
 
-    GtkOrientation orientation = xfce_panel_plugin_get_orientation(pd->plugin);
-    XfceScreenPosition position = xfce_panel_plugin_get_screen_position(pd->plugin);
-    XfceArrowButton *arrow = XFCE_ARROW_BUTTON(pd->panel_arrow);
-
-    if (orientation == GTK_ORIENTATION_HORIZONTAL)
-        gtk_widget_set_size_request (GTK_WIDGET (pd->plugin), -1, pd->panel_size);
-    else
-        gtk_widget_set_size_request (GTK_WIDGET (pd->plugin), pd->panel_size, -1);
+static void
+places_view_button_update(PlacesData *pd)
+{
+    GdkPixbuf *icon;
+    guint size;
     
-    xfce_hvbox_set_orientation( XFCE_HVBOX(pd->panel_box), orientation);
+    size = xfce_panel_plugin_get_size(XFCE_PANEL_PLUGIN(pd->plugin))
+           - 2 - 2 * MAX(pd->view_button->style->xthickness,
+                         pd->view_button->style->ythickness);
 
-    if (xfce_screen_position_is_left (position))
-        xfce_arrow_button_set_arrow_type(arrow, GTK_ARROW_RIGHT);
-    else if (xfce_screen_position_is_right (position))
-        xfce_arrow_button_set_arrow_type(arrow, GTK_ARROW_LEFT);
-    else if (xfce_screen_position_is_bottom (position))
-        xfce_arrow_button_set_arrow_type(arrow, GTK_ARROW_UP);
-    else
-        xfce_arrow_button_set_arrow_type(arrow, GTK_ARROW_DOWN);
+    icon = xfce_themed_icon_load_category(2, size);
+    if(G_LIKELY(icon != NULL)){
 
-    GdkPixbuf *pb;
-    if(pd->panel_size > 16)
-        pb = xfce_themed_icon_load_category(2, pd->panel_size - 8);
-    else
-        pb = xfce_themed_icon_load_category(2, 8);
-        
-    GtkWidget *image = gtk_image_new_from_pixbuf(pb);
-    g_object_unref(pb);
-    gtk_button_set_image(GTK_BUTTON(pd->panel_button), image);
+        gtk_image_set_from_pixbuf(GTK_IMAGE(pd->view_button_image), icon);
+        g_object_unref(G_OBJECT(icon));
 
+    }else{
+        gtk_image_clear(GTK_IMAGE(pd->view_button_image));
+    }
 }
 
 /********** Gtk Callbacks **********/
@@ -209,134 +250,129 @@ places_view_redraw(PlacesData *pd)
 // Panel callbacks
 
 static gboolean
-places_view_cb_size_changed(XfcePanelPlugin *plugin, int size, PlacesData *pd)
+places_view_cb_size_changed(PlacesData *pd, guint size)
 {
-    pd->panel_size = size;
-    places_view_redraw(pd);
+    gtk_widget_set_size_request(pd->view_button, size, size);
+
+    if(GTK_WIDGET_REALIZED(pd->view_button))
+        places_view_button_update(pd);
+
+    return TRUE;
+}
+
+static gboolean
+places_view_cb_theme_changed(GSignalInvocationHint *ihint,
+                             guint n_param_values, const GValue *param_values,
+                             PlacesData *pd)
+{
+    // update the button
+    if(GTK_WIDGET_REALIZED(pd->view_button))
+        places_view_button_update(pd);
+    
+    // force a menu update
+    places_view_destroy_menu(pd);
+
     return TRUE;
 }
 
 // Menu callbacks
 
-/* Copied almost verbatim from launcher plugin */
+/* Copied almost verbatim from xfdesktop plugin */
 static void
-places_view_cb_menu_position(GtkMenu *menu, int *x, int *y, gboolean *push_in, PlacesData *pd)
+places_view_cb_menu_position(GtkMenu *menu, 
+                             gint *x, gint *y, 
+                             gboolean *push_in, 
+                             PlacesData *pd)
 {
-    g_assert(pd != NULL);
-
-    GtkWidget *widget = pd->panel_box;
+    XfceScreenPosition pos;
     GtkRequisition req;
-    GdkScreen *screen;
-    GdkRectangle geom;
-    int num;
 
-    if (!GTK_WIDGET_REALIZED (GTK_WIDGET (menu)))
-        gtk_widget_realize (GTK_WIDGET (menu));
+    gtk_widget_size_request(GTK_WIDGET(menu), &req);
 
-    gtk_widget_size_request (GTK_WIDGET (menu), &req);
+    gdk_window_get_origin (GTK_WIDGET (pd->plugin)->window, x, y);
 
-    gdk_window_get_origin (widget->window, x, y);
+    pos = xfce_panel_plugin_get_screen_position(pd->plugin);
 
-    switch (xfce_arrow_button_get_arrow_type (XFCE_ARROW_BUTTON (pd->panel_arrow)))
-    {
-        case GTK_ARROW_UP:
-            *x += widget->allocation.x;
-            *y += widget->allocation.y - req.height;
+    switch(pos) {
+        case XFCE_SCREEN_POSITION_NW_V:
+        case XFCE_SCREEN_POSITION_W:
+        case XFCE_SCREEN_POSITION_SW_V:
+            *x += pd->view_button->allocation.width;
+            *y += pd->view_button->allocation.height - req.height;
             break;
-        case GTK_ARROW_DOWN:
-            *x += widget->allocation.x;
-            *y += widget->allocation.y + widget->allocation.height;
+        
+        case XFCE_SCREEN_POSITION_NE_V:
+        case XFCE_SCREEN_POSITION_E:
+        case XFCE_SCREEN_POSITION_SE_V:
+            *x -= req.width;
+            *y += pd->view_button->allocation.height - req.height;
             break;
-        case GTK_ARROW_LEFT:
-            *x += widget->allocation.x - req.width;
-            *y += widget->allocation.y - req.height
-                + widget->allocation.height;
+        
+        case XFCE_SCREEN_POSITION_NW_H:
+        case XFCE_SCREEN_POSITION_N:
+        case XFCE_SCREEN_POSITION_NE_H:
+            *y += pd->view_button->allocation.height;
             break;
-        case GTK_ARROW_RIGHT:
-            *x += widget->allocation.x + widget->allocation.width;
-            *y += widget->allocation.y - req.height
-                + widget->allocation.height;
+        
+        case XFCE_SCREEN_POSITION_SW_H:
+        case XFCE_SCREEN_POSITION_S:
+        case XFCE_SCREEN_POSITION_SE_H:
+            *y -= req.height;
             break;
-        default:
-            break;
+        
+        default:  /* floating */
+        {
+            GdkScreen *screen = NULL;
+            gint screen_width, screen_height;
+
+            gdk_display_get_pointer(gtk_widget_get_display(GTK_WIDGET(pd->plugin)),
+                                                           &screen, x, y, NULL);
+            screen_width = gdk_screen_get_width(screen);
+            screen_height = gdk_screen_get_height(screen);
+            if ((*x + req.width) > screen_width)
+                *x -= req.width;
+            if ((*y + req.height) > screen_height)
+                *y -= req.height;
+        }
     }
 
-    screen = gtk_widget_get_screen (widget);
+    if (*x < 0)
+        *x = 0;
 
-    num = gdk_screen_get_monitor_at_window (screen, widget->window);
+    if (*y < 0)
+        *y = 0;
 
-    gdk_screen_get_monitor_geometry (screen, num, &geom);
-
-    if (*x > geom.x + geom.width - req.width)
-        *x = geom.x + geom.width - req.width;
-    if (*x < geom.x)
-        *x = geom.x;
-
-    if (*y > geom.y + geom.height - req.height)
-        *y = geom.y + geom.height - req.height;
-    if (*y < geom.y)
-        *y = geom.y;
-        
+    /* "wtf is this ?" -Xfdesktop source */
+    *push_in = FALSE;
 }
 
 static void 
-places_view_cb_menu_close(GtkMenuShell *menushell, PlacesData *pd)
+places_view_cb_menu_deact(PlacesData *pd, GtkWidget *menu)
 {
-    g_assert(pd != NULL);
-
-    DBG("closing menu");
-    places_view_close_menu(pd);
-}
-
-static void
-places_view_cb_menu_open(GtkButton *arrow, PlacesData *pd){
-    g_assert(pd != NULL);
-
-    DBG("opening menu");
-
-    if(pd->panel_menu_open){
-        
-        DBG("err...i mean closing...");
-        places_view_close_menu(pd);
-
-    }else{
-        // This will make it behave like a mouse release when it's really a mouse press
-        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(arrow), TRUE);
-    
-        DBG("Has the model changed?");
-        if(places_bookmarks_changed(pd->bookmarks)){
-            DBG("Model changed");
-
-            gtk_widget_destroy(pd->panel_menu);
-            pd->panel_menu = NULL;
-
-            places_view_init_menu(pd);
-            g_signal_connect (pd->panel_menu, "deactivate", 
-                      G_CALLBACK(places_view_cb_menu_close), pd);
-
-        }
-        
-        gtk_menu_popup(GTK_MENU(pd->panel_menu), NULL, NULL, 
-                       (GtkMenuPositionFunc) places_view_cb_menu_position, pd,
-                       0, gtk_get_current_event_time());
-        pd->panel_menu_open = TRUE;
-    }
+    // deactivate button
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pd->view_button), FALSE);
 }
 
 static void
 places_view_cb_menu_item_open(GtkWidget *widget, const gchar* uri)
 {
-    DBG("load thunar for item");
     places_load_thunar(uri);
 }
 
 // Button
-
-static void
-places_view_cb_button_clicked(GtkWidget *button)
+static gboolean
+places_view_cb_button_pressed(PlacesData *pd, GdkEventButton *ev)
 {
-    DBG("load thunar at home directory");
-    places_load_thunar(NULL);
+    if(G_UNLIKELY(ev->button != 1))
+        return FALSE;
+
+    // TODO: why does xfdesktop have:
+    // if(evt->button != 1 || ((evt->state & GDK_CONTROL_MASK)
+    //                         && !(evt->state & (GDK_MOD1_MASK|GDK_SHIFT_MASK|GDK_MOD4_MASK))))
+    
+    places_view_open_menu(pd);
+
+    return FALSE;
 }
 
 // Recent Documents
@@ -350,7 +386,7 @@ places_view_cb_recent_item_open(GtkRecentChooser *chooser, PlacesData *pd)
 }
 
 static void
-places_view_cb_recent_items_clear(GtkWidget *widget, GdkEventButton *event)
+places_view_cb_recent_items_clear(GtkWidget *clear_item)
 {
     GtkRecentManager *manager = gtk_recent_manager_get_default();
     gint removed = gtk_recent_manager_purge_items(manager, NULL);
@@ -359,12 +395,12 @@ places_view_cb_recent_items_clear(GtkWidget *widget, GdkEventButton *event)
 
 /********** Model Visitor Callbacks **********/
 
-void
+static void
 places_view_add_menu_item(gpointer _pd, const gchar *label, const gchar *uri, const gchar *icon)
 {
-    g_assert(_pd);
-    g_return_if_fail(label && label != "");
-    g_return_if_fail(uri && uri != "");
+    g_assert(_pd != NULL);
+    g_return_if_fail(label != NULL && label != "");
+    g_return_if_fail(uri != NULL && uri != "");
 
     PlacesData *pd = (PlacesData*) _pd;
     GtkWidget *item = gtk_image_menu_item_new_with_label(label);
@@ -381,16 +417,16 @@ places_view_add_menu_item(gpointer _pd, const gchar *label, const gchar *uri, co
 
     g_signal_connect(item, "activate",
                      G_CALLBACK(places_view_cb_menu_item_open), (gchar*) uri);
-    gtk_menu_shell_append(GTK_MENU_SHELL(pd->panel_menu), item);
+    gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu), item);
 }
 
-void
+static void
 places_view_add_menu_sep(gpointer _pd)
 {
-    g_assert(_pd);
+    g_assert(_pd != NULL);
     PlacesData *pd = (PlacesData*) _pd;
 
-    gtk_menu_shell_append(GTK_MENU_SHELL(pd->panel_menu),
+    gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu),
                           gtk_separator_menu_item_new());
 }
 

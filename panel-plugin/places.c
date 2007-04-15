@@ -29,6 +29,9 @@
 #include "model.h"
 #include "view.h"
 
+static void places_construct(XfcePanelPlugin*);
+static void places_finalize(XfcePanelPlugin*, PlacesData*);
+
 XFCE_PANEL_PLUGIN_REGISTER_EXTERNAL(places_construct);
 
 /**
