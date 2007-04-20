@@ -155,10 +155,6 @@ places_view_update_menu(PlacesData *pd)
     // Create a new menu
     pd->view_menu = gtk_menu_new();
     
-    // Register this menu (for auto-hide)
-    xfce_panel_plugin_register_menu(pd->plugin, GTK_MENU(pd->view_menu)); // TODO why does xfdesktop
-                                                                          // do this on every menu opening?
-
     /* make sure the menu popups up in right screen */
     gtk_menu_set_screen (GTK_MENU (pd->view_menu),
                          gtk_widget_get_screen (GTK_WIDGET (pd->plugin)));
@@ -192,6 +188,10 @@ places_view_update_menu(PlacesData *pd)
     gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu), recent_item);
 #endif
 
+    /* connect deactivate signal */
+    g_signal_connect_swapped(pd->view_menu, "deactivate",
+                             G_CALLBACK(places_view_cb_menu_deact), pd);
+
     // Quit hiding the menu
     gtk_widget_show_all(pd->view_menu);
 
@@ -210,10 +210,8 @@ places_view_open_menu(PlacesData *pd)
     /* toggle the button */
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->view_button), TRUE);
 
-    /* connect deactivate signal */
-    g_signal_connect_swapped(pd->view_menu, "deactivate",
-                             G_CALLBACK(places_view_cb_menu_deact), pd);
-    // TODO: in xfdesktop, why do sig_id stuff? why guint, then int? gulong is what it uses
+    // Register this menu (for focus, transparency, auto-hide, etc)
+    xfce_panel_plugin_register_menu(pd->plugin, GTK_MENU(pd->view_menu));
 
     /* popup menu */
     gtk_menu_popup (GTK_MENU (pd->view_menu), NULL, NULL,
