@@ -42,6 +42,10 @@
 #include "places.h"
 #include "model.h"
 
+#if GTK_CHECK_VERSION(2,10,0)
+#  define USE_RECENT_DOCUMENTS TRUE
+#endif
+
 // UI Helpers
 static void     places_view_update_menu(PlacesData*);
 static void     places_view_open_menu(PlacesData*);
@@ -68,8 +72,10 @@ static void     places_view_cb_menu_item_open(GtkWidget *item, const gchar *uri)
 static gboolean places_view_cb_button_pressed(PlacesData*, GdkEventButton *);
 
 //  - Recent Documents
+#if USE_RECENT_DOCUMENTS
 static void     places_view_cb_recent_item_open(GtkRecentChooser*, PlacesData*);
 static void     places_view_cb_recent_items_clear(GtkWidget *clear_item);
+#endif
 
 // Model Visitor Callbacks
 static void     places_view_add_menu_item(gpointer _places_data, 
@@ -137,9 +143,11 @@ static void
 places_view_update_menu(PlacesData *pd)
 {
     BookmarksVisitor visitor;
+#if USE_RECENT_DOCUMENTS
     GtkWidget *recent_menu;
     GtkWidget *clear_item;
     GtkWidget *recent_item;
+#endif
 
     /* destroy the old menu, if it exists */
     places_view_destroy_menu(pd);
@@ -163,7 +171,7 @@ places_view_update_menu(PlacesData *pd)
     places_bookmarks_visit(pd->bookmarks, &visitor);
 
     // Recent Documents
-
+#if USE_RECENT_DOCUMENTS
     places_view_add_menu_sep(pd);
 
     recent_menu = gtk_recent_chooser_menu_new();
@@ -182,7 +190,7 @@ places_view_update_menu(PlacesData *pd)
                                   gtk_image_new_from_stock(GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU));
     gtk_menu_item_set_submenu(GTK_MENU_ITEM(recent_item), recent_menu);
     gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu), recent_item);
-
+#endif
 
     // Quit hiding the menu
     gtk_widget_show_all(pd->view_menu);
@@ -241,7 +249,14 @@ places_view_button_update(PlacesData *pd)
         g_object_unref(G_OBJECT(icon));
 
     }else{
-        gtk_image_clear(GTK_IMAGE(pd->view_button_image));
+        // I'd use this, but it's new in gtk 2.8:
+        // gtk_image_clear(GTK_IMAGE(pd->view_button_image));
+
+        gtk_widget_destroy(pd->view_button_image);
+        pd->view_button_image = gtk_image_new();
+        gtk_widget_show(pd->view_button_image);
+        gtk_container_add(GTK_CONTAINER(pd->view_button), pd->view_button_image);
+
     }
 }
 
@@ -377,6 +392,7 @@ places_view_cb_button_pressed(PlacesData *pd, GdkEventButton *ev)
 
 // Recent Documents
 
+#if USE_RECENT_DOCUMENTS
 static void
 places_view_cb_recent_item_open(GtkRecentChooser *chooser, PlacesData *pd)
 {
@@ -392,6 +408,7 @@ places_view_cb_recent_items_clear(GtkWidget *clear_item)
     gint removed = gtk_recent_manager_purge_items(manager, NULL);
     DBG("Cleared %d recent items", removed);
 }
+#endif
 
 /********** Model Visitor Callbacks **********/
 

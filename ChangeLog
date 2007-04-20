@@ -2,6 +2,8 @@
 
 	* Created script to take translations from thunar, gnome-panel
 	* model*.c: Added include for config.h for i18n, DBG
+	* view.c: Disabled Recent Documents for gtk < v2.10.
+	  Replaced gtk_image_clear() call since it's new in gtk v2.8.
 
 2007-04-14	Diego Ongaro <ongardie@gmail.com>
 
