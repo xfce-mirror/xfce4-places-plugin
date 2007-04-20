@@ -1,6 +1,7 @@
 2007-04-20	Diego Ongaro <ongardie@gmail.com>
 
 	* Created script to take translations from thunar, gnome-panel
+	* model*.c: Added include for config.h for i18n, DBG
 
 2007-04-14	Diego Ongaro <ongardie@gmail.com>
 
