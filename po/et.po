@@ -2,26 +2,24 @@
 # This file is distributed under the same license as the xfce4-places-plugin package
 # It is based on the following:
 # ###
-# German translations for Thunar.
-# Copyright (C) 2004-2007 Benedikt Meurer.
+# Estonian translation of Thunar.
+# Copyright (C) 2004-2006 Benedikt Meurer.
 # This file is distributed under the same license as the Thunar package.
-# Benedikt Meurer <benny@xfce.org>, 2005-2007.
-# Fabian Nowak <timystery@arcor.de>, 2006, 2007.
-# Jannis Pohlmann <jannis@xfce.org>, 2006.
+# Peeter Vois <Peeter.Vois@proekspert.ee>, 2006.
 #
 # ###
-# German gnome-panel translation.
-# Copyright (C) 1998-2004 Free Software Foundation, Inc.
+# GNOME paneeli eesti keele tõlge.
+# Estonian translation of GNOME panel.
+#
+# Copyright (C) 1999, 2001-2006 Free Software Foundation, Inc.
+# Copyright (C) 2007, The GNOME Project.
 # This file is distributed under the same license as the gnome-panel package.
-# Carsten Schaar <nhadcasc@fs-maphy.uni-hannover.de>, 1998.
-# Matthias Warkus <mawa@iname.com>, 1999-2001.
-# Karl Eichwalder <ke@suse.de>, 2000, 2001.
-# Christian Meyer <chrisime@gnome.org>, 2000, 2001.
-# Benedikt Roth <Benedikt.Roth@gmx.net>, 2000, 2001.
-# Jörgen Scheibengruber <mfcn@gmx.de>, 2002.
-# Christian Neumair <chris@gnome-de.org>, 2002-2004.
-# Hendrik Richter <hendrikr@gnome.org>, 2004, 2005, 2006, 2007.
-# Christian Kintner <mail@christian-kintner.de>, 2006.
+#
+# Lauris Kaplinski <lauris@ariman.ee>, 1999.
+# Ilmar Kerm <ikerm@hot.ee>, 2001, 2002.
+# Tõivo Leedjärv <toivo@linux.ee>, 2002, 2003.
+# Priit Laes <amd@store20.com>, 2004-2006.
+# Ivar Smolin <okul@linux.ee>, 2005-2007.
 #
 # ###
 msgid ""
@@ -38,20 +36,20 @@ msgstr ""
 
 #: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/view.c:99
 msgid "Places"
-msgstr "Orte"
+msgstr "Asukohad"
 
 #: ../panel-plugin/model_system.c:56
 msgid "Trash"
-msgstr "Papierkorb"
+msgstr ""
 
 #: ../panel-plugin/model_system.c:66
 msgid "Desktop"
-msgstr "Desktop"
+msgstr "Töölaud"
 
 #: ../panel-plugin/model_system.c:74
 msgid "File System"
-msgstr "Dateisystem"
+msgstr "Failisüsteem"
 
 #: ../panel-plugin/view.c:180
 msgid "Recent Documents"
-msgstr "Zuletzt geöffnete Dokumente"
+msgstr "Hiljutised dokumendid"

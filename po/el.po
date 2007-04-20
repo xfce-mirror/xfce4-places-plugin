@@ -1,0 +1,79 @@
+# This file was automatically generated for the xfce4-places-plugin (2007)
+# This file is distributed under the same license as the xfce4-places-plugin package
+# It is based on the following:
+# ###
+# Translation of Thunar to Greek
+# Copyright (C) 2004-2006 Benedikt Meurer.
+# This file is distributed under the same license as the Thunar package.
+# Stavros Giannouris <stavrosg@hellug.gr>, 2005, 2006, 2007.
+# Stathis Kamperis <ekamperi@auth.gr>, 2006
+#
+# ###
+# translation of el.po to
+# translation of el.po to
+# translation of el.po to Greek
+# gnome-panel Greek PO file.
+# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
+#
+# Comment: Most of the work done by Spiros (around 600 messages).
+# Comment: Simos/Sarantis did 12%.
+# Comment: Simos/Sarantis did review.
+# Comment: Simos did 10 new/unfuzzy 30.
+# Comment: Simos did 3 new/unfuzzy 1.
+# Comment: Simos did 2 new/unfuzzy 8.
+# Comment: Simos did 6 new/unfuzzy 8.
+# Comment: Simos did 2 new/unfuzzy 5.
+# simos: 874 messages, 18Feb2001, (sgpbea)
+# simos: 897 messages, 01Mar2001, (regmtsgpbea)
+# simos: 959 messages, 04Jun2001, (micumple)
+# simos: 959 messages, 06Jun2001, (fixed minor typo)
+# simos: 897 messages, 28Nov2001, (feeling good to translate HEAD)
+# Rename of module to gnome-panel.
+# simos: 272 messages, 20Apr2002, 118 messages remaining.
+# kostas: 513 messages, 19Oct2002, completed translation.
+# Comment: Kostas unfuzzy 1
+# kostas: 531 messages, 07Jan2003, updated translation for Gnome 2.1x
+# kostas:update for Gnome 2.4, 49 strings remain 02Jun2003
+# kostas:03Aug2003, 599 messages, updated translation
+# Nikos:29Aug2003, review tranlation
+# kostas: 30Oct2003, update translation for Gnome 2.6
+# kostas: 12Nov2003, fixes
+# kostas:27Jan2004, update
+# Spiros Papadimitriou <sapadim+@cs.cmu.edu>, 1999.
+# Simos Xenitellis <simos@hellug.gr>, 1999, 2000, 2001, 2002.
+# Sarantis Paskalis <paskalis@di.uoa.gr>, 2000.
+# Kostas Papadimas <pkst@gnome.org>, 2002,2003, 2004, 2005, 2006.
+# Nikos Charonitakis <frolix68@yahoo.gr>, 2003, 2004.
+# Nikos Charonitakis <charosn@her.forthnet.gr>, 2005.
+# ###
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-04-20 02:08-0500\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. vim: ai et tabstop=4
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr ""
+
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/view.c:99
+msgid "Places"
+msgstr "Τοποθεσίες"
+
+#: ../panel-plugin/model_system.c:56
+msgid "Trash"
+msgstr "Απορρίμματα"
+
+#: ../panel-plugin/model_system.c:66
+msgid "Desktop"
+msgstr "Επιφάνεια Εργασίας"
+
+#: ../panel-plugin/model_system.c:74
+msgid "File System"
+msgstr "Σύστημα αρχείων"
+
+#: ../panel-plugin/view.c:180
+msgid "Recent Documents"
+msgstr "Πρόσφατα έγγραφα"

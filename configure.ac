@@ -20,7 +20,7 @@ AC_PROG_LIBTOOL
 AC_PROG_INTLTOOL([0.31], [no-xml])
 
 dnl check for i18n support
-XDT_I18N([de])
+XDT_I18N([@LINGUAS@])
 
 dnl check for required packages
 XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.6.0])

@@ -1,0 +1,52 @@
+# This file was automatically generated for the xfce4-places-plugin (2007)
+# This file is distributed under the same license as the xfce4-places-plugin package
+# It is based on the following:
+# ###
+# Russian translation of Thunar
+# Copyright (C) 2004-2006 Benedikt Meurer.
+# This file is distributed under the same license as the Thunar package.
+# Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006.
+# Sergey Fedoseev <fedoseev.sergey@gmail.com>, 2006.
+#
+# ###
+# translation of ru.po to
+# Copyright (C) 1998-2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
+#
+# Max Valianskiy <maxcom@vinchi.ru>, 1998-1999.
+# Sergey Panov <sipan@mit.edu>, 1999.
+# Valek Filippov <frob@df.ru>, 2000-2002.
+# Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002-2004.
+# Andrew W. Nosenko <awn@bcs.zp.ua>, 2003.
+# Leonid Kanter <leon@asplinux.ru>, 2003, 2004, 2005, 2006, 2007.
+# ###
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-04-20 02:08-0500\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. vim: ai et tabstop=4
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr ""
+
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/view.c:99
+msgid "Places"
+msgstr "Переход"
+
+#: ../panel-plugin/model_system.c:56
+msgid "Trash"
+msgstr "Корзина"
+
+#: ../panel-plugin/model_system.c:66
+msgid "Desktop"
+msgstr "Рабочий стол"
+
+#: ../panel-plugin/model_system.c:74
+msgid "File System"
+msgstr "Файловая система"
+
+#: ../panel-plugin/view.c:180
+msgid "Recent Documents"
+msgstr "Недавние документы"

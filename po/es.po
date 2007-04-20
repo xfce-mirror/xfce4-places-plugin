@@ -1,0 +1,62 @@
+# This file was automatically generated for the xfce4-places-plugin (2007)
+# This file is distributed under the same license as the xfce4-places-plugin package
+# It is based on the following:
+# ###
+# Spanish translations for Thunar.
+# Copyright (C) 2004-2006 Benedikt Meurer.
+# This file is distributed under the same license as the Thunar package.
+# Pablo Hernández-M. Saiz <homeless3d@gmail.com>, 2005.
+# Miguel Angel Ruiz Manzano <debianized@gmail.com>, 2006.
+# Daniel Fuertes Pérez (DaniFP) <danifp25@yahoo.es>, 2006.
+#
+# ###
+# translation of gnome-panel.HEAD.es.po to Spanish
+# gnome-panel 2.12 Spanish translation file
+# Copyright © 1998-2003, 2006, 2007 Free Software Foundation, Inc.
+# Pablo Saratxaga <srtxg@chanae.alphanet.ch> 1999-2000.
+# Javier Gómez <jgomsi@apolo.umh.es> 2000.
+# Juanjo Alvarez 2000.
+# Ismael Olea <olea@hispafuentes.com> 2000.
+# Manuel de Vega Barreiro <barreiro@arrakis.es> 2000.
+# Juan Manuel García Molina <juanma_gm@wanadoo.es> 2001-2002.
+#
+# Miguel de Icaza,computo,622-4680 <miguel@metropolis.nuclecu.unam.mx> 1998.
+# Pablo Gonzalo del Campo, 2003.
+# Germán Poo Caamaño <gpoo@ubiobio.cl>, 2002 (Revisor).
+# Juan Manuel García Molina <juanma_gm@wanadoo.es>, 2003.
+# Yelitza Louze <ylouze@redhat.com>, 2003.
+# Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003, 2004, 2005, 2006.
+# Francisco Javier F. Serrador <serrador@tecknolabs.com>, 2006.
+# Jorge González <jorge.gonzalez.gonzalez@hispalinux.es>, 2007.
+# ###
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-04-20 02:08-0500\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. vim: ai et tabstop=4
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr ""
+
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/view.c:99
+msgid "Places"
+msgstr "Lugares"
+
+#: ../panel-plugin/model_system.c:56
+msgid "Trash"
+msgstr ""
+
+#: ../panel-plugin/model_system.c:66
+msgid "Desktop"
+msgstr "Escritorio"
+
+#: ../panel-plugin/model_system.c:74
+msgid "File System"
+msgstr "Sistema de Ficheros"
+
+#: ../panel-plugin/view.c:180
+msgid "Recent Documents"
+msgstr "Documentos recientes"

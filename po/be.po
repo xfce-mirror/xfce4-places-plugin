@@ -1,0 +1,49 @@
+# This file was automatically generated for the xfce4-places-plugin (2007)
+# This file is distributed under the same license as the xfce4-places-plugin package
+# It is based on the following:
+# ###
+# Belarusian translation for thunar
+# Copyright (c) 2007 Rosetta Contributors and Canonical Ltd 2007
+# This file is distributed under the same license as the thunar package.
+# Alexander Nyakhaychyk <nyakhaychyk@gmail.com>, 2007.
+#
+# ###
+# Беларускі пераклад gnome-panel.HEAD.
+# SOME DESCRIPTIVE TITLE
+# Copyright (C) 2003, 2004 Free Software Foundation, Inc.
+# Vital Khilko <dojlid@mova.org>, 2003.
+# Ales Nyakhaychyk <nab@mail.by>, 2004, 2005.
+# Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2006.
+#
+# ###
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-04-20 02:08-0500\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. vim: ai et tabstop=4
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr ""
+
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/view.c:99
+msgid "Places"
+msgstr "Месцы"
+
+#: ../panel-plugin/model_system.c:56
+msgid "Trash"
+msgstr "Сьметніца"
+
+#: ../panel-plugin/model_system.c:66
+msgid "Desktop"
+msgstr "Тэчка стальца"
+
+#: ../panel-plugin/model_system.c:74
+msgid "File System"
+msgstr "Файлавая сыстэма"
+
+#: ../panel-plugin/view.c:180
+msgid "Recent Documents"
+msgstr "Ранейшыя дакумэнты"

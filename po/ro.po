@@ -1,0 +1,50 @@
+# This file was automatically generated for the xfce4-places-plugin (2007)
+# This file is distributed under the same license as the xfce4-places-plugin package
+# It is based on the following:
+# ###
+# Romanian translation for Thunar.
+# Copyright (C) 2006 Free Software Foundation
+# This file is distributed under the same license as the Thunar package.
+# Mişu Moldovan <dumol@gnome.ro>, 2006-2007.
+#
+# ###
+# Romanian translation for gnome-panel
+# Copyright (C) 2000 - 2004 Free Software Foundation, Inc.
+# Marius Andreiana <marius galuna.ro>, 2000, 2002, 2003.
+# Mişu Moldovan <dumol@gnome.ro>, 2003, 2004.
+# Dan Damian <dand@gnome.ro>, 2000-2001, 2005-2006.
+#
+# TODO: "item" e tradus ca "item" şi "element"
+#
+# ###
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-04-20 02:08-0500\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. vim: ai et tabstop=4
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr ""
+
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/view.c:99
+msgid "Places"
+msgstr "Locaţii"
+
+#: ../panel-plugin/model_system.c:56
+msgid "Trash"
+msgstr "Coş de gunoi"
+
+#: ../panel-plugin/model_system.c:66
+msgid "Desktop"
+msgstr "Desktop"
+
+#: ../panel-plugin/model_system.c:74
+msgid "File System"
+msgstr "Sistem de fişiere"
+
+#: ../panel-plugin/view.c:180
+msgid "Recent Documents"
+msgstr "Documente recente"

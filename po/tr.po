@@ -1,0 +1,53 @@
+# This file was automatically generated for the xfce4-places-plugin (2007)
+# This file is distributed under the same license as the xfce4-places-plugin package
+# It is based on the following:
+# ###
+# translation of tr.po to Türkçe
+# translation of Thunar.
+# Copyright (C) 2007 THE Thunar'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Thunar package.
+#
+# Eren Türkay <turkay.eren@gmail.com>, 2007.
+# Cem Ünal <admincemunal@gmail.com>, 2007,.
+# Türker SEZER <turkersezer@tsdesign.info>, 2007.
+# ###
+# translation of gnome-panel to Turkish
+#
+# Copyright (C) 2001-2005 Free Software Foundation, Inc.
+# Fatih Demir <kabalak@kabalak.net>, 2000.
+# Görkem Çetin <gorkem@kde.org>, 2003.
+# Baris Cicek <baris@teamforce.name.tr>, 2004, 2005.
+# Seha İslam <isla0015@umn.edu>, 2005.
+#
+# ###
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-04-20 02:08-0500\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. vim: ai et tabstop=4
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr ""
+
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/view.c:99
+msgid "Places"
+msgstr "Yerler"
+
+#: ../panel-plugin/model_system.c:56
+msgid "Trash"
+msgstr "Çöp"
+
+#: ../panel-plugin/model_system.c:66
+msgid "Desktop"
+msgstr "Masaüstü Klasörü"
+
+#: ../panel-plugin/model_system.c:74
+msgid "File System"
+msgstr "Dosya Sistemi"
+
+#: ../panel-plugin/view.c:180
+msgid "Recent Documents"
+msgstr "Son Kullanılan Belgeler"

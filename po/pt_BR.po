@@ -1,0 +1,60 @@
+# This file was automatically generated for the xfce4-places-plugin (2007)
+# This file is distributed under the same license as the xfce4-places-plugin package
+# It is based on the following:
+# ###
+# Brazilian Portuguese translations for Thunar package.
+# Copyright (C) 2004-2006 Benedikt Meurer.
+# This file is distributed under the same license as the Thunar package.
+# Joao Pedrosa <joaopedrosa@gmail.com>, 2005.
+# Rodrigo Coacci <rcoacci@gmail.com>, 2006.
+# Adriano Winter Bess <awbess@gmail.com>, 2006
+#
+# ###
+# Brazilian Portuguese translation of gnome-panel.
+# Copyright (C) 1999-2005 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-panel package.
+# Elvis Pfützenreuter <epx@netville.com.br>
+# Sandro Nunes Henrique <sandro@conectiva.com.br>
+# Rodrigo Stulzer Lopes <rodrigo@conectiva.com.br>
+# Ricardo Soares Guimarães <ricardo@conectiva.com.br>
+# Gustavo Maciel Dias Vieira <gdvieira@zaz.com.br>, 2000-2001.
+# Alexandre Folle de Menezes <afmenez@terra.com.br>, 2002.
+# Evandro Fernandes Giovanini <evandrofg@ig.com.br>, 2002, 2003, 2006.
+# Gustavo Noronha Silva <kov@debian.org>, 2003.
+# Welther José O. Esteves <weltherjoe@yahoo.com.br>, 2004.
+# Raphael Higino <raphaelh@uai.com.br>, 2004-2005.
+# Evandro Fernandes Giovanini <evandrofg@ig.com.br>, 2007.
+# Og Maciel <ogmaciel@ubuntu.com>, 2007.
+#
+# ###
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-04-20 02:08-0500\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. vim: ai et tabstop=4
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr ""
+
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/view.c:99
+msgid "Places"
+msgstr "Locais"
+
+#: ../panel-plugin/model_system.c:56
+msgid "Trash"
+msgstr "Lixeira"
+
+#: ../panel-plugin/model_system.c:66
+msgid "Desktop"
+msgstr "Área de Trabalho"
+
+#: ../panel-plugin/model_system.c:74
+msgid "File System"
+msgstr "Sistema de Arquivos"
+
+#: ../panel-plugin/view.c:180
+msgid "Recent Documents"
+msgstr "Documentos Recentes"

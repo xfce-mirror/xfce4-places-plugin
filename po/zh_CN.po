@@ -1,0 +1,52 @@
+# This file was automatically generated for the xfce4-places-plugin (2007)
+# This file is distributed under the same license as the xfce4-places-plugin package
+# It is based on the following:
+# ###
+# Simplified Chinese translation for Thunar.
+# Copyright (C) 2006 Benedikt Meurer.
+# This file is distributed under the same license as the Thunar package.
+# kangkang <kanger@gmail.com>, 2006.
+#
+# ###
+# translation of gnome-panel.po to zh_CN
+# Dillion Chen <dillon.chen@turbolinux.com.cn>
+#   Updated and QA by Wang Jian <lark@linux.net.cn>
+#   Updated and QA by Jiang Xiong <jxiong@gwu.edu>, 2001
+#   Updated and QA by Zipeco <zipeco@btamail.net.cn>, 2002
+#   Updated and QA by WangLi <charlesw1234@163.com>, 2002
+#   Updated by He Qiangqiang <carton@linux.net.cn>, 2002
+#   Funda Wang <fundawang@linux.net.cn>, 2003-2006
+# Xiong Jiang <jxiong@offtopic.org>, 2003
+#
+# ###
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-04-20 02:08-0500\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. vim: ai et tabstop=4
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr ""
+
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/view.c:99
+msgid "Places"
+msgstr "位置"
+
+#: ../panel-plugin/model_system.c:56
+msgid "Trash"
+msgstr "垃圾箱"
+
+#: ../panel-plugin/model_system.c:66
+msgid "Desktop"
+msgstr "桌面"
+
+#: ../panel-plugin/model_system.c:74
+msgid "File System"
+msgstr "文件系统"
+
+#: ../panel-plugin/view.c:180
+msgid "Recent Documents"
+msgstr "最近的文档"

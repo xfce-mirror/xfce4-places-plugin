@@ -1,0 +1,58 @@
+# This file was automatically generated for the xfce4-places-plugin (2007)
+# This file is distributed under the same license as the xfce4-places-plugin package
+# It is based on the following:
+# ###
+# French translation of the thunar package.
+# Copyright (C) 2004-2006 Benedikt Meurer.
+# This file is distributed under the same license as the thunar package.
+# Stephane Roy <sroy@j2n.net>, 2005-2006.
+# Rafaël Carré <wavael@yahoo.fr>, 2006.
+# Maximilian Schleiss <maxschleiss@solnet.ch>, 2006-2007.
+# Gérald Barré <g.barre@free.fr>, 2006.
+#
+# ###
+# French translation of gnome-panel.
+# Copyright (C) 1998-2007 Free Software Foundation, Inc.
+# This file is distributed under the same license as the gnome-panel package.
+#
+# Vincent Renardias <vincent@ldsol.com>, 1998-2000.
+# Joaquim Fellmann <joaquim@hrnet.fr>, 2000.
+# Christophe Merlet <redfox@redfoxcenter.org>, 2000-2006.
+# Christophe Fergeau <teuf@users.sourceforge.net>, 2002.
+# Baptiste Mille-Mathias <bmm80@free.fr>, 2004-2005.
+# Benoît Dejean <benoit@placenet.org>, 2006.
+# Robert-André Mauchin <zebob.m@gmail.com>, 2006-2007.
+# Damien Durand <splinux@fedoraproject.org>, 2006
+#
+# ###
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-04-20 02:08-0500\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. vim: ai et tabstop=4
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr ""
+
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/view.c:99
+msgid "Places"
+msgstr "Raccourcis"
+
+#: ../panel-plugin/model_system.c:56
+msgid "Trash"
+msgstr "Corbeille"
+
+#: ../panel-plugin/model_system.c:66
+msgid "Desktop"
+msgstr "Bureau"
+
+#: ../panel-plugin/model_system.c:74
+msgid "File System"
+msgstr "Système de fichiers"
+
+#: ../panel-plugin/view.c:180
+msgid "Recent Documents"
+msgstr "Documents récents"

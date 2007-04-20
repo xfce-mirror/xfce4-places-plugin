@@ -1,41 +1,64 @@
-# Dutch translations for xfce4-places-plugin package.
-# Copyright (C) 2007 THE xfce4-places-plugin'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfce4-places-plugin package.
-# Stephan Arts <stephan@xfce.org>, 2007.
+# This file was automatically generated for the xfce4-places-plugin (2007)
+# This file is distributed under the same license as the xfce4-places-plugin package
+# It is based on the following:
+# ###
+# Dutch translation for Thunar.
+# Copyright (C) 2004-2006 Benedikt Meurer.
+# This file is distributed under the same license as the Thunar package.
+# Vincent Tunru <imnotb@gmail.com>, 2006.
 #
+# ###
+# Dutch translation for gnome-panel
+#
+# Copyright (C) 1998 Free Software Foundation, Inc.
+# Dirk-Jan C. Binnema <djcb@dds.nl>, 1998, 1999.
+# Dennis Smit <synap@area101.penguin.nl>, 2000.
+# Almer S. Tigelaar <almer1@dds.nl>, 2000.
+# Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>, 2001.
+# Huib Kleinhout <huib@stack.nl>, 2002.
+# Ronald Hummelink <ronald@hummelink.xs4all.nl>, 2002.
+# Tino Meinen <a.t.meinen@chello.nl>, 2002. 2006, 2007.
+# Reinout van Schouwen <reinout@cs.vu.nl>, 2002-2006
+# Wouter Bolsterlee <uws+gnome@xs4all.nl>, 2006
+#
+# desktop - bureaublad
+# workspace - werkblad
+#
+# TODO: Het Desktop/Werkplek-menu heet tegenwoordig System (overgenomen van
+# Ubuntu. Voorlopig hebben we nog gewoon Werkplek als vertaling, maar er
+# moet nog een keer over gesproken worden… wellicht is "Computer" of
+# "Systeem" wel wenselijker.
+#                                     -- Wouter Bolsterlee, 8 augustus 2006
+#
+# ###
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-places-plugin 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-05 10:41+0200\n"
-"PO-Revision-Date: 2007-04-05 10:41+0200\n"
-"Last-Translator: Stephan Arts <stephan@xfce.org>\n"
-"Language-Team: Dutch <vertaling@vrijschrift.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ASCII\n"
+"POT-Creation-Date: 2007-04-20 02:08-0500\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#. Trash
-#: ../panel-plugin/places.c:115
-msgid "Trash"
-msgstr "Prullenbak"
-
-#. Desktop
-#: ../panel-plugin/places.c:119
-msgid "Desktop"
-msgstr "Bureaublad"
-
-#. File System (/)
-#: ../panel-plugin/places.c:123
-msgid "File System"
-msgstr "Bestandssysteem"
 
 #. vim: ai et tabstop=4
 #: ../panel-plugin/places.desktop.in.in.h:1
-msgid "A file browser launcher with quick access to bookmarks."
+msgid "Access folders, documents, and removable media"
 msgstr ""
 
-#: ../panel-plugin/places.desktop.in.in.h:2
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/view.c:99
 msgid "Places"
-msgstr "Lokaties"
+msgstr "Locaties"
+
+#: ../panel-plugin/model_system.c:56
+msgid "Trash"
+msgstr "Prullenbak"
+
+#: ../panel-plugin/model_system.c:66
+msgid "Desktop"
+msgstr "Bureaublad"
+
+#: ../panel-plugin/model_system.c:74
+msgid "File System"
+msgstr "Bestandssysteem"
+
+#: ../panel-plugin/view.c:180
+msgid "Recent Documents"
+msgstr "Recente documenten"

@@ -2,27 +2,25 @@
 # This file is distributed under the same license as the xfce4-places-plugin package
 # It is based on the following:
 # ###
-# German translations for Thunar.
-# Copyright (C) 2004-2007 Benedikt Meurer.
+# Hungarian translations for Thunar.
+# Copyright (C) 2004-2006 Benedikt Meurer.
 # This file is distributed under the same license as the Thunar package.
-# Benedikt Meurer <benny@xfce.org>, 2005-2007.
-# Fabian Nowak <timystery@arcor.de>, 2006, 2007.
-# Jannis Pohlmann <jannis@xfce.org>, 2006.
+# SZERVÁC Attila <sas@321.hu>, 2005.
 #
 # ###
-# German gnome-panel translation.
-# Copyright (C) 1998-2004 Free Software Foundation, Inc.
+# Hungarian translation of gnome-panel.
+# Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-panel package.
-# Carsten Schaar <nhadcasc@fs-maphy.uni-hannover.de>, 1998.
-# Matthias Warkus <mawa@iname.com>, 1999-2001.
-# Karl Eichwalder <ke@suse.de>, 2000, 2001.
-# Christian Meyer <chrisime@gnome.org>, 2000, 2001.
-# Benedikt Roth <Benedikt.Roth@gmx.net>, 2000, 2001.
-# Jörgen Scheibengruber <mfcn@gmx.de>, 2002.
-# Christian Neumair <chris@gnome-de.org>, 2002-2004.
-# Hendrik Richter <hendrikr@gnome.org>, 2004, 2005, 2006, 2007.
-# Christian Kintner <mail@christian-kintner.de>, 2006.
 #
+#
+# Szabolcs Ban <shooby@gnome.hu>, 1998, 1999, 2000, 2001.
+# Emese Kovacs <emese@gnome.hu>, 2000, 2001, 2002.
+# Tamas Vamosi <tvamosi@suselinux.hu>, 2002.
+# Andras Timar <timar@gnome.hu>, 2001, 2002, 2003.
+# Gabor Sari <saga@gnome.hu>, 2003.
+# Laszlo Dvornik <dvornik@gnome.hu>, 2004.
+# Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005, 2006, 2007.
+# Mate ORY <orymate at gmail d0t com>, 2006.
 # ###
 msgid ""
 msgstr ""
@@ -38,20 +36,20 @@ msgstr ""
 
 #: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/view.c:99
 msgid "Places"
-msgstr "Orte"
+msgstr "Helyek"
 
 #: ../panel-plugin/model_system.c:56
 msgid "Trash"
-msgstr "Papierkorb"
+msgstr "Kuka"
 
 #: ../panel-plugin/model_system.c:66
 msgid "Desktop"
-msgstr "Desktop"
+msgstr "Asztal"
 
 #: ../panel-plugin/model_system.c:74
 msgid "File System"
-msgstr "Dateisystem"
+msgstr "Fájlrendszer"
 
 #: ../panel-plugin/view.c:180
 msgid "Recent Documents"
-msgstr "Zuletzt geöffnete Dokumente"
+msgstr "Legutóbbi dokumentumok"

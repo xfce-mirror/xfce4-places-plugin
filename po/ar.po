@@ -1,0 +1,52 @@
+# This file was automatically generated for the xfce4-places-plugin (2007)
+# This file is distributed under the same license as the xfce4-places-plugin package
+# It is based on the following:
+# ###
+# translation of ar.po to Arabic
+# Hassan Dibani <hdibani@wanadoo.nl>, 2006.
+# Ahmed Mansour <911freak@gmail.com>, 2007.
+# Khaled Hosny <khaledhosny@eglug.org>, 2007.
+# Arabic translation for thunar
+# Copyright (c) (c) 2006 Canonical Ltd, and Rosetta Contributors 2006
+# This file is distributed under the same license as the thunar package.
+# ###
+# translation of gnome-panel.HEAD.ar.po to Arabic
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) 2004 THE PACKAGE'S COPYRIGHT HOLDER
+#
+# Sayed Jaffer Al-Mosawi <mosawi@arabeyes.org>, 2002.
+# Abdulaziz Al-Arfaj <alarfaj0@yahoo.com>, 2004.
+# Djihed Afifi <djihed@gmail.com>, 2006.
+# Khaled Hosny <khaledhosny@eglug.org>, 2006, 2007.
+# ###
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-04-20 02:08-0500\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. vim: ai et tabstop=4
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr ""
+
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/view.c:99
+msgid "Places"
+msgstr "أماكن"
+
+#: ../panel-plugin/model_system.c:56
+msgid "Trash"
+msgstr ""
+
+#: ../panel-plugin/model_system.c:66
+msgid "Desktop"
+msgstr "سطح المكتب"
+
+#: ../panel-plugin/model_system.c:74
+msgid "File System"
+msgstr "نظام الملفات"
+
+#: ../panel-plugin/view.c:180
+msgid "Recent Documents"
+msgstr "المستندات الحديثة"

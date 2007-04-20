@@ -1,0 +1,55 @@
+# This file was automatically generated for the xfce4-places-plugin (2007)
+# This file is distributed under the same license as the xfce4-places-plugin package
+# It is based on the following:
+# ###
+# Swedish translation of thunar.
+# Copyright (C) 2004-2006 Benedikt Meurer.
+# This file is distributed under the same license as the Thunar package.
+# Daniel Nylander <po@danielnylander.se>, 2006.
+# Alexander Toresson <alexander.toresson@gmail.com>, 2006.
+#
+# ###
+# Swedish messages for gnome-panel.
+# Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
+# Daniel Nylander <po@danielnylander.se>, 2006, 2007.
+# Martin Wahlen <mva@sbbs.se>, 1998.
+# Anders Carlsson <anders.carlsson@tordata.se>, 1999.
+# Andreas Hyden  <a.hyden@cyberpoint.se>, 2000.
+# Martin Norbäck <d95mback@dtek.chalmers.se>, 2000, 2001.
+# Christian Rose <menthos@menthos.com>, 2000, 2001, 2002, 2003, 2004, 2005.
+# Johan Dahlin <jdahlin@telia.com>, 2002.
+#
+# $Id: sv.po,v 1.259 2006/08/16 05:46:26 dnylande Exp $
+#
+# ###
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-04-20 02:08-0500\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. vim: ai et tabstop=4
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr ""
+
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/view.c:99
+msgid "Places"
+msgstr "Platser"
+
+#: ../panel-plugin/model_system.c:56
+msgid "Trash"
+msgstr "Papperskorgen"
+
+#: ../panel-plugin/model_system.c:66
+msgid "Desktop"
+msgstr "Skrivbord"
+
+#: ../panel-plugin/model_system.c:74
+msgid "File System"
+msgstr "Filsystem"
+
+#: ../panel-plugin/view.c:180
+msgid "Recent Documents"
+msgstr "Senaste dokument"

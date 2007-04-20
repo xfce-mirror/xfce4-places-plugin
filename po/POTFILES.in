@@ -1,3 +1,13 @@
 panel-plugin/places.c
 panel-plugin/places.h
 panel-plugin/places.desktop.in.in
+panel-plugin/model.c
+panel-plugin/model.h
+panel-plugin/model_system.c
+panel-plugin/model_system.h
+panel-plugin/model_user.c
+panel-plugin/model_user.h
+panel-plugin/model_volumes.c
+panel-plugin/model_volumes.h
+panel-plugin/view.c
+panel-plugin/view.h

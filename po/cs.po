@@ -1,0 +1,54 @@
+# This file was automatically generated for the xfce4-places-plugin (2007)
+# This file is distributed under the same license as the xfce4-places-plugin package
+# It is based on the following:
+# ###
+# Čeština translation of Thunar.
+# Copyright (C) 2004-2006 Benedikt Meurer.
+# This file is distributed under the same license as the Thunar package.
+# Michal Várady <miko.vaji@gmail.com>, 2006.
+#
+# ###
+# translation of cs.po to Czech
+# Czech translation of gnome-panel.
+# Copyright (C) 1999, 2006, 2007 Free Software Foundation, Inc.
+# Copyright (C) 2004, 2005, 2006 Miloslav Trmac <mitr@volny.cz>
+# GIS <gis@academy.cas.cz>, 1999.
+# David Šauer <davids@penguin.cz>, 1999.
+# George Lebl <jirka@5z.com>, 2000-2001.
+# Stanislav Brabec <utx@penguin.cz>, 2000-2001.
+# Miloslav Trmac <mitr@volny.cz>, 2002 - 2006.
+# Petr Tomeš <ptomes@gmail.com>, 2006.
+# Jakub Friedl <jfriedl@suse.cz>, 2006, 2007.
+#
+# ###
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-04-20 02:08-0500\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. vim: ai et tabstop=4
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr ""
+
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/view.c:99
+msgid "Places"
+msgstr "Místa"
+
+#: ../panel-plugin/model_system.c:56
+msgid "Trash"
+msgstr "Koš"
+
+#: ../panel-plugin/model_system.c:66
+msgid "Desktop"
+msgstr "Pracovní plocha"
+
+#: ../panel-plugin/model_system.c:74
+msgid "File System"
+msgstr "Systém souborů"
+
+#: ../panel-plugin/view.c:180
+msgid "Recent Documents"
+msgstr "Nedávné dokumenty"

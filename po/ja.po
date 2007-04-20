@@ -1,0 +1,64 @@
+# This file was automatically generated for the xfce4-places-plugin (2007)
+# This file is distributed under the same license as the xfce4-places-plugin package
+# It is based on the following:
+# ###
+# $Id: ja.po 25420 2007-04-07 09:50:55Z daichi $
+#
+# Japanese translations for Thunar package.
+# Copyright (C) 2004-2007 Benedikt Meurer.
+# This file is distributed under the same license as the Thunar package.
+# Daichi Kawahata <daichi@xfce.org>, 2005-2007.
+#
+# 対訳一覧:
+#
+# bulk            一括
+# context menu    右クリックメニュー
+# directory       フォルダ
+# emblem          シンボル
+#
+# ###
+# gnome-panel ja.po.
+# Copyright (C) 1998-2007 Free Software Foundation, Inc.
+# Yukihiro Nakai <Nakai@abricot.co.jp>, 1998
+# Yasuyuki Furukawa <yasu@on.cs.keio.ac.jp>, 1999
+# Eiichiro ITANI <emu@ceres.dti.ne.jp>, 1999
+# Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 1999-2003.
+# Yuusuke Tahara <tahara@gnome.gr.jp>, 2000
+# Shingo Akagaki <dora@kondara.org>, 2000
+# Akira TAGOH <tagoh@gnome.gr.jp>, 2001
+# Takeshi AIHANA <takeshi.aihana@gmail.com>, 2003-2007.
+# KAMAGASAKO Masatoshi <emerald@gnome.gr.jp>, 2003.
+# Satoru SATOH <ss@gnome.gr.jp>, 2006.
+#
+# ###
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-04-20 02:08-0500\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. vim: ai et tabstop=4
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr ""
+
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/view.c:99
+msgid "Places"
+msgstr "場所"
+
+#: ../panel-plugin/model_system.c:56
+msgid "Trash"
+msgstr "ゴミ箱"
+
+#: ../panel-plugin/model_system.c:66
+msgid "Desktop"
+msgstr "デスクトップ"
+
+#: ../panel-plugin/model_system.c:74
+msgid "File System"
+msgstr "ファイルシステム"
+
+#: ../panel-plugin/view.c:180
+msgid "Recent Documents"
+msgstr "最近開いたドキュメント"

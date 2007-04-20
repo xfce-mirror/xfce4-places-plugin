@@ -1,0 +1,51 @@
+# This file was automatically generated for the xfce4-places-plugin (2007)
+# This file is distributed under the same license as the xfce4-places-plugin package
+# It is based on the following:
+# ###
+# translation of ca.po to Catalan
+# Catalan translation of Thunar.
+# Copyright (C) 2004-2006 Benedikt Meurer.
+# This file is distributed under the same license as the Thunar package.
+# Pau Ruŀlan Ferragut <paurullan@bulma.net> 2005, 2006, 2007
+# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2006.
+#
+# ###
+# gnome-panel translation to Catalan.
+# Copyright © 2000-2007 Free Software Foundation, Inc.
+# Ivan Vilata i Balaguer <ivan@selidor.net>, 2000.
+# Softcatalà <info@softcatala.org>, 2000.
+# Jordi Mallach <jordi@sindominio.net>, 2002, 2003, 2004, 2005, 2006.
+# Josep Puigdemont i Casamajó <josep.puigdemont@gmail.com>, 2006, 2007.
+#
+# ###
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-04-20 02:08-0500\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. vim: ai et tabstop=4
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr ""
+
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/view.c:99
+msgid "Places"
+msgstr "Llocs"
+
+#: ../panel-plugin/model_system.c:56
+msgid "Trash"
+msgstr "Paperera"
+
+#: ../panel-plugin/model_system.c:66
+msgid "Desktop"
+msgstr "Escriptori"
+
+#: ../panel-plugin/model_system.c:74
+msgid "File System"
+msgstr "Sistema de fitxers"
+
+#: ../panel-plugin/view.c:180
+msgid "Recent Documents"
+msgstr "Documents recents"
