@@ -104,7 +104,6 @@ places_view_init(PlacesData *pd)
     gtk_tooltips_set_tip(pd->view_tooltips, pd->view_button, _("Places"), NULL);
     
     pd->view_button_image = gtk_image_new();
-    // TODO: why does xfdesktop ref the new image?
     gtk_widget_show(pd->view_button_image);
     gtk_container_add(GTK_CONTAINER(pd->view_button), pd->view_button_image);
 
@@ -374,14 +373,12 @@ places_view_cb_menu_item_open(GtkWidget *widget, const gchar* uri)
 
 // Button
 static gboolean
-places_view_cb_button_pressed(PlacesData *pd, GdkEventButton *ev)
+places_view_cb_button_pressed(PlacesData *pd, GdkEventButton *evt)
 {
-    if(G_UNLIKELY(ev->button != 1))
+    // (it's the way xfdesktop menu does it...)
+    if(evt->button != 1 || ((evt->state & GDK_CONTROL_MASK)
+                             && !(evt->state & (GDK_MOD1_MASK|GDK_SHIFT_MASK|GDK_MOD4_MASK))))
         return FALSE;
-
-    // TODO: why does xfdesktop have:
-    // if(evt->button != 1 || ((evt->state & GDK_CONTROL_MASK)
-    //                         && !(evt->state & (GDK_MOD1_MASK|GDK_SHIFT_MASK|GDK_MOD4_MASK))))
     
     places_view_open_menu(pd);
 

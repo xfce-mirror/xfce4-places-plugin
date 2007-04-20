@@ -7,6 +7,7 @@
 	  Now using g_object_ref_sink() and g_object_unref() on tooltips.
 	  Connects menu deactivate signal only once per menu.
 	  Registers menu with panel before every popup.
+	  Got rid of final TODOs regarding xfdesktop's code.
 
 2007-04-14	Diego Ongaro <ongardie@gmail.com>
 
