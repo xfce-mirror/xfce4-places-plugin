@@ -28,16 +28,17 @@
 typedef struct
 {
   // plugin
-  XfcePanelPlugin *plugin;
+  XfcePanelPlugin   *plugin;
 
   // view
-  GtkWidget *view_button;
-  GtkWidget *view_button_image;
-  GtkWidget *view_menu;
-  gulong     view_theme_timeout_id;
+  GtkWidget         *view_button;
+  GtkWidget         *view_button_image;
+  GtkWidget         *view_menu;
+  GtkTooltips       *view_tooltips;
+  gulong             view_theme_timeout_id;
 
   // model
-  gpointer   bookmarks;
+  gpointer           bookmarks;
 
 } PlacesData;
 

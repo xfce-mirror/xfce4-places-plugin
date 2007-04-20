@@ -91,18 +91,17 @@ places_view_init(PlacesData *pd)
     DBG("initializing");
     
     gpointer icon_theme_class;
-    GtkTooltips *tooltips;
 
     pd->view_menu = NULL;
 
-    tooltips = gtk_tooltips_new(); // TODO: need to ref/unref?
+    pd->view_tooltips = g_object_ref_sink(gtk_tooltips_new());
 
     // init button
     pd->view_button = xfce_create_panel_toggle_button();    
     gtk_widget_show (pd->view_button);
     gtk_container_add(GTK_CONTAINER(pd->plugin), pd->view_button);
     gtk_button_set_focus_on_click(GTK_BUTTON(pd->view_button), FALSE);
-    gtk_tooltips_set_tip(tooltips, pd->view_button, _("Places"), NULL);
+    gtk_tooltips_set_tip(pd->view_tooltips, pd->view_button, _("Places"), NULL);
     
     pd->view_button_image = gtk_image_new();
     // TODO: why does xfdesktop ref the new image?
@@ -135,6 +134,7 @@ places_view_finalize(PlacesData *pd)
     places_view_destroy_menu(pd);
     g_signal_remove_emission_hook(g_signal_lookup("changed", GTK_TYPE_ICON_THEME),
                                   pd->view_theme_timeout_id);
+    g_object_unref(pd->view_tooltips);
 }
 
 /********** UI Helpers **********/
