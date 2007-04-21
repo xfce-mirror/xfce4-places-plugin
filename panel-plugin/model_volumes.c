@@ -49,13 +49,15 @@ places_bookmarks_volumes_cb_changed(ThunarVfsVolume *volume,
     DBG("volume changed"); 
     // unfortunately there tends to be like 3 of these in a row
 
+    BookmarkInfo *bi;
+    GList *volumes;
     guint k;
 
     if(places_bookmarks_volumes_show_volume(volume)){
 
         // make sure it's in the array
         for(k = 0; k < b->bookmarks->len; k++){
-            BookmarkInfo *bi = g_ptr_array_index(b->bookmarks, k);
+            bi = g_ptr_array_index(b->bookmarks, k);
             if(THUNAR_VFS_VOLUME(bi->data) == volume)
                 break;
         }
@@ -63,7 +65,9 @@ places_bookmarks_volumes_cb_changed(ThunarVfsVolume *volume,
         if(k == b->bookmarks->len){ // it's not there
             DBG("adding volume to array");
 
-            places_bookmarks_volumes_add(b, g_list_prepend(NULL, volume));
+            volumes = g_list_prepend(NULL, volume);
+            places_bookmarks_volumes_add(b, volumes);
+            g_list_free(volumes);
             b->changed = TRUE;
         }else{
             DBG("volume already in array");
@@ -72,12 +76,13 @@ places_bookmarks_volumes_cb_changed(ThunarVfsVolume *volume,
     }else{
         // make sure it's not in the array
         for(k = 0; k < b->bookmarks->len; k++){
-            BookmarkInfo *bi = g_ptr_array_index(b->bookmarks, k);
+            bi = g_ptr_array_index(b->bookmarks, k);
             if(THUNAR_VFS_VOLUME(bi->data) == volume){ // it is there
                 DBG("dropping volume from array");
                 
                 bi = g_ptr_array_remove_index(b->bookmarks, k);
                 g_object_unref(bi->data);
+                bi->data = NULL;
                 g_free(bi);
                 
                 b->changed = TRUE;
@@ -103,12 +108,13 @@ places_bookmarks_volumes_cb_removed(ThunarVfsVolumeManager *volume_manager,
 {
     DBG("volumes removed");
 
+    BookmarkInfo *bi;
     GList *vol_iter;
     guint k;
 
     // step through existing bookmarks
     for(k = 0; k < b->bookmarks->len; k++){
-        BookmarkInfo *bi = g_ptr_array_index(b->bookmarks, k);
+        bi = g_ptr_array_index(b->bookmarks, k);
 
         // step through removals
         vol_iter = (GList*) volumes;
@@ -119,11 +125,14 @@ places_bookmarks_volumes_cb_removed(ThunarVfsVolumeManager *volume_manager,
                 bi = g_ptr_array_remove_index(b->bookmarks, k);
                 DBG("Removing bookmark %s", bi->label);
                 
-                if(bi->data)
+                if(bi->data != NULL){
                     g_object_unref(bi->data);
+                    bi->data = NULL;
+                }
                 g_free(bi);
                 
                 b->changed = TRUE;
+                break;
             }
 
             vol_iter = vol_iter->next;
@@ -206,17 +215,25 @@ places_bookmarks_volumes_init()
 void
 places_bookmarks_volumes_finalize(BookmarksVolumes *b)
 {
+    BookmarkInfo *bi;
     guint k;
 
     for(k = 0; k < b->bookmarks->len; k++){
-        BookmarkInfo *bi = g_ptr_array_remove_index(b->bookmarks, k);
-        if(bi->data != NULL)
+        bi = g_ptr_array_remove_index(b->bookmarks, k);
+        if(bi->data != NULL){
             g_object_unref(bi->data);
+            bi->data = NULL;
+        }
+        g_free(bi);
     }
+
     g_object_unref(b->volume_manager);
+    b->volume_manager = NULL;
     thunar_vfs_shutdown();
 
     g_ptr_array_free(b->bookmarks, TRUE);
+    b->bookmarks = NULL;
+
     g_free(b);
 }
 

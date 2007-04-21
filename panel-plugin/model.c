@@ -76,8 +76,14 @@ void
 places_bookmarks_finalize(Bookmarks *b)
 {
     places_bookmarks_system_finalize(b->system);
+    b->system = NULL;
+    
     places_bookmarks_volumes_finalize(b->volumes);
+    b->volumes = NULL;
+    
     places_bookmarks_user_finalize(b->user);
+    b->user = NULL;
+
     g_free(b);
 }
 

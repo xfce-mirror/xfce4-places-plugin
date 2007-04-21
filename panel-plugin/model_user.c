@@ -183,9 +183,14 @@ void
 places_bookmarks_user_finalize(BookmarksUser *b)
 {
     g_ptr_array_free(b->bookmarks, TRUE);
+    b->bookmarks = NULL;
+
     g_free(b->filename);
+    b->filename = NULL;
+
+    b->system = NULL;
+
     g_free(b);
 }
-
 
 // vim: ai et tabstop=4

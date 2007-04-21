@@ -50,16 +50,16 @@ places_bookmarks_system_init()
     bookmark = g_new0(BookmarkInfo, 1);
     bookmark->label = g_strdup(g_get_user_name());
     bookmark->uri = g_strdup(home_dir);
-    bookmark->icon = "gnome-fs-home";
+    bookmark->icon = g_strdup("gnome-fs-home");
     bookmark->show = TRUE;
     bookmark->bookmarks_system_check_existence = NULL;
     g_ptr_array_add(b->bookmarks, bookmark);
 
     // Trash
     bookmark = g_new0(BookmarkInfo, 1);
-    bookmark->label = _("Trash");
-    bookmark->uri = "trash:///";
-    bookmark->icon = "gnome-fs-trash-full";
+    bookmark->label = g_strdup(_("Trash"));
+    bookmark->uri = g_strdup("trash:///");
+    bookmark->icon = g_strdup("gnome-fs-trash-full");
     bookmark->show = TRUE;
     bookmark->bookmarks_system_check_existence = NULL;
     g_ptr_array_add(b->bookmarks, bookmark);
@@ -67,17 +67,17 @@ places_bookmarks_system_init()
     // Desktop
     bookmark = g_new0(BookmarkInfo, 1);
     bookmark->uri = g_build_filename(home_dir, "Desktop", NULL);
-    bookmark->label = _("Desktop");
-    bookmark->icon = "gnome-fs-desktop";
+    bookmark->label = g_strdup(_("Desktop"));
+    bookmark->icon = g_strdup("gnome-fs-desktop");
     bookmark->show = g_file_test(bookmark->uri, G_FILE_TEST_IS_DIR);
     bookmark->bookmarks_system_check_existence = (gpointer) 1;
     g_ptr_array_add(b->bookmarks, bookmark);
     
     // File System (/)
     bookmark = g_new0(BookmarkInfo, 1);
-    bookmark->label = _("File System");
-    bookmark->uri = "/";
-    bookmark->icon = "gnome-dev-harddisk";
+    bookmark->label = g_strdup(_("File System"));
+    bookmark->uri = g_strdup("/");
+    bookmark->icon = g_strdup("gnome-dev-harddisk");
     bookmark->show = TRUE;
     bookmark->bookmarks_system_check_existence = NULL;
     g_ptr_array_add(b->bookmarks, bookmark);
