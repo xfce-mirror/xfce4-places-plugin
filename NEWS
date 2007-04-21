@@ -1,3 +1,24 @@
+2007-04-21
+================================================================================
+xfce4-places-plugin v0.1.9 released
+
+ * Support for volumes (removable media)
+  - Adds Thunar VFS dependency
+ * Support for recent documents
+  - Only available when compiled with GTK v2.10 or greater
+ * Now has 35 translations, taken from Thunar and gnome-panel.
+ * Rewritten view based on xfdesktop's menu
+  - No more arrow button
+  - Added "Places" tooltip
+ * Rewritten .gtk-bookmarks parsing based on Thunar's parser
+  - Improves consistency with Thunar
+  - Avoids potential bugs
+ * Many bug fixes
+  - #3028: Places button activated when dragged away
+  - #3029: Places ignores orientation-changed
+  - #3030: Places shows missing menu items
+  - #3124: Auto-hidden panel hides on plugin activation
+
 2007-04-05
 ================================================================================
 xfce4-places-plugin v0.1 released
