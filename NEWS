@@ -1,6 +1,6 @@
-2007-04-21
+2007-04-22
 ================================================================================
-xfce4-places-plugin v0.1.9 released
+xfce4-places-plugin v0.2.0 released
 
  * Support for volumes (removable media)
   - Adds Thunar VFS dependency
@@ -18,6 +18,13 @@ xfce4-places-plugin v0.1.9 released
   - #3029: Places ignores orientation-changed
   - #3030: Places shows missing menu items
   - #3124: Auto-hidden panel hides on plugin activation
+
+2007-04-21
+================================================================================
+xfce4-places-plugin v0.1.9 released
+
+ * Please see the v0.2 entry.
+ * There were no code changes between v0.1.9 and v0.2.0.
 
 2007-04-05
 ================================================================================
