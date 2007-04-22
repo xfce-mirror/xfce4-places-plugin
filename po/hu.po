@@ -7,20 +7,15 @@
 # This file is distributed under the same license as the Thunar package.
 # SZERVÁC Attila <sas@321.hu>, 2005.
 #
-# ###
-# Hungarian translation of gnome-panel.
-# Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
-# This file is distributed under the same license as the gnome-panel package.
-#
-#
 # Szabolcs Ban <shooby@gnome.hu>, 1998, 1999, 2000, 2001.
 # Emese Kovacs <emese@gnome.hu>, 2000, 2001, 2002.
 # Tamas Vamosi <tvamosi@suselinux.hu>, 2002.
 # Andras Timar <timar@gnome.hu>, 2001, 2002, 2003.
 # Gabor Sari <saga@gnome.hu>, 2003.
 # Laszlo Dvornik <dvornik@gnome.hu>, 2004.
-# Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005, 2006, 2007.
+# Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005, 2006.
 # Mate ORY <orymate at gmail d0t com>, 2006.
+# SZERVÁC Attila <sas@321.hu>, 2005-2007.
 # ###
 msgid ""
 msgstr ""
@@ -28,13 +23,22 @@ msgstr ""
 "POT-Creation-Date: 2007-04-20 02:08-0500\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Project-Id-Version: Xfce Places Plugin\n"
+"PO-Revision-Date: 2007-04-22 11:53+0100\n"
+"Last-Translator: SZERVÁC Attila <sas@321.hu>\n"
+"Language-Team: Hungarian <debian-l10n-hungarian@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
+"X-Poedit-Language: Hungarian\n"
+"X-Poedit-Country: HUNGARY\n"
 
 #. vim: ai et tabstop=4
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr ""
+msgstr "Mappák, dokumentumok és cserélhető médiumok elérése"
 
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/view.c:99
+#: ../panel-plugin/places.desktop.in.in.h:2
+#: ../panel-plugin/view.c:99
 msgid "Places"
 msgstr "Helyek"
 
@@ -53,3 +57,4 @@ msgstr "Fájlrendszer"
 #: ../panel-plugin/view.c:180
 msgid "Recent Documents"
 msgstr "Legutóbbi dokumentumok"
+
