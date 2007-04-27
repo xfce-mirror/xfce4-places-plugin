@@ -92,6 +92,7 @@ places_view_init(PlacesData *pd)
     
     gpointer icon_theme_class;
 
+    pd->view_just_separated = TRUE;
     pd->view_menu = NULL;
 
     pd->view_tooltips = g_object_ref_sink(gtk_tooltips_new());
@@ -430,6 +431,8 @@ places_view_add_menu_item(gpointer _pd, const gchar *label, const gchar *uri, co
     g_signal_connect(item, "activate",
                      G_CALLBACK(places_view_cb_menu_item_open), (gchar*) uri);
     gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu), item);
+
+    pd->view_just_separated = FALSE;
 }
 
 static void
@@ -438,8 +441,11 @@ places_view_add_menu_sep(gpointer _pd)
     g_assert(_pd != NULL);
     PlacesData *pd = (PlacesData*) _pd;
 
-    gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu),
-                          gtk_separator_menu_item_new());
+    if(!pd->view_just_separated){
+        gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu),
+                              gtk_separator_menu_item_new());
+        pd->view_just_separated = TRUE;
+    }
 }
 
 // vim: ai et tabstop=4

@@ -1,3 +1,7 @@
+2007-04-26	Diego Ongaro <ongardie@gmail.com>
+
+	* view.c, places.h: Never draw two consecutive menu separators.
+
 2007-04-22	Diego Ongaro <ongardie@gmail.com>
 
 	* Released v0.2
