@@ -5,7 +5,7 @@
 # Čeština translation of Thunar.
 # Copyright (C) 2004-2006 Benedikt Meurer.
 # This file is distributed under the same license as the Thunar package.
-# Michal Várady <miko.vaji@gmail.com>, 2006.
+# Michal Várady <miko.vaji@gmail.com>, 2006-2007.
 #
 # ###
 # translation of cs.po to Czech
@@ -27,13 +27,19 @@ msgstr ""
 "POT-Creation-Date: 2007-04-20 02:08-0500\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"PO-Revision-Date: 2007-04-28 19:33+0100\n"
+"Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
 
 #. vim: ai et tabstop=4
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr ""
+msgstr "Přístup ke složkám, dokumentům a vyměnitelným médiím"
 
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/view.c:99
+#: ../panel-plugin/places.desktop.in.in.h:2
+#: ../panel-plugin/view.c:99
 msgid "Places"
 msgstr "Místa"
 
@@ -52,3 +58,4 @@ msgstr "Systém souborů"
 #: ../panel-plugin/view.c:180
 msgid "Recent Documents"
 msgstr "Nedávné dokumenty"
+
