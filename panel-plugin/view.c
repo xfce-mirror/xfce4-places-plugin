@@ -46,16 +46,23 @@
 #  define USE_RECENT_DOCUMENTS TRUE
 #endif
 
+// Config
+static void     places_view_load_config(PlacesData*);
+static void     places_view_save_config(PlacesData*);
+
 // UI Helpers
 static void     places_view_update_menu(PlacesData*);
 static void     places_view_open_menu(PlacesData*);
 static void     places_view_destroy_menu(PlacesData*);
-static void     places_view_button_update(PlacesData*);
+static void     places_view_button_update(PlacesData*, gint size);
 
 // GTK Callbacks
 
 //  - Panel
-static gboolean places_view_cb_size_changed(PlacesData*, guint size);
+static gboolean places_view_cb_size_changed(PlacesData*, gint size);
+static void     places_view_cb_orientation_changed(PlacesData *pd, GtkOrientation orientation,
+                                                   XfcePanelPlugin *panel);
+
 static gboolean places_view_cb_theme_changed(GSignalInvocationHint*,
                              guint n_param_values, const GValue *param_values,
                              PlacesData*);
@@ -92,23 +99,49 @@ places_view_init(PlacesData *pd)
     
     gpointer icon_theme_class;
 
+    places_view_load_config(pd);
+
     pd->view_just_separated = TRUE;
     pd->view_menu = NULL;
 
     pd->view_tooltips = g_object_ref_sink(gtk_tooltips_new());
 
     // init button
-    pd->view_button = xfce_create_panel_toggle_button();    
-    gtk_widget_show (pd->view_button);
-    gtk_container_add(GTK_CONTAINER(pd->plugin), pd->view_button);
-    gtk_button_set_focus_on_click(GTK_BUTTON(pd->view_button), FALSE);
-    gtk_tooltips_set_tip(pd->view_tooltips, pd->view_button, _("Places"), NULL);
-    
-    pd->view_button_image = gtk_image_new();
-    gtk_widget_show(pd->view_button_image);
-    gtk_container_add(GTK_CONTAINER(pd->view_button), pd->view_button_image);
 
+    // create the box
+    if(xfce_panel_plugin_get_orientation(pd->plugin) == GTK_ORIENTATION_HORIZONTAL)
+        pd->view_button_box = gtk_hbox_new(FALSE, BORDER);
+    else
+        pd->view_button_box = gtk_vbox_new(FALSE, BORDER);
+    gtk_container_set_border_width(GTK_CONTAINER(pd->view_button_box), 0);
+    gtk_widget_show(pd->view_button_box);
+
+    // create the button
+    pd->view_button = xfce_create_panel_toggle_button();
+    gtk_widget_show(pd->view_button);
+    gtk_container_add(GTK_CONTAINER(pd->view_button), pd->view_button_box);
+    gtk_container_add(GTK_CONTAINER(pd->plugin), pd->view_button);
+    gtk_tooltips_set_tip(pd->view_tooltips, pd->view_button, _("Places"), NULL);
     xfce_panel_plugin_add_action_widget(pd->plugin, pd->view_button);
+    
+    // create the image
+    if(pd->cfg_show_image){
+        pd->view_button_image = g_object_ref(gtk_image_new());
+        DBG("Created view_button_image at %x", (gint) pd->view_button_image);
+        gtk_widget_show(pd->view_button_image);
+        gtk_box_pack_start(GTK_BOX(pd->view_button_box), pd->view_button_image, TRUE, TRUE, 0);
+    }else{
+        pd->view_button_image = NULL;
+    }
+
+    // create the label
+    if(pd->cfg_show_label){
+        pd->view_button_label = g_object_ref(gtk_label_new(_("Places")));
+        gtk_widget_show(pd->view_button_label);
+        gtk_box_pack_start(GTK_BOX(pd->view_button_box), pd->view_button_label, TRUE, TRUE, 0);
+    }else{
+        pd->view_button_label = NULL;
+    }
 
 
     // signal for icon theme changes
@@ -125,6 +158,13 @@ places_view_init(PlacesData *pd)
 
     g_signal_connect_swapped(G_OBJECT(pd->plugin), "size-changed",
                              G_CALLBACK(places_view_cb_size_changed), pd);
+                             
+    g_signal_connect_swapped(G_OBJECT(pd->plugin), "orientation-changed",
+                             G_CALLBACK(places_view_cb_orientation_changed), pd);
+
+    g_signal_connect_swapped(G_OBJECT(pd->plugin), "save",
+                             G_CALLBACK(places_view_save_config), pd);
+
 }
 
 
@@ -134,7 +174,64 @@ places_view_finalize(PlacesData *pd)
     places_view_destroy_menu(pd);
     g_signal_remove_emission_hook(g_signal_lookup("changed", GTK_TYPE_ICON_THEME),
                                   pd->view_theme_timeout_id);
+    if(pd->view_button_image != NULL)
+        g_object_unref(pd->view_button_image);
+    if(pd->view_button_label != NULL)
+        g_object_unref(pd->view_button_label);
     g_object_unref(pd->view_tooltips);
+}
+
+/********** Config **********/
+static void
+places_view_load_config(PlacesData *pd)
+{
+    XfceRc *rcfile;
+    gchar *rcpath;
+
+    // set defaults in case of failure
+    pd->cfg_show_image = TRUE;
+    pd->cfg_show_label = FALSE;
+
+    rcpath = xfce_panel_plugin_lookup_rc_file(pd->plugin);
+    if(rcpath == NULL)
+        return;
+
+    rcfile = xfce_rc_simple_open(rcpath, TRUE);
+    g_free(rcpath);
+    if(rcfile == NULL)
+        return;
+
+    pd->cfg_show_label = xfce_rc_read_bool_entry(rcfile, "show_label", FALSE);
+
+    if(!pd->cfg_show_label)
+        pd->cfg_show_image = TRUE;
+    else
+        pd->cfg_show_image = xfce_rc_read_bool_entry(rcfile, "show_image", TRUE);
+
+    xfce_rc_close(rcfile);
+}
+
+static void
+places_view_save_config(PlacesData *pd)
+{
+    XfceRc *rcfile;
+    gchar *rcpath;
+    
+    rcpath = xfce_panel_plugin_save_location(pd->plugin, TRUE);
+    if(rcpath == NULL)
+        return;
+
+    rcfile = xfce_rc_simple_open(rcpath, FALSE);
+    g_free(rcpath);
+    if(rcfile == NULL)
+        return;
+
+    xfce_rc_write_bool_entry(rcfile, "show_image", pd->cfg_show_image);
+    xfce_rc_write_bool_entry(rcfile, "show_label", pd->cfg_show_label);
+
+    xfce_rc_close(rcfile);
+
+    DBG("configuration has been saved");
 }
 
 /********** UI Helpers **********/
@@ -231,31 +328,55 @@ places_view_destroy_menu(PlacesData *pd)
 }
 
 static void
-places_view_button_update(PlacesData *pd)
+places_view_button_update(PlacesData *pd, gint wsize)
 {
     GdkPixbuf *icon;
-    guint size;
+    gint size, width, height;
+    gint pix_w = 0, pix_h = 0;
+    GtkOrientation orientation = xfce_panel_plugin_get_orientation(pd->plugin);
     
-    size = xfce_panel_plugin_get_size(XFCE_PANEL_PLUGIN(pd->plugin))
-           - 2 - 2 * MAX(pd->view_button->style->xthickness,
+    if(wsize <= 0)
+        wsize = xfce_panel_plugin_get_size(pd->plugin);
+
+    size = wsize - 2 - 2 * MAX(pd->view_button->style->xthickness,
                          pd->view_button->style->ythickness);
 
-    icon = xfce_themed_icon_load_category(2, size);
-    if(G_LIKELY(icon != NULL)){
-
-        gtk_image_set_from_pixbuf(GTK_IMAGE(pd->view_button_image), icon);
-        g_object_unref(G_OBJECT(icon));
-
-    }else{
-        // I'd use this, but it's new in gtk 2.8:
-        // gtk_image_clear(GTK_IMAGE(pd->view_button_image));
-
-        gtk_widget_destroy(pd->view_button_image);
-        pd->view_button_image = gtk_image_new();
-        gtk_widget_show(pd->view_button_image);
-        gtk_container_add(GTK_CONTAINER(pd->view_button), pd->view_button_image);
-
+    if(pd->view_button_image != NULL){
+        icon = xfce_themed_icon_load_category(2, size);
+        if(G_LIKELY(icon != NULL)){
+            
+            pix_w = gdk_pixbuf_get_width(icon);
+            pix_h = gdk_pixbuf_get_height(icon);
+            
+            gtk_image_set_from_pixbuf(GTK_IMAGE(pd->view_button_image), icon);
+            g_object_unref(G_OBJECT(icon));
+        }
     }
+
+    width = pix_w + (wsize - size);
+    height = pix_h + (wsize - size);
+
+    if(pd->view_button_label != NULL){
+        GtkRequisition req;
+        gtk_widget_size_request(pd->view_button_label, &req);
+        if(orientation == GTK_ORIENTATION_HORIZONTAL)
+            width += req.width + BORDER;
+        else {
+            if(width <= req.width)
+                width = req.width + GTK_WIDGET(pd->view_button_label)->style->xthickness;
+            height += req.height + BORDER;
+        }
+    }
+
+    if(pd->view_button_image != NULL && pd->view_button_label != NULL){
+        gint delta = gtk_box_get_spacing(GTK_BOX(pd->view_button_box));
+        if(orientation == GTK_ORIENTATION_HORIZONTAL)
+            width += delta;
+        else
+            height += delta;
+    }
+
+    gtk_widget_set_size_request(pd->view_button, width, height);
 }
 
 /********** Gtk Callbacks **********/
@@ -263,12 +384,10 @@ places_view_button_update(PlacesData *pd)
 // Panel callbacks
 
 static gboolean
-places_view_cb_size_changed(PlacesData *pd, guint size)
+places_view_cb_size_changed(PlacesData *pd, gint wsize)
 {
-    gtk_widget_set_size_request(pd->view_button, size, size);
-
     if(GTK_WIDGET_REALIZED(pd->view_button))
-        places_view_button_update(pd);
+        places_view_button_update(pd, wsize);
 
     return TRUE;
 }
@@ -280,12 +399,42 @@ places_view_cb_theme_changed(GSignalInvocationHint *ihint,
 {
     // update the button
     if(GTK_WIDGET_REALIZED(pd->view_button))
-        places_view_button_update(pd);
+        places_view_button_update(pd, -1);
     
     // force a menu update
     places_view_destroy_menu(pd);
 
     return TRUE;
+}
+
+static void
+places_view_cb_orientation_changed(PlacesData *pd, GtkOrientation orientation, XfcePanelPlugin *panel){
+
+    gtk_widget_set_size_request(pd->view_button, -1, -1);
+
+    gtk_container_remove(GTK_CONTAINER(pd->view_button),
+                         gtk_bin_get_child(GTK_BIN(pd->view_button)));
+
+    if(orientation == GTK_ORIENTATION_HORIZONTAL)
+       pd->view_button_box = gtk_hbox_new(FALSE, BORDER);
+    else
+       pd->view_button_box = gtk_vbox_new(FALSE, BORDER);
+    
+    gtk_container_set_border_width(GTK_CONTAINER(pd->view_button_box), 0);
+    gtk_widget_show(pd->view_button_box);
+    gtk_container_add(GTK_CONTAINER(pd->view_button), pd->view_button_box);
+
+    if(pd->view_button_image != NULL){
+        gtk_widget_show(pd->view_button_image);
+        gtk_box_pack_start(GTK_BOX(pd->view_button_box), pd->view_button_image, TRUE, TRUE, 0);
+    }
+
+    if(pd->view_button_label != NULL){
+        gtk_widget_show(pd->view_button_label);
+        gtk_box_pack_start(GTK_BOX(pd->view_button_box), pd->view_button_label, TRUE, TRUE, 0);
+    }
+
+    places_view_button_update(pd, -1);
 }
 
 // Menu callbacks

@@ -1,3 +1,8 @@
+2007-05-13	Diego Ongaro <ongardie@gmail.com>
+
+	* view.c, view.h, places.h: Added "Places" label and
+	configuration settings for show_image, show_label.
+
 2007-04-26	Diego Ongaro <ongardie@gmail.com>
 
 	* view.c, places.h: Never draw two consecutive menu separators.

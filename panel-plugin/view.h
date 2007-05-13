@@ -23,6 +23,8 @@
 #include <glib.h>
 #include "places.h"
 
+#define BORDER 4
+
 // Init & Finalize
 void     places_view_init(PlacesData*);
 void     places_view_finalize(PlacesData*);

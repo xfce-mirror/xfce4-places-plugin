@@ -30,9 +30,15 @@ typedef struct
   // plugin
   XfcePanelPlugin   *plugin;
 
+  // configuration
+  gboolean           cfg_show_image;
+  gboolean           cfg_show_label;
+
   // view
   GtkWidget         *view_button;
+  GtkWidget         *view_button_box;
   GtkWidget         *view_button_image;
+  GtkWidget         *view_button_label;
   GtkWidget         *view_menu;
   GtkTooltips       *view_tooltips;
   gulong             view_theme_timeout_id;
