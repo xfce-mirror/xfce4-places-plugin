@@ -122,7 +122,7 @@ places_view_init(PlacesData *pd)
     gtk_widget_show(pd->view_button);
     gtk_container_add(GTK_CONTAINER(pd->view_button), pd->view_button_box);
     gtk_container_add(GTK_CONTAINER(pd->plugin), pd->view_button);
-    gtk_tooltips_set_tip(pd->view_tooltips, pd->view_button, _("Places"), NULL);
+    gtk_tooltips_set_tip(pd->view_tooltips, pd->view_button, pd->cfg_label, NULL);
     xfce_panel_plugin_add_action_widget(pd->plugin, pd->view_button);
     
     // create the image
@@ -136,7 +136,7 @@ places_view_init(PlacesData *pd)
 
     // create the label
     if(pd->cfg_show_label){
-        pd->view_button_label = g_object_ref(gtk_label_new(_("Places")));
+        pd->view_button_label = g_object_ref(gtk_label_new(pd->cfg_label));
         gtk_widget_show(pd->view_button_label);
         gtk_box_pack_end(GTK_BOX(pd->view_button_box), pd->view_button_label, TRUE, TRUE, 0);
     }else{
@@ -183,27 +183,46 @@ places_view_finalize(PlacesData *pd)
     if(pd->view_button_label != NULL)
         g_object_unref(pd->view_button_label);
     g_object_unref(pd->view_tooltips);
+    
+    if(pd->cfg_label != NULL)
+        g_free(pd->cfg_label);
+
 }
 
 /********** Config **********/
+static void
+places_view_default_config(PlacesData *pd)
+{   //TODO: header
+
+    pd->cfg_show_image = TRUE;
+    pd->cfg_show_label = FALSE;
+    pd->cfg_show_icons = TRUE;
+
+    if(pd->cfg_label != NULL){
+        g_free(pd->cfg_label);
+        pd->cfg_label = g_strdup(_("Places"));
+    }
+
+}
+
 static void
 places_view_load_config(PlacesData *pd)
 {
     XfceRc *rcfile;
     gchar *rcpath;
 
-    // set defaults in case of failure
-    pd->cfg_show_image = TRUE;
-    pd->cfg_show_label = FALSE;
-
     rcpath = xfce_panel_plugin_lookup_rc_file(pd->plugin);
-    if(rcpath == NULL)
+    if(rcpath == NULL){
+        places_view_default_config(pd);
         return;
+    }
 
     rcfile = xfce_rc_simple_open(rcpath, TRUE);
     g_free(rcpath);
-    if(rcfile == NULL)
+    if(rcfile == NULL){
+        places_view_default_config(pd);
         return;
+    }
 
     pd->cfg_show_label = xfce_rc_read_bool_entry(rcfile, "show_label", FALSE);
 
@@ -211,6 +230,16 @@ places_view_load_config(PlacesData *pd)
         pd->cfg_show_image = TRUE;
     else
         pd->cfg_show_image = xfce_rc_read_bool_entry(rcfile, "show_image", TRUE);
+
+    pd->cfg_show_icons = xfce_rc_read_bool_entry(rcfile, "show_icons", TRUE);
+
+    if(pd->cfg_label != NULL)
+        g_free(pd->cfg_label);
+
+    pd->cfg_label = (gchar*) xfce_rc_read_entry(rcfile, "label", NULL);
+    if(pd->cfg_label == NULL || *(pd->cfg_label) == '\0')
+        pd->cfg_label = _("Places");
+    pd->cfg_label = g_strdup(pd->cfg_label);
 
     xfce_rc_close(rcfile);
 }
@@ -232,6 +261,8 @@ places_view_save_config(PlacesData *pd)
 
     xfce_rc_write_bool_entry(rcfile, "show_image", pd->cfg_show_image);
     xfce_rc_write_bool_entry(rcfile, "show_label", pd->cfg_show_label);
+    xfce_rc_write_bool_entry(rcfile, "show_icons", pd->cfg_show_icons);
+    xfce_rc_write_entry(rcfile, "label", pd->cfg_label);
 
     xfce_rc_close(rcfile);
 
@@ -272,7 +303,7 @@ places_view_configure_plugin_show_changed(GtkComboBox *combo, PlacesData *pd)
         pd->cfg_show_label = TRUE;
 
         if(pd->view_button_label == NULL){
-            pd->view_button_label = g_object_ref(gtk_label_new(_("Places")));
+            pd->view_button_label = g_object_ref(gtk_label_new(pd->cfg_label));
             gtk_widget_show(pd->view_button_label);
             gtk_box_pack_end(GTK_BOX(pd->view_button_box), pd->view_button_label, TRUE, TRUE, 0);
         }
@@ -291,6 +322,35 @@ places_view_configure_plugin_show_changed(GtkComboBox *combo, PlacesData *pd)
     places_view_button_update(pd, -1);
 }
 
+static gboolean
+places_view_configure_plugin_label_changed(GtkWidget *label_entry, GdkEventFocus *event, PlacesData *pd)
+{ // TODO header
+    if(pd->cfg_label != NULL)
+        g_free(pd->cfg_label);
+    
+    pd->cfg_label = g_strstrip(g_strdup(gtk_entry_get_text(GTK_ENTRY(label_entry))));
+    if(*(pd->cfg_label) == '\0'){
+        g_free(pd->cfg_label);
+        pd->cfg_label = g_strdup(_("Places"));
+        gtk_entry_set_text(GTK_ENTRY(label_entry), pd->cfg_label);
+    }
+
+    if(pd->cfg_show_label){
+        gtk_label_set_text(GTK_LABEL(pd->view_button_label), pd->cfg_label);
+        gtk_tooltips_set_tip(pd->view_tooltips, pd->view_button, pd->cfg_label, NULL);
+        places_view_button_update(pd, -1);
+    }
+
+    return FALSE;
+}
+
+static void
+places_view_configure_plugin_icons_changed(GtkToggleButton *icons_check, PlacesData *pd)
+{
+    pd->cfg_show_icons = gtk_toggle_button_get_active(icons_check);
+    places_view_destroy_menu(pd);
+}
+
 static void
 places_view_configure_plugin_done(GtkDialog *dialog, gint response, PlacesData *pd)
 { //TODO header
@@ -303,7 +363,7 @@ static void
 places_view_configure_plugin(PlacesData *pd)
 {
     DBG("configure plugin");
-    GtkWidget *dlg, *combo;
+    GtkWidget *dlg, *combo, *label_entry, *icons_check;
     gint active;
     
     xfce_panel_plugin_block_menu(pd->plugin);
@@ -336,6 +396,28 @@ places_view_configure_plugin(PlacesData *pd)
 
     gtk_widget_show(combo);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), combo, TRUE, TRUE, 0);
+
+
+    // Label entry
+    label_entry = gtk_entry_new();
+    gtk_entry_set_text(GTK_ENTRY(label_entry), pd->cfg_label);
+
+    g_signal_connect(G_OBJECT(label_entry), "focus-out-event",
+                     G_CALLBACK(places_view_configure_plugin_label_changed), pd);
+
+    gtk_widget_show(label_entry);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), label_entry, TRUE, TRUE, 0);
+
+
+    // Show Icons
+    icons_check = gtk_check_button_new_with_mnemonic(_("Show _icons in menu"));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(icons_check), pd->cfg_show_icons);
+
+    g_signal_connect(G_OBJECT(icons_check), "toggled",
+                     G_CALLBACK(places_view_configure_plugin_icons_changed), pd);
+
+    gtk_widget_show(icons_check);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), icons_check, TRUE, TRUE, 0);
 
     gtk_widget_show(dlg);
 
@@ -376,19 +458,29 @@ places_view_update_menu(PlacesData *pd)
     places_view_add_menu_sep(pd);
 
     recent_menu = gtk_recent_chooser_menu_new();
+    gtk_recent_chooser_set_show_icons(GTK_RECENT_CHOOSER(recent_menu), pd->cfg_show_icons);
     g_signal_connect(recent_menu, "item-activated", 
                      G_CALLBACK(places_view_cb_recent_item_open), pd);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu),
                           gtk_separator_menu_item_new());
-    clear_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_CLEAR, NULL);
+
+    if(pd->cfg_show_icons){
+        clear_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_CLEAR, NULL);
+    }else{
+        GtkStockItem clear_stock_item;
+        gtk_stock_lookup(GTK_STOCK_CLEAR, &clear_stock_item);
+        clear_item = gtk_menu_item_new_with_mnemonic(clear_stock_item.label);
+    }
     gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu), clear_item);
     g_signal_connect(clear_item, "activate",
                      G_CALLBACK(places_view_cb_recent_items_clear), NULL);
     
     recent_item = gtk_image_menu_item_new_with_label(_("Recent Documents"));
-    gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(recent_item), 
-                                  gtk_image_new_from_stock(GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU));
+    if(pd->cfg_show_icons){
+        gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(recent_item), 
+                                      gtk_image_new_from_stock(GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU));
+    }
     gtk_menu_item_set_submenu(GTK_MENU_ITEM(recent_item), recent_menu);
     gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu), recent_item);
 #endif
@@ -675,7 +767,7 @@ places_view_add_menu_item(gpointer _pd, const gchar *label, const gchar *uri, co
     PlacesData *pd = (PlacesData*) _pd;
     GtkWidget *item = gtk_image_menu_item_new_with_label(label);
 
-    if(G_LIKELY(icon != NULL)){
+    if(pd->cfg_show_icons && icon != NULL){
         GdkPixbuf *pb = xfce_themed_icon_load(icon, 16);
         
         if(G_LIKELY(pb != NULL)){

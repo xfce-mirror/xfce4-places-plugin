@@ -33,6 +33,8 @@ typedef struct
   // configuration
   gboolean           cfg_show_image;
   gboolean           cfg_show_label;
+  gboolean           cfg_show_icons;
+  gchar             *cfg_label;
 
   // view
   GtkWidget         *view_button;
