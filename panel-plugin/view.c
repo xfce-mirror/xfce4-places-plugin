@@ -194,9 +194,14 @@ static void
 places_view_default_config(PlacesData *pd)
 {   //TODO: header
 
-    pd->cfg_show_image = TRUE;
-    pd->cfg_show_label = FALSE;
-    pd->cfg_show_icons = TRUE;
+    pd->cfg_show_image         = TRUE;
+    pd->cfg_show_label         = FALSE;
+    pd->cfg_show_icons         = TRUE;
+    pd->cfg_show_volumes       = TRUE;
+    pd->cfg_show_bookmarks     = TRUE;
+    pd->cfg_show_recent        = TRUE;
+    pd->cfg_show_recent_clear  = TRUE;
+    pd->cfg_show_recent_number = 10;
 
     if(pd->cfg_label != NULL){
         g_free(pd->cfg_label);
@@ -233,6 +238,10 @@ places_view_load_config(PlacesData *pd)
 
     pd->cfg_show_icons = xfce_rc_read_bool_entry(rcfile, "show_icons", TRUE);
 
+    pd->cfg_show_volumes   = xfce_rc_read_bool_entry(rcfile, "show_volumes", TRUE);
+    pd->cfg_show_bookmarks = xfce_rc_read_bool_entry(rcfile, "show_bookmarks", TRUE);
+    pd->cfg_show_recent    = xfce_rc_read_bool_entry(rcfile, "show_recent", TRUE);
+
     if(pd->cfg_label != NULL)
         g_free(pd->cfg_label);
 
@@ -240,6 +249,13 @@ places_view_load_config(PlacesData *pd)
     if(pd->cfg_label == NULL || *(pd->cfg_label) == '\0')
         pd->cfg_label = _("Places");
     pd->cfg_label = g_strdup(pd->cfg_label);
+
+
+    pd->cfg_show_recent_clear = xfce_rc_read_bool_entry(rcfile, "show_recent_clear", TRUE);
+
+    pd->cfg_show_recent_number = xfce_rc_read_int_entry(rcfile, "show_recent_number", 10);
+    if(pd->cfg_show_recent_number < 1 || pd->cfg_show_recent_number > 25)
+        pd->cfg_show_recent_number = 10;
 
     xfce_rc_close(rcfile);
 }
@@ -259,10 +275,20 @@ places_view_save_config(PlacesData *pd)
     if(rcfile == NULL)
         return;
 
+    // BUTTON
     xfce_rc_write_bool_entry(rcfile, "show_image", pd->cfg_show_image);
     xfce_rc_write_bool_entry(rcfile, "show_label", pd->cfg_show_label);
-    xfce_rc_write_bool_entry(rcfile, "show_icons", pd->cfg_show_icons);
     xfce_rc_write_entry(rcfile, "label", pd->cfg_label);
+
+    // MENU
+    xfce_rc_write_bool_entry(rcfile, "show_icons", pd->cfg_show_icons);
+    xfce_rc_write_bool_entry(rcfile, "show_volumes", pd->cfg_show_volumes);
+    xfce_rc_write_bool_entry(rcfile, "show_bookmarks", pd->cfg_show_bookmarks);
+    xfce_rc_write_bool_entry(rcfile, "show_recent", pd->cfg_show_recent);
+
+    // RECENT DOCUMENTS
+    xfce_rc_write_bool_entry(rcfile, "show_recent_clear", pd->cfg_show_recent_clear);
+    xfce_rc_write_int_entry(rcfile, "show_recent_number", pd->cfg_show_recent_number);
 
     xfce_rc_close(rcfile);
 
@@ -345,9 +371,20 @@ places_view_configure_plugin_label_changed(GtkWidget *label_entry, GdkEventFocus
 }
 
 static void
-places_view_configure_plugin_icons_changed(GtkToggleButton *icons_check, PlacesData *pd)
+places_view_configure_plugin_recent_num_changed(GtkAdjustment *adj, PlacesData *pd)
 {
-    pd->cfg_show_icons = gtk_toggle_button_get_active(icons_check);
+    pd->cfg_show_recent_number = (gint) gtk_adjustment_get_value(adj);
+    DBG("Show %d recent documents", pd->cfg_show_recent_number);
+    places_view_destroy_menu(pd);
+}
+
+static void
+places_view_configure_plugin_menu_changed(GtkToggleButton *toggle, PlacesData *pd)
+{
+    gboolean *cfg = g_object_get_data(G_OBJECT(toggle), "cfg_opt");
+    g_assert(cfg != NULL);
+    *cfg = gtk_toggle_button_get_active(toggle);
+
     places_view_destroy_menu(pd);
 }
 
@@ -363,7 +400,10 @@ static void
 places_view_configure_plugin(PlacesData *pd)
 {
     DBG("configure plugin");
-    GtkWidget *dlg, *combo, *label_entry, *icons_check;
+    GtkWidget *dlg;
+    GtkWidget *frame_button, *frame_menu, *frame_recent;
+    GtkWidget *vbox_button, *vbox_menu, *vbox_recent;
+    GtkWidget *tmp_box, *tmp_label, *tmp_widget;
     gint active;
     
     xfce_panel_plugin_block_menu(pd->plugin);
@@ -376,11 +416,54 @@ places_view_configure_plugin(PlacesData *pd)
     g_signal_connect(G_OBJECT(dlg), "response",
                      G_CALLBACK(places_view_configure_plugin_done), pd);
 
+    // Create frames
+    frame_button = gtk_frame_new(_("Button"));
+    frame_menu   = gtk_frame_new(_("Menu"));
+    frame_recent = gtk_frame_new(_("Recent Documents"));
 
-    combo = gtk_combo_box_new_text();
-    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Image Only"));
-    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Label Only"));
-    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Image and Label"));
+    gtk_container_set_border_width(GTK_CONTAINER(frame_button), 5);
+    gtk_container_set_border_width(GTK_CONTAINER(frame_menu),   5);
+    gtk_container_set_border_width(GTK_CONTAINER(frame_recent), 5);
+
+    gtk_widget_show(frame_button);
+    gtk_widget_show(frame_menu);
+    gtk_widget_show(frame_recent);
+
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_button, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_menu,   TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_recent, TRUE, TRUE, 0);
+
+    // vertical boxes that go inside frames
+    vbox_button = gtk_vbox_new(FALSE, 0);
+    vbox_menu   = gtk_vbox_new(FALSE, 0);
+    vbox_recent = gtk_vbox_new(FALSE, 0);
+
+    gtk_container_set_border_width(GTK_CONTAINER(vbox_button), 10);
+    gtk_container_set_border_width(GTK_CONTAINER(vbox_menu),   10);
+    gtk_container_set_border_width(GTK_CONTAINER(vbox_recent), 10);
+
+    gtk_widget_show(vbox_button);
+    gtk_widget_show(vbox_menu);
+    gtk_widget_show(vbox_recent);
+
+    gtk_container_add(GTK_CONTAINER(frame_button), vbox_button);
+    gtk_container_add(GTK_CONTAINER(frame_menu),   vbox_menu);
+    gtk_container_add(GTK_CONTAINER(frame_recent), vbox_recent);
+
+    // BUTTON: Show Image/Label
+    tmp_box = gtk_hbox_new(FALSE, 15);
+    gtk_widget_show(tmp_box);
+    gtk_box_pack_start(GTK_BOX(vbox_button), tmp_box, FALSE, FALSE, 0);
+    
+    tmp_label = gtk_label_new_with_mnemonic(_("_Show"));
+    gtk_widget_show(tmp_label);
+    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_label, FALSE, FALSE, 0);
+
+    tmp_widget = gtk_combo_box_new_text();
+    gtk_label_set_mnemonic_widget(GTK_LABEL(tmp_label), tmp_widget);
+    gtk_combo_box_append_text(GTK_COMBO_BOX(tmp_widget), _("Image Only"));
+    gtk_combo_box_append_text(GTK_COMBO_BOX(tmp_widget), _("Label Only"));
+    gtk_combo_box_append_text(GTK_COMBO_BOX(tmp_widget), _("Image and Label"));
 
     if(pd->cfg_show_label)
         if(pd->cfg_show_image)
@@ -389,39 +472,112 @@ places_view_configure_plugin(PlacesData *pd)
             active = 1;
     else
         active = 0;
-    gtk_combo_box_set_active(GTK_COMBO_BOX(combo), active);
+    gtk_combo_box_set_active(GTK_COMBO_BOX(tmp_widget), active);
     
-    g_signal_connect(G_OBJECT(combo), "changed",
+    g_signal_connect(G_OBJECT(tmp_widget), "changed",
                      G_CALLBACK(places_view_configure_plugin_show_changed), pd);
 
-    gtk_widget_show(combo);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), combo, TRUE, TRUE, 0);
+    gtk_widget_show(tmp_widget);
+    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
 
+    // BUTTON: Label text entry
+    tmp_box = gtk_hbox_new(FALSE, 15);
+    gtk_widget_show(tmp_box);
+    gtk_box_pack_start(GTK_BOX(vbox_button), tmp_box, FALSE, FALSE, 0);
+    
+    tmp_label = gtk_label_new_with_mnemonic(_("_Label"));
+    gtk_widget_show(tmp_label);
+    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_label, FALSE, FALSE, 0);
 
-    // Label entry
-    label_entry = gtk_entry_new();
-    gtk_entry_set_text(GTK_ENTRY(label_entry), pd->cfg_label);
+    tmp_widget = gtk_entry_new();
+    gtk_label_set_mnemonic_widget(GTK_LABEL(tmp_label), tmp_widget);
+    gtk_entry_set_text(GTK_ENTRY(tmp_widget), pd->cfg_label);
 
-    g_signal_connect(G_OBJECT(label_entry), "focus-out-event",
+    g_signal_connect(G_OBJECT(tmp_widget), "focus-out-event",
                      G_CALLBACK(places_view_configure_plugin_label_changed), pd);
 
-    gtk_widget_show(label_entry);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), label_entry, TRUE, TRUE, 0);
+    gtk_widget_show(tmp_widget);
+    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
 
 
-    // Show Icons
-    icons_check = gtk_check_button_new_with_mnemonic(_("Show _icons in menu"));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(icons_check), pd->cfg_show_icons);
+    // MENU: Show Icons
+    tmp_widget = gtk_check_button_new_with_mnemonic(_("Show _icons in menu"));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), pd->cfg_show_icons);
 
-    g_signal_connect(G_OBJECT(icons_check), "toggled",
-                     G_CALLBACK(places_view_configure_plugin_icons_changed), pd);
+    g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(pd->cfg_show_icons));
+    g_signal_connect(G_OBJECT(tmp_widget), "toggled",
+                     G_CALLBACK(places_view_configure_plugin_menu_changed), pd);
 
-    gtk_widget_show(icons_check);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), icons_check, TRUE, TRUE, 0);
+    gtk_widget_show(tmp_widget);
+    gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
+
+/*
+    // MENU: Show Removable Media
+    tmp_widget = gtk_check_button_new_with_mnemonic(_("Show _removable media"));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), pd->cfg_show_volumes);
+
+    g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(pd->cfg_show_volumes));
+    g_signal_connect(G_OBJECT(tmp_widget), "toggled",
+                     G_CALLBACK(places_view_configure_plugin_menu_changed), pd);
+
+    gtk_widget_show(tmp_widget);
+    gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);   
+
+    // MENU: Show GTK Bookmarks
+    tmp_widget = gtk_check_button_new_with_mnemonic(_("Show GTK _bookmarks"));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), pd->cfg_show_bookmarks);
+
+    g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(pd->cfg_show_bookmarks));
+    g_signal_connect(G_OBJECT(tmp_widget), "toggled",
+                     G_CALLBACK(places_view_configure_plugin_menu_changed), pd);
+
+    gtk_widget_show(tmp_widget);
+    gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
+*/
+
+    // MENU: Show Recent Documents
+    tmp_widget = gtk_check_button_new_with_mnemonic(_("Show recent _documents"));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), pd->cfg_show_recent);
+
+    g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(pd->cfg_show_recent));
+    g_signal_connect(G_OBJECT(tmp_widget), "toggled",
+                     G_CALLBACK(places_view_configure_plugin_menu_changed), pd);
+
+    gtk_widget_show(tmp_widget);
+    gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
+
+    // RECENT DOCUMENTS: Show clear option
+    tmp_widget = gtk_check_button_new_with_mnemonic(_("Show cl_ear option"));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), pd->cfg_show_recent_clear);
+
+    g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(pd->cfg_show_recent_clear));
+    g_signal_connect(G_OBJECT(tmp_widget), "toggled",
+                     G_CALLBACK(places_view_configure_plugin_menu_changed), pd);
+
+    gtk_widget_show(tmp_widget);
+    gtk_box_pack_start(GTK_BOX(vbox_recent), tmp_widget, FALSE, FALSE, 0);
+
+    // RECENT DOCUMENTS: Number to display
+    tmp_box = gtk_hbox_new(FALSE, 15);
+    gtk_widget_show(tmp_box);
+    gtk_box_pack_start(GTK_BOX(vbox_recent), tmp_box, FALSE, FALSE, 0);
+    
+    tmp_label = gtk_label_new_with_mnemonic(_("_Number to display"));
+    gtk_widget_show(tmp_label);
+    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_label, FALSE, FALSE, 0);
+
+    GtkObject *adj = gtk_adjustment_new(pd->cfg_show_recent_number, 1, 25, 1, 5, 5);
+
+    tmp_widget = gtk_spin_button_new(GTK_ADJUSTMENT(adj), 1, 0);
+    gtk_label_set_mnemonic_widget(GTK_LABEL(tmp_label), tmp_widget);
+
+    g_signal_connect(G_OBJECT(adj), "value-changed",
+                     G_CALLBACK(places_view_configure_plugin_recent_num_changed), pd);
+
+    gtk_widget_show(tmp_widget);
+    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
 
     gtk_widget_show(dlg);
-
-
 }
 
 /********** UI Helpers **********/
@@ -455,34 +611,41 @@ places_view_update_menu(PlacesData *pd)
 
     // Recent Documents
 #if USE_RECENT_DOCUMENTS
-    places_view_add_menu_sep(pd);
-
-    recent_menu = gtk_recent_chooser_menu_new();
-    gtk_recent_chooser_set_show_icons(GTK_RECENT_CHOOSER(recent_menu), pd->cfg_show_icons);
-    g_signal_connect(recent_menu, "item-activated", 
-                     G_CALLBACK(places_view_cb_recent_item_open), pd);
-
-    gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu),
-                          gtk_separator_menu_item_new());
-
-    if(pd->cfg_show_icons){
-        clear_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_CLEAR, NULL);
-    }else{
-        GtkStockItem clear_stock_item;
-        gtk_stock_lookup(GTK_STOCK_CLEAR, &clear_stock_item);
-        clear_item = gtk_menu_item_new_with_mnemonic(clear_stock_item.label);
-    }
-    gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu), clear_item);
-    g_signal_connect(clear_item, "activate",
-                     G_CALLBACK(places_view_cb_recent_items_clear), NULL);
+    if(pd->cfg_show_recent){
+        places_view_add_menu_sep(pd);
     
-    recent_item = gtk_image_menu_item_new_with_label(_("Recent Documents"));
-    if(pd->cfg_show_icons){
-        gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(recent_item), 
-                                      gtk_image_new_from_stock(GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU));
+        recent_menu = gtk_recent_chooser_menu_new();
+        gtk_recent_chooser_set_show_icons(GTK_RECENT_CHOOSER(recent_menu), pd->cfg_show_icons);
+        gtk_recent_chooser_set_limit(GTK_RECENT_CHOOSER(recent_menu), pd->cfg_show_recent_number);
+        g_signal_connect(recent_menu, "item-activated", 
+                         G_CALLBACK(places_view_cb_recent_item_open), pd);
+    
+        if(pd->cfg_show_recent_clear){
+    
+            gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu),
+                                  gtk_separator_menu_item_new());
+        
+            if(pd->cfg_show_icons){
+                clear_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_CLEAR, NULL);
+            }else{
+                GtkStockItem clear_stock_item;
+                gtk_stock_lookup(GTK_STOCK_CLEAR, &clear_stock_item);
+                clear_item = gtk_menu_item_new_with_mnemonic(clear_stock_item.label);
+            }
+            gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu), clear_item);
+            g_signal_connect(clear_item, "activate",
+                             G_CALLBACK(places_view_cb_recent_items_clear), NULL);
+    
+        }
+    
+        recent_item = gtk_image_menu_item_new_with_label(_("Recent Documents"));
+        if(pd->cfg_show_icons){
+            gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(recent_item), 
+                                          gtk_image_new_from_stock(GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU));
+        }
+        gtk_menu_item_set_submenu(GTK_MENU_ITEM(recent_item), recent_menu);
+        gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu), recent_item);
     }
-    gtk_menu_item_set_submenu(GTK_MENU_ITEM(recent_item), recent_menu);
-    gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu), recent_item);
 #endif
 
     /* connect deactivate signal */
