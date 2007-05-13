@@ -49,6 +49,7 @@
 // Config
 static void     places_view_load_config(PlacesData*);
 static void     places_view_save_config(PlacesData*);
+static void     places_view_configure_plugin(PlacesData*);
 
 // UI Helpers
 static void     places_view_update_menu(PlacesData*);
@@ -127,7 +128,6 @@ places_view_init(PlacesData *pd)
     // create the image
     if(pd->cfg_show_image){
         pd->view_button_image = g_object_ref(gtk_image_new());
-        DBG("Created view_button_image at %x", (gint) pd->view_button_image);
         gtk_widget_show(pd->view_button_image);
         gtk_box_pack_start(GTK_BOX(pd->view_button_box), pd->view_button_image, TRUE, TRUE, 0);
     }else{
@@ -138,7 +138,7 @@ places_view_init(PlacesData *pd)
     if(pd->cfg_show_label){
         pd->view_button_label = g_object_ref(gtk_label_new(_("Places")));
         gtk_widget_show(pd->view_button_label);
-        gtk_box_pack_start(GTK_BOX(pd->view_button_box), pd->view_button_label, TRUE, TRUE, 0);
+        gtk_box_pack_end(GTK_BOX(pd->view_button_box), pd->view_button_label, TRUE, TRUE, 0);
     }else{
         pd->view_button_label = NULL;
     }
@@ -162,8 +162,12 @@ places_view_init(PlacesData *pd)
     g_signal_connect_swapped(G_OBJECT(pd->plugin), "orientation-changed",
                              G_CALLBACK(places_view_cb_orientation_changed), pd);
 
+    g_signal_connect_swapped(G_OBJECT(pd->plugin), "configure-plugin",
+                             G_CALLBACK(places_view_configure_plugin), pd);
     g_signal_connect_swapped(G_OBJECT(pd->plugin), "save",
                              G_CALLBACK(places_view_save_config), pd);
+    
+    xfce_panel_plugin_menu_show_configure(pd->plugin);
 
 }
 
@@ -232,6 +236,110 @@ places_view_save_config(PlacesData *pd)
     xfce_rc_close(rcfile);
 
     DBG("configuration has been saved");
+}
+
+static void
+places_view_configure_plugin_show_changed(GtkComboBox *combo, PlacesData *pd)
+{ //TODO header
+    gint option;
+    gboolean show_image, show_label;
+    
+    option = gtk_combo_box_get_active(combo);
+    show_image = (option == 0 || option == 2);
+    show_label = (option == 1 || option == 2);
+
+    if(show_image && !pd->cfg_show_image){
+        pd->cfg_show_image = TRUE;
+
+        if(pd->view_button_image == NULL){
+            pd->view_button_image = g_object_ref(gtk_image_new());
+            gtk_widget_show(pd->view_button_image);
+            gtk_box_pack_start(GTK_BOX(pd->view_button_box), pd->view_button_image, TRUE, TRUE, 0);
+        }
+
+    }else if(!show_image && pd->cfg_show_image){
+        pd->cfg_show_image = FALSE;
+
+        if(pd->view_button_image != NULL){
+            g_object_unref(pd->view_button_image);
+            gtk_widget_destroy(pd->view_button_image);
+            pd->view_button_image = NULL;
+        }
+
+    }
+
+    if(show_label && !pd->cfg_show_label){
+        pd->cfg_show_label = TRUE;
+
+        if(pd->view_button_label == NULL){
+            pd->view_button_label = g_object_ref(gtk_label_new(_("Places")));
+            gtk_widget_show(pd->view_button_label);
+            gtk_box_pack_end(GTK_BOX(pd->view_button_box), pd->view_button_label, TRUE, TRUE, 0);
+        }
+
+    }else if(!show_label && pd->cfg_show_label){
+        pd->cfg_show_label = FALSE;
+        
+        if(pd->view_button_label != NULL){
+            g_object_unref(pd->view_button_label);
+            gtk_widget_destroy(pd->view_button_label);
+            pd->view_button_label = NULL;
+        }
+
+    }
+    
+    places_view_button_update(pd, -1);
+}
+
+static void
+places_view_configure_plugin_done(GtkDialog *dialog, gint response, PlacesData *pd)
+{ //TODO header
+    gtk_widget_destroy(GTK_WIDGET(dialog));
+    xfce_panel_plugin_unblock_menu(pd->plugin);
+    places_view_save_config(pd);
+}
+
+static void
+places_view_configure_plugin(PlacesData *pd)
+{
+    DBG("configure plugin");
+    GtkWidget *dlg, *combo;
+    gint active;
+    
+    xfce_panel_plugin_block_menu(pd->plugin);
+
+    dlg = xfce_titled_dialog_new_with_buttons(_("Places"),
+              GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(pd->plugin))),
+              GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_NO_SEPARATOR,
+              GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
+
+    g_signal_connect(G_OBJECT(dlg), "response",
+                     G_CALLBACK(places_view_configure_plugin_done), pd);
+
+
+    combo = gtk_combo_box_new_text();
+    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Image Only"));
+    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Label Only"));
+    gtk_combo_box_append_text(GTK_COMBO_BOX(combo), _("Image and Label"));
+
+    if(pd->cfg_show_label)
+        if(pd->cfg_show_image)
+            active = 2;
+        else
+            active = 1;
+    else
+        active = 0;
+    gtk_combo_box_set_active(GTK_COMBO_BOX(combo), active);
+    
+    g_signal_connect(G_OBJECT(combo), "changed",
+                     G_CALLBACK(places_view_configure_plugin_show_changed), pd);
+
+    gtk_widget_show(combo);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), combo, TRUE, TRUE, 0);
+
+    gtk_widget_show(dlg);
+
+
 }
 
 /********** UI Helpers **********/
@@ -431,7 +539,7 @@ places_view_cb_orientation_changed(PlacesData *pd, GtkOrientation orientation, X
 
     if(pd->view_button_label != NULL){
         gtk_widget_show(pd->view_button_label);
-        gtk_box_pack_start(GTK_BOX(pd->view_button_box), pd->view_button_label, TRUE, TRUE, 0);
+        gtk_box_pack_end(GTK_BOX(pd->view_button_box), pd->view_button_label, TRUE, TRUE, 0);
     }
 
     places_view_button_update(pd, -1);

@@ -2,6 +2,7 @@
 
 	* view.c, view.h, places.h: Added "Places" label and
 	configuration settings for show_image, show_label.
+	* view.c: Started configuration dialog.
 
 2007-04-26	Diego Ongaro <ongardie@gmail.com>
 
