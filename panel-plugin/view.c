@@ -49,6 +49,8 @@
 // Config
 static void     places_view_load_config(PlacesData*);
 static void     places_view_save_config(PlacesData*);
+static void     places_view_model_config(PlacesData *pd);
+
 static void     places_view_configure_plugin(PlacesData*);
 
 // UI Helpers
@@ -100,10 +102,12 @@ places_view_init(PlacesData *pd)
     
     gpointer icon_theme_class;
 
-    places_view_load_config(pd);
-
     pd->view_just_separated = TRUE;
     pd->view_menu = NULL;
+
+    places_view_load_config(pd);
+    places_view_model_config(pd);
+    
 
     pd->view_tooltips = g_object_ref_sink(gtk_tooltips_new());
 
@@ -203,10 +207,9 @@ places_view_default_config(PlacesData *pd)
     pd->cfg_show_recent_clear  = TRUE;
     pd->cfg_show_recent_number = 10;
 
-    if(pd->cfg_label != NULL){
+    if(pd->cfg_label != NULL)
         g_free(pd->cfg_label);
-        pd->cfg_label = g_strdup(_("Places"));
-    }
+    pd->cfg_label = g_strdup(_("Places"));
 
 }
 
@@ -276,17 +279,20 @@ places_view_save_config(PlacesData *pd)
         return;
 
     // BUTTON
+    DBG("save button cfg");
     xfce_rc_write_bool_entry(rcfile, "show_image", pd->cfg_show_image);
     xfce_rc_write_bool_entry(rcfile, "show_label", pd->cfg_show_label);
     xfce_rc_write_entry(rcfile, "label", pd->cfg_label);
 
     // MENU
+    DBG("save menu cfg");
     xfce_rc_write_bool_entry(rcfile, "show_icons", pd->cfg_show_icons);
     xfce_rc_write_bool_entry(rcfile, "show_volumes", pd->cfg_show_volumes);
     xfce_rc_write_bool_entry(rcfile, "show_bookmarks", pd->cfg_show_bookmarks);
     xfce_rc_write_bool_entry(rcfile, "show_recent", pd->cfg_show_recent);
 
     // RECENT DOCUMENTS
+    DBG("save recent documents cfg");
     xfce_rc_write_bool_entry(rcfile, "show_recent_clear", pd->cfg_show_recent_clear);
     xfce_rc_write_int_entry(rcfile, "show_recent_number", pd->cfg_show_recent_number);
 
@@ -295,9 +301,22 @@ places_view_save_config(PlacesData *pd)
     DBG("configuration has been saved");
 }
 
+
+static void
+places_view_model_config(PlacesData *pd)
+{   //TODO rename, move
+    gint model_enable;
+    model_enable = PLACES_BOOKMARKS_ENABLE_NONE;
+    if(pd->cfg_show_volumes)
+        model_enable |= PLACES_BOOKMARKS_ENABLE_VOLUMES;
+    if(pd->cfg_show_bookmarks)
+        model_enable |= PLACES_BOOKMARKS_ENABLE_USER;
+    places_bookmarks_enable(pd->bookmarks, model_enable);
+}
+
 static void
 places_view_configure_plugin_show_changed(GtkComboBox *combo, PlacesData *pd)
-{ //TODO header
+{ //TODO header, rename
     gint option;
     gboolean show_image, show_label;
     
@@ -372,7 +391,7 @@ places_view_configure_plugin_label_changed(GtkWidget *label_entry, GdkEventFocus
 
 static void
 places_view_configure_plugin_recent_num_changed(GtkAdjustment *adj, PlacesData *pd)
-{
+{   // TODO header
     pd->cfg_show_recent_number = (gint) gtk_adjustment_get_value(adj);
     DBG("Show %d recent documents", pd->cfg_show_recent_number);
     places_view_destroy_menu(pd);
@@ -380,11 +399,22 @@ places_view_configure_plugin_recent_num_changed(GtkAdjustment *adj, PlacesData *
 
 static void
 places_view_configure_plugin_menu_changed(GtkToggleButton *toggle, PlacesData *pd)
-{
+{   // TODO header?
     gboolean *cfg = g_object_get_data(G_OBJECT(toggle), "cfg_opt");
     g_assert(cfg != NULL);
     *cfg = gtk_toggle_button_get_active(toggle);
 
+    places_view_destroy_menu(pd);
+}
+
+static void
+places_view_configure_plugin_model_enabled_changed(GtkToggleButton *toggle, PlacesData *pd)
+{   //TODO header
+    gboolean *cfg = g_object_get_data(G_OBJECT(toggle), "cfg_opt");
+    g_assert(cfg != NULL);
+    *cfg = gtk_toggle_button_get_active(toggle);
+
+    places_view_model_config(pd);
     places_view_destroy_menu(pd);
 }
 
@@ -511,14 +541,14 @@ places_view_configure_plugin(PlacesData *pd)
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
 
-/*
+
     // MENU: Show Removable Media
     tmp_widget = gtk_check_button_new_with_mnemonic(_("Show _removable media"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), pd->cfg_show_volumes);
 
     g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(pd->cfg_show_volumes));
     g_signal_connect(G_OBJECT(tmp_widget), "toggled",
-                     G_CALLBACK(places_view_configure_plugin_menu_changed), pd);
+                     G_CALLBACK(places_view_configure_plugin_model_enabled_changed), pd);
 
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);   
@@ -529,11 +559,11 @@ places_view_configure_plugin(PlacesData *pd)
 
     g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(pd->cfg_show_bookmarks));
     g_signal_connect(G_OBJECT(tmp_widget), "toggled",
-                     G_CALLBACK(places_view_configure_plugin_menu_changed), pd);
+                     G_CALLBACK(places_view_configure_plugin_model_enabled_changed), pd);
 
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
-*/
+
 
     // MENU: Show Recent Documents
     tmp_widget = gtk_check_button_new_with_mnemonic(_("Show recent _documents"));

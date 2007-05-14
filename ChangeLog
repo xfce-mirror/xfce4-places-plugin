@@ -1,9 +1,9 @@
 2007-05-13	Diego Ongaro <ongardie@gmail.com>
 
-	* view.c, view.h, places.h: Added "Places" label and
-	configuration settings for show_image, show_label, show_icons,
-	label, show_recent, show_recent_clear, show_recent_num.
-	* view.c: Started configuration dialog.
+	* Added "Places" label and configuration settings for 
+	show_image, show_label, show_icons, label, 
+	show_recent, show_recent_clear, show_recent_num,
+	show_volumes, show_bookmarks.
 
 2007-04-26	Diego Ongaro <ongardie@gmail.com>
 

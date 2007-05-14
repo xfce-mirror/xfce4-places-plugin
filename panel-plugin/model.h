@@ -43,6 +43,13 @@ typedef struct _Bookmarks Bookmarks;
 Bookmarks*
 places_bookmarks_init();
 
+#define PLACES_BOOKMARKS_ENABLE_NONE    (0)
+#define PLACES_BOOKMARKS_ENABLE_VOLUMES (1)
+#define PLACES_BOOKMARKS_ENABLE_USER    (1 << 1)
+#define PLACES_BOOKMARKS_ENABLE_ALL     (PLACES_BOOKMARKS_ENABLE_VOLUMES & PLACES_BOOKMARKS_ENABLE_USER)
+void
+places_bookmarks_enable(Bookmarks *b, gint enable);
+
 void
 places_bookmarks_visit(Bookmarks *b, BookmarksVisitor *visitor);
 
