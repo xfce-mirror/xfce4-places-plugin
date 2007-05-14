@@ -17,41 +17,29 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef _XFCE_PANEL_PLACES_H
-#define _XFCE_PANEL_PLACES_H
+#ifndef _XFCE_PANEL_PLACES_CFG_H
+#define _XFCE_PANEL_PLACES_CFG_H
 
-#include <gtk/gtk.h>
-#include <libxfce4panel/xfce-panel-plugin.h>
+#include <glib.h>
+#include "places.h"
 
-typedef struct _PlacesData PlacesData;
-#include "cfg.h"
-
-#define PLUGIN_NAME "places"
-
-struct _PlacesData
+typedef struct
 {
-  // plugin
-  XfcePanelPlugin   *plugin;
+  gboolean           show_image;
+  gboolean           show_label;
+  gchar             *label;
+  gboolean           show_icons;
+  gboolean           show_volumes;
+  gboolean           show_bookmarks;
+  gboolean           show_recent;
+  gboolean           show_recent_clear;
+  gint               show_recent_number;
+} PlacesConfig;
 
-  // configuration
-  PlacesConfig      *cfg;
-
-  // view
-  GtkWidget         *view_button;
-  GtkWidget         *view_button_box;
-  GtkWidget         *view_button_image;
-  GtkWidget         *view_button_label;
-  GtkWidget         *view_menu;
-  GtkTooltips       *view_tooltips;
-  gulong             view_theme_timeout_id;
-  gboolean           view_just_separated;
-
-  // model
-  gpointer           bookmarks;
-
-};
-
-void places_load_thunar(const gchar*);
+// Init & Finalize
+PlacesConfig* places_cfg_new(PlacesData*);
+void          places_cfg_init_signals(PlacesData*);
+void          places_cfg_finalize(PlacesData*);
 
 #endif
 // vim: ai et tabstop=4

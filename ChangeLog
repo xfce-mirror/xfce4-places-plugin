@@ -1,3 +1,9 @@
+2007-05-14	Diego Ongaro <ongardie@gmail.com>
+
+	* Moved configuration code into cfg.h, cfg.c.
+	* Don't compile in Recent Documents configuration code on older
+	versions of GTK.
+
 2007-05-13	Diego Ongaro <ongardie@gmail.com>
 
 	* Added "Places" label and configuration settings for 

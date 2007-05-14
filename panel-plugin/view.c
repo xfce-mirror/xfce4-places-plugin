@@ -41,23 +41,10 @@
 #include "view.h"
 #include "places.h"
 #include "model.h"
-
-#if GTK_CHECK_VERSION(2,10,0)
-#  define USE_RECENT_DOCUMENTS TRUE
-#endif
-
-// Config
-static void     places_view_load_config(PlacesData*);
-static void     places_view_save_config(PlacesData*);
-static void     places_view_model_config(PlacesData *pd);
-
-static void     places_view_configure_plugin(PlacesData*);
+#include "cfg.h"
 
 // UI Helpers
 static void     places_view_update_menu(PlacesData*);
-static void     places_view_open_menu(PlacesData*);
-static void     places_view_destroy_menu(PlacesData*);
-static void     places_view_button_update(PlacesData*, gint size);
 
 // GTK Callbacks
 
@@ -105,10 +92,9 @@ places_view_init(PlacesData *pd)
     pd->view_just_separated = TRUE;
     pd->view_menu = NULL;
 
-    places_view_load_config(pd);
-    places_view_model_config(pd);
+    pd->cfg = places_cfg_new(pd);
+    places_view_reconfigure_model(pd);
     
-
     pd->view_tooltips = g_object_ref_sink(gtk_tooltips_new());
 
     // init button
@@ -126,11 +112,11 @@ places_view_init(PlacesData *pd)
     gtk_widget_show(pd->view_button);
     gtk_container_add(GTK_CONTAINER(pd->view_button), pd->view_button_box);
     gtk_container_add(GTK_CONTAINER(pd->plugin), pd->view_button);
-    gtk_tooltips_set_tip(pd->view_tooltips, pd->view_button, pd->cfg_label, NULL);
+    gtk_tooltips_set_tip(pd->view_tooltips, pd->view_button, pd->cfg->label, NULL);
     xfce_panel_plugin_add_action_widget(pd->plugin, pd->view_button);
     
     // create the image
-    if(pd->cfg_show_image){
+    if(pd->cfg->show_image){
         pd->view_button_image = g_object_ref(gtk_image_new());
         gtk_widget_show(pd->view_button_image);
         gtk_box_pack_start(GTK_BOX(pd->view_button_box), pd->view_button_image, TRUE, TRUE, 0);
@@ -139,8 +125,8 @@ places_view_init(PlacesData *pd)
     }
 
     // create the label
-    if(pd->cfg_show_label){
-        pd->view_button_label = g_object_ref(gtk_label_new(pd->cfg_label));
+    if(pd->cfg->show_label){
+        pd->view_button_label = g_object_ref(gtk_label_new(pd->cfg->label));
         gtk_widget_show(pd->view_button_label);
         gtk_box_pack_end(GTK_BOX(pd->view_button_box), pd->view_button_label, TRUE, TRUE, 0);
     }else{
@@ -166,13 +152,7 @@ places_view_init(PlacesData *pd)
     g_signal_connect_swapped(G_OBJECT(pd->plugin), "orientation-changed",
                              G_CALLBACK(places_view_cb_orientation_changed), pd);
 
-    g_signal_connect_swapped(G_OBJECT(pd->plugin), "configure-plugin",
-                             G_CALLBACK(places_view_configure_plugin), pd);
-    g_signal_connect_swapped(G_OBJECT(pd->plugin), "save",
-                             G_CALLBACK(places_view_save_config), pd);
-    
-    xfce_panel_plugin_menu_show_configure(pd->plugin);
-
+    places_cfg_init_signals(pd);
 }
 
 
@@ -187,427 +167,20 @@ places_view_finalize(PlacesData *pd)
     if(pd->view_button_label != NULL)
         g_object_unref(pd->view_button_label);
     g_object_unref(pd->view_tooltips);
-    
-    if(pd->cfg_label != NULL)
-        g_free(pd->cfg_label);
-
+ 
+    places_cfg_finalize(pd);
 }
 
-/********** Config **********/
-static void
-places_view_default_config(PlacesData *pd)
-{   //TODO: header
-
-    pd->cfg_show_image         = TRUE;
-    pd->cfg_show_label         = FALSE;
-    pd->cfg_show_icons         = TRUE;
-    pd->cfg_show_volumes       = TRUE;
-    pd->cfg_show_bookmarks     = TRUE;
-    pd->cfg_show_recent        = TRUE;
-    pd->cfg_show_recent_clear  = TRUE;
-    pd->cfg_show_recent_number = 10;
-
-    if(pd->cfg_label != NULL)
-        g_free(pd->cfg_label);
-    pd->cfg_label = g_strdup(_("Places"));
-
-}
-
-static void
-places_view_load_config(PlacesData *pd)
+void
+places_view_reconfigure_model(PlacesData *pd)
 {
-    XfceRc *rcfile;
-    gchar *rcpath;
-
-    rcpath = xfce_panel_plugin_lookup_rc_file(pd->plugin);
-    if(rcpath == NULL){
-        places_view_default_config(pd);
-        return;
-    }
-
-    rcfile = xfce_rc_simple_open(rcpath, TRUE);
-    g_free(rcpath);
-    if(rcfile == NULL){
-        places_view_default_config(pd);
-        return;
-    }
-
-    pd->cfg_show_label = xfce_rc_read_bool_entry(rcfile, "show_label", FALSE);
-
-    if(!pd->cfg_show_label)
-        pd->cfg_show_image = TRUE;
-    else
-        pd->cfg_show_image = xfce_rc_read_bool_entry(rcfile, "show_image", TRUE);
-
-    pd->cfg_show_icons = xfce_rc_read_bool_entry(rcfile, "show_icons", TRUE);
-
-    pd->cfg_show_volumes   = xfce_rc_read_bool_entry(rcfile, "show_volumes", TRUE);
-    pd->cfg_show_bookmarks = xfce_rc_read_bool_entry(rcfile, "show_bookmarks", TRUE);
-    pd->cfg_show_recent    = xfce_rc_read_bool_entry(rcfile, "show_recent", TRUE);
-
-    if(pd->cfg_label != NULL)
-        g_free(pd->cfg_label);
-
-    pd->cfg_label = (gchar*) xfce_rc_read_entry(rcfile, "label", NULL);
-    if(pd->cfg_label == NULL || *(pd->cfg_label) == '\0')
-        pd->cfg_label = _("Places");
-    pd->cfg_label = g_strdup(pd->cfg_label);
-
-
-    pd->cfg_show_recent_clear = xfce_rc_read_bool_entry(rcfile, "show_recent_clear", TRUE);
-
-    pd->cfg_show_recent_number = xfce_rc_read_int_entry(rcfile, "show_recent_number", 10);
-    if(pd->cfg_show_recent_number < 1 || pd->cfg_show_recent_number > 25)
-        pd->cfg_show_recent_number = 10;
-
-    xfce_rc_close(rcfile);
-}
-
-static void
-places_view_save_config(PlacesData *pd)
-{
-    XfceRc *rcfile;
-    gchar *rcpath;
-    
-    rcpath = xfce_panel_plugin_save_location(pd->plugin, TRUE);
-    if(rcpath == NULL)
-        return;
-
-    rcfile = xfce_rc_simple_open(rcpath, FALSE);
-    g_free(rcpath);
-    if(rcfile == NULL)
-        return;
-
-    // BUTTON
-    DBG("save button cfg");
-    xfce_rc_write_bool_entry(rcfile, "show_image", pd->cfg_show_image);
-    xfce_rc_write_bool_entry(rcfile, "show_label", pd->cfg_show_label);
-    xfce_rc_write_entry(rcfile, "label", pd->cfg_label);
-
-    // MENU
-    DBG("save menu cfg");
-    xfce_rc_write_bool_entry(rcfile, "show_icons", pd->cfg_show_icons);
-    xfce_rc_write_bool_entry(rcfile, "show_volumes", pd->cfg_show_volumes);
-    xfce_rc_write_bool_entry(rcfile, "show_bookmarks", pd->cfg_show_bookmarks);
-    xfce_rc_write_bool_entry(rcfile, "show_recent", pd->cfg_show_recent);
-
-    // RECENT DOCUMENTS
-    DBG("save recent documents cfg");
-    xfce_rc_write_bool_entry(rcfile, "show_recent_clear", pd->cfg_show_recent_clear);
-    xfce_rc_write_int_entry(rcfile, "show_recent_number", pd->cfg_show_recent_number);
-
-    xfce_rc_close(rcfile);
-
-    DBG("configuration has been saved");
-}
-
-
-static void
-places_view_model_config(PlacesData *pd)
-{   //TODO rename, move
     gint model_enable;
     model_enable = PLACES_BOOKMARKS_ENABLE_NONE;
-    if(pd->cfg_show_volumes)
+    if(pd->cfg->show_volumes)
         model_enable |= PLACES_BOOKMARKS_ENABLE_VOLUMES;
-    if(pd->cfg_show_bookmarks)
+    if(pd->cfg->show_bookmarks)
         model_enable |= PLACES_BOOKMARKS_ENABLE_USER;
     places_bookmarks_enable(pd->bookmarks, model_enable);
-}
-
-static void
-places_view_configure_plugin_show_changed(GtkComboBox *combo, PlacesData *pd)
-{ //TODO header, rename
-    gint option;
-    gboolean show_image, show_label;
-    
-    option = gtk_combo_box_get_active(combo);
-    show_image = (option == 0 || option == 2);
-    show_label = (option == 1 || option == 2);
-
-    if(show_image && !pd->cfg_show_image){
-        pd->cfg_show_image = TRUE;
-
-        if(pd->view_button_image == NULL){
-            pd->view_button_image = g_object_ref(gtk_image_new());
-            gtk_widget_show(pd->view_button_image);
-            gtk_box_pack_start(GTK_BOX(pd->view_button_box), pd->view_button_image, TRUE, TRUE, 0);
-        }
-
-    }else if(!show_image && pd->cfg_show_image){
-        pd->cfg_show_image = FALSE;
-
-        if(pd->view_button_image != NULL){
-            g_object_unref(pd->view_button_image);
-            gtk_widget_destroy(pd->view_button_image);
-            pd->view_button_image = NULL;
-        }
-
-    }
-
-    if(show_label && !pd->cfg_show_label){
-        pd->cfg_show_label = TRUE;
-
-        if(pd->view_button_label == NULL){
-            pd->view_button_label = g_object_ref(gtk_label_new(pd->cfg_label));
-            gtk_widget_show(pd->view_button_label);
-            gtk_box_pack_end(GTK_BOX(pd->view_button_box), pd->view_button_label, TRUE, TRUE, 0);
-        }
-
-    }else if(!show_label && pd->cfg_show_label){
-        pd->cfg_show_label = FALSE;
-        
-        if(pd->view_button_label != NULL){
-            g_object_unref(pd->view_button_label);
-            gtk_widget_destroy(pd->view_button_label);
-            pd->view_button_label = NULL;
-        }
-
-    }
-    
-    places_view_button_update(pd, -1);
-}
-
-static gboolean
-places_view_configure_plugin_label_changed(GtkWidget *label_entry, GdkEventFocus *event, PlacesData *pd)
-{ // TODO header
-    if(pd->cfg_label != NULL)
-        g_free(pd->cfg_label);
-    
-    pd->cfg_label = g_strstrip(g_strdup(gtk_entry_get_text(GTK_ENTRY(label_entry))));
-    if(*(pd->cfg_label) == '\0'){
-        g_free(pd->cfg_label);
-        pd->cfg_label = g_strdup(_("Places"));
-        gtk_entry_set_text(GTK_ENTRY(label_entry), pd->cfg_label);
-    }
-
-    if(pd->cfg_show_label){
-        gtk_label_set_text(GTK_LABEL(pd->view_button_label), pd->cfg_label);
-        gtk_tooltips_set_tip(pd->view_tooltips, pd->view_button, pd->cfg_label, NULL);
-        places_view_button_update(pd, -1);
-    }
-
-    return FALSE;
-}
-
-static void
-places_view_configure_plugin_recent_num_changed(GtkAdjustment *adj, PlacesData *pd)
-{   // TODO header
-    pd->cfg_show_recent_number = (gint) gtk_adjustment_get_value(adj);
-    DBG("Show %d recent documents", pd->cfg_show_recent_number);
-    places_view_destroy_menu(pd);
-}
-
-static void
-places_view_configure_plugin_menu_changed(GtkToggleButton *toggle, PlacesData *pd)
-{   // TODO header?
-    gboolean *cfg = g_object_get_data(G_OBJECT(toggle), "cfg_opt");
-    g_assert(cfg != NULL);
-    *cfg = gtk_toggle_button_get_active(toggle);
-
-    places_view_destroy_menu(pd);
-}
-
-static void
-places_view_configure_plugin_model_enabled_changed(GtkToggleButton *toggle, PlacesData *pd)
-{   //TODO header
-    gboolean *cfg = g_object_get_data(G_OBJECT(toggle), "cfg_opt");
-    g_assert(cfg != NULL);
-    *cfg = gtk_toggle_button_get_active(toggle);
-
-    places_view_model_config(pd);
-    places_view_destroy_menu(pd);
-}
-
-static void
-places_view_configure_plugin_done(GtkDialog *dialog, gint response, PlacesData *pd)
-{ //TODO header
-    gtk_widget_destroy(GTK_WIDGET(dialog));
-    xfce_panel_plugin_unblock_menu(pd->plugin);
-    places_view_save_config(pd);
-}
-
-static void
-places_view_configure_plugin(PlacesData *pd)
-{
-    DBG("configure plugin");
-    GtkWidget *dlg;
-    GtkWidget *frame_button, *frame_menu, *frame_recent;
-    GtkWidget *vbox_button, *vbox_menu, *vbox_recent;
-    GtkWidget *tmp_box, *tmp_label, *tmp_widget;
-    gint active;
-    
-    xfce_panel_plugin_block_menu(pd->plugin);
-
-    dlg = xfce_titled_dialog_new_with_buttons(_("Places"),
-              GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(pd->plugin))),
-              GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_NO_SEPARATOR,
-              GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
-
-    g_signal_connect(G_OBJECT(dlg), "response",
-                     G_CALLBACK(places_view_configure_plugin_done), pd);
-
-    // Create frames
-    frame_button = gtk_frame_new(_("Button"));
-    frame_menu   = gtk_frame_new(_("Menu"));
-    frame_recent = gtk_frame_new(_("Recent Documents"));
-
-    gtk_container_set_border_width(GTK_CONTAINER(frame_button), 5);
-    gtk_container_set_border_width(GTK_CONTAINER(frame_menu),   5);
-    gtk_container_set_border_width(GTK_CONTAINER(frame_recent), 5);
-
-    gtk_widget_show(frame_button);
-    gtk_widget_show(frame_menu);
-    gtk_widget_show(frame_recent);
-
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_button, TRUE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_menu,   TRUE, TRUE, 0);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_recent, TRUE, TRUE, 0);
-
-    // vertical boxes that go inside frames
-    vbox_button = gtk_vbox_new(FALSE, 0);
-    vbox_menu   = gtk_vbox_new(FALSE, 0);
-    vbox_recent = gtk_vbox_new(FALSE, 0);
-
-    gtk_container_set_border_width(GTK_CONTAINER(vbox_button), 10);
-    gtk_container_set_border_width(GTK_CONTAINER(vbox_menu),   10);
-    gtk_container_set_border_width(GTK_CONTAINER(vbox_recent), 10);
-
-    gtk_widget_show(vbox_button);
-    gtk_widget_show(vbox_menu);
-    gtk_widget_show(vbox_recent);
-
-    gtk_container_add(GTK_CONTAINER(frame_button), vbox_button);
-    gtk_container_add(GTK_CONTAINER(frame_menu),   vbox_menu);
-    gtk_container_add(GTK_CONTAINER(frame_recent), vbox_recent);
-
-    // BUTTON: Show Image/Label
-    tmp_box = gtk_hbox_new(FALSE, 15);
-    gtk_widget_show(tmp_box);
-    gtk_box_pack_start(GTK_BOX(vbox_button), tmp_box, FALSE, FALSE, 0);
-    
-    tmp_label = gtk_label_new_with_mnemonic(_("_Show"));
-    gtk_widget_show(tmp_label);
-    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_label, FALSE, FALSE, 0);
-
-    tmp_widget = gtk_combo_box_new_text();
-    gtk_label_set_mnemonic_widget(GTK_LABEL(tmp_label), tmp_widget);
-    gtk_combo_box_append_text(GTK_COMBO_BOX(tmp_widget), _("Image Only"));
-    gtk_combo_box_append_text(GTK_COMBO_BOX(tmp_widget), _("Label Only"));
-    gtk_combo_box_append_text(GTK_COMBO_BOX(tmp_widget), _("Image and Label"));
-
-    if(pd->cfg_show_label)
-        if(pd->cfg_show_image)
-            active = 2;
-        else
-            active = 1;
-    else
-        active = 0;
-    gtk_combo_box_set_active(GTK_COMBO_BOX(tmp_widget), active);
-    
-    g_signal_connect(G_OBJECT(tmp_widget), "changed",
-                     G_CALLBACK(places_view_configure_plugin_show_changed), pd);
-
-    gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
-
-    // BUTTON: Label text entry
-    tmp_box = gtk_hbox_new(FALSE, 15);
-    gtk_widget_show(tmp_box);
-    gtk_box_pack_start(GTK_BOX(vbox_button), tmp_box, FALSE, FALSE, 0);
-    
-    tmp_label = gtk_label_new_with_mnemonic(_("_Label"));
-    gtk_widget_show(tmp_label);
-    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_label, FALSE, FALSE, 0);
-
-    tmp_widget = gtk_entry_new();
-    gtk_label_set_mnemonic_widget(GTK_LABEL(tmp_label), tmp_widget);
-    gtk_entry_set_text(GTK_ENTRY(tmp_widget), pd->cfg_label);
-
-    g_signal_connect(G_OBJECT(tmp_widget), "focus-out-event",
-                     G_CALLBACK(places_view_configure_plugin_label_changed), pd);
-
-    gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
-
-
-    // MENU: Show Icons
-    tmp_widget = gtk_check_button_new_with_mnemonic(_("Show _icons in menu"));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), pd->cfg_show_icons);
-
-    g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(pd->cfg_show_icons));
-    g_signal_connect(G_OBJECT(tmp_widget), "toggled",
-                     G_CALLBACK(places_view_configure_plugin_menu_changed), pd);
-
-    gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
-
-
-    // MENU: Show Removable Media
-    tmp_widget = gtk_check_button_new_with_mnemonic(_("Show _removable media"));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), pd->cfg_show_volumes);
-
-    g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(pd->cfg_show_volumes));
-    g_signal_connect(G_OBJECT(tmp_widget), "toggled",
-                     G_CALLBACK(places_view_configure_plugin_model_enabled_changed), pd);
-
-    gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);   
-
-    // MENU: Show GTK Bookmarks
-    tmp_widget = gtk_check_button_new_with_mnemonic(_("Show GTK _bookmarks"));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), pd->cfg_show_bookmarks);
-
-    g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(pd->cfg_show_bookmarks));
-    g_signal_connect(G_OBJECT(tmp_widget), "toggled",
-                     G_CALLBACK(places_view_configure_plugin_model_enabled_changed), pd);
-
-    gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
-
-
-    // MENU: Show Recent Documents
-    tmp_widget = gtk_check_button_new_with_mnemonic(_("Show recent _documents"));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), pd->cfg_show_recent);
-
-    g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(pd->cfg_show_recent));
-    g_signal_connect(G_OBJECT(tmp_widget), "toggled",
-                     G_CALLBACK(places_view_configure_plugin_menu_changed), pd);
-
-    gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
-
-    // RECENT DOCUMENTS: Show clear option
-    tmp_widget = gtk_check_button_new_with_mnemonic(_("Show cl_ear option"));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), pd->cfg_show_recent_clear);
-
-    g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(pd->cfg_show_recent_clear));
-    g_signal_connect(G_OBJECT(tmp_widget), "toggled",
-                     G_CALLBACK(places_view_configure_plugin_menu_changed), pd);
-
-    gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(vbox_recent), tmp_widget, FALSE, FALSE, 0);
-
-    // RECENT DOCUMENTS: Number to display
-    tmp_box = gtk_hbox_new(FALSE, 15);
-    gtk_widget_show(tmp_box);
-    gtk_box_pack_start(GTK_BOX(vbox_recent), tmp_box, FALSE, FALSE, 0);
-    
-    tmp_label = gtk_label_new_with_mnemonic(_("_Number to display"));
-    gtk_widget_show(tmp_label);
-    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_label, FALSE, FALSE, 0);
-
-    GtkObject *adj = gtk_adjustment_new(pd->cfg_show_recent_number, 1, 25, 1, 5, 5);
-
-    tmp_widget = gtk_spin_button_new(GTK_ADJUSTMENT(adj), 1, 0);
-    gtk_label_set_mnemonic_widget(GTK_LABEL(tmp_label), tmp_widget);
-
-    g_signal_connect(G_OBJECT(adj), "value-changed",
-                     G_CALLBACK(places_view_configure_plugin_recent_num_changed), pd);
-
-    gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
-
-    gtk_widget_show(dlg);
 }
 
 /********** UI Helpers **********/
@@ -641,21 +214,21 @@ places_view_update_menu(PlacesData *pd)
 
     // Recent Documents
 #if USE_RECENT_DOCUMENTS
-    if(pd->cfg_show_recent){
+    if(pd->cfg->show_recent){
         places_view_add_menu_sep(pd);
     
         recent_menu = gtk_recent_chooser_menu_new();
-        gtk_recent_chooser_set_show_icons(GTK_RECENT_CHOOSER(recent_menu), pd->cfg_show_icons);
-        gtk_recent_chooser_set_limit(GTK_RECENT_CHOOSER(recent_menu), pd->cfg_show_recent_number);
+        gtk_recent_chooser_set_show_icons(GTK_RECENT_CHOOSER(recent_menu), pd->cfg->show_icons);
+        gtk_recent_chooser_set_limit(GTK_RECENT_CHOOSER(recent_menu), pd->cfg->show_recent_number);
         g_signal_connect(recent_menu, "item-activated", 
                          G_CALLBACK(places_view_cb_recent_item_open), pd);
     
-        if(pd->cfg_show_recent_clear){
+        if(pd->cfg->show_recent_clear){
     
             gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu),
                                   gtk_separator_menu_item_new());
         
-            if(pd->cfg_show_icons){
+            if(pd->cfg->show_icons){
                 clear_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_CLEAR, NULL);
             }else{
                 GtkStockItem clear_stock_item;
@@ -669,7 +242,7 @@ places_view_update_menu(PlacesData *pd)
         }
     
         recent_item = gtk_image_menu_item_new_with_label(_("Recent Documents"));
-        if(pd->cfg_show_icons){
+        if(pd->cfg->show_icons){
             gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(recent_item), 
                                           gtk_image_new_from_stock(GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU));
         }
@@ -690,7 +263,7 @@ places_view_update_menu(PlacesData *pd)
 }
 
 
-static void
+void
 places_view_open_menu(PlacesData *pd)
 {
     /* check if menu is needed, or it needs an update */
@@ -710,7 +283,7 @@ places_view_open_menu(PlacesData *pd)
                     gtk_get_current_event_time ());
 }
 
-static void
+void
 places_view_destroy_menu(PlacesData *pd)
 {
     if(pd->view_menu != NULL){
@@ -720,17 +293,15 @@ places_view_destroy_menu(PlacesData *pd)
     }
 }
 
-static void
-places_view_button_update(PlacesData *pd, gint wsize)
+void
+places_view_button_update(PlacesData *pd)
 {
     GdkPixbuf *icon;
-    gint size, width, height;
+    gint wsize, size, width, height;
     gint pix_w = 0, pix_h = 0;
     GtkOrientation orientation = xfce_panel_plugin_get_orientation(pd->plugin);
     
-    if(wsize <= 0)
-        wsize = xfce_panel_plugin_get_size(pd->plugin);
-
+    wsize = xfce_panel_plugin_get_size(pd->plugin);
     size = wsize - 2 - 2 * MAX(pd->view_button->style->xthickness,
                          pd->view_button->style->ythickness);
 
@@ -780,7 +351,7 @@ static gboolean
 places_view_cb_size_changed(PlacesData *pd, gint wsize)
 {
     if(GTK_WIDGET_REALIZED(pd->view_button))
-        places_view_button_update(pd, wsize);
+        places_view_button_update(pd);
 
     return TRUE;
 }
@@ -792,7 +363,7 @@ places_view_cb_theme_changed(GSignalInvocationHint *ihint,
 {
     // update the button
     if(GTK_WIDGET_REALIZED(pd->view_button))
-        places_view_button_update(pd, -1);
+        places_view_button_update(pd);
     
     // force a menu update
     places_view_destroy_menu(pd);
@@ -827,7 +398,7 @@ places_view_cb_orientation_changed(PlacesData *pd, GtkOrientation orientation, X
         gtk_box_pack_end(GTK_BOX(pd->view_button_box), pd->view_button_label, TRUE, TRUE, 0);
     }
 
-    places_view_button_update(pd, -1);
+    places_view_button_update(pd);
 }
 
 // Menu callbacks
@@ -960,7 +531,7 @@ places_view_add_menu_item(gpointer _pd, const gchar *label, const gchar *uri, co
     PlacesData *pd = (PlacesData*) _pd;
     GtkWidget *item = gtk_image_menu_item_new_with_label(label);
 
-    if(pd->cfg_show_icons && icon != NULL){
+    if(pd->cfg->show_icons && icon != NULL){
         GdkPixbuf *pb = xfce_themed_icon_load(icon, 16);
         
         if(G_LIKELY(pb != NULL)){

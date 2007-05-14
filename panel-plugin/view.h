@@ -23,11 +23,23 @@
 #include <glib.h>
 #include "places.h"
 
+#if GTK_CHECK_VERSION(2,10,0)
+#  define USE_RECENT_DOCUMENTS TRUE
+#endif
+
 #define BORDER 4
 
 // Init & Finalize
 void     places_view_init(PlacesData*);
 void     places_view_finalize(PlacesData*);
+
+// UI control
+void     places_view_open_menu(PlacesData*);
+void     places_view_destroy_menu(PlacesData*);
+
+// cfg use
+void     places_view_reconfigure_model(PlacesData*);
+void     places_view_button_update(PlacesData*);
 
 #endif
 // vim: ai et tabstop=4
