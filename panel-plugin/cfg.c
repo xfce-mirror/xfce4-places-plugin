@@ -339,15 +339,12 @@ places_cfg_launch_dialog(PlacesData *pd)
 
 
     // BUTTON: frame, vbox
-    frame_button = gtk_frame_new(_("Button"));
-    gtk_container_set_border_width(GTK_CONTAINER(frame_button), 5);
-    gtk_widget_show(frame_button);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_button, TRUE, TRUE, 0);
-    
-    vbox_button = gtk_vbox_new(FALSE, 0);
-    gtk_container_set_border_width(GTK_CONTAINER(vbox_button), 10);
+    vbox_button = gtk_vbox_new(FALSE, 4);
     gtk_widget_show(vbox_button);
-    gtk_container_add(GTK_CONTAINER(frame_button), vbox_button);
+    
+    frame_button = xfce_create_framebox_with_content(_("Button"), vbox_button);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_button, FALSE, FALSE, 0);
+
 
     // BUTTON: Show Image/Label
     tmp_box = gtk_hbox_new(FALSE, 15);
@@ -399,15 +396,11 @@ places_cfg_launch_dialog(PlacesData *pd)
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
 
     // MENU: frame, vbox
-    frame_menu   = gtk_frame_new(_("Menu"));
-    gtk_container_set_border_width(GTK_CONTAINER(frame_menu),   5);
-    gtk_widget_show(frame_menu);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_menu, TRUE, TRUE, 0);
-
-    vbox_menu = gtk_vbox_new(FALSE, 0);
-    gtk_container_set_border_width(GTK_CONTAINER(vbox_menu), 10);
+    vbox_menu = gtk_vbox_new(FALSE, 4);
     gtk_widget_show(vbox_menu);
-    gtk_container_add(GTK_CONTAINER(frame_menu), vbox_menu);
+    
+    frame_menu = xfce_create_framebox_with_content(_("Menu"), vbox_menu);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_menu, FALSE, FALSE, 0);
 
     // MENU: Show Icons
     tmp_widget = gtk_check_button_new_with_mnemonic(_("Show _icons in menu"));
@@ -457,15 +450,11 @@ places_cfg_launch_dialog(PlacesData *pd)
     gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
 
     // RECENT DOCUMENTS: frame, vbox
-    frame_recent = gtk_frame_new(_("Recent Documents"));
-    gtk_container_set_border_width(GTK_CONTAINER(frame_recent), 5);
-    gtk_widget_show(frame_recent);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_recent, TRUE, TRUE, 0);
-    
-    vbox_recent = gtk_vbox_new(FALSE, 0);
-    gtk_container_set_border_width(GTK_CONTAINER(vbox_recent), 10);
+    vbox_recent = gtk_vbox_new(FALSE, 4);
     gtk_widget_show(vbox_recent);
-    gtk_container_add(GTK_CONTAINER(frame_recent), vbox_recent);
+    
+    frame_recent = xfce_create_framebox_with_content(_("Recent Documents"), vbox_recent);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_recent, FALSE, FALSE, 0);
 
     // RECENT DOCUMENTS: Show clear option
     tmp_widget = gtk_check_button_new_with_mnemonic(_("Show cl_ear option"));

@@ -1,3 +1,8 @@
+2007-05-15	Diego Ongaro <ongardie@gmail.com>
+
+	* Improved consistency of configuration dialog frames with other
+	plugins.
+
 2007-05-14	Diego Ongaro <ongardie@gmail.com>
 
 	* Moved configuration code into cfg.h, cfg.c.
