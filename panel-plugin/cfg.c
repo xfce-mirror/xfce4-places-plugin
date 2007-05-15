@@ -331,6 +331,9 @@ places_cfg_launch_dialog(PlacesData *pd)
               GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_NO_SEPARATOR,
               GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
 
+    gtk_window_set_position(GTK_WINDOW(dlg), GTK_WIN_POS_CENTER);
+    gtk_window_set_icon_name(GTK_WINDOW(dlg), "xfce4-settings");
+
     g_signal_connect(G_OBJECT(dlg), "response",
                      G_CALLBACK(places_cfg_dialog_cb), pd);
 

@@ -3,6 +3,7 @@
 	* Moved configuration code into cfg.h, cfg.c.
 	* Don't compile in Recent Documents configuration code on older
 	versions of GTK.
+	* Set icon on and centered configuration dialog.
 
 2007-05-13	Diego Ongaro <ongardie@gmail.com>
 
