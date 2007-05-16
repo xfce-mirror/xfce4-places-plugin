@@ -3,6 +3,7 @@
 	* Improved consistency of configuration dialog frames with other
 	plugins.
 	* Fixed Bug #3237 (Places won't compile on Debian testing)
+	* Open Thunar on middle-click (Bug #3239)
 
 2007-05-14	Diego Ongaro <ongardie@gmail.com>
 

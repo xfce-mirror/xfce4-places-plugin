@@ -490,11 +490,13 @@ static gboolean
 places_view_cb_button_pressed(PlacesData *pd, GdkEventButton *evt)
 {
     // (it's the way xfdesktop menu does it...)
-    if(evt->button != 1 || ((evt->state & GDK_CONTROL_MASK)
-                             && !(evt->state & (GDK_MOD1_MASK|GDK_SHIFT_MASK|GDK_MOD4_MASK))))
+    if((evt->state & GDK_CONTROL_MASK) && !(evt->state & (GDK_MOD1_MASK|GDK_SHIFT_MASK|GDK_MOD4_MASK)))
         return FALSE;
-    
-    places_view_open_menu(pd);
+
+    if(evt->button == 1)
+        places_view_open_menu(pd);
+    else if(evt->button == 2)
+        places_load_thunar(NULL);
 
     return FALSE;
 }
