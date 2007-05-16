@@ -23,7 +23,10 @@
 
 #include "model.h"
 #include "model_volumes.h"
+
+#define EXO_API_SUBJECT_TO_CHANGE
 #include <thunar-vfs/thunar-vfs.h>
+
 #include <libxfce4util/libxfce4util.h>
 
 struct _BookmarksVolumes
