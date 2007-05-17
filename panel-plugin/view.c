@@ -116,7 +116,7 @@ places_view_init(PlacesData *pd)
     xfce_panel_plugin_add_action_widget(pd->plugin, pd->view_button);
     
     // create the image
-    if(pd->cfg->show_image){
+    if(pd->cfg->show_button_icon){
         pd->view_button_image = g_object_ref(gtk_image_new());
         gtk_widget_show(pd->view_button_image);
         gtk_box_pack_start(GTK_BOX(pd->view_button_box), pd->view_button_image, TRUE, TRUE, 0);
@@ -125,7 +125,7 @@ places_view_init(PlacesData *pd)
     }
 
     // create the label
-    if(pd->cfg->show_label){
+    if(pd->cfg->show_button_label){
         pd->view_button_label = g_object_ref(gtk_label_new(pd->cfg->label));
         gtk_widget_show(pd->view_button_label);
         gtk_box_pack_end(GTK_BOX(pd->view_button_box), pd->view_button_label, TRUE, TRUE, 0);

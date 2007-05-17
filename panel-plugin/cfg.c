@@ -62,8 +62,8 @@ static void
 places_cfg_init_defaults(PlacesConfig *cfg)
 {
 
-    cfg->show_image         = TRUE;
-    cfg->show_label         = FALSE;
+    cfg->show_button_icon   = TRUE;
+    cfg->show_button_label  = FALSE;
     cfg->show_icons         = TRUE;
     cfg->show_volumes       = TRUE;
     cfg->show_bookmarks     = TRUE;
@@ -120,12 +120,12 @@ places_cfg_load(PlacesData *pd)
         return;
     }
 
-    cfg->show_label = xfce_rc_read_bool_entry(rcfile, "show_label", FALSE);
+    cfg->show_button_label = xfce_rc_read_bool_entry(rcfile, "show_button_label", FALSE);
 
-    if(!cfg->show_label)
-        cfg->show_image = TRUE;
+    if(!cfg->show_button_label)
+        cfg->show_button_icon = TRUE;
     else
-        cfg->show_image = xfce_rc_read_bool_entry(rcfile, "show_image", TRUE);
+        cfg->show_button_icon = xfce_rc_read_bool_entry(rcfile, "show_button_icon", TRUE);
 
     cfg->show_icons = xfce_rc_read_bool_entry(rcfile, "show_icons", TRUE);
 
@@ -169,8 +169,8 @@ places_cfg_save(PlacesData *pd)
         return;
 
     // BUTTON
-    xfce_rc_write_bool_entry(rcfile, "show_image", cfg->show_image);
-    xfce_rc_write_bool_entry(rcfile, "show_label", cfg->show_label);
+    xfce_rc_write_bool_entry(rcfile, "show_button_icon", cfg->show_button_icon);
+    xfce_rc_write_bool_entry(rcfile, "show_button_label", cfg->show_button_label);
     xfce_rc_write_entry(rcfile, "label",           cfg->label);
 
     // MENU
@@ -198,14 +198,14 @@ places_cfg_button_show_cb(GtkComboBox *combo, PlacesData *pd)
 {
     PlacesConfig *cfg = pd->cfg;
     gint option;
-    gboolean show_image, show_label;
+    gboolean show_icon, show_label;
     
     option = gtk_combo_box_get_active(combo);
-    show_image = (option == 0 || option == 2);
+    show_icon  = (option == 0 || option == 2);
     show_label = (option == 1 || option == 2);
 
-    if(show_image && !cfg->show_image){
-        cfg->show_image = TRUE;
+    if(show_icon && !cfg->show_button_icon){
+        cfg->show_button_icon = TRUE;
 
         if(pd->view_button_image == NULL){
             pd->view_button_image = g_object_ref(gtk_image_new());
@@ -213,8 +213,8 @@ places_cfg_button_show_cb(GtkComboBox *combo, PlacesData *pd)
             gtk_box_pack_start(GTK_BOX(pd->view_button_box), pd->view_button_image, TRUE, TRUE, 0);
         }
 
-    }else if(!show_image && cfg->show_image){
-        cfg->show_image = FALSE;
+    }else if(!show_icon && cfg->show_button_icon){
+        cfg->show_button_icon = FALSE;
 
         if(pd->view_button_image != NULL){
             g_object_unref(pd->view_button_image);
@@ -224,8 +224,8 @@ places_cfg_button_show_cb(GtkComboBox *combo, PlacesData *pd)
 
     }
 
-    if(show_label && !cfg->show_label){
-        cfg->show_label = TRUE;
+    if(show_label && !cfg->show_button_label){
+        cfg->show_button_label = TRUE;
 
         if(pd->view_button_label == NULL){
             pd->view_button_label = g_object_ref(gtk_label_new(cfg->label));
@@ -233,8 +233,8 @@ places_cfg_button_show_cb(GtkComboBox *combo, PlacesData *pd)
             gtk_box_pack_end(GTK_BOX(pd->view_button_box), pd->view_button_label, TRUE, TRUE, 0);
         }
 
-    }else if(!show_label && cfg->show_label){
-        cfg->show_label = FALSE;
+    }else if(!show_label && cfg->show_button_label){
+        cfg->show_button_label = FALSE;
         
         if(pd->view_button_label != NULL){
             g_object_unref(pd->view_button_label);
@@ -260,7 +260,7 @@ places_cfg_button_label_cb(GtkWidget *label_entry, GdkEventFocus *event, PlacesD
         gtk_entry_set_text(GTK_ENTRY(label_entry), pd->cfg->label);
     }
 
-    if(pd->cfg->show_label){
+    if(pd->cfg->show_button_label){
         gtk_label_set_text(GTK_LABEL(pd->view_button_label), pd->cfg->label);
         gtk_tooltips_set_tip(pd->view_tooltips, pd->view_button, pd->cfg->label, NULL);
         places_view_button_update(pd);
@@ -346,7 +346,7 @@ places_cfg_launch_dialog(PlacesData *pd)
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_button, FALSE, FALSE, 0);
 
 
-    // BUTTON: Show Image/Label
+    // BUTTON: Show Icon/Label
     tmp_box = gtk_hbox_new(FALSE, 15);
     gtk_widget_show(tmp_box);
     gtk_box_pack_start(GTK_BOX(vbox_button), tmp_box, FALSE, FALSE, 0);
@@ -357,12 +357,12 @@ places_cfg_launch_dialog(PlacesData *pd)
 
     tmp_widget = gtk_combo_box_new_text();
     gtk_label_set_mnemonic_widget(GTK_LABEL(tmp_label), tmp_widget);
-    gtk_combo_box_append_text(GTK_COMBO_BOX(tmp_widget), _("Image Only"));
+    gtk_combo_box_append_text(GTK_COMBO_BOX(tmp_widget), _("Icon Only"));
     gtk_combo_box_append_text(GTK_COMBO_BOX(tmp_widget), _("Label Only"));
-    gtk_combo_box_append_text(GTK_COMBO_BOX(tmp_widget), _("Image and Label"));
+    gtk_combo_box_append_text(GTK_COMBO_BOX(tmp_widget), _("Icon and Label"));
 
-    if(cfg->show_label)
-        if(cfg->show_image)
+    if(cfg->show_button_label)
+        if(cfg->show_button_icon)
             active = 2;
         else
             active = 1;

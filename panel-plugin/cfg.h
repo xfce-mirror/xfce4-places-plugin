@@ -25,8 +25,8 @@
 
 typedef struct
 {
-  gboolean           show_image;
-  gboolean           show_label;
+  gboolean           show_button_icon;
+  gboolean           show_button_label;
   gchar             *label;
   gboolean           show_icons;
   gboolean           show_volumes;

@@ -11,3 +11,5 @@ panel-plugin/model_volumes.c
 panel-plugin/model_volumes.h
 panel-plugin/view.c
 panel-plugin/view.h
+panel-plugin/cfg.c
+panel-plugin/cfg.h
