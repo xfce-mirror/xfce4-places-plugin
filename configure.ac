@@ -1,7 +1,7 @@
 dnl xfce4-places-plugin
 
 dnl version info
-m4_define([places_version], [0.2.0])
+m4_define([places_version], [0.3.0])
 
 dnl initialize autoconf
 AC_COPYRIGHT([Copyright (c) 2007 Diego Ongaro <ongardie@gmail.com>])

@@ -1,3 +1,13 @@
+2007-05-17
+================================================================================
+xfce4-places-plugin v0.3.0 released
+
+ * Adds preferences dialog (optionally show a label on the panel)
+ * Thunar now opens when middle-clicking the button (Bug #3239)
+ * Bug fixes
+  - #3237: Places won't compile on Debian testing
+  - With no .gtk-bookmarks, the menu showed two consecutive separators
+
 2007-04-22
 ================================================================================
 xfce4-places-plugin v0.2.0 released

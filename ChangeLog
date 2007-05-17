@@ -3,6 +3,7 @@
 	* Button's "Image" -> "Icon" and clarified variable names.
 	* Added cfg.c, cfg.h to POTFILES.in
 	* Ran intltool-update on po files
+	* Preparing for v0.3 release
 
 2007-05-15	Diego Ongaro <ongardie@gmail.com>
 
