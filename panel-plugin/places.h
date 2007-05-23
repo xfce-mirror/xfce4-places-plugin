@@ -44,7 +44,7 @@ struct _PlacesData
   GtkWidget         *view_menu;
   GtkTooltips       *view_tooltips;
   gulong             view_theme_timeout_id;
-  gboolean           view_just_separated;
+  gboolean           view_needs_separator;
 
   // model
   gpointer           bookmarks;

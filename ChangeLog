@@ -1,3 +1,8 @@
+2007-05-22	Diego Ongaro <ongardie@gmail.com>
+
+	* Changed to lazily adding menu separators to avoid extra
+	trailing separator when recent documents are not shown.
+
 2007-05-17	Diego Ongaro <ongardie@gmail.com>
 
 	* Button's "Image" -> "Icon" and clarified variable names.

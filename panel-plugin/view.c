@@ -77,7 +77,7 @@ static void     places_view_cb_recent_items_clear(GtkWidget *clear_item);
 // Model Visitor Callbacks
 static void     places_view_add_menu_item(gpointer _places_data, 
                                    const gchar *label, const gchar *uri, const gchar *icon);
-static void     places_view_add_menu_sep(gpointer _places_data);
+static void     places_view_lazy_add_menu_sep(gpointer _places_data);
 
 
 /********** Initialization & Finalization **********/
@@ -89,7 +89,7 @@ places_view_init(PlacesData *pd)
     
     gpointer icon_theme_class;
 
-    pd->view_just_separated = TRUE;
+    pd->view_needs_separator = FALSE;
     pd->view_menu = NULL;
 
     pd->cfg = places_cfg_new(pd);
@@ -209,13 +209,15 @@ places_view_update_menu(PlacesData *pd)
     // Add system, volumes, user bookmarks
     visitor.pass_thru  = pd;
     visitor.item       = places_view_add_menu_item;
-    visitor.separator  = places_view_add_menu_sep;
+    visitor.separator  = places_view_lazy_add_menu_sep;
     places_bookmarks_visit(pd->bookmarks, &visitor);
 
     // Recent Documents
 #if USE_RECENT_DOCUMENTS
     if(pd->cfg->show_recent){
-        places_view_add_menu_sep(pd);
+    
+        gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu),
+                              gtk_separator_menu_item_new());
     
         recent_menu = gtk_recent_chooser_menu_new();
         gtk_recent_chooser_set_show_icons(GTK_RECENT_CHOOSER(recent_menu), pd->cfg->show_icons);
@@ -291,6 +293,7 @@ places_view_destroy_menu(PlacesData *pd)
         gtk_widget_destroy(pd->view_menu);
         pd->view_menu = NULL;
     }
+    pd->view_needs_separator = FALSE;
 }
 
 void
@@ -531,6 +534,13 @@ places_view_add_menu_item(gpointer _pd, const gchar *label, const gchar *uri, co
     g_return_if_fail(uri != NULL && uri != "");
 
     PlacesData *pd = (PlacesData*) _pd;
+
+    if(pd->view_needs_separator){
+        gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu),
+                              gtk_separator_menu_item_new());
+        pd->view_needs_separator = FALSE;
+    }
+
     GtkWidget *item = gtk_image_menu_item_new_with_label(label);
 
     if(pd->cfg->show_icons && icon != NULL){
@@ -547,20 +557,14 @@ places_view_add_menu_item(gpointer _pd, const gchar *label, const gchar *uri, co
                      G_CALLBACK(places_view_cb_menu_item_open), (gchar*) uri);
     gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu), item);
 
-    pd->view_just_separated = FALSE;
 }
 
 static void
-places_view_add_menu_sep(gpointer _pd)
+places_view_lazy_add_menu_sep(gpointer _pd)
 {
     g_assert(_pd != NULL);
     PlacesData *pd = (PlacesData*) _pd;
-
-    if(!pd->view_just_separated){
-        gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu),
-                              gtk_separator_menu_item_new());
-        pd->view_just_separated = TRUE;
-    }
+    pd->view_needs_separator = TRUE;
 }
 
 // vim: ai et tabstop=4
