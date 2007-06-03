@@ -79,7 +79,6 @@ static void     places_view_add_menu_item(gpointer _places_data,
                                    const gchar *label, const gchar *uri, const gchar *icon);
 static void     places_view_lazy_add_menu_sep(gpointer _places_data);
 
-
 /********** Initialization & Finalization **********/
 
 void
@@ -214,11 +213,29 @@ places_view_update_menu(PlacesData *pd)
 
     // Recent Documents
 #if USE_RECENT_DOCUMENTS
-    if(pd->cfg->show_recent){
-    
+    if(pd->cfg->show_recent || pd->cfg->search_cmd != NULL){
+#else
+    if(pd->cfg->search_cmd != NULL){
+#endif
         gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu),
                               gtk_separator_menu_item_new());
-    
+    }
+
+    if(pd->cfg->search_cmd != NULL){
+        GtkWidget *search_item = gtk_image_menu_item_new_with_mnemonic(_("Search for Files"));
+        if(pd->cfg->show_icons){
+            GtkWidget *search_image = gtk_image_new_from_icon_name("system-search", GTK_ICON_SIZE_MENU);
+            gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(search_item), search_image);
+        }
+        gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu), search_item);
+        g_signal_connect_swapped(search_item, "activate",
+                                 G_CALLBACK(places_gui_exec), pd->cfg->search_cmd);
+
+    }
+
+#if USE_RECENT_DOCUMENTS
+    if(pd->cfg->show_recent){
+
         recent_menu = gtk_recent_chooser_menu_new();
         gtk_recent_chooser_set_show_icons(GTK_RECENT_CHOOSER(recent_menu), pd->cfg->show_icons);
         gtk_recent_chooser_set_limit(GTK_RECENT_CHOOSER(recent_menu), pd->cfg->show_recent_number);

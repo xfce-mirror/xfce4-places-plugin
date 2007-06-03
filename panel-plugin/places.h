@@ -52,6 +52,8 @@ struct _PlacesData
 };
 
 void places_load_thunar(const gchar*);
+void places_gui_exec(const gchar *cmd);
+
 
 #endif
 // vim: ai et tabstop=4

@@ -34,6 +34,7 @@ typedef struct
   gboolean           show_recent;
   gboolean           show_recent_clear;
   gint               show_recent_number;
+  gchar             *search_cmd;
 } PlacesConfig;
 
 // Init & Finalize

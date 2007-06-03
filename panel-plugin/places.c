@@ -103,13 +103,20 @@ places_load_thunar(const gchar *path)
 
         gchar *cmd = g_strconcat("thunar \"", path, "\"", NULL);
         DBG("exec: %s", cmd);
-        xfce_exec(cmd, FALSE, TRUE, NULL);
+        places_gui_exec(cmd);
         g_free(cmd);
 
     }else{
         DBG("exec: thunar");
-        xfce_exec("thunar", FALSE, TRUE, NULL);
+        places_gui_exec("thunar");
     }
+}
+
+void
+places_gui_exec(const gchar *cmd)
+{
+    if(cmd != NULL)
+        xfce_exec(cmd, FALSE, TRUE, NULL);
 }
 
 // vim: ai et tabstop=4

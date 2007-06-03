@@ -72,6 +72,7 @@ places_cfg_init_defaults(PlacesConfig *cfg)
     cfg->show_recent_clear  = TRUE;
     cfg->show_recent_number = 10;
 #endif
+    cfg->search_cmd         = NULL;
 
     if(cfg->label != NULL)
         g_free(cfg->label);
@@ -96,6 +97,8 @@ places_cfg_finalize(PlacesData *pd)
 {
     if(pd->cfg->label != NULL)
         g_free(pd->cfg->label);
+    if(pd->cfg->search_cmd != NULL)
+        g_free(pd->cfg->search_cmd);
 }
 
 /********** Configuration File **********/
@@ -139,6 +142,8 @@ places_cfg_load(PlacesData *pd)
     if(cfg->label == NULL || *(cfg->label) == '\0')
         cfg->label = _("Places");
     cfg->label = g_strdup(cfg->label);
+
+    cfg->search_cmd = g_strdup(xfce_rc_read_entry(rcfile, "search_cmd", NULL));
 
 #if USE_RECENT_DOCUMENTS
     cfg->show_recent    = xfce_rc_read_bool_entry(rcfile, "show_recent", TRUE);
@@ -184,6 +189,8 @@ places_cfg_save(PlacesData *pd)
     xfce_rc_write_bool_entry(rcfile, "show_recent_clear", cfg->show_recent_clear);
     xfce_rc_write_int_entry(rcfile, "show_recent_number", cfg->show_recent_number);
 #endif
+
+    xfce_rc_write_entry(rcfile, "search_cmd", cfg->search_cmd);
 
     xfce_rc_close(rcfile);
 
@@ -269,6 +276,23 @@ places_cfg_button_label_cb(GtkWidget *label_entry, GdkEventFocus *event, PlacesD
     return FALSE;
 }
 
+static gboolean
+places_cfg_search_cmd_cb(GtkWidget *label_entry, GdkEventFocus *event, PlacesData *pd)
+{
+    if(pd->cfg->search_cmd != NULL)
+        g_free(pd->cfg->search_cmd);
+    
+    pd->cfg->search_cmd = g_strstrip(g_strdup(gtk_entry_get_text(GTK_ENTRY(label_entry))));
+    if(*(pd->cfg->search_cmd) == '\0'){
+        g_free(pd->cfg->search_cmd);
+        pd->cfg->search_cmd = NULL;
+    }
+
+    places_view_destroy_menu(pd);
+
+    return FALSE;
+}
+
 #if USE_RECENT_DOCUMENTS
 static void
 places_cfg_recent_num_cb(GtkAdjustment *adj, PlacesData *pd)
@@ -320,6 +344,7 @@ places_cfg_launch_dialog(PlacesData *pd)
 #if USE_RECENT_DOCUMENTS
     GtkWidget *frame_recent, *vbox_recent;
 #endif
+    GtkWidget *frame_search, *vbox_search;
 
     GtkWidget *tmp_box, *tmp_label, *tmp_widget;
     gint active;
@@ -487,6 +512,32 @@ places_cfg_launch_dialog(PlacesData *pd)
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
 #endif
+
+    // Search: frame, vbox
+    vbox_search = gtk_vbox_new(FALSE, 4);
+    gtk_widget_show(vbox_search);
+    
+    frame_search = xfce_create_framebox_with_content(_("Search"), vbox_search);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_search, FALSE, FALSE, 0);
+
+    // Search: command
+    tmp_box = gtk_hbox_new(FALSE, 15);
+    gtk_widget_show(tmp_box);
+    gtk_box_pack_start(GTK_BOX(vbox_search), tmp_box, FALSE, FALSE, 0);
+    
+    tmp_label = gtk_label_new_with_mnemonic(_("Co_mmand"));
+    gtk_widget_show(tmp_label);
+    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_label, FALSE, FALSE, 0);
+
+    tmp_widget = gtk_entry_new();
+    gtk_label_set_mnemonic_widget(GTK_LABEL(tmp_label), tmp_widget);
+    gtk_entry_set_text(GTK_ENTRY(tmp_widget), cfg->search_cmd);
+
+    g_signal_connect(G_OBJECT(tmp_widget), "focus-out-event",
+                     G_CALLBACK(places_cfg_search_cmd_cb), pd);
+
+    gtk_widget_show(tmp_widget);
+    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
 
     gtk_widget_show(dlg);
 }

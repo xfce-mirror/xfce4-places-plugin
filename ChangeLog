@@ -1,3 +1,8 @@
+2007-06-03	Diego Ongaro <ongardie@gmail.com>
+
+	* Added optional search command
+	* Use thunar-vfs to get and update trash icon (empty/full)
+
 2007-05-22	Diego Ongaro <ongardie@gmail.com>
 
 	* Changed to lazily adding menu separators to avoid extra
