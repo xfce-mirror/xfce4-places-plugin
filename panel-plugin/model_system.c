@@ -24,19 +24,23 @@
 #include "model_system.h"
 #include "model.h"
 #include <libxfce4util/libxfce4util.h>
-#include <string.h>
+#include <thunar-vfs/thunar-vfs.h>
+#include <string.h> // for strcmp()
 
 #define bookmarks_system_check_existence data
 
 struct _BookmarksSystem
 {
     GPtrArray *bookmarks;
+    ThunarVfsPath *trash_path;
 };
 
 
 BookmarksSystem*
 places_bookmarks_system_init()
 {
+    thunar_vfs_init();
+
     BookmarksSystem *b = g_new0(BookmarksSystem, 1);
 
     BookmarkInfo *bookmark;
@@ -57,9 +61,18 @@ places_bookmarks_system_init()
 
     // Trash
     bookmark = g_new0(BookmarkInfo, 1);
+
     bookmark->label = g_strdup(_("Trash"));
     bookmark->uri = g_strdup("trash:///");
-    bookmark->icon = g_strdup("gnome-fs-trash-full");
+
+    b->trash_path = thunar_vfs_path_get_for_trash();
+
+    ThunarVfsInfo *trash_info = thunar_vfs_info_new_for_path(b->trash_path, NULL);
+    bookmark->icon = g_strdup(trash_info->custom_icon);
+    if(bookmark->icon == NULL)
+        bookmark->icon = g_strdup("gnome-fs-trash-full");
+    thunar_vfs_info_unref(trash_info);
+
     bookmark->show = TRUE;
     bookmark->bookmarks_system_check_existence = NULL;
     g_ptr_array_add(b->bookmarks, bookmark);
@@ -99,7 +112,17 @@ places_bookmarks_system_changed(BookmarksSystem *b)
             ret = TRUE;
         }
     }
-    
+
+    // see if trash gets a different icon (e.g., was empty, now full)
+    bi = g_ptr_array_index(b->bookmarks, 1);
+    ThunarVfsInfo *trash_info = thunar_vfs_info_new_for_path(b->trash_path, NULL);
+    if(trash_info->custom_icon != NULL && strcmp(trash_info->custom_icon, bi->icon) != 0){
+        g_free(bi->icon);
+        bi->icon = g_strdup(trash_info->custom_icon);
+        ret = TRUE;
+    }
+    thunar_vfs_info_unref(trash_info);
+
     return ret;
 }
 
@@ -121,7 +144,9 @@ void
 places_bookmarks_system_finalize(BookmarksSystem *b)
 {
     g_ptr_array_free(b->bookmarks, TRUE);
+    thunar_vfs_path_unref(b->trash_path);
     g_free(b);
+    thunar_vfs_shutdown();
 }
 
 /*
