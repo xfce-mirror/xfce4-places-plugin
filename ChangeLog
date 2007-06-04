@@ -1,3 +1,7 @@
+2007-06-04	Diego Ongaro <ongardie@gmail.com>
+
+	* Fix BookmarkInfo-related memory leaks
+
 2007-06-03	Diego Ongaro <ongardie@gmail.com>
 
 	* Use exo_str_is_equal (adds direct exo dependency)

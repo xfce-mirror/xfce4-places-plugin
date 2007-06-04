@@ -143,6 +143,7 @@ places_bookmarks_user_changed(BookmarksUser *b)
     time_t mtime = places_bookmarks_user_get_mtime(b);
     
     if(mtime > b->loaded){
+        g_ptr_array_foreach(b->bookmarks, (GFunc) places_bookmark_info_free, NULL);
         g_ptr_array_free(b->bookmarks, TRUE);
         b->bookmarks = g_ptr_array_new();
         b->loaded = mtime;
@@ -182,6 +183,7 @@ places_bookmarks_user_visit(BookmarksUser *b,  BookmarksVisitor *visitor)
 void
 places_bookmarks_user_finalize(BookmarksUser *b)
 {
+    g_ptr_array_foreach(b->bookmarks, (GFunc) places_bookmark_info_free, NULL);
     g_ptr_array_free(b->bookmarks, TRUE);
     b->bookmarks = NULL;
 

@@ -22,14 +22,20 @@
 
 #include <glib.h>
 
+// Bookmark Info
+
 typedef struct
 {
     gchar           *label;
     gchar           *uri;
     gchar           *icon;
     gboolean         show;
-    gpointer        *data;
+    gpointer         data;
 } BookmarkInfo;
+
+void
+places_bookmark_info_free(BookmarkInfo*);
+
 
 typedef struct
 {

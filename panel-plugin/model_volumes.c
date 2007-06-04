@@ -84,9 +84,9 @@ places_bookmarks_volumes_cb_changed(ThunarVfsVolume *volume,
                 DBG("dropping volume from array");
                 
                 bi = g_ptr_array_remove_index(b->bookmarks, k);
-                g_object_unref(bi->data);
+                g_object_unref(bi->data); // unref the volume
                 bi->data = NULL;
-                g_free(bi);
+                places_bookmark_info_free(bi);
                 
                 b->changed = TRUE;
             }
@@ -128,11 +128,11 @@ places_bookmarks_volumes_cb_removed(ThunarVfsVolumeManager *volume_manager,
                 bi = g_ptr_array_remove_index(b->bookmarks, k);
                 DBG("Removing bookmark %s", bi->label);
                 
-                if(bi->data != NULL){
+                if(bi->data != NULL){ // unref the volume
                     g_object_unref(bi->data);
                     bi->data = NULL;
                 }
-                g_free(bi);
+                places_bookmark_info_free(bi);
                 
                 b->changed = TRUE;
                 break;
@@ -223,17 +223,18 @@ places_bookmarks_volumes_finalize(BookmarksVolumes *b)
 
     for(k = 0; k < b->bookmarks->len; k++){
         bi = g_ptr_array_remove_index(b->bookmarks, k);
-        if(bi->data != NULL){
+        if(bi->data != NULL){ // unref the volume
             g_object_unref(bi->data);
             bi->data = NULL;
         }
-        g_free(bi);
+        places_bookmark_info_free(bi);
     }
 
     g_object_unref(b->volume_manager);
     b->volume_manager = NULL;
     thunar_vfs_shutdown();
-
+    
+    g_ptr_array_foreach(b->bookmarks, (GFunc) places_bookmark_info_free, NULL);
     g_ptr_array_free(b->bookmarks, TRUE);
     b->bookmarks = NULL;
 

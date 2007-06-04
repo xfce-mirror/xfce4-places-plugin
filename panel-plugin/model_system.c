@@ -141,13 +141,24 @@ places_bookmarks_system_visit(BookmarksSystem *b,
     }
 }
 
+static void
+places_bookmarks_system_clear_bi_data(BookmarkInfo *bi)
+{
+    bi->data = NULL;
+}
+
 void
 places_bookmarks_system_finalize(BookmarksSystem *b)
 {
+    g_ptr_array_foreach(b->bookmarks, (GFunc) places_bookmarks_system_clear_bi_data, NULL);
+    g_ptr_array_foreach(b->bookmarks, (GFunc) places_bookmark_info_free, NULL);
     g_ptr_array_free(b->bookmarks, TRUE);
+    b->bookmarks = NULL;
+
     thunar_vfs_path_unref(b->trash_path);
-    g_free(b);
     thunar_vfs_shutdown();
+    
+    g_free(b);
 }
 
 /*

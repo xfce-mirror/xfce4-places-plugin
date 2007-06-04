@@ -118,4 +118,27 @@ places_bookmarks_finalize(Bookmarks *b)
     g_free(b);
 }
 
+void
+places_bookmark_info_free(BookmarkInfo *bi)
+{
+    if(bi->label != NULL){
+        g_free(bi->label);
+        bi->label = NULL;
+    }
+    if(bi->uri != NULL){
+        g_free(bi->uri);
+        bi->uri = NULL;
+    }
+    if(bi->icon != NULL){
+        g_free(bi->icon);
+        bi->icon = NULL;
+    }
+    if(bi->data != NULL){
+        DBG("WARNING: data != NULL. Caller is in charge of freeing data");
+        bi->data = NULL;
+    }
+
+    g_free(bi);
+}
+
 // vim: ai et tabstop=4
