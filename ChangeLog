@@ -1,5 +1,6 @@
 2007-06-03	Diego Ongaro <ongardie@gmail.com>
 
+	* Use exo_str_is_equal (adds direct exo dependency)
 	* Added optional search command
 	* Use thunar-vfs to get and update trash icon (empty/full)
 

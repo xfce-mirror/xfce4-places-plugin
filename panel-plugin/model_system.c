@@ -24,8 +24,9 @@
 #include "model_system.h"
 #include "model.h"
 #include <libxfce4util/libxfce4util.h>
+#define EXO_API_SUBJECT_TO_CHANGE
+#include <exo/exo.h>
 #include <thunar-vfs/thunar-vfs.h>
-#include <string.h> // for strcmp()
 
 #define bookmarks_system_check_existence data
 
@@ -116,7 +117,7 @@ places_bookmarks_system_changed(BookmarksSystem *b)
     // see if trash gets a different icon (e.g., was empty, now full)
     bi = g_ptr_array_index(b->bookmarks, 1);
     ThunarVfsInfo *trash_info = thunar_vfs_info_new_for_path(b->trash_path, NULL);
-    if(trash_info->custom_icon != NULL && strcmp(trash_info->custom_icon, bi->icon) != 0){
+    if(trash_info->custom_icon != NULL && !exo_str_is_equal(trash_info->custom_icon, bi->icon)){
         g_free(bi->icon);
         bi->icon = g_strdup(trash_info->custom_icon);
         ret = TRUE;
@@ -164,7 +165,7 @@ places_bookmarks_system_bi_system_mod(BookmarksSystem *b, BookmarkInfo *other){
     gchar   *default_label;
     
     default_label    = g_filename_display_basename(other->uri);
-    label_is_default = (strcmp(default_label, other->label) == 0);
+    label_is_default = exo_str_is_equal(default_label, other->label);
     g_free(default_label);
 
     BookmarkInfo *bi;
@@ -172,11 +173,11 @@ places_bookmarks_system_bi_system_mod(BookmarksSystem *b, BookmarkInfo *other){
     for(k=0; k < b->bookmarks->len; k++){
         bi = g_ptr_array_index(b->bookmarks, k);
 
-        if(G_UNLIKELY(strcmp(other->uri, bi->uri) == 0)){
+        if(G_UNLIKELY(exo_str_is_equal(other->uri, bi->uri))){
             g_free(other->icon);
             other->icon = g_strdup(bi->icon);
 
-            if(label_is_default && strcmp(other->label, bi->label) != 0){
+            if(label_is_default && !exo_str_is_equal(other->label, bi->label)){
                 g_free(other->label);
                 other->label = g_strdup(bi->label);
             }
