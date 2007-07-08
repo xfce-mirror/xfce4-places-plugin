@@ -1,0 +1,113 @@
+# Norwegian Bokmal translations for xfce4-places-plugin package.
+# Copyright (C) 2007 THE xfce4-places-plugin'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the xfce4-places-plugin package.
+# Terje Uriansrud <ter@operamail.com>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-places-plugin 0.3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-07-02 00:12+0200\n"
+"PO-Revision-Date: 2007-07-02 00:12+0200\n"
+"Last-Translator: Terje Uriansrud <ter@operamail.com>\n"
+"Language-Team: Norwegian Bokmal\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. vim: ai et tabstop=4
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr "Få tilgang til mapper, dokumenter og flyttbare media"
+
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:79
+#: ../panel-plugin/cfg.c:143 ../panel-plugin/cfg.c:266
+#: ../panel-plugin/cfg.c:354
+msgid "Places"
+msgstr "Steder"
+
+#: ../panel-plugin/model_system.c:66
+msgid "Trash"
+msgstr "Papirkurv"
+
+#: ../panel-plugin/model_system.c:84
+msgid "Desktop"
+msgstr "Skrivebord"
+
+#: ../panel-plugin/model_system.c:92
+msgid "File System"
+msgstr "Filsystem"
+
+#: ../panel-plugin/view.c:225
+msgid "Search for Files"
+msgstr "Søk etter filer"
+
+#: ../panel-plugin/view.c:263 ../panel-plugin/cfg.c:481
+msgid "Recent Documents"
+msgstr "Nylig benyttede dokumenter"
+
+#: ../panel-plugin/cfg.c:370
+msgid "Button"
+msgstr "Knapp"
+
+#: ../panel-plugin/cfg.c:379
+msgid "_Show"
+msgstr "_Vis"
+
+#: ../panel-plugin/cfg.c:385
+msgid "Icon Only"
+msgstr "Vis ikon"
+
+#: ../panel-plugin/cfg.c:386
+msgid "Label Only"
+msgstr "Vis etikett"
+
+#: ../panel-plugin/cfg.c:387
+msgid "Icon and Label"
+msgstr "Ikon og etikett"
+
+#: ../panel-plugin/cfg.c:409
+msgid "_Label"
+msgstr "_Etikett"
+
+#: ../panel-plugin/cfg.c:427
+msgid "Menu"
+msgstr "Meny"
+
+#. MENU: Show Icons
+#: ../panel-plugin/cfg.c:431
+msgid "Show _icons in menu"
+msgstr "Vis _ikoner i menyen"
+
+#. MENU: Show Removable Media
+#: ../panel-plugin/cfg.c:443
+msgid "Show _removable media"
+msgstr "Vis _flyttbare media"
+
+#. MENU: Show GTK Bookmarks
+#: ../panel-plugin/cfg.c:454
+msgid "Show GTK _bookmarks"
+msgstr "Vis GTK _bokmerker"
+
+#. MENU: Show Recent Documents
+#: ../panel-plugin/cfg.c:467
+msgid "Show recent _documents"
+msgstr "Vis nylig benyttede _dokumenter"
+
+#. RECENT DOCUMENTS: Show clear option
+#: ../panel-plugin/cfg.c:485
+msgid "Show cl_ear option"
+msgstr "Vis valg for_resetting"
+
+#: ../panel-plugin/cfg.c:500
+msgid "_Number to display"
+msgstr "_Antall elementer"
+
+#: ../panel-plugin/cfg.c:520
+msgid "Search"
+msgstr "Søk"
+
+#: ../panel-plugin/cfg.c:528
+msgid "Co_mmand"
+msgstr "Ko_mmando"
