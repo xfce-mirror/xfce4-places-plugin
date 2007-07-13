@@ -45,7 +45,7 @@ places_bookmarks_volumes_add(BookmarksVolumes *b, const GList *volumes);
 
 /********** ThunarVFS Callbacks **********/
 
-void
+static void
 places_bookmarks_volumes_cb_changed(ThunarVfsVolume *volume, 
                                     BookmarksVolumes *b)
 {
@@ -55,6 +55,7 @@ places_bookmarks_volumes_cb_changed(ThunarVfsVolume *volume,
     BookmarkInfo *bi;
     GList *volumes;
     guint k;
+    b->changed = FALSE;
 
     if(places_bookmarks_volumes_show_volume(volume)){
 
@@ -87,14 +88,13 @@ places_bookmarks_volumes_cb_changed(ThunarVfsVolume *volume,
                 g_object_unref(bi->data); // unref the volume
                 bi->data = NULL;
                 places_bookmark_info_free(bi);
-                
                 b->changed = TRUE;
             }
         }
     }
 }
 
-void
+static void
 places_bookmarks_volumes_cb_added(ThunarVfsVolumeManager *volume_manager,
                                   const GList *volumes, 
                                   BookmarksVolumes *b)
@@ -104,7 +104,7 @@ places_bookmarks_volumes_cb_added(ThunarVfsVolumeManager *volume_manager,
     b->changed = TRUE;
 }
 
-void
+static void
 places_bookmarks_volumes_cb_removed(ThunarVfsVolumeManager *volume_manager, 
                                     const GList *volumes, 
                                     BookmarksVolumes *b)
@@ -143,7 +143,27 @@ places_bookmarks_volumes_cb_removed(ThunarVfsVolumeManager *volume_manager,
     }
 }
 
-// internal
+/********** Actions Callbacks **********/
+
+static void
+places_bookmarks_volumes_unmount(gpointer _volume)
+{
+    DBG("Unmount");
+    ThunarVfsVolume *volume = THUNAR_VFS_VOLUME(_volume);
+    if(thunar_vfs_volume_is_mounted(volume))
+        thunar_vfs_volume_unmount(volume, NULL, NULL);
+}
+
+static void
+places_bookmarks_volumes_mount(gpointer _volume)
+{
+    DBG("Mount");
+    ThunarVfsVolume *volume = THUNAR_VFS_VOLUME(_volume);
+    if(!thunar_vfs_volume_is_mounted(volume))
+        thunar_vfs_volume_mount(volume, NULL, NULL);
+}
+
+/********** Internal **********/
 static gboolean
 places_bookmarks_volumes_show_volume(ThunarVfsVolume *volume){
     
@@ -152,8 +172,7 @@ places_bookmarks_volumes_show_volume(ThunarVfsVolume *volume){
                                                            thunar_vfs_volume_is_removable(volume), 
                                                            thunar_vfs_volume_is_present(volume));
 
-    return thunar_vfs_volume_is_mounted(volume) && 
-           thunar_vfs_volume_is_removable(volume) && 
+    return thunar_vfs_volume_is_removable(volume) && 
            thunar_vfs_volume_is_present(volume);
 }
 
@@ -188,7 +207,7 @@ places_bookmarks_volumes_add(BookmarksVolumes *b, const GList *volumes)
     }
 }
 
-// external
+/********** External **********/
 
 BookmarksVolumes*
 places_bookmarks_volumes_init()
@@ -252,15 +271,44 @@ places_bookmarks_volumes_changed(BookmarksVolumes *b)
     }
 }
 
+
 void
 places_bookmarks_volumes_visit(BookmarksVolumes *b, BookmarksVisitor *visitor)
 {
     guint k;
     BookmarkInfo *bi;
-    
+    GSList *actions;
+    ThunarVfsVolume *volume;
+    gchar *uri;
+    BookmarkAction *toggle_mount;
+
     for(k=0; k < b->bookmarks->len; k++){
         bi = g_ptr_array_index(b->bookmarks, k);
-        visitor->item(visitor->pass_thru, bi->label, bi->uri, bi->icon);
+        volume = THUNAR_VFS_VOLUME(bi->data);
+
+        toggle_mount = g_new0(BookmarkAction, 1); /* visitor will free */
+        toggle_mount->pass_thru = volume;
+        actions = g_slist_prepend(NULL, toggle_mount);
+    
+        if(thunar_vfs_volume_is_mounted(volume)){
+
+            if(thunar_vfs_volume_is_disc(volume))
+                toggle_mount->label = _("Eject Volume");
+            else
+                toggle_mount->label = _("Unmount Volume");
+            toggle_mount->action = places_bookmarks_volumes_unmount;
+
+            uri = bi->uri;
+
+        }else{
+
+            toggle_mount->label = _("Mount Volume");
+            toggle_mount->action = places_bookmarks_volumes_mount;
+
+            uri = NULL;
+        }
+
+        visitor->item(visitor->pass_thru, bi->label, uri, bi->icon, actions);
     }
 }
 

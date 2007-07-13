@@ -24,10 +24,13 @@
 #include <gtk/gtk.h>
 #include <libxfce4panel/xfce-panel-plugin.h>
 #include <libxfcegui4/libxfcegui4.h>
+#include <exo/exo.h>
 
 #include "places.h"
 #include "model.h"
 #include "view.h"
+
+#include "string.h" // for strncmp
 
 static void places_construct(XfcePanelPlugin*);
 static void places_finalize(XfcePanelPlugin*, PlacesData*);
@@ -110,6 +113,41 @@ places_load_thunar(const gchar *path)
         DBG("exec: thunar");
         places_gui_exec("thunar");
     }
+}
+
+void
+places_load_terminal(const gchar *const_path)
+{
+    gchar *path = NULL;
+    gboolean path_owner = FALSE; /* whether this function "owns" path */
+
+    if(const_path != NULL){
+        if(strncmp(const_path, "trash://", 8) == 0){
+            DBG("Can't load terminal at trash:// URI's");
+            return;
+
+        }else if(strncmp(const_path, "file://", 7) == 0){
+            path = g_filename_from_uri(const_path, NULL, NULL);
+            path_owner = TRUE;
+
+        }else{
+            path = (gchar*) const_path;
+            /* (path_owner is FALSE) */
+            
+        }
+    }
+
+    DBG("Open terminal emulator at %s", path);
+    exo_execute_preferred_application("TerminalEmulator", NULL, path, NULL, NULL);
+
+    if(path_owner && path != NULL)
+        g_free(path);
+}
+
+void
+places_load_file(const gchar *path)
+{
+    exo_url_show(path, NULL, NULL);
 }
 
 void

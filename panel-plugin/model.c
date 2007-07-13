@@ -141,4 +141,13 @@ places_bookmark_info_free(BookmarkInfo *bi)
     g_free(bi);
 }
 
+void
+places_bookmark_actions_list_destroy(GSList *actions)
+{
+    if(actions != NULL){
+        g_slist_foreach(actions, (GFunc) g_free, NULL);
+        g_slist_free(actions);
+    }
+}
+
 // vim: ai et tabstop=4

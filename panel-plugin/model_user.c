@@ -176,7 +176,7 @@ places_bookmarks_user_visit(BookmarksUser *b,  BookmarksVisitor *visitor)
     for(k=0; k < b->bookmarks->len; k++){
         bi = g_ptr_array_index(b->bookmarks, k);
         if(bi->show)
-            visitor->item(visitor->pass_thru, bi->label, bi->uri, bi->icon);
+            visitor->item(visitor->pass_thru, bi->label, bi->uri, bi->icon, NULL);
     }
 }
 

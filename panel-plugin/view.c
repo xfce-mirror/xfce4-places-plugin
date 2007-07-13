@@ -38,6 +38,8 @@
 #include <libxfce4panel/xfce-panel-convenience.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+#include <string.h>
+
 #include "view.h"
 #include "places.h"
 #include "model.h"
@@ -63,7 +65,6 @@ static void     places_view_cb_menu_position(GtkMenu*,
                                              gboolean *push_in, 
                                              PlacesData*);
 static void     places_view_cb_menu_deact(PlacesData*, GtkWidget *menu);
-static void     places_view_cb_menu_item_open(GtkWidget *item, const gchar *uri);
 
 //  - Button
 static gboolean places_view_cb_button_pressed(PlacesData*, GdkEventButton *);
@@ -76,11 +77,10 @@ static void     places_view_cb_recent_items_clear(GtkWidget *clear_item);
 
 // Model Visitor Callbacks
 static void     places_view_add_menu_item(gpointer _places_data, 
-                                   const gchar *label, const gchar *uri, const gchar *icon);
+                                   const gchar *label, const gchar *uri, const gchar *icon, GSList *actions);
 static void     places_view_lazy_add_menu_sep(gpointer _places_data);
 
 /********** Initialization & Finalization **********/
-
 void
 places_view_init(PlacesData *pd)
 {
@@ -499,12 +499,6 @@ places_view_cb_menu_deact(PlacesData *pd, GtkWidget *menu)
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pd->view_button), FALSE);
 }
 
-static void
-places_view_cb_menu_item_open(GtkWidget *widget, const gchar* uri)
-{
-    places_load_thunar(uri);
-}
-
 // Button
 static gboolean
 places_view_cb_button_pressed(PlacesData *pd, GdkEventButton *evt)
@@ -521,6 +515,62 @@ places_view_cb_button_pressed(PlacesData *pd, GdkEventButton *evt)
     return FALSE;
 }
 
+void
+places_view_cb_menu_item_context_act(GtkWidget *item, PlacesData *pd)
+{
+    // we want the menu gone - now - since it prevents mouse grabs
+    places_view_destroy_menu(pd);
+    g_main_context_iteration(NULL, FALSE);
+
+    BookmarkAction *action = (BookmarkAction*) g_object_get_data(G_OBJECT(item), "action");
+    places_bookmark_action_call(action);   
+}
+
+gboolean
+places_view_cb_menu_item_press(GtkWidget *menu_item, GdkEventButton *event, PlacesData *pd)
+{
+
+    gboolean ctrl =  (event->state & GDK_CONTROL_MASK) && 
+                    !(event->state & (GDK_MOD1_MASK|GDK_SHIFT_MASK|GDK_MOD4_MASK));
+
+    if(event->button == 1 && !ctrl){
+        const gchar *uri = (const gchar*) g_object_get_data(G_OBJECT(menu_item), "uri");
+        if(uri != NULL){
+            places_load_thunar(uri);
+            return FALSE;
+        }
+        return TRUE;
+
+    }else if(event->button == 3 || (event->button == 1 && ctrl)){
+    
+        const GSList *actions = (const GSList*) g_object_get_data(G_OBJECT(menu_item), "actions");
+        if(actions != NULL){
+    
+            GtkWidget *context = gtk_menu_new();
+            gtk_widget_show(context);
+            while(actions != NULL){
+                BookmarkAction *action = (BookmarkAction*) actions->data;
+                GtkWidget *context_item = gtk_menu_item_new_with_label(action->label);
+                g_object_set_data(G_OBJECT(context_item), "action", action);
+                gtk_widget_show(context_item);
+                g_signal_connect(context_item, "activate",
+                                 G_CALLBACK(places_view_cb_menu_item_context_act), pd);
+                gtk_menu_shell_append(GTK_MENU_SHELL(context), context_item);
+                actions = actions->next;
+            }
+            gtk_menu_popup(GTK_MENU(context),
+                           NULL, NULL,
+                           NULL, NULL,
+                           event->button, event->time);
+            g_signal_connect_swapped(context, "deactivate", G_CALLBACK(places_view_open_menu), pd);
+        }
+
+        return TRUE;
+    }
+
+    return TRUE;
+}
+
 // Recent Documents
 
 #if USE_RECENT_DOCUMENTS
@@ -528,7 +578,7 @@ static void
 places_view_cb_recent_item_open(GtkRecentChooser *chooser, PlacesData *pd)
 {
     gchar *uri = gtk_recent_chooser_get_current_uri(chooser);
-    places_load_thunar(uri);
+    places_load_file(uri);
     g_free(uri);
 }
 
@@ -544,11 +594,16 @@ places_view_cb_recent_items_clear(GtkWidget *clear_item)
 /********** Model Visitor Callbacks **********/
 
 static void
-places_view_add_menu_item(gpointer _pd, const gchar *label, const gchar *uri, const gchar *icon)
+places_view_load_terminal_wrapper(gpointer path)
+{
+    places_load_terminal((gchar*) path);
+}
+
+static void
+places_view_add_menu_item(gpointer _pd, const gchar *label, const gchar *uri, const gchar *icon, GSList *actions)
 {
     g_assert(_pd != NULL);
     g_return_if_fail(label != NULL && label != "");
-    g_return_if_fail(uri != NULL && uri != "");
 
     PlacesData *pd = (PlacesData*) _pd;
 
@@ -570,8 +625,26 @@ places_view_add_menu_item(gpointer _pd, const gchar *label, const gchar *uri, co
         }
     }
 
-    g_signal_connect(item, "activate",
-                     G_CALLBACK(places_view_cb_menu_item_open), (gchar*) uri);
+    if(uri != NULL){
+        
+        if(strncmp(uri, "trash://", 8) != 0){
+            g_object_set_data(G_OBJECT(item), "uri", (gchar*) uri);
+            BookmarkAction *terminal = g_new0(BookmarkAction, 1);
+            terminal->label = "Open Terminal Here";
+            terminal->pass_thru = (gchar*) uri;
+            terminal->action = places_view_load_terminal_wrapper;
+            actions = g_slist_append(actions, terminal);
+        }
+    }else
+        gtk_widget_set_sensitive(gtk_bin_get_child(GTK_BIN(item)), FALSE);
+ 
+
+    if(actions != NULL)
+        g_object_set_data_full(G_OBJECT(item), "actions", actions, (GDestroyNotify) places_bookmark_actions_list_destroy);
+        
+    g_signal_connect(item, "button-release-event",
+                     G_CALLBACK(places_view_cb_menu_item_press), pd);
+
     gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu), item);
 
 }

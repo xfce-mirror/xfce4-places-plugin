@@ -51,7 +51,9 @@ struct _PlacesData
 
 };
 
-void places_load_thunar(const gchar*);
+void places_load_thunar(const gchar *path);
+void places_load_terminal(const gchar *path);
+void places_load_file(const gchar *path);
 void places_gui_exec(const gchar *cmd);
 
 

@@ -39,8 +39,19 @@ places_bookmark_info_free(BookmarkInfo*);
 
 typedef struct
 {
+    gchar       *label;
+    gpointer    pass_thru;
+    void        (*action)   (gpointer);
+} BookmarkAction;
+
+#define places_bookmark_action_call(act)   (act->action(act->pass_thru))
+
+void places_bookmark_actions_list_destroy(GSList *actions);
+
+typedef struct
+{
     gpointer   pass_thru;
-    void       (*item)        (gpointer, const gchar*, const gchar*, const gchar*);
+    void       (*item)        (gpointer, const gchar*, const gchar*, const gchar*, GSList *actions);
     void       (*separator)   (gpointer);
 } BookmarksVisitor;
 
