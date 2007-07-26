@@ -1,3 +1,8 @@
+2007-07-26	Diego Ongaro <ongardie@gmail.com>
+
+	* Fixed bug #3350 (Expression compares a char* pointer with a
+	string literal)
+
 2007-07-13	Diego Ongaro <ongardie@gmail.com>
 
 	* Merged in umount branch at r1908 (now obsolete):

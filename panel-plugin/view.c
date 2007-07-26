@@ -603,7 +603,7 @@ static void
 places_view_add_menu_item(gpointer _pd, const gchar *label, const gchar *uri, const gchar *icon, GSList *actions)
 {
     g_assert(_pd != NULL);
-    g_return_if_fail(label != NULL && label != "");
+    g_return_if_fail(label != NULL && strlen(label));
 
     PlacesData *pd = (PlacesData*) _pd;
 
