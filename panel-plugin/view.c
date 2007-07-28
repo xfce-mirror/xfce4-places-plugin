@@ -527,22 +527,8 @@ places_view_cb_menu_item_context_act(GtkWidget *item, PlacesData *pd)
 }
 
 gboolean
-places_view_cb_menu_item_press(GtkWidget *menu_item, GdkEventButton *event, PlacesData *pd)
+places_view_cb_menu_item_do_alt(PlacesData *pd, GtkWidget *menu_item)
 {
-
-    gboolean ctrl =  (event->state & GDK_CONTROL_MASK) && 
-                    !(event->state & (GDK_MOD1_MASK|GDK_SHIFT_MASK|GDK_MOD4_MASK));
-
-    if(event->button == 1 && !ctrl){
-        const gchar *uri = (const gchar*) g_object_get_data(G_OBJECT(menu_item), "uri");
-        if(uri != NULL){
-            places_load_thunar(uri);
-            return FALSE;
-        }
-        return TRUE;
-
-    }else if(event->button == 3 || (event->button == 1 && ctrl)){
-    
         const GSList *actions = (const GSList*) g_object_get_data(G_OBJECT(menu_item), "actions");
         if(actions != NULL){
     
@@ -561,14 +547,38 @@ places_view_cb_menu_item_press(GtkWidget *menu_item, GdkEventButton *event, Plac
             gtk_menu_popup(GTK_MENU(context),
                            NULL, NULL,
                            NULL, NULL,
-                           event->button, event->time);
+                           0, gtk_get_current_event_time());
             g_signal_connect_swapped(context, "deactivate", G_CALLBACK(places_view_open_menu), pd);
         }
 
         return TRUE;
-    }
+}
 
-    return TRUE;
+gboolean
+places_view_cb_menu_item_do_main(PlacesData *pd, GtkWidget *menu_item)
+{
+        const gchar *uri = (const gchar*) g_object_get_data(G_OBJECT(menu_item), "uri");
+        if(uri != NULL){
+            places_load_thunar(uri);
+            return FALSE;
+        }
+        return TRUE;
+}
+
+
+gboolean
+places_view_cb_menu_item_press(GtkWidget *menu_item, GdkEventButton *event, PlacesData *pd)
+{
+
+    gboolean ctrl =  (event->state & GDK_CONTROL_MASK) && 
+                    !(event->state & (GDK_MOD1_MASK|GDK_SHIFT_MASK|GDK_MOD4_MASK));
+    
+    if(event->button == 3 || (event->button == 1 && ctrl))
+        return places_view_cb_menu_item_do_alt(pd, menu_item);
+    else if(event->button == 1 && !ctrl)
+        return TRUE; /* must be insensitive, so don't close the menu */
+    else
+        return FALSE;
 }
 
 // Recent Documents
@@ -606,6 +616,7 @@ places_view_add_menu_item(gpointer _pd, const gchar *label, const gchar *uri, co
     g_return_if_fail(label != NULL && strlen(label));
 
     PlacesData *pd = (PlacesData*) _pd;
+    GtkWidget *item;
 
     if(pd->view_needs_separator){
         gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu),
@@ -613,7 +624,7 @@ places_view_add_menu_item(gpointer _pd, const gchar *label, const gchar *uri, co
         pd->view_needs_separator = FALSE;
     }
 
-    GtkWidget *item = gtk_image_menu_item_new_with_label(label);
+    item = gtk_image_menu_item_new_with_label(label);
 
     if(pd->cfg->show_icons && icon != NULL){
         GdkPixbuf *pb = xfce_themed_icon_load(icon, 16);
@@ -627,16 +638,20 @@ places_view_add_menu_item(gpointer _pd, const gchar *label, const gchar *uri, co
 
     if(uri != NULL){
         
+        g_object_set_data(G_OBJECT(item), "uri", (gchar*) uri);
+
         if(strncmp(uri, "trash://", 8) != 0){
-            g_object_set_data(G_OBJECT(item), "uri", (gchar*) uri);
             BookmarkAction *terminal = g_new0(BookmarkAction, 1);
             terminal->label = "Open Terminal Here";
             terminal->pass_thru = (gchar*) uri;
             terminal->action = places_view_load_terminal_wrapper;
             actions = g_slist_append(actions, terminal);
         }
-    }else
+
+    }else{
+        /* Probably an unmounted volume. Gray it out. */
         gtk_widget_set_sensitive(gtk_bin_get_child(GTK_BIN(item)), FALSE);
+    }
  
 
     if(actions != NULL)
@@ -644,6 +659,8 @@ places_view_add_menu_item(gpointer _pd, const gchar *label, const gchar *uri, co
         
     g_signal_connect(item, "button-release-event",
                      G_CALLBACK(places_view_cb_menu_item_press), pd);
+    g_signal_connect_swapped(item, "activate",
+                     G_CALLBACK(places_view_cb_menu_item_do_main), pd);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu), item);
 
