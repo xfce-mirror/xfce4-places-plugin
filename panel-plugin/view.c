@@ -576,7 +576,8 @@ places_view_cb_menu_item_press(GtkWidget *menu_item, GdkEventButton *event, Plac
     if(event->button == 3 || (event->button == 1 && ctrl))
         return places_view_cb_menu_item_do_alt(pd, menu_item);
     else if(event->button == 1 && !ctrl)
-        return TRUE; /* must be insensitive, so don't close the menu */
+        /* If it's insensitive, don't close the menu */
+        return !GTK_WIDGET_IS_SENSITIVE(gtk_bin_get_child(GTK_BIN(menu_item)));
     else
         return FALSE;
 }
