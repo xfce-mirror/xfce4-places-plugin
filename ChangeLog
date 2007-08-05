@@ -4,6 +4,7 @@
 	* Fixed bad mount points bug.
 	* Avoid failing xfce_rc_write_entry assertion when
 	cfg->search_cmd is NULL
+	* Made "Eject" actually eject
 
 2007-07-28	Diego Ongaro <ongardie@gmail.com>
 

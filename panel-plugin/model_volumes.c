@@ -157,8 +157,13 @@ places_bookmarks_volumes_unmount(BookmarkAction *act)
     DBG("Unmount");
     BookmarksVolumes_Volume *priv = (BookmarksVolumes_Volume*) act->priv;
     ThunarVfsVolume *volume = priv->volume;
-    if(thunar_vfs_volume_is_mounted(volume))
-        thunar_vfs_volume_unmount(volume, NULL, NULL);
+
+    if(thunar_vfs_volume_is_mounted(volume)){
+        if(thunar_vfs_volume_is_ejectable(volume))
+            thunar_vfs_volume_eject(volume, NULL, NULL);
+        else
+            thunar_vfs_volume_unmount(volume, NULL, NULL);
+    }
 }
 
 static void
@@ -338,7 +343,7 @@ places_bookmarks_volumes_visit(BookmarksVolumes *b, BookmarksVisitor *visitor)
     
         if(thunar_vfs_volume_is_mounted(volume)){
 
-            if(thunar_vfs_volume_is_disc(volume))
+            if(thunar_vfs_volume_is_ejectable(volume))
                 toggle_mount->label = _("Eject Volume");
             else
                 toggle_mount->label = _("Unmount Volume");
