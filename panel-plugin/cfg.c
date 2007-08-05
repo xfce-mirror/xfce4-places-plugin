@@ -72,7 +72,10 @@ places_cfg_init_defaults(PlacesConfig *cfg)
     cfg->show_recent_clear  = TRUE;
     cfg->show_recent_number = 10;
 #endif
-    cfg->search_cmd         = NULL;
+
+    if(cfg->search_cmd != NULL)
+        g_free(cfg->search_cmd);
+    cfg->search_cmd         = g_strdup("");
 
     if(cfg->label != NULL)
         g_free(cfg->label);
@@ -143,7 +146,10 @@ places_cfg_load(PlacesData *pd)
         cfg->label = _("Places");
     cfg->label = g_strdup(cfg->label);
 
-    cfg->search_cmd = g_strdup(xfce_rc_read_entry(rcfile, "search_cmd", NULL));
+    cfg->search_cmd = (gchar*) xfce_rc_read_entry(rcfile, "search_cmd", NULL); /* TODO: why gchar*? */
+    if(cfg->search_cmd == NULL)
+        cfg->search_cmd = "";
+    cfg->search_cmd = g_strdup(cfg->search_cmd);
 
 #if USE_RECENT_DOCUMENTS
     cfg->show_recent    = xfce_rc_read_bool_entry(rcfile, "show_recent", TRUE);
@@ -283,10 +289,6 @@ places_cfg_search_cmd_cb(GtkWidget *label_entry, GdkEventFocus *event, PlacesDat
         g_free(pd->cfg->search_cmd);
     
     pd->cfg->search_cmd = g_strstrip(g_strdup(gtk_entry_get_text(GTK_ENTRY(label_entry))));
-    if(*(pd->cfg->search_cmd) == '\0'){
-        g_free(pd->cfg->search_cmd);
-        pd->cfg->search_cmd = NULL;
-    }
 
     places_view_destroy_menu(pd);
 

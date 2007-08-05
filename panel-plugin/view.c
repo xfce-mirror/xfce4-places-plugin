@@ -213,15 +213,15 @@ places_view_update_menu(PlacesData *pd)
 
     // Recent Documents
 #if USE_RECENT_DOCUMENTS
-    if(pd->cfg->show_recent || pd->cfg->search_cmd != NULL){
+    if(pd->cfg->show_recent || (pd->cfg->search_cmd != NULL && strlen(pd->cfg->search_cmd))){
 #else
-    if(pd->cfg->search_cmd != NULL){
+    if(pd->cfg->search_cmd != NULL && strlen(pd->cfg->search_cmd)){
 #endif
         gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu),
                               gtk_separator_menu_item_new());
     }
 
-    if(pd->cfg->search_cmd != NULL){
+    if(pd->cfg->search_cmd != NULL && strlen(pd->cfg->search_cmd)){
         GtkWidget *search_item = gtk_image_menu_item_new_with_mnemonic(_("Search for Files"));
         if(pd->cfg->show_icons){
             GtkWidget *search_image = gtk_image_new_from_icon_name("system-search", GTK_ICON_SIZE_MENU);
