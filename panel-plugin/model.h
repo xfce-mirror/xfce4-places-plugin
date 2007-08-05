@@ -36,16 +36,18 @@ typedef struct
 void
 places_bookmark_info_free(BookmarkInfo*);
 
-
-typedef struct
+typedef struct _BookmarkAction BookmarkAction;
+struct _BookmarkAction
 {
     gchar       *label;
-    gpointer    pass_thru;
-    void        (*action)   (gpointer);
-} BookmarkAction;
+    gpointer    priv;
+    void        (*action)   (BookmarkAction *self);
+    void        (*free)     (BookmarkAction *self);
 
-#define places_bookmark_action_call(act)   (act->action(act->pass_thru))
+};
 
+void places_bookmark_action_call(BookmarkAction *act);
+void places_bookmark_action_free(BookmarkAction *act);
 void places_bookmark_actions_list_destroy(GSList *actions);
 
 typedef struct

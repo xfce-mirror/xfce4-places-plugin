@@ -29,12 +29,19 @@
 
 #include <libxfce4util/libxfce4util.h>
 
+#include <string.h>
+
 struct _BookmarksVolumes
 {
     GPtrArray *bookmarks;
     gboolean   changed;
     ThunarVfsVolumeManager *volume_manager;
 };
+
+typedef struct {
+    BookmarksVolumes    *b;
+    ThunarVfsVolume     *volume;
+} BookmarksVolumes_Volume;
 
 static gboolean 
 places_bookmarks_volumes_show_volume(ThunarVfsVolume *volume);
@@ -55,7 +62,8 @@ places_bookmarks_volumes_cb_changed(ThunarVfsVolume *volume,
     BookmarkInfo *bi;
     GList *volumes;
     guint k;
-    b->changed = FALSE;
+    
+    b->changed = TRUE;
 
     if(places_bookmarks_volumes_show_volume(volume)){
 
@@ -72,7 +80,6 @@ places_bookmarks_volumes_cb_changed(ThunarVfsVolume *volume,
             volumes = g_list_prepend(NULL, volume);
             places_bookmarks_volumes_add(b, volumes);
             g_list_free(volumes);
-            b->changed = TRUE;
         }else{
             DBG("volume already in array");
         }
@@ -88,7 +95,6 @@ places_bookmarks_volumes_cb_changed(ThunarVfsVolume *volume,
                 g_object_unref(bi->data); // unref the volume
                 bi->data = NULL;
                 places_bookmark_info_free(bi);
-                b->changed = TRUE;
             }
         }
     }
@@ -146,21 +152,45 @@ places_bookmarks_volumes_cb_removed(ThunarVfsVolumeManager *volume_manager,
 /********** Actions Callbacks **********/
 
 static void
-places_bookmarks_volumes_unmount(gpointer _volume)
+places_bookmarks_volumes_unmount(BookmarkAction *act)
 {
     DBG("Unmount");
-    ThunarVfsVolume *volume = THUNAR_VFS_VOLUME(_volume);
+    BookmarksVolumes_Volume *priv = (BookmarksVolumes_Volume*) act->priv;
+    ThunarVfsVolume *volume = priv->volume;
     if(thunar_vfs_volume_is_mounted(volume))
         thunar_vfs_volume_unmount(volume, NULL, NULL);
 }
 
 static void
-places_bookmarks_volumes_mount(gpointer _volume)
+places_bookmarks_volumes_mount(BookmarkAction *act)
 {
     DBG("Mount");
-    ThunarVfsVolume *volume = THUNAR_VFS_VOLUME(_volume);
-    if(!thunar_vfs_volume_is_mounted(volume))
+    BookmarksVolumes_Volume *priv = (BookmarksVolumes_Volume*) act->priv;
+    ThunarVfsVolume *volume = priv->volume;
+    BookmarksVolumes *b = priv->b;
+    BookmarkInfo *bi;
+    guint k;
+
+    if(!thunar_vfs_volume_is_mounted(volume)){
+
         thunar_vfs_volume_mount(volume, NULL, NULL);
+    
+        /* it sometimes wouldn't get the mount point right otherwise */
+        for(k = 0; k < b->bookmarks->len; k++){
+            bi = g_ptr_array_index(b->bookmarks, k);
+            if(volume == bi->data){
+
+                if(bi->uri != NULL)
+                    g_free(bi->uri);
+
+                bi->uri = thunar_vfs_path_dup_uri(thunar_vfs_volume_get_mount_point(volume));
+
+                b->changed = TRUE;
+
+                break;
+            }
+        }
+    }
 }
 
 /********** Internal **********/
@@ -271,6 +301,15 @@ places_bookmarks_volumes_changed(BookmarksVolumes *b)
     }
 }
 
+static void
+free_toggle_mount_action(BookmarkAction *act)
+{
+    g_assert(act != NULL);
+    g_assert(act->priv != NULL);
+
+    g_free(act->priv);
+    g_free(act);
+}
 
 void
 places_bookmarks_volumes_visit(BookmarksVolumes *b, BookmarksVisitor *visitor)
@@ -281,13 +320,20 @@ places_bookmarks_volumes_visit(BookmarksVolumes *b, BookmarksVisitor *visitor)
     ThunarVfsVolume *volume;
     gchar *uri;
     BookmarkAction *toggle_mount;
+    BookmarksVolumes_Volume *toggle_mount_priv;
 
     for(k=0; k < b->bookmarks->len; k++){
         bi = g_ptr_array_index(b->bookmarks, k);
         volume = THUNAR_VFS_VOLUME(bi->data);
 
+        toggle_mount_priv = g_new0(BookmarksVolumes_Volume, 1);
+        toggle_mount_priv->b = b;
+        toggle_mount_priv->volume = volume;
+
         toggle_mount = g_new0(BookmarkAction, 1); /* visitor will free */
-        toggle_mount->pass_thru = volume;
+        toggle_mount->priv = toggle_mount_priv;
+        toggle_mount->free = free_toggle_mount_action;
+        
         actions = g_slist_prepend(NULL, toggle_mount);
     
         if(thunar_vfs_volume_is_mounted(volume)){

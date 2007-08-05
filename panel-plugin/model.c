@@ -49,6 +49,8 @@ places_bookmarks_init()
 void
 places_bookmarks_enable(Bookmarks *b, gint enable_mask)
 {
+    g_assert(b != NULL);
+
     gboolean enable_volumes, enable_user;
     
     // Enable/disable volumes
@@ -79,6 +81,9 @@ void
 places_bookmarks_visit(Bookmarks *b,
                        BookmarksVisitor *visitor)
 {
+    g_assert(b != NULL);
+    g_assert(visitor != NULL);
+
     places_bookmarks_system_visit  (b->system,  visitor);
 
     if(b->volumes != NULL)
@@ -93,6 +98,8 @@ places_bookmarks_visit(Bookmarks *b,
 gboolean
 places_bookmarks_changed(Bookmarks *b)
 {
+    g_assert(b != NULL);
+
     // try to avoid short-circuit of || since changed() has side-effects
     gboolean changed = FALSE;
 
@@ -110,6 +117,8 @@ places_bookmarks_changed(Bookmarks *b)
 void
 places_bookmarks_finalize(Bookmarks *b)
 {
+    g_assert(b != NULL);
+
     places_bookmarks_system_finalize(b->system);
     b->system = NULL;
     
@@ -121,6 +130,8 @@ places_bookmarks_finalize(Bookmarks *b)
 void
 places_bookmark_info_free(BookmarkInfo *bi)
 {
+    g_assert(bi != NULL);
+
     if(bi->label != NULL){
         g_free(bi->label);
         bi->label = NULL;
@@ -141,13 +152,32 @@ places_bookmark_info_free(BookmarkInfo *bi)
     g_free(bi);
 }
 
+
+void places_bookmark_action_call(BookmarkAction *act)
+{
+    g_assert(act != NULL);
+
+    if(act->action != NULL)
+        act->action(act);
+}
+
+void places_bookmark_action_free(BookmarkAction *act)
+{
+    g_assert(act != NULL);
+
+    if(act->free != NULL)
+        act->free(act);
+    else
+        g_free(act);
+}
+
 void
 places_bookmark_actions_list_destroy(GSList *actions)
 {
-    if(actions != NULL){
-        g_slist_foreach(actions, (GFunc) g_free, NULL);
-        g_slist_free(actions);
-    }
+    g_assert(actions != NULL);
+
+    g_slist_foreach(actions, (GFunc) places_bookmark_action_free, NULL);
+    g_slist_free(actions);
 }
 
 // vim: ai et tabstop=4

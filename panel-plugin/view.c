@@ -518,12 +518,19 @@ places_view_cb_button_pressed(PlacesData *pd, GdkEventButton *evt)
 void
 places_view_cb_menu_item_context_act(GtkWidget *item, PlacesData *pd)
 {
-    // we want the menu gone - now - since it prevents mouse grabs
-    places_view_destroy_menu(pd);
-    g_main_context_iteration(NULL, FALSE);
+    BookmarkAction *action;
+    g_assert(pd != NULL);
+    g_assert(pd->view_menu != NULL && GTK_IS_WIDGET(pd->view_menu));
 
-    BookmarkAction *action = (BookmarkAction*) g_object_get_data(G_OBJECT(item), "action");
-    places_bookmark_action_call(action);   
+    /* we want the menu gone - now - since it prevents mouse grabs */
+    gtk_widget_hide(pd->view_menu);
+    while(g_main_context_iteration(NULL, FALSE))
+        /* no op */;
+
+    action = (BookmarkAction*) g_object_get_data(G_OBJECT(item), "action");
+    DBG("Calling action %s", action->label);
+    places_bookmark_action_call(action);
+
 }
 
 gboolean
@@ -605,9 +612,10 @@ places_view_cb_recent_items_clear(GtkWidget *clear_item)
 /********** Model Visitor Callbacks **********/
 
 static void
-places_view_load_terminal_wrapper(gpointer path)
+places_view_load_terminal_wrapper(BookmarkAction *act)
 {
-    places_load_terminal((gchar*) path);
+    g_assert(act != NULL);
+    places_load_terminal((gchar*) act->priv);
 }
 
 static void
@@ -644,8 +652,9 @@ places_view_add_menu_item(gpointer _pd, const gchar *label, const gchar *uri, co
         if(strncmp(uri, "trash://", 8) != 0){
             BookmarkAction *terminal = g_new0(BookmarkAction, 1);
             terminal->label = "Open Terminal Here";
-            terminal->pass_thru = (gchar*) uri;
+            terminal->priv = (gchar*) uri;
             terminal->action = places_view_load_terminal_wrapper;
+            terminal->free = NULL;
             actions = g_slist_append(actions, terminal);
         }
 
