@@ -21,6 +21,8 @@
 #  include <config.h>
 #endif
 
+#include <string.h>
+
 #include <gtk/gtk.h>
 
 #include <libxfce4panel/xfce-panel-plugin.h>
@@ -142,11 +144,11 @@ places_cfg_load(PlacesData *pd)
         g_free(cfg->label);
 
     cfg->label = (gchar*) xfce_rc_read_entry(rcfile, "label", NULL);
-    if(cfg->label == NULL || *(cfg->label) == '\0')
+    if(cfg->label == NULL || strlen(cfg->label) == 0)
         cfg->label = _("Places");
     cfg->label = g_strdup(cfg->label);
 
-    cfg->search_cmd = (gchar*) xfce_rc_read_entry(rcfile, "search_cmd", NULL); /* TODO: why gchar*? */
+    cfg->search_cmd = (gchar*) xfce_rc_read_entry(rcfile, "search_cmd", NULL);
     if(cfg->search_cmd == NULL)
         cfg->search_cmd = "";
     cfg->search_cmd = g_strdup(cfg->search_cmd);
@@ -267,7 +269,7 @@ places_cfg_button_label_cb(GtkWidget *label_entry, GdkEventFocus *event, PlacesD
         g_free(pd->cfg->label);
     
     pd->cfg->label = g_strstrip(g_strdup(gtk_entry_get_text(GTK_ENTRY(label_entry))));
-    if(*(pd->cfg->label) == '\0'){
+    if(strlen(pd->cfg->label) == 0){
         g_free(pd->cfg->label);
         pd->cfg->label = g_strdup(_("Places"));
         gtk_entry_set_text(GTK_ENTRY(label_entry), pd->cfg->label);
