@@ -72,7 +72,7 @@ static gboolean places_view_cb_button_pressed(PlacesData*, GdkEventButton *);
 //  - Recent Documents
 #if USE_RECENT_DOCUMENTS
 static void     places_view_cb_recent_item_open(GtkRecentChooser*, PlacesData*);
-static void     places_view_cb_recent_items_clear(GtkWidget *clear_item);
+static gboolean places_view_cb_recent_items_clear(GtkWidget *clear_item);
 #endif
 
 // Model Visitor Callbacks
@@ -255,6 +255,10 @@ places_view_update_menu(PlacesData *pd)
                 clear_item = gtk_menu_item_new_with_mnemonic(clear_stock_item.label);
             }
             gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu), clear_item);
+            /* try button-release-event to catch mouse clicks and not hide the menu after */
+            g_signal_connect(clear_item, "button-release-event",
+                             G_CALLBACK(places_view_cb_recent_items_clear), NULL);
+            /* use activate when button-release-event doesn't catch it (e.g., enter key pressed) */
             g_signal_connect(clear_item, "activate",
                              G_CALLBACK(places_view_cb_recent_items_clear), NULL);
     
@@ -600,12 +604,13 @@ places_view_cb_recent_item_open(GtkRecentChooser *chooser, PlacesData *pd)
     g_free(uri);
 }
 
-static void
+static gboolean
 places_view_cb_recent_items_clear(GtkWidget *clear_item)
 {
     GtkRecentManager *manager = gtk_recent_manager_get_default();
     gint removed = gtk_recent_manager_purge_items(manager, NULL);
     DBG("Cleared %d recent items", removed);
+    return TRUE;
 }
 #endif
 
