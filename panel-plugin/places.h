@@ -47,8 +47,7 @@ struct _PlacesData
   gboolean           view_needs_separator;
 
   // model
-  gpointer           bookmarks;
-
+  GList *bookmark_groups;
 };
 
 void places_load_thunar(const gchar *path);

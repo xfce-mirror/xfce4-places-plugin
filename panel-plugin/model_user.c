@@ -21,41 +21,80 @@
 #  include <config.h>
 #endif
 
-#include "model_system.h"
 #include "model_user.h"
 #include "model.h"
 
 #include <libxfce4util/libxfce4util.h>
+#include <glib.h>
 #include <glib/gstdio.h>
 
+#define pbg_priv(pbg) ((PBUserData*) pbg->priv)
+#define show_bookmark(b) ((gboolean) b->priv)
 
-#define bookmarks_user_dir_exists(path)    g_file_test(path, G_FILE_TEST_IS_DIR)
 
-struct _BookmarksUser
+typedef struct
 {
-  GPtrArray             *bookmarks;
-  gchar                 *filename;
-  time_t                 loaded;
+  GList     *bookmarks;
+  gchar     *filename;
+  time_t     loaded;
 
-  const BookmarksSystem *system;
+} PBUserData;
 
-};
+static inline time_t
+pbuser_get_mtime(const gchar *filename)
+{
+    struct stat buf;
+    if(g_stat(filename, &buf) == 0)
+        return buf.st_mtime;
+    return 0;
+}
 
-// internal use
+static inline gboolean
+pbuser_dir_exists(const gchar *path)
+{
+    return g_file_test(path, G_FILE_TEST_IS_DIR);
+}
 
 static void
-places_bookmarks_user_reinit(BookmarksUser *b)
+pbuser_free_bookmark(PlacesBookmark *bookmark)
 {
-    DBG("initializing");
+    g_assert(bookmark != NULL);
+    g_free(bookmark->uri);
+    g_free(bookmark->label);
+    g_free(bookmark);
+}
+
+static void
+pbuser_destroy_bookmarks(PlacesBookmarkGroup *bookmark_group)
+{
+    GList *bookmarks = pbg_priv(bookmark_group)->bookmarks;
+
+    if(bookmarks == NULL)
+        return;
+    
+    while(bookmarks != NULL){
+        pbuser_free_bookmark((PlacesBookmark*) bookmarks->data);
+        bookmarks = bookmarks->next;
+    }
+    g_list_free(bookmarks);
+    pbg_priv(bookmark_group)->bookmarks = NULL;
+}
+
+static void
+pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
+{
     // As of 2007-04-06, this is pretty much taken from/analogous to Thunar
 
-    BookmarkInfo *bi;
+    GList  *bookmarks = NULL;
+    PlacesBookmark *bookmark;
     gchar  *name;
     gchar  *path;
     gchar   line[2048];
     FILE   *fp;
  
-    fp = fopen(b->filename, "r");
+    pbuser_destroy_bookmarks(bookmark_group);
+
+    fp = fopen(pbg_priv(bookmark_group)->filename, "r");
 
     if(G_UNLIKELY(fp == NULL)){
         DBG("Error opening gtk bookmarks file");
@@ -95,104 +134,108 @@ places_bookmarks_user_reinit(BookmarksUser *b)
         }
 
         /* create the BookmarkInfo container */
-        bi = g_new0(BookmarkInfo, 1);
-        bi->uri = path;
-        bi->label = name;
-        bi->show = bookmarks_user_dir_exists(bi->uri);
-        bi->icon = g_strdup("gnome-fs-directory");
+        bookmark        = g_new0(PlacesBookmark, 1);
+        bookmark->uri   = path;                                   /* needs to be freed */
+        bookmark->label = name;                                   /* needs to be freed */
+        bookmark->icon  = "gnome-fs-directory";
+        bookmark->priv  = (gpointer) pbuser_dir_exists(path);
+        bookmark->free  = pbuser_free_bookmark;
 
-        places_bookmarks_system_bi_system_mod((BookmarksSystem*) b->system, bi);
-
-        g_ptr_array_add(b->bookmarks, bi);
+        bookmarks = g_list_prepend(bookmarks, bookmark);
     }
 
     fclose(fp);
+
+    pbg_priv(bookmark_group)->bookmarks = g_list_reverse(bookmarks);
+    pbg_priv(bookmark_group)->loaded    = pbuser_get_mtime(pbg_priv(bookmark_group)->filename);
 }
 
-static time_t
-places_bookmarks_user_get_mtime(BookmarksUser *b)
+
+static GList*
+pbuser_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 {
-    struct stat buf;
-    if(g_stat(b->filename, &buf) == 0)
-        return buf.st_mtime;
-    return 0;
+    GList *bookmarks    = pbg_priv(bookmark_group)->bookmarks;
+    GList *clone        = NULL;
+    PlacesBookmark *bookmark;
+
+    if(bookmarks == NULL){
+        pbuser_build_bookmarks(bookmark_group);
+        bookmarks = pbg_priv(bookmark_group)->bookmarks;
+    }
+
+    bookmarks = g_list_last(bookmarks);
+
+    while(bookmarks != NULL){
+        bookmark        = g_memdup(bookmarks->data, sizeof(PlacesBookmark));
+        bookmark->uri   = g_strdup(bookmark->uri);
+        bookmark->label = g_strdup(bookmark->label);
+
+        clone = g_list_prepend(clone, bookmark);
+        bookmarks = bookmarks->prev;
+    }
+
+    return clone;
+
 }
+
+static gboolean
+pbuser_changed(PlacesBookmarkGroup *bookmark_group)
+{
+    if(pbg_priv(bookmark_group)->loaded == 0)
+        goto pbuser_did_change;
+
+    // see if the file has changed
+    time_t mtime = pbuser_get_mtime(pbg_priv(bookmark_group)->filename);
+    if(mtime > pbg_priv(bookmark_group)->loaded)
+        goto pbuser_did_change;
+    
+    // see if any directories have been created or removed
+    GList *bookmarks = pbg_priv(bookmark_group)->bookmarks;
+    PlacesBookmark *bookmark;
+    gboolean ret = FALSE;
+
+    while(bookmarks != NULL){
+        bookmark = bookmarks->data;
+        if(show_bookmark(bookmark) != pbuser_dir_exists(bookmark->uri)){
+            bookmark->priv = (gpointer) !show_bookmark(bookmark);
+            ret = TRUE;
+        }
+        bookmarks = bookmarks->next;
+    }
+    return ret;
+
+  pbuser_did_change:
+    pbuser_destroy_bookmarks(bookmark_group);
+    return TRUE;
+}
+
+static void
+pbuser_finalize(PlacesBookmarkGroup *bookmark_group)
+{
+    pbuser_destroy_bookmarks(bookmark_group);
+
+    g_free(pbg_priv(bookmark_group)->filename);
+    pbg_priv(bookmark_group)->filename = NULL;
+
+    g_free(pbg_priv(bookmark_group));
+    g_free(bookmark_group);
+}
+
 
 // external interface
 
-BookmarksUser*
-places_bookmarks_user_init(const BookmarksSystem *system)
+PlacesBookmarkGroup*
+places_bookmarks_user_create()
 { 
-    BookmarksUser *b = g_new0(BookmarksUser, 1);
+    PlacesBookmarkGroup *bookmark_group = g_new0(PlacesBookmarkGroup, 1);
+    bookmark_group->get_bookmarks       = pbuser_get_bookmarks;
+    bookmark_group->changed             = pbuser_changed;
+    bookmark_group->finalize            = pbuser_finalize;
+    bookmark_group->priv                = g_new0(PBUserData, 1);
+
+    pbg_priv(bookmark_group)->filename = xfce_get_homefile(".gtk-bookmarks", NULL);
     
-    g_assert(system != NULL);
-    b->system = system;
-
-    b->filename = xfce_get_homefile(".gtk-bookmarks", NULL);
-    b->bookmarks = g_ptr_array_new();
-    b->loaded = places_bookmarks_user_get_mtime(b);
-    
-    places_bookmarks_user_reinit(b);
-    return b;
-}
-
-gboolean
-places_bookmarks_user_changed(BookmarksUser *b)
-{
-    // see if the file has changed
-    time_t mtime = places_bookmarks_user_get_mtime(b);
-    
-    if(mtime > b->loaded){
-        g_ptr_array_foreach(b->bookmarks, (GFunc) places_bookmark_info_free, NULL);
-        g_ptr_array_free(b->bookmarks, TRUE);
-        b->bookmarks = g_ptr_array_new();
-        b->loaded = mtime;
-        places_bookmarks_user_reinit(b);
-        return TRUE;
-    }
-
-    // see if any directories have been created or removed
-    guint k;
-    BookmarkInfo *bi;
-    gboolean ret = FALSE;
-
-    for(k=0; k < b->bookmarks->len; k++){
-        bi = g_ptr_array_index(b->bookmarks, k);
-        if(bi->show != bookmarks_user_dir_exists(bi->uri)){
-            bi->show = !bi->show;
-            ret = TRUE;
-        }
-    }
-
-    return ret;
-}
-
-void
-places_bookmarks_user_visit(BookmarksUser *b,  BookmarksVisitor *visitor)
-{
-    guint k;
-    BookmarkInfo *bi;
-    
-    for(k=0; k < b->bookmarks->len; k++){
-        bi = g_ptr_array_index(b->bookmarks, k);
-        if(bi->show)
-            visitor->item(visitor->pass_thru, bi->label, bi->uri, bi->icon, NULL);
-    }
-}
-
-void
-places_bookmarks_user_finalize(BookmarksUser *b)
-{
-    g_ptr_array_foreach(b->bookmarks, (GFunc) places_bookmark_info_free, NULL);
-    g_ptr_array_free(b->bookmarks, TRUE);
-    b->bookmarks = NULL;
-
-    g_free(b->filename);
-    b->filename = NULL;
-
-    b->system = NULL;
-
-    g_free(b);
+    return bookmark_group;
 }
 
 // vim: ai et tabstop=4

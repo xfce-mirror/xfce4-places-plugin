@@ -27,7 +27,6 @@
 #include <exo/exo.h>
 
 #include "places.h"
-#include "model.h"
 #include "view.h"
 
 #include "string.h" // for strncmp
@@ -42,9 +41,8 @@ XFCE_PANEL_PLUGIN_REGISTER_EXTERNAL(places_construct);
  *
  * 1. Sets up i18n
  * 2. Creates the PlacesData struct
- * 3. Asks the model to initialize
- * 4. Asks the view to initialize
- * 5. Connects the finalize callback.
+ * 3. Asks the view to initialize
+ * 4. Connects the finalize callback.
  */
 static void 
 places_construct(XfcePanelPlugin *plugin)
@@ -57,9 +55,6 @@ places_construct(XfcePanelPlugin *plugin)
     // Create the PlacesData struct
     PlacesData *pd = panel_slice_new0(PlacesData);
     pd->plugin = plugin;
-
-    // Initialize model
-    pd->bookmarks = places_bookmarks_init();
 
     // Initialize view
     places_view_init(pd);
@@ -74,8 +69,7 @@ places_construct(XfcePanelPlugin *plugin)
  * Cleans up resources.
  *
  * 1. Asks the view to finalize
- * 2. Asks the model to finalize
- * 3. Frees the PlacesData struct
+ * 2. Frees the PlacesData struct
  */
 static void 
 places_finalize(XfcePanelPlugin *plugin, PlacesData *pd)
@@ -86,9 +80,6 @@ places_finalize(XfcePanelPlugin *plugin, PlacesData *pd)
     // finalize the view
     places_view_finalize(pd);
     
-    // finalize the model
-    places_bookmarks_finalize(pd->bookmarks);
-
     // free the PlacesData struct
     panel_slice_free(PlacesData, pd);
 }

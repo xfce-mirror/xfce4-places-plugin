@@ -1,3 +1,7 @@
+2007-08-11	Diego Ongaro <ongardie@gmail.com>
+
+	* Large model refactoring for flexibility, maintainability.
+
 2007-08-10	Diego Ongaro <ongardie@gmail.com>
 
 	* Clicking on Recent Changes -> Clear no longer hides the menu

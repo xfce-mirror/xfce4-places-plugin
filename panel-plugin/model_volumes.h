@@ -21,21 +21,9 @@
 #define _XFCE_PANEL_PLACES_MODEL_VOLUMES_H
 
 #include "model.h"
-#include <glib.h>
 
-typedef struct _BookmarksVolumes BookmarksVolumes;
-
-BookmarksVolumes*
-places_bookmarks_volumes_init();
-
-void
-places_bookmarks_volumes_visit(BookmarksVolumes *b, BookmarksVisitor *visitor);
-
-gboolean
-places_bookmarks_volumes_changed(BookmarksVolumes *b);
-
-void
-places_bookmarks_volumes_finalize(BookmarksVolumes *b);
+PlacesBookmarkGroup*
+places_bookmarks_volumes_create();
 
 #endif
 // vim: ai et tabstop=4

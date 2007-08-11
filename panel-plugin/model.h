@@ -22,62 +22,66 @@
 
 #include <glib.h>
 
-// Bookmark Info
-
-typedef struct
+/* Places Bookmark Action */
+typedef struct _PlacesBookmarkAction PlacesBookmarkAction;
+struct _PlacesBookmarkAction
 {
-    gchar           *label;
-    gchar           *uri;
-    gchar           *icon;
-    gboolean         show;
-    gpointer         data;
-} BookmarkInfo;
-
-void
-places_bookmark_info_free(BookmarkInfo*);
-
-typedef struct _BookmarkAction BookmarkAction;
-struct _BookmarkAction
-{
-    gchar       *label;
+    gchar       *label;     /* must not be NULL */
     gpointer    priv;
-    void        (*action)   (BookmarkAction *self);
-    void        (*free)     (BookmarkAction *self);
+    void        (*action)   (PlacesBookmarkAction *self);
+    void        (*free)     (PlacesBookmarkAction *self);
 
 };
 
-void places_bookmark_action_call(BookmarkAction *act);
-void places_bookmark_action_free(BookmarkAction *act);
-void places_bookmark_actions_list_destroy(GSList *actions);
+inline void
+places_bookmark_action_call(PlacesBookmarkAction*);
 
-typedef struct
+inline void
+places_bookmark_action_free(PlacesBookmarkAction*);
+
+/* Places Bookmark */
+
+typedef enum
 {
-    gpointer   pass_thru;
-    void       (*item)        (gpointer, const gchar*, const gchar*, const gchar*, GSList *actions);
-    void       (*separator)   (gpointer);
-} BookmarksVisitor;
+    PLACES_URI_SCHEME_NONE=0,
+    PLACES_URI_SCHEME_FILE, 
+    PLACES_URI_SCHEME_TRASH
+} places_uri_scheme;
 
-typedef struct _Bookmarks Bookmarks;
+typedef struct _PlacesBookmark PlacesBookmark;
+struct _PlacesBookmark
+{
+    gchar               *label;         /* must not be NULL */
+    gchar               *uri;           /* may be NULL */
+    places_uri_scheme    uri_scheme;    
+    gchar               *icon;          /* may be NULL */
+    GList               *actions;       /* may be NULL (empty) */
 
-Bookmarks*
-places_bookmarks_init();
+    gpointer             priv;          /* private data */
+    void               (*free) (PlacesBookmark *self);
+};
 
-#define PLACES_BOOKMARKS_ENABLE_NONE    (0)
-#define PLACES_BOOKMARKS_ENABLE_VOLUMES (1)
-#define PLACES_BOOKMARKS_ENABLE_USER    (1 << 1)
-#define PLACES_BOOKMARKS_ENABLE_ALL     (PLACES_BOOKMARKS_ENABLE_VOLUMES & PLACES_BOOKMARKS_ENABLE_USER)
-void
-places_bookmarks_enable(Bookmarks *b, gint enable);
+inline void
+places_bookmark_free(PlacesBookmark *bookmark);
 
-void
-places_bookmarks_visit(Bookmarks *b, BookmarksVisitor *visitor);
+/* Places Bookmark Group */
+typedef struct _PlacesBookmarkGroup PlacesBookmarkGroup;
+struct _PlacesBookmarkGroup
+{
+    GList*      (*get_bookmarks) (PlacesBookmarkGroup *self);
+    gboolean    (*changed)       (PlacesBookmarkGroup *self);
+    void        (*finalize)      (PlacesBookmarkGroup *self);
+    gpointer    priv;
+};
 
-gboolean
-places_bookmarks_changed(Bookmarks *b);
+inline GList*
+places_bookmark_group_get_bookmarks(PlacesBookmarkGroup*);
 
-void
-places_bookmarks_finalize(Bookmarks *b);
+inline gboolean
+places_bookmark_group_changed(PlacesBookmarkGroup*);
 
+inline void
+places_bookmark_group_finalize(PlacesBookmarkGroup*);
 
 #endif
 // vim: ai et tabstop=4

@@ -31,176 +31,53 @@
 
 #include <string.h>
 
-struct _BookmarksVolumes
+#define pbg_priv(pbg) ((PBVolData*) pbg->priv)
+
+typedef struct
 {
-    GPtrArray *bookmarks;
-    gboolean   changed;
+
     ThunarVfsVolumeManager *volume_manager;
-};
+    gboolean   changed;
 
-typedef struct {
-    BookmarksVolumes    *b;
-    ThunarVfsVolume     *volume;
-} BookmarksVolumes_Volume;
+} PBVolData;
 
-static gboolean 
-places_bookmarks_volumes_show_volume(ThunarVfsVolume *volume);
-
-static void
-places_bookmarks_volumes_add(BookmarksVolumes *b, const GList *volumes);
-
-
-/********** ThunarVFS Callbacks **********/
-
-static void
-places_bookmarks_volumes_cb_changed(ThunarVfsVolume *volume, 
-                                    BookmarksVolumes *b)
-{
-    DBG("volume changed"); 
-    // unfortunately there tends to be like 3 of these in a row
-
-    BookmarkInfo *bi;
-    GList *volumes;
-    guint k;
-    
-    b->changed = TRUE;
-
-    if(places_bookmarks_volumes_show_volume(volume)){
-
-        // make sure it's in the array
-        for(k = 0; k < b->bookmarks->len; k++){
-            bi = g_ptr_array_index(b->bookmarks, k);
-            if(THUNAR_VFS_VOLUME(bi->data) == volume)
-                break;
-        }
-
-        if(k == b->bookmarks->len){ // it's not there
-            DBG("adding volume to array");
-
-            volumes = g_list_prepend(NULL, volume);
-            places_bookmarks_volumes_add(b, volumes);
-            g_list_free(volumes);
-        }else{
-            DBG("volume already in array");
-        }
-
-    }else{
-        // make sure it's not in the array
-        for(k = 0; k < b->bookmarks->len; k++){
-            bi = g_ptr_array_index(b->bookmarks, k);
-            if(THUNAR_VFS_VOLUME(bi->data) == volume){ // it is there
-                DBG("dropping volume from array");
-                
-                bi = g_ptr_array_remove_index(b->bookmarks, k);
-                g_object_unref(bi->data); // unref the volume
-                bi->data = NULL;
-                places_bookmark_info_free(bi);
-            }
-        }
-    }
-}
-
-static void
-places_bookmarks_volumes_cb_added(ThunarVfsVolumeManager *volume_manager,
-                                  const GList *volumes, 
-                                  BookmarksVolumes *b)
-{
-    DBG("volumes added");
-    places_bookmarks_volumes_add(b, volumes);
-    b->changed = TRUE;
-}
-
-static void
-places_bookmarks_volumes_cb_removed(ThunarVfsVolumeManager *volume_manager, 
-                                    const GList *volumes, 
-                                    BookmarksVolumes *b)
-{
-    DBG("volumes removed");
-
-    BookmarkInfo *bi;
-    GList *vol_iter;
-    guint k;
-
-    // step through existing bookmarks
-    for(k = 0; k < b->bookmarks->len; k++){
-        bi = g_ptr_array_index(b->bookmarks, k);
-
-        // step through removals
-        vol_iter = (GList*) volumes;
-        while(vol_iter){
-            if(bi->data == vol_iter->data){ // it is there
-                
-                // delete the bookmark
-                bi = g_ptr_array_remove_index(b->bookmarks, k);
-                DBG("Removing bookmark %s", bi->label);
-                
-                if(bi->data != NULL){ // unref the volume
-                    g_object_unref(bi->data);
-                    bi->data = NULL;
-                }
-                places_bookmark_info_free(bi);
-                
-                b->changed = TRUE;
-                break;
-            }
-
-            vol_iter = vol_iter->next;
-        }
-    }
-}
 
 /********** Actions Callbacks **********/
 
 static void
-places_bookmarks_volumes_unmount(BookmarkAction *act)
+pbvol_eject(PlacesBookmarkAction *action)
 {
-    DBG("Unmount");
-    BookmarksVolumes_Volume *priv = (BookmarksVolumes_Volume*) act->priv;
-    ThunarVfsVolume *volume = priv->volume;
+    DBG("Eject");
 
-    if(thunar_vfs_volume_is_mounted(volume)){
-        if(thunar_vfs_volume_is_ejectable(volume))
-            thunar_vfs_volume_eject(volume, NULL, NULL);
-        else
-            thunar_vfs_volume_unmount(volume, NULL, NULL);
-    }
+    ThunarVfsVolume *volume = THUNAR_VFS_VOLUME(action->priv);
+
+    thunar_vfs_volume_eject(volume, NULL, NULL);
 }
 
 static void
-places_bookmarks_volumes_mount(BookmarkAction *act)
+pbvol_unmount(PlacesBookmarkAction *action)
 {
-    DBG("Mount");
-    BookmarksVolumes_Volume *priv = (BookmarksVolumes_Volume*) act->priv;
-    ThunarVfsVolume *volume = priv->volume;
-    BookmarksVolumes *b = priv->b;
-    BookmarkInfo *bi;
-    guint k;
+    DBG("Unmount");
 
-    if(!thunar_vfs_volume_is_mounted(volume)){
+    ThunarVfsVolume *volume = THUNAR_VFS_VOLUME(action->priv);
 
-        thunar_vfs_volume_mount(volume, NULL, NULL);
-    
-        /* it sometimes wouldn't get the mount point right otherwise */
-        for(k = 0; k < b->bookmarks->len; k++){
-            bi = g_ptr_array_index(b->bookmarks, k);
-            if(volume == bi->data){
-
-                if(bi->uri != NULL)
-                    g_free(bi->uri);
-
-                bi->uri = thunar_vfs_path_dup_uri(thunar_vfs_volume_get_mount_point(volume));
-
-                b->changed = TRUE;
-
-                break;
-            }
-        }
-    }
+    if(thunar_vfs_volume_is_mounted(volume))
+        thunar_vfs_volume_unmount(volume, NULL, NULL);
 }
 
-/********** Internal **********/
-static gboolean
-places_bookmarks_volumes_show_volume(ThunarVfsVolume *volume){
+static void
+pbvol_mount(PlacesBookmarkAction *action)
+{
+    DBG("Mount");
+
+    ThunarVfsVolume *volume = THUNAR_VFS_VOLUME(action->priv);
+
+    if(!thunar_vfs_volume_is_mounted(volume))
+        thunar_vfs_volume_mount(volume, NULL, NULL);
+}
+
+static inline gboolean
+pbvol_show_volume(ThunarVfsVolume *volume){
     
     DBG("Volume: %s [mounted=%x removable=%x present=%x]", thunar_vfs_volume_get_name(volume), 
                                                            thunar_vfs_volume_is_mounted(volume),
@@ -211,156 +88,182 @@ places_bookmarks_volumes_show_volume(ThunarVfsVolume *volume){
            thunar_vfs_volume_is_present(volume);
 }
 
+static void
+pbvol_set_changed(PlacesBookmarkGroup *bookmark_group)
+{
+    pbg_priv(bookmark_group)->changed = TRUE;
+}
+
 
 static void
-places_bookmarks_volumes_add(BookmarksVolumes *b, const GList *volumes)
+pbvol_volumes_added(ThunarVfsVolumeManager *volman, GList *volumes, PlacesBookmarkGroup *bookmark_group)
 {
-    ThunarVfsVolume *volume;
-    BookmarkInfo *bi;
-    GtkIconTheme *icon_theme = gtk_icon_theme_get_default();
-
-    while(volumes){
-        volume = THUNAR_VFS_VOLUME(volumes->data);
-        
-        g_signal_connect (volume, "changed",
-                      G_CALLBACK(places_bookmarks_volumes_cb_changed), b);
-
-        if(places_bookmarks_volumes_show_volume(volume)){
-
-            g_object_ref(volume);
-
-            bi          = g_new0(BookmarkInfo, 1);
-            bi->label   = g_strdup( thunar_vfs_volume_get_name(volume) );
-            bi->uri     = thunar_vfs_path_dup_uri( thunar_vfs_volume_get_mount_point(volume) );
-            bi->icon    = g_strdup( thunar_vfs_volume_lookup_icon_name(volume, icon_theme) );
-            bi->data    = (gpointer) volume;
-
-            g_ptr_array_add(b->bookmarks, bi);
-        }
-
+    while(volumes != NULL){
+        g_signal_connect_swapped(THUNAR_VFS_VOLUME(volumes->data), "changed",
+                                 G_CALLBACK(pbvol_set_changed), bookmark_group);
         volumes = volumes->next;
     }
 }
 
-/********** External **********/
-
-BookmarksVolumes*
-places_bookmarks_volumes_init()
+static void
+pbvol_volumes_removed(ThunarVfsVolumeManager *volman, GList *volumes, PlacesBookmarkGroup *bookmark_group)
 {
-    DBG("init");
-    BookmarksVolumes *b = g_new0(BookmarksVolumes, 1);
-
-    thunar_vfs_init();
-    
-    b->bookmarks = g_ptr_array_new();
-    b->changed = FALSE;
-    b->volume_manager = thunar_vfs_volume_manager_get_default();
-    
-    places_bookmarks_volumes_add(b, thunar_vfs_volume_manager_get_volumes(b->volume_manager));
-
-    g_signal_connect (b->volume_manager, "volumes-added",
-                      G_CALLBACK (places_bookmarks_volumes_cb_added), b);
-
-    g_signal_connect (b->volume_manager, "volumes-removed",
-                      G_CALLBACK (places_bookmarks_volumes_cb_removed), b);
-
-    DBG("done");
-
-    return b;
-}
-
-void
-places_bookmarks_volumes_finalize(BookmarksVolumes *b)
-{
-    BookmarkInfo *bi;
-    guint k;
-
-    for(k = 0; k < b->bookmarks->len; k++){
-        bi = g_ptr_array_remove_index(b->bookmarks, k);
-        if(bi->data != NULL){ // unref the volume
-            g_object_unref(bi->data);
-            bi->data = NULL;
-        }
-        places_bookmark_info_free(bi);
-    }
-
-    g_object_unref(b->volume_manager);
-    b->volume_manager = NULL;
-    thunar_vfs_shutdown();
-    
-    g_ptr_array_foreach(b->bookmarks, (GFunc) places_bookmark_info_free, NULL);
-    g_ptr_array_free(b->bookmarks, TRUE);
-    b->bookmarks = NULL;
-
-    g_free(b);
-}
-
-gboolean
-places_bookmarks_volumes_changed(BookmarksVolumes *b)
-{
-    if(b->changed){
-        b->changed = FALSE;
-        return TRUE;
-    }else{
-        return FALSE;
+    while(volumes != NULL){
+        g_signal_handlers_disconnect_by_func(THUNAR_VFS_VOLUME(volumes->data),
+                                             G_CALLBACK(pbvol_set_changed), bookmark_group);
+        volumes = volumes->next;
     }
 }
 
 static void
-free_toggle_mount_action(BookmarkAction *act)
+pbvol_bookmark_free(PlacesBookmark *bookmark)
 {
-    g_assert(act != NULL);
-    g_assert(act->priv != NULL);
-
-    g_free(act->priv);
-    g_free(act);
+    if(bookmark->uri != NULL)
+        g_free(bookmark->uri);
+    g_free(bookmark);
 }
 
-void
-places_bookmarks_volumes_visit(BookmarksVolumes *b, BookmarksVisitor *visitor)
+static void
+pbvol_bookmark_action_free(PlacesBookmarkAction *action){
+    g_assert(action != NULL && action->priv != NULL);
+
+    ThunarVfsVolume *volume = THUNAR_VFS_VOLUME(action->priv);
+    g_object_unref(volume);
+    action->priv = NULL;
+
+    g_free(action);
+}
+
+static GList*
+pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 {
-    guint k;
-    BookmarkInfo *bi;
-    GSList *actions;
-    ThunarVfsVolume *volume;
-    gchar *uri;
-    BookmarkAction *toggle_mount;
-    BookmarksVolumes_Volume *toggle_mount_priv;
-
-    for(k=0; k < b->bookmarks->len; k++){
-        bi = g_ptr_array_index(b->bookmarks, k);
-        volume = THUNAR_VFS_VOLUME(bi->data);
-
-        toggle_mount_priv = g_new0(BookmarksVolumes_Volume, 1);
-        toggle_mount_priv->b = b;
-        toggle_mount_priv->volume = volume;
-
-        toggle_mount = g_new0(BookmarkAction, 1); /* visitor will free */
-        toggle_mount->priv = toggle_mount_priv;
-        toggle_mount->free = free_toggle_mount_action;
-        
-        actions = g_slist_prepend(NULL, toggle_mount);
+    GList *bookmarks = NULL;
+    PlacesBookmark *bookmark;
+    PlacesBookmarkAction *action;
     
-        if(thunar_vfs_volume_is_mounted(volume)){
+    GList *volumes = thunar_vfs_volume_manager_get_volumes(pbg_priv(bookmark_group)->volume_manager);
+    ThunarVfsVolume *volume;
 
-            if(thunar_vfs_volume_is_ejectable(volume))
-                toggle_mount->label = _("Eject Volume");
+    GtkIconTheme *icon_theme = gtk_icon_theme_get_default();
+
+    while(volumes != NULL){
+        volume = THUNAR_VFS_VOLUME(volumes->data);
+
+        if(pbvol_show_volume(volume)){
+
+            bookmark        = g_new0(PlacesBookmark, 1);
+            bookmark->label = (gchar*) thunar_vfs_volume_get_name(volume);
+            if(thunar_vfs_volume_is_mounted(volume))
+                bookmark->uri   = thunar_vfs_path_dup_uri(thunar_vfs_volume_get_mount_point(volume));
             else
-                toggle_mount->label = _("Unmount Volume");
-            toggle_mount->action = places_bookmarks_volumes_unmount;
+                bookmark->uri   = NULL;
+            bookmark->icon  = (gchar*) thunar_vfs_volume_lookup_icon_name(volume, icon_theme);
+            bookmark->free  = pbvol_bookmark_free;
 
-            uri = bi->uri;
+            if(!thunar_vfs_volume_is_mounted(volume)){
+                g_object_ref(volume);
+                action          = g_new0(PlacesBookmarkAction, 1);
+                action->label   = _("Mount");
+                action->priv    = volume;
+                action->action  = pbvol_mount;
+                action->free    = pbvol_bookmark_action_free;
+                bookmark->actions = g_list_append(bookmark->actions, action);
+            }
 
-        }else{
+            if(thunar_vfs_volume_is_disc(volume)){
+                if(thunar_vfs_volume_is_ejectable(volume)){
+                    g_object_ref(volume);
+                    action          = g_new0(PlacesBookmarkAction, 1);
+                    action->label   = _("Eject");
+                    action->priv    = volume;
+                    action->action  = pbvol_eject;
+                    action->free    = pbvol_bookmark_action_free;
+                    bookmark->actions = g_list_append(bookmark->actions, action);
+                }
+            }else{
+                if(thunar_vfs_volume_is_mounted(volume)){
+                    g_object_ref(volume);
+                    action          = g_new0(PlacesBookmarkAction, 1);
+                    action->label   = _("Unmount");
+                    action->priv    = volume;
+                    action->action  = pbvol_unmount;
+                    action->free    = pbvol_bookmark_action_free;
+                    bookmark->actions = g_list_append(bookmark->actions, action);
+                }
+            }
 
-            toggle_mount->label = _("Mount Volume");
-            toggle_mount->action = places_bookmarks_volumes_mount;
-
-            uri = NULL;
+            bookmarks = g_list_prepend(bookmarks, bookmark);
         }
 
-        visitor->item(visitor->pass_thru, bi->label, uri, bi->icon, actions);
+        volumes = volumes->next;
     }
+    
+    pbg_priv(bookmark_group)->changed = FALSE;
+
+    return g_list_reverse(bookmarks);
+
+}
+
+
+static gboolean
+pbvol_changed(PlacesBookmarkGroup *bookmark_group)
+{
+    return pbg_priv(bookmark_group)->changed;
+}
+
+
+static void
+pbvol_finalize(PlacesBookmarkGroup *bookmark_group)
+{
+    GList *volumes = thunar_vfs_volume_manager_get_volumes(pbg_priv(bookmark_group)->volume_manager);
+    while(volumes != NULL){
+        g_signal_handlers_disconnect_by_func(THUNAR_VFS_VOLUME(volumes->data),
+                                             G_CALLBACK(pbvol_set_changed), bookmark_group);
+        volumes = volumes->next;
+    }
+
+    g_signal_handlers_disconnect_by_func(pbg_priv(bookmark_group)->volume_manager,
+                                         G_CALLBACK(pbvol_volumes_added), bookmark_group);
+    g_signal_handlers_disconnect_by_func(pbg_priv(bookmark_group)->volume_manager,
+                                         G_CALLBACK(pbvol_volumes_removed), bookmark_group);
+    g_object_unref(pbg_priv(bookmark_group)->volume_manager);
+    pbg_priv(bookmark_group)->volume_manager = NULL;
+    thunar_vfs_shutdown();
+    
+    g_free(bookmark_group->priv);
+    g_free(bookmark_group);
+}
+
+
+
+PlacesBookmarkGroup*
+places_bookmarks_volumes_create()
+{
+    PlacesBookmarkGroup *bookmark_group = g_new0(PlacesBookmarkGroup, 1);
+    bookmark_group->get_bookmarks       = pbvol_get_bookmarks;
+    bookmark_group->changed             = pbvol_changed;
+    bookmark_group->finalize            = pbvol_finalize;
+    bookmark_group->priv                = g_new0(PBVolData, 1);
+    
+
+    thunar_vfs_init();
+    pbg_priv(bookmark_group)->volume_manager = thunar_vfs_volume_manager_get_default();
+    pbg_priv(bookmark_group)->changed        = TRUE;
+    
+    GList *volumes = thunar_vfs_volume_manager_get_volumes(pbg_priv(bookmark_group)->volume_manager);
+    while(volumes != NULL){
+        g_signal_connect_swapped(THUNAR_VFS_VOLUME(volumes->data), "changed",
+                                 G_CALLBACK(pbvol_set_changed), bookmark_group);
+        volumes = volumes->next;
+    }
+
+    g_signal_connect(pbg_priv(bookmark_group)->volume_manager, "volumes-added",
+                     G_CALLBACK(pbvol_volumes_added), bookmark_group);
+
+    g_signal_connect(pbg_priv(bookmark_group)->volume_manager, "volumes-removed",
+                     G_CALLBACK(pbvol_volumes_removed), bookmark_group);
+
+    return bookmark_group;
 }
 
 

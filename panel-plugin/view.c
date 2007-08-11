@@ -43,6 +43,9 @@
 #include "view.h"
 #include "places.h"
 #include "model.h"
+#include "model_system.h"
+#include "model_volumes.h"
+#include "model_user.h"
 #include "cfg.h"
 
 // UI Helpers
@@ -76,9 +79,7 @@ static gboolean places_view_cb_recent_items_clear(GtkWidget *clear_item);
 #endif
 
 // Model Visitor Callbacks
-static void     places_view_add_menu_item(gpointer _places_data, 
-                                   const gchar *label, const gchar *uri, const gchar *icon, GSList *actions);
-static void     places_view_lazy_add_menu_sep(gpointer _places_data);
+static void     places_view_add_menu_item(PlacesData*, PlacesBookmark*);
 
 /********** Initialization & Finalization **********/
 void
@@ -166,20 +167,46 @@ places_view_finalize(PlacesData *pd)
     if(pd->view_button_label != NULL)
         g_object_unref(pd->view_button_label);
     g_object_unref(pd->view_tooltips);
- 
+
+    if(pd->bookmark_groups != NULL){
+        GList *bookmark_group = pd->bookmark_groups;
+        while(bookmark_group != NULL){
+            if(bookmark_group->data != NULL)
+               places_bookmark_group_finalize((PlacesBookmarkGroup*) bookmark_group->data);
+            bookmark_group = bookmark_group->next;
+        }
+        g_list_free(pd->bookmark_groups);
+        pd->bookmark_groups = NULL;
+    }
+
     places_cfg_finalize(pd);
 }
 
 void
 places_view_reconfigure_model(PlacesData *pd)
 {
-    gint model_enable;
-    model_enable = PLACES_BOOKMARKS_ENABLE_NONE;
+    /* destroy first */
+    if(pd->bookmark_groups != NULL){
+        GList *bookmark_group = pd->bookmark_groups;
+        while(bookmark_group != NULL){
+            if(bookmark_group->data != NULL)
+                places_bookmark_group_finalize((PlacesBookmarkGroup*) bookmark_group->data);
+            bookmark_group = bookmark_group->next;
+        }
+        g_list_free(pd->bookmark_groups);
+        pd->bookmark_groups = NULL;
+    }
+
+    /* now create */
+    pd->bookmark_groups = g_list_append(pd->bookmark_groups, places_bookmarks_system_create());
+
     if(pd->cfg->show_volumes)
-        model_enable |= PLACES_BOOKMARKS_ENABLE_VOLUMES;
-    if(pd->cfg->show_bookmarks)
-        model_enable |= PLACES_BOOKMARKS_ENABLE_USER;
-    places_bookmarks_enable(pd->bookmarks, model_enable);
+        pd->bookmark_groups = g_list_append(pd->bookmark_groups, places_bookmarks_volumes_create());
+
+    if(pd->cfg->show_bookmarks){
+        pd->bookmark_groups = g_list_append(pd->bookmark_groups, NULL); /* separator */
+        pd->bookmark_groups = g_list_append(pd->bookmark_groups, places_bookmarks_user_create());
+    }
 }
 
 /********** UI Helpers **********/
@@ -187,7 +214,6 @@ places_view_reconfigure_model(PlacesData *pd)
 static void
 places_view_update_menu(PlacesData *pd)
 {
-    BookmarksVisitor visitor;
 #if USE_RECENT_DOCUMENTS
     GtkWidget *recent_menu;
     GtkWidget *clear_item;
@@ -204,12 +230,29 @@ places_view_update_menu(PlacesData *pd)
     gtk_menu_set_screen (GTK_MENU (pd->view_menu),
                          gtk_widget_get_screen (GTK_WIDGET (pd->plugin)));
 
+    GList *bookmark_group = pd->bookmark_groups;
+    GList *bookmarks;
+    PlacesBookmark *bookmark;
+    while(bookmark_group != NULL){
+        
+        if(bookmark_group->data == NULL){ /* separator */
 
-    // Add system, volumes, user bookmarks
-    visitor.pass_thru  = pd;
-    visitor.item       = places_view_add_menu_item;
-    visitor.separator  = places_view_lazy_add_menu_sep;
-    places_bookmarks_visit(pd->bookmarks, &visitor);
+            pd->view_needs_separator = TRUE;
+
+        }else{
+
+            bookmarks = places_bookmark_group_get_bookmarks((PlacesBookmarkGroup*) bookmark_group->data);
+    
+            while(bookmarks != NULL){
+                bookmark = (PlacesBookmark*) bookmarks->data;
+                places_view_add_menu_item(pd, bookmark);
+                bookmarks = bookmarks->next;
+            }
+
+        }
+
+        bookmark_group = bookmark_group->next;
+    }
 
     // Recent Documents
 #if USE_RECENT_DOCUMENTS
@@ -285,12 +328,28 @@ places_view_update_menu(PlacesData *pd)
     gtk_widget_realize(pd->view_menu);
 }
 
+static gboolean
+places_view_bookmarks_changed(GList *bookmark_groups)
+{
+    gboolean ret = FALSE;
+    GList *bookmark_group = bookmark_groups;
+
+    while(bookmark_group != NULL){
+
+        if(bookmark_group->data != NULL)
+            ret = places_bookmark_group_changed((PlacesBookmarkGroup*) bookmark_group->data) || ret;
+
+        bookmark_group = bookmark_group->next;
+    }
+
+    return ret;
+}
 
 void
 places_view_open_menu(PlacesData *pd)
 {
     /* check if menu is needed, or it needs an update */
-    if(pd->view_menu == NULL || places_bookmarks_changed(pd->bookmarks))
+    if(pd->view_menu == NULL || places_view_bookmarks_changed(pd->bookmark_groups))
         places_view_update_menu(pd);
 
     /* toggle the button */
@@ -522,7 +581,6 @@ places_view_cb_button_pressed(PlacesData *pd, GdkEventButton *evt)
 void
 places_view_cb_menu_item_context_act(GtkWidget *item, PlacesData *pd)
 {
-    BookmarkAction *action;
     g_assert(pd != NULL);
     g_assert(pd->view_menu != NULL && GTK_IS_WIDGET(pd->view_menu));
 
@@ -531,38 +589,49 @@ places_view_cb_menu_item_context_act(GtkWidget *item, PlacesData *pd)
     while(g_main_context_iteration(NULL, FALSE))
         /* no op */;
 
-    action = (BookmarkAction*) g_object_get_data(G_OBJECT(item), "action");
+    PlacesBookmarkAction *action = (PlacesBookmarkAction*) g_object_get_data(G_OBJECT(item), "action");
     DBG("Calling action %s", action->label);
     places_bookmark_action_call(action);
-
+    
 }
 
 gboolean
 places_view_cb_menu_item_do_alt(PlacesData *pd, GtkWidget *menu_item)
 {
-        const GSList *actions = (const GSList*) g_object_get_data(G_OBJECT(menu_item), "actions");
-        if(actions != NULL){
     
-            GtkWidget *context = gtk_menu_new();
-            gtk_widget_show(context);
-            while(actions != NULL){
-                BookmarkAction *action = (BookmarkAction*) actions->data;
-                GtkWidget *context_item = gtk_menu_item_new_with_label(action->label);
-                g_object_set_data(G_OBJECT(context_item), "action", action);
-                gtk_widget_show(context_item);
-                g_signal_connect(context_item, "activate",
-                                 G_CALLBACK(places_view_cb_menu_item_context_act), pd);
-                gtk_menu_shell_append(GTK_MENU_SHELL(context), context_item);
-                actions = actions->next;
-            }
-            gtk_menu_popup(GTK_MENU(context),
-                           NULL, NULL,
-                           NULL, NULL,
-                           0, gtk_get_current_event_time());
-            g_signal_connect_swapped(context, "deactivate", G_CALLBACK(places_view_open_menu), pd);
+    GList *actions = (GList*) g_object_get_data(G_OBJECT(menu_item), "actions");
+    GtkWidget *context, *context_item;
+    PlacesBookmarkAction *action;
+
+
+    if(actions != NULL){
+
+        context = gtk_menu_new();
+        gtk_widget_show(context);
+
+        while(actions != NULL){
+            action = (PlacesBookmarkAction*) actions->data;
+
+            context_item = gtk_menu_item_new_with_label(action->label);
+            g_object_set_data(G_OBJECT(context_item), "action", action);
+            gtk_widget_show(context_item);
+            g_signal_connect(context_item, "activate",
+                             G_CALLBACK(places_view_cb_menu_item_context_act), pd);
+            gtk_menu_shell_append(GTK_MENU_SHELL(context), context_item);
+
+            actions = actions->next;
         }
 
-        return TRUE;
+        gtk_menu_popup(GTK_MENU(context),
+                       NULL, NULL,
+                       NULL, NULL,
+                       0, gtk_get_current_event_time());
+
+        g_signal_connect_swapped(context, "deactivate", G_CALLBACK(places_view_open_menu), pd);
+
+    }
+
+    return TRUE;
 }
 
 gboolean
@@ -616,20 +685,21 @@ places_view_cb_recent_items_clear(GtkWidget *clear_item)
 
 /********** Model Visitor Callbacks **********/
 
+
 static void
-places_view_load_terminal_wrapper(BookmarkAction *act)
+places_view_load_terminal_wrapper(PlacesBookmarkAction *act)
 {
     g_assert(act != NULL);
     places_load_terminal((gchar*) act->priv);
 }
 
-static void
-places_view_add_menu_item(gpointer _pd, const gchar *label, const gchar *uri, const gchar *icon, GSList *actions)
-{
-    g_assert(_pd != NULL);
-    g_return_if_fail(label != NULL && strlen(label));
 
-    PlacesData *pd = (PlacesData*) _pd;
+static void
+places_view_add_menu_item(PlacesData *pd, PlacesBookmark *bookmark)
+{
+    g_assert(pd != NULL);
+    g_assert(bookmark != NULL);
+
     GtkWidget *item;
 
     if(pd->view_needs_separator){
@@ -638,10 +708,10 @@ places_view_add_menu_item(gpointer _pd, const gchar *label, const gchar *uri, co
         pd->view_needs_separator = FALSE;
     }
 
-    item = gtk_image_menu_item_new_with_label(label);
+    item = gtk_image_menu_item_new_with_label(bookmark->label);
 
-    if(pd->cfg->show_icons && icon != NULL){
-        GdkPixbuf *pb = xfce_themed_icon_load(icon, 16);
+    if(pd->cfg->show_icons && bookmark->icon != NULL){
+        GdkPixbuf *pb = xfce_themed_icon_load(bookmark->icon, 16);
         
         if(G_LIKELY(pb != NULL)){
             GtkWidget *image = gtk_image_new_from_pixbuf(pb);
@@ -650,43 +720,36 @@ places_view_add_menu_item(gpointer _pd, const gchar *label, const gchar *uri, co
         }
     }
 
-    if(uri != NULL){
+    if(bookmark->uri != NULL){
         
-        g_object_set_data(G_OBJECT(item), "uri", (gchar*) uri);
+        g_object_set_data(G_OBJECT(item), "uri", (gchar*) bookmark->uri);
 
-        if(strncmp(uri, "trash://", 8) != 0){
-            BookmarkAction *terminal = g_new0(BookmarkAction, 1);
-            terminal->label = "Open Terminal Here";
-            terminal->priv = (gchar*) uri;
-            terminal->action = places_view_load_terminal_wrapper;
-            terminal->free = NULL;
-            actions = g_slist_append(actions, terminal);
+        if(bookmark->uri_scheme != PLACES_URI_SCHEME_TRASH){
+            PlacesBookmarkAction *terminal  = g_new0(PlacesBookmarkAction, 1);
+            terminal->label                 = "Open Terminal Here";
+            terminal->priv                  = (gchar*) bookmark->uri;
+            terminal->action                = places_view_load_terminal_wrapper;
+            bookmark->actions = g_list_append(bookmark->actions, terminal);
         }
 
     }else{
         /* Probably an unmounted volume. Gray it out. */
         gtk_widget_set_sensitive(gtk_bin_get_child(GTK_BIN(item)), FALSE);
     }
- 
 
-    if(actions != NULL)
-        g_object_set_data_full(G_OBJECT(item), "actions", actions, (GDestroyNotify) places_bookmark_actions_list_destroy);
-        
+    if(bookmark->actions != NULL)
+        g_object_set_data(G_OBJECT(item), "actions", bookmark->actions);
+
+
     g_signal_connect(item, "button-release-event",
                      G_CALLBACK(places_view_cb_menu_item_press), pd);
     g_signal_connect_swapped(item, "activate",
                      G_CALLBACK(places_view_cb_menu_item_do_main), pd);
+    g_signal_connect_swapped(item, "destroy",
+                     G_CALLBACK(places_bookmark_free), bookmark);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(pd->view_menu), item);
 
-}
-
-static void
-places_view_lazy_add_menu_sep(gpointer _pd)
-{
-    g_assert(_pd != NULL);
-    PlacesData *pd = (PlacesData*) _pd;
-    pd->view_needs_separator = TRUE;
 }
 
 // vim: ai et tabstop=4

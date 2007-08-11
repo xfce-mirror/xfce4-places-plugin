@@ -23,179 +23,172 @@
 
 #include "model_system.h"
 #include "model.h"
+
+#include <string.h>
+
+#include <glib.h>
+
 #include <libxfce4util/libxfce4util.h>
+
 #define EXO_API_SUBJECT_TO_CHANGE
-#include <exo/exo.h>
 #include <thunar-vfs/thunar-vfs.h>
 
-#define bookmarks_system_check_existence data
 
-struct _BookmarksSystem
+#define pbg_priv(pbg) ((PBSysData*) pbg->priv)
+
+typedef struct
 {
-    GPtrArray *bookmarks;
     ThunarVfsPath *trash_path;
-};
 
+    /* These are the things that might "change" */
+    gboolean       check_changed;   /* starts off false to indicate the following are meaningless */
+    gboolean       desktop_exists;
+    gboolean       trash_is_empty;
 
-BookmarksSystem*
-places_bookmarks_system_init()
+} PBSysData;
+ 
+static void
+pbsys_free_desktop_bookmark(PlacesBookmark *bookmark)
 {
-    thunar_vfs_init();
+    g_assert(bookmark != NULL);
 
-    BookmarksSystem *b = g_new0(BookmarksSystem, 1);
+    if(bookmark->uri != NULL)
+        g_free(bookmark->uri);
 
-    BookmarkInfo *bookmark;
-    b->bookmarks = g_ptr_array_sized_new(4);
-    
+    g_free(bookmark);
+}
+
+static void
+pbsys_free_trash_bookmark(PlacesBookmark *bookmark)
+{
+    g_assert(bookmark != NULL);
+
+    if(bookmark->icon != NULL)
+        g_free(bookmark->icon);
+
+    g_free(bookmark);
+}
+
+static GList*
+pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
+{
+    GList *bookmarks = NULL;           /* we'll return this */
+    PlacesBookmark *bookmark;
+    ThunarVfsInfo *trash_info;
     const gchar *home_dir = xfce_get_homedir();
+
+    pbg_priv(bookmark_group)->check_changed = TRUE;
 
     // These icon names are consistent with Thunar.
 
     // Home
-    bookmark = g_new0(BookmarkInfo, 1);
-    bookmark->label = g_strdup(g_get_user_name());
-    bookmark->uri = g_strdup(home_dir);
-    bookmark->icon = g_strdup("gnome-fs-home");
-    bookmark->show = TRUE;
-    bookmark->bookmarks_system_check_existence = NULL;
-    g_ptr_array_add(b->bookmarks, bookmark);
+    bookmark                = g_new0(PlacesBookmark, 1);
+    bookmark->label         = (gchar*) g_get_user_name();
+    bookmark->uri           = (gchar*) home_dir;
+    bookmark->icon          = "gnome-fs-home";
+    bookmarks = g_list_append(bookmarks, bookmark);
 
     // Trash
-    bookmark = g_new0(BookmarkInfo, 1);
+    bookmark                = g_new0(PlacesBookmark, 1);
+    bookmark->label         = _("Trash");
+    bookmark->uri           = "trash:///";
+    bookmark->uri_scheme    = PLACES_URI_SCHEME_TRASH;
+    bookmark->free          = pbsys_free_trash_bookmark;;
 
-    bookmark->label = g_strdup(_("Trash"));
-    bookmark->uri = g_strdup("trash:///");
-
-    b->trash_path = thunar_vfs_path_get_for_trash();
-
-    ThunarVfsInfo *trash_info = thunar_vfs_info_new_for_path(b->trash_path, NULL);
-    bookmark->icon = g_strdup(trash_info->custom_icon);
-    if(bookmark->icon == NULL)
+    /* Try for an icon from ThunarVFS to indicate whether trash is empty or not */
+    
+    trash_info = thunar_vfs_info_new_for_path(pbg_priv(bookmark_group)->trash_path, NULL);
+    if(trash_info->custom_icon != NULL){
+        bookmark->icon = g_strdup(trash_info->custom_icon);
+        pbg_priv(bookmark_group)->trash_is_empty = (strcmp("gnome-fs-trash-full", bookmark->icon) != 0);
+    }else{
         bookmark->icon = g_strdup("gnome-fs-trash-full");
+        pbg_priv(bookmark_group)->trash_is_empty = FALSE;
+    }
     thunar_vfs_info_unref(trash_info);
 
-    bookmark->show = TRUE;
-    bookmark->bookmarks_system_check_existence = NULL;
-    g_ptr_array_add(b->bookmarks, bookmark);
+    bookmarks = g_list_append(bookmarks, bookmark);
 
     // Desktop
-    bookmark = g_new0(BookmarkInfo, 1);
-    bookmark->uri = g_build_filename(home_dir, "Desktop", NULL);
-    bookmark->label = g_strdup(_("Desktop"));
-    bookmark->icon = g_strdup("gnome-fs-desktop");
-    bookmark->show = g_file_test(bookmark->uri, G_FILE_TEST_IS_DIR);
-    bookmark->bookmarks_system_check_existence = (gpointer) 1;
-    g_ptr_array_add(b->bookmarks, bookmark);
+    bookmark                = g_new0(PlacesBookmark, 1);
+    bookmark->label         = _("Desktop");
+    bookmark->uri           = g_build_filename(home_dir, "Desktop", NULL);
+    bookmark->icon          = "gnome-fs-desktop";
+    bookmark->free          = pbsys_free_desktop_bookmark;
+
+    if(g_file_test(bookmark->uri, G_FILE_TEST_IS_DIR)){
+        pbg_priv(bookmark_group)->desktop_exists = TRUE;
+        bookmarks = g_list_append(bookmarks, bookmark);
+    }else{
+        pbg_priv(bookmark_group)->desktop_exists = FALSE;
+        places_bookmark_free(bookmark);
+    }
     
     // File System (/)
-    bookmark = g_new0(BookmarkInfo, 1);
-    bookmark->label = g_strdup(_("File System"));
-    bookmark->uri = g_strdup("/");
-    bookmark->icon = g_strdup("gnome-dev-harddisk");
-    bookmark->show = TRUE;
-    bookmark->bookmarks_system_check_existence = NULL;
-    g_ptr_array_add(b->bookmarks, bookmark);
+    bookmark                = g_new0(PlacesBookmark, 1);
+    bookmark->label         = _("File System");
+    bookmark->uri           = "/";
+    bookmark->icon          = "gnome-dev-harddisk";
+    bookmarks = g_list_append(bookmarks, bookmark);
 
-    return b;
-}
+    return bookmarks;
+};
 
 gboolean
-places_bookmarks_system_changed(BookmarksSystem *b)
+pbsys_changed(PlacesBookmarkGroup *bookmark_group)
 {
-    guint k;
-    BookmarkInfo *bi;
-    gboolean ret = FALSE;
+    gchar *uri;
+    gboolean trash_is_empty = FALSE;
+    ThunarVfsInfo *trash_info;
     
-    for(k=0; k < b->bookmarks->len; k++){
-        bi = g_ptr_array_index(b->bookmarks, k);
-        if(bi->bookmarks_system_check_existence && bi->show != g_file_test(bi->uri, G_FILE_TEST_IS_DIR)){
-            bi->show = !bi->show;
-            ret = TRUE;
-        }
-    }
+    if(!pbg_priv(bookmark_group)->check_changed)
+        return FALSE;
+    
+    /* Check if desktop now exists and didn't before */
+    uri = g_build_filename(xfce_get_homedir(), "Desktop", NULL);
+    if(g_file_test(uri, G_FILE_TEST_IS_DIR) != pbg_priv(bookmark_group)->desktop_exists){
+        g_free(uri);
+        return TRUE;
+    }else
+        g_free(uri);
 
     // see if trash gets a different icon (e.g., was empty, now full)
-    bi = g_ptr_array_index(b->bookmarks, 1);
-    ThunarVfsInfo *trash_info = thunar_vfs_info_new_for_path(b->trash_path, NULL);
-    if(trash_info->custom_icon != NULL && !exo_str_is_equal(trash_info->custom_icon, bi->icon)){
-        g_free(bi->icon);
-        bi->icon = g_strdup(trash_info->custom_icon);
-        ret = TRUE;
-    }
+    trash_info = thunar_vfs_info_new_for_path(pbg_priv(bookmark_group)->trash_path, NULL);
+    if(trash_info->custom_icon != NULL)
+        trash_is_empty = (strcmp("gnome-fs-trash-full", trash_info->custom_icon) != 0);
     thunar_vfs_info_unref(trash_info);
-
-    return ret;
-}
-
-void
-places_bookmarks_system_visit(BookmarksSystem *b,
-                              BookmarksVisitor *visitor)
-{
-    guint k;
-    BookmarkInfo *bi;
     
-    for(k=0; k < b->bookmarks->len; k++){
-        bi = g_ptr_array_index(b->bookmarks, k);
-        if(bi->show)
-            visitor->item(visitor->pass_thru, bi->label, bi->uri, bi->icon, NULL);
-    }
+    if(trash_is_empty != pbg_priv(bookmark_group)->trash_is_empty)
+        return TRUE;
+
+    return FALSE;
 }
 
 static void
-places_bookmarks_system_clear_bi_data(BookmarkInfo *bi)
+pbsys_finalize(PlacesBookmarkGroup *bookmark_group)
 {
-    bi->data = NULL;
-}
-
-void
-places_bookmarks_system_finalize(BookmarksSystem *b)
-{
-    g_ptr_array_foreach(b->bookmarks, (GFunc) places_bookmarks_system_clear_bi_data, NULL);
-    g_ptr_array_foreach(b->bookmarks, (GFunc) places_bookmark_info_free, NULL);
-    g_ptr_array_free(b->bookmarks, TRUE);
-    b->bookmarks = NULL;
-
-    thunar_vfs_path_unref(b->trash_path);
+    thunar_vfs_path_unref(pbg_priv(bookmark_group)->trash_path);
     thunar_vfs_shutdown();
     
-    g_free(b);
+    g_free(pbg_priv(bookmark_group));
+
+    g_free(bookmark_group);
 }
 
-/*
- * A bookmark with the same path as a system path should have the system icon.
- * Such a bookmark with its default label should also use the system label.
- */
-void
-places_bookmarks_system_bi_system_mod(BookmarksSystem *b, BookmarkInfo *other){
-    g_assert(b != NULL);
-    g_assert(other != NULL);
-    g_assert(other->icon != NULL);
-    g_assert(other->label != NULL);
-
-    gboolean label_is_default;
-    gchar   *default_label;
+PlacesBookmarkGroup*
+places_bookmarks_system_create()
+{
+    PlacesBookmarkGroup *bookmark_group = g_new0(PlacesBookmarkGroup, 1);
+    bookmark_group->get_bookmarks = pbsys_get_bookmarks;
+    bookmark_group->changed       = pbsys_changed;
+    bookmark_group->finalize      = pbsys_finalize;
+    bookmark_group->priv          = g_new0(PBSysData, 1);
     
-    default_label    = g_filename_display_basename(other->uri);
-    label_is_default = exo_str_is_equal(default_label, other->label);
-    g_free(default_label);
+    thunar_vfs_init();
+    pbg_priv(bookmark_group)->trash_path = thunar_vfs_path_get_for_trash();
 
-    BookmarkInfo *bi;
-    guint k;
-    for(k=0; k < b->bookmarks->len; k++){
-        bi = g_ptr_array_index(b->bookmarks, k);
-
-        if(G_UNLIKELY(exo_str_is_equal(other->uri, bi->uri))){
-            g_free(other->icon);
-            other->icon = g_strdup(bi->icon);
-
-            if(label_is_default && !exo_str_is_equal(other->label, bi->label)){
-                g_free(other->label);
-                other->label = g_strdup(bi->label);
-            }
-            
-            return;
-        }
-    }
+    return bookmark_group;
 }
+   
 
 // vim: ai et tabstop=4
