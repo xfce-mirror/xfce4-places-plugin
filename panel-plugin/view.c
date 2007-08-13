@@ -249,6 +249,8 @@ places_view_update_menu(PlacesData *pd)
                 bookmarks = bookmarks->next;
             }
 
+            g_list_free(bookmarks);
+
         }
 
         bookmark_group = bookmark_group->next;

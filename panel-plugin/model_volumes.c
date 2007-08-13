@@ -98,6 +98,7 @@ pbvol_set_changed(PlacesBookmarkGroup *bookmark_group)
 static void
 pbvol_volumes_added(ThunarVfsVolumeManager *volman, GList *volumes, PlacesBookmarkGroup *bookmark_group)
 {
+    pbg_priv(bookmark_group)->changed = TRUE;
     while(volumes != NULL){
         g_signal_connect_swapped(THUNAR_VFS_VOLUME(volumes->data), "changed",
                                  G_CALLBACK(pbvol_set_changed), bookmark_group);
@@ -108,6 +109,7 @@ pbvol_volumes_added(ThunarVfsVolumeManager *volman, GList *volumes, PlacesBookma
 static void
 pbvol_volumes_removed(ThunarVfsVolumeManager *volman, GList *volumes, PlacesBookmarkGroup *bookmark_group)
 {
+    pbg_priv(bookmark_group)->changed = TRUE;
     while(volumes != NULL){
         g_signal_handlers_disconnect_by_func(THUNAR_VFS_VOLUME(volumes->data),
                                              G_CALLBACK(pbvol_set_changed), bookmark_group);

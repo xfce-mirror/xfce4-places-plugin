@@ -1,3 +1,8 @@
+2007-08-12	Diego Ongaro <ongardie@gmail.com>
+
+	* model_volumes.c: set changed when volumes added/removed
+	* view.c: free GList's of PlacesBookmarks
+
 2007-08-11	Diego Ongaro <ongardie@gmail.com>
 
 	* Large model refactoring for flexibility, maintainability.
