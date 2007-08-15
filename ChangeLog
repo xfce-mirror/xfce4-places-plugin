@@ -1,5 +1,6 @@
 2007-08-15	Diego Ongaro <ongardie@gmail.com>
 
+	* Prep for v0.9.991 (1.0beta1)
 	* view.c: If left-click is disabled, do right-click action.
 
 2007-08-12	Diego Ongaro <ongardie@gmail.com>
