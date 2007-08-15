@@ -654,12 +654,9 @@ places_view_cb_menu_item_press(GtkWidget *menu_item, GdkEventButton *event, Plac
 
     gboolean ctrl =  (event->state & GDK_CONTROL_MASK) && 
                     !(event->state & (GDK_MOD1_MASK|GDK_SHIFT_MASK|GDK_MOD4_MASK));
-    
-    if(event->button == 3 || (event->button == 1 && ctrl))
+    gboolean sensitive = GTK_WIDGET_IS_SENSITIVE(gtk_bin_get_child(GTK_BIN(menu_item)));
+    if(event->button == 3 || (event->button == 1 && (ctrl || !sensitive)))
         return places_view_cb_menu_item_do_alt(pd, menu_item);
-    else if(event->button == 1 && !ctrl)
-        /* If it's insensitive, don't close the menu */
-        return !GTK_WIDGET_IS_SENSITIVE(gtk_bin_get_child(GTK_BIN(menu_item)));
     else
         return FALSE;
 }
@@ -686,6 +683,14 @@ places_view_cb_recent_items_clear(GtkWidget *clear_item)
 #endif
 
 /********** Model Visitor Callbacks **********/
+
+static void
+places_view_load_thunar_wrapper(PlacesBookmarkAction *act)
+{
+    g_assert(act != NULL);
+    places_load_terminal((gchar*) act->priv);
+}
+
 
 
 static void
@@ -728,11 +733,17 @@ places_view_add_menu_item(PlacesData *pd, PlacesBookmark *bookmark)
 
         if(bookmark->uri_scheme != PLACES_URI_SCHEME_TRASH){
             PlacesBookmarkAction *terminal  = g_new0(PlacesBookmarkAction, 1);
-            terminal->label                 = "Open Terminal Here";
-            terminal->priv                  = (gchar*) bookmark->uri;
+            terminal->label                 = _("Open Terminal Here");
+            terminal->priv                  = bookmark->uri;
             terminal->action                = places_view_load_terminal_wrapper;
-            bookmark->actions = g_list_append(bookmark->actions, terminal);
+            bookmark->actions = g_list_prepend(bookmark->actions, terminal);
         }
+
+        PlacesBookmarkAction *open  = g_new0(PlacesBookmarkAction, 1);
+        open->label                 = _("Open");
+        open->priv                  = bookmark->uri;
+        open->action                = places_view_load_thunar_wrapper;
+        bookmark->actions = g_list_prepend(bookmark->actions, open);
 
     }else{
         /* Probably an unmounted volume. Gray it out. */

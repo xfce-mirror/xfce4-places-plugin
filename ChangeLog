@@ -1,3 +1,7 @@
+2007-08-15	Diego Ongaro <ongardie@gmail.com>
+
+	* view.c: If left-click is disabled, do right-click action.
+
 2007-08-12	Diego Ongaro <ongardie@gmail.com>
 
 	* model_volumes.c: set changed when volumes added/removed
