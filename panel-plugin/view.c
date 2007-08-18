@@ -357,8 +357,10 @@ places_view_open_menu(PlacesData *pd)
     /* toggle the button */
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->view_button), TRUE);
 
-    // Register this menu (for focus, transparency, auto-hide, etc)
-    xfce_panel_plugin_register_menu(pd->plugin, GTK_MENU(pd->view_menu));
+    /* Register this menu (for focus, transparency, auto-hide, etc) */
+    /* We don't want to register if the menu is visible (hasn't been deactivated) */
+    if(!GTK_WIDGET_VISIBLE(pd->view_menu))
+        xfce_panel_plugin_register_menu(pd->plugin, GTK_MENU(pd->view_menu));
 
     /* popup menu */
     gtk_menu_popup (GTK_MENU (pd->view_menu), NULL, NULL,
@@ -371,7 +373,7 @@ void
 places_view_destroy_menu(PlacesData *pd)
 {
     if(pd->view_menu != NULL){
-        g_signal_emit_by_name(G_OBJECT(pd->view_menu), "deactivate");
+        gtk_menu_shell_deactivate(GTK_MENU_SHELL(pd->view_menu));
         gtk_widget_destroy(pd->view_menu);
         pd->view_menu = NULL;
     }
@@ -587,7 +589,7 @@ places_view_cb_menu_item_context_act(GtkWidget *item, PlacesData *pd)
     g_assert(pd->view_menu != NULL && GTK_IS_WIDGET(pd->view_menu));
 
     /* we want the menu gone - now - since it prevents mouse grabs */
-    gtk_widget_hide(pd->view_menu);
+    gtk_menu_shell_deactivate(GTK_MENU_SHELL(pd->view_menu));
     while(g_main_context_iteration(NULL, FALSE))
         /* no op */;
 
