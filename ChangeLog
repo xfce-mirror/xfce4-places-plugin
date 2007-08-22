@@ -1,3 +1,7 @@
+2007-08-22	Diego Ongaro <ongardie@gmail.com>
+
+	* view.c: Avoid infinite icon theme changed signals on etch
+
 2007-08-18	Diego Ongaro <ongardie@gmail.com>
 
 	* view.c: Fix bug 3471 (Rightclick action pins autohidden panel)

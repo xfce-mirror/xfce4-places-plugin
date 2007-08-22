@@ -58,9 +58,7 @@ static gboolean places_view_cb_size_changed(PlacesData*, gint size);
 static void     places_view_cb_orientation_changed(PlacesData *pd, GtkOrientation orientation,
                                                    XfcePanelPlugin *panel);
 
-static gboolean places_view_cb_theme_changed(GSignalInvocationHint*,
-                             guint n_param_values, const GValue *param_values,
-                             PlacesData*);
+static void     places_view_cb_theme_changed(GtkIconTheme *icon_theme, PlacesData *pd);
 
 //  - Menu
 static void     places_view_cb_menu_position(GtkMenu*, 
@@ -87,8 +85,6 @@ places_view_init(PlacesData *pd)
 {
     DBG("initializing");
     
-    gpointer icon_theme_class;
-
     pd->view_needs_separator = FALSE;
     pd->view_menu = NULL;
 
@@ -135,12 +131,8 @@ places_view_init(PlacesData *pd)
 
 
     // signal for icon theme changes
-    icon_theme_class = g_type_class_ref(GTK_TYPE_ICON_THEME);
-    pd->view_theme_timeout_id = g_signal_add_emission_hook(g_signal_lookup("changed", GTK_TYPE_ICON_THEME),
-                                                            0, (GSignalEmissionHook) places_view_cb_theme_changed,
-                                                            pd, NULL);
-    g_type_class_unref(icon_theme_class);
-   
+    g_signal_connect(gtk_icon_theme_get_default(), "changed",
+                     G_CALLBACK(places_view_cb_theme_changed), pd);
     
     // connect the signals
     g_signal_connect_swapped(pd->view_button, "button-press-event",
@@ -383,6 +375,8 @@ places_view_destroy_menu(PlacesData *pd)
 void
 places_view_button_update(PlacesData *pd)
 {
+    DBG("button_update");
+
     GdkPixbuf *icon;
     gint wsize, size, width, height;
     gint pix_w = 0, pix_h = 0;
@@ -443,23 +437,23 @@ places_view_cb_size_changed(PlacesData *pd, gint wsize)
     return TRUE;
 }
 
-static gboolean
-places_view_cb_theme_changed(GSignalInvocationHint *ihint,
-                             guint n_param_values, const GValue *param_values,
-                             PlacesData *pd)
+static void
+places_view_cb_theme_changed(GtkIconTheme *icon_theme, PlacesData *pd)
 {
+    DBG("theme changed");
+
     // update the button
     if(GTK_WIDGET_REALIZED(pd->view_button))
         places_view_button_update(pd);
     
     // force a menu update
     places_view_destroy_menu(pd);
-
-    return TRUE;
 }
 
 static void
-places_view_cb_orientation_changed(PlacesData *pd, GtkOrientation orientation, XfcePanelPlugin *panel){
+places_view_cb_orientation_changed(PlacesData *pd, GtkOrientation orientation, XfcePanelPlugin *panel)
+{
+    DBG("orientation changed");
 
     gtk_widget_set_size_request(pd->view_button, -1, -1);
 
