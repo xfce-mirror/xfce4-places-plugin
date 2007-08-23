@@ -1,3 +1,7 @@
+2007-08-23	Diego Ongaro <ongardie@gmail.com>
+
+	* HACKING: updated to reflect current model
+
 2007-08-22	Diego Ongaro <ongardie@gmail.com>
 
 	* view.c: Avoid infinite icon theme changed signals on etch

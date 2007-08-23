@@ -1,48 +1,28 @@
 The Model Infrastructure
 ================================================================================
 
-model.h provides a convenient BookmarkInfo struct
-model.c provides the 4 "composite" functions:
+model.h defines:
+ * PlacesBookmarkAction:
+   - An action associated with a bookmark, such as "Mount"
+   - In the current view, each entry in the right-click menus
+ * PlacesBookmark
+   - A bookmark, such as "Desktop"
+   - In the current view, each entry in the main menu
+ * PlacesBookmarkGroup
+   - A source of bookmarks; one of:
+     - system: home, Trash, Desktop Filesystem
+     - volumes: removable media
+     - user: defined in ~/.gtk-bookmarks
 
-  1) static Bookmarks* 
-     places_bookmarks_init();
+So there can be several bookmark groups, each one rendering zero or more bookmarks, 
+wich each contain zero or more associated actions.
 
-     * This function is in charge of creating the Bookmarks struct.
-     * It delegates to the children (e.g. system, volumes, user), which are
-       each in charge of creating their own struct.
-
-  2) static void
-     places_bookmarks_visit(Bookmarks *b, gpointer pass_thru, 
-                            item callback, separator callback);
-
-     * This function allows the view to (re-)build it's menu, while keeping it
-       uncoupled from the model.
-     * The model agrees to call the item callback with some pass-thru data and
-       a label, uri, and icon for each item. It fulfills this through 
-       delegation to its children. Each child should then iterate over its
-       bookmarks and call the item callback. Additionally, the model calls the
-       separator callback where it finds appropriate.
-
-  3) static gboolean
-     places_bookmarks_changed(Bookmarks *b);
-
-     * The return value of this function indicates whether the model has been
-       altered since the last call to this function.
-     * The expected side effect of this function, then, is that updates may
-       occur as a result of this trigger, and some state memory should be reset.
-     * The model delegates to its children and OR's the results. It ensures
-       that each child's changed function gets called.
-             
-  4) static void
-     places_bookmarks_finalize(Bookmarks *b);
-
-     * This function is in charge of cleaning up any resources that have been
-       created, either in the init function or later.
-     * It delegates to the children so they can clean up their own resources.
-
-Changes To This File
-================================================================================
-
-2007-04-05  Diego Ongaro  <ongardie@gmail.com>
-
-	* Created file
+Each PlacesBookmarkGroup has 4 entry points:
+  1) Initialization
+    * Returns the PlacesBookmarkGroup struct, with pointers to (2-4) below
+  2) Get bookmarks
+    * Returns a list of bookmarks
+  3) Have the bookmarks changed?
+    * The return value of this function indicates whether get_bookmarks() 
+      would return anything different from when it was last called.
+  4) Finalize
