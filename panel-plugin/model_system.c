@@ -79,16 +79,16 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 
     pbg_priv(bookmark_group)->check_changed = TRUE;
 
-    // These icon names are consistent with Thunar.
+    /* These icon names are consistent with Thunar. */
 
-    // Home
+    /* Home */
     bookmark                = g_new0(PlacesBookmark, 1);
     bookmark->label         = (gchar*) g_get_user_name();
     bookmark->uri           = (gchar*) home_dir;
     bookmark->icon          = "gnome-fs-home";
     bookmarks = g_list_append(bookmarks, bookmark);
 
-    // Trash
+    /* Trash */
     bookmark                = g_new0(PlacesBookmark, 1);
     bookmark->label         = _("Trash");
     bookmark->uri           = "trash:///";
@@ -109,7 +109,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 
     bookmarks = g_list_append(bookmarks, bookmark);
 
-    // Desktop
+    /* Desktop */
     bookmark                = g_new0(PlacesBookmark, 1);
     bookmark->label         = _("Desktop");
     bookmark->uri           = g_build_filename(home_dir, "Desktop", NULL);
@@ -124,7 +124,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
         places_bookmark_free(bookmark);
     }
     
-    // File System (/)
+    /* File System (/) */
     bookmark                = g_new0(PlacesBookmark, 1);
     bookmark->label         = _("File System");
     bookmark->uri           = "/";
@@ -152,7 +152,7 @@ pbsys_changed(PlacesBookmarkGroup *bookmark_group)
     }else
         g_free(uri);
 
-    // see if trash gets a different icon (e.g., was empty, now full)
+    /* see if trash gets a different icon (e.g., was empty, now full) */
     trash_info = thunar_vfs_info_new_for_path(pbg_priv(bookmark_group)->trash_path, NULL);
     if(trash_info->custom_icon != NULL)
         trash_is_empty = (strcmp("gnome-fs-trash-full", trash_info->custom_icon) != 0);
@@ -191,4 +191,4 @@ places_bookmarks_system_create()
 }
    
 
-// vim: ai et tabstop=4
+/* vim: set ai et tabstop=4: */

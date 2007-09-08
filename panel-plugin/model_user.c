@@ -83,7 +83,7 @@ pbuser_destroy_bookmarks(PlacesBookmarkGroup *bookmark_group)
 static void
 pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
 {
-    // As of 2007-04-06, this is pretty much taken from/analogous to Thunar
+    /* As of 2007-04-06, this is pretty much taken from/analogous to Thunar */
 
     GList  *bookmarks = NULL;
     PlacesBookmark *bookmark;
@@ -117,7 +117,7 @@ pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
         for (; g_ascii_isspace (*name); ++name)
             /* pass */;
         
-        /* parse the URI */ // TODO: trash:// URI's
+        /* parse the URI */ /* TODO: trash:// URI's */
         path = g_filename_from_uri(line, NULL, NULL);
         if (G_UNLIKELY(path == NULL || *path == '\0'))
             continue;
@@ -184,12 +184,12 @@ pbuser_changed(PlacesBookmarkGroup *bookmark_group)
     if(pbg_priv(bookmark_group)->loaded == 0)
         goto pbuser_did_change;
 
-    // see if the file has changed
+    /* see if the file has changed */
     time_t mtime = pbuser_get_mtime(pbg_priv(bookmark_group)->filename);
     if(mtime > pbg_priv(bookmark_group)->loaded)
         goto pbuser_did_change;
     
-    // see if any directories have been created or removed
+    /* see if any directories have been created or removed */
     GList *bookmarks = pbg_priv(bookmark_group)->bookmarks;
     PlacesBookmark *bookmark;
     gboolean ret = FALSE;
@@ -222,7 +222,7 @@ pbuser_finalize(PlacesBookmarkGroup *bookmark_group)
 }
 
 
-// external interface
+/* external interface */
 
 PlacesBookmarkGroup*
 places_bookmarks_user_create()
@@ -238,4 +238,4 @@ places_bookmarks_user_create()
     return bookmark_group;
 }
 
-// vim: ai et tabstop=4
+/* vim: set ai et tabstop=4: */

@@ -37,10 +37,10 @@ typedef struct
   gchar             *search_cmd;
 } PlacesConfig;
 
-// Init & Finalize
+/* Init & Finalize */
 PlacesConfig* places_cfg_new(PlacesData*);
 void          places_cfg_init_signals(PlacesData*);
 void          places_cfg_finalize(PlacesData*);
 
 #endif
-// vim: ai et tabstop=4
+/* vim: set ai et tabstop=4: */

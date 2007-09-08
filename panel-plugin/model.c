@@ -102,4 +102,4 @@ places_bookmark_actions_list_destroy(GSList *actions)
 }
 */
 
-// vim: ai et tabstop=4
+/* vim: set ai et tabstop=4: */

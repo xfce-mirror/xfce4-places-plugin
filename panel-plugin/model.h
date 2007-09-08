@@ -84,4 +84,4 @@ inline void
 places_bookmark_group_finalize(PlacesBookmarkGroup*);
 
 #endif
-// vim: ai et tabstop=4
+/* vim: set ai et tabstop=4: */

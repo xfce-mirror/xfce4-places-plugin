@@ -269,4 +269,4 @@ places_bookmarks_volumes_create()
 }
 
 
-// vim: ai et tabstop=4
+/* vim: set ai et tabstop=4: */

@@ -33,14 +33,14 @@
 #include "places.h"
 #include "model.h"
 
-// Init
+/* Init */
 static void     places_cfg_init_defaults(PlacesConfig *cfg);
 
-// Configuration File
+/* Configuration File */
 static void     places_cfg_load(PlacesData*);
 static void     places_cfg_save(PlacesData*);
 
-// Configuration Dialog
+/* Configuration Dialog */
 static void     places_cfg_button_show_cb(GtkComboBox*, PlacesData*);
 static gboolean places_cfg_button_label_cb(GtkWidget *entry, GdkEventFocus*, PlacesData*);
 #if USE_RECENT_DOCUMENTS
@@ -181,19 +181,19 @@ places_cfg_save(PlacesData *pd)
     if(rcfile == NULL)
         return;
 
-    // BUTTON
+    /* BUTTON */
     xfce_rc_write_bool_entry(rcfile, "show_button_icon", cfg->show_button_icon);
     xfce_rc_write_bool_entry(rcfile, "show_button_label", cfg->show_button_label);
     xfce_rc_write_entry(rcfile, "label",           cfg->label);
 
-    // MENU
+    /* MENU */
     xfce_rc_write_bool_entry(rcfile, "show_icons",     cfg->show_icons);
     xfce_rc_write_bool_entry(rcfile, "show_volumes",   cfg->show_volumes);
     xfce_rc_write_bool_entry(rcfile, "show_bookmarks", cfg->show_bookmarks);
 #if USE_RECENT_DOCUMENTS
     xfce_rc_write_bool_entry(rcfile, "show_recent",    cfg->show_recent);
 
-    // RECENT DOCUMENTS
+    /* RECENT DOCUMENTS */
     xfce_rc_write_bool_entry(rcfile, "show_recent_clear", cfg->show_recent_clear);
     xfce_rc_write_int_entry(rcfile, "show_recent_number", cfg->show_recent_number);
 #endif
@@ -367,7 +367,7 @@ places_cfg_launch_dialog(PlacesData *pd)
                      G_CALLBACK(places_cfg_dialog_cb), pd);
 
 
-    // BUTTON: frame, vbox
+    /* BUTTON: frame, vbox */
     vbox_button = gtk_vbox_new(FALSE, 4);
     gtk_widget_show(vbox_button);
     
@@ -375,7 +375,7 @@ places_cfg_launch_dialog(PlacesData *pd)
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_button, FALSE, FALSE, 0);
 
 
-    // BUTTON: Show Icon/Label
+    /* BUTTON: Show Icon/Label */
     tmp_box = gtk_hbox_new(FALSE, 15);
     gtk_widget_show(tmp_box);
     gtk_box_pack_start(GTK_BOX(vbox_button), tmp_box, FALSE, FALSE, 0);
@@ -405,7 +405,7 @@ places_cfg_launch_dialog(PlacesData *pd)
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
 
-    // BUTTON: Label text entry
+    /* BUTTON: Label text entry */
     tmp_box = gtk_hbox_new(FALSE, 15);
     gtk_widget_show(tmp_box);
     gtk_box_pack_start(GTK_BOX(vbox_button), tmp_box, FALSE, FALSE, 0);
@@ -424,14 +424,14 @@ places_cfg_launch_dialog(PlacesData *pd)
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
 
-    // MENU: frame, vbox
+    /* MENU: frame, vbox */
     vbox_menu = gtk_vbox_new(FALSE, 4);
     gtk_widget_show(vbox_menu);
     
     frame_menu = xfce_create_framebox_with_content(_("Menu"), vbox_menu);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_menu, FALSE, FALSE, 0);
 
-    // MENU: Show Icons
+    /* MENU: Show Icons */
     tmp_widget = gtk_check_button_new_with_mnemonic(_("Show _icons in menu"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), cfg->show_icons);
 
@@ -443,7 +443,7 @@ places_cfg_launch_dialog(PlacesData *pd)
     gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
 
 
-    // MENU: Show Removable Media
+    /* MENU: Show Removable Media */
     tmp_widget = gtk_check_button_new_with_mnemonic(_("Show _removable media"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), cfg->show_volumes);
 
@@ -454,7 +454,7 @@ places_cfg_launch_dialog(PlacesData *pd)
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);   
 
-    // MENU: Show GTK Bookmarks
+    /* MENU: Show GTK Bookmarks */
     tmp_widget = gtk_check_button_new_with_mnemonic(_("Show GTK _bookmarks"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), cfg->show_bookmarks);
 
@@ -467,7 +467,7 @@ places_cfg_launch_dialog(PlacesData *pd)
 
 
 #if USE_RECENT_DOCUMENTS
-    // MENU: Show Recent Documents
+    /* MENU: Show Recent Documents */
     tmp_widget = gtk_check_button_new_with_mnemonic(_("Show recent _documents"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), cfg->show_recent);
 
@@ -478,14 +478,14 @@ places_cfg_launch_dialog(PlacesData *pd)
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
 
-    // RECENT DOCUMENTS: frame, vbox
+    /* RECENT DOCUMENTS: frame, vbox */
     vbox_recent = gtk_vbox_new(FALSE, 4);
     gtk_widget_show(vbox_recent);
     
     frame_recent = xfce_create_framebox_with_content(_("Recent Documents"), vbox_recent);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_recent, FALSE, FALSE, 0);
 
-    // RECENT DOCUMENTS: Show clear option
+    /* RECENT DOCUMENTS: Show clear option */
     tmp_widget = gtk_check_button_new_with_mnemonic(_("Show cl_ear option"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), cfg->show_recent_clear);
 
@@ -496,7 +496,7 @@ places_cfg_launch_dialog(PlacesData *pd)
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(vbox_recent), tmp_widget, FALSE, FALSE, 0);
 
-    // RECENT DOCUMENTS: Number to display
+    /* RECENT DOCUMENTS: Number to display */
     tmp_box = gtk_hbox_new(FALSE, 15);
     gtk_widget_show(tmp_box);
     gtk_box_pack_start(GTK_BOX(vbox_recent), tmp_box, FALSE, FALSE, 0);
@@ -517,14 +517,14 @@ places_cfg_launch_dialog(PlacesData *pd)
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
 #endif
 
-    // Search: frame, vbox
+    /* Search: frame, vbox */
     vbox_search = gtk_vbox_new(FALSE, 4);
     gtk_widget_show(vbox_search);
     
     frame_search = xfce_create_framebox_with_content(_("Search"), vbox_search);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_search, FALSE, FALSE, 0);
 
-    // Search: command
+    /* Search: command */
     tmp_box = gtk_hbox_new(FALSE, 15);
     gtk_widget_show(tmp_box);
     gtk_box_pack_start(GTK_BOX(vbox_search), tmp_box, FALSE, FALSE, 0);
@@ -546,4 +546,4 @@ places_cfg_launch_dialog(PlacesData *pd)
     gtk_widget_show(dlg);
 }
 
-// vim: ai et tabstop=4
+/* vim: set ai et tabstop=4: */

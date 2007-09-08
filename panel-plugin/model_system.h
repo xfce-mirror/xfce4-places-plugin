@@ -26,4 +26,4 @@ PlacesBookmarkGroup*
 places_bookmarks_system_create();
 
 #endif
-// vim: ai et tabstop=4
+/* vim: set ai et tabstop=4: */

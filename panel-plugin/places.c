@@ -29,7 +29,7 @@
 #include "places.h"
 #include "view.h"
 
-#include "string.h" // for strncmp
+#include "string.h"
 
 static void places_construct(XfcePanelPlugin*);
 static void places_finalize(XfcePanelPlugin*, PlacesData*);
@@ -38,28 +38,23 @@ XFCE_PANEL_PLUGIN_REGISTER_EXTERNAL(places_construct);
 
 /**
  * Initializes the plugin:
- *
- * 1. Sets up i18n
- * 2. Creates the PlacesData struct
- * 3. Asks the view to initialize
- * 4. Connects the finalize callback.
  */
 static void 
 places_construct(XfcePanelPlugin *plugin)
 {
     DBG("Construct: %s", PLUGIN_NAME);
    
-    // Set up i18n
+    /* Set up i18n */
     xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8"); 
 
-    // Create the PlacesData struct
+    /* Create the PlacesData struct */
     PlacesData *pd = panel_slice_new0(PlacesData);
     pd->plugin = plugin;
 
-    // Initialize view
+    /* Initialize view */
     places_view_init(pd);
 
-    // Connect the finalize callback
+    /* Connect the finalize callback */
     g_signal_connect(pd->plugin, "free-data", 
                      G_CALLBACK(places_finalize), pd);
 
@@ -67,9 +62,6 @@ places_construct(XfcePanelPlugin *plugin)
 
 /**
  * Cleans up resources.
- *
- * 1. Asks the view to finalize
- * 2. Frees the PlacesData struct
  */
 static void 
 places_finalize(XfcePanelPlugin *plugin, PlacesData *pd)
@@ -77,17 +69,16 @@ places_finalize(XfcePanelPlugin *plugin, PlacesData *pd)
     DBG("Free data: %s", PLUGIN_NAME);
     g_assert(pd != NULL);
    
-    // finalize the view
+    /* finalize the view */
     places_view_finalize(pd);
     
-    // free the PlacesData struct
+    /* free the PlacesData struct */
     panel_slice_free(PlacesData, pd);
 }
 
 /**
  * Opens Thunar at the location given by path.
  * If path is NULL or empty, it will open Thunar at the default location (home).
- * This function is also abused to open files.
  * The caller is in charge of freeing path.
  */
 void
@@ -106,6 +97,11 @@ places_load_thunar(const gchar *path)
     }
 }
 
+/**
+ * Opens the terminal at the location given by path.
+ * If path is NULL or empty, it will open the terminal at the default location (home).
+ * The caller is in charge of freeing path.
+ */
 void
 places_load_terminal(const gchar *const_path)
 {
@@ -135,17 +131,23 @@ places_load_terminal(const gchar *const_path)
         g_free(path);
 }
 
+/**
+ * Loads the file given by path.
+ * If path is NULL or empty, it will do nothing.
+ * The caller is in charge of freeing path.
+ */
 void
 places_load_file(const gchar *path)
 {
-    exo_url_show(path, NULL, NULL);
+    if(path != NULL && strlen(path))
+        exo_url_show(path, NULL, NULL);
 }
 
 void
 places_gui_exec(const gchar *cmd)
 {
-    if(cmd != NULL)
+    if(cmd != NULL && strlen(cmd))
         xfce_exec(cmd, FALSE, TRUE, NULL);
 }
 
-// vim: ai et tabstop=4
+/* vim: set ai et tabstop=4: */

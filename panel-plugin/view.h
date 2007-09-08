@@ -29,17 +29,17 @@
 
 #define BORDER 4
 
-// Init & Finalize
+/* Init & Finalize */
 void     places_view_init(PlacesData*);
 void     places_view_finalize(PlacesData*);
 
-// UI control
+/* UI control */
 void     places_view_open_menu(PlacesData*);
 void     places_view_destroy_menu(PlacesData*);
 
-// cfg use
+/* cfg use */
 void     places_view_reconfigure_model(PlacesData*);
 void     places_view_button_update(PlacesData*);
 
 #endif
-// vim: ai et tabstop=4
+/* vim: set ai et tabstop=4: */

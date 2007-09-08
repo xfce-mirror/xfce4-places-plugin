@@ -30,13 +30,13 @@ typedef struct _PlacesData PlacesData;
 
 struct _PlacesData
 {
-  // plugin
+  /* plugin */
   XfcePanelPlugin   *plugin;
 
-  // configuration
+  /* configuration */
   PlacesConfig      *cfg;
 
-  // view
+  /* view */
   GtkWidget         *view_button;
   GtkWidget         *view_button_box;
   GtkWidget         *view_button_image;
@@ -45,7 +45,7 @@ struct _PlacesData
   GtkTooltips       *view_tooltips;
   gboolean           view_needs_separator;
 
-  // model
+  /* model */
   GList *bookmark_groups;
 };
 
@@ -56,4 +56,4 @@ void places_gui_exec(const gchar *cmd);
 
 
 #endif
-// vim: ai et tabstop=4
+/* vim: set ai et tabstop=4: */
