@@ -2,6 +2,8 @@
 
 	* view.c: places_load_thunar_wrapper() should load thunar, not
 	terminal (context menu "Open" action)
+	* view.c: improve how icon theme changes and screen changes are
+	handled
 
 2007-08-23	Diego Ongaro <ongardie@gmail.com>
 

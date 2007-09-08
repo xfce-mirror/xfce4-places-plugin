@@ -43,7 +43,6 @@ struct _PlacesData
   GtkWidget         *view_button_label;
   GtkWidget         *view_menu;
   GtkTooltips       *view_tooltips;
-  gulong             view_theme_timeout_id;
   gboolean           view_needs_separator;
 
   // model
