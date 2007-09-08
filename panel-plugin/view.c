@@ -684,7 +684,7 @@ static void
 places_view_load_thunar_wrapper(PlacesBookmarkAction *act)
 {
     g_assert(act != NULL);
-    places_load_terminal((gchar*) act->priv);
+    places_load_thunar((gchar*) act->priv);
 }
 
 

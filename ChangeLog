@@ -1,3 +1,8 @@
+2007-09-07	Diego Ongaro <ongardie@gmail.com>
+
+	* view.c: places_load_thunar_wrapper() should load thunar, not
+	terminal (context menu "Open" action)
+
 2007-08-23	Diego Ongaro <ongardie@gmail.com>
 
 	* HACKING: updated to reflect current model
