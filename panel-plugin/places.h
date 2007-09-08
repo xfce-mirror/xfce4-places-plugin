@@ -44,6 +44,7 @@ struct _PlacesData
   GtkWidget         *view_menu;
   GtkTooltips       *view_tooltips;
   gboolean           view_needs_separator;
+  guint              view_menu_timeout_id;
 
   /* model */
   GList *bookmark_groups;

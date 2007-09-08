@@ -5,6 +5,7 @@
 	* view.c: improve how icon theme changes and screen changes are
 	handled
 	* *.{c,h}: removed all C++-style comments
+	* view.c: added menu timeout to poll for model changes
 
 2007-08-23	Diego Ongaro <ongardie@gmail.com>
 

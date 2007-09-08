@@ -48,6 +48,33 @@
 #include "model_user.h"
 #include "cfg.h"
 
+/* Debugging */
+#if defined(DEBUG) && (DEBUG > 0)
+
+static guint places_debug_menu_timeout_count = 0;
+#define PLACES_DEBUG_MENU_TIMEOUT_COUNT(delta)                              \
+    G_STMT_START{                                                           \
+        places_debug_menu_timeout_count += delta;                           \
+        DBG("Menu timeout count: %d", places_debug_menu_timeout_count);     \
+        g_assert(places_debug_menu_timeout_count == 0 ||                    \
+                 places_debug_menu_timeout_count == 1);                     \
+        if(pd != NULL){                                                     \
+            if(places_debug_menu_timeout_count == 0)                        \
+                    g_assert(pd->view_menu_timeout_id == 0);                \
+            else                                                            \
+                    g_assert(pd->view_menu_timeout_id > 0);                 \
+        }                                                                   \
+    }G_STMT_END
+
+#else
+
+#define PLACES_DEBUG_MENU_TIMEOUT_COUNT(delta)                              \
+    G_STMT_START{                                                           \
+        (void) 0;                                                           \
+    }G_STMT_END
+
+#endif
+
 /* UI Helpers */
 static void     places_view_update_menu(PlacesData*);
 
@@ -61,6 +88,8 @@ static void     places_view_cb_orientation_changed(PlacesData *pd, GtkOrientatio
 static void     places_view_cb_theme_changed(PlacesData *pd);
 
 /*  - Menu */
+static gboolean places_view_cb_menu_timeout(PlacesData *pd);
+
 static void     places_view_cb_menu_position(GtkMenu*, 
                                              gint *x, gint *y, 
                                              gboolean *push_in, 
@@ -87,6 +116,7 @@ places_view_init(PlacesData *pd)
     
     pd->view_needs_separator = FALSE;
     pd->view_menu = NULL;
+    pd->view_menu_timeout_id = 0;
 
     pd->cfg = places_cfg_new(pd);
     places_view_reconfigure_model(pd);
@@ -361,6 +391,22 @@ places_view_open_menu(PlacesData *pd)
                     (GtkMenuPositionFunc) places_view_cb_menu_position,
                     pd, 0,
                     gtk_get_current_event_time ());
+    
+    /* menu timeout to poll for model changes */
+    if(pd->view_menu_timeout_id == 0){
+#if GLIB_CHECK_VERSION(2,14,0)
+        pd->view_menu_timeout_id = g_timeout_add_seconds_full(G_PRIORITY_LOW, 2, 
+                                   (GSourceFunc) places_view_cb_menu_timeout, pd,
+                                   NULL);
+#else
+        pd->view_menu_timeout_id = g_timeout_add_full(G_PRIORITY_LOW, 2000, 
+                                   (GSourceFunc) places_view_cb_menu_timeout, pd,
+                                   NULL);
+#endif
+        PLACES_DEBUG_MENU_TIMEOUT_COUNT(1);
+    }else{
+        PLACES_DEBUG_MENU_TIMEOUT_COUNT(0);
+    }
 }
 
 void
@@ -485,6 +531,31 @@ places_view_cb_orientation_changed(PlacesData *pd, GtkOrientation orientation, X
 }
 
 /* Menu callbacks */
+static gboolean /* return false to stop calling it */
+places_view_cb_menu_timeout(PlacesData *pd){
+
+    if(!pd->view_menu_timeout_id)
+        goto killtimeout;
+
+    if(pd->view_menu == NULL || !GTK_WIDGET_VISIBLE(pd->view_menu))
+        goto killtimeout;
+
+    if(places_view_bookmarks_changed(pd->bookmark_groups))
+        places_view_open_menu(pd);
+
+    PLACES_DEBUG_MENU_TIMEOUT_COUNT(0);
+    return TRUE;   
+    
+  killtimeout:
+        if(pd->view_menu_timeout_id){
+            pd->view_menu_timeout_id = 0;
+            PLACES_DEBUG_MENU_TIMEOUT_COUNT(-1);
+        }else{
+            PLACES_DEBUG_MENU_TIMEOUT_COUNT(0);
+        }
+        return FALSE;
+
+}
 
 /* Copied almost verbatim from xfdesktop plugin */
 static void
@@ -560,6 +631,15 @@ places_view_cb_menu_deact(PlacesData *pd, GtkWidget *menu)
 {
     /* deactivate button */
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pd->view_button), FALSE);
+
+    /* remove the timeout to save a tick */
+    if(pd->view_menu_timeout_id){
+        g_source_remove(pd->view_menu_timeout_id);
+        pd->view_menu_timeout_id = 0;
+        PLACES_DEBUG_MENU_TIMEOUT_COUNT(-1);
+    }else{
+        PLACES_DEBUG_MENU_TIMEOUT_COUNT(0);
+    }
 }
 
 /* Button */
