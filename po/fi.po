@@ -1,6 +1,8 @@
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
+# Finnish translations for xfce4-places-plugin package.
+# Copyright (C) 2007 Diego Ongaro <ongardie@gmail.com>.
+# This file is distributed under the same license as the xfce4-places-plugin package.
+# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2007.
+# The original file was automatically generated based on the following:
 # ###
 # Finnish translations for Thunar package.
 # Copyright (C) 2004-2007 Benedikt Meurer.
@@ -20,92 +22,127 @@
 # ###
 msgid ""
 msgstr ""
+"Project-Id-Version: xfce4-places-plugin 0.9.991\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 01:47-0500\n"
+"POT-Creation-Date: 2007-09-11 12:46+0300\n"
+"PO-Revision-Date: 2007-09-11 13:00+0300\n"
+"Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. vim: ai et tabstop=4
+#. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr ""
+msgstr "Hakemistot, dokumentit ja irrotettavat taltiot"
 
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140 ../panel-plugin/cfg.c:259
-#: ../panel-plugin/cfg.c:329
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:84
+#: ../panel-plugin/cfg.c:148 ../panel-plugin/cfg.c:274
+#: ../panel-plugin/cfg.c:358
 msgid "Places"
 msgstr "Sijainnit"
 
-#: ../panel-plugin/model_system.c:60
+#: ../panel-plugin/model_system.c:93
 msgid "Trash"
 msgstr "Roskakori"
 
-#: ../panel-plugin/model_system.c:70
+#: ../panel-plugin/model_system.c:114
 msgid "Desktop"
 msgstr "Työpöytä"
 
-#: ../panel-plugin/model_system.c:78
+#: ../panel-plugin/model_system.c:129
 msgid "File System"
 msgstr "Tiedostojärjestelmä"
 
-#: ../panel-plugin/view.c:244 ../panel-plugin/cfg.c:456
+#: ../panel-plugin/model_volumes.c:168
+msgid "Mount"
+msgstr "Liitä"
+
+#: ../panel-plugin/model_volumes.c:179
+msgid "Eject"
+msgstr "Poista"
+
+#: ../panel-plugin/model_volumes.c:189
+msgid "Unmount"
+msgstr "Irrota"
+
+#: ../panel-plugin/view.c:294
+msgid "Search for Files"
+msgstr "Etsi tiedostoja"
+
+#: ../panel-plugin/view.c:336 ../panel-plugin/cfg.c:485
 msgid "Recent Documents"
 msgstr "Viimeisimmät asiakirjat"
 
-#: ../panel-plugin/cfg.c:345
+#: ../panel-plugin/view.c:814
+msgid "Open Terminal Here"
+msgstr "Avaa pääte tässä hakemistossa"
+
+#: ../panel-plugin/view.c:821
+msgid "Open"
+msgstr "Avaa"
+
+#: ../panel-plugin/cfg.c:374
 msgid "Button"
-msgstr ""
+msgstr "Painike"
 
-#: ../panel-plugin/cfg.c:354
+#: ../panel-plugin/cfg.c:383
 msgid "_Show"
-msgstr ""
+msgstr "_Näytä"
 
-#: ../panel-plugin/cfg.c:360
+#: ../panel-plugin/cfg.c:389
 msgid "Icon Only"
-msgstr ""
+msgstr "Vain kuvake"
 
-#: ../panel-plugin/cfg.c:361
+#: ../panel-plugin/cfg.c:390
 msgid "Label Only"
-msgstr ""
+msgstr "Vain nimi"
 
-#: ../panel-plugin/cfg.c:362
+#: ../panel-plugin/cfg.c:391
 msgid "Icon and Label"
-msgstr ""
+msgstr "Kuvake ja nimi"
 
-#: ../panel-plugin/cfg.c:384
+#: ../panel-plugin/cfg.c:413
 msgid "_Label"
-msgstr ""
+msgstr "N_imi"
 
-#: ../panel-plugin/cfg.c:402
+#: ../panel-plugin/cfg.c:431
 msgid "Menu"
-msgstr ""
+msgstr "Valikko"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:406
+#: ../panel-plugin/cfg.c:435
 msgid "Show _icons in menu"
-msgstr ""
+msgstr "Näytä _kuvakkeet valikossa"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:418
+#: ../panel-plugin/cfg.c:447
 msgid "Show _removable media"
-msgstr ""
+msgstr "Näytä i_rrotettavat taltiot"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:429
+#: ../panel-plugin/cfg.c:458
 msgid "Show GTK _bookmarks"
-msgstr ""
+msgstr "Näytä GTK:n _pikanäppäimet"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:442
-#, fuzzy
+#: ../panel-plugin/cfg.c:471
 msgid "Show recent _documents"
-msgstr "Viimeisimmät asiakirjat"
+msgstr "_Viimeisimmät asiakirjat"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:460
+#: ../panel-plugin/cfg.c:489
 msgid "Show cl_ear option"
-msgstr ""
+msgstr "Näytä t_yhjennystoiminto"
 
-#: ../panel-plugin/cfg.c:475
+#: ../panel-plugin/cfg.c:504
 msgid "_Number to display"
-msgstr ""
+msgstr "Näytettävä _määrä"
+
+#: ../panel-plugin/cfg.c:524
+msgid "Search"
+msgstr "Etsi"
+
+#: ../panel-plugin/cfg.c:532
+msgid "Co_mmand"
+msgstr "K_omento"
