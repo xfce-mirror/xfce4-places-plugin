@@ -58,9 +58,11 @@ places_view_cfg_iface_make_empty_cfg_dialog(PlacesViewCfgIface*);
 #include "cfg.h"
 
 /* Init & Finalize */
-PlacesView*             places_view_init(XfcePanelPlugin*);
-void                    places_view_finalize(PlacesView*);
+PlacesView*
+places_view_init(XfcePanelPlugin*);
 
+void
+places_view_finalize(PlacesView*);
 
 #endif
 /* vim: set ai et tabstop=4: */

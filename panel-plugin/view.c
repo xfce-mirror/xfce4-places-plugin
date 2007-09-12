@@ -50,10 +50,6 @@
 #include "model_volumes.h"
 #include "model_user.h"
 
-
-
-#define BORDER 4
-
 struct _PlacesView
 {
     /* plugin */
@@ -80,8 +76,6 @@ struct _PlacesView
     gchar                     *label_tooltip_text;
     gboolean                  force_update_theme;
 
-    
-    
     /* model */
     GList                     *bookmark_groups;
 };
@@ -98,9 +92,9 @@ static guint places_debug_menu_timeout_count = 0;
                  places_debug_menu_timeout_count == 1);                     \
         if(pd != NULL){                                                     \
             if(places_debug_menu_timeout_count == 0)                        \
-                    g_assert(pd->menu_timeout_id == 0);                \
+                    g_assert(pd->menu_timeout_id == 0);                     \
             else                                                            \
-                    g_assert(pd->menu_timeout_id > 0);                 \
+                    g_assert(pd->menu_timeout_id > 0);                      \
         }                                                                   \
     }G_STMT_END
 
@@ -147,29 +141,39 @@ places_view_cfg_iface_make_empty_cfg_dialog(PlacesViewCfgIface *iface)
 
 /********** Model Management **********/
 static void
-pview_reconfigure_model(PlacesView *view)
+pview_destroy_model(PlacesView *view)
 {
+    GList *bookmark_group_li;
+    PlacesBookmarkGroup *bookmark_group;
+
     /* we don't want the menu items holding on to any references */
     pview_destroy_menu(view);
-
-    /* destroy first */
+   
     if(view->bookmark_groups != NULL){
 
-        GList *bookmark_group = view->bookmark_groups;
-        while(bookmark_group != NULL){
-            DBG("finalize: %x", (gint) bookmark_group->data);
+        bookmark_group_li = view->bookmark_groups;
+        do{
+            if(bookmark_group_li->data != NULL){
+                bookmark_group = (PlacesBookmarkGroup*) bookmark_group_li->data;
+                places_bookmark_group_finalize(bookmark_group);
+            }
 
-            if(bookmark_group->data != NULL)
-                places_bookmark_group_finalize((PlacesBookmarkGroup*) bookmark_group->data);
+            bookmark_group_li = bookmark_group_li->next;
 
-            bookmark_group = bookmark_group->next;
-        }
+        }while(bookmark_group_li != NULL);
 
         g_list_free(view->bookmark_groups);
         view->bookmark_groups = NULL;
     }
 
-    /* now create */
+}
+
+static void
+pview_reconfigure_model(PlacesView *view)
+{
+    pview_destroy_model(view);
+
+    /* now re-create it */
     view->bookmark_groups = g_list_append(view->bookmark_groups, places_bookmarks_system_create());
 
     if(view->cfg->show_volumes)
@@ -185,14 +189,17 @@ static gboolean
 pview_model_changed(GList *bookmark_groups)
 {
     gboolean ret = FALSE;
-    GList *bookmark_group = bookmark_groups;
+    GList *bookmark_group_li = bookmark_groups;
+    PlacesBookmarkGroup *bookmark_group;
 
-    while(bookmark_group != NULL){
+    while(bookmark_group_li != NULL){
 
-        if(bookmark_group->data != NULL)
-            ret = places_bookmark_group_changed((PlacesBookmarkGroup*) bookmark_group->data) || ret;
+        if(bookmark_group_li->data != NULL){
+            bookmark_group = (PlacesBookmarkGroup*) bookmark_group_li->data;
+            ret = places_bookmark_group_changed(bookmark_group) || ret;
+        }
 
-        bookmark_group = bookmark_group->next;
+        bookmark_group_li = bookmark_group_li->next;
     }
 
     return ret;
@@ -204,10 +211,11 @@ pview_model_changed(GList *bookmark_groups)
 /* Panel callbacks */
 
 static gboolean
-pview_cb_size_changed(PlacesView *pd, gint wsize)
+pview_cb_size_changed(PlacesView *pd)
 {
     g_assert(pd != NULL);
     g_assert(pd->button != NULL);
+
     if(GTK_WIDGET_REALIZED(pd->button))
         pview_button_update(pd);
 
@@ -232,13 +240,6 @@ pview_cb_theme_changed(PlacesView *view)
     pview_destroy_menu(view);
 }
 
-static void
-pview_cb_orientation_changed(PlacesView *view, GtkOrientation orientation, XfcePanelPlugin *panel)
-{
-    DBG("orientation changed");
-    pview_button_update(view);
-}
-
 /* Menu callbacks */
 static gboolean /* return false to stop calling it */
 pview_cb_menu_timeout(PlacesView *pd){
@@ -254,15 +255,16 @@ pview_cb_menu_timeout(PlacesView *pd){
 
     PLACES_DEBUG_MENU_TIMEOUT_COUNT(0);
     return TRUE;   
-    
+
+
   killtimeout:
-        if(pd->menu_timeout_id){
-            pd->menu_timeout_id = 0;
-            PLACES_DEBUG_MENU_TIMEOUT_COUNT(-1);
-        }else{
-            PLACES_DEBUG_MENU_TIMEOUT_COUNT(0);
-        }
-        return FALSE;
+    if(pd->menu_timeout_id){
+        pd->menu_timeout_id = 0;
+        PLACES_DEBUG_MENU_TIMEOUT_COUNT(-1);
+    }else{
+        PLACES_DEBUG_MENU_TIMEOUT_COUNT(0);
+    }
+    return FALSE;
 
 }
 
@@ -370,6 +372,8 @@ pview_cb_button_pressed(PlacesView *pd, GdkEventButton *evt)
 static void
 pview_cb_menu_item_context_act(GtkWidget *item, PlacesView *pd)
 {
+    PlacesBookmarkAction *action;
+
     g_assert(pd != NULL);
     g_assert(pd->menu != NULL && GTK_IS_WIDGET(pd->menu));
 
@@ -378,7 +382,7 @@ pview_cb_menu_item_context_act(GtkWidget *item, PlacesView *pd)
     while(g_main_context_iteration(NULL, FALSE))
         /* no op */;
 
-    PlacesBookmarkAction *action = (PlacesBookmarkAction*) g_object_get_data(G_OBJECT(item), "action");
+    action = (PlacesBookmarkAction*) g_object_get_data(G_OBJECT(item), "action");
     DBG("Calling action %s", action->label);
     places_bookmark_action_call(action);
     
@@ -391,7 +395,6 @@ pview_cb_menu_item_do_alt(PlacesView *pd, GtkWidget *menu_item)
     GList *actions = (GList*) g_object_get_data(G_OBJECT(menu_item), "actions");
     GtkWidget *context, *context_item;
     PlacesBookmarkAction *action;
-
 
     if(actions != NULL){
 
@@ -416,7 +419,8 @@ pview_cb_menu_item_do_alt(PlacesView *pd, GtkWidget *menu_item)
                        NULL, NULL,
                        0, gtk_get_current_event_time());
 
-        g_signal_connect_swapped(context, "deactivate", G_CALLBACK(pview_open_menu), pd);
+        g_signal_connect_swapped(context, "deactivate",
+                                 G_CALLBACK(pview_open_menu), pd);
 
     }
 
@@ -442,6 +446,7 @@ pview_cb_menu_item_press(GtkWidget *menu_item, GdkEventButton *event, PlacesView
     gboolean ctrl =  (event->state & GDK_CONTROL_MASK) && 
                     !(event->state & (GDK_MOD1_MASK|GDK_SHIFT_MASK|GDK_MOD4_MASK));
     gboolean sensitive = GTK_WIDGET_IS_SENSITIVE(gtk_bin_get_child(GTK_BIN(menu_item)));
+
     if(event->button == 3 || (event->button == 1 && (ctrl || !sensitive)))
         return pview_cb_menu_item_do_alt(pd, menu_item);
     else
@@ -469,27 +474,30 @@ pview_cb_recent_items_clear(GtkWidget *clear_item)
 }
 #endif
 
+
 /********** Model Visitor Callbacks **********/
 
 static void
 pview_load_thunar_wrapper(PlacesBookmarkAction *act)
 {
     g_assert(act != NULL);
+
+    /* we stored the path in priv */
     places_load_thunar((gchar*) act->priv);
 }
-
-
 
 static void
 pview_load_terminal_wrapper(PlacesBookmarkAction *act)
 {
     g_assert(act != NULL);
+
+    /* we stored the path in priv */
     places_load_terminal((gchar*) act->priv);
 }
 
 
-
 /********** UI Helpers **********/
+
 static void
 pview_destroy_menu(PlacesView *view)
 {
@@ -571,6 +579,11 @@ pview_add_menu_item(PlacesView *view, PlacesBookmark *bookmark)
 static void
 pview_update_menu(PlacesView *pd)
 {
+    GList *bookmark_group_li;
+    PlacesBookmarkGroup *bookmark_group;
+    GList *bookmarks;
+    PlacesBookmark *bookmark;
+
 #if USE_RECENT_DOCUMENTS
     GtkWidget *recent_menu;
     GtkWidget *clear_item;
@@ -584,21 +597,20 @@ pview_update_menu(PlacesView *pd)
     pd->menu = gtk_menu_new();
     
     /* make sure the menu popups up in right screen */
-    gtk_menu_set_screen (GTK_MENU (pd->menu),
-                         gtk_widget_get_screen (GTK_WIDGET (pd->plugin)));
+    gtk_menu_set_screen(GTK_MENU(pd->menu),
+                        gtk_widget_get_screen(pd->button));
 
-    GList *bookmark_group = pd->bookmark_groups;
-    GList *bookmarks;
-    PlacesBookmark *bookmark;
-    while(bookmark_group != NULL){
+    bookmark_group_li = pd->bookmark_groups;
+    while(bookmark_group_li != NULL){
         
-        if(bookmark_group->data == NULL){ /* separator */
+        if(bookmark_group_li->data == NULL){ /* separator */
 
             pd->needs_separator = TRUE;
 
         }else{
 
-            bookmarks = places_bookmark_group_get_bookmarks((PlacesBookmarkGroup*) bookmark_group->data);
+            bookmark_group = (PlacesBookmarkGroup*) bookmark_group_li->data;
+            bookmarks = places_bookmark_group_get_bookmarks(bookmark_group);
     
             while(bookmarks != NULL){
                 bookmark = (PlacesBookmark*) bookmarks->data;
@@ -610,7 +622,7 @@ pview_update_menu(PlacesView *pd)
 
         }
 
-        bookmark_group = bookmark_group->next;
+        bookmark_group_li = bookmark_group_li->next;
     }
 
     /* Recent Documents */
@@ -695,7 +707,7 @@ pview_open_menu(PlacesView *pd)
         pview_update_menu(pd);
 
     /* toggle the button */
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (pd->button), TRUE);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pd->button), TRUE);
 
     /* Register this menu (for focus, transparency, auto-hide, etc) */
     /* We don't want to register if the menu is visible (hasn't been deactivated) */
@@ -730,9 +742,9 @@ pview_gtk_obox_new(GtkOrientation orientation)
 {
     GtkWidget *box;
     if(orientation == GTK_ORIENTATION_HORIZONTAL)
-        box = gtk_hbox_new(FALSE, BORDER);
+        box = gtk_hbox_new(FALSE, 4);
     else
-        box = gtk_vbox_new(FALSE, BORDER);
+        box = gtk_vbox_new(FALSE, 4);
     gtk_container_set_border_width(GTK_CONTAINER(box), 0);
     gtk_widget_show(box);
     return box;
@@ -845,25 +857,27 @@ pview_button_update(PlacesView *view)
 
     if(size_changed || icon_presence_changed || label_presence_changed || theme_changed){
         view->size              = xfce_panel_plugin_get_size(view->plugin);
-        DBG("size: %d", view->size);
+        DBG("Panel size: %d", view->size);
         view->show_button_icon  = cfg->show_button_icon;
         view->show_button_label = cfg->show_button_label;
         
         GdkPixbuf *icon;
-        gint size, width, height;
-        gint pix_w = 0, pix_h = 0;
+        gint width, height;
+        gint button_overhead_size, box_overhead_size;
         GtkWidget *button_box = gtk_bin_get_child(GTK_BIN(view->button));
         
-        DBG("button thickness (%d, %d)", view->button->style->xthickness, view->button->style->ythickness);
-        size = view->size - 2 - 2 * MAX(view->button->style->xthickness,
-                                        view->button->style->ythickness);
+        button_overhead_size = 2 + 2 *  MAX(view->button->style->xthickness,
+                                            view->button->style->ythickness);
+        box_overhead_size = 0;
+        width = 0;
+        height = 0;
 
         if(view->show_button_icon){
-            icon = xfce_themed_icon_load_category(2, size);
+            icon = xfce_themed_icon_load_category(2, view->size - button_overhead_size);
             if(G_LIKELY(icon != NULL)){
                 
-                pix_w = gdk_pixbuf_get_width(icon);
-                pix_h = gdk_pixbuf_get_height(icon);
+                width  = MAX(gdk_pixbuf_get_width(icon),  view->size - button_overhead_size);
+                height = MAX(gdk_pixbuf_get_height(icon), view->size - button_overhead_size);
              
                 if(view->button_image == NULL){
                     view->button_image = g_object_ref(gtk_image_new_from_pixbuf(icon));
@@ -886,15 +900,6 @@ pview_button_update(PlacesView *view)
             g_object_unref(view->button_image);
             view->button_image = NULL;
         }
-        DBG("button thickness (%d, %d)", view->button->style->xthickness, view->button->style->ythickness);
-
-        DBG("view->size=%d, size=%d", view->size, size);
-        width = pix_w + (view->size - size);
-        height = pix_h + (view->size - size);
-        if(view->orientation == GTK_ORIENTATION_HORIZONTAL)
-            height = MAX(width, size);
-        else
-            width = MAX(height, size);
 
         if(view->show_button_label){
             GtkRequisition req;
@@ -911,13 +916,14 @@ pview_button_update(PlacesView *view)
             }
 
             gtk_widget_size_request(view->button_label, &req);
-            DBG("label wants width: %d, width is now: %d", req.width, width);
-            if(view->orientation == GTK_ORIENTATION_HORIZONTAL)
-                width += req.width + BORDER;
-            else {
-                width = MAX(width, req.width + 2 + 2 * view->button->style->xthickness);
-                height += req.height + BORDER;
+            if(view->orientation == GTK_ORIENTATION_HORIZONTAL){
+                width += req.width;
+                height = MAX(height, req.height);
+            }else{
+                width = MAX(width, req.width);
+                height += req.height;
             }
+
         }else if(view->button_label != NULL){
             g_assert(GTK_IS_WIDGET(view->button_label));
             gtk_widget_destroy(view->button_label);
@@ -925,15 +931,23 @@ pview_button_update(PlacesView *view)
             view->button_label = NULL;
         }
 
+        width += button_overhead_size;
+        height += button_overhead_size;
+
         if(view->button_image != NULL && view->button_label != NULL){
 
-            gint delta = gtk_box_get_spacing(GTK_BOX(button_box));
+            box_overhead_size = gtk_box_get_spacing(GTK_BOX(button_box));
 
             if(view->orientation == GTK_ORIENTATION_HORIZONTAL)
-                width += delta;
+                width += box_overhead_size;
             else
-                height += delta;
+                height += box_overhead_size;
         }
+
+        if(view->orientation == GTK_ORIENTATION_HORIZONTAL)
+            height = MAX(height, view->size);
+        else
+            width = MAX(width, view->size);
 
         DBG("width=%d, height=%d", width, height);
         gtk_widget_set_size_request(view->button, width, height);
@@ -942,8 +956,6 @@ pview_button_update(PlacesView *view)
     if(label_tooltip_changed)
         gtk_tooltips_set_tip(view->tooltips, view->button, view->label_tooltip_text, NULL);
 }
-
-
 
 static void
 pview_cfg_dialog_close_cb(GtkDialog *dialog, gint response, PlacesView *view)
@@ -1030,7 +1042,7 @@ places_view_init(XfcePanelPlugin *plugin)
     g_signal_connect_swapped(G_OBJECT(view->plugin), "size-changed",
                              G_CALLBACK(pview_cb_size_changed), view);
     g_signal_connect_swapped(G_OBJECT(view->plugin), "orientation-changed",
-                             G_CALLBACK(pview_cb_orientation_changed), view);
+                             G_CALLBACK(pview_button_update), view);
 
     /* button signal */
     g_signal_connect_swapped(view->button, "button-press-event",
@@ -1052,6 +1064,7 @@ void
 places_view_finalize(PlacesView *view)
 {
     pview_destroy_menu(view);
+    pview_destroy_model(view);
     
     if(view->button_image != NULL)
         g_object_unref(view->button_image);
@@ -1063,22 +1076,10 @@ places_view_finalize(PlacesView *view)
         g_free(view->label_tooltip_text);
     g_object_unref(view->tooltips);
 
-    if(view->bookmark_groups != NULL){
-        GList *bookmark_group = view->bookmark_groups;
-        while(bookmark_group != NULL){
-            if(bookmark_group->data != NULL)
-               places_bookmark_group_finalize((PlacesBookmarkGroup*) bookmark_group->data);
-            bookmark_group = bookmark_group->next;
-        }
-        g_list_free(view->bookmark_groups);
-        view->bookmark_groups = NULL;
-    }
-
     places_cfg_view_iface_finalize(view->cfg_iface);
     
     g_free(view->view_cfg_iface);
     g_free(view);
 }
-
 
 /* vim: set ai et tabstop=4: */
