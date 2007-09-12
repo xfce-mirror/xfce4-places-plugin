@@ -34,24 +34,6 @@
 #include "cfg.h"
 #include "view.h"
 
-/* Init */
-static void     pcfg_init_defaults(PlacesCfg *cfg);
-
-/* Configuration File */
-static void     pcfg_load(PlacesCfg*);
-static void     pcfg_save(PlacesCfg*);
-
-/* Configuration Dialog */
-static void     pcfg_button_show_cb(GtkComboBox*, PlacesCfg*);
-static gboolean pcfg_button_label_cb(GtkWidget *entry, GdkEventFocus*, PlacesCfg*);
-#if USE_RECENT_DOCUMENTS
-static void     pcfg_recent_num_cb(GtkAdjustment*, PlacesCfg*);
-#endif
-static void     pcfg_menu_cb(GtkToggleButton*, PlacesCfg*);
-static void     pcfg_model_cb(GtkToggleButton*, PlacesCfg*);
-static void     pcfg_open_dialog(PlacesCfg*);
-
-
 /********** PlacesCfgViewIface helpers **********/
 
 inline PlacesCfg*
@@ -84,55 +66,6 @@ places_cfg_view_iface_finalize(PlacesCfgViewIface *iface)
     iface->finalize(iface);
 }
 
-/********** Initialization & Finalization **********/
-
-static void 
-pcfg_finalize(PlacesCfgViewIface *cfg_iface)
-{
-    PlacesCfg *cfg;
-
-    g_assert(cfg_iface != NULL);
-
-    cfg = cfg_iface->cfg;
-    g_assert(cfg != NULL);
-
-    if(cfg->label != NULL)
-        g_free(cfg->label);
-    if(cfg->search_cmd != NULL)
-        g_free(cfg->search_cmd);
-
-    if(cfg->read_path != NULL)
-        g_free(cfg->read_path);
-    if(cfg->write_path != NULL)
-        g_free(cfg->write_path);
-
-    g_free(cfg);
-    g_free(cfg_iface);
-}
-
-PlacesCfgViewIface*
-places_cfg_new(PlacesViewCfgIface *view_iface, gchar *read_path, gchar *write_path)
-{
-    PlacesCfgViewIface *cfg_iface;
-    PlacesCfg *cfg;
-
-    g_assert(view_iface != NULL);
-
-    cfg                     = g_new0(PlacesCfg, 1);
-    cfg->read_path          = read_path;
-    cfg->write_path         = write_path;
-    cfg->view_iface         = view_iface;
-
-    pcfg_load(cfg);
-    
-    cfg_iface               = g_new0(PlacesCfgViewIface, 1);
-    cfg_iface->cfg          = cfg;
-    cfg_iface->open_dialog  = pcfg_open_dialog;
-    cfg_iface->save         = pcfg_save;
-    cfg_iface->finalize     = pcfg_finalize;
-
-    return cfg_iface;
-}
 
 /********** Configuration File **********/
 
@@ -153,7 +86,7 @@ pcfg_init_defaults(PlacesCfg *cfg)
 
     if(cfg->search_cmd != NULL)
         g_free(cfg->search_cmd);
-    cfg->search_cmd         = g_strdup("");
+    cfg->search_cmd = g_strdup("");
 
     if(cfg->label != NULL)
         g_free(cfg->label);
@@ -165,6 +98,8 @@ static void
 pcfg_load(PlacesCfg *cfg)
 {
     XfceRc *rcfile;
+
+    g_assert(cfg != NULL);
 
     if(cfg->read_path == NULL){
         pcfg_init_defaults(cfg);
@@ -197,18 +132,19 @@ pcfg_load(PlacesCfg *cfg)
         cfg->label = _("Places");
     cfg->label = g_strdup(cfg->label);
 
+    if(cfg->search_cmd != NULL)
+        g_free(cfg->search_cmd);
+
     cfg->search_cmd = (gchar*) xfce_rc_read_entry(rcfile, "search_cmd", NULL);
     if(cfg->search_cmd == NULL)
         cfg->search_cmd = "";
     cfg->search_cmd = g_strdup(cfg->search_cmd);
 
 #if USE_RECENT_DOCUMENTS
-    cfg->show_recent    = xfce_rc_read_bool_entry(rcfile, "show_recent", TRUE);
-    cfg->show_recent_clear = xfce_rc_read_bool_entry(rcfile, "show_recent_clear", TRUE);
-
-    cfg->show_recent_number = xfce_rc_read_int_entry(rcfile, "show_recent_number", 10);
-    if(cfg->show_recent_number < 1 || cfg->show_recent_number > 25)
-        cfg->show_recent_number = 10;
+    cfg->show_recent        = xfce_rc_read_bool_entry(rcfile, "show_recent", TRUE);
+    cfg->show_recent_clear  = xfce_rc_read_bool_entry(rcfile, "show_recent_clear", TRUE);
+    cfg->show_recent_number = CLAMP(xfce_rc_read_int_entry(rcfile, "show_recent_number", 10),
+                                    1, 25);
 #endif
 
     xfce_rc_close(rcfile);
@@ -219,6 +155,8 @@ pcfg_save(PlacesCfg *cfg)
 {
     XfceRc *rcfile;
     
+    g_assert(cfg != NULL);
+
     if(cfg->write_path == NULL)
         return;
 
@@ -229,20 +167,21 @@ pcfg_save(PlacesCfg *cfg)
     /* BUTTON */
     xfce_rc_write_bool_entry(rcfile, "show_button_icon", cfg->show_button_icon);
     xfce_rc_write_bool_entry(rcfile, "show_button_label", cfg->show_button_label);
-    xfce_rc_write_entry(rcfile, "label",           cfg->label);
+    xfce_rc_write_entry(rcfile, "label", cfg->label);
 
     /* MENU */
-    xfce_rc_write_bool_entry(rcfile, "show_icons",     cfg->show_icons);
-    xfce_rc_write_bool_entry(rcfile, "show_volumes",   cfg->show_volumes);
+    xfce_rc_write_bool_entry(rcfile, "show_icons", cfg->show_icons);
+    xfce_rc_write_bool_entry(rcfile, "show_volumes", cfg->show_volumes);
     xfce_rc_write_bool_entry(rcfile, "show_bookmarks", cfg->show_bookmarks);
 #if USE_RECENT_DOCUMENTS
-    xfce_rc_write_bool_entry(rcfile, "show_recent",    cfg->show_recent);
+    xfce_rc_write_bool_entry(rcfile, "show_recent", cfg->show_recent);
 
     /* RECENT DOCUMENTS */
     xfce_rc_write_bool_entry(rcfile, "show_recent_clear", cfg->show_recent_clear);
     xfce_rc_write_int_entry(rcfile, "show_recent_number", cfg->show_recent_number);
 #endif
 
+    /* SEARCH */
     xfce_rc_write_entry(rcfile, "search_cmd", cfg->search_cmd);
 
     xfce_rc_close(rcfile);
@@ -256,9 +195,11 @@ pcfg_save(PlacesCfg *cfg)
 static void
 pcfg_button_show_cb(GtkComboBox *combo, PlacesCfg *cfg)
 {
-    gint option;
+    gint option = gtk_combo_box_get_active(combo);
     
-    option = gtk_combo_box_get_active(combo);
+    g_assert(cfg != NULL);
+    g_assert(option >= 0 && option <= 2);
+
     cfg->show_button_icon  = (option == 0 || option == 2);
     cfg->show_button_label = (option == 1 || option == 2);
 
@@ -268,10 +209,15 @@ pcfg_button_show_cb(GtkComboBox *combo, PlacesCfg *cfg)
 static gboolean
 pcfg_button_label_cb(GtkWidget *label_entry, GdkEventFocus *event, PlacesCfg *cfg)
 {
+    const gchar *entry_text;
+
+    g_assert(cfg != NULL);
+
     if(cfg->label != NULL)
         g_free(cfg->label);
     
-    cfg->label = g_strstrip(g_strdup(gtk_entry_get_text(GTK_ENTRY(label_entry))));
+    entry_text = gtk_entry_get_text(GTK_ENTRY(label_entry));
+    cfg->label = g_strstrip(g_strdup(entry_text));
     if(strlen(cfg->label) == 0){
         g_free(cfg->label);
         cfg->label = g_strdup(_("Places"));
@@ -286,10 +232,15 @@ pcfg_button_label_cb(GtkWidget *label_entry, GdkEventFocus *event, PlacesCfg *cf
 static gboolean
 pcfg_search_cmd_cb(GtkWidget *label_entry, GdkEventFocus *event, PlacesCfg *cfg)
 {
+    const gchar *entry_text;
+
+    g_assert(cfg != NULL);
+
     if(cfg->search_cmd != NULL)
         g_free(cfg->search_cmd);
     
-    cfg->search_cmd = g_strstrip(g_strdup(gtk_entry_get_text(GTK_ENTRY(label_entry))));
+    entry_text = gtk_entry_get_text(GTK_ENTRY(label_entry));
+    cfg->search_cmd = g_strstrip(g_strdup(entry_text));
 
     /* TODO: you can't open menu when the field is focused */
     places_view_cfg_iface_update_menu(cfg->view_iface);
@@ -301,8 +252,11 @@ pcfg_search_cmd_cb(GtkWidget *label_entry, GdkEventFocus *event, PlacesCfg *cfg)
 static void
 pcfg_recent_num_cb(GtkAdjustment *adj, PlacesCfg *cfg)
 {
+    g_assert(cfg != NULL);
+
     cfg->show_recent_number = (gint) gtk_adjustment_get_value(adj);
     DBG("Show %d recent documents", cfg->show_recent_number);
+
     places_view_cfg_iface_update_menu(cfg->view_iface);
 }
 #endif
@@ -310,8 +264,12 @@ pcfg_recent_num_cb(GtkAdjustment *adj, PlacesCfg *cfg)
 static void
 pcfg_menu_cb(GtkToggleButton *toggle, PlacesCfg *cfg)
 {
-    gboolean *opt = g_object_get_data(G_OBJECT(toggle), "cfg_opt");
+    gboolean *opt;
+    g_assert(cfg != NULL);
+
+    opt = g_object_get_data(G_OBJECT(toggle), "cfg_opt");
     g_assert(opt != NULL);
+
     *opt = gtk_toggle_button_get_active(toggle);
 
     places_view_cfg_iface_update_menu(cfg->view_iface);
@@ -320,12 +278,15 @@ pcfg_menu_cb(GtkToggleButton *toggle, PlacesCfg *cfg)
 static void
 pcfg_model_cb(GtkToggleButton *toggle, PlacesCfg *cfg)
 {
-    gboolean *opt = g_object_get_data(G_OBJECT(toggle), "cfg_opt");
+    gboolean *opt;
+    g_assert(cfg != NULL);
+    
+    opt = g_object_get_data(G_OBJECT(toggle), "cfg_opt");
     g_assert(opt != NULL);
+
     *opt = gtk_toggle_button_get_active(toggle);
 
     places_view_cfg_iface_reconfigure_model(cfg->view_iface);
-    places_view_cfg_iface_update_menu(cfg->view_iface);
 }
 
 static void
@@ -523,6 +484,57 @@ pcfg_open_dialog(PlacesCfg *cfg)
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
 
     gtk_widget_show(dlg);
+}
+
+/********** Initialization & Finalization **********/
+
+static void 
+pcfg_finalize(PlacesCfgViewIface *cfg_iface)
+{
+    PlacesCfg *cfg;
+
+    g_assert(cfg_iface != NULL);
+
+    cfg = cfg_iface->cfg;
+    g_assert(cfg != NULL);
+
+    if(cfg->label != NULL)
+        g_free(cfg->label);
+    if(cfg->search_cmd != NULL)
+        g_free(cfg->search_cmd);
+
+    if(cfg->read_path != NULL)
+        g_free(cfg->read_path);
+    if(cfg->write_path != NULL)
+        g_free(cfg->write_path);
+
+    g_free(cfg);
+    g_free(cfg_iface);
+}
+
+/* cfg takes ownership of {read,write}_path */
+PlacesCfgViewIface*
+places_cfg_new(PlacesViewCfgIface *view_iface, gchar *read_path, gchar *write_path)
+{
+    PlacesCfgViewIface *cfg_iface;
+    PlacesCfg *cfg;
+
+    g_assert(view_iface != NULL);
+
+    cfg                     = g_new0(PlacesCfg, 1);
+    cfg->read_path          = read_path;
+    cfg->write_path         = write_path;
+    cfg->view_iface         = view_iface;
+
+    pcfg_load(cfg);
+    
+    cfg_iface               = g_new0(PlacesCfgViewIface, 1);
+    cfg_iface->cfg          = cfg;
+    cfg_iface->open_dialog  = pcfg_open_dialog;
+    cfg_iface->save         = pcfg_save;
+    cfg_iface->finalize     = pcfg_finalize;
+
+    return cfg_iface;
 }
 
 /* vim: set ai et tabstop=4: */

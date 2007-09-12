@@ -1,3 +1,8 @@
+2007-09-12	Diego Ongaro <ongardie@gmail.com>
+
+	* cfg.h: Don't define recent documents settings if compiled w/o.
+	* cfg.{c,h}: Clean-up, added more assertions
+
 2007-09-11	Diego Ongaro <ongardie@gmail.com>
 
 	* places.{c,h}, view.{c,h}, cfg.{c,h}: Large shuffling of GUI

@@ -36,14 +36,17 @@ typedef struct
     /* "public" for view's access */
     gboolean            show_button_icon;
     gboolean            show_button_label;
-    gchar               *label;
     gboolean            show_icons;
     gboolean            show_volumes;
     gboolean            show_bookmarks;
+#if USE_RECENT_DOCUMENTS
     gboolean            show_recent;
     gboolean            show_recent_clear;
     gint                show_recent_number;
+#endif
+    gchar               *label;
     gchar               *search_cmd;
+
 } PlacesCfg;
 
 typedef struct _PlacesCfgViewIface PlacesCfgViewIface;
@@ -75,9 +78,9 @@ places_cfg_view_iface_finalize(PlacesCfgViewIface*);
 
 
 /* PlacesCfg will take ownership of the paths */
-PlacesCfgViewIface*        places_cfg_new(PlacesViewCfgIface*,
-                                          gchar *read_path,
-                                          gchar *write_path);
+PlacesCfgViewIface*
+places_cfg_new(PlacesViewCfgIface*,
+               gchar *read_path, gchar *write_path);
 
 #endif
 /* vim: set ai et tabstop=4: */
