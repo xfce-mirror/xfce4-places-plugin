@@ -210,21 +210,33 @@ static gboolean
 pcfg_button_label_cb(GtkWidget *label_entry, GdkEventFocus *event, PlacesCfg *cfg)
 {
     const gchar *entry_text;
+    gchar *old_text = cfg->label;
+    gchar *new_text;
 
     g_assert(cfg != NULL);
 
-    if(cfg->label != NULL)
-        g_free(cfg->label);
-    
     entry_text = gtk_entry_get_text(GTK_ENTRY(label_entry));
-    cfg->label = g_strstrip(g_strdup(entry_text));
-    if(strlen(cfg->label) == 0){
-        g_free(cfg->label);
-        cfg->label = g_strdup(_("Places"));
-        gtk_entry_set_text(GTK_ENTRY(label_entry), cfg->label);
-    }
+    new_text = g_strstrip(g_strdup(entry_text));
+    if(old_text == NULL || (strcmp(old_text, new_text) && strlen(new_text))){
+        cfg->label = new_text;
 
-    places_view_cfg_iface_update_button(cfg->view_iface);
+        if(old_text != NULL)
+            g_free(old_text);
+    
+        places_view_cfg_iface_update_button(cfg->view_iface);
+
+    }else{ /* we prefer the old/default text */
+
+        if(old_text == NULL)
+            cfg->label = g_strdup(_("Places"));
+
+        if(old_text == NULL || !strlen(new_text)){
+            gtk_entry_set_text(GTK_ENTRY(label_entry), cfg->label);
+            places_view_cfg_iface_update_button(cfg->view_iface);
+        }
+
+        g_free(new_text);
+    }
 
     return FALSE;
 }
@@ -233,17 +245,24 @@ static gboolean
 pcfg_search_cmd_cb(GtkWidget *label_entry, GdkEventFocus *event, PlacesCfg *cfg)
 {
     const gchar *entry_text;
+    gchar *old_text = cfg->search_cmd;
+    gchar *new_text;
 
     g_assert(cfg != NULL);
 
-    if(cfg->search_cmd != NULL)
-        g_free(cfg->search_cmd);
-    
     entry_text = gtk_entry_get_text(GTK_ENTRY(label_entry));
-    cfg->search_cmd = g_strstrip(g_strdup(entry_text));
+    new_text = g_strstrip(g_strdup(entry_text));
 
-    /* TODO: you can't open menu when the field is focused */
-    places_view_cfg_iface_update_menu(cfg->view_iface);
+    if(old_text == NULL || strcmp(old_text, new_text)){
+        cfg->search_cmd = new_text;
+        
+        if(old_text != NULL)
+            g_free(old_text);
+        
+        places_view_cfg_iface_update_menu(cfg->view_iface);
+
+    }else /* we prefer the old text */
+        g_free(new_text);
 
     return FALSE;
 }

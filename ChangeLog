@@ -3,6 +3,7 @@
 	* cfg.h: Don't define recent documents settings if compiled w/o.
 	* cfg.{c,h}: Clean-up, added more assertions
 	* view.{c,h}: Clean-up. Improved sizing algorithm.
+	* cfg.c: Fix: couldn't open menu with the search cmd field focused
 
 2007-09-11	Diego Ongaro <ongardie@gmail.com>
 
