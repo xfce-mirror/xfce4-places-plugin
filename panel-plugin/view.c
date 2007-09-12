@@ -51,9 +51,6 @@
 #include "model_user.h"
 
 
-#if GTK_CHECK_VERSION(2,10,0)
-#  define USE_RECENT_DOCUMENTS TRUE
-#endif
 
 #define BORDER 4
 
@@ -126,11 +123,15 @@ static void     pview_button_update(PlacesView*);
 static void
 pview_reconfigure_model(PlacesView *view)
 {
+    /* we don't want the menu items holding on to any references */
+    pview_destroy_menu(view);
+
     /* destroy first */
     if(view->bookmark_groups != NULL){
 
         GList *bookmark_group = view->bookmark_groups;
         while(bookmark_group != NULL){
+            DBG("finalize: %x", (gint) bookmark_group->data);
 
             if(bookmark_group->data != NULL)
                 places_bookmark_group_finalize((PlacesBookmarkGroup*) bookmark_group->data);

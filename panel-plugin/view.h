@@ -26,6 +26,10 @@
 #include <glib.h>
 #include "places.h"
 
+#if GTK_CHECK_VERSION(2,10,0)
+#  define USE_RECENT_DOCUMENTS TRUE
+#endif
+
 typedef struct _PlacesView PlacesView;
 
 typedef struct {
@@ -41,7 +45,6 @@ typedef struct {
 } PlacesViewCfgIface;
 
 #include "cfg.h"
-
 
 /* Init & Finalize */
 PlacesView*             places_view_init(XfcePanelPlugin*);

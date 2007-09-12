@@ -33,8 +33,6 @@
 
 #include "cfg.h"
 #include "view.h"
-#include "places.h"
-#include "model.h"
 
 /* Init */
 static void     pcfg_init_defaults(PlacesCfg *cfg);

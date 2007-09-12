@@ -144,12 +144,11 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     GList *bookmarks = NULL;
     PlacesBookmark *bookmark;
     PlacesBookmarkAction *action;
-    
-    GList *volumes = thunar_vfs_volume_manager_get_volumes(pbg_priv(bookmark_group)->volume_manager);
+    const GList *volumes;
     ThunarVfsVolume *volume;
-
     GtkIconTheme *icon_theme = gtk_icon_theme_get_default();
 
+    volumes = thunar_vfs_volume_manager_get_volumes(pbg_priv(bookmark_group)->volume_manager);
     while(volumes != NULL){
         volume = THUNAR_VFS_VOLUME(volumes->data);
 
@@ -208,18 +207,18 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 
 }
 
-
 static gboolean
 pbvol_changed(PlacesBookmarkGroup *bookmark_group)
 {
     return pbg_priv(bookmark_group)->changed;
 }
 
-
 static void
 pbvol_finalize(PlacesBookmarkGroup *bookmark_group)
 {
-    GList *volumes = thunar_vfs_volume_manager_get_volumes(pbg_priv(bookmark_group)->volume_manager);
+    const GList *volumes;
+    
+    volumes = thunar_vfs_volume_manager_get_volumes(pbg_priv(bookmark_group)->volume_manager);
     while(volumes != NULL){
         g_signal_handlers_disconnect_by_func(THUNAR_VFS_VOLUME(volumes->data),
                                              G_CALLBACK(pbvol_set_changed), bookmark_group);
@@ -230,6 +229,7 @@ pbvol_finalize(PlacesBookmarkGroup *bookmark_group)
                                          G_CALLBACK(pbvol_volumes_added), bookmark_group);
     g_signal_handlers_disconnect_by_func(pbg_priv(bookmark_group)->volume_manager,
                                          G_CALLBACK(pbvol_volumes_removed), bookmark_group);
+
     g_object_unref(pbg_priv(bookmark_group)->volume_manager);
     pbg_priv(bookmark_group)->volume_manager = NULL;
     thunar_vfs_shutdown();
@@ -238,23 +238,23 @@ pbvol_finalize(PlacesBookmarkGroup *bookmark_group)
     g_free(bookmark_group);
 }
 
-
-
 PlacesBookmarkGroup*
 places_bookmarks_volumes_create()
 {
-    PlacesBookmarkGroup *bookmark_group = g_new0(PlacesBookmarkGroup, 1);
+    const GList *volumes;
+    PlacesBookmarkGroup *bookmark_group;
+
+    bookmark_group                      = g_new0(PlacesBookmarkGroup, 1);
     bookmark_group->get_bookmarks       = pbvol_get_bookmarks;
     bookmark_group->changed             = pbvol_changed;
     bookmark_group->finalize            = pbvol_finalize;
     bookmark_group->priv                = g_new0(PBVolData, 1);
     
-
     thunar_vfs_init();
     pbg_priv(bookmark_group)->volume_manager = thunar_vfs_volume_manager_get_default();
     pbg_priv(bookmark_group)->changed        = TRUE;
     
-    GList *volumes = thunar_vfs_volume_manager_get_volumes(pbg_priv(bookmark_group)->volume_manager);
+    volumes = thunar_vfs_volume_manager_get_volumes(pbg_priv(bookmark_group)->volume_manager);
     while(volumes != NULL){
         g_signal_connect_swapped(THUNAR_VFS_VOLUME(volumes->data), "changed",
                                  G_CALLBACK(pbvol_set_changed), bookmark_group);
@@ -269,6 +269,5 @@ places_bookmarks_volumes_create()
 
     return bookmark_group;
 }
-
 
 /* vim: set ai et tabstop=4: */
