@@ -1,3 +1,13 @@
+2007-09-12
+================================================================================
+xfce4-places-plugin v0.9.992 (1.0beta2) released
+
+ * Reorganization of GUI code
+ * Improved plugin sizing algorithm
+ * "Open" menu item now opens with Thunar, as intended
+ * Now polls for model changes (e.g., new devices) while menu is open
+ * Fix bug #3471 (Rightclick action pins autohidden panel)
+
 2007-08-15
 ================================================================================
 xfce4-places-plugin v0.9.991 (1.0beta1) released
