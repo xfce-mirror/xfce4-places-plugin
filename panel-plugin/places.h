@@ -20,35 +20,9 @@
 #ifndef _XFCE_PANEL_PLACES_H
 #define _XFCE_PANEL_PLACES_H
 
-#include <gtk/gtk.h>
-#include <libxfce4panel/xfce-panel-plugin.h>
-
-typedef struct _PlacesData PlacesData;
-#include "cfg.h"
+#include <glib.h>
 
 #define PLUGIN_NAME "places"
-
-struct _PlacesData
-{
-  /* plugin */
-  XfcePanelPlugin   *plugin;
-
-  /* configuration */
-  PlacesConfig      *cfg;
-
-  /* view */
-  GtkWidget         *view_button;
-  GtkWidget         *view_button_box;
-  GtkWidget         *view_button_image;
-  GtkWidget         *view_button_label;
-  GtkWidget         *view_menu;
-  GtkTooltips       *view_tooltips;
-  gboolean           view_needs_separator;
-  guint              view_menu_timeout_id;
-
-  /* model */
-  GList *bookmark_groups;
-};
 
 void places_load_thunar(const gchar *path);
 void places_load_terminal(const gchar *path);

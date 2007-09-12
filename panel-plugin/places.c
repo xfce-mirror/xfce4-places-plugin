@@ -21,60 +21,58 @@
 #  include <config.h>
 #endif
 
-#include <gtk/gtk.h>
+#include <glib.h>
+
 #include <libxfce4panel/xfce-panel-plugin.h>
 #include <libxfcegui4/libxfcegui4.h>
 #include <exo/exo.h>
 
+#include "string.h"
+
 #include "places.h"
 #include "view.h"
 
-#include "string.h"
-
-static void places_construct(XfcePanelPlugin*);
-static void places_finalize(XfcePanelPlugin*, PlacesData*);
-
-XFCE_PANEL_PLUGIN_REGISTER_EXTERNAL(places_construct);
-
-/**
- * Initializes the plugin:
- */
-static void 
-places_construct(XfcePanelPlugin *plugin)
-{
-    DBG("Construct: %s", PLUGIN_NAME);
-   
-    /* Set up i18n */
-    xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8"); 
-
-    /* Create the PlacesData struct */
-    PlacesData *pd = panel_slice_new0(PlacesData);
-    pd->plugin = plugin;
-
-    /* Initialize view */
-    places_view_init(pd);
-
-    /* Connect the finalize callback */
-    g_signal_connect(pd->plugin, "free-data", 
-                     G_CALLBACK(places_finalize), pd);
-
-}
 
 /**
  * Cleans up resources.
  */
 static void 
-places_finalize(XfcePanelPlugin *plugin, PlacesData *pd)
+places_finalize(XfcePanelPlugin *plugin, PlacesView *view)
 {
-    DBG("Free data: %s", PLUGIN_NAME);
-    g_assert(pd != NULL);
+    DBG("Finalize: %s", PLUGIN_NAME);
+    g_assert(plugin != NULL);
+    g_assert(view != NULL);
    
-    /* finalize the view */
-    places_view_finalize(pd);
-    
-    /* free the PlacesData struct */
-    panel_slice_free(PlacesData, pd);
+    /* Finalize view */
+    places_view_finalize(view);
 }
+
+/**
+ * Initializes the plugin.
+ */
+static void 
+places_construct(XfcePanelPlugin *plugin)
+{
+    PlacesView *view;
+
+    DBG("Construct: %s", PLUGIN_NAME);
+   
+    /* Set up i18n */
+    xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8"); 
+
+    /* Initialize view */
+    view = places_view_init(plugin);
+
+    /* Connect the finalize callback */
+    g_signal_connect(plugin, "free-data", 
+                     G_CALLBACK(places_finalize), view);
+
+    DBG("done");
+}
+
+XFCE_PANEL_PLUGIN_REGISTER_EXTERNAL(places_construct);
+
+
 
 /**
  * Opens Thunar at the location given by path.
@@ -143,6 +141,11 @@ places_load_file(const gchar *path)
         exo_url_show(path, NULL, NULL);
 }
 
+/**
+ * Runs the graphical command given by cmd
+ * If cmd is NULL or empty, it will do nothing.
+ * The caller is in charge of freeing cmd.
+ */
 void
 places_gui_exec(const gchar *cmd)
 {

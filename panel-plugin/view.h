@@ -23,23 +23,27 @@
 #include <glib.h>
 #include "places.h"
 
-#if GTK_CHECK_VERSION(2,10,0)
-#  define USE_RECENT_DOCUMENTS TRUE
-#endif
+typedef struct _PlacesView PlacesView;
 
-#define BORDER 4
+typedef struct {
+    
+    PlacesView          *places_view;
+
+    void                (*open_menu)                (PlacesView*);
+    void                (*update_menu)              (PlacesView*);
+    void                (*update_button)            (PlacesView*);
+    void                (*reconfigure_model)        (PlacesView*);
+    GtkWidget*          (*make_empty_cfg_dialog)    (PlacesView*);
+    
+} PlacesViewCfgIface;
+
+#include "cfg.h"
+
 
 /* Init & Finalize */
-void     places_view_init(PlacesData*);
-void     places_view_finalize(PlacesData*);
+PlacesView*             places_view_init(XfcePanelPlugin*);
+void                    places_view_finalize(PlacesView*);
 
-/* UI control */
-void     places_view_open_menu(PlacesData*);
-void     places_view_destroy_menu(PlacesData*);
-
-/* cfg use */
-void     places_view_reconfigure_model(PlacesData*);
-void     places_view_button_update(PlacesData*);
 
 #endif
 /* vim: set ai et tabstop=4: */

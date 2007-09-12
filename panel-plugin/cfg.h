@@ -25,22 +25,56 @@
 
 typedef struct
 {
-  gboolean           show_button_icon;
-  gboolean           show_button_label;
-  gchar             *label;
-  gboolean           show_icons;
-  gboolean           show_volumes;
-  gboolean           show_bookmarks;
-  gboolean           show_recent;
-  gboolean           show_recent_clear;
-  gint               show_recent_number;
-  gchar             *search_cmd;
-} PlacesConfig;
+    /* "private" */
+    PlacesViewCfgIface  *view_iface;
+    gchar               *read_path;
+    gchar               *write_path;
 
-/* Init & Finalize */
-PlacesConfig* places_cfg_new(PlacesData*);
-void          places_cfg_init_signals(PlacesData*);
-void          places_cfg_finalize(PlacesData*);
+    /* "public" for view's access */
+    gboolean            show_button_icon;
+    gboolean            show_button_label;
+    gchar               *label;
+    gboolean            show_icons;
+    gboolean            show_volumes;
+    gboolean            show_bookmarks;
+    gboolean            show_recent;
+    gboolean            show_recent_clear;
+    gint                show_recent_number;
+    gchar               *search_cmd;
+} PlacesCfg;
+
+typedef struct _PlacesCfgViewIface PlacesCfgViewIface;
+struct _PlacesCfgViewIface {
+    
+    PlacesCfg           *cfg;
+
+    void                (*open_dialog)         (PlacesCfg*);
+    void                (*load)                (PlacesCfg*);
+    void                (*save)                (PlacesCfg*);
+    void                (*finalize)            (PlacesCfgViewIface*);
+    
+};
+
+inline PlacesCfg*
+places_cfg_view_iface_get_cfg(PlacesCfgViewIface*);
+
+inline void
+places_cfg_view_iface_open_dialog(PlacesCfgViewIface*);
+
+inline void
+places_cfg_view_iface_load(PlacesCfgViewIface*);
+
+inline void
+places_cfg_view_iface_save(PlacesCfgViewIface*);
+
+inline void
+places_cfg_view_iface_finalize(PlacesCfgViewIface*);
+
+
+/* PlacesCfg will take ownership of the paths */
+PlacesCfgViewIface*        places_cfg_new(PlacesViewCfgIface*,
+                                          gchar *read_path,
+                                          gchar *write_path);
 
 #endif
 /* vim: set ai et tabstop=4: */
