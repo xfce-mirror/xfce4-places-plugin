@@ -1,5 +1,7 @@
 /*  xfce4-places-plugin
  *
+ *  This file provides support wrappers for the structs defined in model.h.
+ *
  *  Copyright (c) 2007 Diego Ongaro <ongardie@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify

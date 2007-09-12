@@ -1,5 +1,8 @@
 /*  xfce4-places-plugin
  *
+ *  Defines the struct holding configuration data.
+ *  Defines the interface by which view communicates with cfg.
+ *
  *  Copyright (c) 2007 Diego Ongaro <ongardie@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify

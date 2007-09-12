@@ -1,5 +1,7 @@
 /*  xfce4-places-plugin
  *
+ *  This file handles the GUI. It "owns" the model and cfg.
+ *
  *  Copyright (c) 2007 Diego Ongaro <ongardie@gmail.com>
  *
  *  Largely based on:

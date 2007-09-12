@@ -1,5 +1,8 @@
 /*  xfce4-places-plugin
  *
+ *  This is the main plugin file. It starts the init and finalize processes.
+ *  Also, this file provides wrappers to open external applications.
+ *
  *  Copyright (c) 2007 Diego Ongaro <ongardie@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify

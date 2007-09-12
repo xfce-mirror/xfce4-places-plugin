@@ -1,5 +1,7 @@
 /*  xfce4-places-plugin
  *
+ *  Headers for wrappers to open external applications.
+ *
  *  Copyright (c) 2007 Diego Ongaro <ongardie@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify

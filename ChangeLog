@@ -2,6 +2,7 @@
 
 	* places.{c,h}, view.{c,h}, cfg.{c,h}: Large shuffling of GUI
 	code
+	* *.{c,h}: Added purpose to top of each file
 
 2007-09-07	Diego Ongaro <ongardie@gmail.com>
 
