@@ -24,7 +24,7 @@
 #define _XFCE_PANEL_PLACES_CFG_H
 
 #include <glib.h>
-#include "places.h"
+#include "view.h"
 
 typedef struct
 {

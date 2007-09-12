@@ -31,6 +31,7 @@
 #include <libxfce4panel/xfce-panel-convenience.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+#include "cfg.h"
 #include "view.h"
 #include "places.h"
 #include "model.h"
