@@ -119,6 +119,32 @@ static void     pview_update_menu(PlacesView*);
 static void     pview_destroy_menu(PlacesView*);
 static void     pview_button_update(PlacesView*);
 
+/********** Interface for Cfg's Use **********/
+
+inline void
+places_view_cfg_iface_update_menu(PlacesViewCfgIface *iface)
+{
+    iface->update_menu(iface->places_view);
+}
+
+inline void
+places_view_cfg_iface_update_button(PlacesViewCfgIface *iface)
+{
+    iface->update_button(iface->places_view);
+}
+
+inline void
+places_view_cfg_iface_reconfigure_model(PlacesViewCfgIface *iface)
+{
+    iface->reconfigure_model(iface->places_view);
+}
+
+inline GtkWidget*
+places_view_cfg_iface_make_empty_cfg_dialog(PlacesViewCfgIface *iface)
+{
+    return iface->make_empty_cfg_dialog(iface->places_view);
+}
+
 /********** Model Management **********/
 static void
 pview_reconfigure_model(PlacesView *view)
@@ -963,7 +989,6 @@ places_view_init(XfcePanelPlugin *plugin)
     
     view_cfg_iface                          = g_new0(PlacesViewCfgIface, 1);
     view_cfg_iface->places_view             = view;
-    view_cfg_iface->open_menu               = pview_open_menu;
     view_cfg_iface->update_menu             = pview_update_menu;
     view_cfg_iface->update_button           = pview_button_update;
     view_cfg_iface->reconfigure_model       = pview_reconfigure_model;

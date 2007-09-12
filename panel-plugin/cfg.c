@@ -49,7 +49,6 @@ static void     pcfg_recent_num_cb(GtkAdjustment*, PlacesCfg*);
 #endif
 static void     pcfg_menu_cb(GtkToggleButton*, PlacesCfg*);
 static void     pcfg_model_cb(GtkToggleButton*, PlacesCfg*);
-//static void     pcfg_dialog_cb(GtkDialog*, gint response, PlacesCfg*);
 static void     pcfg_open_dialog(PlacesCfg*);
 
 
@@ -263,7 +262,7 @@ pcfg_button_show_cb(GtkComboBox *combo, PlacesCfg *cfg)
     cfg->show_button_icon  = (option == 0 || option == 2);
     cfg->show_button_label = (option == 1 || option == 2);
 
-    cfg->view_iface->update_button(cfg->view_iface->places_view);
+    places_view_cfg_iface_update_button(cfg->view_iface);
 }
 
 static gboolean
@@ -279,7 +278,7 @@ pcfg_button_label_cb(GtkWidget *label_entry, GdkEventFocus *event, PlacesCfg *cf
         gtk_entry_set_text(GTK_ENTRY(label_entry), cfg->label);
     }
 
-    cfg->view_iface->update_button(cfg->view_iface->places_view);
+    places_view_cfg_iface_update_button(cfg->view_iface);
 
     return FALSE;
 }
@@ -292,7 +291,8 @@ pcfg_search_cmd_cb(GtkWidget *label_entry, GdkEventFocus *event, PlacesCfg *cfg)
     
     cfg->search_cmd = g_strstrip(g_strdup(gtk_entry_get_text(GTK_ENTRY(label_entry))));
 
-    cfg->view_iface->update_menu(cfg->view_iface->places_view);
+    /* TODO: you can't open menu when the field is focused */
+    places_view_cfg_iface_update_menu(cfg->view_iface);
 
     return FALSE;
 }
@@ -303,7 +303,7 @@ pcfg_recent_num_cb(GtkAdjustment *adj, PlacesCfg *cfg)
 {
     cfg->show_recent_number = (gint) gtk_adjustment_get_value(adj);
     DBG("Show %d recent documents", cfg->show_recent_number);
-    cfg->view_iface->update_menu(cfg->view_iface->places_view);
+    places_view_cfg_iface_update_menu(cfg->view_iface);
 }
 #endif
 
@@ -314,7 +314,7 @@ pcfg_menu_cb(GtkToggleButton *toggle, PlacesCfg *cfg)
     g_assert(opt != NULL);
     *opt = gtk_toggle_button_get_active(toggle);
 
-    cfg->view_iface->update_menu(cfg->view_iface->places_view);
+    places_view_cfg_iface_update_menu(cfg->view_iface);
 }
 
 static void
@@ -324,8 +324,8 @@ pcfg_model_cb(GtkToggleButton *toggle, PlacesCfg *cfg)
     g_assert(opt != NULL);
     *opt = gtk_toggle_button_get_active(toggle);
 
-    cfg->view_iface->reconfigure_model(cfg->view_iface->places_view);
-    cfg->view_iface->update_menu(cfg->view_iface->places_view);
+    places_view_cfg_iface_reconfigure_model(cfg->view_iface);
+    places_view_cfg_iface_update_menu(cfg->view_iface);
 }
 
 static void
@@ -344,7 +344,7 @@ pcfg_open_dialog(PlacesCfg *cfg)
     GtkWidget *tmp_box, *tmp_label, *tmp_widget;
     gint active;
     
-    dlg = cfg->view_iface->make_empty_cfg_dialog(cfg->view_iface->places_view);
+    dlg = places_view_cfg_iface_make_empty_cfg_dialog(cfg->view_iface);
 
     /* BUTTON: frame, vbox */
     vbox_button = gtk_vbox_new(FALSE, 4);

@@ -36,13 +36,24 @@ typedef struct {
     
     PlacesView          *places_view;
 
-    void                (*open_menu)                (PlacesView*);
     void                (*update_menu)              (PlacesView*);
     void                (*update_button)            (PlacesView*);
     void                (*reconfigure_model)        (PlacesView*);
     GtkWidget*          (*make_empty_cfg_dialog)    (PlacesView*);
     
 } PlacesViewCfgIface;
+
+inline void
+places_view_cfg_iface_update_menu(PlacesViewCfgIface*);
+
+inline void
+places_view_cfg_iface_update_button(PlacesViewCfgIface*);
+
+inline void
+places_view_cfg_iface_reconfigure_model(PlacesViewCfgIface*);
+
+inline GtkWidget*
+places_view_cfg_iface_make_empty_cfg_dialog(PlacesViewCfgIface*);
 
 #include "cfg.h"
 
