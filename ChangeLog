@@ -1,3 +1,7 @@
+2007-09-14	Diego Ongaro <ongardie@gmail.com>
+
+	* {cfg,view,places}.c: Replace strlen with checks against '\0'
+
 2007-09-12	Diego Ongaro <ongardie@gmail.com>
 
 	* cfg.h: Don't define recent documents settings if compiled w/o.

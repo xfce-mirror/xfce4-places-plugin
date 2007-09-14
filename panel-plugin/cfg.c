@@ -128,7 +128,7 @@ pcfg_load(PlacesCfg *cfg)
         g_free(cfg->label);
 
     cfg->label = (gchar*) xfce_rc_read_entry(rcfile, "label", NULL);
-    if(cfg->label == NULL || strlen(cfg->label) == 0)
+    if(cfg->label == NULL || *cfg->label == '\0')
         cfg->label = _("Places");
     cfg->label = g_strdup(cfg->label);
 
@@ -217,7 +217,7 @@ pcfg_button_label_cb(GtkWidget *label_entry, GdkEventFocus *event, PlacesCfg *cf
 
     entry_text = gtk_entry_get_text(GTK_ENTRY(label_entry));
     new_text = g_strstrip(g_strdup(entry_text));
-    if(old_text == NULL || (strcmp(old_text, new_text) && strlen(new_text))){
+    if(old_text == NULL || (strcmp(old_text, new_text) && *new_text != '\0')){
         cfg->label = new_text;
 
         if(old_text != NULL)
@@ -230,7 +230,7 @@ pcfg_button_label_cb(GtkWidget *label_entry, GdkEventFocus *event, PlacesCfg *cf
         if(old_text == NULL)
             cfg->label = g_strdup(_("Places"));
 
-        if(old_text == NULL || !strlen(new_text)){
+        if(old_text == NULL || *new_text == '\0'){
             gtk_entry_set_text(GTK_ENTRY(label_entry), cfg->label);
             places_view_cfg_iface_update_button(cfg->view_iface);
         }

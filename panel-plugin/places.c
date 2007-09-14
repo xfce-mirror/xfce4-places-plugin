@@ -140,7 +140,7 @@ places_load_terminal(const gchar *const_path)
 void
 places_load_file(const gchar *path)
 {
-    if(path != NULL && strlen(path))
+    if(path != NULL && *path != '\0')
         exo_url_show(path, NULL, NULL);
 }
 
@@ -152,7 +152,7 @@ places_load_file(const gchar *path)
 void
 places_gui_exec(const gchar *cmd)
 {
-    if(cmd != NULL && strlen(cmd))
+    if(cmd != NULL && *cmd != '\0')
         xfce_exec(cmd, FALSE, TRUE, NULL);
 }
 
