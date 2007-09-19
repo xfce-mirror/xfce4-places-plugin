@@ -333,7 +333,7 @@ pview_cb_menu_position(GtkMenu *menu,
     if (*y < 0)
         *y = 0;
 
-    /* "wtf is this ?" -Xfdesktop source */
+    /* Don't shift first the menu element in (this is a standard menu) */
     *push_in = FALSE;
 }
 
