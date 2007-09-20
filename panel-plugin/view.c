@@ -6,6 +6,10 @@
  *
  *  Largely based on:
  *
+ *   - notes plugin
+ *     panel-plugin.c - (xfce4-panel plugin for temporary notes)
+ *     Copyright (c) 2006 Mike Massonnet <mmassonnet@gmail.com>
+ *
  *   - xfdesktop menu plugin
  *     desktop-menu-plugin.c - xfce4-panel plugin that displays the desktop menu
  *     Copyright (C) 2004 Brian Tarricone, <bjt23@cornell.edu>
@@ -268,72 +272,65 @@ pview_cb_menu_timeout(PlacesView *pd){
 
 }
 
-/* Copied almost verbatim from xfdesktop plugin */
+/* Copied almost verbatim from notes plugin */
 static void
-pview_cb_menu_position(GtkMenu *menu, 
-                             gint *x, gint *y, 
-                             gboolean *push_in, 
-                             PlacesView *pd)
+pview_cb_menu_position(GtkMenu *menu,
+                       gint *x, gint *y,
+                       gboolean *push_in,
+                       XfcePanelPlugin *plugin)
 {
-    XfceScreenPosition pos;
-    GtkRequisition req;
+    GtkRequisition requisition;
+    GtkWidget *attach_widget;
 
-    gtk_widget_size_request(GTK_WIDGET(menu), &req);
+    g_return_if_fail(GTK_IS_MENU(menu));
+    g_return_if_fail(XFCE_IS_PANEL_PLUGIN(plugin));
 
-    gdk_window_get_origin (GTK_WIDGET (pd->plugin)->window, x, y);
+    attach_widget = gtk_menu_get_attach_widget(menu);
+    g_return_if_fail(GTK_IS_WIDGET(attach_widget));
 
-    pos = xfce_panel_plugin_get_screen_position(pd->plugin);
+    gtk_widget_size_request(GTK_WIDGET(menu), &requisition);
+    gdk_window_get_origin(attach_widget->window, x, y);
 
-    switch(pos) {
-        case XFCE_SCREEN_POSITION_NW_V:
-        case XFCE_SCREEN_POSITION_W:
-        case XFCE_SCREEN_POSITION_SW_V:
-            *x += pd->button->allocation.width;
-            *y += pd->button->allocation.height - req.height;
+    switch(xfce_panel_plugin_get_orientation(plugin))
+    {
+        case GTK_ORIENTATION_HORIZONTAL:
+
+            if(*y + attach_widget->allocation.height + requisition.height > gdk_screen_height()){
+                /* Show menu above */
+                *y -= requisition.height;
+            }else{
+                /* Show menu below */
+                *y += attach_widget->allocation.height;
+            }
+
+            if(*x + requisition.width > gdk_screen_width()){
+                /* Adjust horizontal position */
+                *x = gdk_screen_width () - requisition.width;
+            }
+
             break;
-        
-        case XFCE_SCREEN_POSITION_NE_V:
-        case XFCE_SCREEN_POSITION_E:
-        case XFCE_SCREEN_POSITION_SE_V:
-            *x -= req.width;
-            *y += pd->button->allocation.height - req.height;
-            break;
-        
-        case XFCE_SCREEN_POSITION_NW_H:
-        case XFCE_SCREEN_POSITION_N:
-        case XFCE_SCREEN_POSITION_NE_H:
-            *y += pd->button->allocation.height;
-            break;
-        
-        case XFCE_SCREEN_POSITION_SW_H:
-        case XFCE_SCREEN_POSITION_S:
-        case XFCE_SCREEN_POSITION_SE_H:
-            *y -= req.height;
-            break;
-        
-        default:  /* floating */
-        {
-            GdkScreen *screen = NULL;
-            gint screen_width, screen_height;
 
-            gdk_display_get_pointer(gtk_widget_get_display(GTK_WIDGET(pd->plugin)),
-                                                           &screen, x, y, NULL);
-            screen_width = gdk_screen_get_width(screen);
-            screen_height = gdk_screen_get_height(screen);
-            if ((*x + req.width) > screen_width)
-                *x -= req.width;
-            if ((*y + req.height) > screen_height)
-                *y -= req.height;
-        }
+        case GTK_ORIENTATION_VERTICAL:
+
+            if(*x + attach_widget->allocation.width + requisition.width > gdk_screen_width()){
+                /* Show menu on the right */
+                *x -= requisition.width;
+            }else{
+                /* Show menu on the left */
+                *x += attach_widget->allocation.width;
+            }
+
+            if(*y + requisition.height > gdk_screen_height()){
+                /* Adjust vertical position */
+                *y = gdk_screen_height() - requisition.height;
+            }
+
+            break;
+
+        default:
+            break;
     }
-
-    if (*x < 0)
-        *x = 0;
-
-    if (*y < 0)
-        *y = 0;
-
-    /* Don't shift first the menu element in (this is a standard menu) */
+    
     *push_in = FALSE;
 }
 
@@ -597,9 +594,11 @@ pview_update_menu(PlacesView *pd)
     pd->menu = gtk_menu_new();
     
     /* make sure the menu popups up in right screen */
+    gtk_menu_attach_to_widget(GTK_MENU(pd->menu), pd->button, NULL);
     gtk_menu_set_screen(GTK_MENU(pd->menu),
                         gtk_widget_get_screen(pd->button));
 
+    /* add bookmarks */
     bookmark_group_li = pd->bookmark_groups;
     while(bookmark_group_li != NULL){
         
@@ -717,7 +716,7 @@ pview_open_menu(PlacesView *pd)
     /* popup menu */
     gtk_menu_popup (GTK_MENU (pd->menu), NULL, NULL,
                     (GtkMenuPositionFunc) pview_cb_menu_position,
-                    pd, 0,
+                    pd->plugin, 0,
                     gtk_get_current_event_time ());
     
     /* menu timeout to poll for model changes */

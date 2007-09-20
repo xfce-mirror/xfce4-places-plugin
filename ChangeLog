@@ -1,3 +1,8 @@
+2007-09-20	Diego Ongaro <ongardie@gmail.com>
+
+	* view.c: Adopt notes plugin menu position function (better
+	behavior for floating panels)
+
 2007-09-14	Diego Ongaro <ongardie@gmail.com>
 
 	* {cfg,view,places}.c: Replace strlen with checks against '\0'
