@@ -24,7 +24,8 @@
 #define _XFCE_PANEL_PLACES_VIEW_H
 
 #include <glib.h>
-#include "places.h"
+#include <gtk/gtk.h>
+#include <libxfce4panel/xfce-panel-plugin.h>
 
 #if GTK_CHECK_VERSION(2,10,0)
 #  define USE_RECENT_DOCUMENTS TRUE

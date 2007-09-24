@@ -40,14 +40,15 @@
 
 #include <gtk/gtk.h>
 
+#include <libxfce4util/libxfce4util.h>
 #include <libxfce4panel/xfce-panel-plugin.h>
 #include <libxfce4panel/xfce-panel-convenience.h>
 #include <libxfcegui4/libxfcegui4.h>
 
 #include <string.h>
 
-#include "places.h"
 #include "view.h"
+#include "support.h"
 #include "cfg.h"
 #include "model.h"
 #include "model_system.h"

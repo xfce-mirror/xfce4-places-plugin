@@ -1,7 +1,6 @@
 /*  xfce4-places-plugin
  *
  *  This is the main plugin file. It starts the init and finalize processes.
- *  Also, this file provides wrappers to open external applications.
  *
  *  Copyright (c) 2007 Diego Ongaro <ongardie@gmail.com>
  *
@@ -26,15 +25,11 @@
 
 #include <glib.h>
 
+#include <libxfce4util/libxfce4util.h>
 #include <libxfce4panel/xfce-panel-plugin.h>
-#include <libxfcegui4/libxfcegui4.h>
-#include <exo/exo.h>
-
-#include "string.h"
 
 #include "places.h"
 #include "view.h"
-
 
 /**
  * Cleans up resources.
@@ -74,86 +69,5 @@ places_construct(XfcePanelPlugin *plugin)
 }
 
 XFCE_PANEL_PLUGIN_REGISTER_EXTERNAL(places_construct);
-
-
-
-/**
- * Opens Thunar at the location given by path.
- * If path is NULL or empty, it will open Thunar at the default location (home).
- * The caller is in charge of freeing path.
- */
-void
-places_load_thunar(const gchar *path)
-{
-    if(path != NULL && *path != '\0'){
-
-        gchar *cmd = g_strconcat("thunar \"", path, "\"", NULL);
-        DBG("exec: %s", cmd);
-        places_gui_exec(cmd);
-        g_free(cmd);
-
-    }else{
-        DBG("exec: thunar");
-        places_gui_exec("thunar");
-    }
-}
-
-/**
- * Opens the terminal at the location given by path.
- * If path is NULL or empty, it will open the terminal at the default location (home).
- * The caller is in charge of freeing path.
- */
-void
-places_load_terminal(const gchar *const_path)
-{
-    gchar *path = NULL;
-    gboolean path_owner = FALSE; /* whether this function "owns" path */
-
-    if(const_path != NULL){
-        if(strncmp(const_path, "trash://", 8) == 0){
-            DBG("Can't load terminal at trash:// URI's");
-            return;
-
-        }else if(strncmp(const_path, "file://", 7) == 0){
-            path = g_filename_from_uri(const_path, NULL, NULL);
-            path_owner = TRUE;
-
-        }else{
-            path = (gchar*) const_path;
-            /* (path_owner is FALSE) */
-            
-        }
-    }
-
-    DBG("Open terminal emulator at %s", path);
-    exo_execute_preferred_application("TerminalEmulator", NULL, path, NULL, NULL);
-
-    if(path_owner && path != NULL)
-        g_free(path);
-}
-
-/**
- * Loads the file given by path.
- * If path is NULL or empty, it will do nothing.
- * The caller is in charge of freeing path.
- */
-void
-places_load_file(const gchar *path)
-{
-    if(path != NULL && *path != '\0')
-        exo_url_show(path, NULL, NULL);
-}
-
-/**
- * Runs the graphical command given by cmd
- * If cmd is NULL or empty, it will do nothing.
- * The caller is in charge of freeing cmd.
- */
-void
-places_gui_exec(const gchar *cmd)
-{
-    if(cmd != NULL && *cmd != '\0')
-        xfce_exec(cmd, FALSE, TRUE, NULL);
-}
 
 /* vim: set ai et tabstop=4: */

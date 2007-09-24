@@ -1,5 +1,7 @@
 /*  xfce4-places-plugin
  *
+ *  Headers for wrappers to open external applications.
+ *
  *  Copyright (c) 2007 Diego Ongaro <ongardie@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -17,10 +19,16 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef _XFCE_PANEL_PLACES_H
-#define _XFCE_PANEL_PLACES_H
+#ifndef _XFCE_PANEL_PLACES_SUPPORT_H
+#define _XFCE_PANEL_PLACES_SUPPORT_H
 
-#define PLUGIN_NAME "places"
+#include <glib.h>
+
+void places_load_thunar(const gchar *path);
+void places_load_terminal(const gchar *path);
+void places_load_file(const gchar *path);
+void places_gui_exec(const gchar *cmd);
+
 
 #endif
 /* vim: set ai et tabstop=4: */
