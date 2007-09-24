@@ -1,7 +1,10 @@
 2007-09-24	Diego Ongaro <ongardie@gmail.com>
 
-	* places.{c,h}, support.{c,h}: Created the latter with the parts
-	of the former that didn't belong.
+	* places.{c,h}, support.{c,h}: Created support with the parts
+	of places that didn't belong.
+	* view.c, support.{c,h}: Moved "Open" and "Open Terminal Here"
+	action creation into support.
+
 
 2007-09-20	Diego Ongaro <ongardie@gmail.com>
 

@@ -473,27 +473,6 @@ pview_cb_recent_items_clear(GtkWidget *clear_item)
 #endif
 
 
-/********** Model Visitor Callbacks **********/
-
-static void
-pview_load_thunar_wrapper(PlacesBookmarkAction *act)
-{
-    g_assert(act != NULL);
-
-    /* we stored the path in priv */
-    places_load_thunar((gchar*) act->priv);
-}
-
-static void
-pview_load_terminal_wrapper(PlacesBookmarkAction *act)
-{
-    g_assert(act != NULL);
-
-    /* we stored the path in priv */
-    places_load_terminal((gchar*) act->priv);
-}
-
-
 /********** UI Helpers **********/
 
 static void
@@ -541,17 +520,11 @@ pview_add_menu_item(PlacesView *view, PlacesBookmark *bookmark)
         g_object_set_data(G_OBJECT(item), "uri", (gchar*) bookmark->uri);
 
         if(bookmark->uri_scheme != PLACES_URI_SCHEME_TRASH){
-            terminal            = g_new0(PlacesBookmarkAction, 1);
-            terminal->label     = _("Open Terminal Here");
-            terminal->priv      = bookmark->uri;
-            terminal->action    = pview_load_terminal_wrapper;
+            terminal            = places_create_open_terminal_action(bookmark);
             bookmark->actions   = g_list_prepend(bookmark->actions, terminal);
         }
 
-        open                = g_new0(PlacesBookmarkAction, 1);
-        open->label         = _("Open");
-        open->priv          = bookmark->uri;
-        open->action        = pview_load_thunar_wrapper;
+        open                = places_create_open_action(bookmark);
         bookmark->actions   = g_list_prepend(bookmark->actions, open);
 
     }else{

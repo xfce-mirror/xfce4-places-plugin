@@ -23,11 +23,25 @@
 #define _XFCE_PANEL_PLACES_SUPPORT_H
 
 #include <glib.h>
+#include "model.h"
 
-void places_load_thunar(const gchar *path);
-void places_load_terminal(const gchar *path);
-void places_load_file(const gchar *path);
-void places_gui_exec(const gchar *cmd);
+void
+places_load_thunar(const gchar *path);
+
+void
+places_load_terminal(const gchar *path);
+
+void
+places_load_file(const gchar *path);
+
+void
+places_gui_exec(const gchar *cmd);
+
+PlacesBookmarkAction*
+places_create_open_action(const PlacesBookmark *bookmark);
+
+PlacesBookmarkAction*
+places_create_open_terminal_action(const PlacesBookmark *bookmark);
 
 
 #endif

@@ -32,7 +32,7 @@
 #include "string.h"
 
 #include "support.h"
-#include "view.h"
+#include "model.h"
 
 /**
  * Opens Thunar at the location given by path.
@@ -111,6 +111,57 @@ places_gui_exec(const gchar *cmd)
 {
     if(cmd != NULL && *cmd != '\0')
         xfce_exec(cmd, FALSE, TRUE, NULL);
+}
+
+static void
+psupport_load_thunar_wrapper(PlacesBookmarkAction *act)
+{
+    g_assert(act != NULL);
+
+    /* we stored the path in priv */
+    places_load_thunar((gchar*) act->priv);
+}
+
+static void
+psupport_load_terminal_wrapper(PlacesBookmarkAction *act)
+{
+    g_assert(act != NULL);
+
+    /* we stored the path in priv */
+    places_load_terminal((gchar*) act->priv);
+}
+
+
+PlacesBookmarkAction*
+places_create_open_action(const PlacesBookmark *bookmark)
+{
+    PlacesBookmarkAction *action;
+
+    g_assert(bookmark != NULL);
+    g_assert(bookmark->uri != NULL);
+
+    action                = g_new0(PlacesBookmarkAction, 1);
+    action->label         = _("Open");
+    action->priv          = bookmark->uri;
+    action->action        = psupport_load_thunar_wrapper;
+
+    return action;
+}
+
+PlacesBookmarkAction*
+places_create_open_terminal_action(const PlacesBookmark *bookmark)
+{
+    PlacesBookmarkAction *action;
+
+    g_assert(bookmark != NULL);
+    g_assert(bookmark->uri != NULL);
+
+    action            = g_new0(PlacesBookmarkAction, 1);
+    action->label     = _("Open Terminal Here");
+    action->priv      = bookmark->uri;
+    action->action    = psupport_load_terminal_wrapper;
+
+    return action;
 }
 
 /* vim: set ai et tabstop=4: */
