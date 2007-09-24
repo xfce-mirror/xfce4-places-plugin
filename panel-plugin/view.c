@@ -426,18 +426,6 @@ pview_cb_menu_item_do_alt(PlacesView *pd, GtkWidget *menu_item)
 }
 
 static gboolean
-pview_cb_menu_item_do_main(PlacesView *pd, GtkWidget *menu_item)
-{
-        const gchar *uri = (const gchar*) g_object_get_data(G_OBJECT(menu_item), "uri");
-        if(uri != NULL){
-            places_load_thunar(uri);
-            return FALSE;
-        }
-        return TRUE;
-}
-
-
-static gboolean
 pview_cb_menu_item_press(GtkWidget *menu_item, GdkEventButton *event, PlacesView *pd)
 {
 
@@ -517,8 +505,6 @@ pview_add_menu_item(PlacesView *view, PlacesBookmark *bookmark)
 
     if(bookmark->uri != NULL){
         
-        g_object_set_data(G_OBJECT(item), "uri", (gchar*) bookmark->uri);
-
         if(bookmark->uri_scheme != PLACES_URI_SCHEME_TRASH){
             terminal            = places_create_open_terminal_action(bookmark);
             bookmark->actions   = g_list_prepend(bookmark->actions, terminal);
@@ -526,20 +512,33 @@ pview_add_menu_item(PlacesView *view, PlacesBookmark *bookmark)
 
         open                = places_create_open_action(bookmark);
         bookmark->actions   = g_list_prepend(bookmark->actions, open);
+        bookmark->primary_action = open;
 
-    }else{
-        /* Probably an unmounted volume. Gray it out. */
-        gtk_widget_set_sensitive(gtk_bin_get_child(GTK_BIN(item)), FALSE);
     }
 
-    if(bookmark->actions != NULL)
+    if(bookmark->actions != NULL){
+
         g_object_set_data(G_OBJECT(item), "actions", bookmark->actions);
-
-
-    g_signal_connect(item, "button-release-event",
+        
+        g_signal_connect(item, "button-release-event",
                      G_CALLBACK(pview_cb_menu_item_press), view);
-    g_signal_connect_swapped(item, "activate",
-                     G_CALLBACK(pview_cb_menu_item_do_main), view);
+
+    }
+
+    if(bookmark->primary_action != NULL){
+
+        g_signal_connect_swapped(item, "activate",
+                                 G_CALLBACK(places_bookmark_action_call), 
+                                 bookmark->primary_action);
+
+    }else{
+
+        /* Gray it out. */
+        gtk_widget_set_sensitive(gtk_bin_get_child(GTK_BIN(item)),
+                                 FALSE);
+
+    }
+
     g_signal_connect_swapped(item, "destroy",
                      G_CALLBACK(places_bookmark_free), bookmark);
 

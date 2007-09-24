@@ -53,14 +53,15 @@ typedef enum
 typedef struct _PlacesBookmark PlacesBookmark;
 struct _PlacesBookmark
 {
-    gchar               *label;         /* must not be NULL */
-    gchar               *uri;           /* may be NULL */
-    places_uri_scheme    uri_scheme;    
-    gchar               *icon;          /* may be NULL */
-    GList               *actions;       /* may be NULL (empty) */
+    gchar                 *label;          /* must not be NULL */
+    gchar                 *uri;            /* may be NULL */
+    places_uri_scheme      uri_scheme;    
+    gchar                 *icon;           /* may be NULL */
+    PlacesBookmarkAction  *primary_action; /* may be NULL */
+    GList                 *actions;        /* may be NULL (empty) */
 
-    gpointer             priv;          /* private data */
-    void               (*free) (PlacesBookmark *self);
+    gpointer               priv;           /* private data */
+    void                 (*free) (PlacesBookmark *self);
 };
 
 inline void

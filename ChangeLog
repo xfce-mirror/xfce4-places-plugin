@@ -4,7 +4,7 @@
 	of places that didn't belong.
 	* view.c, support.{c,h}: Moved "Open" and "Open Terminal Here"
 	action creation into support.
-
+	* view.c, model.h: Added primary action to bookmarks
 
 2007-09-20	Diego Ongaro <ongardie@gmail.com>
 
