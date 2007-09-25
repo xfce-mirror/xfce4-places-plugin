@@ -25,6 +25,7 @@
 
 #include "model_user.h"
 #include "model.h"
+#include "support.h"
 
 #include <libxfce4util/libxfce4util.h>
 #include <glib.h>
@@ -156,27 +157,44 @@ pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
 static GList*
 pbuser_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 {
-    GList *bookmarks    = pbg_priv(bookmark_group)->bookmarks;
-    GList *clone        = NULL;
-    PlacesBookmark *bookmark;
+    const GList *orig_ls      = pbg_priv(bookmark_group)->bookmarks;
+    const PlacesBookmark *orig;
+    
+    GList *clone_ls           = NULL;
+    PlacesBookmark *clone;
 
-    if(bookmarks == NULL){
+    PlacesBookmarkAction *open, *terminal;
+
+
+    if(orig_ls == NULL){
         pbuser_build_bookmarks(bookmark_group);
-        bookmarks = pbg_priv(bookmark_group)->bookmarks;
+        orig_ls         = pbg_priv(bookmark_group)->bookmarks;
     }
 
-    bookmarks = g_list_last(bookmarks);
+    orig_ls = g_list_last((GList*) orig_ls);
 
-    while(bookmarks != NULL){
-        bookmark        = g_memdup(bookmarks->data, sizeof(PlacesBookmark));
-        bookmark->uri   = g_strdup(bookmark->uri);
-        bookmark->label = g_strdup(bookmark->label);
+    while(orig_ls != NULL){
 
-        clone = g_list_prepend(clone, bookmark);
-        bookmarks = bookmarks->prev;
+        orig = (PlacesBookmark*) orig_ls->data;
+
+        clone                 = g_new0(PlacesBookmark, 1);
+        clone->uri            = g_strdup(orig->uri);
+        clone->uri_scheme     = orig->uri_scheme;
+        clone->label          = g_strdup(orig->label);
+        clone->icon           = orig->icon;
+        clone->free           = pbuser_free_bookmark;
+
+        terminal              = places_create_open_terminal_action(clone);
+        clone->actions        = g_list_prepend(clone->actions, terminal);
+        open                  = places_create_open_action(clone);
+        clone->actions        = g_list_prepend(clone->actions, open);
+        clone->primary_action = open;
+
+        clone_ls = g_list_prepend(clone_ls, clone);
+        orig_ls  = orig_ls->prev;
     }
 
-    return clone;
+    return clone_ls;
 
 }
 

@@ -25,6 +25,7 @@
 
 #include "model_system.h"
 #include "model.h"
+#include "support.h"
 
 #include <string.h>
 
@@ -76,6 +77,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 {
     GList *bookmarks = NULL;           /* we'll return this */
     PlacesBookmark *bookmark;
+    PlacesBookmarkAction *open, *terminal;
     ThunarVfsInfo *trash_info;
     const gchar *home_dir = xfce_get_homedir();
 
@@ -88,6 +90,13 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     bookmark->label         = (gchar*) g_get_user_name();
     bookmark->uri           = (gchar*) home_dir;
     bookmark->icon          = "gnome-fs-home";
+
+    terminal                 = places_create_open_terminal_action(bookmark);
+    bookmark->actions        = g_list_prepend(bookmark->actions, terminal);
+    open                     = places_create_open_action(bookmark);
+    bookmark->actions        = g_list_prepend(bookmark->actions, open);
+    bookmark->primary_action = open;
+
     bookmarks = g_list_append(bookmarks, bookmark);
 
     /* Trash */
@@ -109,6 +118,10 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     }
     thunar_vfs_info_unref(trash_info);
 
+    open                     = places_create_open_action(bookmark);
+    bookmark->actions        = g_list_prepend(bookmark->actions, open);
+    bookmark->primary_action = open;
+
     bookmarks = g_list_append(bookmarks, bookmark);
 
     /* Desktop */
@@ -119,11 +132,21 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     bookmark->free          = pbsys_free_desktop_bookmark;
 
     if(g_file_test(bookmark->uri, G_FILE_TEST_IS_DIR)){
+    
+        terminal                 = places_create_open_terminal_action(bookmark);
+        bookmark->actions        = g_list_prepend(bookmark->actions, terminal);
+        open                     = places_create_open_action(bookmark);
+        bookmark->actions        = g_list_prepend(bookmark->actions, open);
+        bookmark->primary_action = open;
+
         pbg_priv(bookmark_group)->desktop_exists = TRUE;
         bookmarks = g_list_append(bookmarks, bookmark);
+
     }else{
+
         pbg_priv(bookmark_group)->desktop_exists = FALSE;
         places_bookmark_free(bookmark);
+
     }
     
     /* File System (/) */
@@ -131,6 +154,13 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     bookmark->label         = _("File System");
     bookmark->uri           = "/";
     bookmark->icon          = "gnome-dev-harddisk";
+
+    terminal                 = places_create_open_terminal_action(bookmark);
+    bookmark->actions        = g_list_prepend(bookmark->actions, terminal);
+    open                     = places_create_open_action(bookmark);
+    bookmark->actions        = g_list_prepend(bookmark->actions, open);
+    bookmark->primary_action = open;
+
     bookmarks = g_list_append(bookmarks, bookmark);
 
     return bookmarks;

@@ -483,7 +483,6 @@ pview_add_menu_item(PlacesView *view, PlacesBookmark *bookmark)
     GtkWidget *item;
     GdkPixbuf *pb;
     GtkWidget *image;
-    PlacesBookmarkAction *terminal, *open;
 
     if(view->needs_separator){
         gtk_menu_shell_append(GTK_MENU_SHELL(view->menu),
@@ -503,27 +502,12 @@ pview_add_menu_item(PlacesView *view, PlacesBookmark *bookmark)
         }
     }
 
-    if(bookmark->uri != NULL){
-        
-        if(bookmark->uri_scheme != PLACES_URI_SCHEME_TRASH){
-            terminal            = places_create_open_terminal_action(bookmark);
-            bookmark->actions   = g_list_prepend(bookmark->actions, terminal);
-        }
-
-        open                = places_create_open_action(bookmark);
-        bookmark->actions   = g_list_prepend(bookmark->actions, open);
-        bookmark->primary_action = open;
-
-    }
-
-    if(bookmark->actions != NULL){
-
+    if(bookmark->actions != NULL)
         g_object_set_data(G_OBJECT(item), "actions", bookmark->actions);
-        
-        g_signal_connect(item, "button-release-event",
-                     G_CALLBACK(pview_cb_menu_item_press), view);
 
-    }
+    /* do this always so that the menu doesn't close on right-clicks */
+    g_signal_connect(item, "button-release-event",
+                     G_CALLBACK(pview_cb_menu_item_press), view);
 
     if(bookmark->primary_action != NULL){
 
@@ -560,8 +544,12 @@ pview_update_menu(PlacesView *pd)
     GtkWidget *recent_item;
 #endif
 
+    DBG("destroy menu");
+
     /* destroy the old menu, if it exists */
     pview_destroy_menu(pd);
+
+    DBG("building new menu");
 
     /* Create a new menu */
     pd->menu = gtk_menu_new();

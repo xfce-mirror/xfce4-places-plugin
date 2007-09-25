@@ -63,6 +63,15 @@ places_bookmark_free(PlacesBookmark *bookmark)
 {
     g_assert(bookmark != NULL);
 
+    if(bookmark->primary_action != NULL){
+
+        /* don't double-free */
+        if(g_list_find(bookmark->actions, bookmark->primary_action) == NULL)
+            places_bookmark_action_free(bookmark->primary_action);
+
+        bookmark->primary_action = NULL;
+    }
+
     if(bookmark->actions != NULL){
         places_bookmark_actions_free(bookmark->actions);
         bookmark->actions = NULL;

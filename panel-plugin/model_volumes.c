@@ -25,6 +25,7 @@
 
 #include "model.h"
 #include "model_volumes.h"
+#include "support.h"
 
 #define EXO_API_SUBJECT_TO_CHANGE
 #include <thunar-vfs/thunar-vfs.h>
@@ -93,6 +94,7 @@ pbvol_show_volume(ThunarVfsVolume *volume){
 static void
 pbvol_set_changed(PlacesBookmarkGroup *bookmark_group)
 {
+    DBG("-");
     pbg_priv(bookmark_group)->changed = TRUE;
 }
 
@@ -100,6 +102,8 @@ pbvol_set_changed(PlacesBookmarkGroup *bookmark_group)
 static void
 pbvol_volumes_added(ThunarVfsVolumeManager *volman, GList *volumes, PlacesBookmarkGroup *bookmark_group)
 {
+    DBG("-");
+
     pbg_priv(bookmark_group)->changed = TRUE;
     while(volumes != NULL){
         g_signal_connect_swapped(THUNAR_VFS_VOLUME(volumes->data), "changed",
@@ -111,6 +115,8 @@ pbvol_volumes_added(ThunarVfsVolumeManager *volman, GList *volumes, PlacesBookma
 static void
 pbvol_volumes_removed(ThunarVfsVolumeManager *volman, GList *volumes, PlacesBookmarkGroup *bookmark_group)
 {
+    DBG("-");
+
     pbg_priv(bookmark_group)->changed = TRUE;
     while(volumes != NULL){
         g_signal_handlers_disconnect_by_func(THUNAR_VFS_VOLUME(volumes->data),
@@ -143,7 +149,7 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 {
     GList *bookmarks = NULL;
     PlacesBookmark *bookmark;
-    PlacesBookmarkAction *action;
+    PlacesBookmarkAction *action, *terminal, *open;
     const GList *volumes;
     ThunarVfsVolume *volume;
     GtkIconTheme *icon_theme = gtk_icon_theme_get_default();
@@ -164,6 +170,7 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
             bookmark->free  = pbvol_bookmark_free;
 
             if(!thunar_vfs_volume_is_mounted(volume)){
+
                 g_object_ref(volume);
                 action          = g_new0(PlacesBookmarkAction, 1);
                 action->label   = _("Mount");
@@ -171,10 +178,20 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
                 action->action  = pbvol_mount;
                 action->free    = pbvol_bookmark_action_free;
                 bookmark->actions = g_list_append(bookmark->actions, action);
+
+            }else{
+
+                terminal                 = places_create_open_terminal_action(bookmark);
+                bookmark->actions        = g_list_prepend(bookmark->actions, terminal);
+                open                     = places_create_open_action(bookmark);
+                bookmark->actions        = g_list_prepend(bookmark->actions, open);
+                bookmark->primary_action = open;
+
             }
 
             if(thunar_vfs_volume_is_disc(volume)){
                 if(thunar_vfs_volume_is_ejectable(volume)){
+
                     g_object_ref(volume);
                     action          = g_new0(PlacesBookmarkAction, 1);
                     action->label   = _("Eject");
@@ -182,9 +199,11 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
                     action->action  = pbvol_eject;
                     action->free    = pbvol_bookmark_action_free;
                     bookmark->actions = g_list_append(bookmark->actions, action);
+
                 }
             }else{
                 if(thunar_vfs_volume_is_mounted(volume)){
+
                     g_object_ref(volume);
                     action          = g_new0(PlacesBookmarkAction, 1);
                     action->label   = _("Unmount");
@@ -192,6 +211,7 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
                     action->action  = pbvol_unmount;
                     action->free    = pbvol_bookmark_action_free;
                     bookmark->actions = g_list_append(bookmark->actions, action);
+
                 }
             }
 
