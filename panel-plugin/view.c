@@ -43,6 +43,7 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4panel/xfce-panel-plugin.h>
 #include <libxfce4panel/xfce-panel-convenience.h>
+#include <libxfce4panel/xfce-hvbox.h>
 #include <libxfcegui4/libxfcegui4.h>
 
 #include <string.h>
@@ -697,64 +698,6 @@ pview_open_menu(PlacesView *pd)
     }
 }
 
-static inline GtkWidget*
-pview_gtk_obox_new(GtkOrientation orientation)
-{
-    GtkWidget *box;
-    if(orientation == GTK_ORIENTATION_HORIZONTAL)
-        box = gtk_hbox_new(FALSE, 4);
-    else
-        box = gtk_vbox_new(FALSE, 4);
-    gtk_container_set_border_width(GTK_CONTAINER(box), 0);
-    gtk_widget_show(box);
-    return box;
-}
-
-static void
-pview_button_update_orientation(PlacesView *view)
-{
-    GtkOrientation orientation;
-    GtkWidget *old_box, *new_box, *child;
-    GList *children;
-
-    DBG("-");
-
-    g_assert(view != NULL);
-
-    orientation = xfce_panel_plugin_get_orientation(view->plugin);
-    view->orientation = orientation;
-
-    old_box = gtk_bin_get_child(GTK_BIN(view->button));
-    g_assert(GTK_IS_WIDGET(old_box));
-    g_object_ref(old_box);
-    gtk_container_remove(GTK_CONTAINER(view->button), old_box);
-
-    gtk_widget_set_size_request(view->button, -1, -1); /* not sure why */
-
-    new_box = pview_gtk_obox_new(orientation);
-    gtk_container_add(GTK_CONTAINER(view->button), new_box);
-
-    /* move the contents of the old box to the new box */
-    children = gtk_container_get_children(GTK_CONTAINER(old_box));
-
-    while(children != NULL){
-        child = GTK_WIDGET(children->data);
-        
-        g_object_ref(child);
-        gtk_container_remove(GTK_CONTAINER(old_box), child);
-        gtk_box_pack_start_defaults(GTK_BOX(new_box), child);
-        g_object_unref(child);
-        
-        gtk_widget_show(child);
-
-        children = children->next;
-    }
-
-    gtk_widget_destroy(old_box);
-    g_object_unref(old_box);
-}   
-
-
 static void
 pview_button_update(PlacesView *view)
 {
@@ -803,7 +746,11 @@ pview_button_update(PlacesView *view)
         label_tooltip_changed);
 
     if(orientation_changed){
-        pview_button_update_orientation(view);
+        GtkWidget *button_box = gtk_bin_get_child(GTK_BIN(view->button));
+        
+        view->orientation = xfce_panel_plugin_get_orientation(view->plugin);
+        xfce_hvbox_set_orientation(XFCE_HVBOX(button_box), view->orientation);
+
         size_changed = TRUE;
     }
     
@@ -909,6 +856,8 @@ pview_button_update(PlacesView *view)
         else
             width = MAX(width, view->size);
 
+        gtk_widget_show_all(view->button);
+
         DBG("width=%d, height=%d", width, height);
         gtk_widget_set_size_request(view->button, width, height);
     }
@@ -950,11 +899,12 @@ pview_make_empty_cfg_dialog(PlacesView *view)
 PlacesView*
 places_view_init(XfcePanelPlugin *plugin)
 {
-    DBG("initializing");
-    g_assert(plugin != NULL);
-
+    GtkWidget *button_box;
     PlacesView *view;                   /* internal use in this file */
     PlacesViewCfgIface *view_cfg_iface; /* given to cfg */
+
+    DBG("initializing");
+    g_assert(plugin != NULL);
 
     view            = g_new0(PlacesView, 1);
     view->plugin    = plugin;
@@ -987,7 +937,9 @@ places_view_init(XfcePanelPlugin *plugin)
     xfce_panel_plugin_add_action_widget(view->plugin, view->button);
 
     /* create the box */
-    GtkWidget *button_box = pview_gtk_obox_new(xfce_panel_plugin_get_orientation(view->plugin));
+    button_box = xfce_hvbox_new(xfce_panel_plugin_get_orientation(view->plugin),
+                                FALSE, 4);
+    gtk_container_set_border_width(GTK_CONTAINER(button_box), 0);
     gtk_container_add(GTK_CONTAINER(view->button), button_box);
 
     pview_button_update(view);
