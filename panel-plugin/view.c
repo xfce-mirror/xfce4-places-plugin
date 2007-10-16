@@ -183,7 +183,7 @@ pview_reconfigure_model(PlacesView *view)
     view->bookmark_groups = g_list_append(view->bookmark_groups, places_bookmarks_system_create());
 
     if(view->cfg->show_volumes)
-        view->bookmark_groups = g_list_append(view->bookmark_groups, places_bookmarks_volumes_create());
+        view->bookmark_groups = g_list_append(view->bookmark_groups, places_bookmarks_volumes_create(view->cfg->mount_open_volumes));
 
     if(view->cfg->show_bookmarks){
         view->bookmark_groups = g_list_append(view->bookmark_groups, NULL); /* separator */

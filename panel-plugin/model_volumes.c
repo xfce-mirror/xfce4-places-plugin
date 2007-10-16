@@ -41,6 +41,7 @@ typedef struct
 
     ThunarVfsVolumeManager *volume_manager;
     gboolean   changed;
+    gboolean   mount_and_open_by_default;
 
 } PBVolData;
 
@@ -196,6 +197,11 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
                 action->free    = pbvol_bookmark_action_free;
                 bookmark->actions = g_list_append(bookmark->actions, action);
 
+                if(pbg_priv(bookmark_group)->mount_and_open_by_default){
+                    bookmark->primary_action = action;
+                    bookmark->force_gray = TRUE;
+                }
+
                 g_object_ref(volume);
                 action          = g_new0(PlacesBookmarkAction, 1);
                 action->label   = _("Mount");
@@ -284,7 +290,7 @@ pbvol_finalize(PlacesBookmarkGroup *bookmark_group)
 }
 
 PlacesBookmarkGroup*
-places_bookmarks_volumes_create()
+places_bookmarks_volumes_create(gboolean mount_and_open_by_default)
 {
     const GList *volumes;
     PlacesBookmarkGroup *bookmark_group;
@@ -298,6 +304,7 @@ places_bookmarks_volumes_create()
     thunar_vfs_init();
     pbg_priv(bookmark_group)->volume_manager = thunar_vfs_volume_manager_get_default();
     pbg_priv(bookmark_group)->changed        = TRUE;
+    pbg_priv(bookmark_group)->mount_and_open_by_default = mount_and_open_by_default;
     
     volumes = thunar_vfs_volume_manager_get_volumes(pbg_priv(bookmark_group)->volume_manager);
     while(volumes != NULL){

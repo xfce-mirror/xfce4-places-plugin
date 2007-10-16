@@ -7,6 +7,8 @@
 	* model_volumes.c: Added "Mount and Open" action for Bug #3565
 	* model.h, view.c: Added force_gray option to bookmarks for
 	Bug #3565
+	* cfg.{c,h}, model_volumes.c, view.c: Add "Mount and Open by
+	default" preference (closes Bug #3565)
 
 2007-10-15	Diego Ongaro <ongardie@gmail.com>
 

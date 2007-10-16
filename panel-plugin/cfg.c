@@ -78,6 +78,7 @@ pcfg_init_defaults(PlacesCfg *cfg)
     cfg->show_button_label  = FALSE;
     cfg->show_icons         = TRUE;
     cfg->show_volumes       = TRUE;
+    cfg->mount_open_volumes = FALSE;
     cfg->show_bookmarks     = TRUE;
 #if USE_RECENT_DOCUMENTS
     cfg->show_recent        = TRUE;
@@ -122,7 +123,9 @@ pcfg_load(PlacesCfg *cfg)
 
     cfg->show_icons = xfce_rc_read_bool_entry(rcfile, "show_icons", TRUE);
 
-    cfg->show_volumes   = xfce_rc_read_bool_entry(rcfile, "show_volumes", TRUE);
+    cfg->show_volumes       = xfce_rc_read_bool_entry(rcfile, "show_volumes", TRUE);
+    cfg->mount_open_volumes = xfce_rc_read_bool_entry(rcfile, "mount_open_volumes", FALSE);
+
     cfg->show_bookmarks = xfce_rc_read_bool_entry(rcfile, "show_bookmarks", TRUE);
 
     if(cfg->label != NULL)
@@ -173,6 +176,7 @@ pcfg_save(PlacesCfg *cfg)
     /* MENU */
     xfce_rc_write_bool_entry(rcfile, "show_icons", cfg->show_icons);
     xfce_rc_write_bool_entry(rcfile, "show_volumes", cfg->show_volumes);
+    xfce_rc_write_bool_entry(rcfile, "mount_open_volumes", cfg->mount_open_volumes);
     xfce_rc_write_bool_entry(rcfile, "show_bookmarks", cfg->show_bookmarks);
 #if USE_RECENT_DOCUMENTS
     xfce_rc_write_bool_entry(rcfile, "show_recent", cfg->show_recent);
@@ -413,6 +417,26 @@ pcfg_open_dialog(PlacesCfg *cfg)
 
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);   
+
+    /* MENU: - Mount and Open (indented) */
+    tmp_box = gtk_hbox_new(FALSE, 15);
+
+    tmp_widget = gtk_label_new(" "); /* TODO: is there a more appropriate widget? */
+    gtk_widget_show(tmp_widget);
+    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
+
+    tmp_widget = gtk_check_button_new_with_mnemonic(_("Mount and Open by default"));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), cfg->mount_open_volumes);
+
+    g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(cfg->mount_open_volumes));
+    g_signal_connect(G_OBJECT(tmp_widget), "toggled",
+                     G_CALLBACK(pcfg_model_cb), cfg);
+
+    gtk_widget_show(tmp_widget);
+    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
+    
+    gtk_widget_show(tmp_box);
+    gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_box, FALSE, FALSE, 0);
 
     /* MENU: Show GTK Bookmarks */
     tmp_widget = gtk_check_button_new_with_mnemonic(_("Show GTK _bookmarks"));

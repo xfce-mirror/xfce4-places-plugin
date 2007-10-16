@@ -38,6 +38,7 @@ typedef struct
     gboolean            show_button_label;
     gboolean            show_icons;
     gboolean            show_volumes;
+    gboolean            mount_open_volumes;
     gboolean            show_bookmarks;
 #if USE_RECENT_DOCUMENTS
     gboolean            show_recent;
