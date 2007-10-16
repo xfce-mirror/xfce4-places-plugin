@@ -1,4 +1,9 @@
-2007-10-19	Diego Ongaro <ongardie@gmail.com>
+2007-10-16	Diego Ongaro <ongardie@gmail.com>
+
+	* model_user.c: Don't always return TRUE in changed() when
+	~/.gtk-bookmarks is missing (resulted in menu "blinking")
+
+2007-10-15	Diego Ongaro <ongardie@gmail.com>
 
 	* view.c: Bug #3605 - individually show menu items instead of
 	using show_all to avoid incorrectly showing "No items found" in

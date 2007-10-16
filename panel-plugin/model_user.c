@@ -19,6 +19,19 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+/* User bookmarks come from the file ~/.gtk-bookmarks.
+ *
+ * When changed() is first called, it returns TRUE.
+ *
+ * When get_bookmarks() is first called, they will be built using
+ * pbuser_build_bookmarks(). It stores the bookmarks in PBUserData.bookmarks
+ * and the file's mtime in PBUserData.loaded. get_bookmarks() then clones the
+ * bookmarks from PBUserData.bookmarks.
+ *
+ * Once that's done, a call to changed() checks the file's mtime and a couple
+ * other things.
+ */
+
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
 #endif
@@ -34,12 +47,13 @@
 #define pbg_priv(pbg) ((PBUserData*) pbg->priv)
 #define show_bookmark(b) ((gboolean) b->priv)
 
-
 typedef struct
 {
   GList     *bookmarks;
   gchar     *filename;
-  time_t     loaded;
+  time_t     loaded; /* 0  indicates loading the file hasn't been attempted
+                        1  indicates the file does not exist
+                        2+ are actual timestamps */
 
 } PBUserData;
 
@@ -48,8 +62,9 @@ pbuser_get_mtime(const gchar *filename)
 {
     struct stat buf;
     if(g_stat(filename, &buf) == 0)
-        return buf.st_mtime;
-    return 0;
+        return MAX(buf.st_mtime, 2);
+    else
+        return 1;
 }
 
 static inline gboolean
@@ -75,12 +90,16 @@ pbuser_destroy_bookmarks(PlacesBookmarkGroup *bookmark_group)
     if(bookmarks == NULL)
         return;
     
+    DBG("destroy internal bookmarks");
+
     while(bookmarks != NULL){
-        pbuser_free_bookmark((PlacesBookmark*) bookmarks->data);
+        places_bookmark_free((PlacesBookmark*) bookmarks->data);
         bookmarks = bookmarks->next;
     }
     g_list_free(bookmarks);
     pbg_priv(bookmark_group)->bookmarks = NULL;
+
+    pbg_priv(bookmark_group)->loaded = 0;
 }
 
 static void
@@ -101,6 +120,7 @@ pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
 
     if(G_UNLIKELY(fp == NULL)){
         DBG("Error opening gtk bookmarks file");
+        pbg_priv(bookmark_group)->loaded = 1;
         return;
     }
 
@@ -168,7 +188,10 @@ pbuser_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 
     if(orig_ls == NULL){
         pbuser_build_bookmarks(bookmark_group);
-        orig_ls         = pbg_priv(bookmark_group)->bookmarks;
+        orig_ls = pbg_priv(bookmark_group)->bookmarks;
+
+        if(orig_ls == NULL)
+            return NULL;
     }
 
     orig_ls = g_list_last((GList*) orig_ls);
@@ -201,12 +224,13 @@ pbuser_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 static gboolean
 pbuser_changed(PlacesBookmarkGroup *bookmark_group)
 {
+    /* If we haven't even tried, we should load the bookmarks */
     if(pbg_priv(bookmark_group)->loaded == 0)
         goto pbuser_did_change;
 
-    /* see if the file has changed */
+    /* see if the file has changed (mtime or existence) */
     time_t mtime = pbuser_get_mtime(pbg_priv(bookmark_group)->filename);
-    if(mtime > pbg_priv(bookmark_group)->loaded)
+    if(mtime != pbg_priv(bookmark_group)->loaded)
         goto pbuser_did_change;
     
     /* see if any directories have been created or removed */
@@ -222,7 +246,11 @@ pbuser_changed(PlacesBookmarkGroup *bookmark_group)
         }
         bookmarks = bookmarks->next;
     }
-    return ret;
+    if(ret == TRUE)
+        goto pbuser_did_change;
+
+    /* if we're still here, assume nothing changed */
+    return FALSE;
 
   pbuser_did_change:
     pbuser_destroy_bookmarks(bookmark_group);
