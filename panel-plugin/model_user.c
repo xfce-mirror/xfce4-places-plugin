@@ -157,9 +157,8 @@ pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
         }
 
         /* create the BookmarkInfo container */
-        bookmark        = g_new0(PlacesBookmark, 1);
-        bookmark->uri   = path;                                   /* needs to be freed */
-        bookmark->label = name;                                   /* needs to be freed */
+        bookmark        = places_bookmark_create(name);           /* label needs to be freed */
+        bookmark->uri   = path;                                   /* uri   needs to be freed */
         bookmark->icon  = "gnome-fs-directory";
         bookmark->priv  = (gpointer) pbuser_dir_exists(path);
         bookmark->free  = pbuser_free_bookmark;
@@ -200,10 +199,9 @@ pbuser_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 
         orig = (PlacesBookmark*) orig_ls->data;
 
-        clone                 = g_new0(PlacesBookmark, 1);
+        clone                 = places_bookmark_create(g_strdup(orig->label));
         clone->uri            = g_strdup(orig->uri);
         clone->uri_scheme     = orig->uri_scheme;
-        clone->label          = g_strdup(orig->label);
         clone->icon           = orig->icon;
         clone->free           = pbuser_free_bookmark;
 

@@ -58,10 +58,31 @@ places_bookmark_actions_free(GList *actions)
     g_list_free(actions);
 }
 
+#if defined(DEBUG) && (DEBUG > 0)
+static int bookmarks = 0;
+#endif
+
+inline PlacesBookmark*
+places_bookmark_create(gchar *label)
+{
+    PlacesBookmark *bookmark;
+
+    g_assert(label != NULL);
+
+    bookmark = g_new0(PlacesBookmark, 1);
+    bookmark->label = label;
+
+    DBG("bookmarks: %02d %x %s", bookmarks++, (gint) bookmark, label);
+
+    return bookmark;
+}
+
 inline void
 places_bookmark_free(PlacesBookmark *bookmark)
 {
     g_assert(bookmark != NULL);
+
+    DBG("bookmarks: %02d %x %s", --bookmarks, (gint) bookmark, bookmark->label);
 
     if(bookmark->primary_action != NULL){
 

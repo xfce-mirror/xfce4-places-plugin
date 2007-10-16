@@ -160,8 +160,7 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 
         if(pbvol_show_volume(volume)){
 
-            bookmark        = g_new0(PlacesBookmark, 1);
-            bookmark->label = (gchar*) thunar_vfs_volume_get_name(volume);
+            bookmark        = places_bookmark_create((gchar*) thunar_vfs_volume_get_name(volume));
             if(thunar_vfs_volume_is_mounted(volume))
                 bookmark->uri   = thunar_vfs_path_dup_uri(thunar_vfs_volume_get_mount_point(volume));
             else

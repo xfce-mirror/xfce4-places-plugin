@@ -64,6 +64,9 @@ struct _PlacesBookmark
     void                 (*free) (PlacesBookmark *self);
 };
 
+inline PlacesBookmark*
+places_bookmark_create(gchar *label);
+
 inline void
 places_bookmark_free(PlacesBookmark *bookmark);
 

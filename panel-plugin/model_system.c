@@ -86,8 +86,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     /* These icon names are consistent with Thunar. */
 
     /* Home */
-    bookmark                = g_new0(PlacesBookmark, 1);
-    bookmark->label         = (gchar*) g_get_user_name();
+    bookmark                = places_bookmark_create((gchar*) g_get_user_name());
     bookmark->uri           = (gchar*) home_dir;
     bookmark->icon          = "gnome-fs-home";
 
@@ -100,8 +99,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     bookmarks = g_list_append(bookmarks, bookmark);
 
     /* Trash */
-    bookmark                = g_new0(PlacesBookmark, 1);
-    bookmark->label         = _("Trash");
+    bookmark                = places_bookmark_create(_("Trash"));
     bookmark->uri           = "trash:///";
     bookmark->uri_scheme    = PLACES_URI_SCHEME_TRASH;
     bookmark->free          = pbsys_free_trash_bookmark;;
@@ -125,8 +123,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     bookmarks = g_list_append(bookmarks, bookmark);
 
     /* Desktop */
-    bookmark                = g_new0(PlacesBookmark, 1);
-    bookmark->label         = _("Desktop");
+    bookmark                = places_bookmark_create(_("Desktop"));
     bookmark->uri           = g_build_filename(home_dir, "Desktop", NULL);
     bookmark->icon          = "gnome-fs-desktop";
     bookmark->free          = pbsys_free_desktop_bookmark;
@@ -150,8 +147,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     }
     
     /* File System (/) */
-    bookmark                = g_new0(PlacesBookmark, 1);
-    bookmark->label         = _("File System");
+    bookmark                = places_bookmark_create(_("File System"));
     bookmark->uri           = "/";
     bookmark->icon          = "gnome-dev-harddisk";
 
