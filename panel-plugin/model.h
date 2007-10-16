@@ -58,6 +58,7 @@ struct _PlacesBookmark
     places_uri_scheme      uri_scheme;    
     gchar                 *icon;           /* may be NULL */
     PlacesBookmarkAction  *primary_action; /* may be NULL */
+    gboolean               force_gray;
     GList                 *actions;        /* may be NULL (empty) */
 
     gpointer               priv;           /* private data */

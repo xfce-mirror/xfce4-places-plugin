@@ -391,7 +391,8 @@ static gboolean
 pview_cb_menu_item_do_alt(PlacesView *pd, GtkWidget *menu_item)
 {
     
-    GList *actions = (GList*) g_object_get_data(G_OBJECT(menu_item), "actions");
+    PlacesBookmark *bookmark = (PlacesBookmark*) g_object_get_data(G_OBJECT(menu_item), "bookmark");
+    GList *actions = bookmark->actions;
     GtkWidget *context, *context_item;
     PlacesBookmarkAction *action;
 
@@ -399,7 +400,7 @@ pview_cb_menu_item_do_alt(PlacesView *pd, GtkWidget *menu_item)
 
         context = gtk_menu_new();
 
-        while(actions != NULL){
+        do{
             action = (PlacesBookmarkAction*) actions->data;
 
             context_item = gtk_menu_item_new_with_label(action->label);
@@ -412,7 +413,7 @@ pview_cb_menu_item_do_alt(PlacesView *pd, GtkWidget *menu_item)
             gtk_widget_show(context_item);
 
             actions = actions->next;
-        }
+        }while(actions != NULL);
 
         gtk_widget_show(context);
         gtk_menu_popup(GTK_MENU(context),
@@ -434,9 +435,9 @@ pview_cb_menu_item_press(GtkWidget *menu_item, GdkEventButton *event, PlacesView
 
     gboolean ctrl =  (event->state & GDK_CONTROL_MASK) && 
                     !(event->state & (GDK_MOD1_MASK|GDK_SHIFT_MASK|GDK_MOD4_MASK));
-    gboolean sensitive = GTK_WIDGET_IS_SENSITIVE(gtk_bin_get_child(GTK_BIN(menu_item)));
+    PlacesBookmark *bookmark = (PlacesBookmark*) g_object_get_data(G_OBJECT(menu_item), "bookmark");
 
-    if(event->button == 3 || (event->button == 1 && (ctrl || !sensitive)))
+    if(event->button == 3 || (event->button == 1 && (ctrl || bookmark->primary_action == NULL)))
         return pview_cb_menu_item_do_alt(pd, menu_item);
     else
         return FALSE;
@@ -511,8 +512,7 @@ pview_add_menu_item(PlacesView *view, PlacesBookmark *bookmark)
         }
     }
 
-    if(bookmark->actions != NULL)
-        g_object_set_data(G_OBJECT(item), "actions", bookmark->actions);
+    g_object_set_data(G_OBJECT(item), "bookmark", bookmark);
 
     /* do this always so that the menu doesn't close on right-clicks */
     g_signal_connect(item, "button-release-event",
@@ -524,7 +524,8 @@ pview_add_menu_item(PlacesView *view, PlacesBookmark *bookmark)
                                  G_CALLBACK(places_bookmark_action_call), 
                                  bookmark->primary_action);
 
-    }else{
+    }
+    if(bookmark->force_gray || bookmark->primary_action == NULL){
 
         /* Gray it out. */
         gtk_widget_set_sensitive(gtk_bin_get_child(GTK_BIN(item)),
