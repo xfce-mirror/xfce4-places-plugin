@@ -79,6 +79,24 @@ pbvol_mount(PlacesBookmarkAction *action)
         thunar_vfs_volume_mount(volume, NULL, NULL);
 }
 
+static void
+pbvol_mount_and_open(PlacesBookmarkAction *action)
+{
+    DBG("Mount and open");
+
+    gchar *uri;
+    ThunarVfsVolume *volume = THUNAR_VFS_VOLUME(action->priv);
+
+    if(!thunar_vfs_volume_is_mounted(volume))
+        thunar_vfs_volume_mount(volume, NULL, NULL);
+
+    if(thunar_vfs_volume_is_mounted(volume)){
+        uri = thunar_vfs_path_dup_uri(thunar_vfs_volume_get_mount_point(volume));
+        places_load_thunar(uri);
+        g_free(uri);
+    }
+}
+
 static inline gboolean
 pbvol_show_volume(ThunarVfsVolume *volume){
     
@@ -169,6 +187,14 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
             bookmark->free  = pbvol_bookmark_free;
 
             if(!thunar_vfs_volume_is_mounted(volume)){
+
+                g_object_ref(volume);
+                action          = g_new0(PlacesBookmarkAction, 1);
+                action->label   = _("Mount and Open");
+                action->priv    = volume;
+                action->action  = pbvol_mount_and_open;
+                action->free    = pbvol_bookmark_action_free;
+                bookmark->actions = g_list_append(bookmark->actions, action);
 
                 g_object_ref(volume);
                 action          = g_new0(PlacesBookmarkAction, 1);

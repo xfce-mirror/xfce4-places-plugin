@@ -4,6 +4,7 @@
 	~/.gtk-bookmarks is missing (resulted in menu "blinking")
 	* model*.c: Use places_bookmark_create() as counterpart to
 	places_bookmark_free()
+	* model_volumes.c: Added "Mount and Open" action
 
 2007-10-15	Diego Ongaro <ongardie@gmail.com>
 
