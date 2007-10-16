@@ -1,3 +1,9 @@
+2007-10-19	Diego Ongaro <ongardie@gmail.com>
+
+	* view.c: Bug #3605 - individually show menu items instead of
+	using show_all to avoid incorrectly showing "No items found" in
+	the Recent Documents submenu on GTK 2.12
+
 2007-09-28	Diego Ongaro <ongardie@gmail.com>
 
 	* view.c: Use XfceHVBox

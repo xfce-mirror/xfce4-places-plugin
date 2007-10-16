@@ -398,21 +398,23 @@ pview_cb_menu_item_do_alt(PlacesView *pd, GtkWidget *menu_item)
     if(actions != NULL){
 
         context = gtk_menu_new();
-        gtk_widget_show(context);
 
         while(actions != NULL){
             action = (PlacesBookmarkAction*) actions->data;
 
             context_item = gtk_menu_item_new_with_label(action->label);
+
             g_object_set_data(G_OBJECT(context_item), "action", action);
-            gtk_widget_show(context_item);
             g_signal_connect(context_item, "activate",
                              G_CALLBACK(pview_cb_menu_item_context_act), pd);
+            
             gtk_menu_shell_append(GTK_MENU_SHELL(context), context_item);
+            gtk_widget_show(context_item);
 
             actions = actions->next;
         }
 
+        gtk_widget_show(context);
         gtk_menu_popup(GTK_MENU(context),
                        NULL, NULL,
                        NULL, NULL,
@@ -481,18 +483,24 @@ pview_add_menu_item(PlacesView *view, PlacesBookmark *bookmark)
     g_assert(view != NULL);
     g_assert(bookmark != NULL);
 
+    GtkWidget *separator;
     GtkWidget *item;
     GdkPixbuf *pb;
     GtkWidget *image;
 
+    /* lazily add separator */
     if(view->needs_separator){
-        gtk_menu_shell_append(GTK_MENU_SHELL(view->menu),
-                              gtk_separator_menu_item_new());
+
+        separator = gtk_separator_menu_item_new();
+        gtk_menu_shell_append(GTK_MENU_SHELL(view->menu), separator);
+        gtk_widget_show(separator);
+
         view->needs_separator = FALSE;
     }
 
     item = gtk_image_menu_item_new_with_label(bookmark->label);
 
+    /* try to set icon */
     if(view->cfg->show_icons && bookmark->icon != NULL){
         pb = xfce_themed_icon_load(bookmark->icon, 16);
         
@@ -528,6 +536,7 @@ pview_add_menu_item(PlacesView *view, PlacesBookmark *bookmark)
                      G_CALLBACK(places_bookmark_free), bookmark);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(view->menu), item);
+    gtk_widget_show(item);
 
 }
 
@@ -538,6 +547,7 @@ pview_update_menu(PlacesView *pd)
     PlacesBookmarkGroup *bookmark_group;
     GList *bookmarks;
     PlacesBookmark *bookmark;
+    GtkWidget *separator;
 
 #if USE_RECENT_DOCUMENTS
     GtkWidget *recent_menu;
@@ -586,42 +596,53 @@ pview_update_menu(PlacesView *pd)
         bookmark_group_li = bookmark_group_li->next;
     }
 
-    /* Recent Documents */
+    /* "Search for Files" or "Recent Documents" -> separator */
 #if USE_RECENT_DOCUMENTS
     if(pd->cfg->show_recent || (pd->cfg->search_cmd != NULL && *pd->cfg->search_cmd != '\0')){
 #else
     if(pd->cfg->search_cmd != NULL && *pd->cfg->search_cmd != '\0'){
 #endif
-        gtk_menu_shell_append(GTK_MENU_SHELL(pd->menu),
-                              gtk_separator_menu_item_new());
+        separator = gtk_separator_menu_item_new();
+        gtk_menu_shell_append(GTK_MENU_SHELL(pd->menu), separator);
+        gtk_widget_show(separator);
     }
 
+    /* Search for files */
     if(pd->cfg->search_cmd != NULL && *pd->cfg->search_cmd != '\0'){
+
         GtkWidget *search_item = gtk_image_menu_item_new_with_mnemonic(_("Search for Files"));
+        
         if(pd->cfg->show_icons){
             GtkWidget *search_image = gtk_image_new_from_icon_name("system-search", GTK_ICON_SIZE_MENU);
             gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(search_item), search_image);
         }
+        
         gtk_menu_shell_append(GTK_MENU_SHELL(pd->menu), search_item);
+        gtk_widget_show(search_item);
+        
         g_signal_connect_swapped(search_item, "activate",
                                  G_CALLBACK(places_gui_exec), pd->cfg->search_cmd);
 
     }
 
+    /* Recent Documents */
 #if USE_RECENT_DOCUMENTS
     if(pd->cfg->show_recent){
 
         recent_menu = gtk_recent_chooser_menu_new();
+
         gtk_recent_chooser_set_show_icons(GTK_RECENT_CHOOSER(recent_menu), pd->cfg->show_icons);
         gtk_recent_chooser_set_limit(GTK_RECENT_CHOOSER(recent_menu), pd->cfg->show_recent_number);
+
         g_signal_connect(recent_menu, "item-activated", 
                          G_CALLBACK(pview_cb_recent_item_open), pd);
     
         if(pd->cfg->show_recent_clear){
-    
-            gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu),
-                                  gtk_separator_menu_item_new());
-        
+
+            separator = gtk_separator_menu_item_new();
+            gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu), separator);
+            gtk_widget_show(separator);
+   
             if(pd->cfg->show_icons){
                 clear_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_CLEAR, NULL);
             }else{
@@ -629,7 +650,10 @@ pview_update_menu(PlacesView *pd)
                 gtk_stock_lookup(GTK_STOCK_CLEAR, &clear_stock_item);
                 clear_item = gtk_menu_item_new_with_mnemonic(clear_stock_item.label);
             }
+
             gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu), clear_item);
+            gtk_widget_show(clear_item);
+
             /* try button-release-event to catch mouse clicks and not hide the menu after */
             g_signal_connect(clear_item, "button-release-event",
                              G_CALLBACK(pview_cb_recent_items_clear), NULL);
@@ -644,8 +668,12 @@ pview_update_menu(PlacesView *pd)
             gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(recent_item), 
                                           gtk_image_new_from_stock(GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU));
         }
+
         gtk_menu_item_set_submenu(GTK_MENU_ITEM(recent_item), recent_menu);
+        gtk_widget_show(recent_menu);
+        
         gtk_menu_shell_append(GTK_MENU_SHELL(pd->menu), recent_item);
+        gtk_widget_show(recent_item);
     }
 #endif
 
@@ -654,7 +682,7 @@ pview_update_menu(PlacesView *pd)
                              G_CALLBACK(pview_cb_menu_deact), pd);
 
     /* Quit hiding the menu */
-    gtk_widget_show_all(pd->menu);
+    gtk_widget_show(pd->menu);
 
     /* This helps allocate resources beforehand so it'll pop up faster the first time */
     gtk_widget_realize(pd->menu);
@@ -788,9 +816,9 @@ pview_button_update(PlacesView *view)
              
                 if(view->button_image == NULL){
                     view->button_image = g_object_ref(gtk_image_new_from_pixbuf(icon));
-                    gtk_widget_show(view->button_image);
                     gtk_box_pack_start_defaults(GTK_BOX(button_box),
                                                 view->button_image);
+                    gtk_widget_show(view->button_image);
                 }else{
                     g_assert(GTK_IS_WIDGET(view->button_image));
                     gtk_image_set_from_pixbuf(GTK_IMAGE(view->button_image), icon);
@@ -813,9 +841,9 @@ pview_button_update(PlacesView *view)
             
             if(view->button_label == NULL){
                 view->button_label = g_object_ref(gtk_label_new(cfg->label));
-                gtk_widget_show(view->button_label);
                 gtk_box_pack_end_defaults(GTK_BOX(button_box), 
                                           view->button_label);
+                gtk_widget_show(view->button_label);
             }else{
                 g_assert(GTK_IS_WIDGET(view->button_label));
                 if(label_tooltip_changed)
@@ -932,15 +960,16 @@ places_view_init(XfcePanelPlugin *plugin)
 
     /* create the button */
     view->button = g_object_ref(xfce_create_panel_toggle_button());
-    gtk_widget_show(view->button);
-    gtk_container_add(GTK_CONTAINER(view->plugin), view->button);
     xfce_panel_plugin_add_action_widget(view->plugin, view->button);
+    gtk_container_add(GTK_CONTAINER(view->plugin), view->button);
+    gtk_widget_show(view->button);
 
     /* create the box */
     button_box = xfce_hvbox_new(xfce_panel_plugin_get_orientation(view->plugin),
                                 FALSE, 4);
     gtk_container_set_border_width(GTK_CONTAINER(button_box), 0);
     gtk_container_add(GTK_CONTAINER(view->button), button_box);
+    gtk_widget_show(button_box);
 
     pview_button_update(view);
 
