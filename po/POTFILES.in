@@ -13,3 +13,5 @@ panel-plugin/view.c
 panel-plugin/view.h
 panel-plugin/cfg.c
 panel-plugin/cfg.h
+panel-plugin/support.c
+panel-plugin/support.h

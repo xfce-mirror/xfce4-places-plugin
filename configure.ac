@@ -5,7 +5,7 @@ m4_define([places_version], [0.9.992])
 
 dnl initialize autoconf
 AC_COPYRIGHT([Copyright (c) 2007 Diego Ongaro <ongardie@gmail.com>])
-AC_INIT([xfce4-places-plugin], [places_version()], [ongardie@gmail.com])
+AC_INIT([xfce4-places-plugin], [places_version], [ongardie@gmail.com])
 AC_PREREQ([2.50])
 
 dnl initialize automake

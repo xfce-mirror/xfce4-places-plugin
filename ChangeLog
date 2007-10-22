@@ -1,3 +1,7 @@
+2007-10-22	Diego Ongaro <ongardie@gmail.com>
+
+	* configure.ac, po/POTFILES.in: fix make distcheck errors
+
 2007-10-16	Diego Ongaro <ongardie@gmail.com>
 
 	* model_user.c: Don't always return TRUE in changed() when
