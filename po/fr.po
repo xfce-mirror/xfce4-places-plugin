@@ -31,14 +31,21 @@ msgstr ""
 "POT-Creation-Date: 2007-05-17 01:47-0500\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"PO-Revision-Date: 2007-10-24 11:42+0100\n"
+"Last-Translator: Mike Massonnet <mmassonnet@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
 
 #. vim: ai et tabstop=4
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr ""
+msgstr "Accéder aux répertoires, documents, et périphériques amovibles"
 
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140 ../panel-plugin/cfg.c:259
+#: ../panel-plugin/places.desktop.in.in.h:2
+#: ../panel-plugin/cfg.c:78
+#: ../panel-plugin/cfg.c:140
+#: ../panel-plugin/cfg.c:259
 #: ../panel-plugin/cfg.c:329
 msgid "Places"
 msgstr "Raccourcis"
@@ -55,64 +62,65 @@ msgstr "Bureau"
 msgid "File System"
 msgstr "Système de fichiers"
 
-#: ../panel-plugin/view.c:244 ../panel-plugin/cfg.c:456
+#: ../panel-plugin/view.c:244
+#: ../panel-plugin/cfg.c:456
 msgid "Recent Documents"
 msgstr "Documents récents"
 
 #: ../panel-plugin/cfg.c:345
 msgid "Button"
-msgstr ""
+msgstr "Bouton"
 
 #: ../panel-plugin/cfg.c:354
 msgid "_Show"
-msgstr ""
+msgstr "_Afficher"
 
 #: ../panel-plugin/cfg.c:360
 msgid "Icon Only"
-msgstr ""
+msgstr "Icône"
 
 #: ../panel-plugin/cfg.c:361
 msgid "Label Only"
-msgstr ""
+msgstr "Label"
 
 #: ../panel-plugin/cfg.c:362
 msgid "Icon and Label"
-msgstr ""
+msgstr "Icône et Label"
 
 #: ../panel-plugin/cfg.c:384
 msgid "_Label"
-msgstr ""
+msgstr "_Label"
 
 #: ../panel-plugin/cfg.c:402
 msgid "Menu"
-msgstr ""
+msgstr "Menu"
 
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:406
 msgid "Show _icons in menu"
-msgstr ""
+msgstr "Afficher des _icônes dans le menu"
 
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:418
 msgid "Show _removable media"
-msgstr ""
+msgstr "Afficher les périphériques _amovibles"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:429
 msgid "Show GTK _bookmarks"
-msgstr ""
+msgstr "Afficher les _raccourcis GTK"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:442
-#, fuzzy
 msgid "Show recent _documents"
-msgstr "Documents récents"
+msgstr "Afficher les _documents récents"
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:460
 msgid "Show cl_ear option"
-msgstr ""
+msgstr "Afficher l'option _effacer"
 
 #: ../panel-plugin/cfg.c:475
 msgid "_Number to display"
-msgstr ""
+msgstr "_Quantité à afficher"
+
