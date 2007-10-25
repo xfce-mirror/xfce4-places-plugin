@@ -1,3 +1,15 @@
+2007-10-25
+================================================================================
+xfce4-places-plugin v1.0.0 released
+
+ * Added "Mount and Open" action for removabe media (Bug #3565)
+ * Fixed make distcheck errors
+ * Fixed menu "blinking" when ~/.gtk-bookmarks not found
+ * Fixed always showing "No items found" in recent documents 
+   with GTK 2.12 (Bug #3605)
+ * Adopted menu positioning from notes plugin
+   for improved behavior with floating panels
+
 2007-09-12
 ================================================================================
 xfce4-places-plugin v0.9.992 (1.0beta2) released
