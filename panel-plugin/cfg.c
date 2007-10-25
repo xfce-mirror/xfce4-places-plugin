@@ -425,7 +425,7 @@ pcfg_open_dialog(PlacesCfg *cfg)
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
 
-    tmp_widget = gtk_check_button_new_with_mnemonic(_("Mount and Open by default"));
+    tmp_widget = gtk_check_button_new_with_mnemonic(_("Mount and _Open on click"));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), cfg->mount_open_volumes);
 
     g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(cfg->mount_open_volumes));

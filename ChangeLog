@@ -1,6 +1,7 @@
 2007-10-25	Diego Ongaro <ongardie@gmail.com>
 
 	* model.c: Don't debug (possibly invalid) bookmark label on free
+	* cfg.c: String change
 
 2007-10-22	Diego Ongaro <ongardie@gmail.com>
 
