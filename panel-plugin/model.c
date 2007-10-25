@@ -72,7 +72,7 @@ places_bookmark_create(gchar *label)
     bookmark = g_new0(PlacesBookmark, 1);
     bookmark->label = label;
 
-    DBG("bookmarks: %02d %x %s", bookmarks++, (gint) bookmark, label);
+    DBG("bookmarks: %02d %p %s", bookmarks++, bookmark, label);
 
     return bookmark;
 }
@@ -82,7 +82,7 @@ places_bookmark_free(PlacesBookmark *bookmark)
 {
     g_assert(bookmark != NULL);
 
-    DBG("bookmarks: %02d %x %s", --bookmarks, (gint) bookmark, bookmark->label);
+    DBG("bookmarks: %02d %p", --bookmarks, bookmark);
 
     if(bookmark->primary_action != NULL){
 
@@ -121,17 +121,5 @@ places_bookmark_group_finalize(PlacesBookmarkGroup *pbg)
 {
     pbg->finalize(pbg);
 }
-
-
-/*
-void
-places_bookmark_actions_list_destroy(GSList *actions)
-{
-    g_assert(actions != NULL);
-
-    g_slist_foreach(actions, (GFunc) places_bookmark_action_free, NULL);
-    g_slist_free(actions);
-}
-*/
 
 /* vim: set ai et tabstop=4: */
