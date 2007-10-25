@@ -3,6 +3,7 @@
 	* model.c: Don't debug (possibly invalid) bookmark label on free
 	* cfg.c: String change
 	* Prep for v1.0.0
+	* NEWS: fix typo
 
 2007-10-22	Diego Ongaro <ongardie@gmail.com>
 

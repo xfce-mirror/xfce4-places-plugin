@@ -2,7 +2,7 @@
 ================================================================================
 xfce4-places-plugin v1.0.0 released
 
- * Added "Mount and Open" action for removabe media (Bug #3565)
+ * Added "Mount and Open" action for removable media (Bug #3565)
  * Fixed make distcheck errors
  * Fixed menu "blinking" when ~/.gtk-bookmarks not found
  * Fixed always showing "No items found" in recent documents 
