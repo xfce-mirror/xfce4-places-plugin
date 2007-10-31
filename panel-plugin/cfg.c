@@ -434,6 +434,7 @@ pcfg_open_dialog(PlacesCfg *cfg)
     tmp_box = gtk_hbox_new(FALSE, 15);
 
     /* Gray out this box when "Show removable media" is off */
+    gtk_widget_set_sensitive(tmp_box, cfg->show_volumes);
     g_object_set_data(G_OBJECT(tmp_widget), "cfg_transient", tmp_box);
 
     tmp_widget = gtk_label_new(" "); /* TODO: is there a more appropriate widget? */
@@ -482,6 +483,7 @@ pcfg_open_dialog(PlacesCfg *cfg)
     gtk_widget_show(vbox_recent);
     
     /* Gray out this box when "Show recent documents" is off */
+    gtk_widget_set_sensitive(vbox_recent, cfg->show_recent);
     g_object_set_data(G_OBJECT(tmp_widget), "cfg_transient", vbox_recent);
 
     frame_recent = xfce_create_framebox_with_content(_("Recent Documents"), vbox_recent);
