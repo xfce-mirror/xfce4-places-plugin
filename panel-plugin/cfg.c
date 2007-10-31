@@ -289,12 +289,18 @@ static void
 pcfg_menu_cb(GtkToggleButton *toggle, PlacesCfg *cfg)
 {
     gboolean *opt;
+    GtkWidget *transient;
+
     g_assert(cfg != NULL);
 
     opt = g_object_get_data(G_OBJECT(toggle), "cfg_opt");
     g_assert(opt != NULL);
 
     *opt = gtk_toggle_button_get_active(toggle);
+
+    transient = g_object_get_data(G_OBJECT(toggle), "cfg_transient");
+    if(transient != NULL)
+        gtk_widget_set_sensitive(transient, *opt);
 
     places_view_cfg_iface_update_menu(cfg->view_iface);
 }
@@ -303,12 +309,18 @@ static void
 pcfg_model_cb(GtkToggleButton *toggle, PlacesCfg *cfg)
 {
     gboolean *opt;
+    GtkWidget *transient;
+
     g_assert(cfg != NULL);
     
     opt = g_object_get_data(G_OBJECT(toggle), "cfg_opt");
     g_assert(opt != NULL);
 
     *opt = gtk_toggle_button_get_active(toggle);
+
+    transient = g_object_get_data(G_OBJECT(toggle), "cfg_transient");
+    if(transient != NULL)
+        gtk_widget_set_sensitive(transient, *opt);
 
     places_view_cfg_iface_reconfigure_model(cfg->view_iface);
 }
@@ -421,6 +433,9 @@ pcfg_open_dialog(PlacesCfg *cfg)
     /* MENU: - Mount and Open (indented) */
     tmp_box = gtk_hbox_new(FALSE, 15);
 
+    /* Gray out this box when "Show removable media" is off */
+    g_object_set_data(G_OBJECT(tmp_widget), "cfg_transient", tmp_box);
+
     tmp_widget = gtk_label_new(" "); /* TODO: is there a more appropriate widget? */
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
@@ -466,6 +481,9 @@ pcfg_open_dialog(PlacesCfg *cfg)
     vbox_recent = gtk_vbox_new(FALSE, 4);
     gtk_widget_show(vbox_recent);
     
+    /* Gray out this box when "Show recent documents" is off */
+    g_object_set_data(G_OBJECT(tmp_widget), "cfg_transient", vbox_recent);
+
     frame_recent = xfce_create_framebox_with_content(_("Recent Documents"), vbox_recent);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_recent, FALSE, FALSE, 0);
 

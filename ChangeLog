@@ -1,3 +1,7 @@
+2007-10-31	Diego Ongaro <ongardie@gmail.com>
+
+	* cfg.c: Bug #3637: Make options for recent documents transient
+
 2007-10-25	Diego Ongaro <ongardie@gmail.com>
 
 	* model.c: Don't debug (possibly invalid) bookmark label on free
