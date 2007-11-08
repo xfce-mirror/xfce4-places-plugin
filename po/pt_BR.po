@@ -25,19 +25,27 @@
 # Raphael Higino <raphaelh@uai.com.br>, 2004-2005.
 # Evandro Fernandes Giovanini <evandrofg@ig.com.br>, 2007.
 # Og Maciel <ogmaciel@ubuntu.com>, 2007.
+# Fábio Nogueira <deb-user-ba@ubuntu.com>, 2007.
 #
 # ###
+
 msgid ""
 msgstr ""
+"Project-Id-Version: xfce 4-battery-plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-05-17 01:47-0500\n"
+"PO-Revision-Date: 2007-11-08 16:32-0300\n"
+"Last-Translator: Fábio Nogueira <deb-user-ba@ubuntu.com>\n"
+"Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. vim: ai et tabstop=4
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr ""
+msgstr "Acesse pastas, documentos e mídias removíveis"
 
 #: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:78
 #: ../panel-plugin/cfg.c:140 ../panel-plugin/cfg.c:259
@@ -63,58 +71,57 @@ msgstr "Documentos Recentes"
 
 #: ../panel-plugin/cfg.c:345
 msgid "Button"
-msgstr ""
+msgstr "Botão"
 
 #: ../panel-plugin/cfg.c:354
 msgid "_Show"
-msgstr ""
+msgstr "Mo_strar"
 
 #: ../panel-plugin/cfg.c:360
 msgid "Icon Only"
-msgstr ""
+msgstr "Somente Ícone"
 
 #: ../panel-plugin/cfg.c:361
 msgid "Label Only"
-msgstr ""
+msgstr "Somente Rótulo"
 
 #: ../panel-plugin/cfg.c:362
 msgid "Icon and Label"
-msgstr ""
+msgstr "Ícone e Rótulo"
 
 #: ../panel-plugin/cfg.c:384
 msgid "_Label"
-msgstr ""
+msgstr "Rótu_lo"
 
 #: ../panel-plugin/cfg.c:402
 msgid "Menu"
-msgstr ""
+msgstr "Menu"
 
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:406
 msgid "Show _icons in menu"
-msgstr ""
+msgstr "Mostrar ícon_es no menu"
 
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:418
 msgid "Show _removable media"
-msgstr ""
+msgstr "Mostrar mídia _removível"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:429
 msgid "Show GTK _bookmarks"
-msgstr ""
+msgstr "Mostrar mar_cadores GTK"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:442
-#, fuzzy
 msgid "Show recent _documents"
-msgstr "Documentos Recentes"
+msgstr "Mostrar _documentos recentes"
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:460
 msgid "Show cl_ear option"
-msgstr ""
+msgstr "Mostrar o_pção de limpar"
 
 #: ../panel-plugin/cfg.c:475
 msgid "_Number to display"
-msgstr ""
+msgstr "_Número a exibir"
