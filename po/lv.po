@@ -1,0 +1,104 @@
+# Latvian translation of .
+# Copyright (C) 2007 THE thunar'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the  package.
+# Rihards Prieditis <rprieditis@inbox.lv>, 2007.
+# , fuzzy
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2007-05-17 01:47-0500\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"PO-Revision-Date: 2007-11-16 21:00+0300\n"
+"Last-Translator: Rihards Priedītis <rprieditis@inbox.lv>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+
+#. vim: ai et tabstop=4
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr "Piekļūst mapēm, dokumentiem un noņēmamiem datu nesējiem"
+
+#: ../panel-plugin/places.desktop.in.in.h:2
+#: ../panel-plugin/cfg.c:78
+#: ../panel-plugin/cfg.c:140
+#: ../panel-plugin/cfg.c:259
+#: ../panel-plugin/cfg.c:329
+msgid "Places"
+msgstr "Vietas"
+
+#: ../panel-plugin/model_system.c:60
+msgid "Trash"
+msgstr "Miskaste"
+
+#: ../panel-plugin/model_system.c:70
+msgid "Desktop"
+msgstr "Darbavirsma"
+
+#: ../panel-plugin/model_system.c:78
+msgid "File System"
+msgstr "Failu Sistēma"
+
+#: ../panel-plugin/view.c:244
+#: ../panel-plugin/cfg.c:456
+msgid "Recent Documents"
+msgstr "Nesenie Dokumenti"
+
+#: ../panel-plugin/cfg.c:345
+msgid "Button"
+msgstr "Pogas"
+
+#: ../panel-plugin/cfg.c:354
+msgid "_Show"
+msgstr "_Rādī"
+
+#: ../panel-plugin/cfg.c:360
+msgid "Icon Only"
+msgstr "Tikai Ikonas"
+
+#: ../panel-plugin/cfg.c:361
+msgid "Label Only"
+msgstr "Tikai Etiķetes"
+
+#: ../panel-plugin/cfg.c:362
+msgid "Icon and Label"
+msgstr "Ikonas un Etiķetes"
+
+#: ../panel-plugin/cfg.c:384
+msgid "_Label"
+msgstr "_Etiķete"
+
+#: ../panel-plugin/cfg.c:402
+msgid "Menu"
+msgstr "Izvēlne"
+
+#. MENU: Show Icons
+#: ../panel-plugin/cfg.c:406
+msgid "Show _icons in menu"
+msgstr "Rādīt _ikonu izvēlnē"
+
+#. MENU: Show Removable Media
+#: ../panel-plugin/cfg.c:418
+msgid "Show _removable media"
+msgstr "Rādit _noņemamos datu nesējus"
+
+#. MENU: Show GTK Bookmarks
+#: ../panel-plugin/cfg.c:429
+msgid "Show GTK _bookmarks"
+msgstr "Rādīt GTK _grāmatzīmes"
+
+#. MENU: Show Recent Documents
+#: ../panel-plugin/cfg.c:442
+msgid "Show recent _documents"
+msgstr "Rādīt nesenos _dokumentus"
+
+#. RECENT DOCUMENTS: Show clear option
+#: ../panel-plugin/cfg.c:460
+msgid "Show cl_ear option"
+msgstr "Rādīt _notīrīt iespēju"
+
+#: ../panel-plugin/cfg.c:475
+msgid "_Number to display"
+msgstr "_Attēlojamo vienumu skaits"
+
