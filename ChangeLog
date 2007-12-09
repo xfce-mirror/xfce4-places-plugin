@@ -1,3 +1,7 @@
+2007-12-08	Diego Ongaro <ongardie@gmail.com>
+
+	* model_user.c: Bug #3728: bookmarks may become (un)reachable
+
 2007-10-31	Diego Ongaro <ongardie@gmail.com>
 
 	* cfg.c: Bug #3637: Make options for recent documents transient

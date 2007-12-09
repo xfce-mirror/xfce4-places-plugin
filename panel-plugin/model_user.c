@@ -199,19 +199,22 @@ pbuser_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 
         orig = (PlacesBookmark*) orig_ls->data;
 
-        clone                 = places_bookmark_create(g_strdup(orig->label));
-        clone->uri            = g_strdup(orig->uri);
-        clone->uri_scheme     = orig->uri_scheme;
-        clone->icon           = orig->icon;
-        clone->free           = pbuser_free_bookmark;
+        if(show_bookmark(orig)){
 
-        terminal              = places_create_open_terminal_action(clone);
-        clone->actions        = g_list_prepend(clone->actions, terminal);
-        open                  = places_create_open_action(clone);
-        clone->actions        = g_list_prepend(clone->actions, open);
-        clone->primary_action = open;
-
-        clone_ls = g_list_prepend(clone_ls, clone);
+            clone                 = places_bookmark_create(g_strdup(orig->label));
+            clone->uri            = g_strdup(orig->uri);
+            clone->uri_scheme     = orig->uri_scheme;
+            clone->icon           = orig->icon;
+            clone->free           = pbuser_free_bookmark;
+    
+            terminal              = places_create_open_terminal_action(clone);
+            clone->actions        = g_list_prepend(clone->actions, terminal);
+            open                  = places_create_open_action(clone);
+            clone->actions        = g_list_prepend(clone->actions, open);
+            clone->primary_action = open;
+    
+            clone_ls = g_list_prepend(clone_ls, clone);
+        }
         orig_ls  = orig_ls->prev;
     }
 
@@ -244,8 +247,8 @@ pbuser_changed(PlacesBookmarkGroup *bookmark_group)
         }
         bookmarks = bookmarks->next;
     }
-    if(ret == TRUE)
-        goto pbuser_did_change;
+    if(ret)
+        return TRUE;
 
     /* if we're still here, assume nothing changed */
     return FALSE;
