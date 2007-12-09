@@ -14,21 +14,21 @@ AM_CONFIG_HEADER([config.h])
 AM_MAINTAINER_MODE()
 
 dnl check for basic programs
-AC_PROG_CC
-AC_PROG_INSTALL
-AC_PROG_LIBTOOL
-AC_PROG_INTLTOOL([0.31], [no-xml])
-
-dnl check for i18n support
-XDT_I18N([@LINGUAS@])
+AC_PROG_CC()
+AC_PROG_INSTALL()
+AC_PROG_LIBTOOL()
+AC_PROG_INTLTOOL()
 
 dnl check for required packages
 XDT_CHECK_PACKAGE([GTK], [gtk+-2.0], [2.6.0])
-XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.3.99.1])
-XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.3.99.1])
-XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.3.99.1])
-XDT_CHECK_PACKAGE([THUNAR_VFS], [thunar-vfs-1], [0.4.0])
-XDT_CHECK_PACKAGE([EXO], [exo-0.3], [0.3.1.10])
+XDT_CHECK_PACKAGE([LIBXFCE4UTIL], [libxfce4util-1.0], [4.3.90.2])
+XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.3.90.2])
+XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.3.90.2])
+XDT_CHECK_PACKAGE([THUNAR_VFS], [thunar-vfs-1], [0.3.2])
+XDT_CHECK_PACKAGE([EXO], [exo-0.3], [0.3.1.1])
+
+dnl check for i18n support
+XDT_I18N([@LINGUAS@])
 
 XDT_FEATURE_DEBUG()
 

@@ -27,6 +27,8 @@
 
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
+
+#define EXO_API_SUBJECT_TO_CHANGE
 #include <exo/exo.h>
 
 #include "string.h"

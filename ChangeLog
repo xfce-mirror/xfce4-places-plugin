@@ -1,3 +1,7 @@
+2007-12-09	Diego Ongaro <ongardie@gmail.com>
+
+	* *: Improve compatibility with older versions of libs
+
 2007-12-08	Diego Ongaro <ongardie@gmail.com>
 
 	* model_user.c: Bug #3728: bookmarks may become (un)reachable

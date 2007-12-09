@@ -46,6 +46,9 @@
 #include <libxfce4panel/xfce-hvbox.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+#define EXO_API_SUBJECT_TO_CHANGE
+#include <exo/exo.h>
+
 #include <string.h>
 
 #include "view.h"
@@ -567,7 +570,8 @@ pview_update_menu(PlacesView *pd)
     pd->menu = gtk_menu_new();
     
     /* make sure the menu popups up in right screen */
-    gtk_menu_attach_to_widget(GTK_MENU(pd->menu), pd->button, NULL);
+    /* need exo_noop for GTK 2.6 and 2.8; starting with 2.10, NULL is OK */
+    gtk_menu_attach_to_widget(GTK_MENU(pd->menu), pd->button, (GtkMenuDetachFunc) exo_noop);
     gtk_menu_set_screen(GTK_MENU(pd->menu),
                         gtk_widget_get_screen(pd->button));
 
@@ -953,7 +957,7 @@ places_view_init(XfcePanelPlugin *plugin)
 
     pview_reconfigure_model(view);
     
-    view->tooltips = g_object_ref_sink(gtk_tooltips_new());
+    view->tooltips = exo_gtk_object_ref_sink(GTK_OBJECT(gtk_tooltips_new()));
 
     /* init button */
 

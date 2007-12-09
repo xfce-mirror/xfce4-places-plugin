@@ -40,6 +40,9 @@
 #include "model.h"
 #include "support.h"
 
+#include <sys/types.h>
+#include <sys/stat.h>
+
 #include <libxfce4util/libxfce4util.h>
 #include <glib.h>
 #include <glib/gstdio.h>

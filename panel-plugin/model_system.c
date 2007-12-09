@@ -36,17 +36,20 @@
 #define EXO_API_SUBJECT_TO_CHANGE
 #include <thunar-vfs/thunar-vfs.h>
 
+#define TRASH THUNAR_VFS_CHECK_VERSION(0,4,0)
 
 #define pbg_priv(pbg) ((PBSysData*) pbg->priv)
 
 typedef struct
 {
-    ThunarVfsPath *trash_path;
 
     /* These are the things that might "change" */
     gboolean       check_changed;   /* starts off false to indicate the following are meaningless */
     gboolean       desktop_exists;
+#if TRASH
     gboolean       trash_is_empty;
+    ThunarVfsPath *trash_path;
+#endif
 
 } PBSysData;
  
@@ -61,6 +64,7 @@ pbsys_free_desktop_bookmark(PlacesBookmark *bookmark)
     g_free(bookmark);
 }
 
+#if TRASH
 static void
 pbsys_free_trash_bookmark(PlacesBookmark *bookmark)
 {
@@ -71,6 +75,7 @@ pbsys_free_trash_bookmark(PlacesBookmark *bookmark)
 
     g_free(bookmark);
 }
+#endif
 
 static GList*
 pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
@@ -78,7 +83,9 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     GList *bookmarks = NULL;           /* we'll return this */
     PlacesBookmark *bookmark;
     PlacesBookmarkAction *open, *terminal;
+#if TRASH
     ThunarVfsInfo *trash_info;
+#endif
     const gchar *home_dir = xfce_get_homedir();
 
     pbg_priv(bookmark_group)->check_changed = TRUE;
@@ -98,6 +105,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 
     bookmarks = g_list_append(bookmarks, bookmark);
 
+#if TRASH
     /* Trash */
     bookmark                = places_bookmark_create(_("Trash"));
     bookmark->uri           = "trash:///";
@@ -121,6 +129,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     bookmark->primary_action = open;
 
     bookmarks = g_list_append(bookmarks, bookmark);
+#endif
 
     /* Desktop */
     bookmark                = places_bookmark_create(_("Desktop"));
@@ -166,9 +175,11 @@ gboolean
 pbsys_changed(PlacesBookmarkGroup *bookmark_group)
 {
     gchar *uri;
+#if TRASH
     gboolean trash_is_empty = FALSE;
     ThunarVfsInfo *trash_info;
-    
+#endif
+
     if(!pbg_priv(bookmark_group)->check_changed)
         return FALSE;
     
@@ -180,6 +191,7 @@ pbsys_changed(PlacesBookmarkGroup *bookmark_group)
     }else
         g_free(uri);
 
+#if TRASH
     /* see if trash gets a different icon (e.g., was empty, now full) */
     trash_info = thunar_vfs_info_new_for_path(pbg_priv(bookmark_group)->trash_path, NULL);
     if(trash_info->custom_icon != NULL)
@@ -188,6 +200,7 @@ pbsys_changed(PlacesBookmarkGroup *bookmark_group)
     
     if(trash_is_empty != pbg_priv(bookmark_group)->trash_is_empty)
         return TRUE;
+#endif
 
     return FALSE;
 }
@@ -195,8 +208,10 @@ pbsys_changed(PlacesBookmarkGroup *bookmark_group)
 static void
 pbsys_finalize(PlacesBookmarkGroup *bookmark_group)
 {
+#if TRASH
     thunar_vfs_path_unref(pbg_priv(bookmark_group)->trash_path);
     thunar_vfs_shutdown();
+#endif
     
     g_free(pbg_priv(bookmark_group));
 
@@ -212,8 +227,10 @@ places_bookmarks_system_create()
     bookmark_group->finalize      = pbsys_finalize;
     bookmark_group->priv          = g_new0(PBSysData, 1);
     
+#if TRASH
     thunar_vfs_init();
     pbg_priv(bookmark_group)->trash_path = thunar_vfs_path_get_for_trash();
+#endif
 
     return bookmark_group;
 }
