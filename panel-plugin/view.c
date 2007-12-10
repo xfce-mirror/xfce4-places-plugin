@@ -58,6 +58,7 @@
 #include "model_system.h"
 #include "model_volumes.h"
 #include "model_user.h"
+#include "xfce4-popup-places.h"
 
 struct _PlacesView
 {
@@ -928,6 +929,61 @@ pview_make_empty_cfg_dialog(PlacesView *view)
     return dlg;
 }
 
+/********** Handle user message **********/
+static gboolean
+places_view_plugin_message_received (GtkWidget *widget,
+                                     GdkEventClient *ev,
+                                     gpointer user_data)
+{
+    PlacesView *view = user_data;
+
+    DBG ("Message received");
+    if (G_LIKELY (ev->data_format == 8 && *(ev->data.b) != '\0'
+                  && !g_ascii_strcasecmp (PLACES_MSG_MENU, ev->data.b))){
+        DBG ("`%s'", ev->data.b);
+        GdkEventButton ev_btn;
+        ev_btn.button = 1;
+        pview_open_menu (view);
+        return TRUE;
+    }
+
+  return FALSE;
+}
+
+static gboolean
+places_view_plugin_set_selection (PlacesView *view)
+{
+    GdkScreen          *gscreen;
+    gchar              *selection_name;
+    Atom                selection_atom;
+    GtkWidget          *win;
+    Window              id;
+
+    win = gtk_invisible_new ();
+    gtk_widget_realize (win);
+    id = GDK_WINDOW_XID (GTK_WIDGET (win)->window);
+
+    gscreen = gtk_widget_get_screen (win);
+    selection_name = g_strdup_printf (XFCE_PLACES_SELECTION"%d",
+                                      gdk_screen_get_number (gscreen));
+    selection_atom = XInternAtom (GDK_DISPLAY (), selection_name, FALSE);
+
+    if (XGetSelectionOwner (GDK_DISPLAY (), selection_atom)){
+        gtk_widget_destroy (win);
+        return FALSE;
+    }
+
+    XSelectInput (GDK_DISPLAY (), id, PropertyChangeMask);
+    XSetSelectionOwner (GDK_DISPLAY (), selection_atom, id, GDK_CURRENT_TIME);
+
+    g_signal_connect (win,
+                      "client-event",
+                      G_CALLBACK (places_view_plugin_message_received),
+                      view);
+
+    return TRUE;
+}
+
 /********** Initialization & Finalization **********/
 PlacesView*
 places_view_init(XfcePanelPlugin *plugin)
@@ -1002,6 +1058,8 @@ places_view_init(XfcePanelPlugin *plugin)
     xfce_panel_plugin_menu_show_configure(view->plugin);
 
     DBG("done");
+
+    places_view_plugin_set_selection (view);
 
     return view;
 }

@@ -1,6 +1,8 @@
 2007-12-09	Diego Ongaro <ongardie@gmail.com>
 
 	* *: Improve compatibility with older versions of libs
+	* xfce4-popup-places.{c,h}, view.c, Makefile.am: Bug #3672:
+	popup command (thanks to Mike for the patch)
 
 2007-12-08	Diego Ongaro <ongardie@gmail.com>
 

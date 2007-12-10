@@ -1,3 +1,20 @@
+bin_PROGRAMS = xfce4-popup-places
+
+xfce4_popup_places_SOURCES =						\
+	xfce4-popup-places.c						\
+	xfce4-popup-places.h
+
+xfce4_popup_places_CFLAGS =						\
+	$(LIBX11_CFLAGS)						\
+	$(GTK_CFLAGS)
+
+xfce4_popup_places_LDADD =						\
+	$(LIBX11_LDFLAGS)						\
+	$(LIBX11_LIBS)							\
+	$(GTK_LIBS)
+
+
+
 plugindir = $(libexecdir)/xfce4/panel-plugins
 
 plugin_PROGRAMS =							\
