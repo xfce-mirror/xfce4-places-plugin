@@ -1,3 +1,7 @@
+2007-12-10	Diego Ongaro <ongardie@gmail.com>
+
+	* view.c: Bug: label didn't change when already shown
+
 2007-12-09	Diego Ongaro <ongardie@gmail.com>
 
 	* *: Improve compatibility with older versions of libs

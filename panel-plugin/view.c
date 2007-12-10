@@ -89,7 +89,7 @@ struct _PlacesView
     gint                      size;
     gboolean                  show_button_icon;
     gboolean                  show_button_label;
-    gchar                     *label_tooltip_text;
+    gchar                     *label_text;
     gboolean                  force_update_theme;
 
     /* model */
@@ -745,7 +745,7 @@ pview_button_update(PlacesView *view)
     PlacesCfg *cfg = view->cfg;
     gboolean orientation_changed, size_changed, 
              icon_presence_changed, label_presence_changed, 
-             label_tooltip_changed, theme_changed;
+             label_changed, theme_changed;
     static gboolean first_run = TRUE;
 
     DBG("button_update (first run: %1x)", first_run);
@@ -765,8 +765,8 @@ pview_button_update(PlacesView *view)
         label_presence_changed = TRUE;
         view->show_button_label = cfg->show_button_label;
         
-        label_tooltip_changed = TRUE;
-        view->label_tooltip_text = g_strdup(cfg->label);
+        label_changed = TRUE;
+        view->label_text = g_strdup(cfg->label);
 
         theme_changed = TRUE;
         view->force_update_theme = FALSE;
@@ -776,14 +776,14 @@ pview_button_update(PlacesView *view)
         size_changed           = (view->size != xfce_panel_plugin_get_size(view->plugin));
         icon_presence_changed  = (view->show_button_icon != cfg->show_button_icon);
         label_presence_changed = (view->show_button_label != cfg->show_button_label);
-        label_tooltip_changed  = (strcmp(view->label_tooltip_text, cfg->label) != 0);
+        label_changed          = (strcmp(view->label_text, cfg->label) != 0);
         theme_changed          = view->force_update_theme;
     }
 
-    DBG("orientation: %1x, size: %1x, icon_pr: %1x, label_pr: %1x, label_tooltip: %1x",
+    DBG("orientation: %1x, size: %1x, icon_pr: %1x, label_pr: %1x, label_text: %1x",
         orientation_changed, size_changed, 
         icon_presence_changed, label_presence_changed, 
-        label_tooltip_changed);
+        label_changed);
 
     if(orientation_changed){
         GtkWidget *button_box = gtk_bin_get_child(GTK_BIN(view->button));
@@ -794,15 +794,15 @@ pview_button_update(PlacesView *view)
         size_changed = TRUE;
     }
     
-    if(label_tooltip_changed){
-        g_free(view->label_tooltip_text);
-        view->label_tooltip_text = g_strdup(cfg->label);
+    if(label_changed){
+        g_free(view->label_text);
+        view->label_text = g_strdup(cfg->label);
     }
 
     if(theme_changed)
         view->force_update_theme = FALSE;
 
-    if(size_changed || icon_presence_changed || label_presence_changed || theme_changed){
+    if(size_changed || icon_presence_changed || label_presence_changed || label_changed || theme_changed){
         view->size              = xfce_panel_plugin_get_size(view->plugin);
         DBG("Panel size: %d", view->size);
         view->show_button_icon  = cfg->show_button_icon;
@@ -852,14 +852,14 @@ pview_button_update(PlacesView *view)
             GtkRequisition req;
             
             if(view->button_label == NULL){
-                view->button_label = g_object_ref(gtk_label_new(cfg->label));
+                view->button_label = g_object_ref(gtk_label_new(view->label_text));
                 gtk_box_pack_end_defaults(GTK_BOX(button_box), 
                                           view->button_label);
                 gtk_widget_show(view->button_label);
             }else{
                 g_assert(GTK_IS_WIDGET(view->button_label));
-                if(label_tooltip_changed)
-                    gtk_label_set_text(GTK_LABEL(view->button_label), view->label_tooltip_text);
+                if(label_changed)
+                    gtk_label_set_text(GTK_LABEL(view->button_label), view->label_text);
             }
 
             gtk_widget_size_request(view->button_label, &req);
@@ -902,8 +902,8 @@ pview_button_update(PlacesView *view)
         gtk_widget_set_size_request(view->button, width, height);
     }
 
-    if(label_tooltip_changed)
-        gtk_tooltips_set_tip(view->tooltips, view->button, view->label_tooltip_text, NULL);
+    if(label_changed)
+        gtk_tooltips_set_tip(view->tooltips, view->button, view->label_text, NULL);
 }
 
 static void
@@ -1077,8 +1077,8 @@ places_view_finalize(PlacesView *view)
         g_object_unref(view->button_label);
     if(view->button != NULL)
         g_object_unref(view->button);
-    if(view->label_tooltip_text != NULL)
-        g_free(view->label_tooltip_text);
+    if(view->label_text != NULL)
+        g_free(view->label_text);
     g_object_unref(view->tooltips);
 
     places_cfg_view_iface_finalize(view->cfg_iface);
