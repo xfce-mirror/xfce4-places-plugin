@@ -18,6 +18,12 @@
  *     launcher.c - (xfce4-panel plugin that opens programs)
  *     Copyright (c) 2005-2007 Jasper Huijsmans <jasper@xfce.org>
  *     Copyright (c) 2006-2007 Nick Schermer <nick@xfce.org>
+ * 
+ *  Popup command code adapted from:
+ *   - windowlist plugin
+ *     windowlist.c - (xfce4-panel plugin that lists open windows)
+ *     Copyright (c) 2002-2006  Olivier Fourdan
+ *     Copyright (c) 2007       Mike Massonnet <mmassonnet@xfce.com>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -931,54 +937,48 @@ pview_make_empty_cfg_dialog(PlacesView *view)
 
 /********** Handle user message **********/
 static gboolean
-places_view_plugin_message_received (GtkWidget *widget,
+pview_popup_command_message_received(GtkWidget *widget,
                                      GdkEventClient *ev,
-                                     gpointer user_data)
+                                     PlacesView *view)
 {
-    PlacesView *view = user_data;
-
-    DBG ("Message received");
     if (G_LIKELY (ev->data_format == 8 && *(ev->data.b) != '\0'
                   && !g_ascii_strcasecmp (PLACES_MSG_MENU, ev->data.b))){
-        DBG ("`%s'", ev->data.b);
-        GdkEventButton ev_btn;
-        ev_btn.button = 1;
+        DBG ("Message received: '%s'", ev->data.b);
+
         pview_open_menu (view);
         return TRUE;
     }
 
-  return FALSE;
+    DBG("Bad message received");
+    return FALSE;
 }
 
 static gboolean
-places_view_plugin_set_selection (PlacesView *view)
+pview_popup_command_set_selection(PlacesView *view)
 {
     GdkScreen          *gscreen;
-    gchar              *selection_name;
+    gchar               selection_name[256];
     Atom                selection_atom;
-    GtkWidget          *win;
     Window              id;
 
-    win = gtk_invisible_new ();
-    gtk_widget_realize (win);
-    id = GDK_WINDOW_XID (GTK_WIDGET (win)->window);
+    id = GDK_WINDOW_XID (GTK_WIDGET (view->plugin)->window);
 
-    gscreen = gtk_widget_get_screen (win);
-    selection_name = g_strdup_printf (XFCE_PLACES_SELECTION"%d",
-                                      gdk_screen_get_number (gscreen));
+    gscreen = gtk_widget_get_screen (GTK_WIDGET(view->plugin));
+
+    g_snprintf (selection_name, 256,
+                XFCE_PLACES_SELECTION"%d",
+                gdk_screen_get_number (gscreen));
+    
     selection_atom = XInternAtom (GDK_DISPLAY (), selection_name, FALSE);
 
-    if (XGetSelectionOwner (GDK_DISPLAY (), selection_atom)){
-        gtk_widget_destroy (win);
+    if (XGetSelectionOwner (GDK_DISPLAY (), selection_atom))
         return FALSE;
-    }
 
-    XSelectInput (GDK_DISPLAY (), id, PropertyChangeMask);
     XSetSelectionOwner (GDK_DISPLAY (), selection_atom, id, GDK_CURRENT_TIME);
 
-    g_signal_connect (win,
+    g_signal_connect (GTK_WIDGET(view->plugin),
                       "client-event",
-                      G_CALLBACK (places_view_plugin_message_received),
+                      G_CALLBACK (pview_popup_command_message_received),
                       view);
 
     return TRUE;
@@ -1057,9 +1057,10 @@ places_view_init(XfcePanelPlugin *plugin)
                              G_CALLBACK(places_cfg_view_iface_save), view->cfg_iface);
     xfce_panel_plugin_menu_show_configure(view->plugin);
 
-    DBG("done");
+    /* set selection for xfce4-popup-places */
+    pview_popup_command_set_selection(view);
 
-    places_view_plugin_set_selection (view);
+    DBG("done");
 
     return view;
 }

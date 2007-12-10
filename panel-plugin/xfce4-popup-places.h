@@ -2,8 +2,11 @@
  *
  *  Places - panel plugin for Xfce Desktop Environment
  *           popup command
+ *  Adapted from xfce4-panel's windowlist plugin
+ *
  *  Copyright (C) 2002-2006  Olivier Fourdan
  *                2007       Mike Massonnet <mmassonnet@gmail.com>
+ *                2007       Diego Ongaro <ongardie@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -23,13 +26,10 @@
 #ifndef __XFCE4_POPUP_PLACES_H__
 #define __XFCE4_POPUP_PLACES_H__
 
-#ifndef XFCE_PLACES_SELECTION
 #define XFCE_PLACES_SELECTION   "XFCE_PLACES_SELECTION"
-#endif
 
-#ifndef PLACES_MSG_MENU
 #define PLACES_MSG_MENU         "MENU"
-#endif
 
 #endif
 
+/* vim: set ai et tabstop=4: */

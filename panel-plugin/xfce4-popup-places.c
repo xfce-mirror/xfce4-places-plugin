@@ -2,8 +2,11 @@
  *
  *  Places - panel plugin for Xfce Desktop Environment
  *           popup command
+ *  Adapted from xfce4-panel's windowlist plugin
+ *
  *  Copyright (C) 2002-2006  Olivier Fourdan
  *                2007       Mike Massonnet <mmassonnet@xfce.com>
+ *                2007       Diego Ongaro <ongardie@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -37,18 +40,20 @@ plugin_check_is_running (GtkWidget *widget,
                          Window *xid)
 {
     GdkScreen          *gscreen;
-    gchar              *selection_name;
+    gchar               selection_name[256];
     Atom                selection_atom;
 
     gscreen = gtk_widget_get_screen (widget);
-    selection_name = g_strdup_printf (XFCE_PLACES_SELECTION"%d",
-                                      gdk_screen_get_number (gscreen));
+    
+    g_snprintf (selection_name, 256,
+                XFCE_PLACES_SELECTION"%d",
+                gdk_screen_get_number (gscreen));
     selection_atom = XInternAtom (GDK_DISPLAY (), selection_name, FALSE);
 
     if ((*xid = XGetSelectionOwner (GDK_DISPLAY (), selection_atom)))
         return TRUE;
-
-    return FALSE;
+    else
+        return FALSE;
 }
 
 gint
@@ -83,3 +88,4 @@ main (gint argc, gchar *argv[])
     return FALSE;
 }
 
+/* vim: set ai et tabstop=4: */
