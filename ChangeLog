@@ -1,6 +1,7 @@
 2007-12-10	Diego Ongaro <ongardie@gmail.com>
 
 	* view.c: Bug: label didn't change when already shown
+	* view.c: Use GtkTooltip API when available
 
 2007-12-09	Diego Ongaro <ongardie@gmail.com>
 

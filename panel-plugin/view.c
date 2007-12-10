@@ -46,6 +46,8 @@
 
 #include <gtk/gtk.h>
 
+#define USE_GTK_TOOLTIP_API     GTK_CHECK_VERSION(2,12,0)
+
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4panel/xfce-panel-plugin.h>
 #include <libxfce4panel/xfce-panel-convenience.h>
@@ -81,7 +83,9 @@ struct _PlacesView
     GtkWidget                 *button_image;
     GtkWidget                 *button_label;
     GtkWidget                 *menu;
+#if !USE_GTK_TOOLTIP_API
     GtkTooltips               *tooltips;
+#endif
     gboolean                  needs_separator;
     guint                     menu_timeout_id;
     
@@ -902,8 +906,13 @@ pview_button_update(PlacesView *view)
         gtk_widget_set_size_request(view->button, width, height);
     }
 
-    if(label_changed)
+    if(label_changed){
+#if USE_GTK_TOOLTIP_API
+        gtk_widget_set_tooltip_text(view->button, view->label_text);
+#else
         gtk_tooltips_set_tip(view->tooltips, view->button, view->label_text, NULL);
+#endif
+    }
 }
 
 static void
@@ -1013,7 +1022,12 @@ places_view_init(XfcePanelPlugin *plugin)
 
     pview_reconfigure_model(view);
     
+#if USE_GTK_TOOLTIP_API
+    DBG("using GtkTooltip API");
+#else
+    DBG("using GtkTooltips API");
     view->tooltips = exo_gtk_object_ref_sink(GTK_OBJECT(gtk_tooltips_new()));
+#endif
 
     /* init button */
 
@@ -1079,7 +1093,10 @@ places_view_finalize(PlacesView *view)
         g_object_unref(view->button);
     if(view->label_text != NULL)
         g_free(view->label_text);
+
+#if !USE_GTK_TOOLTIP_API
     g_object_unref(view->tooltips);
+#endif
 
     places_cfg_view_iface_finalize(view->cfg_iface);
     

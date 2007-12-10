@@ -27,9 +27,7 @@
 #include <gtk/gtk.h>
 #include <libxfce4panel/xfce-panel-plugin.h>
 
-#if GTK_CHECK_VERSION(2,10,0)
-#  define USE_RECENT_DOCUMENTS TRUE
-#endif
+#define USE_RECENT_DOCUMENTS    GTK_CHECK_VERSION(2,10,0)
 
 typedef struct _PlacesView PlacesView;
 
