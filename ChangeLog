@@ -2,6 +2,8 @@
 
 	* view.c: Bug: label didn't change when already shown
 	* view.c: Use GtkTooltip API when available
+	* model_volumes.c, support.{c,h}: Show error messages when
+	mounts/unmounts fail
 
 2007-12-09	Diego Ongaro <ongardie@gmail.com>
 

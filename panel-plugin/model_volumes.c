@@ -51,45 +51,79 @@ typedef struct
 static void
 pbvol_eject(PlacesBookmarkAction *action)
 {
+    GError *error = NULL;
+    ThunarVfsVolume *volume;
+
     DBG("Eject");
 
-    ThunarVfsVolume *volume = THUNAR_VFS_VOLUME(action->priv);
+    g_return_if_fail(THUNAR_VFS_IS_VOLUME(action->priv));
+    volume = THUNAR_VFS_VOLUME(action->priv);
 
-    thunar_vfs_volume_eject(volume, NULL, NULL);
+    if(!thunar_vfs_volume_eject(volume, NULL, &error)){
+        places_show_error_dialog(error,
+                                 _("Failed to eject \"%s\""),
+                                 thunar_vfs_volume_get_name (volume));
+        g_error_free (error);
+    }
 }
 
 static void
 pbvol_unmount(PlacesBookmarkAction *action)
 {
+    GError *error = NULL;
+    ThunarVfsVolume *volume;
+
     DBG("Unmount");
 
-    ThunarVfsVolume *volume = THUNAR_VFS_VOLUME(action->priv);
+    g_return_if_fail(THUNAR_VFS_IS_VOLUME(action->priv));
+    volume = THUNAR_VFS_VOLUME(action->priv);
 
-    if(thunar_vfs_volume_is_mounted(volume))
-        thunar_vfs_volume_unmount(volume, NULL, NULL);
+    if(thunar_vfs_volume_is_mounted(volume)){
+        if(!thunar_vfs_volume_unmount(volume, NULL, &error)){
+
+            places_show_error_dialog(error,
+                                     _("Failed to unmount \"%s\""),
+                                     thunar_vfs_volume_get_name (volume));
+            g_error_free (error);
+        }
+    }
 }
 
 static void
 pbvol_mount(PlacesBookmarkAction *action)
 {
+    GError *error = NULL;
+    ThunarVfsVolume *volume;
+
     DBG("Mount");
 
-    ThunarVfsVolume *volume = THUNAR_VFS_VOLUME(action->priv);
+    g_return_if_fail(THUNAR_VFS_IS_VOLUME(action->priv));
+    volume = THUNAR_VFS_VOLUME(action->priv);
 
-    if(!thunar_vfs_volume_is_mounted(volume))
-        thunar_vfs_volume_mount(volume, NULL, NULL);
+    if(!thunar_vfs_volume_is_mounted(volume)){
+        if(!thunar_vfs_volume_mount(volume, NULL, &error)){
+
+            places_show_error_dialog(error,
+                                     _("Failed to mount \"%s\""),
+                                     thunar_vfs_volume_get_name (volume));
+            g_error_free (error);
+        }
+    }
 }
 
 static void
 pbvol_mount_and_open(PlacesBookmarkAction *action)
 {
-    DBG("Mount and open");
-
     gchar *uri;
-    ThunarVfsVolume *volume = THUNAR_VFS_VOLUME(action->priv);
+    ThunarVfsVolume *volume;
+
+    DBG("Mount and open");
+    
+    g_return_if_fail(THUNAR_VFS_IS_VOLUME(action->priv));
+    volume = THUNAR_VFS_VOLUME(action->priv);
 
     if(!thunar_vfs_volume_is_mounted(volume))
-        thunar_vfs_volume_mount(volume, NULL, NULL);
+        pbvol_mount(action);
 
     if(thunar_vfs_volume_is_mounted(volume)){
         uri = thunar_vfs_path_dup_uri(thunar_vfs_volume_get_mount_point(volume));

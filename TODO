@@ -1,3 +1,5 @@
 use less resources
 path/uri mess
-error messages and notifications for (un)mounting
+steal error message translations from Thunar
+----
+notifications for (un)mounting - newer versions of exo do this

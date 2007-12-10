@@ -4,6 +4,9 @@
  *
  *  Copyright (c) 2007 Diego Ongaro <ongardie@gmail.com>
  *
+ *  Error dialog code adapted from thunar's thunar-dialogs.c:
+ *      Copyright (c) 2005-2007 Benedikt Meurer <benny@xfce.org>
+ *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 2 of the License, or
@@ -164,6 +167,43 @@ places_create_open_terminal_action(const PlacesBookmark *bookmark)
     action->action    = psupport_load_terminal_wrapper;
 
     return action;
+}
+
+
+void
+places_show_error_dialog (const GError *error,
+                          const gchar  *format,
+                          ...)
+{
+    GtkWidget *dialog;
+    va_list    args;
+    gchar     *primary_text;
+
+    /* determine the primary error text */
+    va_start (args, format);
+    primary_text = g_strdup_vprintf (format, args);
+    va_end (args);
+
+    /* allocate the error dialog */
+    dialog = gtk_message_dialog_new (NULL,
+                                     GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_MODAL,
+                                     GTK_MESSAGE_ERROR,
+                                     GTK_BUTTONS_CLOSE,
+                                     "%s.", primary_text);
+
+    /* set secondary text if an error is provided */
+    if (G_LIKELY (error != NULL)){
+        gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dialog), 
+                                                  "%s.", error->message);
+    }
+
+    /* display the dialog */
+    gtk_dialog_run (GTK_DIALOG (dialog));
+
+    /* cleanup */
+    gtk_widget_destroy (dialog);
+    g_free (primary_text);
+
 }
 
 /* vim: set ai et tabstop=4: */

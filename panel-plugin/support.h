@@ -4,6 +4,9 @@
  *
  *  Copyright (c) 2007 Diego Ongaro <ongardie@gmail.com>
  *
+ *  Error dialog code adapted from thunar's thunar-dialogs.h:
+ *      Copyright (c) 2005-2007 Benedikt Meurer <benny@xfce.org>
+ *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 2 of the License, or
@@ -42,6 +45,11 @@ places_create_open_action(const PlacesBookmark *bookmark);
 
 PlacesBookmarkAction*
 places_create_open_terminal_action(const PlacesBookmark *bookmark);
+
+void
+places_show_error_dialog (const GError *error,
+                          const gchar  *format,
+                          ...) G_GNUC_PRINTF (2, 3);
 
 
 #endif
