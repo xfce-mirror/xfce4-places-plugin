@@ -224,8 +224,7 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
             if(!thunar_vfs_volume_is_mounted(volume)){
 
                 g_object_ref(volume);
-                action          = g_new0(PlacesBookmarkAction, 1);
-                action->label   = _("Mount and Open");
+                action          = places_bookmark_action_new(_("Mount and Open"));
                 action->may_block = TRUE;
                 action->priv    = volume;
                 action->action  = pbvol_mount_and_open;
@@ -238,8 +237,7 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
                 }
 
                 g_object_ref(volume);
-                action          = g_new0(PlacesBookmarkAction, 1);
-                action->label   = _("Mount");
+                action          = places_bookmark_action_new(_("Mount"));
                 action->may_block = TRUE;
                 action->priv    = volume;
                 action->action  = pbvol_mount;
@@ -260,8 +258,7 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
                 if(thunar_vfs_volume_is_ejectable(volume)){
 
                     g_object_ref(volume);
-                    action          = g_new0(PlacesBookmarkAction, 1);
-                    action->label   = _("Eject");
+                    action          = places_bookmark_action_new(_("Eject"));
                     action->may_block = TRUE;
                     action->priv    = volume;
                     action->action  = pbvol_eject;
@@ -273,8 +270,7 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
                 if(thunar_vfs_volume_is_mounted(volume)){
 
                     g_object_ref(volume);
-                    action          = g_new0(PlacesBookmarkAction, 1);
-                    action->label   = _("Unmount");
+                    action          = places_bookmark_action_new(_("Unmount"));
                     action->may_block = TRUE;
                     action->priv    = volume;
                     action->action  = pbvol_unmount;

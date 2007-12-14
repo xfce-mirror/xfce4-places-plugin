@@ -27,13 +27,17 @@
 
 #include <libxfce4util/libxfce4util.h>
 
-inline void
-places_bookmark_action_call(PlacesBookmarkAction *act)
-{
-    g_assert(act != NULL);
+/********** PlacesBookmarkAction **********/
 
-    if(act->action != NULL)
-        act->action(act);
+inline PlacesBookmarkAction*
+places_bookmark_action_new(gchar *label)
+{
+    PlacesBookmarkAction *action;
+
+    action = g_new0(PlacesBookmarkAction, 1);
+    action->label = label;
+
+    return action;
 }
 
 inline void
@@ -47,16 +51,16 @@ places_bookmark_action_free(PlacesBookmarkAction *act)
         g_free(act);
 }
 
-static inline void
-places_bookmark_actions_free(GList *actions)
+inline void
+places_bookmark_action_call(PlacesBookmarkAction *act)
 {
-    while(actions != NULL){
-        if(actions->data != NULL)
-            places_bookmark_action_free((PlacesBookmarkAction*) actions->data);
-        actions = actions->next;
-    }
-    g_list_free(actions);
+    g_assert(act != NULL);
+
+    if(act->action != NULL)
+        act->action(act);
 }
+
+/********** PlacesBookmark **********/
 
 #if defined(DEBUG) && (DEBUG > 0)
 static int bookmarks = 0;
@@ -75,6 +79,17 @@ places_bookmark_create(gchar *label)
     DBG("bookmarks: %02d %p %s", bookmarks++, bookmark, label);
 
     return bookmark;
+}
+
+static inline void
+places_bookmark_actions_free(GList *actions)
+{
+    while(actions != NULL){
+        if(actions->data != NULL)
+            places_bookmark_action_free((PlacesBookmarkAction*) actions->data);
+        actions = actions->next;
+    }
+    g_list_free(actions);
 }
 
 inline void
@@ -103,6 +118,8 @@ places_bookmark_free(PlacesBookmark *bookmark)
     else
         g_free(bookmark);
 }
+
+/********** PlacesBookmarkGroup **********/
 
 inline GList*
 places_bookmark_group_get_bookmarks(PlacesBookmarkGroup *pbg)

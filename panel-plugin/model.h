@@ -35,11 +35,14 @@ struct _PlacesBookmarkAction
     void        (*free)     (PlacesBookmarkAction *self);
 };
 
-inline void
-places_bookmark_action_call(PlacesBookmarkAction*);
+inline PlacesBookmarkAction*
+places_bookmark_action_new(gchar *label);
 
 inline void
 places_bookmark_action_free(PlacesBookmarkAction*);
+
+inline void
+places_bookmark_action_call(PlacesBookmarkAction*);
 
 /* Places Bookmark */
 
