@@ -226,6 +226,27 @@ pview_model_changed(GList *bookmark_groups)
 }
 
 
+static void
+pview_bookmark_action_call_wrapper(PlacesView *view, PlacesBookmarkAction *action)
+{
+    g_assert(action != NULL);
+
+    if(action->may_block){
+
+        gtk_widget_set_sensitive(view->button, FALSE);
+
+        while(gtk_events_pending())
+            gtk_main_iteration();
+
+        places_bookmark_action_call(action);
+    
+        gtk_widget_set_sensitive(view->button, TRUE);
+
+    }else{
+        places_bookmark_action_call(action);
+    }
+}
+
 /********** Gtk Callbacks **********/
 
 /* Panel callbacks */
@@ -392,13 +413,13 @@ pview_cb_menu_item_context_act(GtkWidget *item, PlacesView *pd)
 
     /* we want the menu gone - now - since it prevents mouse grabs */
     gtk_menu_shell_deactivate(GTK_MENU_SHELL(pd->menu));
-    while(g_main_context_iteration(NULL, FALSE))
-        /* no op */;
+    while(gtk_events_pending())
+        gtk_main_iteration();
 
     action = (PlacesBookmarkAction*) g_object_get_data(G_OBJECT(item), "action");
     DBG("Calling action %s", action->label);
-    places_bookmark_action_call(action);
-    
+    pview_bookmark_action_call_wrapper(pd, action);
+
 }
 
 static gboolean
@@ -455,6 +476,14 @@ pview_cb_menu_item_press(GtkWidget *menu_item, GdkEventButton *event, PlacesView
         return pview_cb_menu_item_do_alt(pd, menu_item);
     else
         return FALSE;
+}
+
+static void
+pview_cb_menu_item_activate(GtkWidget *menu_item, PlacesView *view)
+{
+    PlacesBookmark *bookmark = (PlacesBookmark*) g_object_get_data(G_OBJECT(menu_item), "bookmark");
+
+    pview_bookmark_action_call_wrapper(view, bookmark->primary_action);
 }
 
 /* Recent Documents */
@@ -534,9 +563,9 @@ pview_add_menu_item(PlacesView *view, PlacesBookmark *bookmark)
 
     if(bookmark->primary_action != NULL){
 
-        g_signal_connect_swapped(item, "activate",
-                                 G_CALLBACK(places_bookmark_action_call), 
-                                 bookmark->primary_action);
+        g_signal_connect(item, "activate",
+                         G_CALLBACK(pview_cb_menu_item_activate),
+                         view);
 
     }
     if(bookmark->force_gray || bookmark->primary_action == NULL){

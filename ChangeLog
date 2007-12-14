@@ -1,3 +1,8 @@
+2007-12-13	Diego Ongaro <ongardie@gmail.com>
+
+	* model.h, model_volumes.c, view.c: Provide visual feedback on
+	actions that could take a long time to return
+
 2007-12-10	Diego Ongaro <ongardie@gmail.com>
 
 	* view.c: Bug: label didn't change when already shown

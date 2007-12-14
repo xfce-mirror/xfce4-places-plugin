@@ -29,10 +29,10 @@ typedef struct _PlacesBookmarkAction PlacesBookmarkAction;
 struct _PlacesBookmarkAction
 {
     gchar       *label;     /* must not be NULL */
+    gboolean    may_block;
     gpointer    priv;
     void        (*action)   (PlacesBookmarkAction *self);
     void        (*free)     (PlacesBookmarkAction *self);
-
 };
 
 inline void
