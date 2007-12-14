@@ -32,14 +32,14 @@ struct _PlacesBookmarkAction
     gboolean    may_block;
     gpointer    priv;
     void        (*action)   (PlacesBookmarkAction *self);
-    void        (*free)     (PlacesBookmarkAction *self);
+    void        (*finalize) (PlacesBookmarkAction *self);
 };
 
 inline PlacesBookmarkAction*
-places_bookmark_action_new(gchar *label);
+places_bookmark_action_create(gchar *label);
 
 inline void
-places_bookmark_action_free(PlacesBookmarkAction*);
+places_bookmark_action_destroy(PlacesBookmarkAction*);
 
 inline void
 places_bookmark_action_call(PlacesBookmarkAction*);
@@ -65,14 +65,14 @@ struct _PlacesBookmark
     GList                 *actions;        /* may be NULL (empty) */
 
     gpointer               priv;           /* private data */
-    void                 (*free) (PlacesBookmark *self);
+    void                 (*finalize) (PlacesBookmark *self);
 };
 
 inline PlacesBookmark*
 places_bookmark_create(gchar *label);
 
 inline void
-places_bookmark_free(PlacesBookmark *bookmark);
+places_bookmark_destroy(PlacesBookmark *bookmark);
 
 /* Places Bookmark Group */
 typedef struct _PlacesBookmarkGroup PlacesBookmarkGroup;
@@ -90,8 +90,11 @@ places_bookmark_group_get_bookmarks(PlacesBookmarkGroup*);
 inline gboolean
 places_bookmark_group_changed(PlacesBookmarkGroup*);
 
+inline PlacesBookmarkGroup*
+places_bookmark_group_create();
+
 inline void
-places_bookmark_group_finalize(PlacesBookmarkGroup*);
+places_bookmark_group_destroy(PlacesBookmarkGroup*);
 
 #endif
 /* vim: set ai et tabstop=4: */

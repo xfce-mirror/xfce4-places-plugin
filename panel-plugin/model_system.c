@@ -54,26 +54,26 @@ typedef struct
 } PBSysData;
  
 static void
-pbsys_free_desktop_bookmark(PlacesBookmark *bookmark)
+pbsys_finalize_desktop_bookmark(PlacesBookmark *bookmark)
 {
     g_assert(bookmark != NULL);
 
-    if(bookmark->uri != NULL)
+    if(bookmark->uri != NULL){
         g_free(bookmark->uri);
-
-    g_free(bookmark);
+        bookmark->uri = NULL;
+    }
 }
 
 #if TRASH
 static void
-pbsys_free_trash_bookmark(PlacesBookmark *bookmark)
+pbsys_finalize_trash_bookmark(PlacesBookmark *bookmark)
 {
     g_assert(bookmark != NULL);
 
-    if(bookmark->icon != NULL)
+    if(bookmark->icon != NULL){
         g_free(bookmark->icon);
-
-    g_free(bookmark);
+        bookmark->icon = NULL;
+    }
 }
 #endif
 
@@ -110,7 +110,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     bookmark                = places_bookmark_create(_("Trash"));
     bookmark->uri           = "trash:///";
     bookmark->uri_scheme    = PLACES_URI_SCHEME_TRASH;
-    bookmark->free          = pbsys_free_trash_bookmark;;
+    bookmark->finalize      = pbsys_finalize_trash_bookmark;;
 
     /* Try for an icon from ThunarVFS to indicate whether trash is empty or not */
     
@@ -135,7 +135,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     bookmark                = places_bookmark_create(_("Desktop"));
     bookmark->uri           = g_build_filename(home_dir, "Desktop", NULL);
     bookmark->icon          = "gnome-fs-desktop";
-    bookmark->free          = pbsys_free_desktop_bookmark;
+    bookmark->finalize      = pbsys_finalize_desktop_bookmark;
 
     if(g_file_test(bookmark->uri, G_FILE_TEST_IS_DIR)){
     
@@ -151,7 +151,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     }else{
 
         pbg_priv(bookmark_group)->desktop_exists = FALSE;
-        places_bookmark_free(bookmark);
+        places_bookmark_destroy(bookmark);
 
     }
     
@@ -215,13 +215,14 @@ pbsys_finalize(PlacesBookmarkGroup *bookmark_group)
     
     g_free(pbg_priv(bookmark_group));
 
-    g_free(bookmark_group);
 }
 
 PlacesBookmarkGroup*
 places_bookmarks_system_create()
 {
-    PlacesBookmarkGroup *bookmark_group = g_new0(PlacesBookmarkGroup, 1);
+    PlacesBookmarkGroup *bookmark_group;
+    
+    bookmark_group = places_bookmark_group_create();
     bookmark_group->get_bookmarks = pbsys_get_bookmarks;
     bookmark_group->changed       = pbsys_changed;
     bookmark_group->finalize      = pbsys_finalize;

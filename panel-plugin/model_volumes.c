@@ -179,22 +179,21 @@ pbvol_volumes_removed(ThunarVfsVolumeManager *volman, GList *volumes, PlacesBook
 }
 
 static void
-pbvol_bookmark_free(PlacesBookmark *bookmark)
+pbvol_bookmark_finalize(PlacesBookmark *bookmark)
 {
-    if(bookmark->uri != NULL)
+    if(bookmark->uri != NULL){
         g_free(bookmark->uri);
-    g_free(bookmark);
+        bookmark->uri = NULL;
+    }
 }
 
 static void
-pbvol_bookmark_action_free(PlacesBookmarkAction *action){
+pbvol_bookmark_action_finalize(PlacesBookmarkAction *action){
     g_assert(action != NULL && action->priv != NULL);
 
     ThunarVfsVolume *volume = THUNAR_VFS_VOLUME(action->priv);
     g_object_unref(volume);
     action->priv = NULL;
-
-    g_free(action);
 }
 
 static GList*
@@ -213,23 +212,23 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 
         if(pbvol_show_volume(volume)){
 
-            bookmark        = places_bookmark_create((gchar*) thunar_vfs_volume_get_name(volume));
+            bookmark            = places_bookmark_create((gchar*) thunar_vfs_volume_get_name(volume));
             if(thunar_vfs_volume_is_mounted(volume))
                 bookmark->uri   = thunar_vfs_path_dup_uri(thunar_vfs_volume_get_mount_point(volume));
             else
                 bookmark->uri   = NULL;
-            bookmark->icon  = (gchar*) thunar_vfs_volume_lookup_icon_name(volume, icon_theme);
-            bookmark->free  = pbvol_bookmark_free;
+            bookmark->icon      = (gchar*) thunar_vfs_volume_lookup_icon_name(volume, icon_theme);
+            bookmark->finalize  = pbvol_bookmark_finalize;
 
             if(!thunar_vfs_volume_is_mounted(volume)){
 
                 g_object_ref(volume);
-                action          = places_bookmark_action_new(_("Mount and Open"));
-                action->may_block = TRUE;
-                action->priv    = volume;
-                action->action  = pbvol_mount_and_open;
-                action->free    = pbvol_bookmark_action_free;
-                bookmark->actions = g_list_append(bookmark->actions, action);
+                action              = places_bookmark_action_create(_("Mount and Open"));
+                action->may_block   = TRUE;
+                action->priv        = volume;
+                action->action      = pbvol_mount_and_open;
+                action->finalize    = pbvol_bookmark_action_finalize;
+                bookmark->actions   = g_list_append(bookmark->actions, action);
 
                 if(pbg_priv(bookmark_group)->mount_and_open_by_default){
                     bookmark->primary_action = action;
@@ -237,12 +236,12 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
                 }
 
                 g_object_ref(volume);
-                action          = places_bookmark_action_new(_("Mount"));
-                action->may_block = TRUE;
-                action->priv    = volume;
-                action->action  = pbvol_mount;
-                action->free    = pbvol_bookmark_action_free;
-                bookmark->actions = g_list_append(bookmark->actions, action);
+                action              = places_bookmark_action_create(_("Mount"));
+                action->may_block   = TRUE;
+                action->priv        = volume;
+                action->action      = pbvol_mount;
+                action->finalize    = pbvol_bookmark_action_finalize;
+                bookmark->actions   = g_list_append(bookmark->actions, action);
 
             }else{
 
@@ -258,24 +257,24 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
                 if(thunar_vfs_volume_is_ejectable(volume)){
 
                     g_object_ref(volume);
-                    action          = places_bookmark_action_new(_("Eject"));
-                    action->may_block = TRUE;
-                    action->priv    = volume;
-                    action->action  = pbvol_eject;
-                    action->free    = pbvol_bookmark_action_free;
-                    bookmark->actions = g_list_append(bookmark->actions, action);
+                    action              = places_bookmark_action_create(_("Eject"));
+                    action->may_block   = TRUE;
+                    action->priv        = volume;
+                    action->action      = pbvol_eject;
+                    action->finalize    = pbvol_bookmark_action_finalize;
+                    bookmark->actions   = g_list_append(bookmark->actions, action);
 
                 }
             }else{
                 if(thunar_vfs_volume_is_mounted(volume)){
 
                     g_object_ref(volume);
-                    action          = places_bookmark_action_new(_("Unmount"));
-                    action->may_block = TRUE;
-                    action->priv    = volume;
-                    action->action  = pbvol_unmount;
-                    action->free    = pbvol_bookmark_action_free;
-                    bookmark->actions = g_list_append(bookmark->actions, action);
+                    action              = places_bookmark_action_create(_("Unmount"));
+                    action->may_block   = TRUE;
+                    action->priv        = volume;
+                    action->action      = pbvol_unmount;
+                    action->finalize    = pbvol_bookmark_action_finalize;
+                    bookmark->actions   = g_list_append(bookmark->actions, action);
 
                 }
             }
@@ -319,8 +318,8 @@ pbvol_finalize(PlacesBookmarkGroup *bookmark_group)
     pbg_priv(bookmark_group)->volume_manager = NULL;
     thunar_vfs_shutdown();
     
-    g_free(bookmark_group->priv);
-    g_free(bookmark_group);
+    g_free(pbg_priv(bookmark_group));
+    bookmark_group->priv = NULL;
 }
 
 PlacesBookmarkGroup*
@@ -329,7 +328,7 @@ places_bookmarks_volumes_create(gboolean mount_and_open_by_default)
     const GList *volumes;
     PlacesBookmarkGroup *bookmark_group;
 
-    bookmark_group                      = g_new0(PlacesBookmarkGroup, 1);
+    bookmark_group                      = places_bookmark_group_create();
     bookmark_group->get_bookmarks       = pbvol_get_bookmarks;
     bookmark_group->changed             = pbvol_changed;
     bookmark_group->finalize            = pbvol_finalize;

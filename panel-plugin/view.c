@@ -175,7 +175,7 @@ pview_destroy_model(PlacesView *view)
         do{
             if(bookmark_group_li->data != NULL){
                 bookmark_group = (PlacesBookmarkGroup*) bookmark_group_li->data;
-                places_bookmark_group_finalize(bookmark_group);
+                places_bookmark_group_destroy(bookmark_group);
             }
 
             bookmark_group_li = bookmark_group_li->next;
@@ -577,7 +577,7 @@ pview_add_menu_item(PlacesView *view, PlacesBookmark *bookmark)
     }
 
     g_signal_connect_swapped(item, "destroy",
-                     G_CALLBACK(places_bookmark_free), bookmark);
+                     G_CALLBACK(places_bookmark_destroy), bookmark);
 
     gtk_menu_shell_append(GTK_MENU_SHELL(view->menu), item);
     gtk_widget_show(item);

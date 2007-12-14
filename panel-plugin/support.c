@@ -145,7 +145,7 @@ places_create_open_action(const PlacesBookmark *bookmark)
     g_assert(bookmark != NULL);
     g_assert(bookmark->uri != NULL);
 
-    action                = places_bookmark_action_new(_("Open"));
+    action                = places_bookmark_action_create(_("Open"));
     action->priv          = bookmark->uri;
     action->action        = psupport_load_thunar_wrapper;
 
@@ -160,7 +160,7 @@ places_create_open_terminal_action(const PlacesBookmark *bookmark)
     g_assert(bookmark != NULL);
     g_assert(bookmark->uri != NULL);
 
-    action            = places_bookmark_action_new(_("Open Terminal Here"));
+    action            = places_bookmark_action_create(_("Open Terminal Here"));
     action->priv      = bookmark->uri;
     action->action    = psupport_load_terminal_wrapper;
 

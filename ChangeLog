@@ -5,6 +5,8 @@
 	* model.{c,h}, support.c, model_volumes.c: add
 	places_bookmark_action_new() as counter-part to
 	places_bookmark_action_free()
+	* model*, support.c, view.c: consistent usage of _create(),
+	_finalize(), _destroy() naming convention
 
 2007-12-10	Diego Ongaro <ongardie@gmail.com>
 

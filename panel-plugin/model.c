@@ -30,7 +30,7 @@
 /********** PlacesBookmarkAction **********/
 
 inline PlacesBookmarkAction*
-places_bookmark_action_new(gchar *label)
+places_bookmark_action_create(gchar *label)
 {
     PlacesBookmarkAction *action;
 
@@ -41,14 +41,14 @@ places_bookmark_action_new(gchar *label)
 }
 
 inline void
-places_bookmark_action_free(PlacesBookmarkAction *act)
+places_bookmark_action_destroy(PlacesBookmarkAction *act)
 {
     g_assert(act != NULL);
 
-    if(act->free != NULL)
-        act->free(act);
-    else
-        g_free(act);
+    if(act->finalize != NULL)
+        act->finalize(act);
+    
+    g_free(act);
 }
 
 inline void
@@ -82,18 +82,18 @@ places_bookmark_create(gchar *label)
 }
 
 static inline void
-places_bookmark_actions_free(GList *actions)
+places_bookmark_actions_destroy(GList *actions)
 {
     while(actions != NULL){
         if(actions->data != NULL)
-            places_bookmark_action_free((PlacesBookmarkAction*) actions->data);
+            places_bookmark_action_destroy((PlacesBookmarkAction*) actions->data);
         actions = actions->next;
     }
     g_list_free(actions);
 }
 
 inline void
-places_bookmark_free(PlacesBookmark *bookmark)
+places_bookmark_destroy(PlacesBookmark *bookmark)
 {
     g_assert(bookmark != NULL);
 
@@ -103,20 +103,20 @@ places_bookmark_free(PlacesBookmark *bookmark)
 
         /* don't double-free */
         if(g_list_find(bookmark->actions, bookmark->primary_action) == NULL)
-            places_bookmark_action_free(bookmark->primary_action);
+            places_bookmark_action_destroy(bookmark->primary_action);
 
         bookmark->primary_action = NULL;
     }
 
     if(bookmark->actions != NULL){
-        places_bookmark_actions_free(bookmark->actions);
+        places_bookmark_actions_destroy(bookmark->actions);
         bookmark->actions = NULL;
     }
 
-    if(bookmark->free != NULL)
-        bookmark->free(bookmark);
-    else
-        g_free(bookmark);
+    if(bookmark->finalize != NULL)
+        bookmark->finalize(bookmark);
+    
+    g_free(bookmark);
 }
 
 /********** PlacesBookmarkGroup **********/
@@ -124,19 +124,35 @@ places_bookmark_free(PlacesBookmark *bookmark)
 inline GList*
 places_bookmark_group_get_bookmarks(PlacesBookmarkGroup *pbg)
 {
+    g_assert(pbg->get_bookmarks != NULL);
+
     return pbg->get_bookmarks(pbg);
 }
 
 inline gboolean
 places_bookmark_group_changed(PlacesBookmarkGroup *pbg)
 {
+    g_assert(pbg->changed != NULL);
+
     return pbg->changed(pbg);
 }
 
-inline void
-places_bookmark_group_finalize(PlacesBookmarkGroup *pbg)
+inline PlacesBookmarkGroup*
+places_bookmark_group_create()
 {
-    pbg->finalize(pbg);
+    PlacesBookmarkGroup *bookmark_group;
+    bookmark_group = g_new0(PlacesBookmarkGroup, 1);
+
+    return bookmark_group;
+}
+
+inline void
+places_bookmark_group_destroy(PlacesBookmarkGroup *pbg)
+{
+    if(pbg->finalize != NULL)
+        pbg->finalize(pbg);
+
+    g_free(pbg);
 }
 
 /* vim: set ai et tabstop=4: */

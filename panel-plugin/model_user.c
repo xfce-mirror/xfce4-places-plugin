@@ -77,12 +77,18 @@ pbuser_dir_exists(const gchar *path)
 }
 
 static void
-pbuser_free_bookmark(PlacesBookmark *bookmark)
+pbuser_finalize_bookmark(PlacesBookmark *bookmark)
 {
     g_assert(bookmark != NULL);
-    g_free(bookmark->uri);
-    g_free(bookmark->label);
-    g_free(bookmark);
+
+    if(bookmark->uri != NULL){
+        g_free(bookmark->uri);
+        bookmark->uri = NULL;
+    }
+    if(bookmark->label != NULL){
+        g_free(bookmark->label);
+        bookmark->label = NULL;
+    }
 }
 
 static void
@@ -96,7 +102,7 @@ pbuser_destroy_bookmarks(PlacesBookmarkGroup *bookmark_group)
     DBG("destroy internal bookmarks");
 
     while(bookmarks != NULL){
-        places_bookmark_free((PlacesBookmark*) bookmarks->data);
+        places_bookmark_destroy((PlacesBookmark*) bookmarks->data);
         bookmarks = bookmarks->next;
     }
     g_list_free(bookmarks);
@@ -164,7 +170,7 @@ pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
         bookmark->uri   = path;                                   /* uri   needs to be freed */
         bookmark->icon  = "gnome-fs-directory";
         bookmark->priv  = (gpointer) pbuser_dir_exists(path);
-        bookmark->free  = pbuser_free_bookmark;
+        bookmark->finalize = pbuser_finalize_bookmark;
 
         bookmarks = g_list_prepend(bookmarks, bookmark);
     }
@@ -208,7 +214,7 @@ pbuser_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
             clone->uri            = g_strdup(orig->uri);
             clone->uri_scheme     = orig->uri_scheme;
             clone->icon           = orig->icon;
-            clone->free           = pbuser_free_bookmark;
+            clone->finalize       = pbuser_finalize_bookmark;
     
             terminal              = places_create_open_terminal_action(clone);
             clone->actions        = g_list_prepend(clone->actions, terminal);
@@ -270,7 +276,7 @@ pbuser_finalize(PlacesBookmarkGroup *bookmark_group)
     pbg_priv(bookmark_group)->filename = NULL;
 
     g_free(pbg_priv(bookmark_group));
-    g_free(bookmark_group);
+    bookmark_group->priv = NULL;
 }
 
 
@@ -279,7 +285,9 @@ pbuser_finalize(PlacesBookmarkGroup *bookmark_group)
 PlacesBookmarkGroup*
 places_bookmarks_user_create()
 { 
-    PlacesBookmarkGroup *bookmark_group = g_new0(PlacesBookmarkGroup, 1);
+    PlacesBookmarkGroup *bookmark_group;
+    
+    bookmark_group = places_bookmark_group_create();
     bookmark_group->get_bookmarks       = pbuser_get_bookmarks;
     bookmark_group->changed             = pbuser_changed;
     bookmark_group->finalize            = pbuser_finalize;
