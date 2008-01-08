@@ -1,3 +1,9 @@
+2008-01-07	Diego Ongaro <ongardie@gmail.com>
+
+	* button.{c,h}: Created a button widget to modularize view code
+	* cfg.{c,h}: Made the interface between the view and cfg saner
+	* view.{c,h}: Moved stuff out of this file (see above)
+
 2007-12-13	Diego Ongaro <ongardie@gmail.com>
 
 	* model.h, model_volumes.c, view.c: Provide visual feedback on

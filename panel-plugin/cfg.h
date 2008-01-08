@@ -1,9 +1,8 @@
 /*  xfce4-places-plugin
  *
  *  Defines the struct holding configuration data.
- *  Defines the interface by which view communicates with cfg.
  *
- *  Copyright (c) 2007 Diego Ongaro <ongardie@gmail.com>
+ *  Copyright (c) 2007-2008 Diego Ongaro <ongardie@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -24,11 +23,13 @@
 #define _XFCE_PANEL_PLACES_CFG_H
 
 #include <glib.h>
+#include <libxfce4panel/xfce-panel-plugin.h>
 #include "view.h"
 
 typedef struct
 {
     /* "private" */
+    XfcePanelPlugin     *plugin;
     PlacesViewCfgIface  *view_iface;
     gchar               *read_path;
     gchar               *write_path;
@@ -50,38 +51,20 @@ typedef struct
 
 } PlacesCfg;
 
-typedef struct _PlacesCfgViewIface PlacesCfgViewIface;
-struct _PlacesCfgViewIface {
-    
-    PlacesCfg           *cfg;
+void
+places_cfg_open_dialog(PlacesCfg*);
 
-    void                (*open_dialog)         (PlacesCfg*);
-    void                (*load)                (PlacesCfg*);
-    void                (*save)                (PlacesCfg*);
-    void                (*finalize)            (PlacesCfgViewIface*);
-    
-};
+void
+places_cfg_load(PlacesCfg*);
 
-inline PlacesCfg*
-places_cfg_view_iface_get_cfg(PlacesCfgViewIface*);
+void
+places_cfg_save(PlacesCfg*);
 
-inline void
-places_cfg_view_iface_open_dialog(PlacesCfgViewIface*);
+void
+places_cfg_finalize(PlacesCfg*);
 
-inline void
-places_cfg_view_iface_load(PlacesCfgViewIface*);
-
-inline void
-places_cfg_view_iface_save(PlacesCfgViewIface*);
-
-inline void
-places_cfg_view_iface_finalize(PlacesCfgViewIface*);
-
-
-/* PlacesCfg will take ownership of the paths */
-PlacesCfgViewIface*
-places_cfg_new(PlacesViewCfgIface*,
-               gchar *read_path, gchar *write_path);
+PlacesCfg*
+places_cfg_new(XfcePanelPlugin*, PlacesViewCfgIface*);
 
 #endif
 /* vim: set ai et tabstop=4: */

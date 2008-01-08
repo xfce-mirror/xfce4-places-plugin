@@ -3,7 +3,7 @@
  *  Defines the interface by which cfg can communicate with view.
  *  Headers for interface by which places.c creates/destroys view.
  *
- *  Copyright (c) 2007 Diego Ongaro <ongardie@gmail.com>
+ *  Copyright (c) 2007-2008 Diego Ongaro <ongardie@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -31,16 +31,8 @@
 
 typedef struct _PlacesView PlacesView;
 
-typedef struct {
-    
-    PlacesView          *places_view;
-
-    void                (*update_menu)              (PlacesView*);
-    void                (*update_button)            (PlacesView*);
-    void                (*reconfigure_model)        (PlacesView*);
-    GtkWidget*          (*make_empty_cfg_dialog)    (PlacesView*);
-    
-} PlacesViewCfgIface;
+/* Interface for cfg */
+typedef struct _PlacesViewCfgIface PlacesViewCfgIface;
 
 inline void
 places_view_cfg_iface_update_menu(PlacesViewCfgIface*);
@@ -51,10 +43,6 @@ places_view_cfg_iface_update_button(PlacesViewCfgIface*);
 inline void
 places_view_cfg_iface_reconfigure_model(PlacesViewCfgIface*);
 
-inline GtkWidget*
-places_view_cfg_iface_make_empty_cfg_dialog(PlacesViewCfgIface*);
-
-#include "cfg.h"
 
 /* Init & Finalize */
 PlacesView*

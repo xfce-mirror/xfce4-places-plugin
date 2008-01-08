@@ -2,7 +2,7 @@
  *
  *  This file provides a means of configuring the plugin.
  *
- *  Copyright (c) 2007 Diego Ongaro <ongardie@gmail.com>
+ *  Copyright (c) 2007-2008 Diego Ongaro <ongardie@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -35,37 +35,6 @@
 #include "cfg.h"
 #include "view.h"
 
-/********** PlacesCfgViewIface helpers **********/
-
-inline PlacesCfg*
-places_cfg_view_iface_get_cfg(PlacesCfgViewIface *iface)
-{
-    return iface->cfg;
-}
-
-inline void
-places_cfg_view_iface_open_dialog(PlacesCfgViewIface *iface)
-{
-    iface->open_dialog(iface->cfg);
-}
-
-inline void
-places_cfg_view_iface_load(PlacesCfgViewIface *iface)
-{
-    iface->load(iface->cfg);
-}
-
-inline void
-places_cfg_view_iface_save(PlacesCfgViewIface *iface)
-{
-    iface->save(iface->cfg);
-}
-
-inline void
-places_cfg_view_iface_finalize(PlacesCfgViewIface *iface)
-{
-    iface->finalize(iface);
-}
 
 
 /********** Configuration File **********/
@@ -154,11 +123,11 @@ pcfg_load(PlacesCfg *cfg)
     xfce_rc_close(rcfile);
 }
 
-static void
-pcfg_save(PlacesCfg *cfg)
+void
+places_cfg_save(PlacesCfg *cfg)
 {
     XfceRc *rcfile;
-    
+
     g_assert(cfg != NULL);
 
     if(cfg->write_path == NULL)
@@ -201,7 +170,7 @@ static void
 pcfg_button_show_cb(GtkComboBox *combo, PlacesCfg *cfg)
 {
     gint option = gtk_combo_box_get_active(combo);
-    
+
     g_assert(cfg != NULL);
     g_assert(option >= 0 && option <= 2);
 
@@ -227,7 +196,7 @@ pcfg_button_label_cb(GtkWidget *label_entry, GdkEventFocus *event, PlacesCfg *cf
 
         if(old_text != NULL)
             g_free(old_text);
-    
+
         places_view_cfg_iface_update_button(cfg->view_iface);
 
     }else{ /* we prefer the old/default text */
@@ -260,10 +229,10 @@ pcfg_search_cmd_cb(GtkWidget *label_entry, GdkEventFocus *event, PlacesCfg *cfg)
 
     if(old_text == NULL || strcmp(old_text, new_text)){
         cfg->search_cmd = new_text;
-        
+
         if(old_text != NULL)
             g_free(old_text);
-        
+
         places_view_cfg_iface_update_menu(cfg->view_iface);
 
     }else /* we prefer the old text */
@@ -312,7 +281,7 @@ pcfg_model_cb(GtkToggleButton *toggle, PlacesCfg *cfg)
     GtkWidget *transient;
 
     g_assert(cfg != NULL);
-    
+
     opt = g_object_get_data(G_OBJECT(toggle), "cfg_opt");
     g_assert(opt != NULL);
 
@@ -326,7 +295,35 @@ pcfg_model_cb(GtkToggleButton *toggle, PlacesCfg *cfg)
 }
 
 static void
-pcfg_open_dialog(PlacesCfg *cfg)
+pcfg_dialog_close_cb(GtkDialog *dialog, gint response, PlacesCfg *cfg)
+{
+    gtk_widget_destroy(GTK_WIDGET(dialog));
+    xfce_panel_plugin_unblock_menu(cfg->plugin);
+}
+
+static GtkWidget*
+pcfg_make_empty_dialog(PlacesCfg *cfg)
+{
+    GtkWidget *dlg; /* we'll return this */
+
+    xfce_panel_plugin_block_menu(cfg->plugin);
+
+    dlg = xfce_titled_dialog_new_with_buttons(_("Places"),
+              GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(cfg->plugin))),
+              GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_NO_SEPARATOR,
+              GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
+
+    gtk_window_set_position(GTK_WINDOW(dlg), GTK_WIN_POS_CENTER);
+    gtk_window_set_icon_name(GTK_WINDOW(dlg), "xfce4-settings");
+
+    g_signal_connect(dlg, "response",
+                     G_CALLBACK(pcfg_dialog_close_cb), cfg);
+
+    return dlg;
+}
+
+void
+places_cfg_open_dialog(PlacesCfg *cfg)
 {
     DBG("configure plugin");
 
@@ -340,13 +337,13 @@ pcfg_open_dialog(PlacesCfg *cfg)
 
     GtkWidget *tmp_box, *tmp_label, *tmp_widget;
     gint active;
-    
-    dlg = places_view_cfg_iface_make_empty_cfg_dialog(cfg->view_iface);
+
+    dlg = pcfg_make_empty_dialog(cfg);
 
     /* BUTTON: frame, vbox */
     vbox_button = gtk_vbox_new(FALSE, 4);
     gtk_widget_show(vbox_button);
-    
+
     frame_button = xfce_create_framebox_with_content(_("Button"), vbox_button);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_button, FALSE, FALSE, 0);
 
@@ -355,7 +352,7 @@ pcfg_open_dialog(PlacesCfg *cfg)
     tmp_box = gtk_hbox_new(FALSE, 15);
     gtk_widget_show(tmp_box);
     gtk_box_pack_start(GTK_BOX(vbox_button), tmp_box, FALSE, FALSE, 0);
-    
+
     tmp_label = gtk_label_new_with_mnemonic(_("_Show"));
     gtk_widget_show(tmp_label);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_label, FALSE, FALSE, 0);
@@ -374,7 +371,7 @@ pcfg_open_dialog(PlacesCfg *cfg)
     else
         active = 0;
     gtk_combo_box_set_active(GTK_COMBO_BOX(tmp_widget), active);
-    
+
     g_signal_connect(G_OBJECT(tmp_widget), "changed",
                      G_CALLBACK(pcfg_button_show_cb), cfg);
 
@@ -385,7 +382,7 @@ pcfg_open_dialog(PlacesCfg *cfg)
     tmp_box = gtk_hbox_new(FALSE, 15);
     gtk_widget_show(tmp_box);
     gtk_box_pack_start(GTK_BOX(vbox_button), tmp_box, FALSE, FALSE, 0);
-    
+
     tmp_label = gtk_label_new_with_mnemonic(_("_Label"));
     gtk_widget_show(tmp_label);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_label, FALSE, FALSE, 0);
@@ -403,7 +400,7 @@ pcfg_open_dialog(PlacesCfg *cfg)
     /* MENU: frame, vbox */
     vbox_menu = gtk_vbox_new(FALSE, 4);
     gtk_widget_show(vbox_menu);
-    
+
     frame_menu = xfce_create_framebox_with_content(_("Menu"), vbox_menu);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_menu, FALSE, FALSE, 0);
 
@@ -428,7 +425,7 @@ pcfg_open_dialog(PlacesCfg *cfg)
                      G_CALLBACK(pcfg_model_cb), cfg);
 
     gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);   
+    gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
 
     /* MENU: - Mount and Open (indented) */
     tmp_box = gtk_hbox_new(FALSE, 15);
@@ -450,7 +447,7 @@ pcfg_open_dialog(PlacesCfg *cfg)
 
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
-    
+
     gtk_widget_show(tmp_box);
     gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_box, FALSE, FALSE, 0);
 
@@ -481,7 +478,7 @@ pcfg_open_dialog(PlacesCfg *cfg)
     /* RECENT DOCUMENTS: frame, vbox */
     vbox_recent = gtk_vbox_new(FALSE, 4);
     gtk_widget_show(vbox_recent);
-    
+
     /* Gray out this box when "Show recent documents" is off */
     gtk_widget_set_sensitive(vbox_recent, cfg->show_recent);
     g_object_set_data(G_OBJECT(tmp_widget), "cfg_transient", vbox_recent);
@@ -504,7 +501,7 @@ pcfg_open_dialog(PlacesCfg *cfg)
     tmp_box = gtk_hbox_new(FALSE, 15);
     gtk_widget_show(tmp_box);
     gtk_box_pack_start(GTK_BOX(vbox_recent), tmp_box, FALSE, FALSE, 0);
-    
+
     tmp_label = gtk_label_new_with_mnemonic(_("_Number to display"));
     gtk_widget_show(tmp_label);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_label, FALSE, FALSE, 0);
@@ -524,7 +521,7 @@ pcfg_open_dialog(PlacesCfg *cfg)
     /* Search: frame, vbox */
     vbox_search = gtk_vbox_new(FALSE, 4);
     gtk_widget_show(vbox_search);
-    
+
     frame_search = xfce_create_framebox_with_content(_("Search"), vbox_search);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_search, FALSE, FALSE, 0);
 
@@ -532,7 +529,7 @@ pcfg_open_dialog(PlacesCfg *cfg)
     tmp_box = gtk_hbox_new(FALSE, 15);
     gtk_widget_show(tmp_box);
     gtk_box_pack_start(GTK_BOX(vbox_search), tmp_box, FALSE, FALSE, 0);
-    
+
     tmp_label = gtk_label_new_with_mnemonic(_("Co_mmand"));
     gtk_widget_show(tmp_label);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_label, FALSE, FALSE, 0);
@@ -552,14 +549,9 @@ pcfg_open_dialog(PlacesCfg *cfg)
 
 /********** Initialization & Finalization **********/
 
-static void 
-pcfg_finalize(PlacesCfgViewIface *cfg_iface)
+void
+places_cfg_finalize(PlacesCfg *cfg)
 {
-    PlacesCfg *cfg;
-
-    g_assert(cfg_iface != NULL);
-
-    cfg = cfg_iface->cfg;
     g_assert(cfg != NULL);
 
     if(cfg->label != NULL)
@@ -573,32 +565,31 @@ pcfg_finalize(PlacesCfgViewIface *cfg_iface)
         g_free(cfg->write_path);
 
     g_free(cfg);
-    g_free(cfg_iface);
 }
 
-/* cfg takes ownership of {read,write}_path */
-PlacesCfgViewIface*
-places_cfg_new(PlacesViewCfgIface *view_iface, gchar *read_path, gchar *write_path)
+PlacesCfg*
+places_cfg_new(XfcePanelPlugin *plugin, PlacesViewCfgIface *view_iface)
 {
-    PlacesCfgViewIface *cfg_iface;
     PlacesCfg *cfg;
 
     g_assert(view_iface != NULL);
 
-    cfg                     = g_new0(PlacesCfg, 1);
-    cfg->read_path          = read_path;
-    cfg->write_path         = write_path;
-    cfg->view_iface         = view_iface;
+    cfg             = g_new0(PlacesCfg, 1);
+    cfg->plugin     = plugin;
+    cfg->view_iface = view_iface;
+
+    cfg->read_path  = xfce_panel_plugin_lookup_rc_file(plugin);
+    cfg->write_path = xfce_panel_plugin_save_location(plugin, TRUE);
 
     pcfg_load(cfg);
-    
-    cfg_iface               = g_new0(PlacesCfgViewIface, 1);
-    cfg_iface->cfg          = cfg;
-    cfg_iface->open_dialog  = pcfg_open_dialog;
-    cfg_iface->save         = pcfg_save;
-    cfg_iface->finalize     = pcfg_finalize;
 
-    return cfg_iface;
+    g_signal_connect_swapped(G_OBJECT(plugin), "configure-plugin",
+                             G_CALLBACK(places_cfg_open_dialog), cfg);
+    g_signal_connect_swapped(G_OBJECT(plugin), "save",
+                             G_CALLBACK(places_cfg_save), cfg);
+    xfce_panel_plugin_menu_show_configure(plugin);
+
+    return cfg;
 }
 
 /* vim: set ai et tabstop=4: */

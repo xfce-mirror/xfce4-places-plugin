@@ -36,7 +36,9 @@ xfce4_places_plugin_SOURCES =						\
 	model_user.c							\
 	model_user.h							\
 	model_volumes.c							\
-	model_volumes.h
+	model_volumes.h							\
+	button.c							\
+	button.h
 
 
 

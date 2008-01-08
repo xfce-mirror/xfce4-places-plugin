@@ -2,7 +2,7 @@
  *
  *  This file handles the GUI. It "owns" the model and cfg.
  *
- *  Copyright (c) 2007 Diego Ongaro <ongardie@gmail.com>
+ *  Copyright (c) 2007-2008 Diego Ongaro <ongardie@gmail.com>
  *
  *  Largely based on:
  *
@@ -67,6 +67,16 @@
 #include "model_volumes.h"
 #include "model_user.h"
 #include "xfce4-popup-places.h"
+#include "button.h"
+
+struct _PlacesViewCfgIface
+{
+    PlacesView          *places_view;
+
+    void                (*update_menu)              (PlacesView*);
+    void                (*update_button)            (PlacesView*);
+    void                (*reconfigure_model)        (PlacesView*);
+};
 
 struct _PlacesView
 {
@@ -75,27 +85,19 @@ struct _PlacesView
     
     /* configuration */
     PlacesCfg                 *cfg;
-    PlacesCfgViewIface        *cfg_iface;
     PlacesViewCfgIface        *view_cfg_iface;
     
     /* view */
     GtkWidget                 *button;
-    GtkWidget                 *button_image;
-    GtkWidget                 *button_label;
     GtkWidget                 *menu;
+
 #if !USE_GTK_TOOLTIP_API
     GtkTooltips               *tooltips;
 #endif
-    gboolean                  needs_separator;
-    guint                     menu_timeout_id;
-    
-    GtkOrientation            orientation;
-    gint                      size;
-    gboolean                  show_button_icon;
-    gboolean                  show_button_label;
-    gchar                     *label_text;
-    gboolean                  force_update_theme;
 
+    gboolean                   needs_separator;
+    guint                      menu_timeout_id;
+    
     /* model */
     GList                     *bookmark_groups;
 };
@@ -151,12 +153,6 @@ inline void
 places_view_cfg_iface_reconfigure_model(PlacesViewCfgIface *iface)
 {
     iface->reconfigure_model(iface->places_view);
-}
-
-inline GtkWidget*
-places_view_cfg_iface_make_empty_cfg_dialog(PlacesViewCfgIface *iface)
-{
-    return iface->make_empty_cfg_dialog(iface->places_view);
 }
 
 /********** Model Management **********/
@@ -250,36 +246,6 @@ pview_bookmark_action_call_wrapper(PlacesView *view, PlacesBookmarkAction *actio
 /********** Gtk Callbacks **********/
 
 /* Panel callbacks */
-
-static gboolean
-pview_cb_size_changed(PlacesView *pd)
-{
-    g_assert(pd != NULL);
-    g_assert(pd->button != NULL);
-
-    if(GTK_WIDGET_REALIZED(pd->button))
-        pview_button_update(pd);
-
-    return TRUE;
-}
-
-static void
-pview_cb_theme_changed(PlacesView *view)
-{
-    g_assert(view != NULL);
-    g_assert(view->button != NULL);
-
-    DBG("theme changed");
-
-    /* update the button */
-    if(GTK_WIDGET_REALIZED(view->button)){
-        view->force_update_theme = TRUE;
-        pview_button_update(view);
-    }
-    
-    /* force a menu update */
-    pview_destroy_menu(view);
-}
 
 /* Menu callbacks */
 static gboolean /* return false to stop calling it */
@@ -771,208 +737,41 @@ pview_open_menu(PlacesView *pd)
     }
 }
 
+static GdkPixbuf*
+pview_pixbuf_factory(gint size)
+{
+    return xfce_themed_icon_load_category(2, size);
+}
+
 static void
 pview_button_update(PlacesView *view)
 {
-    
     PlacesCfg *cfg = view->cfg;
-    gboolean orientation_changed, size_changed, 
-             icon_presence_changed, label_presence_changed, 
-             label_changed, theme_changed;
-    static gboolean first_run = TRUE;
+    PlacesButton *button = (PlacesButton*) view->button;
 
-    DBG("button_update (first run: %1x)", first_run);
+    static guint tooltip_text_hash = 0;
+    guint new_tooltip_text_hash;
 
-    if(first_run){
-        first_run = FALSE;
-        
-        orientation_changed = TRUE;
-        view->orientation = xfce_panel_plugin_get_orientation(view->plugin);
-        
-        size_changed = TRUE;
-        view->size = xfce_panel_plugin_get_size(view->plugin);
-        
-        icon_presence_changed = TRUE;
-        view->show_button_icon = cfg->show_button_icon;
-        
-        label_presence_changed = TRUE;
-        view->show_button_label = cfg->show_button_label;
-        
-        label_changed = TRUE;
-        view->label_text = g_strdup(cfg->label);
+    places_button_set_label(button,
+                  cfg->show_button_label ? cfg->label : NULL);
 
-        theme_changed = TRUE;
-        view->force_update_theme = FALSE;
+    places_button_set_pixbuf_factory(button,
+                  cfg->show_button_icon  ? pview_pixbuf_factory : NULL);
 
-    }else{
-        orientation_changed    = (view->orientation != xfce_panel_plugin_get_orientation(view->plugin));
-        size_changed           = (view->size != xfce_panel_plugin_get_size(view->plugin));
-        icon_presence_changed  = (view->show_button_icon != cfg->show_button_icon);
-        label_presence_changed = (view->show_button_label != cfg->show_button_label);
-        label_changed          = (strcmp(view->label_text, cfg->label) != 0);
-        theme_changed          = view->force_update_theme;
-    }
+    /* tooltips */
+    new_tooltip_text_hash = g_str_hash(cfg->label);
+    if (new_tooltip_text_hash != tooltip_text_hash) {
 
-    DBG("orientation: %1x, size: %1x, icon_pr: %1x, label_pr: %1x, label_text: %1x",
-        orientation_changed, size_changed, 
-        icon_presence_changed, label_presence_changed, 
-        label_changed);
-
-    if(orientation_changed){
-        GtkWidget *button_box = gtk_bin_get_child(GTK_BIN(view->button));
-        
-        view->orientation = xfce_panel_plugin_get_orientation(view->plugin);
-        xfce_hvbox_set_orientation(XFCE_HVBOX(button_box), view->orientation);
-
-        size_changed = TRUE;
-    }
-    
-    if(label_changed){
-        g_free(view->label_text);
-        view->label_text = g_strdup(cfg->label);
-    }
-
-    if(theme_changed)
-        view->force_update_theme = FALSE;
-
-    if(size_changed || icon_presence_changed || label_presence_changed || label_changed || theme_changed){
-        view->size              = xfce_panel_plugin_get_size(view->plugin);
-        DBG("Panel size: %d", view->size);
-        view->show_button_icon  = cfg->show_button_icon;
-        view->show_button_label = cfg->show_button_label;
-        
-        GdkPixbuf *icon;
-        gint width, height;
-        gint button_overhead_size, box_overhead_size;
-        GtkWidget *button_box = gtk_bin_get_child(GTK_BIN(view->button));
-        
-        button_overhead_size = 2 + 2 *  MAX(view->button->style->xthickness,
-                                            view->button->style->ythickness);
-        box_overhead_size = 0;
-        width = 0;
-        height = 0;
-
-        if(view->show_button_icon){
-            icon = xfce_themed_icon_load_category(2, view->size - button_overhead_size);
-            if(G_LIKELY(icon != NULL)){
-                
-                width  = MAX(gdk_pixbuf_get_width(icon),  view->size - button_overhead_size);
-                height = MAX(gdk_pixbuf_get_height(icon), view->size - button_overhead_size);
-             
-                if(view->button_image == NULL){
-                    view->button_image = g_object_ref(gtk_image_new_from_pixbuf(icon));
-                    gtk_box_pack_start_defaults(GTK_BOX(button_box),
-                                                view->button_image);
-                    gtk_widget_show(view->button_image);
-                }else{
-                    g_assert(GTK_IS_WIDGET(view->button_image));
-                    gtk_image_set_from_pixbuf(GTK_IMAGE(view->button_image), icon);
-                }
-
-                g_object_unref(G_OBJECT(icon));
-            }else{
-                DBG("Could not load icon for button");
-            }
-
-        }else if(view->button_image != NULL){
-            g_assert(GTK_IS_WIDGET(view->button_image));
-            gtk_widget_destroy(view->button_image);
-            g_object_unref(view->button_image);
-            view->button_image = NULL;
-        }
-
-        if(view->show_button_label){
-            GtkRequisition req;
-            
-            if(view->button_label == NULL){
-                view->button_label = g_object_ref(gtk_label_new(view->label_text));
-                gtk_box_pack_end_defaults(GTK_BOX(button_box), 
-                                          view->button_label);
-                gtk_widget_show(view->button_label);
-            }else{
-                g_assert(GTK_IS_WIDGET(view->button_label));
-                if(label_changed)
-                    gtk_label_set_text(GTK_LABEL(view->button_label), view->label_text);
-            }
-
-            gtk_widget_size_request(view->button_label, &req);
-            if(view->orientation == GTK_ORIENTATION_HORIZONTAL){
-                width += req.width;
-                height = MAX(height, req.height);
-            }else{
-                width = MAX(width, req.width);
-                height += req.height;
-            }
-
-        }else if(view->button_label != NULL){
-            g_assert(GTK_IS_WIDGET(view->button_label));
-            gtk_widget_destroy(view->button_label);
-            g_object_unref(view->button_label);
-            view->button_label = NULL;
-        }
-
-        width += button_overhead_size;
-        height += button_overhead_size;
-
-        if(view->button_image != NULL && view->button_label != NULL){
-
-            box_overhead_size = gtk_box_get_spacing(GTK_BOX(button_box));
-
-            if(view->orientation == GTK_ORIENTATION_HORIZONTAL)
-                width += box_overhead_size;
-            else
-                height += box_overhead_size;
-        }
-
-        if(view->orientation == GTK_ORIENTATION_HORIZONTAL)
-            height = MAX(height, view->size);
-        else
-            width = MAX(width, view->size);
-
-        gtk_widget_show_all(view->button);
-
-        DBG("width=%d, height=%d", width, height);
-        gtk_widget_set_size_request(view->button, width, height);
-    }
-
-    if(label_changed){
 #if USE_GTK_TOOLTIP_API
-        gtk_widget_set_tooltip_text(view->button, view->label_text);
+        gtk_widget_set_tooltip_text(view->button, cfg->label);
 #else
-        gtk_tooltips_set_tip(view->tooltips, view->button, view->label_text, NULL);
+        gtk_tooltips_set_tip(view->tooltips, view->button, cfg->label, NULL);
 #endif
+
     }
+    tooltip_text_hash = new_tooltip_text_hash;
+
 }
-
-static void
-pview_cfg_dialog_close_cb(GtkDialog *dialog, gint response, PlacesView *view)
-{
-    gtk_widget_destroy(GTK_WIDGET(dialog));
-    xfce_panel_plugin_unblock_menu(view->plugin);
-    places_cfg_view_iface_save(view->cfg_iface);
-}
-
-static GtkWidget*
-pview_make_empty_cfg_dialog(PlacesView *view)
-{
-    GtkWidget *dlg; /* we'll return this */
-
-    xfce_panel_plugin_block_menu(view->plugin);
-    
-    dlg = xfce_titled_dialog_new_with_buttons(_("Places"),
-              GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(view->plugin))),
-              GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_NO_SEPARATOR,
-              GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
-
-    gtk_window_set_position(GTK_WINDOW(dlg), GTK_WIN_POS_CENTER);
-    gtk_window_set_icon_name(GTK_WINDOW(dlg), "xfce4-settings");
-
-    g_signal_connect(dlg, "response",
-                     G_CALLBACK(pview_cfg_dialog_close_cb), view);
-
-    return dlg;
-}
-
 /********** Handle user message **********/
 static gboolean
 pview_popup_command_message_received(GtkWidget *widget,
@@ -1026,7 +825,6 @@ pview_popup_command_set_selection(PlacesView *view)
 PlacesView*
 places_view_init(XfcePanelPlugin *plugin)
 {
-    GtkWidget *button_box;
     PlacesView *view;                   /* internal use in this file */
     PlacesViewCfgIface *view_cfg_iface; /* given to cfg */
 
@@ -1041,13 +839,9 @@ places_view_init(XfcePanelPlugin *plugin)
     view_cfg_iface->update_menu             = pview_update_menu;
     view_cfg_iface->update_button           = pview_button_update;
     view_cfg_iface->reconfigure_model       = pview_reconfigure_model;
-    view_cfg_iface->make_empty_cfg_dialog   = pview_make_empty_cfg_dialog;
-    
     view->view_cfg_iface = view_cfg_iface;
-    view->cfg_iface      = places_cfg_new(view_cfg_iface, 
-                                          xfce_panel_plugin_lookup_rc_file(view->plugin),
-                                          xfce_panel_plugin_save_location(view->plugin, TRUE));
-    view->cfg            = places_cfg_view_iface_get_cfg(view->cfg_iface);
+
+    view->cfg      = places_cfg_new(view->plugin, view_cfg_iface);
 
     pview_reconfigure_model(view);
     
@@ -1063,42 +857,24 @@ places_view_init(XfcePanelPlugin *plugin)
     DBG("init GUI");
 
     /* create the button */
-    view->button = g_object_ref(xfce_create_panel_toggle_button());
+    view->button = g_object_ref(places_button_new(view->plugin));
     xfce_panel_plugin_add_action_widget(view->plugin, view->button);
     gtk_container_add(GTK_CONTAINER(view->plugin), view->button);
     gtk_widget_show(view->button);
-
-    /* create the box */
-    button_box = xfce_hvbox_new(xfce_panel_plugin_get_orientation(view->plugin),
-                                FALSE, 4);
-    gtk_container_set_border_width(GTK_CONTAINER(button_box), 0);
-    gtk_container_add(GTK_CONTAINER(view->button), button_box);
-    gtk_widget_show(button_box);
 
     pview_button_update(view);
 
     /* signals for icon theme/screen changes */
     g_signal_connect_swapped(view->button, "style-set",
-                             G_CALLBACK(pview_cb_theme_changed), view);
+                             G_CALLBACK(pview_destroy_menu), view);
     g_signal_connect_swapped(view->button, "screen-changed",
-                             G_CALLBACK(pview_cb_theme_changed), view);
+                             G_CALLBACK(pview_destroy_menu), view);
     
-    /* plugin signals */
-    g_signal_connect_swapped(G_OBJECT(view->plugin), "size-changed",
-                             G_CALLBACK(pview_cb_size_changed), view);
-    g_signal_connect_swapped(G_OBJECT(view->plugin), "orientation-changed",
-                             G_CALLBACK(pview_button_update), view);
-
     /* button signal */
     g_signal_connect_swapped(view->button, "button-press-event",
                              G_CALLBACK(pview_cb_button_pressed), view);
 
-    /* cfg-related signals */
-    g_signal_connect_swapped(G_OBJECT(view->plugin), "configure-plugin",
-                             G_CALLBACK(places_cfg_view_iface_open_dialog), view->cfg_iface);
-    g_signal_connect_swapped(G_OBJECT(view->plugin), "save",
-                             G_CALLBACK(places_cfg_view_iface_save), view->cfg_iface);
-    xfce_panel_plugin_menu_show_configure(view->plugin);
+
 
     /* set selection for xfce4-popup-places */
     pview_popup_command_set_selection(view);
@@ -1114,20 +890,14 @@ places_view_finalize(PlacesView *view)
     pview_destroy_menu(view);
     pview_destroy_model(view);
     
-    if(view->button_image != NULL)
-        g_object_unref(view->button_image);
-    if(view->button_label != NULL)
-        g_object_unref(view->button_label);
     if(view->button != NULL)
         g_object_unref(view->button);
-    if(view->label_text != NULL)
-        g_free(view->label_text);
 
 #if !USE_GTK_TOOLTIP_API
     g_object_unref(view->tooltips);
 #endif
 
-    places_cfg_view_iface_finalize(view->cfg_iface);
+    places_cfg_finalize(view->cfg);
     
     g_free(view->view_cfg_iface);
     g_free(view);
