@@ -48,7 +48,7 @@
 #include <glib/gstdio.h>
 
 #define pbg_priv(pbg) ((PBUserData*) pbg->priv)
-#define show_bookmark(b) ((gboolean) b->priv)
+#define show_bookmark(b) (GPOINTER_TO_INT(b->priv))
 
 typedef struct
 {
@@ -169,7 +169,7 @@ pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
         bookmark        = places_bookmark_create(name);           /* label needs to be freed */
         bookmark->uri   = path;                                   /* uri   needs to be freed */
         bookmark->icon  = "gnome-fs-directory";
-        bookmark->priv  = (gpointer) pbuser_dir_exists(path);
+        bookmark->priv  = GINT_TO_POINTER(pbuser_dir_exists(path));
         bookmark->finalize = pbuser_finalize_bookmark;
 
         bookmarks = g_list_prepend(bookmarks, bookmark);
@@ -251,7 +251,7 @@ pbuser_changed(PlacesBookmarkGroup *bookmark_group)
     while(bookmarks != NULL){
         bookmark = bookmarks->data;
         if(show_bookmark(bookmark) != pbuser_dir_exists(bookmark->uri)){
-            bookmark->priv = (gpointer) !show_bookmark(bookmark);
+            bookmark->priv = GINT_TO_POINTER(!show_bookmark(bookmark));
             ret = TRUE;
         }
         bookmarks = bookmarks->next;
