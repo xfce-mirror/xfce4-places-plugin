@@ -484,7 +484,7 @@ pview_cb_recent_items_clear3(GtkWidget *clear_item, GdkEventButton *event, GtkWi
 }
 
 static void
-pview_cb_recent_changed(GtkRecentManager *recent_manager, GtkWidget *clear_item)
+pview_cb_recent_changed(GtkRecentManager *recent_manager, GtkWidget *widget)
 {
     int recent_count;
     g_object_get(recent_manager,
@@ -492,9 +492,9 @@ pview_cb_recent_changed(GtkRecentManager *recent_manager, GtkWidget *clear_item)
                  NULL);
 
     if (recent_count > 0)
-        gtk_widget_show(clear_item);
+        gtk_widget_show(widget);
     else
-        gtk_widget_hide(clear_item);
+        gtk_widget_hide(widget);
 }
 
 #endif
