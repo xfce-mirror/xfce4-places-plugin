@@ -95,6 +95,10 @@ struct _PlacesView
     GtkTooltips               *tooltips;
 #endif
 
+#if USE_RECENT_DOCUMENTS
+    gulong                     recent_manager_changed_handler[3];
+#endif
+
     gboolean                   needs_separator;
     guint                      menu_timeout_id;
     
@@ -463,17 +467,25 @@ pview_cb_recent_item_open(GtkRecentChooser *chooser, PlacesView *pd)
     g_free(uri);
 }
 
+static void
+pview_cb_recent_changed_position(GtkRecentManager *recent_manager, GtkWidget *recent_menu)
+{
+    while(gtk_events_pending())
+        gtk_main_iteration();
+
+    gtk_menu_reposition(GTK_MENU(recent_menu));
+}
+
 static gboolean
 pview_cb_recent_items_clear(GtkWidget *clear_item, GtkWidget *recent_menu)
 {
     GtkRecentManager *manager = gtk_recent_manager_get_default();
+    
     gint removed = gtk_recent_manager_purge_items(manager, NULL);
     DBG("Cleared %d recent items", removed);
 
-    while(gtk_events_pending())
-        gtk_main_iteration();
-    gtk_menu_reposition(GTK_MENU(recent_menu));
-
+    pview_cb_recent_changed_position(manager, recent_menu);
+    
     return TRUE;
 }
 
@@ -484,9 +496,10 @@ pview_cb_recent_items_clear3(GtkWidget *clear_item, GdkEventButton *event, GtkWi
 }
 
 static void
-pview_cb_recent_changed(GtkRecentManager *recent_manager, GtkWidget *widget)
+pview_cb_recent_changed_hide(GtkRecentManager *recent_manager, GtkWidget *widget)
 {
     int recent_count;
+    
     g_object_get(recent_manager,
                  "size", &recent_count,
                  NULL);
@@ -505,18 +518,21 @@ pview_cb_recent_changed(GtkRecentManager *recent_manager, GtkWidget *widget)
 static void
 pview_destroy_menu(PlacesView *view)
 {
-    if(view->menu != NULL){
+#ifdef USE_RECENT_DOCUMENTS
+    GtkRecentManager *recent_manager = gtk_recent_manager_get_default();
+    int i;
+#endif
+
+    if(view->menu != NULL) {
         gtk_menu_shell_deactivate(GTK_MENU_SHELL(view->menu));
 
 #ifdef USE_RECENT_DOCUMENTS
-        if (2 != g_signal_handlers_disconnect_matched(gtk_recent_manager_get_default(), 
-                                                      G_SIGNAL_MATCH_FUNC,
-                                                      g_signal_lookup("changed", gtk_recent_manager_get_type()),
-                                                      0,
-                                                      NULL, 
-                                                      pview_cb_recent_changed,
-                                                      NULL)) {
-            DBG("Warning: did not disconnect two pview_cb_recent_changed handlers");
+        for (i = 0; i < 3; i++) {
+            if (view->recent_manager_changed_handler[i]) {
+                g_signal_handler_disconnect(recent_manager,
+                                            view->recent_manager_changed_handler[i]);
+                view->recent_manager_changed_handler[i] = 0;
+            }
         }
 #endif
 
@@ -687,14 +703,17 @@ pview_update_menu(PlacesView *pd)
 
         g_signal_connect(recent_menu, "item-activated", 
                          G_CALLBACK(pview_cb_recent_item_open), pd);
+            
+        pd->recent_manager_changed_handler[0] = g_signal_connect(recent_manager, "changed",
+                                                                 G_CALLBACK(pview_cb_recent_changed_position), recent_menu);
     
         if(pd->cfg->show_recent_clear){
 
             separator = gtk_separator_menu_item_new();
             gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu), separator);
-            pview_cb_recent_changed(recent_manager, separator);
-            g_signal_connect(recent_manager, "changed",
-                             G_CALLBACK(pview_cb_recent_changed), separator);
+            pview_cb_recent_changed_hide(recent_manager, separator);
+            pd->recent_manager_changed_handler[1] = g_signal_connect(recent_manager, "changed",
+                                                                     G_CALLBACK(pview_cb_recent_changed_hide), separator);
    
             if(pd->cfg->show_icons){
                 clear_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_CLEAR, NULL);
@@ -705,9 +724,9 @@ pview_update_menu(PlacesView *pd)
             }
 
             gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu), clear_item);
-            pview_cb_recent_changed(recent_manager, clear_item);
-            g_signal_connect(recent_manager, "changed",
-                             G_CALLBACK(pview_cb_recent_changed), clear_item);
+            pview_cb_recent_changed_hide(recent_manager, clear_item);
+            pd->recent_manager_changed_handler[2] = g_signal_connect(recent_manager, "changed",
+                                                                     G_CALLBACK(pview_cb_recent_changed_hide), clear_item);
 
             /* try button-release-event to catch mouse clicks and not hide the menu after */
             g_signal_connect(clear_item, "button-release-event",
