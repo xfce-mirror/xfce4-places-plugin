@@ -483,6 +483,20 @@ pview_cb_recent_items_clear3(GtkWidget *clear_item, GdkEventButton *event, GtkWi
     return pview_cb_recent_items_clear(clear_item, recent_menu);
 }
 
+static void
+pview_cb_recent_changed(GtkRecentManager *recent_manager, GtkWidget *clear_item)
+{
+    int recent_count;
+    g_object_get(recent_manager,
+                 "size", &recent_count,
+                 NULL);
+
+    if (recent_count > 0)
+        gtk_widget_show(clear_item);
+    else
+        gtk_widget_hide(clear_item);
+}
+
 #endif
 
 
@@ -575,6 +589,7 @@ pview_update_menu(PlacesView *pd)
     GtkWidget *recent_menu;
     GtkWidget *clear_item;
     GtkWidget *recent_item;
+    GtkRecentManager *recent_manager = gtk_recent_manager_get_default();
 #endif
 
     DBG("destroy menu");
@@ -664,7 +679,10 @@ pview_update_menu(PlacesView *pd)
 
             separator = gtk_separator_menu_item_new();
             gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu), separator);
-            gtk_widget_show(separator);
+            pview_cb_recent_changed(recent_manager, separator);
+            /* TODO: this leaks a pointer to separator, which may be destroyed later */
+            g_signal_connect(recent_manager, "changed",
+                             G_CALLBACK(pview_cb_recent_changed), separator);
    
             if(pd->cfg->show_icons){
                 clear_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_CLEAR, NULL);
@@ -675,7 +693,10 @@ pview_update_menu(PlacesView *pd)
             }
 
             gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu), clear_item);
-            gtk_widget_show(clear_item);
+            pview_cb_recent_changed(recent_manager, clear_item);
+            /* TODO: this leaks a pointer to clear_item, which may be destroyed later */
+            g_signal_connect(recent_manager, "changed",
+                             G_CALLBACK(pview_cb_recent_changed), clear_item);
 
             /* try button-release-event to catch mouse clicks and not hide the menu after */
             g_signal_connect(clear_item, "button-release-event",
