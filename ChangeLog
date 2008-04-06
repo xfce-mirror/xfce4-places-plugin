@@ -1,3 +1,7 @@
+2008-04-06	Diego Ongaro <ongardie@gmail.com>
+
+	* view.c: Reposition Recent Docs submenu after Clear (Bug #3872)
+
 2008-01-07	Diego Ongaro <ongardie@gmail.com>
 
 	* button.{c,h}: Created a button widget to modularize view code

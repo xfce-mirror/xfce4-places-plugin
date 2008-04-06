@@ -464,13 +464,25 @@ pview_cb_recent_item_open(GtkRecentChooser *chooser, PlacesView *pd)
 }
 
 static gboolean
-pview_cb_recent_items_clear(GtkWidget *clear_item)
+pview_cb_recent_items_clear(GtkWidget *clear_item, GtkWidget *recent_menu)
 {
     GtkRecentManager *manager = gtk_recent_manager_get_default();
     gint removed = gtk_recent_manager_purge_items(manager, NULL);
     DBG("Cleared %d recent items", removed);
+
+    while(gtk_events_pending())
+        gtk_main_iteration();
+    gtk_menu_reposition(GTK_MENU(recent_menu));
+
     return TRUE;
 }
+
+static gboolean
+pview_cb_recent_items_clear3(GtkWidget *clear_item, GdkEventButton *event, GtkWidget *recent_menu)
+{
+    return pview_cb_recent_items_clear(clear_item, recent_menu);
+}
+
 #endif
 
 
@@ -667,10 +679,10 @@ pview_update_menu(PlacesView *pd)
 
             /* try button-release-event to catch mouse clicks and not hide the menu after */
             g_signal_connect(clear_item, "button-release-event",
-                             G_CALLBACK(pview_cb_recent_items_clear), NULL);
+                             G_CALLBACK(pview_cb_recent_items_clear3), recent_menu);
             /* use activate when button-release-event doesn't catch it (e.g., enter key pressed) */
             g_signal_connect(clear_item, "activate",
-                             G_CALLBACK(pview_cb_recent_items_clear), NULL);
+                             G_CALLBACK(pview_cb_recent_items_clear), recent_menu);
     
         }
     
