@@ -507,6 +507,19 @@ pview_destroy_menu(PlacesView *view)
 {
     if(view->menu != NULL){
         gtk_menu_shell_deactivate(GTK_MENU_SHELL(view->menu));
+
+#ifdef USE_RECENT_DOCUMENTS
+        if (2 != g_signal_handlers_disconnect_matched(gtk_recent_manager_get_default(), 
+                                                      G_SIGNAL_MATCH_FUNC,
+                                                      g_signal_lookup("changed", gtk_recent_manager_get_type()),
+                                                      0,
+                                                      NULL, 
+                                                      pview_cb_recent_changed,
+                                                      NULL)) {
+            DBG("Warning: did not disconnect two pview_cb_recent_changed handlers");
+        }
+#endif
+
         gtk_widget_destroy(view->menu);
         view->menu = NULL;
     }
@@ -680,7 +693,6 @@ pview_update_menu(PlacesView *pd)
             separator = gtk_separator_menu_item_new();
             gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu), separator);
             pview_cb_recent_changed(recent_manager, separator);
-            /* TODO: this leaks a pointer to separator, which may be destroyed later */
             g_signal_connect(recent_manager, "changed",
                              G_CALLBACK(pview_cb_recent_changed), separator);
    
@@ -694,7 +706,6 @@ pview_update_menu(PlacesView *pd)
 
             gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu), clear_item);
             pview_cb_recent_changed(recent_manager, clear_item);
-            /* TODO: this leaks a pointer to clear_item, which may be destroyed later */
             g_signal_connect(recent_manager, "changed",
                              G_CALLBACK(pview_cb_recent_changed), clear_item);
 
