@@ -169,6 +169,7 @@ places_cfg_save(PlacesCfg *cfg)
 static void
 pcfg_button_show_cb(GtkComboBox *combo, PlacesCfg *cfg)
 {
+    GtkWidget *transient;
     gint option = gtk_combo_box_get_active(combo);
 
     g_assert(cfg != NULL);
@@ -176,6 +177,10 @@ pcfg_button_show_cb(GtkComboBox *combo, PlacesCfg *cfg)
 
     cfg->show_button_icon  = (option == 0 || option == 2);
     cfg->show_button_label = (option == 1 || option == 2);
+
+    transient = g_object_get_data(G_OBJECT(combo), "cfg_transient");
+    if(transient != NULL)
+        gtk_widget_set_sensitive(transient, cfg->show_button_label);
 
     places_view_cfg_iface_update_button(cfg->view_iface);
 }
@@ -380,6 +385,10 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 
     /* BUTTON: Label text entry */
     tmp_box = gtk_hbox_new(FALSE, 15);
+    
+    gtk_widget_set_sensitive(tmp_box, cfg->show_button_label);
+    g_object_set_data(G_OBJECT(tmp_widget), "cfg_transient", tmp_box);
+
     gtk_widget_show(tmp_box);
     gtk_box_pack_start(GTK_BOX(vbox_button), tmp_box, FALSE, FALSE, 0);
 

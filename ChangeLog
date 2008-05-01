@@ -1,5 +1,6 @@
 2008-05-01	Diego Ongaro <ongardie@gmail.com>
 
+	* cfg.c: Make label insensitive when not shown
 	* view.c: Disable the Recent Docs menu item if there are none.
 
 2008-04-06	Diego Ongaro <ongardie@gmail.com>
