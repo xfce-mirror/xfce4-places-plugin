@@ -4,6 +4,10 @@
 	Hide Clear option when there are no Recent Docs (Bug #3871).
 	Reposition Recent Documents submenu after Clear (Bug #3872).
 
+2008-02-16	Diego Ongaro <ongardie@gmail.com>
+
+	* model_user.c: Fix build on amd64
+
 2008-01-07	Diego Ongaro <ongardie@gmail.com>
 
 	* button.{c,h}: Created a button widget to modularize view code
