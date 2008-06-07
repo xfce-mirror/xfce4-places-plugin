@@ -519,14 +519,14 @@ pview_cb_recent_items_clear3(GtkWidget *clear_item, GdkEventButton *event, GtkWi
 static void
 pview_destroy_menu(PlacesView *view)
 {
-#ifdef USE_RECENT_DOCUMENTS
+#if USE_RECENT_DOCUMENTS
     GtkRecentManager *recent_manager = gtk_recent_manager_get_default();
 #endif
 
     if(view->menu != NULL) {
         gtk_menu_shell_deactivate(GTK_MENU_SHELL(view->menu));
 
-#ifdef USE_RECENT_DOCUMENTS
+#if USE_RECENT_DOCUMENTS
         if (view->recent_manager_changed_handler) {
             g_signal_handler_disconnect(recent_manager,
                                         view->recent_manager_changed_handler);
