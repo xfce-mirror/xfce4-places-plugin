@@ -1,5 +1,6 @@
 2008-06-07	Diego Ongaro <ongardie@gmail.com>
 
+	* NEWS, configure.in.in: Prep for 1.1 release
 	* view.c: Fix build for GTK versions before 2.10
 	* cfg.c: Revert "Make label insensitive when not shown" (this
 	label is used for the tooltip also)

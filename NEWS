@@ -1,3 +1,12 @@
+2008-06-07
+================================================================================
+xfce4-places-plugin v1.1.0 released
+
+ * "xfce4-popup-places" command to open the menu
+ * Error messages when mounts/unmounts fail
+ * Grays out panel icon while busy (un)mounting
+ * Multiple bug fixes and enhancements (see ChangeLog)
+
 2007-10-25
 ================================================================================
 xfce4-places-plugin v1.0.0 released
