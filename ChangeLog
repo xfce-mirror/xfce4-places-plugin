@@ -1,3 +1,8 @@
+2008-06-07	Diego Ongaro <ongardie@gmail.com>
+
+	* cfg.c: Revert "Make label insensitive when not shown" (this
+	label is used for the tooltip also)
+
 2008-05-01	Diego Ongaro <ongardie@gmail.com>
 
 	* cfg.c: Make label insensitive when not shown
