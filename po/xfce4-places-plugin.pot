@@ -1,0 +1,159 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-06-08 12:51+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. vim: set ai et tabstop=4:
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr ""
+
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
+msgid "Places"
+msgstr ""
+
+#. Trash
+#: ../panel-plugin/model_system.c:110
+msgid "Trash"
+msgstr ""
+
+#. Desktop
+#: ../panel-plugin/model_system.c:135
+msgid "Desktop"
+msgstr ""
+
+#. File System (/)
+#: ../panel-plugin/model_system.c:159
+msgid "File System"
+msgstr ""
+
+#: ../panel-plugin/model_volumes.c:64
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr ""
+
+#: ../panel-plugin/model_volumes.c:85
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr ""
+
+#: ../panel-plugin/model_volumes.c:107
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr ""
+
+#: ../panel-plugin/model_volumes.c:226
+msgid "Mount and Open"
+msgstr ""
+
+#: ../panel-plugin/model_volumes.c:239
+msgid "Mount"
+msgstr ""
+
+#: ../panel-plugin/model_volumes.c:260
+msgid "Eject"
+msgstr ""
+
+#: ../panel-plugin/model_volumes.c:272
+msgid "Unmount"
+msgstr ""
+
+#: ../panel-plugin/view.c:678
+msgid "Search for Files"
+msgstr ""
+
+#: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
+msgid "Recent Documents"
+msgstr ""
+
+#: ../panel-plugin/cfg.c:347
+msgid "Button"
+msgstr ""
+
+#: ../panel-plugin/cfg.c:356
+msgid "_Show"
+msgstr ""
+
+#: ../panel-plugin/cfg.c:362
+msgid "Icon Only"
+msgstr ""
+
+#: ../panel-plugin/cfg.c:363
+msgid "Label Only"
+msgstr ""
+
+#: ../panel-plugin/cfg.c:364
+msgid "Icon and Label"
+msgstr ""
+
+#: ../panel-plugin/cfg.c:386
+msgid "_Label"
+msgstr ""
+
+#: ../panel-plugin/cfg.c:404
+msgid "Menu"
+msgstr ""
+
+#. MENU: Show Icons
+#: ../panel-plugin/cfg.c:408
+msgid "Show _icons in menu"
+msgstr ""
+
+#. MENU: Show Removable Media
+#: ../panel-plugin/cfg.c:420
+msgid "Show _removable media"
+msgstr ""
+
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr ""
+
+#. MENU: Show GTK Bookmarks
+#: ../panel-plugin/cfg.c:455
+msgid "Show GTK _bookmarks"
+msgstr ""
+
+#. MENU: Show Recent Documents
+#: ../panel-plugin/cfg.c:468
+msgid "Show recent _documents"
+msgstr ""
+
+#. RECENT DOCUMENTS: Show clear option
+#: ../panel-plugin/cfg.c:490
+msgid "Show cl_ear option"
+msgstr ""
+
+#: ../panel-plugin/cfg.c:505
+msgid "_Number to display"
+msgstr ""
+
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr ""
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr ""
+
+#: ../panel-plugin/support.c:148
+msgid "Open"
+msgstr ""
+
+#: ../panel-plugin/support.c:163
+msgid "Open Terminal Here"
+msgstr ""
