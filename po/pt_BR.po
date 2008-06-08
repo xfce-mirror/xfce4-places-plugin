@@ -8,120 +8,163 @@
 # Joao Pedrosa <joaopedrosa@gmail.com>, 2005.
 # Rodrigo Coacci <rcoacci@gmail.com>, 2006.
 # Adriano Winter Bess <awbess@gmail.com>, 2006
+# Og Maciel <ogmaciel@gnome.org>, 2008.
 #
-# ###
-# Brazilian Portuguese translation of gnome-panel.
-# Copyright (C) 1999-2005 Free Software Foundation, Inc.
-# This file is distributed under the same license as the gnome-panel package.
-# Elvis Pfützenreuter <epx@netville.com.br>
-# Sandro Nunes Henrique <sandro@conectiva.com.br>
-# Rodrigo Stulzer Lopes <rodrigo@conectiva.com.br>
-# Ricardo Soares Guimarães <ricardo@conectiva.com.br>
-# Gustavo Maciel Dias Vieira <gdvieira@zaz.com.br>, 2000-2001.
-# Alexandre Folle de Menezes <afmenez@terra.com.br>, 2002.
-# Evandro Fernandes Giovanini <evandrofg@ig.com.br>, 2002, 2003, 2006.
-# Gustavo Noronha Silva <kov@debian.org>, 2003.
-# Welther José O. Esteves <weltherjoe@yahoo.com.br>, 2004.
-# Raphael Higino <raphaelh@uai.com.br>, 2004-2005.
-# Evandro Fernandes Giovanini <evandrofg@ig.com.br>, 2007.
-# Og Maciel <ogmaciel@ubuntu.com>, 2007.
-# Fábio Nogueira <deb-user-ba@ubuntu.com>, 2007.
-#
-# ###
-
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-battery-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 01:47-0500\n"
-"PO-Revision-Date: 2007-11-08 16:32-0300\n"
-"Last-Translator: Fábio Nogueira <deb-user-ba@ubuntu.com>\n"
+"POT-Creation-Date: 2008-06-08 12:51+0100\n"
+"PO-Revision-Date: 2008-06-08 16:58-0500\n"
+"Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. vim: ai et tabstop=4
+#. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
 msgstr "Acesse pastas, documentos e mídias removíveis"
 
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140 ../panel-plugin/cfg.c:259
-#: ../panel-plugin/cfg.c:329
+#: ../panel-plugin/places.desktop.in.in.h:2
+#: ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105
+#: ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
 msgid "Places"
 msgstr "Locais"
 
-#: ../panel-plugin/model_system.c:60
+#. Trash
+#: ../panel-plugin/model_system.c:110
 msgid "Trash"
 msgstr "Lixeira"
 
-#: ../panel-plugin/model_system.c:70
+#. Desktop
+#: ../panel-plugin/model_system.c:135
 msgid "Desktop"
 msgstr "Área de Trabalho"
 
-#: ../panel-plugin/model_system.c:78
+#. File System (/)
+#: ../panel-plugin/model_system.c:159
 msgid "File System"
-msgstr "Sistema de Arquivos"
+msgstr "Sistema de arquivos"
 
-#: ../panel-plugin/view.c:244 ../panel-plugin/cfg.c:456
+#: ../panel-plugin/model_volumes.c:64
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "Falha ao ejetar \"%s\""
+
+#: ../panel-plugin/model_volumes.c:85
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "Falha ao desmontar \"%s\""
+
+#: ../panel-plugin/model_volumes.c:107
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "Falha ao montar \"%s\""
+
+#: ../panel-plugin/model_volumes.c:226
+msgid "Mount and Open"
+msgstr "Montar e Abrir"
+
+#: ../panel-plugin/model_volumes.c:239
+msgid "Mount"
+msgstr "Montar"
+
+#: ../panel-plugin/model_volumes.c:260
+msgid "Eject"
+msgstr "Ejetar"
+
+#: ../panel-plugin/model_volumes.c:272
+msgid "Unmount"
+msgstr "Desmontar"
+
+#: ../panel-plugin/view.c:678
+msgid "Search for Files"
+msgstr "Pesquisar por arquivos"
+
+#: ../panel-plugin/view.c:731
+#: ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
-msgstr "Documentos Recentes"
+msgstr "Documentos recentes"
 
-#: ../panel-plugin/cfg.c:345
+#: ../panel-plugin/cfg.c:347
 msgid "Button"
 msgstr "Botão"
 
-#: ../panel-plugin/cfg.c:354
+#: ../panel-plugin/cfg.c:356
 msgid "_Show"
 msgstr "Mo_strar"
 
-#: ../panel-plugin/cfg.c:360
-msgid "Icon Only"
-msgstr "Somente Ícone"
-
-#: ../panel-plugin/cfg.c:361
-msgid "Label Only"
-msgstr "Somente Rótulo"
-
 #: ../panel-plugin/cfg.c:362
-msgid "Icon and Label"
-msgstr "Ícone e Rótulo"
+msgid "Icon Only"
+msgstr "Somente ícone"
 
-#: ../panel-plugin/cfg.c:384
+#: ../panel-plugin/cfg.c:363
+msgid "Label Only"
+msgstr "Somente rótulo"
+
+#: ../panel-plugin/cfg.c:364
+msgid "Icon and Label"
+msgstr "Ícone e rótulo"
+
+#: ../panel-plugin/cfg.c:386
 msgid "_Label"
 msgstr "Rótu_lo"
 
-#: ../panel-plugin/cfg.c:402
+#: ../panel-plugin/cfg.c:404
 msgid "Menu"
 msgstr "Menu"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:406
+#: ../panel-plugin/cfg.c:408
 msgid "Show _icons in menu"
 msgstr "Mostrar ícon_es no menu"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:418
+#: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
 msgstr "Mostrar mídia _removível"
 
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr "Monta e _abre com um clique"
+
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:429
+#: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
 msgstr "Mostrar mar_cadores GTK"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:442
+#: ../panel-plugin/cfg.c:468
 msgid "Show recent _documents"
 msgstr "Mostrar _documentos recentes"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:460
+#: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
 msgstr "Mostrar o_pção de limpar"
 
-#: ../panel-plugin/cfg.c:475
+#: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
 msgstr "_Número a exibir"
+
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr "Pesquisar"
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr "Co_mando"
+
+#: ../panel-plugin/support.c:148
+msgid "Open"
+msgstr "Abrir"
+
+#: ../panel-plugin/support.c:163
+msgid "Open Terminal Here"
+msgstr "Abrir o terminal aqui"
+
