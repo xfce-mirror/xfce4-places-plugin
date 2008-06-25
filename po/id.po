@@ -1,0 +1,158 @@
+# Indonesian translations for xfce4-places-plugin package.
+# Copyright (C) 2008 xfce4-places-plugin'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the xfce4-places-plugin package.
+# Andhika Padmawan <andhika.padmawan@gmail.com>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-places-plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-06-08 12:51+0100\n"
+"PO-Revision-Date: 2008-06-21 11:51+0700\n"
+"Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
+"Language-Team: Indonesian <id@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. vim: set ai et tabstop=4:
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr "Akses folder, dokumen, dan media dapat dilepas"
+
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
+msgid "Places"
+msgstr "Tempat"
+
+#. Trash
+#: ../panel-plugin/model_system.c:110
+msgid "Trash"
+msgstr "Kotak Sampah"
+
+#. Desktop
+#: ../panel-plugin/model_system.c:135
+msgid "Desktop"
+msgstr "Destop"
+
+#. File System (/)
+#: ../panel-plugin/model_system.c:159
+msgid "File System"
+msgstr "Sistem Berkas"
+
+#: ../panel-plugin/model_volumes.c:64
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "Gagal mengeluarkan \"%s\""
+
+#: ../panel-plugin/model_volumes.c:85
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "Gagal melepas mount \"%s\""
+
+#: ../panel-plugin/model_volumes.c:107
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "Gagal memount \"%s\""
+
+#: ../panel-plugin/model_volumes.c:226
+msgid "Mount and Open"
+msgstr "Mount dan Buka"
+
+#: ../panel-plugin/model_volumes.c:239
+msgid "Mount"
+msgstr "Mount"
+
+#: ../panel-plugin/model_volumes.c:260
+msgid "Eject"
+msgstr "Keluarkan"
+
+#: ../panel-plugin/model_volumes.c:272
+msgid "Unmount"
+msgstr "Lepas Mount"
+
+#: ../panel-plugin/view.c:678
+msgid "Search for Files"
+msgstr "Telusur Berkas"
+
+#: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
+msgid "Recent Documents"
+msgstr "Dokumen Terkini"
+
+#: ../panel-plugin/cfg.c:347
+msgid "Button"
+msgstr "Tombol"
+
+#: ../panel-plugin/cfg.c:356
+msgid "_Show"
+msgstr "_Tampilkan"
+
+#: ../panel-plugin/cfg.c:362
+msgid "Icon Only"
+msgstr "Hanya Ikon"
+
+#: ../panel-plugin/cfg.c:363
+msgid "Label Only"
+msgstr "Hanya Label"
+
+#: ../panel-plugin/cfg.c:364
+msgid "Icon and Label"
+msgstr "Ikon dan Label"
+
+#: ../panel-plugin/cfg.c:386
+msgid "_Label"
+msgstr "_Label"
+
+#: ../panel-plugin/cfg.c:404
+msgid "Menu"
+msgstr "Menu"
+
+#. MENU: Show Icons
+#: ../panel-plugin/cfg.c:408
+msgid "Show _icons in menu"
+msgstr "Tampilkan _ikon di menu"
+
+#. MENU: Show Removable Media
+#: ../panel-plugin/cfg.c:420
+msgid "Show _removable media"
+msgstr "Tampilkan _media dapat dilepas"
+
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr "Mount dan _Buka pada klik"
+
+#. MENU: Show GTK Bookmarks
+#: ../panel-plugin/cfg.c:455
+msgid "Show GTK _bookmarks"
+msgstr "Tampikan _bookmark GTK"
+
+#. MENU: Show Recent Documents
+#: ../panel-plugin/cfg.c:468
+msgid "Show recent _documents"
+msgstr "Tampilkan dokumen _terkini"
+
+#. RECENT DOCUMENTS: Show clear option
+#: ../panel-plugin/cfg.c:490
+msgid "Show cl_ear option"
+msgstr "Tampilkan op_si bersihkan"
+
+#: ../panel-plugin/cfg.c:505
+msgid "_Number to display"
+msgstr "_Nomor untuk ditampilkan"
+
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr "Telusur"
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr "Pe_rintah"
+
+#: ../panel-plugin/support.c:148
+msgid "Open"
+msgstr "Buka"
+
+#: ../panel-plugin/support.c:163
+msgid "Open Terminal Here"
+msgstr "Buka Terminal di Sini"
