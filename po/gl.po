@@ -1,113 +1,187 @@
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
-# ###
-# Galician translation for thunar
-# Copyright (c) (c) 2006 Canonical Ltd, and Rosetta Contributors 2006
-# This file is distributed under the same license as the thunar package.
-# Iván Seoane Pardo <talivan.ivan@gmail.com>, 2006.
-#
-# ###
-# translation of gl.po to Galego
-# Galician translation of gnome-panel.
+# Galician translation of xfce4-places-plugin
+# Copyright (C) 2008 Leandro Regueiro
 # Copyright (C) 1999-2004 Jesús Bravo Álvarez
+# This file is distributed under the same license as the xfce4-places-plugin package.
+#
+# Leandro Regueiro <leandro.regueiro@gmail.com>, 2008.
+# Iván Seoane Pardo <talivan.ivan@gmail.com>, 2006.
+# Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
+# Jesús Bravo Álvarez <suso@trasno.net>, 1999-2004.
 #
 # Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
-# colaborar connosco, podes atopar máis información en http://www.trasno.net
+# colaborar connosco, podes atopar máis información en <http://trasno.net>
 #
-# First Version: 2002-06-02 18:57+0200
-#
-# Jesús Bravo Álvarez <suso@trasno.net>, 1999-2004.
-# Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
-# ###
 msgid ""
 msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 01:47-0500\n"
+"POT-Creation-Date: 2008-06-08 12:51+0100\n"
+"PO-Revision-Date: 2008-06-24 22:15+0100\n"
+"Last-Translator: Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>\n"
+"Language-Team: Galician <proxecto@trasno.net>\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#. vim: ai et tabstop=4
+#. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
 msgstr ""
 
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140 ../panel-plugin/cfg.c:259
-#: ../panel-plugin/cfg.c:329
+#: ../panel-plugin/places.desktop.in.in.h:2
+#: ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105
+#: ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
 msgid "Places"
 msgstr "Lugares"
 
-#: ../panel-plugin/model_system.c:60
+#. Trash
+#: ../panel-plugin/model_system.c:110
 msgid "Trash"
-msgstr ""
+msgstr "Lixo"
 
-#: ../panel-plugin/model_system.c:70
+#. Desktop
+#: ../panel-plugin/model_system.c:135
 msgid "Desktop"
 msgstr "Escritorio"
 
-#: ../panel-plugin/model_system.c:78
+#. File System (/)
+#: ../panel-plugin/model_system.c:159
 msgid "File System"
 msgstr "Sistema de ficheiros"
 
-#: ../panel-plugin/view.c:244 ../panel-plugin/cfg.c:456
+#: ../panel-plugin/model_volumes.c:64
+#, fuzzy, c-format
+msgid "Failed to eject \"%s\""
+msgstr "Non se puido extraer «%s»"
+
+#: ../panel-plugin/model_volumes.c:85
+#, fuzzy, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "Non se puido desmontar «%s»"
+
+#: ../panel-plugin/model_volumes.c:107
+#, fuzzy, c-format
+msgid "Failed to mount \"%s\""
+msgstr "Non se puido montar «%s»"
+
+#: ../panel-plugin/model_volumes.c:226
+#, fuzzy
+msgid "Mount and Open"
+msgstr "--non hai partidas abertas--"
+
+#: ../panel-plugin/model_volumes.c:239
+#, fuzzy
+msgid "Mount"
+msgstr "Montar"
+
+#: ../panel-plugin/model_volumes.c:260
+#, fuzzy
+msgid "Eject"
+msgstr "Non se puido extraer «%s»"
+
+#: ../panel-plugin/model_volumes.c:272
+#, fuzzy
+msgid "Unmount"
+msgstr "Desmontar"
+
+#: ../panel-plugin/view.c:678
+#, fuzzy
+msgid "Search for Files"
+msgstr "Buscar ficheiros..."
+
+#: ../panel-plugin/view.c:731
+#: ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "Documentos recentes"
 
-#: ../panel-plugin/cfg.c:345
+#: ../panel-plugin/cfg.c:347
 msgid "Button"
-msgstr ""
+msgstr "Botón"
 
-#: ../panel-plugin/cfg.c:354
+#: ../panel-plugin/cfg.c:356
+#, fuzzy
 msgid "_Show"
-msgstr ""
-
-#: ../panel-plugin/cfg.c:360
-msgid "Icon Only"
-msgstr ""
-
-#: ../panel-plugin/cfg.c:361
-msgid "Label Only"
-msgstr ""
+msgstr "Amo_sar"
 
 #: ../panel-plugin/cfg.c:362
+#, fuzzy
+msgid "Icon Only"
+msgstr "Só lectura"
+
+#: ../panel-plugin/cfg.c:363
+#, fuzzy
+msgid "Label Only"
+msgstr "Só lectura"
+
+#: ../panel-plugin/cfg.c:364
 msgid "Icon and Label"
-msgstr ""
+msgstr "Icona e Etiqueta"
 
-#: ../panel-plugin/cfg.c:384
+#: ../panel-plugin/cfg.c:386
+#, fuzzy
 msgid "_Label"
-msgstr ""
+msgstr "Etiqueta:"
 
-#: ../panel-plugin/cfg.c:402
+#: ../panel-plugin/cfg.c:404
 msgid "Menu"
-msgstr ""
+msgstr "Menú"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:406
+#: ../panel-plugin/cfg.c:408
 msgid "Show _icons in menu"
-msgstr ""
+msgstr "Mostrar _iconas nos menús"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:418
+#: ../panel-plugin/cfg.c:420
+#, fuzzy
 msgid "Show _removable media"
+msgstr "Utilidade para Soportes Extraíbles"
+
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
 msgstr ""
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:429
+#: ../panel-plugin/cfg.c:455
+#, fuzzy
 msgid "Show GTK _bookmarks"
-msgstr ""
+msgstr "Marcadores web do Epiphany"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:442
+#: ../panel-plugin/cfg.c:468
 #, fuzzy
 msgid "Show recent _documents"
-msgstr "Documentos recentes"
+msgstr "Ver documentos de varias páxinas"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:460
+#: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
 msgstr ""
 
-#: ../panel-plugin/cfg.c:475
+#: ../panel-plugin/cfg.c:505
+#, fuzzy
 msgid "_Number to display"
+msgstr "Número de usuarios que mostrar"
+
+#: ../panel-plugin/cfg.c:525
+#, fuzzy
+msgid "Search"
+msgstr "Buscar"
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
 msgstr ""
+
+#: ../panel-plugin/support.c:148
+#, fuzzy
+msgid "Open"
+msgstr "Abrir"
+
+#: ../panel-plugin/support.c:163
+#, fuzzy
+msgid "Open Terminal Here"
+msgstr "Abrir terminal aquí"
+
