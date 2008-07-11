@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: Xfce Places Plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-05-17 01:47-0500\n"
-"PO-Revision-Date: 2007-04-22 11:53+0100\n"
+"PO-Revision-Date: 2008-07-11 17:34+0100\n"
 "Last-Translator: SZERVÁC Attila <sas@321.hu>\n"
 "Language-Team: Hungarian <debian-l10n-hungarian@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
@@ -37,8 +37,10 @@ msgstr ""
 msgid "Access folders, documents, and removable media"
 msgstr "Mappák, dokumentumok és cserélhető médiumok elérése"
 
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140 ../panel-plugin/cfg.c:259
+#: ../panel-plugin/places.desktop.in.in.h:2
+#: ../panel-plugin/cfg.c:78
+#: ../panel-plugin/cfg.c:140
+#: ../panel-plugin/cfg.c:259
 #: ../panel-plugin/cfg.c:329
 msgid "Places"
 msgstr "Helyek"
@@ -55,64 +57,65 @@ msgstr "Asztal"
 msgid "File System"
 msgstr "Fájlrendszer"
 
-#: ../panel-plugin/view.c:244 ../panel-plugin/cfg.c:456
+#: ../panel-plugin/view.c:244
+#: ../panel-plugin/cfg.c:456
 msgid "Recent Documents"
 msgstr "Legutóbbi dokumentumok"
 
 #: ../panel-plugin/cfg.c:345
 msgid "Button"
-msgstr ""
+msgstr "Gomb"
 
 #: ../panel-plugin/cfg.c:354
 msgid "_Show"
-msgstr ""
+msgstr "Mutasd"
 
 #: ../panel-plugin/cfg.c:360
 msgid "Icon Only"
-msgstr ""
+msgstr "Csak ikon"
 
 #: ../panel-plugin/cfg.c:361
 msgid "Label Only"
-msgstr ""
+msgstr "Csak címke"
 
 #: ../panel-plugin/cfg.c:362
 msgid "Icon and Label"
-msgstr ""
+msgstr "Ikon és címke"
 
 #: ../panel-plugin/cfg.c:384
 msgid "_Label"
-msgstr ""
+msgstr "Címke"
 
 #: ../panel-plugin/cfg.c:402
 msgid "Menu"
-msgstr ""
+msgstr "Menü"
 
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:406
 msgid "Show _icons in menu"
-msgstr ""
+msgstr "_Ikonok mutatása a menüben"
 
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:418
 msgid "Show _removable media"
-msgstr ""
+msgstr "Eltávolítható média mutatása"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:429
 msgid "Show GTK _bookmarks"
-msgstr ""
+msgstr "GTK könyvjelzők mutatása"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:442
-#, fuzzy
 msgid "Show recent _documents"
-msgstr "Legutóbbi dokumentumok"
+msgstr "Legutóbbi _dokumentumok mutatása"
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:460
 msgid "Show cl_ear option"
-msgstr ""
+msgstr "Tisztítás opció mutatása"
 
 #: ../panel-plugin/cfg.c:475
 msgid "_Number to display"
-msgstr ""
+msgstr "Kijelzettek száma"
+
