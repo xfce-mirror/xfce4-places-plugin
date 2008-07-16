@@ -1,30 +1,15 @@
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
-# ###
-# translation of ar.po to Arabic
-# Hassan Dibani <hdibani@wanadoo.nl>, 2006.
-# Ahmed Mansour <911freak@gmail.com>, 2007.
-# Khaled Hosny <khaledhosny@eglug.org>, 2007.
-# Arabic translation for thunar
-# Copyright (c) (c) 2006 Canonical Ltd, and Rosetta Contributors 2006
-# This file is distributed under the same license as the thunar package.
-# ###
-# translation of gnome-panel.HEAD.ar.po to Arabic
-# This file is distributed under the same license as the PACKAGE package.
-# Copyright (C) 2004 THE PACKAGE'S COPYRIGHT HOLDER
-#
-# Sayed Jaffer Al-Mosawi <mosawi@arabeyes.org>, 2002.
-# Abdulaziz Al-Arfaj <alarfaj0@yahoo.com>, 2004.
-# Djihed Afifi <djihed@gmail.com>, 2006.
-# Khaled Hosny <khaledhosny@eglug.org>, 2006, 2007.
-# ###
 msgid ""
 msgstr ""
+"Project-Id-Version: xfce\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-08 12:51+0100\n"
+"PO-Revision-Date: 2008-07-15 22:20+0200\n"
+"Last-Translator: Mohamed Magdy <mohamedmk@gmail.com>\n"
+"Language-Team: Arabeyes <doc@arabeyes.org>\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Arabic\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
@@ -35,7 +20,7 @@ msgstr ""
 #: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
 #: ../panel-plugin/cfg.c:311
 msgid "Places"
-msgstr "أماكن"
+msgstr ""
 
 #. Trash
 #: ../panel-plugin/model_system.c:110
@@ -45,12 +30,12 @@ msgstr ""
 #. Desktop
 #: ../panel-plugin/model_system.c:135
 msgid "Desktop"
-msgstr "سطح المكتب"
+msgstr ""
 
 #. File System (/)
 #: ../panel-plugin/model_system.c:159
 msgid "File System"
-msgstr "نظام الملفات"
+msgstr ""
 
 #: ../panel-plugin/model_volumes.c:64
 #, c-format
@@ -89,7 +74,7 @@ msgstr ""
 
 #: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
-msgstr "المستندات الحديثة"
+msgstr ""
 
 #: ../panel-plugin/cfg.c:347
 msgid "Button"
@@ -140,9 +125,8 @@ msgstr ""
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:468
-#, fuzzy
 msgid "Show recent _documents"
-msgstr "المستندات الحديثة"
+msgstr ""
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:490
