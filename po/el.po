@@ -5,16 +5,34 @@
 # Translation of Thunar to Greek
 # Copyright (C) 2004-2006 Benedikt Meurer.
 # This file is distributed under the same license as the Thunar package.
-# Stavros Giannouris <stavrosg@hellug.gr>, 2005, 2006, 2007.
-# Stathis Kamperis <ekamperi@auth.gr>, 2006
 #
 # ###
 # translation of el.po to
 # translation of el.po to
 # translation of el.po to Greek
 # gnome-panel Greek PO file.
-# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2008 Free Software Foundation, Inc.
 #
+# Evaggelos Balaskas <ebalaskas@ebalaskas.gr>, 2008.
+# Stavros Giannouris <stavrosg@hellug.gr>, 2005, 2006, 2007.
+# Stathis Kamperis <ekamperi@auth.gr>, 2006.
+# simos: 874 messages, 18Feb2001, (sgpbea).
+# simos: 897 messages, 01Mar2001, (regmtsgpbea).
+# simos: 959 messages, 04Jun2001, (micumple).
+# simos: 959 messages, 06Jun2001, (fixed minor typo).
+# simos: 897 messages, 28Nov2001, (feeling good to translate HEAD).
+# simos: 272 messages, 20Apr2002, 118 messages remaining.
+# kostas: 513 messages, 19Oct2002, completed translation.
+# kostas: 531 messages, 07Jan2003, updated translation for Gnome 2.1x.
+# kostas:update for Gnome 2.4, 49 strings remain 02Jun2003.
+# kostas:03Aug2003, 599 messages, updated translation.
+# Spiros Papadimitriou <sapadim+@cs.cmu.edu>, 1999.
+# Simos Xenitellis <simos@hellug.gr>, 1999, 2000, 2001, 2002.
+# Sarantis Paskalis <paskalis@di.uoa.gr>, 2000.
+# Kostas Papadimas <pkst@gnome.org>, 2002,2003, 2004, 2005, 2006.
+# Nikos Charonitakis <frolix68@yahoo.gr>, 2003, 2004.
+# Nikos Charonitakis <charosn@her.forthnet.gr>, 2005.
+# Evaggelos Balaskas <ebalaskas@ebalaskas.gr>, 2008.
 # Comment: Most of the work done by Spiros (around 600 messages).
 # Comment: Simos/Sarantis did 12%.
 # Comment: Simos/Sarantis did review.
@@ -23,28 +41,12 @@
 # Comment: Simos did 2 new/unfuzzy 8.
 # Comment: Simos did 6 new/unfuzzy 8.
 # Comment: Simos did 2 new/unfuzzy 5.
-# simos: 874 messages, 18Feb2001, (sgpbea)
-# simos: 897 messages, 01Mar2001, (regmtsgpbea)
-# simos: 959 messages, 04Jun2001, (micumple)
-# simos: 959 messages, 06Jun2001, (fixed minor typo)
-# simos: 897 messages, 28Nov2001, (feeling good to translate HEAD)
 # Rename of module to gnome-panel.
-# simos: 272 messages, 20Apr2002, 118 messages remaining.
-# kostas: 513 messages, 19Oct2002, completed translation.
 # Comment: Kostas unfuzzy 1
-# kostas: 531 messages, 07Jan2003, updated translation for Gnome 2.1x
-# kostas:update for Gnome 2.4, 49 strings remain 02Jun2003
-# kostas:03Aug2003, 599 messages, updated translation
 # Nikos:29Aug2003, review tranlation
 # kostas: 30Oct2003, update translation for Gnome 2.6
 # kostas: 12Nov2003, fixes
 # kostas:27Jan2004, update
-# Spiros Papadimitriou <sapadim+@cs.cmu.edu>, 1999.
-# Simos Xenitellis <simos@hellug.gr>, 1999, 2000, 2001, 2002.
-# Sarantis Paskalis <paskalis@di.uoa.gr>, 2000.
-# Kostas Papadimas <pkst@gnome.org>, 2002,2003, 2004, 2005, 2006.
-# Nikos Charonitakis <frolix68@yahoo.gr>, 2003, 2004.
-# Nikos Charonitakis <charosn@her.forthnet.gr>, 2005.
 # ###
 msgid ""
 msgstr ""
@@ -52,11 +54,17 @@ msgstr ""
 "POT-Creation-Date: 2007-05-17 01:47-0500\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: Evaggelos Balaskas <ebalaskas@ebalaskas.gr>\n"
+"PO-Revision-Date: 2008-08-08 18:18+0300\n"
+"Project-Id-Version: el\n"
+"Language-Team: Greek <nls@tux.hellug.gr>\n"
+"X-Generator: KBabel 1.11.4\n"
+"MIME-Version: 1.0\n"
 
 #. vim: ai et tabstop=4
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr ""
+msgstr "Προσβάσιμοι φάκελοι, έγγραφα και αφαιρέσιμα μέσα"
 
 #: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:78
 #: ../panel-plugin/cfg.c:140 ../panel-plugin/cfg.c:259
@@ -82,58 +90,58 @@ msgstr "Πρόσφατα έγγραφα"
 
 #: ../panel-plugin/cfg.c:345
 msgid "Button"
-msgstr ""
+msgstr "Κουμπί"
 
 #: ../panel-plugin/cfg.c:354
 msgid "_Show"
-msgstr ""
+msgstr "Εμ_φάνιση"
 
 #: ../panel-plugin/cfg.c:360
 msgid "Icon Only"
-msgstr ""
+msgstr "Μόνο εικονίδιο"
 
 #: ../panel-plugin/cfg.c:361
 msgid "Label Only"
-msgstr ""
+msgstr "Μόνο ετικέτα"
 
 #: ../panel-plugin/cfg.c:362
 msgid "Icon and Label"
-msgstr ""
+msgstr "Εικονίδιο και ετικέτα"
 
 #: ../panel-plugin/cfg.c:384
 msgid "_Label"
-msgstr ""
+msgstr "Ετ_ικέτα"
 
 #: ../panel-plugin/cfg.c:402
 msgid "Menu"
-msgstr ""
+msgstr "Μενού"
 
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:406
 msgid "Show _icons in menu"
-msgstr ""
+msgstr "Εμφάνιση εικ_ονιδίων στο μενού"
 
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:418
 msgid "Show _removable media"
-msgstr ""
+msgstr "Εμφάνιση αφ_αιρέσιμων μέσων"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:429
 msgid "Show GTK _bookmarks"
-msgstr ""
+msgstr "Εμφάνιση GTK σ_ελιδοδεικτών"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:442
-#, fuzzy
 msgid "Show recent _documents"
-msgstr "Πρόσφατα έγγραφα"
+msgstr "Εμφάνιση πρόσφατων εγγράφων"
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:460
 msgid "Show cl_ear option"
-msgstr ""
+msgstr "Εμφάνιση επιλογής κ_αθαρισμού"
 
 #: ../panel-plugin/cfg.c:475
 msgid "_Number to display"
-msgstr ""
+msgstr "Αρ_ιθμός για εμφάνιση"
+
