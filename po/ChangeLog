@@ -1,8 +1,12 @@
-2008-08-09 Stavros Giannouris <stavrosg@hellug.gr>
+2008-08-13  Jari Rahkonen <jari.rahkonen@pp1.inet.fi>
+
+	* fi.po: Updated Finnish translation
+
+2008-08-09  Stavros Giannouris <stavrosg@hellug.gr>
 	
 	* el.po: Greek translation update by Evaggelos Balaskas.
 
-2008-07-15 Mohamed Magdy <alnokta@xfce.org>
+2008-07-15  Mohamed Magdy <alnokta@xfce.org>
 
         * ar.po: Add Arabic translation
 
@@ -26,45 +30,45 @@
 
 	* pt_BR.po: Updated Brazilian Portuguese translation.
 
-2008-06-08	Diego Ongaro <ongardie@gmail.com>
+2008-06-08  Diego Ongaro <ongardie@gmail.com>
 
 	* xfce4-places-plugin.pot: Generated from src.
 
-2008-05-27	Mike Massonnet <mmassonnet@xfce.org>
+2008-05-27  Mike Massonnet <mmassonnet@xfce.org>
 
 	* da.po, LINGUAS: Add Danish translation (Jens Hyllegaard)
 
-2008-05-13	Mike Massonnet <mmassonnet@xfce.org>
+2008-05-13  Mike Massonnet <mmassonnet@xfce.org>
 
 	* en_GB.po: Update translation (Jeff Bailes)
 
-2008-05-02	Piarres Beobide <pi@beobide.net>
+2008-05-02  Piarres Beobide <pi@beobide.net>
 
 	* eu.po: Update Basque translation
 
-2008-03-18	Mike Massonnet <mmassonnet@xfce.org>
+2008-03-18  Mike Massonnet <mmassonnet@xfce.org>
 
 	* pt_PT.po: Update Portuguese translation by Nuno Miguel
 
-2007-12-03	Maximilian Schleiss <maximilian@xfce.org>
+2007-12-03  Maximilian Schleiss <maximilian@xfce.org>
 
 	* lv.po: New Latvian translation added 
 	by Rihards Prieditis <rprieditis@inbox.lv>
 
-2007-11-08	Og Maciel <ogmaciel@gnome.org>
+2007-11-08  Og Maciel <ogmaciel@gnome.org>
 
 	* pt_BR.po: Updated Brazilian Portuguese translation
 	by Fábio Nogueira <deb-user-ba@ubuntu.com>
 
-2007-10-24	Mike Massonnet <mmassonnet@xfce.org>
+2007-10-24  Mike Massonnet <mmassonnet@xfce.org>
 
 	* fr.po: Update translation
 
-2007-09-11	Jari Rahkonen <jari.rahkonen@pp1.inet.fi>
+2007-09-11  Jari Rahkonen <jari.rahkonen@pp1.inet.fi>
 
 	* fi.po: Updated Finnish translation.
 
-2007-07-08	Maximilian Schleiss <maximilian@xfce.org>
+2007-07-08  Maximilian Schleiss <maximilian@xfce.org>
 
 	* nb_NO.po: Norwegian Bokmal translation added
 	by Terje Uriansrud <ter@operamail.com>
