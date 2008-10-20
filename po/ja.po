@@ -8,6 +8,7 @@
 # Copyright (C) 2004-2007 Benedikt Meurer.
 # This file is distributed under the same license as the Thunar package.
 # Daichi Kawahata <daichi@xfce.org>, 2005-2007.
+# Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2008.
 #
 # 対訳一覧:
 #
@@ -37,14 +38,21 @@ msgstr ""
 "POT-Creation-Date: 2007-05-17 01:47-0500\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
 
 #. vim: ai et tabstop=4
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr ""
+msgstr "フォルダ、ドキュメント、リムーバブルメディアにアクセスします"
 
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140 ../panel-plugin/cfg.c:259
+#: ../panel-plugin/places.desktop.in.in.h:2
+#: ../panel-plugin/cfg.c:78
+#: ../panel-plugin/cfg.c:140
+#: ../panel-plugin/cfg.c:259
 #: ../panel-plugin/cfg.c:329
 msgid "Places"
 msgstr "場所"
@@ -61,64 +69,65 @@ msgstr "デスクトップ"
 msgid "File System"
 msgstr "ファイルシステム"
 
-#: ../panel-plugin/view.c:244 ../panel-plugin/cfg.c:456
+#: ../panel-plugin/view.c:244
+#: ../panel-plugin/cfg.c:456
 msgid "Recent Documents"
 msgstr "最近開いたドキュメント"
 
 #: ../panel-plugin/cfg.c:345
 msgid "Button"
-msgstr ""
+msgstr "ボタン"
 
 #: ../panel-plugin/cfg.c:354
 msgid "_Show"
-msgstr ""
+msgstr "表示(_S)"
 
 #: ../panel-plugin/cfg.c:360
 msgid "Icon Only"
-msgstr ""
+msgstr "アイコンのみ"
 
 #: ../panel-plugin/cfg.c:361
 msgid "Label Only"
-msgstr ""
+msgstr "ラベルのみ"
 
 #: ../panel-plugin/cfg.c:362
 msgid "Icon and Label"
-msgstr ""
+msgstr "アイコンとラベル"
 
 #: ../panel-plugin/cfg.c:384
 msgid "_Label"
-msgstr ""
+msgstr "ラベル(_L)"
 
 #: ../panel-plugin/cfg.c:402
 msgid "Menu"
-msgstr ""
+msgstr "メニュー"
 
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:406
 msgid "Show _icons in menu"
-msgstr ""
+msgstr "メニューにアイコンを表示します(_I)"
 
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:418
 msgid "Show _removable media"
-msgstr ""
+msgstr "リムーバブルメディアを表示します(_R)"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:429
 msgid "Show GTK _bookmarks"
-msgstr ""
+msgstr "GTK ブックマークを表示します(_B)"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:442
-#, fuzzy
 msgid "Show recent _documents"
-msgstr "最近開いたドキュメント"
+msgstr "最近開いたドキュメント(_D)"
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:460
 msgid "Show cl_ear option"
-msgstr ""
+msgstr "クリアオプションを表示します(_E)"
 
 #: ../panel-plugin/cfg.c:475
 msgid "_Number to display"
-msgstr ""
+msgstr "表示する数(_N)"
+
