@@ -2,21 +2,25 @@
 # Copyright (C) 2007 THE xfce4-places-plugin'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce4-places-plugin package.
 # Jens Hyllegaard <jens.hyllegaard@gmail.com>, 2007.
+# Per Kongstad <p_kongstad@op.pl>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-places-plugin\n"
+"Project-Id-Version: xfce4-places-plugin 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-07-02 00:12+0200\n"
-"PO-Revision-Date: 2008-05-17 15:16+0100\n"
-"Last-Translator: Jens Hyllegaard <jens.hyllegaard@gmail.com>\n"
+"PO-Revision-Date: 2008-10-17 18:44+0100\n"
+"Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Danish\n"
+"X-Poedit-Country: DENMARK\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr "Tilgå mapper, dokumenter og flytbare medier"
+msgstr "Tilgå mapper, dokumenter og fjernbare medier"
 
 #: ../panel-plugin/places.desktop.in.in.h:2
 #: ../panel-plugin/cfg.c:78
@@ -28,7 +32,7 @@ msgstr "Steder"
 
 #: ../panel-plugin/model_system.c:60
 msgid "Trash"
-msgstr "Affald"
+msgstr "Papirkurv"
 
 #: ../panel-plugin/model_system.c:70
 msgid "Desktop"
@@ -79,7 +83,7 @@ msgstr "Vis _ikoner i menu"
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:418
 msgid "Show _removable media"
-msgstr "Vis _flytbare medier"
+msgstr "Vis _fjernbare medier"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:429
@@ -94,7 +98,7 @@ msgstr "Vis seneste _dokumenter"
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:460
 msgid "Show cl_ear option"
-msgstr "Vis sl_et funktion"
+msgstr "Vis sl_ettefunktion"
 
 #: ../panel-plugin/cfg.c:475
 msgid "_Number to display"
