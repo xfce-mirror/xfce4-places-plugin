@@ -7,7 +7,7 @@
 # Finnish translations for Thunar package.
 # Copyright (C) 2004-2007 Benedikt Meurer.
 # This file is distributed under the same license as the Thunar package.
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2006-2007.
+# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2006-2008.
 #
 # ###
 # gnome-panel Finnish translation
@@ -24,9 +24,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-places-plugin 0.9.991\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-13 10:34+0300\n"
-"PO-Revision-Date: 2008-08-13 10:46+0300\n"
+"POT-Creation-Date: 2008-11-04 17:18+0200\n"
+"PO-Revision-Date: 2008-11-04 17:22+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
+"Language-Team: Finnish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -34,7 +35,7 @@ msgstr ""
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr "Hakemistot, dokumentit ja irrotettavat taltiot"
+msgstr "Kansiot, dokumentit ja irrotettavat taltiot"
 
 #: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
 #: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
@@ -118,7 +119,7 @@ msgstr "Kuvake ja nimi"
 
 #: ../panel-plugin/cfg.c:386
 msgid "_Label"
-msgstr "N_imi"
+msgstr "Ni_mi"
 
 #: ../panel-plugin/cfg.c:404
 msgid "Menu"
@@ -151,11 +152,11 @@ msgstr "_Viimeisimmät asiakirjat"
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
-msgstr "Näytä tyhjennysvalinta"
+msgstr "Näytä ty_hjennysvalinta"
 
 #: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
-msgstr "Näytettävä _määrä"
+msgstr "Nä_ytettävä määrä"
 
 #: ../panel-plugin/cfg.c:525
 msgid "Search"
@@ -171,4 +172,4 @@ msgstr "Avaa"
 
 #: ../panel-plugin/support.c:163
 msgid "Open Terminal Here"
-msgstr "Avaa pääte tässä hakemistossa"
+msgstr "Avaa pääte tässä kansiossa"
