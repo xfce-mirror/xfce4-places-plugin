@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
-"PO-Revision-Date: 2008-04-30 12:57+0200\n"
+"PO-Revision-Date: 2008-11-05 11:04+0100\n"
 "Project-Id-Version: eu\n"
 "Language-Team: Euskara <debian-l10n-basque@lists.debian.org>\n"
 "X-Generator: KBabel 1.11.4\n"
@@ -73,7 +73,7 @@ msgstr "Etiketa bakarrik"
 
 #: ../panel-plugin/cfg.c:362
 msgid "Icon and Label"
-msgstr "Ikono eta etiketa:"
+msgstr "Ikono eta etiketa"
 
 #: ../panel-plugin/cfg.c:384
 msgid "_Label"
@@ -91,7 +91,7 @@ msgstr "Ikusi _ikonoak menuan"
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:418
 msgid "Show _removable media"
-msgstr "Ikusi euskarri aldagarriak"
+msgstr "Ikusi euskarri _aldagarriak"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:429
@@ -106,7 +106,7 @@ msgstr "Ikusi azken _dokumentuak"
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:460
 msgid "Show cl_ear option"
-msgstr "Ikusi garbitu aukera"
+msgstr "Ikusi garbitu auk_era"
 
 #: ../panel-plugin/cfg.c:475
 msgid "_Number to display"
