@@ -1,39 +1,30 @@
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
-# ###
-# translation of tr.po to Türkçe
-# translation of Thunar.
-# Copyright (C) 2007 THE Thunar'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the Thunar package.
+# Turkish translation of xfce4-places-plugin
+# Copyright (C) 2008 THE xfce4-places-plugin'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the xfce4-places-plugin package.
 #
-# Eren Türkay <turkay.eren@gmail.com>, 2007.
-# Cem Ünal <admincemunal@gmail.com>, 2007,.
-# Türker SEZER <turkersezer@tsdesign.info>, 2007.
-# ###
-# translation of gnome-panel to Turkish
+# Gökmen Görgen <gkmngrgn@gmail.com>, 2008.
 #
-# Copyright (C) 2001-2005 Free Software Foundation, Inc.
-# Fatih Demir <kabalak@kabalak.net>, 2000.
-# Görkem Çetin <gorkem@kde.org>, 2003.
-# Baris Cicek <baris@teamforce.name.tr>, 2004, 2005.
-# Seha İslam <isla0015@umn.edu>, 2005.
-#
-# ###
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-05-17 01:47-0500\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Gökmen Görgen <gkmngrgn@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
 
 #. vim: ai et tabstop=4
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr ""
+msgstr "Dizinlere, belgelere ve ayrılabilir ortamlara eriş"
 
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140 ../panel-plugin/cfg.c:259
+#: ../panel-plugin/places.desktop.in.in.h:2
+#: ../panel-plugin/cfg.c:78
+#: ../panel-plugin/cfg.c:140
+#: ../panel-plugin/cfg.c:259
 #: ../panel-plugin/cfg.c:329
 msgid "Places"
 msgstr "Yerler"
@@ -50,64 +41,65 @@ msgstr "Masaüstü Klasörü"
 msgid "File System"
 msgstr "Dosya Sistemi"
 
-#: ../panel-plugin/view.c:244 ../panel-plugin/cfg.c:456
+#: ../panel-plugin/view.c:244
+#: ../panel-plugin/cfg.c:456
 msgid "Recent Documents"
 msgstr "Son Kullanılan Belgeler"
 
 #: ../panel-plugin/cfg.c:345
 msgid "Button"
-msgstr ""
+msgstr "Düğme"
 
 #: ../panel-plugin/cfg.c:354
 msgid "_Show"
-msgstr ""
+msgstr "Gö_ster"
 
 #: ../panel-plugin/cfg.c:360
 msgid "Icon Only"
-msgstr ""
+msgstr "Sadece Simge"
 
 #: ../panel-plugin/cfg.c:361
 msgid "Label Only"
-msgstr ""
+msgstr "Sadece Etiket"
 
 #: ../panel-plugin/cfg.c:362
 msgid "Icon and Label"
-msgstr ""
+msgstr "Simge ve Etiket"
 
 #: ../panel-plugin/cfg.c:384
 msgid "_Label"
-msgstr ""
+msgstr "E_tiket"
 
 #: ../panel-plugin/cfg.c:402
 msgid "Menu"
-msgstr ""
+msgstr "Menü"
 
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:406
 msgid "Show _icons in menu"
-msgstr ""
+msgstr "Menüde s_imgeleri göster"
 
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:418
 msgid "Show _removable media"
-msgstr ""
+msgstr "Silinebili_r ortamları göster"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:429
 msgid "Show GTK _bookmarks"
-msgstr ""
+msgstr "GTK yeri_mlerini göster"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:442
-#, fuzzy
 msgid "Show recent _documents"
-msgstr "Son Kullanılan Belgeler"
+msgstr "Son kullanılan _belgeleri göster"
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:460
 msgid "Show cl_ear option"
-msgstr ""
+msgstr "T_emizleme seçeneğini göster"
 
 #: ../panel-plugin/cfg.c:475
 msgid "_Number to display"
-msgstr ""
+msgstr "Öğe sayı_sı"
+
