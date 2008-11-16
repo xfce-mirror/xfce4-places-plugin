@@ -1,6 +1,9 @@
+# Catalan translation of xfce4-places-plugin.
+# This file is distributed under the same license as the xfce4-places-plugin
+# package.
+# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2008.
+#
 # This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
 # ###
 # translation of ca.po to Catalan
 # Catalan translation of Thunar.
@@ -8,7 +11,6 @@
 # This file is distributed under the same license as the Thunar package.
 # Pau Ruŀlan Ferragut <paurullan@bulma.net> 2005, 2006, 2007
 # Carles Muñoz Gorriz <carlesmu@internautas.org>, 2006.
-#
 # ###
 # gnome-panel translation to Catalan.
 # Copyright © 2000-2007 Free Software Foundation, Inc.
@@ -16,96 +18,159 @@
 # Softcatalà <info@softcatala.org>, 2000.
 # Jordi Mallach <jordi@sindominio.net>, 2002, 2003, 2004, 2005, 2006.
 # Josep Puigdemont i Casamajó <josep.puigdemont@gmail.com>, 2006, 2007.
-#
 # ###
+#
 msgid ""
 msgstr ""
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 01:47-0500\n"
+"POT-Creation-Date: 2008-06-08 12:51+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
+"Language-Team: Catalan <xfce-i18n@xfce.org>\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. vim: ai et tabstop=4
+#. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr ""
+msgstr "Accediu a documents, carpetes i medis extraïbles"
 
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140 ../panel-plugin/cfg.c:259
-#: ../panel-plugin/cfg.c:329
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
 msgid "Places"
 msgstr "Llocs"
 
-#: ../panel-plugin/model_system.c:60
+#. Trash
+#: ../panel-plugin/model_system.c:110
 msgid "Trash"
 msgstr "Paperera"
 
-#: ../panel-plugin/model_system.c:70
+#. Desktop
+#: ../panel-plugin/model_system.c:135
 msgid "Desktop"
 msgstr "Escriptori"
 
-#: ../panel-plugin/model_system.c:78
+#. File System (/)
+#: ../panel-plugin/model_system.c:159
 msgid "File System"
 msgstr "Sistema de fitxers"
 
-#: ../panel-plugin/view.c:244 ../panel-plugin/cfg.c:456
+#: ../panel-plugin/model_volumes.c:64
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "No s'ha pogut expulsar «%s»"
+
+#: ../panel-plugin/model_volumes.c:85
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "No s'ha pogut desmuntar «%s»"
+
+#: ../panel-plugin/model_volumes.c:107
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "No s'ha pogut muntar «%s»"
+
+#: ../panel-plugin/model_volumes.c:226
+msgid "Mount and Open"
+msgstr "Munta i obre"
+
+#: ../panel-plugin/model_volumes.c:239
+msgid "Mount"
+msgstr "Munta"
+
+#: ../panel-plugin/model_volumes.c:260
+msgid "Eject"
+msgstr "Expulsa"
+
+#: ../panel-plugin/model_volumes.c:272
+msgid "Unmount"
+msgstr "Desmunta"
+
+#: ../panel-plugin/view.c:678
+msgid "Search for Files"
+msgstr "Cerca fitxers"
+
+#: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "Documents recents"
 
-#: ../panel-plugin/cfg.c:345
+#: ../panel-plugin/cfg.c:347
 msgid "Button"
-msgstr ""
+msgstr "Botó"
 
-#: ../panel-plugin/cfg.c:354
+#: ../panel-plugin/cfg.c:356
 msgid "_Show"
-msgstr ""
-
-#: ../panel-plugin/cfg.c:360
-msgid "Icon Only"
-msgstr ""
-
-#: ../panel-plugin/cfg.c:361
-msgid "Label Only"
-msgstr ""
+msgstr "_Mostra"
 
 #: ../panel-plugin/cfg.c:362
+msgid "Icon Only"
+msgstr "Només icones"
+
+#: ../panel-plugin/cfg.c:363
+msgid "Label Only"
+msgstr "Només etiquetes"
+
+#: ../panel-plugin/cfg.c:364
 msgid "Icon and Label"
-msgstr ""
+msgstr "Icones i etiquetes"
 
-#: ../panel-plugin/cfg.c:384
+#: ../panel-plugin/cfg.c:386
 msgid "_Label"
-msgstr ""
+msgstr "_Etiqueta"
 
-#: ../panel-plugin/cfg.c:402
+#: ../panel-plugin/cfg.c:404
 msgid "Menu"
-msgstr ""
+msgstr "Menú"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:406
+#: ../panel-plugin/cfg.c:408
 msgid "Show _icons in menu"
-msgstr ""
+msgstr "Mostra _icones al menú"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:418
+#: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
-msgstr ""
+msgstr "Mostra medis ex_traïbles"
+
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr "Munta i _obre al clicar"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:429
+#: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
-msgstr ""
+msgstr "Mostra els _preferits de GTK"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:442
-#, fuzzy
+#: ../panel-plugin/cfg.c:468
 msgid "Show recent _documents"
-msgstr "Documents recents"
+msgstr "Mostra els _documents recents"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:460
+#: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
-msgstr ""
+msgstr "Mostra l'opció de nete_ja"
 
-#: ../panel-plugin/cfg.c:475
+#: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
-msgstr ""
+msgstr "_Nombre a mostrar"
+
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr "Cerca"
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr "Or_dre:"
+
+#: ../panel-plugin/support.c:148
+msgid "Open"
+msgstr "Obre"
+
+#: ../panel-plugin/support.c:163
+msgid "Open Terminal Here"
+msgstr "Obre aquí un terminal"
