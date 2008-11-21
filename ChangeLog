@@ -1,5 +1,7 @@
 2008-11-21	Diego Ongaro <ongardie@gmail.com>
 
+	* model_system.c: Add xdg user dirs support, thanks to Andea
+	  Santilli. See bug #4461.
 	* view.c: disconnect from button signals on finalize
 	* button.{c,h}: Fix warnings and segfault on plugin exit
 	* INSTALL: updated with newer version of autotools

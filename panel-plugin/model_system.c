@@ -36,7 +36,8 @@
 #define EXO_API_SUBJECT_TO_CHANGE
 #include <thunar-vfs/thunar-vfs.h>
 
-#define TRASH THUNAR_VFS_CHECK_VERSION(0,4,0)
+#define TRASH          THUNAR_VFS_CHECK_VERSION(0,4,0)
+#define XDG_USER_DIRS  GLIB_CHECK_VERSION(2,14,0)
 
 #define pbg_priv(pbg) ((PBSysData*) pbg->priv)
 
@@ -45,7 +46,7 @@ typedef struct
 
     /* These are the things that might "change" */
     gboolean       check_changed;   /* starts off false to indicate the following are meaningless */
-    gboolean       desktop_exists;
+    gchar         *desktop_dir;     /* NULL => no desktop or desktop is same as home */
 #if TRASH
     gboolean       trash_is_empty;
     ThunarVfsPath *trash_path;
@@ -77,6 +78,36 @@ pbsys_finalize_trash_bookmark(PlacesBookmark *bookmark)
 }
 #endif
 
+static gchar*
+pbsys_desktop_dir()
+{
+    const gchar *home_dir = xfce_get_homedir();
+    gchar *desktop_dir = NULL;
+
+#if XDG_USER_DIRS
+    /* get the xdg desktop directory, or possibly NULL */
+    desktop_dir = g_strdup(g_get_user_special_dir(G_USER_DIRECTORY_DESKTOP));
+
+    /* if xdg desktop is the same as home, pretend it's not there */
+    if(exo_str_is_equal(desktop_dir, home_dir)){
+        g_free(desktop_dir);
+        return NULL;
+    }
+#endif
+
+    /* fall back to ~/Desktop */
+    if(desktop_dir == NULL)
+        desktop_dir = g_build_filename(home_dir, "Desktop", NULL);
+
+    /* make sure the directory is there */
+    if(!g_file_test(desktop_dir, G_FILE_TEST_IS_DIR)){
+        g_free(desktop_dir);
+        return NULL;
+    }
+
+    return desktop_dir;
+}
+
 static GList*
 pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 {
@@ -87,6 +118,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     ThunarVfsInfo *trash_info;
 #endif
     const gchar *home_dir = xfce_get_homedir();
+    gchar *desktop_dir;
 
     pbg_priv(bookmark_group)->check_changed = TRUE;
 
@@ -132,29 +164,27 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 #endif
 
     /* Desktop */
-    bookmark                = places_bookmark_create(_("Desktop"));
-    bookmark->uri           = g_build_filename(home_dir, "Desktop", NULL);
-    bookmark->icon          = "gnome-fs-desktop";
-    bookmark->finalize      = pbsys_finalize_desktop_bookmark;
+    desktop_dir = pbsys_desktop_dir();
 
-    if(g_file_test(bookmark->uri, G_FILE_TEST_IS_DIR)){
-    
+    g_free(pbg_priv(bookmark_group)->desktop_dir);
+    pbg_priv(bookmark_group)->desktop_dir = g_strdup(desktop_dir);
+
+    if(desktop_dir != NULL){
+        bookmark                = places_bookmark_create(_("Desktop"));
+        bookmark->uri           = desktop_dir;
+        bookmark->icon          = "gnome-fs-desktop";
+        bookmark->finalize      = pbsys_finalize_desktop_bookmark;
+
+
         terminal                 = places_create_open_terminal_action(bookmark);
         bookmark->actions        = g_list_prepend(bookmark->actions, terminal);
         open                     = places_create_open_action(bookmark);
         bookmark->actions        = g_list_prepend(bookmark->actions, open);
         bookmark->primary_action = open;
 
-        pbg_priv(bookmark_group)->desktop_exists = TRUE;
         bookmarks = g_list_append(bookmarks, bookmark);
-
-    }else{
-
-        pbg_priv(bookmark_group)->desktop_exists = FALSE;
-        places_bookmark_destroy(bookmark);
-
     }
-    
+
     /* File System (/) */
     bookmark                = places_bookmark_create(_("File System"));
     bookmark->uri           = "/";
@@ -174,7 +204,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 gboolean
 pbsys_changed(PlacesBookmarkGroup *bookmark_group)
 {
-    gchar *uri;
+    gchar *desktop_dir;
 #if TRASH
     gboolean trash_is_empty = FALSE;
     ThunarVfsInfo *trash_info;
@@ -184,12 +214,12 @@ pbsys_changed(PlacesBookmarkGroup *bookmark_group)
         return FALSE;
     
     /* Check if desktop now exists and didn't before */
-    uri = g_build_filename(xfce_get_homedir(), "Desktop", NULL);
-    if(g_file_test(uri, G_FILE_TEST_IS_DIR) != pbg_priv(bookmark_group)->desktop_exists){
-        g_free(uri);
+    desktop_dir = pbsys_desktop_dir();
+    if(!exo_str_is_equal(desktop_dir, pbg_priv(bookmark_group)->desktop_dir)){
+        g_free(desktop_dir);
         return TRUE;
     }else
-        g_free(uri);
+        g_free(desktop_dir);
 
 #if TRASH
     /* see if trash gets a different icon (e.g., was empty, now full) */
@@ -212,7 +242,9 @@ pbsys_finalize(PlacesBookmarkGroup *bookmark_group)
     thunar_vfs_path_unref(pbg_priv(bookmark_group)->trash_path);
     thunar_vfs_shutdown();
 #endif
-    
+
+    g_free(pbg_priv(bookmark_group)->desktop_dir);
+
     g_free(pbg_priv(bookmark_group));
 
 }
