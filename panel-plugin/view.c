@@ -947,17 +947,29 @@ places_view_finalize(PlacesView *view)
 {
     pview_destroy_menu(view);
     pview_destroy_model(view);
-    
-    if(view->button != NULL)
+
+    if(view->button != NULL) {
+        g_signal_handlers_disconnect_by_func(view->button,
+                                             pview_destroy_menu,
+                                             view);
+        g_signal_handlers_disconnect_by_func(view->button,
+                                             pview_cb_button_pressed,
+                                             view);
         g_object_unref(view->button);
+        view->button = NULL;
+    }
 
 #if !USE_GTK_TOOLTIP_API
     g_object_unref(view->tooltips);
+    view->tooltips = NULL;
 #endif
 
     places_cfg_finalize(view->cfg);
-    
+    view->cfg = NULL;
+
     g_free(view->view_cfg_iface);
+    view->view_cfg_iface = NULL;
+
     g_free(view);
 }
 

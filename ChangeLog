@@ -1,5 +1,6 @@
 2008-11-21	Diego Ongaro <ongardie@gmail.com>
 
+	* view.c: disconnect from button signals on finalize
 	* button.{c,h}: Fix warnings and segfault on plugin exit
 	* INSTALL: updated with newer version of autotools
 
