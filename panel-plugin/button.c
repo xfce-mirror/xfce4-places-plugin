@@ -262,9 +262,9 @@ places_button_construct(PlacesButton *self, XfcePanelPlugin *plugin)
     g_signal_connect(G_OBJECT(plugin), "size-changed",
                      G_CALLBACK(places_button_size_changed), self);
 
-    g_signal_connect(G_OBJECT(self), "style-set",
+    self->style_set_id = g_signal_connect(G_OBJECT(self), "style-set",
                      G_CALLBACK(places_button_theme_changed), NULL);
-    g_signal_connect(G_OBJECT(self), "screen-changed",
+    self->screen_changed_id = g_signal_connect(G_OBJECT(self), "screen-changed",
                      G_CALLBACK(places_button_theme_changed), NULL);
 
 }
@@ -287,6 +287,16 @@ static void
 places_button_dispose(GObject *object)
 {
     PlacesButton *self = PLACES_BUTTON(object);
+
+    if (self->style_set_id != 0) {
+        g_signal_handler_disconnect(self, self->style_set_id);
+        self->style_set_id = 0;
+    }
+
+    if (self->screen_changed_id != 0) {
+        g_signal_handler_disconnect(self, self->screen_changed_id);
+        self->screen_changed_id = 0;
+    }
 
     if (self->plugin != NULL) {
         g_object_unref(self->plugin);
@@ -393,6 +403,9 @@ places_button_resize(PlacesButton *self)
     gint button_width, button_height;
     gint box_width,    box_height;
 
+    if (self->plugin == NULL)
+        return;
+
     new_size = xfce_panel_plugin_get_size(self->plugin);
     self->plugin_size = new_size;
     DBG("Panel size: %d", new_size);
@@ -440,7 +453,6 @@ places_button_resize(PlacesButton *self)
             total_height += label_height;
         }
     }
-
     /* at this point, total width and height reflect just image and label */
     /* now, add on the button and box overhead */
     total_width  += button_width;

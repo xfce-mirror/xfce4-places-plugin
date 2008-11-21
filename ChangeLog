@@ -1,5 +1,6 @@
 2008-11-21	Diego Ongaro <ongardie@gmail.com>
 
+	* button.{c,h}: Fix warnings and segfault on plugin exit
 	* INSTALL: updated with newer version of autotools
 
 2008-06-07	Diego Ongaro <ongardie@gmail.com>
