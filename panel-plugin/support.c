@@ -40,23 +40,38 @@
 #include "model.h"
 
 /**
- * Opens Thunar at the location given by path.
- * If path is NULL or empty, it will open Thunar at the default location (home).
+ * Opens file browser at the location given by path.
+ * If path is NULL or empty, it will open the file browser at the default
+ * location (home).
  * The caller is in charge of freeing path.
  */
 void
-places_load_thunar(const gchar *path)
+places_load_file_browser(const gchar *path)
 {
+    gboolean exo_success;
+
     if(path != NULL && *path != '\0'){
 
-        gchar *cmd = g_strconcat("thunar \"", path, "\"", NULL);
-        DBG("exec: %s", cmd);
-        places_gui_exec(cmd);
-        g_free(cmd);
+        DBG("exo_url_show(%s)", path);
+        exo_success = exo_url_show(path, NULL, NULL);
+
+        if(!exo_success){
+            gchar *cmd = g_strconcat("thunar \"", path, "\"", NULL);
+            DBG("exec: %s", cmd);
+            places_gui_exec(cmd);
+            g_free(cmd);
+        }
 
     }else{
-        DBG("exec: thunar");
-        places_gui_exec("thunar");
+
+        DBG("exo_url_show(file://");
+        exo_success = exo_url_show("file://", NULL, NULL);
+
+        if(!exo_success){
+            DBG("exec: thunar");
+            places_gui_exec("thunar");
+        }
+
     }
 }
 
@@ -119,12 +134,12 @@ places_gui_exec(const gchar *cmd)
 }
 
 static void
-psupport_load_thunar_wrapper(PlacesBookmarkAction *act)
+psupport_load_file_browser_wrapper(PlacesBookmarkAction *act)
 {
     g_assert(act != NULL);
 
     /* we stored the path in priv */
-    places_load_thunar((gchar*) act->priv);
+    places_load_file_browser((gchar*) act->priv);
 }
 
 static void
@@ -147,7 +162,7 @@ places_create_open_action(const PlacesBookmark *bookmark)
 
     action                = places_bookmark_action_create(_("Open"));
     action->priv          = bookmark->uri;
-    action->action        = psupport_load_thunar_wrapper;
+    action->action        = psupport_load_file_browser_wrapper;
 
     return action;
 }

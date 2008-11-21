@@ -368,7 +368,7 @@ pview_cb_button_pressed(PlacesView *pd, GdkEventButton *evt)
     if(evt->button == 1)
         pview_open_menu(pd);
     else if(evt->button == 2)
-        places_load_thunar(NULL);
+        places_load_file_browser(NULL);
 
     return FALSE;
 }

@@ -127,7 +127,7 @@ pbvol_mount_and_open(PlacesBookmarkAction *action)
 
     if(thunar_vfs_volume_is_mounted(volume)){
         uri = thunar_vfs_path_dup_uri(thunar_vfs_volume_get_mount_point(volume));
-        places_load_thunar(uri);
+        places_load_file_browser(uri);
         g_free(uri);
     }
 }

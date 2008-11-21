@@ -29,7 +29,7 @@
 #include "model.h"
 
 void
-places_load_thunar(const gchar *path);
+places_load_file_browser(const gchar *path);
 
 void
 places_load_terminal(const gchar *path);
