@@ -38,7 +38,9 @@ xfce4_places_plugin_SOURCES =						\
 	model_volumes.c							\
 	model_volumes.h							\
 	button.c							\
-	button.h
+	button.h							\
+	xfce46-compat.c							\
+	xfce46-compat.h
 
 
 

@@ -59,6 +59,8 @@
 
 #include <string.h>
 
+#include "xfce46-compat.h"
+
 #include "view.h"
 #include "support.h"
 #include "cfg.h"
@@ -277,68 +279,6 @@ pview_cb_menu_timeout(PlacesView *pd){
     }
     return FALSE;
 
-}
-
-/* Copied almost verbatim from notes plugin */
-static void
-pview_cb_menu_position(GtkMenu *menu,
-                       gint *x, gint *y,
-                       gboolean *push_in,
-                       XfcePanelPlugin *plugin)
-{
-    GtkRequisition requisition;
-    GtkWidget *attach_widget;
-
-    g_return_if_fail(GTK_IS_MENU(menu));
-    g_return_if_fail(XFCE_IS_PANEL_PLUGIN(plugin));
-
-    attach_widget = gtk_menu_get_attach_widget(menu);
-    g_return_if_fail(GTK_IS_WIDGET(attach_widget));
-
-    gtk_widget_size_request(GTK_WIDGET(menu), &requisition);
-    gdk_window_get_origin(attach_widget->window, x, y);
-
-    switch(xfce_panel_plugin_get_orientation(plugin))
-    {
-        case GTK_ORIENTATION_HORIZONTAL:
-
-            if(*y + attach_widget->allocation.height + requisition.height > gdk_screen_height()){
-                /* Show menu above */
-                *y -= requisition.height;
-            }else{
-                /* Show menu below */
-                *y += attach_widget->allocation.height;
-            }
-
-            if(*x + requisition.width > gdk_screen_width()){
-                /* Adjust horizontal position */
-                *x = gdk_screen_width () - requisition.width;
-            }
-
-            break;
-
-        case GTK_ORIENTATION_VERTICAL:
-
-            if(*x + attach_widget->allocation.width + requisition.width > gdk_screen_width()){
-                /* Show menu on the right */
-                *x -= requisition.width;
-            }else{
-                /* Show menu on the left */
-                *x += attach_widget->allocation.width;
-            }
-
-            if(*y + requisition.height > gdk_screen_height()){
-                /* Adjust vertical position */
-                *y = gdk_screen_height() - requisition.height;
-            }
-
-            break;
-
-        default:
-            break;
-    }
-    
-    *push_in = FALSE;
 }
 
 static void 
@@ -767,14 +707,9 @@ pview_open_menu(PlacesView *pd)
     /* toggle the button */
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pd->button), TRUE);
 
-    /* Register this menu (for focus, transparency, auto-hide, etc) */
-    /* We don't want to register if the menu is visible (hasn't been deactivated) */
-    if(!GTK_WIDGET_VISIBLE(pd->menu))
-        xfce_panel_plugin_register_menu(pd->plugin, GTK_MENU(pd->menu));
-
     /* popup menu */
     gtk_menu_popup (GTK_MENU (pd->menu), NULL, NULL,
-                    (GtkMenuPositionFunc) pview_cb_menu_position,
+                    xfce_panel_plugin_position_menu,
                     pd->plugin, 0,
                     gtk_get_current_event_time ());
     
