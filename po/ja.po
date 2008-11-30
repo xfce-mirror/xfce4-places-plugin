@@ -34,100 +34,157 @@
 # ###
 msgid ""
 msgstr ""
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 01:47-0500\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-11-22 15:25+0900\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>\n"
+"Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 
-#. vim: ai et tabstop=4
+#. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr "フォルダ、ドキュメント、リムーバブルメディアにアクセスします"
+msgstr "フォルダ、ドキュメント、およびリムーバブルメディアにアクセスします"
 
 #: ../panel-plugin/places.desktop.in.in.h:2
-#: ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140
-#: ../panel-plugin/cfg.c:259
-#: ../panel-plugin/cfg.c:329
+#: ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105
+#: ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
 msgid "Places"
 msgstr "場所"
 
-#: ../panel-plugin/model_system.c:60
+#. Trash
+#: ../panel-plugin/model_system.c:142
 msgid "Trash"
 msgstr "ゴミ箱"
 
-#: ../panel-plugin/model_system.c:70
+#: ../panel-plugin/model_system.c:173
 msgid "Desktop"
 msgstr "デスクトップ"
 
-#: ../panel-plugin/model_system.c:78
+#. File System (/)
+#: ../panel-plugin/model_system.c:189
 msgid "File System"
 msgstr "ファイルシステム"
 
-#: ../panel-plugin/view.c:244
-#: ../panel-plugin/cfg.c:456
+#: ../panel-plugin/model_volumes.c:64
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "\"%s\" の取り出しに失敗しました"
+
+#: ../panel-plugin/model_volumes.c:85
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "\"%s\" のマウント解除に失敗しました"
+
+#: ../panel-plugin/model_volumes.c:107
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "\"%s\" のマウントに失敗しました"
+
+#: ../panel-plugin/model_volumes.c:226
+msgid "Mount and Open"
+msgstr "マウントして開く"
+
+#: ../panel-plugin/model_volumes.c:239
+msgid "Mount"
+msgstr "マウント"
+
+#: ../panel-plugin/model_volumes.c:260
+msgid "Eject"
+msgstr "取り出し"
+
+#: ../panel-plugin/model_volumes.c:272
+msgid "Unmount"
+msgstr "カウント解除"
+
+#: ../panel-plugin/view.c:678
+msgid "Search for Files"
+msgstr "ファイルの検索"
+
+#: ../panel-plugin/view.c:731
+#: ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "最近開いたドキュメント"
 
-#: ../panel-plugin/cfg.c:345
+#: ../panel-plugin/cfg.c:347
 msgid "Button"
 msgstr "ボタン"
 
-#: ../panel-plugin/cfg.c:354
+#: ../panel-plugin/cfg.c:356
 msgid "_Show"
 msgstr "表示(_S)"
 
-#: ../panel-plugin/cfg.c:360
+#: ../panel-plugin/cfg.c:362
 msgid "Icon Only"
 msgstr "アイコンのみ"
 
-#: ../panel-plugin/cfg.c:361
+#: ../panel-plugin/cfg.c:363
 msgid "Label Only"
 msgstr "ラベルのみ"
 
-#: ../panel-plugin/cfg.c:362
+#: ../panel-plugin/cfg.c:364
 msgid "Icon and Label"
 msgstr "アイコンとラベル"
 
-#: ../panel-plugin/cfg.c:384
+#: ../panel-plugin/cfg.c:386
 msgid "_Label"
 msgstr "ラベル(_L)"
 
-#: ../panel-plugin/cfg.c:402
+#: ../panel-plugin/cfg.c:404
 msgid "Menu"
 msgstr "メニュー"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:406
+#: ../panel-plugin/cfg.c:408
 msgid "Show _icons in menu"
-msgstr "メニューにアイコンを表示します(_I)"
+msgstr "メニューにアイコンを表示する(_I)"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:418
+#: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
-msgstr "リムーバブルメディアを表示します(_R)"
+msgstr "リムーバブルメディアを表示する(_R)"
+
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr "クリックでマウントして開く(_O)"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:429
+#: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
-msgstr "GTK ブックマークを表示します(_B)"
+msgstr "GTK ブックマークを表示する(_B)"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:442
+#: ../panel-plugin/cfg.c:468
 msgid "Show recent _documents"
-msgstr "最近開いたドキュメント(_D)"
+msgstr "最近開いたドキュメントを表示する(_D)"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:460
+#: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
-msgstr "クリアオプションを表示します(_E)"
+msgstr "クリアオプションを表示する(_E)"
 
-#: ../panel-plugin/cfg.c:475
+#: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
 msgstr "表示する数(_N)"
+
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr "検索"
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr "コマンド(_O)"
+
+#: ../panel-plugin/support.c:163
+msgid "Open"
+msgstr "開く"
+
+#: ../panel-plugin/support.c:178
+msgid "Open Terminal Here"
+msgstr "ターミナルで開く"
 
