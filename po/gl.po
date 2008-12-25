@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-08 12:51+0100\n"
-"PO-Revision-Date: 2008-06-24 22:15+0100\n"
+"PO-Revision-Date: 2008-12-14 16:28+0100\n"
 "Last-Translator: Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgstr ""
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr ""
+msgstr "Acceder a cartafoles, documentos, e soportes extraíbles"
 
 #: ../panel-plugin/places.desktop.in.in.h:2
 #: ../panel-plugin/cfg.c:64
@@ -53,44 +53,39 @@ msgid "File System"
 msgstr "Sistema de ficheiros"
 
 #: ../panel-plugin/model_volumes.c:64
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to eject \"%s\""
-msgstr "Non se puido extraer «%s»"
+msgstr "Fallo ó expulsar \"%s\""
 
 #: ../panel-plugin/model_volumes.c:85
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to unmount \"%s\""
-msgstr "Non se puido desmontar «%s»"
+msgstr "Fallo ó desmontar \"%s\""
 
 #: ../panel-plugin/model_volumes.c:107
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to mount \"%s\""
-msgstr "Non se puido montar «%s»"
+msgstr "Fallo ó montar \"%s\""
 
 #: ../panel-plugin/model_volumes.c:226
-#, fuzzy
 msgid "Mount and Open"
-msgstr "--non hai partidas abertas--"
+msgstr "Montar e abrir"
 
 #: ../panel-plugin/model_volumes.c:239
-#, fuzzy
 msgid "Mount"
 msgstr "Montar"
 
 #: ../panel-plugin/model_volumes.c:260
-#, fuzzy
 msgid "Eject"
-msgstr "Non se puido extraer «%s»"
+msgstr "Expulsar"
 
 #: ../panel-plugin/model_volumes.c:272
-#, fuzzy
 msgid "Unmount"
 msgstr "Desmontar"
 
 #: ../panel-plugin/view.c:678
-#, fuzzy
 msgid "Search for Files"
-msgstr "Buscar ficheiros..."
+msgstr "Buscar ficheiros"
 
 #: ../panel-plugin/view.c:731
 #: ../panel-plugin/cfg.c:486
@@ -102,28 +97,24 @@ msgid "Button"
 msgstr "Botón"
 
 #: ../panel-plugin/cfg.c:356
-#, fuzzy
 msgid "_Show"
 msgstr "Amo_sar"
 
 #: ../panel-plugin/cfg.c:362
-#, fuzzy
 msgid "Icon Only"
-msgstr "Só lectura"
+msgstr "Só iconas"
 
 #: ../panel-plugin/cfg.c:363
-#, fuzzy
 msgid "Label Only"
-msgstr "Só lectura"
+msgstr "Só etiquetas"
 
 #: ../panel-plugin/cfg.c:364
 msgid "Icon and Label"
-msgstr "Icona e Etiqueta"
+msgstr "Icona e etiqueta"
 
 #: ../panel-plugin/cfg.c:386
-#, fuzzy
 msgid "_Label"
-msgstr "Etiqueta:"
+msgstr "_Etiqueta"
 
 #: ../panel-plugin/cfg.c:404
 msgid "Menu"
@@ -136,9 +127,8 @@ msgstr "Mostrar _iconas nos menús"
 
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:420
-#, fuzzy
 msgid "Show _removable media"
-msgstr "Utilidade para Soportes Extraíbles"
+msgstr ""
 
 #: ../panel-plugin/cfg.c:441
 msgid "Mount and _Open on click"
@@ -146,15 +136,13 @@ msgstr ""
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:455
-#, fuzzy
 msgid "Show GTK _bookmarks"
-msgstr "Marcadores web do Epiphany"
+msgstr ""
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:468
-#, fuzzy
 msgid "Show recent _documents"
-msgstr "Ver documentos de varias páxinas"
+msgstr "Mostrar os _documentos recentes"
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:490
@@ -162,26 +150,22 @@ msgid "Show cl_ear option"
 msgstr ""
 
 #: ../panel-plugin/cfg.c:505
-#, fuzzy
 msgid "_Number to display"
-msgstr "Número de usuarios que mostrar"
+msgstr ""
 
 #: ../panel-plugin/cfg.c:525
-#, fuzzy
 msgid "Search"
 msgstr "Buscar"
 
 #: ../panel-plugin/cfg.c:533
 msgid "Co_mmand"
-msgstr ""
+msgstr "Co_mando"
 
 #: ../panel-plugin/support.c:148
-#, fuzzy
 msgid "Open"
 msgstr "Abrir"
 
 #: ../panel-plugin/support.c:163
-#, fuzzy
 msgid "Open Terminal Here"
 msgstr "Abrir terminal aquí"
 
