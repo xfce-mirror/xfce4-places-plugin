@@ -7,7 +7,7 @@
 # Finnish translations for Thunar package.
 # Copyright (C) 2004-2007 Benedikt Meurer.
 # This file is distributed under the same license as the Thunar package.
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2006-2008.
+# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2006-2009.
 #
 # ###
 # gnome-panel Finnish translation
@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-places-plugin 0.9.991\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-04 17:18+0200\n"
-"PO-Revision-Date: 2008-11-04 17:22+0200\n"
+"POT-Creation-Date: 2009-02-01 16:59+0200\n"
+"PO-Revision-Date: 2009-02-01 17:00+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish\n"
 "MIME-Version: 1.0\n"
@@ -44,17 +44,16 @@ msgid "Places"
 msgstr "Sijainnit"
 
 #. Trash
-#: ../panel-plugin/model_system.c:110
+#: ../panel-plugin/model_system.c:142
 msgid "Trash"
 msgstr "Roskakori"
 
-#. Desktop
-#: ../panel-plugin/model_system.c:135
+#: ../panel-plugin/model_system.c:173
 msgid "Desktop"
 msgstr "Työpöytä"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:159
+#: ../panel-plugin/model_system.c:189
 msgid "File System"
 msgstr "Tiedostojärjestelmä"
 
@@ -89,11 +88,11 @@ msgstr "Poista"
 msgid "Unmount"
 msgstr "Irrota"
 
-#: ../panel-plugin/view.c:678
+#: ../panel-plugin/view.c:618
 msgid "Search for Files"
 msgstr "Etsi tiedostoja"
 
-#: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
+#: ../panel-plugin/view.c:671 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "Viimeisimmät asiakirjat"
 
@@ -142,7 +141,7 @@ msgstr "Liitä ja _avaa napsauttamalla"
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
-msgstr "Näytä GTK:n _pikanäppäimet"
+msgstr "Näytä GTK:n kirjanm_erkit"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:468
@@ -166,10 +165,10 @@ msgstr "Etsi"
 msgid "Co_mmand"
 msgstr "K_omento"
 
-#: ../panel-plugin/support.c:148
+#: ../panel-plugin/support.c:163
 msgid "Open"
 msgstr "Avaa"
 
-#: ../panel-plugin/support.c:163
+#: ../panel-plugin/support.c:178
 msgid "Open Terminal Here"
 msgstr "Avaa pääte tässä kansiossa"
