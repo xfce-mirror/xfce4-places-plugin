@@ -1,5 +1,7 @@
 # This file was automatically generated for the xfce4-places-plugin (2007)
 # This file is distributed under the same license as the xfce4-places-plugin package
+# Igor Știrbu <igor.stirbu@gmail.com>, 2009.
+#
 # It is based on the following:
 # ###
 # Romanian translation for Thunar.
@@ -13,98 +15,157 @@
 # Marius Andreiana <marius galuna.ro>, 2000, 2002, 2003.
 # Mişu Moldovan <dumol@gnome.ro>, 2003, 2004.
 # Dan Damian <dand@gnome.ro>, 2000-2001, 2005-2006.
-#
-# TODO: "item" e tradus ca "item" şi "element"
-#
 # ###
 msgid ""
 msgstr ""
+"Project-Id-Version: xfce4-places\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 01:47-0500\n"
+"POT-Creation-Date: 2008-06-08 12:51+0100\n"
+"PO-Revision-Date: 2009-03-01 19:24+0200\n"
+"Last-Translator: Igor Știrbu <igor.stirbu@gmail.com>\n"
+"Language-Team: Romanian <debian-l10n-romanian@lists.debian.org>\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. vim: ai et tabstop=4
+#. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr ""
+msgstr "Acces la directoare, documente și medii amovibile"
 
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140 ../panel-plugin/cfg.c:259
-#: ../panel-plugin/cfg.c:329
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
 msgid "Places"
-msgstr "Locaţii"
+msgstr "Locuri"
 
-#: ../panel-plugin/model_system.c:60
+#. Trash
+#: ../panel-plugin/model_system.c:110
 msgid "Trash"
-msgstr "Coş de gunoi"
+msgstr "Coș de gunoi"
 
-#: ../panel-plugin/model_system.c:70
+#. Desktop
+#: ../panel-plugin/model_system.c:135
 msgid "Desktop"
 msgstr "Desktop"
 
-#: ../panel-plugin/model_system.c:78
+#. File System (/)
+#: ../panel-plugin/model_system.c:159
 msgid "File System"
-msgstr "Sistem de fişiere"
+msgstr "Sistem de fișiere"
 
-#: ../panel-plugin/view.c:244 ../panel-plugin/cfg.c:456
+#: ../panel-plugin/model_volumes.c:64
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "Nu s-a putut ejecta „%s”"
+
+#: ../panel-plugin/model_volumes.c:85
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "Nu s-a putut demonta „%s”"
+
+#: ../panel-plugin/model_volumes.c:107
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "Nu s-a putut monta „%s”"
+
+#: ../panel-plugin/model_volumes.c:226
+msgid "Mount and Open"
+msgstr "Montează și deschide"
+
+#: ../panel-plugin/model_volumes.c:239
+msgid "Mount"
+msgstr "Montează"
+
+#: ../panel-plugin/model_volumes.c:260
+msgid "Eject"
+msgstr "Ejectează"
+
+#: ../panel-plugin/model_volumes.c:272
+msgid "Unmount"
+msgstr "Demontează"
+
+#: ../panel-plugin/view.c:678
+msgid "Search for Files"
+msgstr "Căutare fișiere"
+
+#: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "Documente recente"
 
-#: ../panel-plugin/cfg.c:345
+#: ../panel-plugin/cfg.c:347
 msgid "Button"
-msgstr ""
+msgstr "Buton"
 
-#: ../panel-plugin/cfg.c:354
+#: ../panel-plugin/cfg.c:356
 msgid "_Show"
-msgstr ""
-
-#: ../panel-plugin/cfg.c:360
-msgid "Icon Only"
-msgstr ""
-
-#: ../panel-plugin/cfg.c:361
-msgid "Label Only"
-msgstr ""
+msgstr "_Aspect"
 
 #: ../panel-plugin/cfg.c:362
+msgid "Icon Only"
+msgstr "Doar iconiță"
+
+#: ../panel-plugin/cfg.c:363
+msgid "Label Only"
+msgstr "Doar etichetă"
+
+#: ../panel-plugin/cfg.c:364
 msgid "Icon and Label"
-msgstr ""
+msgstr "Iconiță și etichetă"
 
-#: ../panel-plugin/cfg.c:384
+#: ../panel-plugin/cfg.c:386
 msgid "_Label"
-msgstr ""
+msgstr "_Etichetă"
 
-#: ../panel-plugin/cfg.c:402
+#: ../panel-plugin/cfg.c:404
 msgid "Menu"
-msgstr ""
+msgstr "Meniu"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:406
+#: ../panel-plugin/cfg.c:408
 msgid "Show _icons in menu"
-msgstr ""
+msgstr "Arată _iconițe în meniu"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:418
+#: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
-msgstr ""
+msgstr "Arată _mediile amovibile"
+
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr "Montează și deschide la _clic"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:429
+#: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
-msgstr ""
+msgstr "Arată _favoritele GTK"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:442
-#, fuzzy
+#: ../panel-plugin/cfg.c:468
 msgid "Show recent _documents"
-msgstr "Documente recente"
+msgstr "Arată _documentele recente"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:460
+#: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
-msgstr ""
+msgstr "Arată _opțiunea de curățare"
 
-#: ../panel-plugin/cfg.c:475
+#: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
-msgstr ""
+msgstr "Elemen_te de afișat"
+
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr "Căutare"
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr "Coma_ndă"
+
+#: ../panel-plugin/support.c:148
+msgid "Open"
+msgstr "Deschide"
+
+#: ../panel-plugin/support.c:163
+msgid "Open Terminal Here"
+msgstr "Deschide în terminal"
