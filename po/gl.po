@@ -1,9 +1,9 @@
 # Galician translation of xfce4-places-plugin
-# Copyright (C) 2008 Leandro Regueiro
+# Copyright (C) 2008-2009 Leandro Regueiro
 # Copyright (C) 1999-2004 Jesús Bravo Álvarez
 # This file is distributed under the same license as the xfce4-places-plugin package.
 #
-# Leandro Regueiro <leandro.regueiro@gmail.com>, 2008.
+# Leandro Regueiro <leandro.regueiro@gmail.com>, 2008, 2009.
 # Iván Seoane Pardo <talivan.ivan@gmail.com>, 2006.
 # Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
 # Jesús Bravo Álvarez <suso@trasno.net>, 1999-2004.
@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: xfce-i18n@xfce.org\n"
 "POT-Creation-Date: 2008-06-08 12:51+0100\n"
-"PO-Revision-Date: 2008-12-14 16:28+0100\n"
+"PO-Revision-Date: 2009-03-07 19:21+0100\n"
 "Last-Translator: Leandro Regueiro <leandro DOT regueiro AT gmail DOT com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -128,16 +128,16 @@ msgstr "Mostrar _iconas nos menús"
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
-msgstr ""
+msgstr "Mostrar os _soportes extraíbles"
 
 #: ../panel-plugin/cfg.c:441
 msgid "Mount and _Open on click"
-msgstr ""
+msgstr "Montar e _abrir cun clic"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
-msgstr ""
+msgstr "Mostrar os _marcadores de GTK"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:468
@@ -147,11 +147,11 @@ msgstr "Mostrar os _documentos recentes"
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
-msgstr ""
+msgstr "Mostrar a opción de _limpar"
 
 #: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
-msgstr ""
+msgstr "_Número que se mostra"
 
 #: ../panel-plugin/cfg.c:525
 msgid "Search"
