@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-08 12:51+0100\n"
-"PO-Revision-Date: 2009-02-27 19:40+0100\n"
+"PO-Revision-Date: 2009-04-10 12:55+0100\n"
 "Last-Translator: Piotr Sokół <piotr.sokol@10g.pl>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,7 @@ msgstr "Odmontuj"
 
 #: ../panel-plugin/view.c:678
 msgid "Search for Files"
-msgstr "Wyszukaj pliki..."
+msgstr "Szukaj..."
 
 #: ../panel-plugin/view.c:731
 #: ../panel-plugin/cfg.c:486
