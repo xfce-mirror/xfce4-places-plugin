@@ -17,6 +17,7 @@
 #   Updated by He Qiangqiang <carton@linux.net.cn>, 2002
 #   Funda Wang <fundawang@linux.net.cn>, 2003-2006
 # Xiong Jiang <jxiong@offtopic.org>, 2003
+# Hunt Xu <huntxu@live.cn>, 2009.
 #
 # ###
 msgid ""
@@ -26,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
-"PO-Revision-Date: \n"
+"PO-Revision-Date: 2009-05-09 13:40+0800\n"
 "Last-Translator: Hunt Xu <huntxu@live.cn>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -107,7 +108,7 @@ msgstr "显示GTK书签(_b)"
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:442
 msgid "Show recent _documents"
-msgstr "显示\"最近的文档\"项"
+msgstr "显示最近的文档(_D)"
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:460

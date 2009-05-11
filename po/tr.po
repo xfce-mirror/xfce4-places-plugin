@@ -12,14 +12,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 "PO-Revision-Date: \n"
-"Last-Translator: Gökmen Görgen <gkmngrgn@gmail.com>\n"
+"Last-Translator: Samed Beyribey <ras0ir@eventualis.org>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 
 #. vim: ai et tabstop=4
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr "Dizinlere, belgelere ve ayrılabilir ortamlara eriş"
+msgstr "Dizinlere, belgelere ve ayrılabilir ortamlara erişin"
 
 #: ../panel-plugin/places.desktop.in.in.h:2
 #: ../panel-plugin/cfg.c:78
