@@ -168,7 +168,7 @@ pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
         /* create the BookmarkInfo container */
         bookmark        = places_bookmark_create(name);           /* label needs to be freed */
         bookmark->uri   = path;                                   /* uri   needs to be freed */
-        bookmark->icon  = "gnome-fs-directory";
+        bookmark->icon  = "folder";
         bookmark->priv  = GINT_TO_POINTER(pbuser_dir_exists(path));
         bookmark->finalize = pbuser_finalize_bookmark;
 

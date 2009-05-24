@@ -127,7 +127,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     /* Home */
     bookmark                = places_bookmark_create((gchar*) g_get_user_name());
     bookmark->uri           = (gchar*) home_dir;
-    bookmark->icon          = "gnome-fs-home";
+    bookmark->icon          = "user-home";
 
     terminal                 = places_create_open_terminal_action(bookmark);
     bookmark->actions        = g_list_prepend(bookmark->actions, terminal);
@@ -149,9 +149,9 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     trash_info = thunar_vfs_info_new_for_path(pbg_priv(bookmark_group)->trash_path, NULL);
     if(trash_info->custom_icon != NULL){
         bookmark->icon = g_strdup(trash_info->custom_icon);
-        pbg_priv(bookmark_group)->trash_is_empty = (strcmp("gnome-fs-trash-full", bookmark->icon) != 0);
+        pbg_priv(bookmark_group)->trash_is_empty = (strcmp("user-trash-full", bookmark->icon) != 0);
     }else{
-        bookmark->icon = g_strdup("gnome-fs-trash-full");
+        bookmark->icon = g_strdup("user-trash-full");
         pbg_priv(bookmark_group)->trash_is_empty = FALSE;
     }
     thunar_vfs_info_unref(trash_info);
@@ -172,7 +172,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     if(desktop_dir != NULL){
         bookmark                = places_bookmark_create(_("Desktop"));
         bookmark->uri           = desktop_dir;
-        bookmark->icon          = "gnome-fs-desktop";
+        bookmark->icon          = "user-desktop";
         bookmark->finalize      = pbsys_finalize_desktop_bookmark;
 
 
@@ -188,7 +188,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     /* File System (/) */
     bookmark                = places_bookmark_create(_("File System"));
     bookmark->uri           = "/";
-    bookmark->icon          = "gnome-dev-harddisk";
+    bookmark->icon          = "gtk-harddisk";
 
     terminal                 = places_create_open_terminal_action(bookmark);
     bookmark->actions        = g_list_prepend(bookmark->actions, terminal);
@@ -225,7 +225,7 @@ pbsys_changed(PlacesBookmarkGroup *bookmark_group)
     /* see if trash gets a different icon (e.g., was empty, now full) */
     trash_info = thunar_vfs_info_new_for_path(pbg_priv(bookmark_group)->trash_path, NULL);
     if(trash_info->custom_icon != NULL)
-        trash_is_empty = (strcmp("gnome-fs-trash-full", trash_info->custom_icon) != 0);
+        trash_is_empty = (strcmp("user-trash-full", trash_info->custom_icon) != 0);
     thunar_vfs_info_unref(trash_info);
     
     if(trash_is_empty != pbg_priv(bookmark_group)->trash_is_empty)
