@@ -2,7 +2,7 @@
  *
  *  Model: system bookmarks (e.g., home folder, desktop)
  *
- *  Copyright (c) 2007 Diego Ongaro <ongardie@gmail.com>
+ *  Copyright (c) 2007-2009 Diego Ongaro <ongardie@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -78,6 +78,21 @@ pbsys_finalize_trash_bookmark(PlacesBookmark *bookmark)
 }
 #endif
 
+#if TRASH
+static gboolean
+pbsys_trash_is_empty(const ThunarVfsInfo *trash_info)
+{
+    if (trash_info->custom_icon == NULL)
+        return FALSE;
+    if (strcmp("user-trash-full", trash_info->custom_icon) == 0)
+        return FALSE;
+    if (strcmp("gnome-fs-trash-full", trash_info->custom_icon) == 0)
+        return FALSE;
+    return TRUE;
+}
+#endif
+
+
 static gchar*
 pbsys_desktop_dir()
 {
@@ -147,13 +162,11 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     /* Try for an icon from ThunarVFS to indicate whether trash is empty or not */
     
     trash_info = thunar_vfs_info_new_for_path(pbg_priv(bookmark_group)->trash_path, NULL);
-    if(trash_info->custom_icon != NULL){
+    pbg_priv(bookmark_group)->trash_is_empty = pbsys_trash_is_empty(trash_info);
+    if(trash_info->custom_icon != NULL)
         bookmark->icon = g_strdup(trash_info->custom_icon);
-        pbg_priv(bookmark_group)->trash_is_empty = (strcmp("user-trash-full", bookmark->icon) != 0);
-    }else{
+    else
         bookmark->icon = g_strdup("user-trash-full");
-        pbg_priv(bookmark_group)->trash_is_empty = FALSE;
-    }
     thunar_vfs_info_unref(trash_info);
 
     open                     = places_create_open_action(bookmark);
@@ -206,7 +219,7 @@ pbsys_changed(PlacesBookmarkGroup *bookmark_group)
 {
     gchar *desktop_dir;
 #if TRASH
-    gboolean trash_is_empty = FALSE;
+    gboolean trash_is_empty;
     ThunarVfsInfo *trash_info;
 #endif
 
@@ -224,8 +237,7 @@ pbsys_changed(PlacesBookmarkGroup *bookmark_group)
 #if TRASH
     /* see if trash gets a different icon (e.g., was empty, now full) */
     trash_info = thunar_vfs_info_new_for_path(pbg_priv(bookmark_group)->trash_path, NULL);
-    if(trash_info->custom_icon != NULL)
-        trash_is_empty = (strcmp("user-trash-full", trash_info->custom_icon) != 0);
+    trash_is_empty = pbsys_trash_is_empty(trash_info);
     thunar_vfs_info_unref(trash_info);
     
     if(trash_is_empty != pbg_priv(bookmark_group)->trash_is_empty)
