@@ -64,13 +64,10 @@ places_load_file_browser(const gchar *path)
 
     }else{
 
-        DBG("exo_url_show(file://");
-        exo_success = exo_url_show("file://", NULL, NULL);
-
-        if(!exo_success){
-            DBG("exec: thunar");
-            places_gui_exec("thunar");
-        }
+        gchar *home;
+        home = g_strconcat("file://", xfce_get_homedir(), NULL);
+        places_load_file_browser(home);
+        g_free(home);
 
     }
 }

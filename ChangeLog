@@ -1,3 +1,7 @@
+2009-05-27	Diego Ongaro <ongardie@gmail.com>
+
+	* support.c: Fix loading file browser on xfce 4.6.
+
 2009-05-24	Diego Ongaro <ongardie@gmail.com>
 
 	* model_system.c: Use xdg-compatible icons. Thanks to
