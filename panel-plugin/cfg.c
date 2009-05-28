@@ -309,7 +309,7 @@ pcfg_make_empty_dialog(PlacesCfg *cfg)
     xfce_panel_plugin_block_menu(cfg->plugin);
 
     dlg = xfce_titled_dialog_new_with_buttons(_("Places"),
-              GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(cfg->plugin))),
+              NULL,
               GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_NO_SEPARATOR,
               GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
 

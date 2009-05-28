@@ -1,5 +1,6 @@
 2009-05-27	Diego Ongaro <ongardie@gmail.com>
 
+	* cfg.c: Makes properties dialog non-modal. See bug #4468.
 	* support.c: Fix loading file browser on xfce 4.6.
 
 2009-05-24	Diego Ongaro <ongardie@gmail.com>
