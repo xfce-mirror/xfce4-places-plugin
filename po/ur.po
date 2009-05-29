@@ -1,0 +1,166 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-places-plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-06-08 12:51+0100\n"
+"PO-Revision-Date: 2009-05-14 03:02+0500\n"
+"Last-Translator: Muhammad Ali Makki <makki.ma@gmail.com>\n"
+"Language-Team: Urdu <makki.ma@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: Urdu\n"
+"X-Poedit-Country: PAKISTAN\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#. vim: set ai et tabstop=4:
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr "فولڈر، دستاویزات، اور قابلِ فصل میڈیا تک رسائی حاصل کریں"
+
+#: ../panel-plugin/places.desktop.in.in.h:2
+#: ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105
+#: ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
+msgid "Places"
+msgstr "مقامات"
+
+#. Trash
+#: ../panel-plugin/model_system.c:110
+msgid "Trash"
+msgstr "ردی"
+
+#. Desktop
+#: ../panel-plugin/model_system.c:135
+msgid "Desktop"
+msgstr "ڈیسک ٹاپ"
+
+#. File System (/)
+#: ../panel-plugin/model_system.c:159
+msgid "File System"
+msgstr "فائل سسٹم"
+
+#: ../panel-plugin/model_volumes.c:64
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "نکالنے میں ناکامی \"%s\""
+
+#: ../panel-plugin/model_volumes.c:85
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "ان ماؤنٹ کرنے میں ناکامی \"%s\""
+
+#: ../panel-plugin/model_volumes.c:107
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "ماؤنٹ کرنے میں ناکامی \"%s\""
+
+#: ../panel-plugin/model_volumes.c:226
+msgid "Mount and Open"
+msgstr "ماؤنٹ کریں اور کھولیں"
+
+#: ../panel-plugin/model_volumes.c:239
+msgid "Mount"
+msgstr "ماؤنٹ"
+
+#: ../panel-plugin/model_volumes.c:260
+msgid "Eject"
+msgstr "نکالیں"
+
+#: ../panel-plugin/model_volumes.c:272
+msgid "Unmount"
+msgstr "ان ماؤنٹ کریں"
+
+#: ../panel-plugin/view.c:678
+msgid "Search for Files"
+msgstr "فائلیں تلاش کریں"
+
+#: ../panel-plugin/view.c:731
+#: ../panel-plugin/cfg.c:486
+msgid "Recent Documents"
+msgstr "حالیہ دستاویزات"
+
+#: ../panel-plugin/cfg.c:347
+msgid "Button"
+msgstr "بٹن"
+
+#: ../panel-plugin/cfg.c:356
+msgid "_Show"
+msgstr "_دکھائیں"
+
+#: ../panel-plugin/cfg.c:362
+msgid "Icon Only"
+msgstr "صرف آئکن"
+
+#: ../panel-plugin/cfg.c:363
+msgid "Label Only"
+msgstr "صرف لیبل"
+
+#: ../panel-plugin/cfg.c:364
+msgid "Icon and Label"
+msgstr "آئکن اور لیبل"
+
+#: ../panel-plugin/cfg.c:386
+msgid "_Label"
+msgstr "_لیبل"
+
+#: ../panel-plugin/cfg.c:404
+msgid "Menu"
+msgstr "فہرست"
+
+#. MENU: Show Icons
+#: ../panel-plugin/cfg.c:408
+msgid "Show _icons in menu"
+msgstr "فہرست میں _آئکن دکھائیں"
+
+#. MENU: Show Removable Media
+#: ../panel-plugin/cfg.c:420
+msgid "Show _removable media"
+msgstr "قابل _فصل میڈیا دکھائیں"
+
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr "کلک پر ماؤنٹ کر کے _کھولیں"
+
+#. MENU: Show GTK Bookmarks
+#: ../panel-plugin/cfg.c:455
+msgid "Show GTK _bookmarks"
+msgstr "جی ٹی کے _پسندیدہ دکھائیں"
+
+#. MENU: Show Recent Documents
+#: ../panel-plugin/cfg.c:468
+msgid "Show recent _documents"
+msgstr "حالیہ _دستاویزات دکھائیں"
+
+#. RECENT DOCUMENTS: Show clear option
+#: ../panel-plugin/cfg.c:490
+msgid "Show cl_ear option"
+msgstr "_صاف اختیار دکھائیں"
+
+#: ../panel-plugin/cfg.c:505
+msgid "_Number to display"
+msgstr "_دکھانے کے لیے نمبر"
+
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr "تلاش"
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr "ک_مانڈ"
+
+#: ../panel-plugin/support.c:148
+msgid "Open"
+msgstr "کھولین"
+
+#: ../panel-plugin/support.c:163
+msgid "Open Terminal Here"
+msgstr "ٹرمنل یہاں کھولیں"
+
