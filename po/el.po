@@ -50,16 +50,16 @@
 # ###
 msgid ""
 msgstr ""
+"Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-05-17 01:47-0500\n"
+"PO-Revision-Date: 2009-06-20 01:34-0800\n"
+"Last-Translator: Evaggelos Balaskas <ebalaskas@ebalaskas.gr>\n"
+"Language-Team: Greek <nls@tux.hellug.gr>\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Last-Translator: Evaggelos Balaskas <ebalaskas@ebalaskas.gr>\n"
-"PO-Revision-Date: 2008-08-08 18:18+0300\n"
-"Project-Id-Version: el\n"
-"Language-Team: Greek <nls@tux.hellug.gr>\n"
 "X-Generator: KBabel 1.11.4\n"
-"MIME-Version: 1.0\n"
 
 #. vim: ai et tabstop=4
 #: ../panel-plugin/places.desktop.in.in.h:1
@@ -145,3 +145,41 @@ msgstr "Εμφάνιση επιλογής κ_αθαρισμού"
 msgid "_Number to display"
 msgstr "Αρ_ιθμός για εμφάνιση"
 
+#~ msgid "Failed to eject \"%s\""
+#~ msgstr "Αποτυχία κατά την εξαγωγή \"%s\""
+
+#~ msgid "Failed to unmount \"%s\""
+#~ msgstr "Αποτυχία κατά την αποπροσάρτηση \"%s\""
+
+#~ msgid "Failed to mount \"%s\""
+#~ msgstr "Αποτυχία κατά την προσάρτηση \"%s\""
+
+#~ msgid "Mount and Open"
+#~ msgstr "Προσάρτηση και άνοιγμα"
+
+#~ msgid "Mount"
+#~ msgstr "Προσάρτηση"
+
+#~ msgid "Eject"
+#~ msgstr "Εξαγωγή"
+
+#~ msgid "Unmount"
+#~ msgstr "Απόπροσάρτηση"
+
+#~ msgid "Search for Files"
+#~ msgstr "Αναζήτηση για αρχεία"
+
+#~ msgid "Mount and _Open on click"
+#~ msgstr "Προσάρτηση και άν_οιγμα στο click"
+
+#~ msgid "Search"
+#~ msgstr "Αναζήτηση"
+
+#~ msgid "Co_mmand"
+#~ msgstr "Εντ_ολή"
+
+#~ msgid "Open"
+#~ msgstr "Άνοιγμα"
+
+#~ msgid "Open Terminal Here"
+#~ msgstr "Άνοιγμα τερματικού εδώ"
