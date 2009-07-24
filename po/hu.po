@@ -1,121 +1,161 @@
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
-# ###
-# Hungarian translations for Thunar.
-# Copyright (C) 2004-2006 Benedikt Meurer.
-# This file is distributed under the same license as the Thunar package.
-# SZERVÁC Attila <sas@321.hu>, 2005.
+# Hungarian translation of xfce4-places-plugin
+# Copyright 2009. Free Software Foundation, Inc.
+# This file is distributed under the same license as the xfce4-places-plugin package.
 #
-# Szabolcs Ban <shooby@gnome.hu>, 1998, 1999, 2000, 2001.
-# Emese Kovacs <emese@gnome.hu>, 2000, 2001, 2002.
-# Tamas Vamosi <tvamosi@suselinux.hu>, 2002.
-# Andras Timar <timar@gnome.hu>, 2001, 2002, 2003.
-# Gabor Sari <saga@gnome.hu>, 2003.
-# Laszlo Dvornik <dvornik@gnome.hu>, 2004.
-# Gabor Kelemen <kelemeng@gnome.hu>, 2004, 2005, 2006.
-# Mate ORY <orymate at gmail d0t com>, 2006.
-# SZERVÁC Attila <sas@321.hu>, 2005-2007.
-# ###
+# SZERVÁC Attila <sas@321.hu>, 2005.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: Xfce Places Plugin\n"
+"Project-Id-Version: xfce4-places-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 01:47-0500\n"
-"PO-Revision-Date: 2008-07-11 17:34+0100\n"
-"Last-Translator: SZERVÁC Attila <sas@321.hu>\n"
-"Language-Team: Hungarian <debian-l10n-hungarian@lists.debian.org>\n"
+"POT-Creation-Date: 2009-07-24 09:57+0200\n"
+"PO-Revision-Date: 2009-07-24 13:44+0200\n"
+"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"Language-Team: Hungarian <gnome at gnome dot hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-Language: Hungarian\n"
-"X-Poedit-Country: HUNGARY\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#. vim: ai et tabstop=4
+#. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr "Mappák, dokumentumok és cserélhető médiumok elérése"
+msgstr "Mappák, dokumentumok és cserélhető adathordozók elérése"
 
-#: ../panel-plugin/places.desktop.in.in.h:2
-#: ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140
-#: ../panel-plugin/cfg.c:259
-#: ../panel-plugin/cfg.c:329
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
 msgid "Places"
 msgstr "Helyek"
 
-#: ../panel-plugin/model_system.c:60
+#. Trash
+#: ../panel-plugin/model_system.c:157
 msgid "Trash"
 msgstr "Kuka"
 
-#: ../panel-plugin/model_system.c:70
+#: ../panel-plugin/model_system.c:186
 msgid "Desktop"
 msgstr "Asztal"
 
-#: ../panel-plugin/model_system.c:78
+#. File System (/)
+#: ../panel-plugin/model_system.c:202
 msgid "File System"
 msgstr "Fájlrendszer"
 
-#: ../panel-plugin/view.c:244
-#: ../panel-plugin/cfg.c:456
+#: ../panel-plugin/model_volumes.c:64
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "„%s” kiadása meghiúsult"
+
+#: ../panel-plugin/model_volumes.c:85
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "„%s” leválasztása meghiúsult"
+
+#: ../panel-plugin/model_volumes.c:107
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "„%s” csatolása meghiúsult"
+
+#: ../panel-plugin/model_volumes.c:226
+msgid "Mount and Open"
+msgstr "Csatolás és megnyitás"
+
+#: ../panel-plugin/model_volumes.c:239
+msgid "Mount"
+msgstr "Csatolás"
+
+#: ../panel-plugin/model_volumes.c:260
+msgid "Eject"
+msgstr "Kiadás"
+
+#: ../panel-plugin/model_volumes.c:272
+msgid "Unmount"
+msgstr "Leválasztás"
+
+#: ../panel-plugin/view.c:618
+msgid "Search for Files"
+msgstr "Fájlok keresése"
+
+#: ../panel-plugin/view.c:671 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "Legutóbbi dokumentumok"
 
-#: ../panel-plugin/cfg.c:345
+#: ../panel-plugin/cfg.c:347
 msgid "Button"
 msgstr "Gomb"
 
-#: ../panel-plugin/cfg.c:354
+#: ../panel-plugin/cfg.c:356
 msgid "_Show"
-msgstr "Mutasd"
+msgstr "_Megjelenítés"
 
-#: ../panel-plugin/cfg.c:360
+#: ../panel-plugin/cfg.c:362
 msgid "Icon Only"
 msgstr "Csak ikon"
 
-#: ../panel-plugin/cfg.c:361
+#: ../panel-plugin/cfg.c:363
 msgid "Label Only"
 msgstr "Csak címke"
 
-#: ../panel-plugin/cfg.c:362
+#: ../panel-plugin/cfg.c:364
 msgid "Icon and Label"
 msgstr "Ikon és címke"
 
-#: ../panel-plugin/cfg.c:384
+#: ../panel-plugin/cfg.c:386
 msgid "_Label"
-msgstr "Címke"
+msgstr "_Címke"
 
-#: ../panel-plugin/cfg.c:402
+#: ../panel-plugin/cfg.c:404
 msgid "Menu"
 msgstr "Menü"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:406
+#: ../panel-plugin/cfg.c:408
 msgid "Show _icons in menu"
-msgstr "_Ikonok mutatása a menüben"
+msgstr "_Ikonok megjelenítése a menüben"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:418
+#: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
-msgstr "Eltávolítható média mutatása"
+msgstr "_Eltávolítható adathordozók megjelenítése"
+
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr "Csatolás és megnyitás _kattintásra"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:429
+#: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
-msgstr "GTK könyvjelzők mutatása"
+msgstr "GTK köny_vjelzők megjelenítése"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:442
+#: ../panel-plugin/cfg.c:468
 msgid "Show recent _documents"
-msgstr "Legutóbbi _dokumentumok mutatása"
+msgstr "Legutóbbi _dokumentumok megjelenítése"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:460
+#: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
-msgstr "Tisztítás opció mutatása"
+msgstr "_Törlés lehetőség megjelenítése"
 
-#: ../panel-plugin/cfg.c:475
+#: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
-msgstr "Kijelzettek száma"
+msgstr "Megjelenítendő s_zám"
+
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr "Keresés"
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr "_Parancs"
+
+#: ../panel-plugin/support.c:160
+msgid "Open"
+msgstr "Megnyitás"
+
+#: ../panel-plugin/support.c:175
+msgid "Open Terminal Here"
+msgstr "Terminál megnyitása itt"
 
