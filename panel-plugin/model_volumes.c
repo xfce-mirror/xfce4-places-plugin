@@ -253,18 +253,16 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 
             }
 
-            if(thunar_vfs_volume_is_disc(volume)){
-                if(thunar_vfs_volume_is_ejectable(volume)){
+            if(thunar_vfs_volume_is_ejectable(volume)){
 
-                    g_object_ref(volume);
-                    action              = places_bookmark_action_create(_("Eject"));
-                    action->may_block   = TRUE;
-                    action->priv        = volume;
-                    action->action      = pbvol_eject;
-                    action->finalize    = pbvol_bookmark_action_finalize;
-                    bookmark->actions   = g_list_append(bookmark->actions, action);
+                g_object_ref(volume);
+                action              = places_bookmark_action_create(_("Eject"));
+                action->may_block   = TRUE;
+                action->priv        = volume;
+                action->action      = pbvol_eject;
+                action->finalize    = pbvol_bookmark_action_finalize;
+                bookmark->actions   = g_list_append(bookmark->actions, action);
 
-                }
             }else{
                 if(thunar_vfs_volume_is_mounted(volume)){
 

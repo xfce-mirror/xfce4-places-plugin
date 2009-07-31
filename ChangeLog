@@ -1,3 +1,8 @@
+2009-07-31	Diego Ongaro <ongardie@gmail.com>
+
+	* model_volumes.c: Show "Eject" option when Thunar 1.0 does. See
+	bug #4136.
+
 2009-07-30	Diego Ongaro <ongardie@gmail.com>
 
 	* button.c: Use gtk_box_pack_{start,end} directly, as _defaults
