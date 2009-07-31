@@ -1,5 +1,6 @@
 2009-07-31	Diego Ongaro <ongardie@gmail.com>
 
+	* NEWS, configure.in.in: Prep for 1.2 release
 	* model_volumes.c: Show "Eject" option when Thunar 1.0 does. See
 	bug #4136.
 	* xfce46-compat.c: Remove inconsistent static declarations

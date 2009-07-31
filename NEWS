@@ -1,3 +1,22 @@
+2009-07-31
+================================================================================
+xfce4-places-plugin v1.2.0 released
+
+ * Updates a ton of translations
+   (thanks to the i18n team)
+ * Adds XDG user dirs support
+   (thanks to Andea Santilli, bug #4461)
+ * Uses XDG icon names
+   (thanks to Yves-Alexis Perez, bug #5034)
+ * Shows "Eject" option on removable volumes when Thunar 1.0 does
+   (bug #4136)
+ * Makes the properties dialog non-modal
+ * Honors GTK's menu icon size (bug #4744)
+ * Calls the file browser through exo instead of directly opening Thunar
+   (thanks to Christian Dywan, bug #4463)
+ * Fixes some issues on shutdown
+ * Takes advantage of the panel's menu positioning on Xfce 4.6
+
 2008-06-07
 ================================================================================
 xfce4-places-plugin v1.1.0 released
