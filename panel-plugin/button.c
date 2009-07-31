@@ -341,7 +341,7 @@ places_button_resize_image(PlacesButton *self, gint new_size, gint *width, gint 
      
     if (self->image == NULL) {
             self->image = g_object_ref(gtk_image_new_from_pixbuf(icon));
-            gtk_box_pack_start_defaults(GTK_BOX(self->box), self->image);
+            gtk_box_pack_start(GTK_BOX(self->box), self->image, TRUE, TRUE, 0);
             gtk_widget_show(self->image);
     }
     else
@@ -375,8 +375,7 @@ places_button_resize_label(PlacesButton *self, gint *width, gint *height)
 
     if (self->label == NULL) {
         self->label = g_object_ref(gtk_label_new(self->label_text));
-        gtk_box_pack_end_defaults(GTK_BOX(self->box), 
-                                  self->label);
+        gtk_box_pack_end(GTK_BOX(self->box), self->label, TRUE, TRUE, 0);
         gtk_widget_show(self->label);
     }
     else
