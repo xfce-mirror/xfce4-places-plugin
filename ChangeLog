@@ -2,6 +2,7 @@
 
 	* button.c: Use gtk_box_pack_{start,end} directly, as _defaults
 	variants are deprecated in GTK 2.14.
+	* view.c: Honor menu icon size. See bug #4744.
 
 2009-05-27	Diego Ongaro <ongardie@gmail.com>
 

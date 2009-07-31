@@ -2,7 +2,7 @@
  *
  *  This file handles the GUI. It "owns" the model and cfg.
  *
- *  Copyright (c) 2007-2008 Diego Ongaro <ongardie@gmail.com>
+ *  Copyright (c) 2007-2009 Diego Ongaro <ongardie@gmail.com>
  *
  *  Largely based on:
  *
@@ -505,8 +505,14 @@ pview_add_menu_item(PlacesView *view, PlacesBookmark *bookmark)
 
     /* try to set icon */
     if(view->cfg->show_icons && bookmark->icon != NULL){
-        pb = xfce_themed_icon_load(bookmark->icon, 16);
-        
+        gint icon_size;
+        gint width, height;
+        if (gtk_icon_size_lookup(GTK_ICON_SIZE_MENU, &width, &height))
+                icon_size = MAX(width, height);
+        else
+                icon_size = 32;
+        pb = xfce_themed_icon_load(bookmark->icon, icon_size);
+
         if(G_LIKELY(pb != NULL)){
             image = gtk_image_new_from_pixbuf(pb);
             g_object_unref(pb);
