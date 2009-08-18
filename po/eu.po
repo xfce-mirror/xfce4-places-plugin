@@ -1,4 +1,4 @@
-# translation of eu.po to Euskara
+# translation of xfce4-places-plugin.master.po to Euskara
 # This file was automatically generated for the xfce4-places-plugin (2007)
 # This file is distributed under the same license as the xfce4-places-plugin package
 # It is based on the following:
@@ -8,106 +8,166 @@
 # This file is distributed under the same license as the Thunar package.
 #
 # ###
-# Copyright (C) 1999, 2004, 2006, 2007, 2008 Free Software Foundation, Inc.
+# Copyright (C) 1999, 2004, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
 #
-# Piarres Beobide <pi@beobide.net>, 2006, 2008.
+# Piarres Beobide <pi@beobide.net>, 2006, 2008, 2009.
 # Joseba Bidaurrazaga van Dierdonck <gcpbivaj@lg.ehu.es>, 2000.
 # Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2004.
 # Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2004, 2005, 2006, 2007.
 # ###
 msgid ""
 msgstr ""
-"Project-Id-Version: eu\n"
+"Project-Id-Version: xfce4-places-plugin.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 01:47-0500\n"
-"PO-Revision-Date: 2008-11-05 11:04+0100\n"
+"POT-Creation-Date: 2008-06-08 12:51+0100\n"
+"PO-Revision-Date: 2009-08-18 09:48+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
-"Language-Team: Euskara <debian-l10n-basque@lists.debian.org>\n"
+"Language-Team: Euskara <debian-l10n-eu@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. vim: ai et tabstop=4
+#. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
 msgstr "Eskuratu karpetan dokumentu eta euskarri aldagarriak"
 
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140 ../panel-plugin/cfg.c:259
-#: ../panel-plugin/cfg.c:329
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
 msgid "Places"
 msgstr "Kokalekuak"
 
-#: ../panel-plugin/model_system.c:60
+#. Trash
+#: ../panel-plugin/model_system.c:110
 msgid "Trash"
 msgstr "Zakarrontzia"
 
-#: ../panel-plugin/model_system.c:70
+#. Desktop
+#: ../panel-plugin/model_system.c:135
 msgid "Desktop"
 msgstr "Mahaigaina"
 
-#: ../panel-plugin/model_system.c:78
+#. File System (/)
+#: ../panel-plugin/model_system.c:159
 msgid "File System"
 msgstr "Fitxategi Sistema"
 
-#: ../panel-plugin/view.c:244 ../panel-plugin/cfg.c:456
+#: ../panel-plugin/model_volumes.c:64
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "Huts \"%s\" ateratzean"
+
+#: ../panel-plugin/model_volumes.c:85
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "Huts \"%s\" desmuntatzean"
+
+#: ../panel-plugin/model_volumes.c:107
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "Huts \"%s\" muntatzean"
+
+#: ../panel-plugin/model_volumes.c:226
+msgid "Mount and Open"
+msgstr "Muntatu eta ireki"
+
+#: ../panel-plugin/model_volumes.c:239
+msgid "Mount"
+msgstr "Muntatu"
+
+#: ../panel-plugin/model_volumes.c:260
+msgid "Eject"
+msgstr "Atera"
+
+#: ../panel-plugin/model_volumes.c:272
+msgid "Unmount"
+msgstr "Desmuntatu"
+
+#: ../panel-plugin/view.c:678
+msgid "Search for Files"
+msgstr "Bilatu fitxategiak"
+
+#: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "Azken dokumentuak"
 
-#: ../panel-plugin/cfg.c:345
+#: ../panel-plugin/cfg.c:347
 msgid "Button"
 msgstr "Botoia"
 
-#: ../panel-plugin/cfg.c:354
+#: ../panel-plugin/cfg.c:356
 msgid "_Show"
 msgstr "Iku_si"
 
-#: ../panel-plugin/cfg.c:360
+#: ../panel-plugin/cfg.c:362
 msgid "Icon Only"
 msgstr "Ikonoa bakarrik"
 
-#: ../panel-plugin/cfg.c:361
+#: ../panel-plugin/cfg.c:363
 msgid "Label Only"
 msgstr "Etiketa bakarrik"
 
-#: ../panel-plugin/cfg.c:362
+#: ../panel-plugin/cfg.c:364
 msgid "Icon and Label"
 msgstr "Ikono eta etiketa"
 
-#: ../panel-plugin/cfg.c:384
+#: ../panel-plugin/cfg.c:386
 msgid "_Label"
 msgstr "_Etiketa"
 
-#: ../panel-plugin/cfg.c:402
+#: ../panel-plugin/cfg.c:404
 msgid "Menu"
 msgstr "Menua"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:406
+#: ../panel-plugin/cfg.c:408
 msgid "Show _icons in menu"
 msgstr "Ikusi _ikonoak menuan"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:418
+#: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
 msgstr "Ikusi euskarri _aldagarriak"
 
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr "Muntatu eta ireki _klikatzean"
+
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:429
+#: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
 msgstr "Ikusi GTK _laster-markak"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:442
+#: ../panel-plugin/cfg.c:468
 msgid "Show recent _documents"
 msgstr "Ikusi azken _dokumentuak"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:460
+#: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
-msgstr "Ikusi garbitu auk_era"
+msgstr "Ikusi garbitze auk_era"
 
-#: ../panel-plugin/cfg.c:475
+#: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
 msgstr "Ikusteko ze_nbakia"
+
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr "Bilatu"
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr "Ko_mandoa"
+
+#: ../panel-plugin/support.c:148
+msgid "Open"
+msgstr "Ireki"
+
+#: ../panel-plugin/support.c:163
+msgid "Open Terminal Here"
+msgstr "Ireki terminala hemen"
+
