@@ -62,11 +62,9 @@ main (gint argc, gchar *argv[])
     GdkEventClient        gev;
     GtkWidget            *win;
     Window                id;
-    gchar                *message = NULL;
 
     gtk_init (&argc, &argv);
 
-    message = g_strdup_printf (PLACES_MSG_MENU);
     win = gtk_invisible_new ();
     gtk_widget_realize (win);
 
@@ -75,7 +73,7 @@ main (gint argc, gchar *argv[])
     gev.send_event        = TRUE;
     gev.message_type      = gdk_atom_intern ("STRING", FALSE);
     gev.data_format       = 8;
-    g_snprintf (gev.data.b, sizeof (gev.data.b), message);
+    g_snprintf (gev.data.b, sizeof (gev.data.b), PLACES_MSG_MENU);
 
     if (plugin_check_is_running (win, &id))
         gdk_event_send_client_message ((GdkEvent *)&gev, (GdkNativeWindow)id);
