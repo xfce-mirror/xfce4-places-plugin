@@ -26,17 +26,34 @@ xfce4_places_plugin_VAPISOURCES =					\
 	config.vapi							\
 	view.vapi
 
-xfce4_places_plugin_VALASOURCES =					\
+xfce4_places_plugin_c_VALASOURCES =					\
 	places.vala
 
+xfce4_places_plugin_ch_VALASOURCES =					\
+	button.vala
 
-xfce4_places_plugin_VALABUILTSOURCES = $(xfce4_places_plugin_VALASOURCES:.vala=.c)
+xfce4_places_plugin_VALASOURCES =					\
+	$(xfce4_places_plugin_c_VALASOURCES)				\
+	$(xfce4_places_plugin_ch_VALASOURCES)
+
+
+xfce4_places_plugin_VALABUILTSOURCES =					\
+	$(xfce4_places_plugin_VALASOURCES:.vala=.c)			\
+	$(xfce4_places_plugin_ch_VALASOURCES:.vala=.h)
 
 if MAINTAINER_MODE
 BUILT_SOURCES = vala.stamp
 $(xfce4_places_plugin_VALABUILTSOURCES): vala.stamp
+VALA_OPTS = --vapidir=$(srcdir) --pkg=libxfce4panel-1.0 --pkg=config --pkg=view
 vala.stamp: $(xfce4_places_plugin_VALASOURCES)
-	$(VALAC) --vapidir=$(srcdir) --pkg=libxfce4panel-1.0 --pkg=config --pkg=view $^ -C
+	for vala_file in $(xfce4_places_plugin_ch_VALASOURCES); do \
+		header_file=$$( echo $$vala_file | sed s/\.vala$$/.h/ ); \
+		$(VALAC) $(VALA_OPTS) -H $$header_file -C $$vala_file; \
+	done
+	for vala_file in $(xfce4_places_plugin_c_VALASOURCES); do \
+		$(VALAC) $(VALA_OPTS) -C $$vala_file; \
+	done
+	sed -i 's/^\s*gpointer boxed;\s*$$//' $(xfce4_places_plugin_VALASOURCES:.vala=.c) # gnome bug 592166
 	touch $@
 endif
 
@@ -65,8 +82,6 @@ xfce4_places_plugin_SOURCES =						\
 	model_user.h							\
 	model_volumes.c							\
 	model_volumes.h							\
-	button.c							\
-	button.h							\
 	xfce46-compat.c							\
 	xfce46-compat.h							\
 	$(xfce4_places_plugin_VALABUILTSOURCES)
