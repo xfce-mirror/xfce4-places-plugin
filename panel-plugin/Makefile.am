@@ -22,9 +22,12 @@ xfce4_popup_places_LDADD =						\
 # Vala sources
 #
 
-xfce4_places_plugin_VAPISOURCES =
+xfce4_places_plugin_VAPISOURCES =					\
+	config.vapi							\
+	view.vapi
 
-xfce4_places_plugin_VALASOURCES =
+xfce4_places_plugin_VALASOURCES =					\
+	places.vala
 
 
 xfce4_places_plugin_VALABUILTSOURCES = $(xfce4_places_plugin_VALASOURCES:.vala=.c)
@@ -33,7 +36,7 @@ if MAINTAINER_MODE
 BUILT_SOURCES = vala.stamp
 $(xfce4_places_plugin_VALABUILTSOURCES): vala.stamp
 vala.stamp: $(xfce4_places_plugin_VALASOURCES)
-	$(VALAC) --vapidir=$(srcdir) --pkg=libxfce4panel-1.0 $^ -C
+	$(VALAC) --vapidir=$(srcdir) --pkg=libxfce4panel-1.0 --pkg=config --pkg=view $^ -C
 	touch $@
 endif
 
@@ -48,8 +51,6 @@ plugin_PROGRAMS =							\
 	xfce4-places-plugin
 
 xfce4_places_plugin_SOURCES =						\
-	places.c							\
-	places.h							\
 	support.c							\
 	support.h							\
 	view.c								\
