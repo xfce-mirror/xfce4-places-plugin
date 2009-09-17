@@ -1,3 +1,7 @@
+#
+# Popup
+#
+
 bin_PROGRAMS = xfce4-popup-places
 
 xfce4_popup_places_SOURCES =						\
@@ -14,6 +18,29 @@ xfce4_popup_places_LDADD =						\
 	$(GTK_LIBS)
 
 
+#
+# Vala sources
+#
+
+xfce4_places_plugin_VAPISOURCES =
+
+xfce4_places_plugin_VALASOURCES =
+
+
+xfce4_places_plugin_VALABUILTSOURCES = $(xfce4_places_plugin_VALASOURCES:.vala=.c)
+
+if MAINTAINER_MODE
+BUILT_SOURCES = vala.stamp
+$(xfce4_places_plugin_VALABUILTSOURCES): vala.stamp
+vala.stamp: $(xfce4_places_plugin_VALASOURCES)
+	$(VALAC) --vapidir=$(srcdir) --pkg=libxfce4panel-1.0 $^ -C
+	touch $@
+endif
+
+
+#
+# Plugin
+#
 
 plugindir = $(libexecdir)/xfce4/panel-plugins
 
@@ -40,8 +67,8 @@ xfce4_places_plugin_SOURCES =						\
 	button.c							\
 	button.h							\
 	xfce46-compat.c							\
-	xfce46-compat.h
-
+	xfce46-compat.h							\
+	$(xfce4_places_plugin_VALABUILTSOURCES)
 
 
 xfce4_places_plugin_CFLAGS =						\
@@ -65,6 +92,7 @@ xfce4_places_plugin_LDADD =						\
 #
 # Desktop file
 #
+
 desktopdir =								\
 	$(datadir)/xfce4/panel-plugins
 
@@ -82,10 +110,22 @@ desktop_DATA =								\
 
 @INTLTOOL_DESKTOP_RULE@
 
+#
+# Extra
+#
+
 EXTRA_DIST =								\
+	$(xfce4_places_plugin_VAPISOURCES)				\
+	$(xfce4_places_plugin_VALASOURCES)				\
 	$(desktop_in_in_files)
 
+if MAINTAINER_MODE
 CLEANFILES =								\
+	$(BUILT_SOURCES)						\
+	$(xfce4_places_plugin_VALABUILTSOURCES)
+endif
+
+DISTCLEANFILES =								\
 	$(desktop_in_files)						\
 	$(desktop_DATA)
 
