@@ -138,7 +138,7 @@ places_bookmark_group_changed(PlacesBookmarkGroup *pbg)
 }
 
 inline PlacesBookmarkGroup*
-places_bookmark_group_create()
+places_bookmark_group_create(void)
 {
     PlacesBookmarkGroup *bookmark_group;
     bookmark_group = g_new0(PlacesBookmarkGroup, 1);

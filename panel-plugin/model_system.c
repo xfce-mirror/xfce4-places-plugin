@@ -94,7 +94,7 @@ pbsys_trash_is_empty(const ThunarVfsInfo *trash_info)
 
 
 static gchar*
-pbsys_desktop_dir()
+pbsys_desktop_dir(void)
 {
     const gchar *home_dir = xfce_get_homedir();
     gchar *desktop_dir = NULL;
@@ -214,7 +214,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     return bookmarks;
 };
 
-gboolean
+static gboolean
 pbsys_changed(PlacesBookmarkGroup *bookmark_group)
 {
     gchar *desktop_dir;
@@ -262,7 +262,7 @@ pbsys_finalize(PlacesBookmarkGroup *bookmark_group)
 }
 
 PlacesBookmarkGroup*
-places_bookmarks_system_create()
+places_bookmarks_system_create(void)
 {
     PlacesBookmarkGroup *bookmark_group;
     

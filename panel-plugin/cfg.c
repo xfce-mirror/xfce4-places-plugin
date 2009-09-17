@@ -325,8 +325,6 @@ pcfg_make_empty_dialog(PlacesCfg *cfg)
 void
 places_cfg_open_dialog(PlacesCfg *cfg)
 {
-    DBG("configure plugin");
-
     GtkWidget *dlg;
     GtkWidget *frame_button, *vbox_button;
     GtkWidget *frame_menu,   *vbox_menu;
@@ -336,7 +334,10 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     GtkWidget *frame_search, *vbox_search;
 
     GtkWidget *tmp_box, *tmp_label, *tmp_widget;
+    GtkObject * adj;
     gint active;
+
+    DBG("configure plugin");
 
     dlg = pcfg_make_empty_dialog(cfg);
 
@@ -506,7 +507,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     gtk_widget_show(tmp_label);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_label, FALSE, FALSE, 0);
 
-    GtkObject *adj = gtk_adjustment_new(cfg->show_recent_number, 1, 25, 1, 5, 5);
+    adj = gtk_adjustment_new(cfg->show_recent_number, 1, 25, 1, 5, 5);
 
     tmp_widget = gtk_spin_button_new(GTK_ADJUSTMENT(adj), 1, 0);
     gtk_label_set_mnemonic_widget(GTK_LABEL(tmp_label), tmp_widget);

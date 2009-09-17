@@ -60,6 +60,9 @@ struct _PlacesButtonClass
     GtkToggleButtonClass parent_class;
 };
 
+GType
+places_button_get_type();
+
 GtkWidget*
 places_button_new();
 

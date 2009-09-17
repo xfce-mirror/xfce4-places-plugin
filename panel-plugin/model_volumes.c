@@ -189,9 +189,12 @@ pbvol_bookmark_finalize(PlacesBookmark *bookmark)
 
 static void
 pbvol_bookmark_action_finalize(PlacesBookmarkAction *action){
+
+    ThunarVfsVolume *volume;
+
     g_assert(action != NULL && action->priv != NULL);
 
-    ThunarVfsVolume *volume = THUNAR_VFS_VOLUME(action->priv);
+    volume = THUNAR_VFS_VOLUME(action->priv);
     g_object_unref(volume);
     action->priv = NULL;
 }

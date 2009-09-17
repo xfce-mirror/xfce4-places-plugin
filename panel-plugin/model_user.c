@@ -234,19 +234,23 @@ pbuser_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 static gboolean
 pbuser_changed(PlacesBookmarkGroup *bookmark_group)
 {
+    PlacesBookmark *bookmark;
+    GList * bookmarks;
+    time_t mtime;
+    gboolean ret;
+
     /* If we haven't even tried, we should load the bookmarks */
     if(pbg_priv(bookmark_group)->loaded == 0)
         goto pbuser_did_change;
 
     /* see if the file has changed (mtime or existence) */
-    time_t mtime = pbuser_get_mtime(pbg_priv(bookmark_group)->filename);
+    mtime = pbuser_get_mtime(pbg_priv(bookmark_group)->filename);
     if(mtime != pbg_priv(bookmark_group)->loaded)
         goto pbuser_did_change;
     
     /* see if any directories have been created or removed */
-    GList *bookmarks = pbg_priv(bookmark_group)->bookmarks;
-    PlacesBookmark *bookmark;
-    gboolean ret = FALSE;
+    bookmarks = pbg_priv(bookmark_group)->bookmarks;
+    ret = FALSE;
 
     while(bookmarks != NULL){
         bookmark = bookmarks->data;
@@ -283,7 +287,7 @@ pbuser_finalize(PlacesBookmarkGroup *bookmark_group)
 /* external interface */
 
 PlacesBookmarkGroup*
-places_bookmarks_user_create()
+places_bookmarks_user_create(void)
 { 
     PlacesBookmarkGroup *bookmark_group;
     

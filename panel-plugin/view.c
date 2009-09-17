@@ -483,13 +483,13 @@ pview_destroy_menu(PlacesView *view)
 static void
 pview_add_menu_item(PlacesView *view, PlacesBookmark *bookmark)
 {
-    g_assert(view != NULL);
-    g_assert(bookmark != NULL);
-
     GtkWidget *separator;
     GtkWidget *item;
     GdkPixbuf *pb;
     GtkWidget *image;
+
+    g_assert(view != NULL);
+    g_assert(bookmark != NULL);
 
     /* lazily add separator */
     if(view->needs_separator){
