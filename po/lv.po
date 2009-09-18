@@ -1,104 +1,163 @@
 # Latvian translation of .
 # Copyright (C) 2007 THE thunar'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the  package.
-# Rihards Prieditis <rprieditis@inbox.lv>, 2007.
 # , fuzzy
+# Rihards Prieditis <rprieditis@inbox.lv>, 2007.
+# Rihards Prieditis <rprieditis@gmail.com>, 2009.
 msgid ""
 msgstr ""
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 01:47-0500\n"
+"POT-Creation-Date: 2008-06-08 12:51+0100\n"
+"PO-Revision-Date: 2009-09-18 22:44+0100\n"
+"Last-Translator: Rihards Prieditis <rprieditis@gmail.com>\n"
+"Language-Team: Latvian <translation-team-lv@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Project-Id-Version: \n"
-"PO-Revision-Date: 2007-11-16 21:00+0300\n"
-"Last-Translator: Rihards Priedītis <rprieditis@inbox.lv>\n"
-"Language-Team: \n"
-"MIME-Version: 1.0\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
 
-#. vim: ai et tabstop=4
+#. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr "Piekļūst mapēm, dokumentiem un noņēmamiem datu nesējiem"
+msgstr "Piekļūst mapēm, dokumentiem un noņemamiem datu nesējiem"
 
-#: ../panel-plugin/places.desktop.in.in.h:2
-#: ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140
-#: ../panel-plugin/cfg.c:259
-#: ../panel-plugin/cfg.c:329
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
 msgid "Places"
 msgstr "Vietas"
 
-#: ../panel-plugin/model_system.c:60
+#. Trash
+#: ../panel-plugin/model_system.c:110
 msgid "Trash"
 msgstr "Miskaste"
 
-#: ../panel-plugin/model_system.c:70
+#. Desktop
+#: ../panel-plugin/model_system.c:135
 msgid "Desktop"
-msgstr "Darbavirsma"
+msgstr "Darbvirsma"
 
-#: ../panel-plugin/model_system.c:78
+#. File System (/)
+#: ../panel-plugin/model_system.c:159
 msgid "File System"
-msgstr "Failu Sistēma"
+msgstr "Failu sistēma"
 
-#: ../panel-plugin/view.c:244
-#: ../panel-plugin/cfg.c:456
+#: ../panel-plugin/model_volumes.c:64
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "Neizdevās izgrūst \"%s\""
+
+#: ../panel-plugin/model_volumes.c:85
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "Neizdevās atmontēt \"%s\""
+
+#: ../panel-plugin/model_volumes.c:107
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "Neizdevās nomontēt \"%s\""
+
+#: ../panel-plugin/model_volumes.c:226
+msgid "Mount and Open"
+msgstr "Montēt un atvērt"
+
+#: ../panel-plugin/model_volumes.c:239
+msgid "Mount"
+msgstr "Montēt"
+
+#: ../panel-plugin/model_volumes.c:260
+msgid "Eject"
+msgstr "Izgrūst"
+
+#: ../panel-plugin/model_volumes.c:272
+msgid "Unmount"
+msgstr "Atmontēt"
+
+#: ../panel-plugin/view.c:678
+msgid "Search for Files"
+msgstr "Meklēt failus"
+
+#: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
-msgstr "Nesenie Dokumenti"
+msgstr "Nesenie dokumenti"
 
-#: ../panel-plugin/cfg.c:345
+#: ../panel-plugin/cfg.c:347
 msgid "Button"
 msgstr "Pogas"
 
-#: ../panel-plugin/cfg.c:354
+#: ../panel-plugin/cfg.c:356
 msgid "_Show"
-msgstr "_Rādī"
-
-#: ../panel-plugin/cfg.c:360
-msgid "Icon Only"
-msgstr "Tikai Ikonas"
-
-#: ../panel-plugin/cfg.c:361
-msgid "Label Only"
-msgstr "Tikai Etiķetes"
+msgstr "_Rādi"
 
 #: ../panel-plugin/cfg.c:362
-msgid "Icon and Label"
-msgstr "Ikonas un Etiķetes"
+msgid "Icon Only"
+msgstr "Tikai ikonas"
 
-#: ../panel-plugin/cfg.c:384
+#: ../panel-plugin/cfg.c:363
+msgid "Label Only"
+msgstr "Tikai etiķetes"
+
+#: ../panel-plugin/cfg.c:364
+msgid "Icon and Label"
+msgstr "Ikonas un etiķetes"
+
+#: ../panel-plugin/cfg.c:386
 msgid "_Label"
 msgstr "_Etiķete"
 
-#: ../panel-plugin/cfg.c:402
+#: ../panel-plugin/cfg.c:404
 msgid "Menu"
 msgstr "Izvēlne"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:406
+#: ../panel-plugin/cfg.c:408
 msgid "Show _icons in menu"
 msgstr "Rādīt _ikonu izvēlnē"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:418
+#: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
-msgstr "Rādit _noņemamos datu nesējus"
+msgstr "Rādīt _noņemamos datu nesējus"
+
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr "Montēt un _atvērt uz klikšķi"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:429
+#: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
 msgstr "Rādīt GTK _grāmatzīmes"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:442
+#: ../panel-plugin/cfg.c:468
 msgid "Show recent _documents"
 msgstr "Rādīt nesenos _dokumentus"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:460
+#: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
 msgstr "Rādīt _notīrīt iespēju"
 
-#: ../panel-plugin/cfg.c:475
+#: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
 msgstr "_Attēlojamo vienumu skaits"
+
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr "Meklēt"
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr "Ko_manda"
+
+#: ../panel-plugin/support.c:148
+msgid "Open"
+msgstr "Atvērt"
+
+#: ../panel-plugin/support.c:163
+msgid "Open Terminal Here"
+msgstr "Atvērt termināli šeit"
 
