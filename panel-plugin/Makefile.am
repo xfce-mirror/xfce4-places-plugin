@@ -53,7 +53,6 @@ vala.stamp: $(xfce4_places_plugin_VALASOURCES)
 	for vala_file in $(xfce4_places_plugin_c_VALASOURCES); do \
 		$(VALAC) $(VALA_OPTS) -C $$vala_file; \
 	done
-	sed -i 's/^\s*gpointer boxed;\s*$$//' $(xfce4_places_plugin_VALASOURCES:.vala=.c) # gnome bug 592166
 	touch $@
 endif
 
