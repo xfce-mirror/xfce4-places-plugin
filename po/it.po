@@ -20,100 +20,158 @@
 # ###
 msgid ""
 msgstr ""
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 01:47-0500\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-06-08 12:51+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
 "Language-Team: Italian Translation Team <xfce-it-translators@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 
-#. vim: ai et tabstop=4
+#. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr "Accede a cartelle, documenti e supporti rimovibili"
+msgstr "Acceso a cartelle, documenti e supporti rimovibili"
 
 #: ../panel-plugin/places.desktop.in.in.h:2
-#: ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140
-#: ../panel-plugin/cfg.c:259
-#: ../panel-plugin/cfg.c:329
+#: ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105
+#: ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
 msgid "Places"
 msgstr "Risorse"
 
-#: ../panel-plugin/model_system.c:60
+#. Trash
+#: ../panel-plugin/model_system.c:110
 msgid "Trash"
 msgstr "Cestino"
 
-#: ../panel-plugin/model_system.c:70
+#. Desktop
+#: ../panel-plugin/model_system.c:135
 msgid "Desktop"
 msgstr "Scrivania"
 
-#: ../panel-plugin/model_system.c:78
+#. File System (/)
+#: ../panel-plugin/model_system.c:159
 msgid "File System"
 msgstr "File system"
 
-#: ../panel-plugin/view.c:244
-#: ../panel-plugin/cfg.c:456
+#: ../panel-plugin/model_volumes.c:64
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "Impossibile espellere «%s»"
+
+#: ../panel-plugin/model_volumes.c:85
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "Impossibile smontare «%s»"
+
+#: ../panel-plugin/model_volumes.c:107
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "Impossibile montare «%s»"
+
+#: ../panel-plugin/model_volumes.c:226
+msgid "Mount and Open"
+msgstr "Monta e apri"
+
+#: ../panel-plugin/model_volumes.c:239
+msgid "Mount"
+msgstr "Monta"
+
+#: ../panel-plugin/model_volumes.c:260
+msgid "Eject"
+msgstr "Espelli"
+
+#: ../panel-plugin/model_volumes.c:272
+msgid "Unmount"
+msgstr "Smonta"
+
+#: ../panel-plugin/view.c:678
+msgid "Search for Files"
+msgstr "Ricerca file"
+
+#: ../panel-plugin/view.c:731
+#: ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "Documenti recenti"
 
-#: ../panel-plugin/cfg.c:345
+#: ../panel-plugin/cfg.c:347
 msgid "Button"
 msgstr "Pulsante"
 
-#: ../panel-plugin/cfg.c:354
+#: ../panel-plugin/cfg.c:356
 msgid "_Show"
 msgstr "_Mostra"
 
-#: ../panel-plugin/cfg.c:360
+#: ../panel-plugin/cfg.c:362
 msgid "Icon Only"
 msgstr "Solo icona"
 
-#: ../panel-plugin/cfg.c:361
+#: ../panel-plugin/cfg.c:363
 msgid "Label Only"
 msgstr "Solo etichetta"
 
-#: ../panel-plugin/cfg.c:362
+#: ../panel-plugin/cfg.c:364
 msgid "Icon and Label"
 msgstr "Icona ed etichetta"
 
-#: ../panel-plugin/cfg.c:384
+#: ../panel-plugin/cfg.c:386
 msgid "_Label"
 msgstr "_Etichetta"
 
-#: ../panel-plugin/cfg.c:402
+#: ../panel-plugin/cfg.c:404
 msgid "Menu"
 msgstr "Menu"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:406
+#: ../panel-plugin/cfg.c:408
 msgid "Show _icons in menu"
 msgstr "Mostra le _icone nel menu"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:418
+#: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
 msgstr "Mostra i supporti _rimovibili"
 
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr "M_onta e apri con un click"
+
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:429
+#: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
 msgstr "Mostra i segnali_bri GTK"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:442
+#: ../panel-plugin/cfg.c:468
 msgid "Show recent _documents"
 msgstr "Mostra _documenti recenti"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:460
+#: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
 msgstr "Mostra l'opzione di pu_litura"
 
-#: ../panel-plugin/cfg.c:475
+#: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
 msgstr "_Numero da visualizzare"
+
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr "Cerca"
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr "Co_mando"
+
+#: ../panel-plugin/support.c:148
+msgid "Open"
+msgstr "Apri"
+
+#: ../panel-plugin/support.c:163
+msgid "Open Terminal Here"
+msgstr "Apri un terminale qui"
 
