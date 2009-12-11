@@ -25,98 +25,156 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 01:47-0500\n"
-"PO-Revision-Date: 2008-01-03 21:48+0100\n"
+"POT-Creation-Date: 2008-06-08 12:51+0100\n"
+"PO-Revision-Date: 2009-12-11 20:33+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. vim: ai et tabstop=4
+#. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
 msgstr "Přístup ke složkám, dokumentům a vyměnitelným médiím"
 
 #: ../panel-plugin/places.desktop.in.in.h:2
-#: ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140
-#: ../panel-plugin/cfg.c:259
-#: ../panel-plugin/cfg.c:329
+#: ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105
+#: ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
 msgid "Places"
 msgstr "Místa"
 
-#: ../panel-plugin/model_system.c:60
+#. Trash
+#: ../panel-plugin/model_system.c:110
 msgid "Trash"
 msgstr "Koš"
 
-#: ../panel-plugin/model_system.c:70
+#. Desktop
+#: ../panel-plugin/model_system.c:135
 msgid "Desktop"
 msgstr "Pracovní plocha"
 
-#: ../panel-plugin/model_system.c:78
+#. File System (/)
+#: ../panel-plugin/model_system.c:159
 msgid "File System"
 msgstr "Systém souborů"
 
-#: ../panel-plugin/view.c:244
-#: ../panel-plugin/cfg.c:456
+#: ../panel-plugin/model_volumes.c:64
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "Nepodařilo se vysunout \"%s\""
+
+#: ../panel-plugin/model_volumes.c:85
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "Nepodařilo se odpojit \"%s\""
+
+#: ../panel-plugin/model_volumes.c:107
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "Nepodařilo se připojit \"%s\""
+
+#: ../panel-plugin/model_volumes.c:226
+msgid "Mount and Open"
+msgstr "Připojit a otevřít"
+
+#: ../panel-plugin/model_volumes.c:239
+msgid "Mount"
+msgstr "Připojit"
+
+#: ../panel-plugin/model_volumes.c:260
+msgid "Eject"
+msgstr "Vysunout"
+
+#: ../panel-plugin/model_volumes.c:272
+msgid "Unmount"
+msgstr "Odpojit"
+
+#: ../panel-plugin/view.c:678
+msgid "Search for Files"
+msgstr "Hledat soubory"
+
+#: ../panel-plugin/view.c:731
+#: ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "Nedávné dokumenty"
 
-#: ../panel-plugin/cfg.c:345
+#: ../panel-plugin/cfg.c:347
 msgid "Button"
 msgstr "Tlačítko"
 
-#: ../panel-plugin/cfg.c:354
+#: ../panel-plugin/cfg.c:356
 msgid "_Show"
 msgstr "_Zobrazit"
 
-#: ../panel-plugin/cfg.c:360
+#: ../panel-plugin/cfg.c:362
 msgid "Icon Only"
 msgstr "Pouze ikona"
 
-#: ../panel-plugin/cfg.c:361
+#: ../panel-plugin/cfg.c:363
 msgid "Label Only"
 msgstr "Pouze popisek"
 
-#: ../panel-plugin/cfg.c:362
+#: ../panel-plugin/cfg.c:364
 msgid "Icon and Label"
 msgstr "Ikona a popisek"
 
-#: ../panel-plugin/cfg.c:384
+#: ../panel-plugin/cfg.c:386
 msgid "_Label"
 msgstr "_Popisek"
 
-#: ../panel-plugin/cfg.c:402
+#: ../panel-plugin/cfg.c:404
 msgid "Menu"
 msgstr "Nabídka"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:406
+#: ../panel-plugin/cfg.c:408
 msgid "Show _icons in menu"
 msgstr "Zobrazovat _ikony v nabídce"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:418
+#: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
 msgstr "Zobrazovat _vyměnitelná média"
 
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr "Připojit a _otevřít po kliknutí"
+
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:429
+#: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
 msgstr "Zobrazovat _záložky GTK"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:442
+#: ../panel-plugin/cfg.c:468
 msgid "Show recent _documents"
 msgstr "Zobrazit nedávné _dokumenty"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:460
+#: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
 msgstr "Zobrazovat vo_lbu vyčistit"
 
-#: ../panel-plugin/cfg.c:475
+#: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
 msgstr "_Počet zobrazených položek"
+
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr "Hledat"
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr "_Příkaz"
+
+#: ../panel-plugin/support.c:148
+msgid "Open"
+msgstr "Otevřít"
+
+#: ../panel-plugin/support.c:163
+msgid "Open Terminal Here"
+msgstr "Otevřít terminál zde"
 
