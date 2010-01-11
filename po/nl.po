@@ -6,10 +6,10 @@
 # Copyright (C) 2004-2006 Benedikt Meurer.
 # This file is distributed under the same license as the Thunar package.
 # Vincent Tunru <imnotb@gmail.com>, 2006.
-#
+# 
 # ###
 # Dutch translation for gnome-panel
-#
+# 
 # Copyright (C) 1998 Free Software Foundation, Inc.
 # Dirk-Jan C. Binnema <djcb@dds.nl>, 1998, 1999.
 # Dennis Smit <synap@area101.penguin.nl>, 2000.
@@ -20,16 +20,16 @@
 # Tino Meinen <a.t.meinen@chello.nl>, 2002. 2006, 2007.
 # Reinout van Schouwen <reinout@cs.vu.nl>, 2002-2006
 # Wouter Bolsterlee <uws+gnome@xs4all.nl>, 2006
-#
+# 
 # desktop - bureaublad
 # workspace - werkblad
-#
+# 
 # TODO: Het Desktop/Werkplek-menu heet tegenwoordig System (overgenomen van
 # Ubuntu. Voorlopig hebben we nog gewoon Werkplek als vertaling, maar er
 # moet nog een keer over gesproken worden… wellicht is "Computer" of
 # "Systeem" wel wenselijker.
 #                                     -- Wouter Bolsterlee, 8 augustus 2006
-#
+# 
 # ###
 msgid ""
 msgstr ""
@@ -48,10 +48,8 @@ msgstr ""
 msgid "Access folders, documents, and removable media"
 msgstr "Toegang tot mappen, documenten en verwisselbare schijven"
 
-#: ../panel-plugin/places.desktop.in.in.h:2
-#: ../panel-plugin/cfg.c:64
-#: ../panel-plugin/cfg.c:105
-#: ../panel-plugin/cfg.c:205
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
 #: ../panel-plugin/cfg.c:311
 msgid "Places"
 msgstr "Locaties"
@@ -106,8 +104,7 @@ msgstr "Ontkoppelen"
 msgid "Search for Files"
 msgstr "Bestanden zoeken"
 
-#: ../panel-plugin/view.c:731
-#: ../panel-plugin/cfg.c:486
+#: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "Recente documenten"
 
@@ -150,13 +147,11 @@ msgid "Show _removable media"
 msgstr "Ver_wisselbare schijven weergeven"
 
 #: ../panel-plugin/cfg.c:441
-#, fuzzy
 msgid "Mount and _Open on click"
-msgstr "Aankoppelen en openen na klik"
+msgstr "Aankoppelen en openen na klikken"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:455
-#, fuzzy
 msgid "Show GTK _bookmarks"
 msgstr "_Favoriete locaties weergeven"
 
@@ -189,4 +184,3 @@ msgstr "Openen"
 #: ../panel-plugin/support.c:163
 msgid "Open Terminal Here"
 msgstr "Hier een terminalvenster openen"
-
