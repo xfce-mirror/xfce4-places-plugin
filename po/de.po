@@ -8,7 +8,7 @@
 # Benedikt Meurer <benny@xfce.org>, 2005-2007.
 # Fabian Nowak <timystery@arcor.de>, 2006, 2007, 2008
 # Jannis Pohlmann <jannis@xfce.org>, 2006.
-#
+# 
 # ###
 # German gnome-panel translation.
 # Copyright (C) 1998-2004 Free Software Foundation, Inc.
@@ -22,13 +22,13 @@
 # Christian Neumair <chris@gnome-de.org>, 2002-2004.
 # Hendrik Richter <hendrikr@gnome.org>, 2004, 2005, 2006, 2007.
 # Christian Kintner <mail@christian-kintner.de>, 2006.
-#
+# 
 # ###
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-places-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-31 21:18+0100\n"
+"POT-Creation-Date: 2008-06-08 12:51+0100\n"
 "PO-Revision-Date: 2008-10-27 22:38+0100\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German\n"
@@ -55,7 +55,7 @@ msgstr "Papierkorb"
 #. Desktop
 #: ../panel-plugin/model_system.c:135
 msgid "Desktop"
-msgstr "Desktop"
+msgstr "Schreibtisch"
 
 #. File System (/)
 #: ../panel-plugin/model_system.c:159
@@ -99,7 +99,7 @@ msgstr "Nach Dateien suchen"
 
 #: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
-msgstr "Zuletzt geöffnete Dokumente"
+msgstr "Zuletzt verwendete Dokumente"
 
 #: ../panel-plugin/cfg.c:347
 msgid "Button"
@@ -107,7 +107,7 @@ msgstr "Schaltfläche"
 
 #: ../panel-plugin/cfg.c:356
 msgid "_Show"
-msgstr "_Zeigen"
+msgstr "_Anzeigestil:"
 
 #: ../panel-plugin/cfg.c:362
 msgid "Icon Only"
@@ -123,7 +123,7 @@ msgstr "Symbol und Text"
 
 #: ../panel-plugin/cfg.c:386
 msgid "_Label"
-msgstr "_Text"
+msgstr "_Text:"
 
 #: ../panel-plugin/cfg.c:404
 msgid "Menu"
@@ -160,7 +160,7 @@ msgstr "_Option zum Löschen zeigen"
 
 #: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
-msgstr "_Anzahl anzuzeigender Elemente"
+msgstr "_Anzahl Einträge:"
 
 #: ../panel-plugin/cfg.c:525
 msgid "Search"
@@ -168,7 +168,7 @@ msgstr "Suchen"
 
 #: ../panel-plugin/cfg.c:533
 msgid "Co_mmand"
-msgstr "_Befehl"
+msgstr "_Befehl:"
 
 #: ../panel-plugin/support.c:148
 msgid "Open"
