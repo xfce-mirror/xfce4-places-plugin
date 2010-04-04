@@ -1,114 +1,160 @@
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
-# ###
-# translation of pa.po to Punjabi
-# Punjabi translation of the thunar package.
-# Copyright (C) 2003-2007 Benedikt Meurer.
-# This file is distributed under the same license as the thunar package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 #
-# Amanpreet Singh Alam <aalam@users.sf.net>, 2006-2007.
-# A S Alam <aalam@users.sf.net>, 2007.
-# ###
-# translation of gnome-panel.HEAD.po to Punjabi
-# Amanpreet Singh Alam (amanlinux@netscape.net)
-# KBST Punjab  (kbstpunjab@netscape.net)
-# KABHU NAA CHHADE KHAT
-#
-#
-# Amanpreet Singh Alam <aalam@redhat.com>, 2004, 2005, 2006.
-# Amanpreet Singh Alam <amanpreetalam@yahoo.com>, 2005, 2006.
-# A S Alam <apbrar@gmail.com>, 2006, 2007.
-# A S Alam <aalam@users.sf.net>, 2007.
-# ###
+# A S Alam <aalam@users.sf.net>, 2010.
 msgid ""
 msgstr ""
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 01:47-0500\n"
+"POT-Creation-Date: 2008-06-08 12:51+0100\n"
+"PO-Revision-Date: 2010-04-04 10:13+0530\n"
+"Last-Translator: A S Alam <aalam@users.sf.net>\n"
+"Language-Team: Punjabi/Panjabi <kde-i18n-doc@kde.org>\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#. vim: ai et tabstop=4
+#. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr ""
+msgstr "ਫੋਲਡਰ, ਡੌਕੂਮੈਂਟ ਅਤੇ ਹਟਾਉਣਯੋਗ ਮੀਡਿਆ ਵਰਤੋਂ"
 
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140 ../panel-plugin/cfg.c:259
-#: ../panel-plugin/cfg.c:329
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
 msgid "Places"
 msgstr "ਥਾਵਾਂ"
 
-#: ../panel-plugin/model_system.c:60
+#. Trash
+#: ../panel-plugin/model_system.c:110
 msgid "Trash"
 msgstr "ਰੱਦੀ"
 
-#: ../panel-plugin/model_system.c:70
+#. Desktop
+#: ../panel-plugin/model_system.c:135
 msgid "Desktop"
 msgstr "ਡੈਸਕਟਾਪ"
 
-#: ../panel-plugin/model_system.c:78
+#. File System (/)
+#: ../panel-plugin/model_system.c:159
 msgid "File System"
 msgstr "ਫਾਇਲ ਸਿਸਟਮ"
 
-#: ../panel-plugin/view.c:244 ../panel-plugin/cfg.c:456
+#: ../panel-plugin/model_volumes.c:64
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "\"%s\" ਕੱਢਣ ਲਈ ਫੇਲ੍ਹ"
+
+#: ../panel-plugin/model_volumes.c:85
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "'\"%s' ਅਣ-ਮਾਊਂਟ ਕਰਨ ਲਈ ਫੇਲ੍ਹ"
+
+#: ../panel-plugin/model_volumes.c:107
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "\"%s\" ਮਾਊਂਟ ਕਰਨ ਲਈ ਫੇਲ੍ਹ"
+
+#: ../panel-plugin/model_volumes.c:226
+msgid "Mount and Open"
+msgstr "ਮਾਊਂਟ ਕਰੋ ਤੇ ਖੋਲ੍ਹੋ"
+
+#: ../panel-plugin/model_volumes.c:239
+msgid "Mount"
+msgstr "ਮਾਊਂਟ ਕਰੋ"
+
+#: ../panel-plugin/model_volumes.c:260
+msgid "Eject"
+msgstr "ਕੱਢੋ"
+
+#: ../panel-plugin/model_volumes.c:272
+msgid "Unmount"
+msgstr "ਅਣ-ਮਾਊਂਟ"
+
+#: ../panel-plugin/view.c:678
+msgid "Search for Files"
+msgstr "ਫਾਇਲਾਂ ਲਈ ਖੋਜ"
+
+#: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
-msgstr "ਤਾਜ਼ਾ ਦਸਤਾਵੇਜ਼"
+msgstr "ਤਾਜ਼ਾ ਡੌਕੂਮੈਂਟ"
 
-#: ../panel-plugin/cfg.c:345
+#: ../panel-plugin/cfg.c:347
 msgid "Button"
-msgstr ""
+msgstr "ਬਟਨ"
 
-#: ../panel-plugin/cfg.c:354
+#: ../panel-plugin/cfg.c:356
 msgid "_Show"
-msgstr ""
-
-#: ../panel-plugin/cfg.c:360
-msgid "Icon Only"
-msgstr ""
-
-#: ../panel-plugin/cfg.c:361
-msgid "Label Only"
-msgstr ""
+msgstr "ਵੇਖੋ(_S)"
 
 #: ../panel-plugin/cfg.c:362
+msgid "Icon Only"
+msgstr "ਕੇਵਲ ਆਈਕਾਨ"
+
+#: ../panel-plugin/cfg.c:363
+msgid "Label Only"
+msgstr "ਕੇਵਲ ਲੇਬਲ"
+
+#: ../panel-plugin/cfg.c:364
 msgid "Icon and Label"
-msgstr ""
+msgstr "ਆਈਕਾਨ ਤੇ ਲੇਬਲ"
 
-#: ../panel-plugin/cfg.c:384
+#: ../panel-plugin/cfg.c:386
 msgid "_Label"
-msgstr ""
+msgstr "ਲੇਬਲ(_L)"
 
-#: ../panel-plugin/cfg.c:402
+#: ../panel-plugin/cfg.c:404
 msgid "Menu"
-msgstr ""
+msgstr "ਮੇਨੂ"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:406
+#: ../panel-plugin/cfg.c:408
 msgid "Show _icons in menu"
-msgstr ""
+msgstr "ਮੇਨੂ ਵਿੱਚ ਆਈਕਾਨ ਵੇਖੋ(_i)"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:418
+#: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
-msgstr ""
+msgstr "ਹਟਾਉਣਯੋਗ ਮੀਡਿਆ ਵੇਖੋ(_r)"
+
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr "ਮਾਊਂਟ ਕਰੋ ਅਤੇ ਕਲਿੱਕ ਕਰਨ ਨਾਲ ਖੋਲ੍ਹੋ(_O)"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:429
+#: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
-msgstr ""
+msgstr "GTK ਬੁੱਕਮਾਰਕ ਵੇਖੋ(_b)"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:442
-#, fuzzy
+#: ../panel-plugin/cfg.c:468
 msgid "Show recent _documents"
-msgstr "ਤਾਜ਼ਾ ਦਸਤਾਵੇਜ਼"
+msgstr "ਤਾਜ਼ਾ ਡੌਕੂਮੈਂਟ ਵੇਖੋ(_d)"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:460
+#: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
-msgstr ""
+msgstr "ਸਾਫ਼ ਕਰੋ ਚੋਣ ਵੇਖੋ(_e)"
 
-#: ../panel-plugin/cfg.c:475
+#: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
-msgstr ""
+msgstr "ਡਿਸਪਲੇਅ ਲਈ ਗਿਣਤੀ(_N)"
+
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr "ਖੋਜ"
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr "ਕਮਾਂਡ(_m)"
+
+#: ../panel-plugin/support.c:148
+msgid "Open"
+msgstr "ਖੋਲ੍ਹੋ"
+
+#: ../panel-plugin/support.c:163
+msgid "Open Terminal Here"
+msgstr "ਟਰਮੀਨਲ ਇੱਥੇ ਖੋਲ੍ਹੋ"
+
