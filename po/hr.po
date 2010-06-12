@@ -2,25 +2,24 @@
 # Copyright (C) 2010 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce4-places-plugin package.
 #  Ivica Kolić<ikoli@yahoo.com>, 2010.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-places-plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-08 12:51+0100\n"
 "PO-Revision-Date: 2010-06-12 02:20+0200\n"
-"Last-Translator:Ivica Kolić<ikoli@yahoo.com>\n"
+"Last-Translator: Ivica Kolić<ikoli@yahoo.com>\n"
 "Language-Team: Croatian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr ""
+msgstr "Pristup mapama, dokumentima i uklonjivim medijima"
 
 #: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
 #: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
@@ -31,130 +30,130 @@ msgstr "Mjesta"
 #. Trash
 #: ../panel-plugin/model_system.c:110
 msgid "Trash"
-msgstr ""
+msgstr "Smeće"
 
 #. Desktop
 #: ../panel-plugin/model_system.c:135
 msgid "Desktop"
-msgstr ""
+msgstr "Radna površina"
 
 #. File System (/)
 #: ../panel-plugin/model_system.c:159
 msgid "File System"
-msgstr ""
+msgstr "Datotečni sustav"
 
 #: ../panel-plugin/model_volumes.c:64
 #, c-format
 msgid "Failed to eject \"%s\""
-msgstr ""
+msgstr "Neuspjeh u izbacivanju \"%s\""
 
 #: ../panel-plugin/model_volumes.c:85
 #, c-format
 msgid "Failed to unmount \"%s\""
-msgstr ""
+msgstr "Neuspjeh u  demontiranju \"%s\""
 
 #: ../panel-plugin/model_volumes.c:107
 #, c-format
 msgid "Failed to mount \"%s\""
-msgstr ""
+msgstr "Neuspjeh u montiranju \"%s\""
 
 #: ../panel-plugin/model_volumes.c:226
 msgid "Mount and Open"
-msgstr ""
+msgstr "Montiraj i otvori"
 
 #: ../panel-plugin/model_volumes.c:239
 msgid "Mount"
-msgstr ""
+msgstr "Montiraj"
 
 #: ../panel-plugin/model_volumes.c:260
 msgid "Eject"
-msgstr ""
+msgstr "Izbaci"
 
 #: ../panel-plugin/model_volumes.c:272
 msgid "Unmount"
-msgstr ""
+msgstr "Demontiraj"
 
 #: ../panel-plugin/view.c:678
 msgid "Search for Files"
-msgstr ""
+msgstr "Traži datoteke"
 
 #: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
-msgstr ""
+msgstr "Nedavni dokumenti"
 
 #: ../panel-plugin/cfg.c:347
 msgid "Button"
-msgstr ""
+msgstr "Dugme"
 
 #: ../panel-plugin/cfg.c:356
 msgid "_Show"
-msgstr ""
+msgstr "_Pokaži"
 
 #: ../panel-plugin/cfg.c:362
 msgid "Icon Only"
-msgstr ""
+msgstr "Samo ikona"
 
 #: ../panel-plugin/cfg.c:363
 msgid "Label Only"
-msgstr ""
+msgstr "Samo natpis"
 
 #: ../panel-plugin/cfg.c:364
 msgid "Icon and Label"
-msgstr ""
+msgstr "Ikona i natpis"
 
 #: ../panel-plugin/cfg.c:386
 msgid "_Label"
-msgstr ""
+msgstr "_Natpis"
 
 #: ../panel-plugin/cfg.c:404
 msgid "Menu"
-msgstr ""
+msgstr "Izbornik"
 
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:408
 msgid "Show _icons in menu"
-msgstr ""
+msgstr "Pokaži _ikone u izborniku"
 
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
-msgstr ""
+msgstr "Pokaži _uklonjive medije"
 
 #: ../panel-plugin/cfg.c:441
 msgid "Mount and _Open on click"
-msgstr ""
+msgstr "Montiraj i _otvori klikom"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
-msgstr ""
+msgstr "Pokaži GTK _zabilješke"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:468
 msgid "Show recent _documents"
-msgstr ""
+msgstr "Pokaži nedavne _dokumente"
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
-msgstr ""
+msgstr "Pokaži op_ciju čisti"
 
 #: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
-msgstr ""
+msgstr "_Broj za prikazati"
 
 #: ../panel-plugin/cfg.c:525
 msgid "Search"
-msgstr ""
+msgstr "Traži"
 
 #: ../panel-plugin/cfg.c:533
 msgid "Co_mmand"
-msgstr ""
+msgstr "Na_redba"
 
 #: ../panel-plugin/support.c:148
 msgid "Open"
-msgstr ""
+msgstr "Otvori"
 
 #: ../panel-plugin/support.c:163
 msgid "Open Terminal Here"
-msgstr ""
+msgstr "Otvori terminal ovdje"
