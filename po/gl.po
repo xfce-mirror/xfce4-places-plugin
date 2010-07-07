@@ -2,15 +2,15 @@
 # Copyright (C) 2008-2009 Leandro Regueiro
 # Copyright (C) 1999-2004 Jesús Bravo Álvarez
 # This file is distributed under the same license as the xfce4-places-plugin package.
-#
+# 
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2008, 2009.
 # Iván Seoane Pardo <talivan.ivan@gmail.com>, 2006.
 # Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
 # Jesús Bravo Álvarez <suso@trasno.net>, 1999-2004.
-#
+# 
 # Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
 # colaborar connosco, podes atopar máis información en <http://trasno.net>
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -29,10 +29,8 @@ msgstr ""
 msgid "Access folders, documents, and removable media"
 msgstr "Acceder a cartafoles, documentos, e soportes extraíbles"
 
-#: ../panel-plugin/places.desktop.in.in.h:2
-#: ../panel-plugin/cfg.c:64
-#: ../panel-plugin/cfg.c:105
-#: ../panel-plugin/cfg.c:205
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
 #: ../panel-plugin/cfg.c:311
 msgid "Places"
 msgstr "Lugares"
@@ -87,8 +85,7 @@ msgstr "Desmontar"
 msgid "Search for Files"
 msgstr "Buscar ficheiros"
 
-#: ../panel-plugin/view.c:731
-#: ../panel-plugin/cfg.c:486
+#: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "Documentos recentes"
 
@@ -98,7 +95,7 @@ msgstr "Botón"
 
 #: ../panel-plugin/cfg.c:356
 msgid "_Show"
-msgstr "Amo_sar"
+msgstr "Mo_strar"
 
 #: ../panel-plugin/cfg.c:362
 msgid "Icon Only"
@@ -168,4 +165,3 @@ msgstr "Abrir"
 #: ../panel-plugin/support.c:163
 msgid "Open Terminal Here"
 msgstr "Abrir terminal aquí"
-
