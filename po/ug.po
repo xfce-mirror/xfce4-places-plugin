@@ -1,0 +1,158 @@
+# Uyghur translations for Thunar package.
+# Copyright (C) 2004-2007 Benedikt Meurer.
+# This file is distributed under the same license as the Thunar package.
+# Gheyret T.Kenji <gheyret@gmail.com>, 2010.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-06-08 12:51+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Gheyret T.Kenji <gheyret@gmail.com>\n"
+"Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. vim: set ai et tabstop=4:
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr ""
+
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
+msgid "Places"
+msgstr "ئورۇنلار"
+
+#. Trash
+#: ../panel-plugin/model_system.c:110
+msgid "Trash"
+msgstr "ئەخلەت ساندۇقى"
+
+#. Desktop
+#: ../panel-plugin/model_system.c:135
+msgid "Desktop"
+msgstr "ئۈستەليۈزى"
+
+#. File System (/)
+#: ../panel-plugin/model_system.c:159
+msgid "File System"
+msgstr "ھۆججەت سىستېمىسى"
+
+#: ../panel-plugin/model_volumes.c:64
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "«%s» نى چىقىرالمىدى"
+
+#: ../panel-plugin/model_volumes.c:85
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "\"%s\" unmount قىلىش مەغلۇپ بولدى"
+
+#: ../panel-plugin/model_volumes.c:107
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "\"%s\" mount قىلىش مەغلۇپ بولدى"
+
+#: ../panel-plugin/model_volumes.c:226
+msgid "Mount and Open"
+msgstr "Mount ۋە ئېچىش"
+
+#: ../panel-plugin/model_volumes.c:239
+msgid "Mount"
+msgstr "Mount"
+
+#: ../panel-plugin/model_volumes.c:260
+msgid "Eject"
+msgstr "قاڭقىت"
+
+#: ../panel-plugin/model_volumes.c:272
+msgid "Unmount"
+msgstr "Unmount"
+
+#: ../panel-plugin/view.c:678
+msgid "Search for Files"
+msgstr "ھۆججەت ئىزدەش"
+
+#: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
+msgid "Recent Documents"
+msgstr "يېقىنقى پۈتۈكلەر"
+
+#: ../panel-plugin/cfg.c:347
+msgid "Button"
+msgstr "توپچا"
+
+#: ../panel-plugin/cfg.c:356
+msgid "_Show"
+msgstr "كۆرسەت(_S)"
+
+#: ../panel-plugin/cfg.c:362
+msgid "Icon Only"
+msgstr "سىنبەلگىنىلا"
+
+#: ../panel-plugin/cfg.c:363
+msgid "Label Only"
+msgstr "ئەننىلا"
+
+#: ../panel-plugin/cfg.c:364
+msgid "Icon and Label"
+msgstr "سىنبەلگە ۋە ئەن"
+
+#: ../panel-plugin/cfg.c:386
+msgid "_Label"
+msgstr "ئەن(_L)"
+
+#: ../panel-plugin/cfg.c:404
+msgid "Menu"
+msgstr "Menu"
+
+#. MENU: Show Icons
+#: ../panel-plugin/cfg.c:408
+msgid "Show _icons in menu"
+msgstr "Menu نىڭ ئىچىدە سىنبەلگە كۆرسەت(_I):"
+
+#. MENU: Show Removable Media
+#: ../panel-plugin/cfg.c:420
+msgid "Show _removable media"
+msgstr "چىقارغىلى بولىدىغان media نى كۆرسەت(_R)"
+
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr "چەكسىلا Mount قىل ۋە ئاچ(_O)"
+
+#. MENU: Show GTK Bookmarks
+#: ../panel-plugin/cfg.c:455
+msgid "Show GTK _bookmarks"
+msgstr "GTK خەتكۈچلىرىنى كۆرسەت(_B)"
+
+#. MENU: Show Recent Documents
+#: ../panel-plugin/cfg.c:468
+msgid "Show recent _documents"
+msgstr "يېقىنقى پۈتۈكلەرنى كۆرسەت(_D)"
+
+#. RECENT DOCUMENTS: Show clear option
+#: ../panel-plugin/cfg.c:490
+msgid "Show cl_ear option"
+msgstr "تازىلاش تاللانمىسىنى كۆرسەت(_E)"
+
+#: ../panel-plugin/cfg.c:505
+msgid "_Number to display"
+msgstr ""
+
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr "ئىزدە"
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr "بۇيرۇق(_M)"
+
+#: ../panel-plugin/support.c:148
+msgid "Open"
+msgstr "ئاچ"
+
+#: ../panel-plugin/support.c:163
+msgid "Open Terminal Here"
+msgstr "بۇ يەردە تېرمىنالنى ئاچ"
