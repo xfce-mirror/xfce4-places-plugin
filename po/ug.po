@@ -18,7 +18,7 @@ msgstr ""
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr ""
+msgstr "مۇندەرىجە، پۈتۈك ۋە ھەرىكەتچان media نى زىيارەت قىلىش"
 
 #: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
 #: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
@@ -66,7 +66,7 @@ msgstr "Mount"
 
 #: ../panel-plugin/model_volumes.c:260
 msgid "Eject"
-msgstr "قاڭقىت"
+msgstr "چىقار"
 
 #: ../panel-plugin/model_volumes.c:272
 msgid "Unmount"
@@ -106,7 +106,7 @@ msgstr "ئەن(_L)"
 
 #: ../panel-plugin/cfg.c:404
 msgid "Menu"
-msgstr "Menu"
+msgstr "تىزىملىك"
 
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:408
@@ -139,7 +139,7 @@ msgstr "تازىلاش تاللانمىسىنى كۆرسەت(_E)"
 
 #: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
-msgstr ""
+msgstr "كۆرسىتىدىغان سان"
 
 #: ../panel-plugin/cfg.c:525
 msgid "Search"
