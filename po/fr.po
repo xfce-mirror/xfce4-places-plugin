@@ -9,12 +9,12 @@
 # Rafaël Carré <wavael@yahoo.fr>, 2006.
 # Maximilian Schleiss <maxschleiss@solnet.ch>, 2006-2007.
 # Gérald Barré <g.barre@free.fr>, 2006.
-#
+# 
 # ###
 # French translation of gnome-panel.
 # Copyright (C) 1998-2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-panel package.
-#
+# 
 # Vincent Renardias <vincent@ldsol.com>, 1998-2000.
 # Joaquim Fellmann <joaquim@hrnet.fr>, 2000.
 # Christophe Merlet <redfox@redfoxcenter.org>, 2000-2006.
@@ -23,104 +23,158 @@
 # Benoît Dejean <benoit@placenet.org>, 2006.
 # Robert-André Mauchin <zebob.m@gmail.com>, 2006-2007.
 # Damien Durand <splinux@fedoraproject.org>, 2006
-#
+# 
 # ###
 msgid ""
 msgstr ""
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 01:47-0500\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-06-08 12:51+0100\n"
 "PO-Revision-Date: 2007-10-24 11:42+0100\n"
 "Last-Translator: Mike Massonnet <mmassonnet@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 
-#. vim: ai et tabstop=4
+#. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
 msgstr "Accéder aux répertoires, documents, et périphériques amovibles"
 
-#: ../panel-plugin/places.desktop.in.in.h:2
-#: ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140
-#: ../panel-plugin/cfg.c:259
-#: ../panel-plugin/cfg.c:329
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
 msgid "Places"
 msgstr "Raccourcis"
 
-#: ../panel-plugin/model_system.c:60
+#. Trash
+#: ../panel-plugin/model_system.c:110
 msgid "Trash"
 msgstr "Corbeille"
 
-#: ../panel-plugin/model_system.c:70
+#. Desktop
+#: ../panel-plugin/model_system.c:135
 msgid "Desktop"
 msgstr "Bureau"
 
-#: ../panel-plugin/model_system.c:78
+#. File System (/)
+#: ../panel-plugin/model_system.c:159
 msgid "File System"
 msgstr "Système de fichiers"
 
-#: ../panel-plugin/view.c:244
-#: ../panel-plugin/cfg.c:456
+#: ../panel-plugin/model_volumes.c:64
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "Echec de l'éjection de \"%s\""
+
+#: ../panel-plugin/model_volumes.c:85
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "Echec de démontage de \"%s\""
+
+#: ../panel-plugin/model_volumes.c:107
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "Echec de montage de \"%s\""
+
+#: ../panel-plugin/model_volumes.c:226
+msgid "Mount and Open"
+msgstr "Monter et ouvrir"
+
+#: ../panel-plugin/model_volumes.c:239
+msgid "Mount"
+msgstr "Monter"
+
+#: ../panel-plugin/model_volumes.c:260
+msgid "Eject"
+msgstr "Ejecter"
+
+#: ../panel-plugin/model_volumes.c:272
+msgid "Unmount"
+msgstr "Démonter"
+
+#: ../panel-plugin/view.c:678
+msgid "Search for Files"
+msgstr "Chercher des fichiers"
+
+#: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "Documents récents"
 
-#: ../panel-plugin/cfg.c:345
+#: ../panel-plugin/cfg.c:347
 msgid "Button"
 msgstr "Bouton"
 
-#: ../panel-plugin/cfg.c:354
+#: ../panel-plugin/cfg.c:356
 msgid "_Show"
 msgstr "_Afficher"
 
-#: ../panel-plugin/cfg.c:360
+#: ../panel-plugin/cfg.c:362
 msgid "Icon Only"
 msgstr "Icône"
 
-#: ../panel-plugin/cfg.c:361
+#: ../panel-plugin/cfg.c:363
 msgid "Label Only"
 msgstr "Label"
 
-#: ../panel-plugin/cfg.c:362
+#: ../panel-plugin/cfg.c:364
 msgid "Icon and Label"
 msgstr "Icône et Label"
 
-#: ../panel-plugin/cfg.c:384
+#: ../panel-plugin/cfg.c:386
 msgid "_Label"
 msgstr "_Label"
 
-#: ../panel-plugin/cfg.c:402
+#: ../panel-plugin/cfg.c:404
 msgid "Menu"
 msgstr "Menu"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:406
+#: ../panel-plugin/cfg.c:408
 msgid "Show _icons in menu"
 msgstr "Afficher des _icônes dans le menu"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:418
+#: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
 msgstr "Afficher les périphériques _amovibles"
 
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr "Monter et _Ouvrir lors d'un click"
+
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:429
+#: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
 msgstr "Afficher les _raccourcis GTK"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:442
+#: ../panel-plugin/cfg.c:468
 msgid "Show recent _documents"
 msgstr "Afficher les _documents récents"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:460
+#: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
 msgstr "Afficher l'option _effacer"
 
-#: ../panel-plugin/cfg.c:475
+#: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
 msgstr "_Quantité à afficher"
 
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr "Chercher"
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr "Commande"
+
+#: ../panel-plugin/support.c:148
+msgid "Open"
+msgstr "Ouvrir"
+
+#: ../panel-plugin/support.c:163
+msgid "Open Terminal Here"
+msgstr "Ouvrir un terminal à cet emplacement"
