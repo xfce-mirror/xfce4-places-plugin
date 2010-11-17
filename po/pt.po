@@ -21,12 +21,10 @@ msgstr ""
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr "Aceda a pastas, documentos e dispositivos removíveis"
+msgstr "Aceda a pastas, documentos e dispositivos amovíveis"
 
-#: ../panel-plugin/places.desktop.in.in.h:2
-#: ../panel-plugin/cfg.c:64
-#: ../panel-plugin/cfg.c:105
-#: ../panel-plugin/cfg.c:205
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
 #: ../panel-plugin/cfg.c:311
 msgid "Places"
 msgstr "Locais"
@@ -39,31 +37,31 @@ msgstr "Lixo"
 #. Desktop
 #: ../panel-plugin/model_system.c:135
 msgid "Desktop"
-msgstr "Ambiente de Trabalho"
+msgstr "Ambiente de trabalho"
 
 #. File System (/)
 #: ../panel-plugin/model_system.c:159
 msgid "File System"
-msgstr "Sistema de Ficheiros"
+msgstr "Sistema de ficheiros"
 
 #: ../panel-plugin/model_volumes.c:64
 #, c-format
 msgid "Failed to eject \"%s\""
-msgstr "Falhou ao ejetar \"%s\"."
+msgstr "Falha ao ejectar \"%s\"."
 
 #: ../panel-plugin/model_volumes.c:85
 #, c-format
 msgid "Failed to unmount \"%s\""
-msgstr "Falhou ao desmontar \"%s\"."
+msgstr "Falha ao desmontar \"%s\"."
 
 #: ../panel-plugin/model_volumes.c:107
 #, c-format
 msgid "Failed to mount \"%s\""
-msgstr "Falhou ao montar \"%s\"."
+msgstr "Falha ao montar \"%s\"."
 
 #: ../panel-plugin/model_volumes.c:226
 msgid "Mount and Open"
-msgstr "Montar e Abrir"
+msgstr "Montar e abrir"
 
 #: ../panel-plugin/model_volumes.c:239
 msgid "Mount"
@@ -79,12 +77,11 @@ msgstr "Desmontar"
 
 #: ../panel-plugin/view.c:678
 msgid "Search for Files"
-msgstr "Procurar Ficheiros"
+msgstr "Procurar ficheiros"
 
-#: ../panel-plugin/view.c:731
-#: ../panel-plugin/cfg.c:486
+#: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
-msgstr "Documentos Recentes"
+msgstr "Documentos recentes"
 
 #: ../panel-plugin/cfg.c:347
 msgid "Button"
@@ -96,19 +93,19 @@ msgstr "Mo_strar"
 
 #: ../panel-plugin/cfg.c:362
 msgid "Icon Only"
-msgstr "Somente Ícone"
+msgstr "Apenas ícones"
 
 #: ../panel-plugin/cfg.c:363
 msgid "Label Only"
-msgstr "Somente Rótulo"
+msgstr "Apenas etiquetas"
 
 #: ../panel-plugin/cfg.c:364
 msgid "Icon and Label"
-msgstr "Ícone e Rótulo"
+msgstr "Ícones e etiquetas"
 
 #: ../panel-plugin/cfg.c:386
 msgid "_Label"
-msgstr "Rótu_lo"
+msgstr "E_tiquetas"
 
 #: ../panel-plugin/cfg.c:404
 msgid "Menu"
@@ -122,11 +119,11 @@ msgstr "Mostrar í_cones no menu"
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
-msgstr "Mostrar dispositivo _removível"
+msgstr "Mostra_r dispositivos amovíveis"
 
 #: ../panel-plugin/cfg.c:441
 msgid "Mount and _Open on click"
-msgstr "Montar e _Abrir ao clicar"
+msgstr "Montar e _abrir ao clicar"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:455
@@ -141,7 +138,7 @@ msgstr "Mostrar _documentos recentes"
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
-msgstr "Mostrar o_pção de limpar"
+msgstr "Mostrar opção d_e limpar"
 
 #: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
@@ -161,5 +158,4 @@ msgstr "Abrir"
 
 #: ../panel-plugin/support.c:163
 msgid "Open Terminal Here"
-msgstr "Abrir Terminal Aqui"
-
+msgstr "Abrir terminal aqui"
