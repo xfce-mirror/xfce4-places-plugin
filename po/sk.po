@@ -1,0 +1,165 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-places-plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-06-08 12:51+0100\n"
+"PO-Revision-Date: 2010-12-25 22:16+0100\n"
+"Last-Translator: Michal Löffler <lofflermichalloffler@gmail.com>\n"
+"Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
+"X-Poedit-Language: Slovak\n"
+"X-Poedit-Country: SLOVAKIA\n"
+
+#. vim: set ai et tabstop=4:
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr "Pristupovať k priečinkom, dokumentom a vymeniteľným médiám"
+
+#: ../panel-plugin/places.desktop.in.in.h:2
+#: ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105
+#: ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
+msgid "Places"
+msgstr "Miesta"
+
+#. Trash
+#: ../panel-plugin/model_system.c:110
+msgid "Trash"
+msgstr "Kôš"
+
+#. Desktop
+#: ../panel-plugin/model_system.c:135
+msgid "Desktop"
+msgstr "Pracovná plocha"
+
+#. File System (/)
+#: ../panel-plugin/model_system.c:159
+msgid "File System"
+msgstr "Súborový systém"
+
+#: ../panel-plugin/model_volumes.c:64
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "Nepodarilo sa vysunúť  \"%s\""
+
+#: ../panel-plugin/model_volumes.c:85
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "Nepodarilo sa odpojiť \"%s\""
+
+#: ../panel-plugin/model_volumes.c:107
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "Nepodarilo sa pripojiť \"%s\""
+
+#: ../panel-plugin/model_volumes.c:226
+msgid "Mount and Open"
+msgstr "Pripojiť a Otvoriť"
+
+#: ../panel-plugin/model_volumes.c:239
+msgid "Mount"
+msgstr "Pripojiť"
+
+#: ../panel-plugin/model_volumes.c:260
+msgid "Eject"
+msgstr "Vysunúť"
+
+#: ../panel-plugin/model_volumes.c:272
+msgid "Unmount"
+msgstr "Odpojiť"
+
+#: ../panel-plugin/view.c:678
+msgid "Search for Files"
+msgstr "Hľadať súbory"
+
+#: ../panel-plugin/view.c:731
+#: ../panel-plugin/cfg.c:486
+msgid "Recent Documents"
+msgstr "Nedávne dokumenty"
+
+#: ../panel-plugin/cfg.c:347
+msgid "Button"
+msgstr "Tlačidlo"
+
+#: ../panel-plugin/cfg.c:356
+msgid "_Show"
+msgstr "_Zobraziť"
+
+#: ../panel-plugin/cfg.c:362
+msgid "Icon Only"
+msgstr "Iba ikonu"
+
+#: ../panel-plugin/cfg.c:363
+msgid "Label Only"
+msgstr "Iba menovku"
+
+#: ../panel-plugin/cfg.c:364
+msgid "Icon and Label"
+msgstr "Ikonu a menovku"
+
+#: ../panel-plugin/cfg.c:386
+msgid "_Label"
+msgstr "_Menovka"
+
+#: ../panel-plugin/cfg.c:404
+msgid "Menu"
+msgstr "Ponuka"
+
+#. MENU: Show Icons
+#: ../panel-plugin/cfg.c:408
+msgid "Show _icons in menu"
+msgstr "Zobraziť _ikony v ponuke"
+
+#. MENU: Show Removable Media
+#: ../panel-plugin/cfg.c:420
+msgid "Show _removable media"
+msgstr "Zobraziť _vymeniteľné médiá"
+
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr "Pripojiť a _Otvoriť po kliknutí"
+
+#. MENU: Show GTK Bookmarks
+#: ../panel-plugin/cfg.c:455
+msgid "Show GTK _bookmarks"
+msgstr "Zobraziť GTK _záložky"
+
+#. MENU: Show Recent Documents
+#: ../panel-plugin/cfg.c:468
+msgid "Show recent _documents"
+msgstr "Zobraziť nedávne _dokumenty"
+
+#. RECENT DOCUMENTS: Show clear option
+#: ../panel-plugin/cfg.c:490
+msgid "Show cl_ear option"
+msgstr "Zobraziť voľbu _Vymazať"
+
+#: ../panel-plugin/cfg.c:505
+msgid "_Number to display"
+msgstr "_Počet zobrazených položiek"
+
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr "Hľadať"
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr "Prí_kaz"
+
+#: ../panel-plugin/support.c:148
+msgid "Open"
+msgstr "Otvoriť"
+
+#: ../panel-plugin/support.c:163
+msgid "Open Terminal Here"
+msgstr "Otvoriť v termináli"
+
