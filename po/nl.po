@@ -11,24 +11,9 @@
 # Dutch translation for gnome-panel
 # 
 # Copyright (C) 1998 Free Software Foundation, Inc.
-# Dirk-Jan C. Binnema <djcb@dds.nl>, 1998, 1999.
-# Dennis Smit <synap@area101.penguin.nl>, 2000.
-# Almer S. Tigelaar <almer1@dds.nl>, 2000.
-# Vincent van Adrighem <V.vanAdrighem@dirck.mine.nu>, 2001.
-# Huib Kleinhout <huib@stack.nl>, 2002.
-# Ronald Hummelink <ronald@hummelink.xs4all.nl>, 2002.
-# Tino Meinen <a.t.meinen@chello.nl>, 2002. 2006, 2007.
-# Reinout van Schouwen <reinout@cs.vu.nl>, 2002-2006
-# Wouter Bolsterlee <uws+gnome@xs4all.nl>, 2006
 # 
 # desktop - bureaublad
 # workspace - werkblad
-# 
-# TODO: Het Desktop/Werkplek-menu heet tegenwoordig System (overgenomen van
-# Ubuntu. Voorlopig hebben we nog gewoon Werkplek als vertaling, maar er
-# moet nog een keer over gesproken worden… wellicht is "Computer" of
-# "Systeem" wel wenselijker.
-#                                     -- Wouter Bolsterlee, 8 augustus 2006
 # 
 # ###
 msgid ""
@@ -37,7 +22,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-08 12:51+0100\n"
 "PO-Revision-Date: 2008-06-08 12:05-0000\n"
-"Last-Translator: Vincent <msn_vincent@hotmail.com>\n"
+"Last-Translator: Pjotr\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,7 +31,7 @@ msgstr ""
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr "Toegang tot mappen, documenten en verwisselbare schijven"
+msgstr "Toegang tot mappen, documenten en verwisselbare media"
 
 #: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
 #: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
@@ -86,7 +71,7 @@ msgstr "Kon \"%s\" niet aankoppelen"
 
 #: ../panel-plugin/model_volumes.c:226
 msgid "Mount and Open"
-msgstr "Openen"
+msgstr "Aankoppelen en Openen"
 
 #: ../panel-plugin/model_volumes.c:239
 msgid "Mount"
@@ -106,7 +91,7 @@ msgstr "Bestanden zoeken"
 
 #: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
-msgstr "Recente documenten"
+msgstr "Recente Documenten"
 
 #: ../panel-plugin/cfg.c:347
 msgid "Button"
@@ -118,19 +103,19 @@ msgstr "_Weergeven"
 
 #: ../panel-plugin/cfg.c:362
 msgid "Icon Only"
-msgstr "Alleen pictogram"
+msgstr "Alleen Pictogram"
 
 #: ../panel-plugin/cfg.c:363
 msgid "Label Only"
-msgstr "Alleen tekst"
+msgstr "Alleen Etiket"
 
 #: ../panel-plugin/cfg.c:364
 msgid "Icon and Label"
-msgstr "Pictogram en tekst"
+msgstr "Pictogram en Etiket"
 
 #: ../panel-plugin/cfg.c:386
 msgid "_Label"
-msgstr "_Tekst"
+msgstr "_Etiket"
 
 #: ../panel-plugin/cfg.c:404
 msgid "Menu"
@@ -144,16 +129,16 @@ msgstr "_Pictogrammen in menu weergeven"
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
-msgstr "Ver_wisselbare schijven weergeven"
+msgstr "Ver_wisselbare media weergeven"
 
 #: ../panel-plugin/cfg.c:441
 msgid "Mount and _Open on click"
-msgstr "Aankoppelen en openen na klikken"
+msgstr "Aankoppelen en _Openen bij klikken"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
-msgstr "_Favoriete locaties weergeven"
+msgstr "GTK-_bladwijzers weergeven"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:468
@@ -163,11 +148,11 @@ msgstr "_Recente documenten weergeven"
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
-msgstr "\"Wissen\" weergeven"
+msgstr "V_erwijder-optie weergeven"
 
 #: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
-msgstr "_Aantal recente documenten"
+msgstr "_Aantal weer te geven"
 
 #: ../panel-plugin/cfg.c:525
 msgid "Search"
@@ -175,7 +160,7 @@ msgstr "Zoeken"
 
 #: ../panel-plugin/cfg.c:533
 msgid "Co_mmand"
-msgstr "_Commando"
+msgstr "_Opdracht"
 
 #: ../panel-plugin/support.c:148
 msgid "Open"
@@ -183,4 +168,4 @@ msgstr "Openen"
 
 #: ../panel-plugin/support.c:163
 msgid "Open Terminal Here"
-msgstr "Hier een terminalvenster openen"
+msgstr "Hier een Terminalvenster openen"
