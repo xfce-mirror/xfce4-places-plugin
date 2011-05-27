@@ -1,24 +1,13 @@
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
-# ###
-# Dutch translation for Thunar.
-# Copyright (C) 2004-2006 Benedikt Meurer.
-# This file is distributed under the same license as the Thunar package.
+# Dutch translation of the xfce4-places-plugin package.
+# Copyright (C) The Xfce development team.
+# This file is distributed under the same license as the 
+# xfce4-places-plugin package.
 # Vincent Tunru <imnotb@gmail.com>, 2006.
+# Pjotr, 2011.
 # 
-# ###
-# Dutch translation for gnome-panel
-# 
-# Copyright (C) 1998 Free Software Foundation, Inc.
-# 
-# desktop - bureaublad
-# workspace - werkblad
-# 
-# ###
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: xfce4-places-plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-08 12:51+0100\n"
 "PO-Revision-Date: 2008-06-08 12:05-0000\n"
