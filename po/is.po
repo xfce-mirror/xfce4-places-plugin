@@ -1,0 +1,161 @@
+# translation of xfce4-places-plugin.master.xfce4-places-plugin.po to Icelandic
+# Copyright (C) 2011 FSF
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Sveinn í Felli <sveinki@nett.is>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-places-plugin.master.xfce4-places-plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-06-08 12:51+0100\n"
+"PO-Revision-Date: 2011-12-08 22:10+0000\n"
+"Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
+"Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. vim: set ai et tabstop=4:
+#: ../panel-plugin/places.desktop.in.in.h:1
+msgid "Access folders, documents, and removable media"
+msgstr "Gefur aðgang að möppum, skjölum og útskiptanlegum miðlum"
+
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
+msgid "Places"
+msgstr "Staðir"
+
+#. Trash
+#: ../panel-plugin/model_system.c:110
+msgid "Trash"
+msgstr "Rusl"
+
+#. Desktop
+#: ../panel-plugin/model_system.c:135
+msgid "Desktop"
+msgstr "Skjáborð"
+
+#. File System (/)
+#: ../panel-plugin/model_system.c:159
+msgid "File System"
+msgstr "Skráakerfi"
+
+#: ../panel-plugin/model_volumes.c:64
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "Mistókst að spýta út \"%s\""
+
+#: ../panel-plugin/model_volumes.c:85
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "Mistókst að aftengja \"%s\""
+
+#: ../panel-plugin/model_volumes.c:107
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "Mistókst að tengja \"%s\""
+
+#: ../panel-plugin/model_volumes.c:226
+msgid "Mount and Open"
+msgstr "Tengja og opna"
+
+#: ../panel-plugin/model_volumes.c:239
+msgid "Mount"
+msgstr "Tengja í skráakerfið"
+
+#: ../panel-plugin/model_volumes.c:260
+msgid "Eject"
+msgstr "Spýta út"
+
+#: ../panel-plugin/model_volumes.c:272
+msgid "Unmount"
+msgstr "Aftengja"
+
+#: ../panel-plugin/view.c:678
+msgid "Search for Files"
+msgstr "Leita að skrám"
+
+#: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
+msgid "Recent Documents"
+msgstr "Nýleg skjöl"
+
+#: ../panel-plugin/cfg.c:347
+msgid "Button"
+msgstr "Hnappur"
+
+#: ../panel-plugin/cfg.c:356
+msgid "_Show"
+msgstr "_Sýna"
+
+#: ../panel-plugin/cfg.c:362
+msgid "Icon Only"
+msgstr "Einungis táknmynd"
+
+#: ../panel-plugin/cfg.c:363
+msgid "Label Only"
+msgstr "Einungis skýring"
+
+#: ../panel-plugin/cfg.c:364
+msgid "Icon and Label"
+msgstr "Táknmynd og skýring"
+
+#: ../panel-plugin/cfg.c:386
+msgid "_Label"
+msgstr "S_kýring"
+
+#: ../panel-plugin/cfg.c:404
+msgid "Menu"
+msgstr "Valmynd"
+
+#. MENU: Show Icons
+#: ../panel-plugin/cfg.c:408
+msgid "Show _icons in menu"
+msgstr "Sýna táknmyndir í valmynd"
+
+#. MENU: Show Removable Media
+#: ../panel-plugin/cfg.c:420
+msgid "Show _removable media"
+msgstr "Sýna ú_tskiptanlega miðla"
+
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr "Tengja og _opna við að smella"
+
+#. MENU: Show GTK Bookmarks
+#: ../panel-plugin/cfg.c:455
+msgid "Show GTK _bookmarks"
+msgstr "Sýna GTK _bókamerki"
+
+#. MENU: Show Recent Documents
+#: ../panel-plugin/cfg.c:468
+msgid "Show recent _documents"
+msgstr "_Sýna nýleg skjöl"
+
+#. RECENT DOCUMENTS: Show clear option
+#: ../panel-plugin/cfg.c:490
+msgid "Show cl_ear option"
+msgstr "Sýna '_hreinsa' möguleika"
+
+#: ../panel-plugin/cfg.c:505
+msgid "_Number to display"
+msgstr "_Fjöldi sem á að birta"
+
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr "Leita"
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr "Skipu_n"
+
+#: ../panel-plugin/support.c:148
+msgid "Open"
+msgstr "Opna"
+
+#: ../panel-plugin/support.c:163
+msgid "Open Terminal Here"
+msgstr "Opna skjáhermi hér"
+
