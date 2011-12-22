@@ -1,3 +1,4 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce\n"
@@ -9,146 +10,147 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "X-Poedit-Language: Arabic\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr ""
+msgstr "ولوج إلى المجلدات, وثائق, و وسائط قابلة للإزالة"
 
 #: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
 #: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
 #: ../panel-plugin/cfg.c:311
 msgid "Places"
-msgstr ""
+msgstr "أماكن"
 
 #. Trash
 #: ../panel-plugin/model_system.c:110
 msgid "Trash"
-msgstr ""
+msgstr "مهملات"
 
 #. Desktop
 #: ../panel-plugin/model_system.c:135
 msgid "Desktop"
-msgstr ""
+msgstr "سطح المكتب"
 
 #. File System (/)
 #: ../panel-plugin/model_system.c:159
 msgid "File System"
-msgstr ""
+msgstr "نظام الملفات"
 
 #: ../panel-plugin/model_volumes.c:64
 #, c-format
 msgid "Failed to eject \"%s\""
-msgstr ""
+msgstr "فشل إخراج \"%s\""
 
 #: ../panel-plugin/model_volumes.c:85
 #, c-format
 msgid "Failed to unmount \"%s\""
-msgstr ""
+msgstr "فشل إلغاء ضم \"%s\""
 
 #: ../panel-plugin/model_volumes.c:107
 #, c-format
 msgid "Failed to mount \"%s\""
-msgstr ""
+msgstr "فشل ضم \"%s\""
 
 #: ../panel-plugin/model_volumes.c:226
 msgid "Mount and Open"
-msgstr ""
+msgstr "ضم وفتح"
 
 #: ../panel-plugin/model_volumes.c:239
 msgid "Mount"
-msgstr ""
+msgstr "ضم"
 
 #: ../panel-plugin/model_volumes.c:260
 msgid "Eject"
-msgstr ""
+msgstr "إخراج"
 
 #: ../panel-plugin/model_volumes.c:272
 msgid "Unmount"
-msgstr ""
+msgstr "إلغاء الضم"
 
 #: ../panel-plugin/view.c:678
 msgid "Search for Files"
-msgstr ""
+msgstr "البحث عن الملفات"
 
 #: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
-msgstr ""
+msgstr "الوثائق الحديثة الإستعمال"
 
 #: ../panel-plugin/cfg.c:347
 msgid "Button"
-msgstr ""
+msgstr "زر"
 
 #: ../panel-plugin/cfg.c:356
 msgid "_Show"
-msgstr ""
+msgstr "_عرض"
 
 #: ../panel-plugin/cfg.c:362
 msgid "Icon Only"
-msgstr ""
+msgstr "أيقونة فقط"
 
 #: ../panel-plugin/cfg.c:363
 msgid "Label Only"
-msgstr ""
+msgstr "وسم فقط"
 
 #: ../panel-plugin/cfg.c:364
 msgid "Icon and Label"
-msgstr ""
+msgstr "أيقونة و وسم"
 
 #: ../panel-plugin/cfg.c:386
 msgid "_Label"
-msgstr ""
+msgstr "وسم"
 
 #: ../panel-plugin/cfg.c:404
 msgid "Menu"
-msgstr ""
+msgstr "قائمة"
 
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:408
 msgid "Show _icons in menu"
-msgstr ""
+msgstr "إظهار الأيقونات على القائمة"
 
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
-msgstr ""
+msgstr "_إظهار الوسائط القابلة للإزالة"
 
 #: ../panel-plugin/cfg.c:441
 msgid "Mount and _Open on click"
-msgstr ""
+msgstr "ضم وال_فتح عنذ النقر"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
-msgstr ""
+msgstr "عرض علامات _جتك"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:468
 msgid "Show recent _documents"
-msgstr ""
+msgstr "عرض الوثائق الح_ديثة الإستعمال"
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
-msgstr ""
+msgstr "عرض خيا_رات المحو"
 
 #: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
-msgstr ""
+msgstr "عدد لإظهار_ه"
 
 #: ../panel-plugin/cfg.c:525
 msgid "Search"
-msgstr ""
+msgstr "بحث"
 
 #: ../panel-plugin/cfg.c:533
 msgid "Co_mmand"
-msgstr ""
+msgstr "_أمر"
 
 #: ../panel-plugin/support.c:148
 msgid "Open"
-msgstr ""
+msgstr "فتح"
 
 #: ../panel-plugin/support.c:163
 msgid "Open Terminal Here"
-msgstr ""
+msgstr "فتح الطرفية هنا"
