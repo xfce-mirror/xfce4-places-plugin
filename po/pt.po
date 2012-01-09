@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: xfce 4-battery-plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-06-08 12:51+0100\n"
-"PO-Revision-Date: 2008-07-13 15:56+0100\n"
-"Last-Translator: Nuno Miguel <nunis@netcabo.pt>\n"
+"PO-Revision-Date: 2012-01-09 15:38-0000\n"
+"Last-Translator: Sérgio Marques <smarquespt@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,8 +23,10 @@ msgstr ""
 msgid "Access folders, documents, and removable media"
 msgstr "Aceda a pastas, documentos e dispositivos amovíveis"
 
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
-#: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
+#: ../panel-plugin/places.desktop.in.in.h:2
+#: ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105
+#: ../panel-plugin/cfg.c:205
 #: ../panel-plugin/cfg.c:311
 msgid "Places"
 msgstr "Locais"
@@ -47,7 +49,7 @@ msgstr "Sistema de ficheiros"
 #: ../panel-plugin/model_volumes.c:64
 #, c-format
 msgid "Failed to eject \"%s\""
-msgstr "Falha ao ejectar \"%s\"."
+msgstr "Falha ao ejetar \"%s\"."
 
 #: ../panel-plugin/model_volumes.c:85
 #, c-format
@@ -69,7 +71,7 @@ msgstr "Montar"
 
 #: ../panel-plugin/model_volumes.c:260
 msgid "Eject"
-msgstr "Ejectar"
+msgstr "Ejetar"
 
 #: ../panel-plugin/model_volumes.c:272
 msgid "Unmount"
@@ -79,7 +81,8 @@ msgstr "Desmontar"
 msgid "Search for Files"
 msgstr "Procurar ficheiros"
 
-#: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
+#: ../panel-plugin/view.c:731
+#: ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "Documentos recentes"
 
@@ -93,19 +96,19 @@ msgstr "Mo_strar"
 
 #: ../panel-plugin/cfg.c:362
 msgid "Icon Only"
-msgstr "Apenas ícones"
+msgstr "Só ícones"
 
 #: ../panel-plugin/cfg.c:363
 msgid "Label Only"
-msgstr "Apenas etiquetas"
+msgstr "Só texto"
 
 #: ../panel-plugin/cfg.c:364
 msgid "Icon and Label"
-msgstr "Ícones e etiquetas"
+msgstr "Ícones e texto"
 
 #: ../panel-plugin/cfg.c:386
 msgid "_Label"
-msgstr "E_tiquetas"
+msgstr "_Texto"
 
 #: ../panel-plugin/cfg.c:404
 msgid "Menu"
@@ -123,7 +126,7 @@ msgstr "Mostra_r dispositivos amovíveis"
 
 #: ../panel-plugin/cfg.c:441
 msgid "Mount and _Open on click"
-msgstr "Montar e _abrir ao clicar"
+msgstr "M_ontar e abrir ao clicar"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:455
@@ -142,7 +145,7 @@ msgstr "Mostrar opção d_e limpar"
 
 #: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
-msgstr "_Número a mostrar"
+msgstr "_Número a exibir"
 
 #: ../panel-plugin/cfg.c:525
 msgid "Search"
@@ -159,3 +162,4 @@ msgstr "Abrir"
 #: ../panel-plugin/support.c:163
 msgid "Open Terminal Here"
 msgstr "Abrir terminal aqui"
+
