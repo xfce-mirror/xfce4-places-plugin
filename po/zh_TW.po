@@ -26,91 +26,157 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 01:47-0500\n"
+"POT-Creation-Date: 2008-06-08 12:51+0100\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
 
-#. vim: ai et tabstop=4
+#. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr ""
+msgstr "存取資料夾、文件、可移除式媒體"
 
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140 ../panel-plugin/cfg.c:259
-#: ../panel-plugin/cfg.c:329
+#: ../panel-plugin/places.desktop.in.in.h:2
+#: ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105
+#: ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
 msgid "Places"
 msgstr "位置"
 
-#: ../panel-plugin/model_system.c:60
+#. Trash
+#: ../panel-plugin/model_system.c:110
 msgid "Trash"
 msgstr "垃圾桶"
 
-#: ../panel-plugin/model_system.c:70
+#. Desktop
+#: ../panel-plugin/model_system.c:135
 msgid "Desktop"
 msgstr "桌面"
 
-#: ../panel-plugin/model_system.c:78
+#. File System (/)
+#: ../panel-plugin/model_system.c:159
 msgid "File System"
 msgstr "檔案系統"
 
-#: ../panel-plugin/view.c:244 ../panel-plugin/cfg.c:456
+#: ../panel-plugin/model_volumes.c:64
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "無法退出「%s」"
+
+#: ../panel-plugin/model_volumes.c:85
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "無法卸載「%s」"
+
+#: ../panel-plugin/model_volumes.c:107
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "無法掛載「%s」"
+
+#: ../panel-plugin/model_volumes.c:226
+msgid "Mount and Open"
+msgstr "掛載並開啟"
+
+#: ../panel-plugin/model_volumes.c:239
+msgid "Mount"
+msgstr "掛載"
+
+#: ../panel-plugin/model_volumes.c:260
+msgid "Eject"
+msgstr "退出"
+
+#: ../panel-plugin/model_volumes.c:272
+msgid "Unmount"
+msgstr "卸載"
+
+#: ../panel-plugin/view.c:678
+msgid "Search for Files"
+msgstr "搜尋檔案"
+
+#: ../panel-plugin/view.c:731
+#: ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
-msgstr "最近存取文件"
+msgstr "近期文件"
 
-#: ../panel-plugin/cfg.c:345
+#: ../panel-plugin/cfg.c:347
 msgid "Button"
-msgstr ""
+msgstr "按鈕"
 
-#: ../panel-plugin/cfg.c:354
+#: ../panel-plugin/cfg.c:356
 msgid "_Show"
-msgstr ""
-
-#: ../panel-plugin/cfg.c:360
-msgid "Icon Only"
-msgstr ""
-
-#: ../panel-plugin/cfg.c:361
-msgid "Label Only"
-msgstr ""
+msgstr "顯示(_S)"
 
 #: ../panel-plugin/cfg.c:362
+msgid "Icon Only"
+msgstr "僅圖示"
+
+#: ../panel-plugin/cfg.c:363
+msgid "Label Only"
+msgstr "僅標籤"
+
+#: ../panel-plugin/cfg.c:364
 msgid "Icon and Label"
-msgstr ""
+msgstr "圖示與標籤"
 
-#: ../panel-plugin/cfg.c:384
+#: ../panel-plugin/cfg.c:386
 msgid "_Label"
-msgstr ""
+msgstr "標籤(_L)"
 
-#: ../panel-plugin/cfg.c:402
+#: ../panel-plugin/cfg.c:404
 msgid "Menu"
-msgstr ""
+msgstr "選單"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:406
+#: ../panel-plugin/cfg.c:408
 msgid "Show _icons in menu"
-msgstr ""
+msgstr "於選單內顯示圖示(_I)"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:418
+#: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
-msgstr ""
+msgstr "顯示可移除式媒體(_R)"
+
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr "點擊時掛載並開啟(_O)"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:429
+#: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
-msgstr ""
+msgstr "顯示 GTK 書籤(_B)"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:442
-#, fuzzy
+#: ../panel-plugin/cfg.c:468
 msgid "Show recent _documents"
-msgstr "最近存取文件"
+msgstr "顯示近期文件(_D)"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:460
+#: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
-msgstr ""
+msgstr "顯示清除選項(_E)"
 
-#: ../panel-plugin/cfg.c:475
+#: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
-msgstr ""
+msgstr "要顯示的數目(_N)"
+
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr "搜尋"
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr "指令(_M)"
+
+#: ../panel-plugin/support.c:148
+msgid "Open"
+msgstr "開啟"
+
+#: ../panel-plugin/support.c:163
+msgid "Open Terminal Here"
+msgstr "在這裡開啟終端機"
+
