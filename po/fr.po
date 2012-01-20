@@ -36,6 +36,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
@@ -96,7 +97,7 @@ msgstr "Démonter"
 
 #: ../panel-plugin/view.c:678
 msgid "Search for Files"
-msgstr "Chercher des fichiers"
+msgstr "Recherche de fichiers"
 
 #: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
