@@ -1,106 +1,164 @@
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
-# ###
-# Korean translations for Thunar package.
-# Copyright (C) 2004-2006 Benedikt Meurer.
-# This file is distributed under the same license as the Thunar package.
-# ByungHyun Choi <byunghyun.choi@debianusers.org>, 2006.
-#
-# ###
-# gnome-panel
-# Sung-Hyun Nam <namsh@kldp.org>, 2000
-# Young-Ho Cha <ganadist@chollian.net>, 2000, 2001, 2006, 2007
-# Changwoo Ryu <cwryu@debian.org>, 1998, 2002-2006, 2007.
-# ###
+# Korean translation for xfce4-places-plugin.master package.
+# Copyright (c) 2005-2012 Xfce development team.
+# This file is distributed under the same license as the xfce4-places-plugin.master package.
+# Seong-ho, cho <darkcircle.0426@gmail.com>, 2011-2012.
+# Sung Jin Gang <ujuc@ujuc.kr>, 2012.
+
 msgid ""
 msgstr ""
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 01:47-0500\n"
+"Report-Msgid-Bugs-To: xfce4-users-kr-i18n <xfce4-users-kr-i18n@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2008-06-08 12:51+0100\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Seong-ho, Cho <darkcircle.0426@gmail.com>\n"
+"Language-Team: Korean\n"
+"MIME-Version: 1.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-#. vim: ai et tabstop=4
+#. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr ""
+msgstr "폴더, 문서, 이동식 미디어 접근하기"
 
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140 ../panel-plugin/cfg.c:259
-#: ../panel-plugin/cfg.c:329
+#: ../panel-plugin/places.desktop.in.in.h:2
+#: ../panel-plugin/cfg.c:64
+#: ../panel-plugin/cfg.c:105
+#: ../panel-plugin/cfg.c:205
+#: ../panel-plugin/cfg.c:311
 msgid "Places"
 msgstr "위치"
 
-#: ../panel-plugin/model_system.c:60
+#. Trash
+#: ../panel-plugin/model_system.c:110
 msgid "Trash"
 msgstr "쓰레기통"
 
-#: ../panel-plugin/model_system.c:70
+#. Desktop
+#: ../panel-plugin/model_system.c:135
 msgid "Desktop"
-msgstr "바탕 화면"
+msgstr "데스크톱"
 
-#: ../panel-plugin/model_system.c:78
+#. File System (/)
+#: ../panel-plugin/model_system.c:159
 msgid "File System"
-msgstr "화일 시스템"
+msgstr "파일 시스템"
 
-#: ../panel-plugin/view.c:244 ../panel-plugin/cfg.c:456
+#: ../panel-plugin/model_volumes.c:64
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "\"%s\"을(를) 꺼내는데 실패"
+
+#: ../panel-plugin/model_volumes.c:85
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "\"%s\"을(를) 마운트 해제하는데 실패"
+
+#: ../panel-plugin/model_volumes.c:107
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "\"%s\"을(를) 마운트하는데 실패"
+
+#: ../panel-plugin/model_volumes.c:226
+msgid "Mount and Open"
+msgstr "마운트하고 열기"
+
+#: ../panel-plugin/model_volumes.c:239
+msgid "Mount"
+msgstr "마운트"
+
+#: ../panel-plugin/model_volumes.c:260
+msgid "Eject"
+msgstr "꺼내기"
+
+#: ../panel-plugin/model_volumes.c:272
+msgid "Unmount"
+msgstr "마운트 해제"
+
+#: ../panel-plugin/view.c:678
+msgid "Search for Files"
+msgstr "파일 검색"
+
+#: ../panel-plugin/view.c:731
+#: ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "최근 문서"
 
-#: ../panel-plugin/cfg.c:345
+#: ../panel-plugin/cfg.c:347
 msgid "Button"
-msgstr ""
+msgstr "단추"
 
-#: ../panel-plugin/cfg.c:354
+#: ../panel-plugin/cfg.c:356
 msgid "_Show"
-msgstr ""
-
-#: ../panel-plugin/cfg.c:360
-msgid "Icon Only"
-msgstr ""
-
-#: ../panel-plugin/cfg.c:361
-msgid "Label Only"
-msgstr ""
+msgstr "보이기(_S)"
 
 #: ../panel-plugin/cfg.c:362
+msgid "Icon Only"
+msgstr "아이콘만"
+
+#: ../panel-plugin/cfg.c:363
+msgid "Label Only"
+msgstr "레이블만"
+
+#: ../panel-plugin/cfg.c:364
 msgid "Icon and Label"
-msgstr ""
+msgstr "아이콘과 레이블"
 
-#: ../panel-plugin/cfg.c:384
+#: ../panel-plugin/cfg.c:386
 msgid "_Label"
-msgstr ""
+msgstr "레이블(_L)"
 
-#: ../panel-plugin/cfg.c:402
+#: ../panel-plugin/cfg.c:404
 msgid "Menu"
-msgstr ""
+msgstr "메뉴"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:406
+#: ../panel-plugin/cfg.c:408
 msgid "Show _icons in menu"
-msgstr ""
+msgstr "메뉴에 아이콘 보이기(_I)"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:418
+#: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
-msgstr ""
+msgstr "이동식 미디어 보이기(_R)"
+
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr "누르면 마운트 하고 열기(_O)"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:429
+#: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
-msgstr ""
+msgstr "GTK 북마크 보이기(_B)"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:442
-#, fuzzy
+#: ../panel-plugin/cfg.c:468
 msgid "Show recent _documents"
-msgstr "최근 문서"
+msgstr "최근 문서 보이기(_D)"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:460
+#: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
-msgstr ""
+msgstr "지우기 옵션 보이기(_E)"
 
-#: ../panel-plugin/cfg.c:475
+#: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
-msgstr ""
+msgstr "디스플레이 수(_N)"
+
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr "검색"
+
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr "명령(_M)"
+
+#: ../panel-plugin/support.c:148
+msgid "Open"
+msgstr "열기"
+
+#: ../panel-plugin/support.c:163
+msgid "Open Terminal Here"
+msgstr "이곳에 터미널 열기"
+
