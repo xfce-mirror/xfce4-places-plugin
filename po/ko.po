@@ -20,7 +20,7 @@ msgstr ""
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr "폴더, 문서, 이동식 미디어 접근하기"
+msgstr "폴더, 문서, 이동식 미디어에 접근합니다"
 
 #: ../panel-plugin/places.desktop.in.in.h:2
 #: ../panel-plugin/cfg.c:64
