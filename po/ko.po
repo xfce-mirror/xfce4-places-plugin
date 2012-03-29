@@ -33,7 +33,7 @@ msgstr "위치"
 #. Trash
 #: ../panel-plugin/model_system.c:110
 msgid "Trash"
-msgstr "쓰레기통"
+msgstr "휴지통"
 
 #. Desktop
 #: ../panel-plugin/model_system.c:135
