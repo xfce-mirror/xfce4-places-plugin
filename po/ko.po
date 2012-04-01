@@ -91,7 +91,7 @@ msgstr "단추"
 
 #: ../panel-plugin/cfg.c:356
 msgid "_Show"
-msgstr "보이기(_S)"
+msgstr "보기(_S)"
 
 #: ../panel-plugin/cfg.c:362
 msgid "Icon Only"
@@ -116,12 +116,12 @@ msgstr "메뉴"
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:408
 msgid "Show _icons in menu"
-msgstr "메뉴에 아이콘 보이기(_I)"
+msgstr "메뉴에 아이콘 보기(_I)"
 
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
-msgstr "이동식 미디어 보이기(_R)"
+msgstr "이동식 미디어 보기(_R)"
 
 #: ../panel-plugin/cfg.c:441
 msgid "Mount and _Open on click"
@@ -130,17 +130,17 @@ msgstr "누르면 마운트 하고 열기(_O)"
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
-msgstr "GTK 북마크 보이기(_B)"
+msgstr "GTK 북마크 보기(_B)"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:468
 msgid "Show recent _documents"
-msgstr "최근 문서 보이기(_D)"
+msgstr "최근 문서 보기(_D)"
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
-msgstr "지우기 옵션 보이기(_E)"
+msgstr "지우기 옵션 보기(_E)"
 
 #: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
