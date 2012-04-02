@@ -50,8 +50,7 @@
 #endif
 
 #include <gtk/gtk.h>
-#include <libxfce4panel/xfce-panel-plugin.h>
-#include <libxfce4panel/xfce-hvbox.h>
+#include <libxfce4panel/libxfce4panel.h>
 #include <string.h>
 
 #define EXO_API_SUBJECT_TO_CHANGE

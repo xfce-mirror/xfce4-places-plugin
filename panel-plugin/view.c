@@ -49,10 +49,8 @@
 #define USE_GTK_TOOLTIP_API     GTK_CHECK_VERSION(2,12,0)
 
 #include <libxfce4util/libxfce4util.h>
-#include <libxfce4panel/xfce-panel-plugin.h>
-#include <libxfce4panel/xfce-panel-convenience.h>
-#include <libxfce4panel/xfce-hvbox.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4panel/libxfce4panel.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #define EXO_API_SUBJECT_TO_CHANGE
 #include <exo/exo.h>
@@ -511,7 +509,7 @@ pview_add_menu_item(PlacesView *view, PlacesBookmark *bookmark)
                 icon_size = MAX(width, height);
         else
                 icon_size = 32;
-        pb = xfce_themed_icon_load(bookmark->icon, icon_size);
+        pb = xfce_panel_pixbuf_from_source(bookmark->icon, NULL, icon_size);
 
         if(G_LIKELY(pb != NULL)){
             image = gtk_image_new_from_pixbuf(pb);
@@ -739,7 +737,19 @@ pview_open_menu(PlacesView *pd)
 static GdkPixbuf*
 pview_pixbuf_factory(gint size)
 {
-    return xfce_themed_icon_load_category(2, size);
+   static const gchar *icons[] = { "system-file-manager",
+                                   "xfce-filemanager",
+                                   "file-manager",
+                                   "folder",
+                                   NULL };
+   int i = 0;
+   GdkPixbuf *pb = NULL;
+
+   while (icons[i] && !pb) {
+      pb = xfce_panel_pixbuf_from_source(icons[i], NULL, size);
+      i++;
+   }
+   return pb;
 }
 
 static void

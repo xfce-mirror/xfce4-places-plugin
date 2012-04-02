@@ -25,7 +25,7 @@
 
 #include <glib.h>
 #include <gtk/gtk.h>
-#include <libxfce4panel/xfce-panel-plugin.h>
+#include <libxfce4panel/libxfce4panel.h>
 
 #define USE_RECENT_DOCUMENTS    GTK_CHECK_VERSION(2,10,0)
 

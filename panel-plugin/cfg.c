@@ -28,9 +28,8 @@
 #include <gtk/gtk.h>
 
 #include <libxfce4util/libxfce4util.h>
-#include <libxfce4panel/xfce-panel-plugin.h>
-#include <libxfce4panel/xfce-panel-convenience.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4panel/libxfce4panel.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #include "cfg.h"
 #include "view.h"
@@ -345,7 +344,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     vbox_button = gtk_vbox_new(FALSE, 4);
     gtk_widget_show(vbox_button);
 
-    frame_button = xfce_create_framebox_with_content(_("Button"), vbox_button);
+    frame_button = xfce_gtk_frame_box_new_with_content(_("Button"), vbox_button);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_button, FALSE, FALSE, 0);
 
 
@@ -402,7 +401,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     vbox_menu = gtk_vbox_new(FALSE, 4);
     gtk_widget_show(vbox_menu);
 
-    frame_menu = xfce_create_framebox_with_content(_("Menu"), vbox_menu);
+    frame_menu = xfce_gtk_frame_box_new_with_content(_("Menu"), vbox_menu);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_menu, FALSE, FALSE, 0);
 
     /* MENU: Show Icons */
@@ -484,7 +483,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     gtk_widget_set_sensitive(vbox_recent, cfg->show_recent);
     g_object_set_data(G_OBJECT(tmp_widget), "cfg_transient", vbox_recent);
 
-    frame_recent = xfce_create_framebox_with_content(_("Recent Documents"), vbox_recent);
+    frame_recent = xfce_gtk_frame_box_new_with_content(_("Recent Documents"), vbox_recent);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_recent, FALSE, FALSE, 0);
 
     /* RECENT DOCUMENTS: Show clear option */
@@ -523,7 +522,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     vbox_search = gtk_vbox_new(FALSE, 4);
     gtk_widget_show(vbox_search);
 
-    frame_search = xfce_create_framebox_with_content(_("Search"), vbox_search);
+    frame_search = xfce_gtk_frame_box_new_with_content(_("Search"), vbox_search);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_search, FALSE, FALSE, 0);
 
     /* Search: command */
@@ -545,7 +544,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
 
-    gtk_widget_show(dlg);
+    gtk_widget_show_all(dlg);
 }
 
 /********** Initialization & Finalization **********/

@@ -50,14 +50,14 @@ xfce4_places_plugin_CFLAGS =						\
 	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"				\
 	$(GTK_CFLAGS)							\
 	$(LIBXFCE4UTIL_CFLAGS)						\
-	$(LIBXFCEGUI4_CFLAGS)						\
+	$(LIBXFCE4UI_CFLAGS)						\
 	$(LIBXFCE4PANEL_CFLAGS)						\
         $(THUNAR_VFS_CFLAGS)						\
 	$(PLATFORM_CFLAGS)
 
 xfce4_places_plugin_LDADD =						\
 	$(LIBXFCE4UTIL_LIBS)						\
-	$(LIBXFCEGUI4_LIBS)						\
+	$(LIBXFCE4UI_LIBS)						\
 	$(LIBXFCE4PANEL_LIBS)						\
 	$(LIBX11_LIBS)							\
 	@THUNAR_VFS_LIBS@

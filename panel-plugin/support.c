@@ -29,7 +29,7 @@
 #include <glib.h>
 
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4ui/libxfce4ui.h>
 
 #define EXO_API_SUBJECT_TO_CHANGE
 #include <exo/exo.h>
@@ -125,7 +125,8 @@ void
 places_gui_exec(const gchar *cmd)
 {
     if(cmd != NULL && *cmd != '\0')
-        xfce_exec(cmd, FALSE, TRUE, NULL);
+        xfce_spawn_command_line_on_screen(gdk_screen_get_default(),
+                        cmd, FALSE, TRUE, NULL);
 }
 
 static void
