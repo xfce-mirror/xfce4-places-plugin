@@ -59,6 +59,7 @@ xfce4_places_plugin_LDADD =						\
 	$(LIBXFCE4UTIL_LIBS)						\
 	$(LIBXFCEGUI4_LIBS)						\
 	$(LIBXFCE4PANEL_LIBS)						\
+	$(LIBX11_LIBS)							\
 	@THUNAR_VFS_LIBS@
 
 
