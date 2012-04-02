@@ -27,8 +27,15 @@
 #include "model_volumes.h"
 #include "support.h"
 
-#define EXO_API_SUBJECT_TO_CHANGE
-#include <thunar-vfs/thunar-vfs.h>
+#include <gio/gio.h>
+#ifdef HAVE_GIO_UNIX
+#include <gio/gunixmounts.h>
+#endif
+#include <gtk/gtk.h>
+ 
+#ifdef HAVE_LIBNOTIFY
+#include "model_volumes_notify.h"
+#endif
 
 #include <libxfce4util/libxfce4util.h>
 
@@ -38,76 +45,156 @@
 
 typedef struct
 {
-
-    ThunarVfsVolumeManager *volume_manager;
+    GVolumeMonitor *volume_monitor;
     gboolean   changed;
     gboolean   mount_and_open_by_default;
-
 } PBVolData;
 
 
 /********** Actions Callbacks **********/
+static void
+pbvol_eject_finish(GObject *object,
+                GAsyncResult *result,
+                gpointer user_data)
+{
+    GVolume *volume = G_VOLUME(object);
+    GError *error = NULL;
+
+    g_return_if_fail(G_IS_VOLUME(object));
+    g_return_if_fail(G_IS_ASYNC_RESULT(result));
+
+    if (!g_volume_eject_with_operation_finish(volume, result, &error)) {
+         /* ignore GIO errors handled internally */
+         if(error->domain != G_IO_ERROR || error->code != G_IO_ERROR_FAILED_HANDLED) {
+             gchar *volume_name = g_volume_get_name(volume);
+             places_show_error_dialog(error,
+                                 _("Failed to eject \"%s\""),
+                                 volume_name);
+             g_free(volume_name);
+         }
+         g_error_free(error);
+    }
+
+#ifdef HAVE_LIBNOTIFY
+    pbvol_notify_eject_finish(volume);
+#endif
+}
 
 static void
 pbvol_eject(PlacesBookmarkAction *action)
 {
-    GError *error = NULL;
-    ThunarVfsVolume *volume;
+    GVolume *volume;
 
     DBG("Eject");
 
-    g_return_if_fail(THUNAR_VFS_IS_VOLUME(action->priv));
-    volume = THUNAR_VFS_VOLUME(action->priv);
+    g_return_if_fail(G_IS_VOLUME(action->priv));
+    volume = G_VOLUME(action->priv);
 
-    if(!thunar_vfs_volume_eject(volume, NULL, &error)){
-        places_show_error_dialog(error,
-                                 _("Failed to eject \"%s\""),
-                                 thunar_vfs_volume_get_name (volume));
-        g_error_free (error);
+    if (g_volume_can_eject(volume)) {
+#ifdef HAVE_LIBNOTIFY
+        pbvol_notify_eject(volume);
+#endif
+        g_volume_eject_with_operation(volume, G_MOUNT_UNMOUNT_NONE, NULL,
+                           NULL,
+                           pbvol_eject_finish,
+                           g_object_ref(volume));
     }
+}
+
+static void
+pbvol_unmount_finish(GObject *object,
+                GAsyncResult *result,
+                gpointer user_data)
+{
+    GMount *mount = G_MOUNT(object);
+    GError *error = NULL;
+
+    g_return_if_fail(G_IS_MOUNT(object));
+    g_return_if_fail(G_IS_ASYNC_RESULT(result));
+
+    if (!g_mount_unmount_with_operation_finish(mount, result, &error)) {
+         /* ignore GIO errors handled internally */
+         if (error->domain != G_IO_ERROR || error->code != G_IO_ERROR_FAILED_HANDLED) {
+             gchar *mount_name = g_mount_get_name(mount);
+             places_show_error_dialog(error,
+                                     _("Failed to unmount \"%s\""),
+                                     mount_name);
+             g_free(mount_name);
+         }
+         g_error_free (error);
+    }
+
+#ifdef HAVE_LIBNOTIFY
+    pbvol_notify_unmount_finish(mount);
+#endif
 }
 
 static void
 pbvol_unmount(PlacesBookmarkAction *action)
 {
-    GError *error = NULL;
-    ThunarVfsVolume *volume;
+    GVolume *volume;
+    GMount *mount;
 
     DBG("Unmount");
 
-    g_return_if_fail(THUNAR_VFS_IS_VOLUME(action->priv));
-    volume = THUNAR_VFS_VOLUME(action->priv);
+    g_return_if_fail(G_IS_VOLUME(action->priv));
+    volume = G_VOLUME(action->priv);
+    mount = g_volume_get_mount(volume);
 
-    if(thunar_vfs_volume_is_mounted(volume)){
-        if(!thunar_vfs_volume_unmount(volume, NULL, &error)){
+    if (mount) {
+#ifdef HAVE_LIBNOTIFY
+        pbvol_notify_unmount(mount);
+#endif
+        g_mount_unmount_with_operation(mount, G_MOUNT_UNMOUNT_NONE, NULL,
+                            NULL,
+                            pbvol_unmount_finish, 
+                            g_object_ref(volume));
+    }
+}
 
-            places_show_error_dialog(error,
-                                     _("Failed to unmount \"%s\""),
-                                     thunar_vfs_volume_get_name (volume));
-            g_error_free (error);
-        }
+static void
+pbvol_mount_finish(GObject *object,
+                GAsyncResult *result,
+                gpointer user_data)
+{
+    GVolume *volume = G_VOLUME(object);
+    GError *error = NULL;
+
+    DBG("Mount finish");
+
+    if (!g_volume_mount_finish(volume, result, &error)) {
+         /* ignore GIO errors handled internally */
+         if (error->domain != G_IO_ERROR || error->code != G_IO_ERROR_FAILED_HANDLED) {
+             gchar *volume_name = g_volume_get_name(volume);
+             places_show_error_dialog(error,
+                                     _("Failed to mount \"%s\""),
+                                     volume_name);
+             g_free(volume_name);
+         }
+         g_error_free (error);
     }
 }
 
 static void
 pbvol_mount(PlacesBookmarkAction *action)
 {
-    GError *error = NULL;
-    ThunarVfsVolume *volume;
+    GVolume *volume;
+    GMount *mount;
 
     DBG("Mount");
 
-    g_return_if_fail(THUNAR_VFS_IS_VOLUME(action->priv));
-    volume = THUNAR_VFS_VOLUME(action->priv);
+    g_return_if_fail(G_IS_VOLUME(action->priv));
+    volume = G_VOLUME(action->priv);
+    mount = g_volume_get_mount(volume);
 
-    if(!thunar_vfs_volume_is_mounted(volume)){
-        if(!thunar_vfs_volume_mount(volume, NULL, &error)){
+    if (!mount) {
+        GMountOperation *operation = gtk_mount_operation_new(NULL);
 
-            places_show_error_dialog(error,
-                                     _("Failed to mount \"%s\""),
-                                     thunar_vfs_volume_get_name (volume));
-            g_error_free (error);
-        }
+        g_volume_mount(volume, G_MOUNT_MOUNT_NONE, operation, NULL,
+                       pbvol_mount_finish, 
+                       g_object_ref(volume));
+
+        g_object_unref(operation);
     }
 }
 
@@ -115,33 +202,166 @@ static void
 pbvol_mount_and_open(PlacesBookmarkAction *action)
 {
     gchar *uri;
-    ThunarVfsVolume *volume;
+    GVolume *volume;
+    GMount *mount;
 
     DBG("Mount and open");
     
-    g_return_if_fail(THUNAR_VFS_IS_VOLUME(action->priv));
-    volume = THUNAR_VFS_VOLUME(action->priv);
+    g_return_if_fail(G_IS_VOLUME(action->priv));
+    volume = G_VOLUME(action->priv);
+    mount = g_volume_get_mount(volume);
 
-    if(!thunar_vfs_volume_is_mounted(volume))
+    if (!mount)
         pbvol_mount(action);
 
-    if(thunar_vfs_volume_is_mounted(volume)){
-        uri = thunar_vfs_path_dup_uri(thunar_vfs_volume_get_mount_point(volume));
+    if (mount) {
+        GFile *file = g_mount_get_root(mount);
+        uri = g_file_get_uri(file);
         places_load_file_browser(uri);
         g_free(uri);
+        g_object_unref(file);
+        g_object_unref(mount);
     }
 }
 
-static inline gboolean
-pbvol_show_volume(ThunarVfsVolume *volume){
-    
-    DBG("Volume: %s [mounted=%x removable=%x present=%x]", thunar_vfs_volume_get_name(volume), 
-                                                           thunar_vfs_volume_is_mounted(volume),
-                                                           thunar_vfs_volume_is_removable(volume), 
-                                                           thunar_vfs_volume_is_present(volume));
+#ifdef HAVE_GIO_UNIX
+static gboolean
+pbvol_mount_is_internal (GMount *mount)
+{
+    const gchar *point_mount_path;
+    gboolean is_internal = FALSE;
+    GFile *root;
+    GList *lp;
+    GList *mount_points;
+    gchar *mount_path;
 
-    return thunar_vfs_volume_is_removable(volume) && 
-           thunar_vfs_volume_is_present(volume);
+    g_return_val_if_fail(G_IS_MOUNT(mount), FALSE);
+
+    /* determine the mount path */
+    root = g_mount_get_root(mount);
+    mount_path = g_file_get_path(root);
+    g_object_unref(root);
+
+    /* assume non-internal if we cannot determine the path */
+    if (!mount_path)
+        return FALSE;
+
+    if (g_unix_is_mount_path_system_internal(mount_path)) {
+        /* mark as internal */
+        is_internal = TRUE;
+    } else {
+        /* get a list of all mount points */
+        mount_points = g_unix_mount_points_get(NULL);
+
+        /* search for the mount point associated with the mount entry */
+        for (lp = mount_points; !is_internal && lp != NULL; lp = lp->next) {
+            point_mount_path = g_unix_mount_point_get_mount_path(lp->data);
+
+            /* check if this is the mount point we are looking for */
+            if (g_strcmp0(mount_path, point_mount_path) == 0) {
+                /* mark as internal if the user cannot mount this device */
+                if (!g_unix_mount_point_is_user_mountable(lp->data))
+                    is_internal = TRUE;
+            }
+                
+            /* free the mount point, we no longer need it */
+            g_unix_mount_point_free(lp->data);
+        }
+
+        /* free the mount point list */
+        g_list_free(mount_points);
+    }
+
+    g_free(mount_path);
+
+
+    return is_internal;
+}
+#endif
+
+
+gboolean
+pbvol_is_removable(GVolume *volume)
+{
+    gboolean can_eject = FALSE;
+    gboolean can_mount = FALSE;
+    gboolean can_unmount = FALSE;
+    gboolean is_removable = FALSE;
+    gboolean is_internal = FALSE;
+    GDrive *drive;
+    GMount *mount;
+
+    g_return_val_if_fail(G_IS_VOLUME(volume), FALSE);
+
+    /* check if the volume can be ejected */
+    can_eject = g_volume_can_eject(volume);
+
+    /* determine the drive for the volume */
+    drive = g_volume_get_drive(volume);
+    if (drive) {
+        /*check if the drive media can be removed */
+        is_removable = g_drive_is_media_removable(drive);
+
+        /* release the drive */
+        g_object_unref(drive);
+    }
+    /* determine the mount for the volume (if it is mounted at all) */
+    mount = g_volume_get_mount(volume);
+    if (mount) {
+#ifdef HAVE_GIO_UNIX
+        is_internal = pbvol_mount_is_internal (mount);
+#endif
+
+        /* check if the volume can be unmounted */
+        can_unmount = g_mount_can_unmount(mount);
+
+        /* release the mount */
+        g_object_unref(mount);
+    }
+
+    /* determine whether the device can be mounted */
+    can_mount = g_volume_can_mount(volume);
+
+    return (!is_internal) && (can_eject || can_unmount || is_removable || can_mount);
+}
+
+gboolean
+pbvol_is_present(GVolume *volume)
+{
+    gboolean has_media = FALSE;
+    gboolean is_shadowed = FALSE;
+    GDrive *drive;
+    GMount *mount;
+
+    g_return_val_if_fail(G_IS_VOLUME(volume), FALSE);
+
+    drive = g_volume_get_drive (volume);
+    if(drive) {
+        has_media = g_drive_has_media(drive);
+        g_object_unref(drive);
+    }
+
+    mount = g_volume_get_mount(volume);
+    if(mount) {
+        is_shadowed = g_mount_is_shadowed(mount);
+        g_object_unref(mount);
+    }
+
+    return has_media && !is_shadowed;
+}
+
+static inline gboolean
+pbvol_show_volume(GVolume *volume){
+    GMount *mount = g_volume_get_mount(volume);
+    DBG("Volume: %s [mounted=%x removable=%x present=%x]", g_volume_get_name(volume), 
+                                                           mount,
+                                                           pbvol_is_removable(volume), 
+                                                           pbvol_is_present(volume));
+    if (mount)
+       g_object_unref(mount);
+
+    return pbvol_is_removable(volume) && 
+           pbvol_is_present(volume);
 }
 
 static void
@@ -153,29 +373,23 @@ pbvol_set_changed(PlacesBookmarkGroup *bookmark_group)
 
 
 static void
-pbvol_volumes_added(ThunarVfsVolumeManager *volman, GList *volumes, PlacesBookmarkGroup *bookmark_group)
+pbvol_volume_added(GVolumeMonitor *monitor, GVolume *volume, PlacesBookmarkGroup *bookmark_group)
 {
     DBG("-");
 
     pbg_priv(bookmark_group)->changed = TRUE;
-    while(volumes != NULL){
-        g_signal_connect_swapped(THUNAR_VFS_VOLUME(volumes->data), "changed",
-                                 G_CALLBACK(pbvol_set_changed), bookmark_group);
-        volumes = volumes->next;
-    }
+    g_signal_connect_swapped(G_VOLUME(volume), "changed",
+                             G_CALLBACK(pbvol_set_changed), bookmark_group);
 }
 
 static void
-pbvol_volumes_removed(ThunarVfsVolumeManager *volman, GList *volumes, PlacesBookmarkGroup *bookmark_group)
+pbvol_volume_removed(GVolumeMonitor *monitor, GVolume *volume, PlacesBookmarkGroup *bookmark_group)
 {
     DBG("-");
 
     pbg_priv(bookmark_group)->changed = TRUE;
-    while(volumes != NULL){
-        g_signal_handlers_disconnect_by_func(THUNAR_VFS_VOLUME(volumes->data),
-                                             G_CALLBACK(pbvol_set_changed), bookmark_group);
-        volumes = volumes->next;
-    }
+    g_signal_handlers_disconnect_by_func(G_VOLUME(volume),
+                                         G_CALLBACK(pbvol_set_changed), bookmark_group);
 }
 
 static void
@@ -189,12 +403,9 @@ pbvol_bookmark_finalize(PlacesBookmark *bookmark)
 
 static void
 pbvol_bookmark_action_finalize(PlacesBookmarkAction *action){
-
-    ThunarVfsVolume *volume;
-
     g_assert(action != NULL && action->priv != NULL);
 
-    volume = THUNAR_VFS_VOLUME(action->priv);
+    GVolume *volume = G_VOLUME(action->priv);
     g_object_unref(volume);
     action->priv = NULL;
 }
@@ -206,24 +417,28 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     PlacesBookmark *bookmark;
     PlacesBookmarkAction *action, *terminal, *open;
     const GList *volumes;
-    ThunarVfsVolume *volume;
-    GtkIconTheme *icon_theme = gtk_icon_theme_get_default();
+    GVolume *volume;
+    GMount *mount;
+    GIcon *icon;
 
-    volumes = thunar_vfs_volume_manager_get_volumes(pbg_priv(bookmark_group)->volume_manager);
-    while(volumes != NULL){
-        volume = THUNAR_VFS_VOLUME(volumes->data);
+    volumes = g_volume_monitor_get_volumes(pbg_priv(bookmark_group)->volume_monitor);
+    while (volumes != NULL) {
+        volume = volumes->data;
+        mount = g_volume_get_mount(volume);
 
         if(pbvol_show_volume(volume)){
 
-            bookmark            = places_bookmark_create((gchar*) thunar_vfs_volume_get_name(volume));
-            if(thunar_vfs_volume_is_mounted(volume))
-                bookmark->uri   = thunar_vfs_path_dup_uri(thunar_vfs_volume_get_mount_point(volume));
-            else
+            bookmark            = places_bookmark_create((gchar*) g_volume_get_name(volume));
+            if (mount) {
+                GFile *file = g_mount_get_root(mount);
+                bookmark->uri   = g_file_get_uri(file);
+                g_object_unref(file);
+            } else
                 bookmark->uri   = NULL;
-            bookmark->icon      = (gchar*) thunar_vfs_volume_lookup_icon_name(volume, icon_theme);
+            bookmark->icon      = g_volume_get_icon(volume);
             bookmark->finalize  = pbvol_bookmark_finalize;
 
-            if(!thunar_vfs_volume_is_mounted(volume)){
+            if (!mount) {
 
                 g_object_ref(volume);
                 action              = places_bookmark_action_create(_("Mount and Open"));
@@ -256,7 +471,7 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 
             }
 
-            if(thunar_vfs_volume_is_ejectable(volume)){
+            if (g_volume_can_eject(volume)) {
 
                 g_object_ref(volume);
                 action              = places_bookmark_action_create(_("Eject"));
@@ -266,18 +481,15 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
                 action->finalize    = pbvol_bookmark_action_finalize;
                 bookmark->actions   = g_list_append(bookmark->actions, action);
 
-            }else{
-                if(thunar_vfs_volume_is_mounted(volume)){
-
-                    g_object_ref(volume);
-                    action              = places_bookmark_action_create(_("Unmount"));
-                    action->may_block   = TRUE;
-                    action->priv        = volume;
-                    action->action      = pbvol_unmount;
-                    action->finalize    = pbvol_bookmark_action_finalize;
-                    bookmark->actions   = g_list_append(bookmark->actions, action);
-
-                }
+            }
+            if (mount) {
+                g_object_ref(volume);
+                action              = places_bookmark_action_create(_("Unmount"));
+                action->may_block   = TRUE;
+                action->priv        = volume;
+                action->action      = pbvol_unmount;
+                action->finalize    = pbvol_bookmark_action_finalize;
+                bookmark->actions   = g_list_append(bookmark->actions, action);
             }
 
             bookmarks = g_list_prepend(bookmarks, bookmark);
@@ -303,21 +515,20 @@ pbvol_finalize(PlacesBookmarkGroup *bookmark_group)
 {
     const GList *volumes;
     
-    volumes = thunar_vfs_volume_manager_get_volumes(pbg_priv(bookmark_group)->volume_manager);
+    volumes = g_volume_monitor_get_volumes(pbg_priv(bookmark_group)->volume_monitor);
     while(volumes != NULL){
-        g_signal_handlers_disconnect_by_func(THUNAR_VFS_VOLUME(volumes->data),
+        g_signal_handlers_disconnect_by_func(G_VOLUME(volumes->data),
                                              G_CALLBACK(pbvol_set_changed), bookmark_group);
         volumes = volumes->next;
     }
 
-    g_signal_handlers_disconnect_by_func(pbg_priv(bookmark_group)->volume_manager,
-                                         G_CALLBACK(pbvol_volumes_added), bookmark_group);
-    g_signal_handlers_disconnect_by_func(pbg_priv(bookmark_group)->volume_manager,
-                                         G_CALLBACK(pbvol_volumes_removed), bookmark_group);
+    g_signal_handlers_disconnect_by_func(pbg_priv(bookmark_group)->volume_monitor,
+                                         G_CALLBACK(pbvol_volume_added), bookmark_group);
+    g_signal_handlers_disconnect_by_func(pbg_priv(bookmark_group)->volume_monitor,
+                                         G_CALLBACK(pbvol_volume_removed), bookmark_group);
 
-    g_object_unref(pbg_priv(bookmark_group)->volume_manager);
-    pbg_priv(bookmark_group)->volume_manager = NULL;
-    thunar_vfs_shutdown();
+    g_object_unref(pbg_priv(bookmark_group)->volume_monitor);
+    pbg_priv(bookmark_group)->volume_monitor = NULL;
     
     g_free(pbg_priv(bookmark_group));
     bookmark_group->priv = NULL;
@@ -326,7 +537,7 @@ pbvol_finalize(PlacesBookmarkGroup *bookmark_group)
 PlacesBookmarkGroup*
 places_bookmarks_volumes_create(gboolean mount_and_open_by_default)
 {
-    const GList *volumes;
+    GList *volumes;
     PlacesBookmarkGroup *bookmark_group;
 
     bookmark_group                      = places_bookmark_group_create();
@@ -334,24 +545,25 @@ places_bookmarks_volumes_create(gboolean mount_and_open_by_default)
     bookmark_group->changed             = pbvol_changed;
     bookmark_group->finalize            = pbvol_finalize;
     bookmark_group->priv                = g_new0(PBVolData, 1);
-    
-    thunar_vfs_init();
-    pbg_priv(bookmark_group)->volume_manager = thunar_vfs_volume_manager_get_default();
+
+    pbg_priv(bookmark_group)->volume_monitor = g_volume_monitor_get();
     pbg_priv(bookmark_group)->changed        = TRUE;
     pbg_priv(bookmark_group)->mount_and_open_by_default = mount_and_open_by_default;
     
-    volumes = thunar_vfs_volume_manager_get_volumes(pbg_priv(bookmark_group)->volume_manager);
-    while(volumes != NULL){
-        g_signal_connect_swapped(THUNAR_VFS_VOLUME(volumes->data), "changed",
+    volumes = g_volume_monitor_get_volumes(pbg_priv(bookmark_group)->volume_monitor);
+    while(volumes != NULL) {
+        g_signal_connect_swapped(G_OBJECT(volumes->data), "changed",
                                  G_CALLBACK(pbvol_set_changed), bookmark_group);
+        g_object_unref(volumes->data);
         volumes = volumes->next;
     }
+    g_list_free(volumes);
 
-    g_signal_connect(pbg_priv(bookmark_group)->volume_manager, "volumes-added",
-                     G_CALLBACK(pbvol_volumes_added), bookmark_group);
+    g_signal_connect(pbg_priv(bookmark_group)->volume_monitor, "volume-added",
+                     G_CALLBACK(pbvol_volume_added), bookmark_group);
 
-    g_signal_connect(pbg_priv(bookmark_group)->volume_manager, "volumes-removed",
-                     G_CALLBACK(pbvol_volumes_removed), bookmark_group);
+    g_signal_connect(pbg_priv(bookmark_group)->volume_monitor, "volume-removed",
+                     G_CALLBACK(pbvol_volume_removed), bookmark_group);
 
     return bookmark_group;
 }

@@ -168,7 +168,7 @@ pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
         /* create the BookmarkInfo container */
         bookmark        = places_bookmark_create(name);           /* label needs to be freed */
         bookmark->uri   = path;                                   /* uri   needs to be freed */
-        bookmark->icon  = "folder";
+        bookmark->icon  = g_themed_icon_new("folder");
         bookmark->priv  = GINT_TO_POINTER(pbuser_dir_exists(path));
         bookmark->finalize = pbuser_finalize_bookmark;
 
@@ -213,7 +213,7 @@ pbuser_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
             clone                 = places_bookmark_create(g_strdup(orig->label));
             clone->uri            = g_strdup(orig->uri);
             clone->uri_scheme     = orig->uri_scheme;
-            clone->icon           = orig->icon;
+            clone->icon           = g_object_ref(orig->icon);
             clone->finalize       = pbuser_finalize_bookmark;
     
             terminal              = places_create_open_terminal_action(clone);

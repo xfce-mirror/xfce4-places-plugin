@@ -6,11 +6,13 @@ xfce4_popup_places_SOURCES =						\
 
 xfce4_popup_places_CFLAGS =						\
 	$(LIBX11_CFLAGS)						\
+	$(EXO_CFLAGS)							\
 	$(GTK_CFLAGS)
 
 xfce4_popup_places_LDADD =						\
 	$(LIBX11_LDFLAGS)						\
 	$(LIBX11_LIBS)							\
+	$(EXO_LIBS)							\
 	$(GTK_LIBS)
 
 
@@ -20,7 +22,14 @@ plugindir = $(libexecdir)/xfce4/panel-plugins
 plugin_PROGRAMS =							\
 	xfce4-places-plugin
 
+if HAVE_LIBNOTIFY
+xfce4_places_plugin_notify_sources =					\
+	model_volumes_notify.c						\
+	model_volumes_notify.h
+endif
+
 xfce4_places_plugin_SOURCES =						\
+	$(xfce4_places_plugin_notify_sources)				\
 	places.c							\
 	places.h							\
 	support.c							\
@@ -38,9 +47,7 @@ xfce4_places_plugin_SOURCES =						\
 	model_volumes.c							\
 	model_volumes.h							\
 	button.c							\
-	button.h							\
-	xfce46-compat.c							\
-	xfce46-compat.h
+	button.h
 
 
 
@@ -48,19 +55,33 @@ xfce4_places_plugin_CFLAGS =						\
 	-I$(top_builddir)						\
 	-I$(top_srcdir)							\
 	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"				\
+	$(GIO_CFLAGS)							\
+	$(GIO_UNIX_CFLAGS)						\
+	$(GLIB_CFLAGS)							\
+	$(GTHREAD_CFLAGS)						\
 	$(GTK_CFLAGS)							\
+	$(LIBNOTIFY_CFLAGS)						\
+	$(LIBX11_CFLAGS)						\
 	$(LIBXFCE4UTIL_CFLAGS)						\
 	$(LIBXFCE4UI_CFLAGS)						\
 	$(LIBXFCE4PANEL_CFLAGS)						\
-        $(THUNAR_VFS_CFLAGS)						\
+	$(EXO_CFLAGS)							\
 	$(PLATFORM_CFLAGS)
 
 xfce4_places_plugin_LDADD =						\
+	$(GIO_LIBS)							\
+	$(GIO_UNIX_LIBS)						\
+	$(GLIB_LIBS)							\
+	$(GTHREAD_LIBS)							\
+	$(GTK_LIBS)							\
+	$(LIBNOTIFY_LIBS)						\
+	$(LIBX11_LDFLAGS)						\
+	$(LIBX11_LIBS)							\
 	$(LIBXFCE4UTIL_LIBS)						\
 	$(LIBXFCE4UI_LIBS)						\
 	$(LIBXFCE4PANEL_LIBS)						\
 	$(LIBX11_LIBS)							\
-	@THUNAR_VFS_LIBS@
+	$(EXO_LIBS)
 
 
 #

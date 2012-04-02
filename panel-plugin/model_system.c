@@ -30,13 +30,11 @@
 #include <string.h>
 
 #include <glib.h>
+#include <gio/gio.h>
 
 #include <libxfce4util/libxfce4util.h>
 
-#define EXO_API_SUBJECT_TO_CHANGE
-#include <thunar-vfs/thunar-vfs.h>
-
-#define TRASH          THUNAR_VFS_CHECK_VERSION(0,4,0)
+#define TRASH          1
 #define XDG_USER_DIRS  GLIB_CHECK_VERSION(2,14,0)
 
 #define pbg_priv(pbg) ((PBSysData*) pbg->priv)
@@ -49,7 +47,7 @@ typedef struct
     gchar         *desktop_dir;     /* NULL => no desktop or desktop is same as home */
 #if TRASH
     gboolean       trash_is_empty;
-    ThunarVfsPath *trash_path;
+    GFile *trash_path;
 #endif
 
 } PBSysData;
@@ -72,7 +70,7 @@ pbsys_finalize_trash_bookmark(PlacesBookmark *bookmark)
     g_assert(bookmark != NULL);
 
     if(bookmark->icon != NULL){
-        g_free(bookmark->icon);
+        g_object_unref(bookmark->icon);
         bookmark->icon = NULL;
     }
 }
@@ -80,15 +78,14 @@ pbsys_finalize_trash_bookmark(PlacesBookmark *bookmark)
 
 #if TRASH
 static gboolean
-pbsys_trash_is_empty(const ThunarVfsInfo *trash_info)
+pbsys_trash_is_empty(GFileInfo *trash_info)
 {
-    if (trash_info->custom_icon == NULL)
+    guint item_count = g_file_info_get_attribute_uint32(trash_info,
+                                                        G_FILE_ATTRIBUTE_TRASH_ITEM_COUNT);
+    if(item_count == 0)
+        return TRUE;
+    else
         return FALSE;
-    if (strcmp("user-trash-full", trash_info->custom_icon) == 0)
-        return FALSE;
-    if (strcmp("gnome-fs-trash-full", trash_info->custom_icon) == 0)
-        return FALSE;
-    return TRUE;
 }
 #endif
 
@@ -130,7 +127,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     PlacesBookmark *bookmark;
     PlacesBookmarkAction *open, *terminal;
 #if TRASH
-    ThunarVfsInfo *trash_info;
+    GFileInfo *trash_info;
 #endif
     const gchar *home_dir = xfce_get_homedir();
     gchar *desktop_dir;
@@ -142,7 +139,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     /* Home */
     bookmark                = places_bookmark_create((gchar*) g_get_user_name());
     bookmark->uri           = (gchar*) home_dir;
-    bookmark->icon          = "user-home";
+    bookmark->icon          = g_themed_icon_new("user-home");
 
     terminal                 = places_create_open_terminal_action(bookmark);
     bookmark->actions        = g_list_prepend(bookmark->actions, terminal);
@@ -159,15 +156,20 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     bookmark->uri_scheme    = PLACES_URI_SCHEME_TRASH;
     bookmark->finalize      = pbsys_finalize_trash_bookmark;;
 
-    /* Try for an icon from ThunarVFS to indicate whether trash is empty or not */
+    /* Try for an icon to indicate whether trash is empty or not */
     
-    trash_info = thunar_vfs_info_new_for_path(pbg_priv(bookmark_group)->trash_path, NULL);
+    trash_info = g_file_query_info(pbg_priv(bookmark_group)->trash_path,
+                    "trash::*",
+                    G_FILE_QUERY_INFO_NONE,
+                    NULL, NULL);
     pbg_priv(bookmark_group)->trash_is_empty = pbsys_trash_is_empty(trash_info);
-    if(trash_info->custom_icon != NULL)
-        bookmark->icon = g_strdup(trash_info->custom_icon);
+    if (bookmark->icon != NULL)
+        g_object_unref(bookmark->icon);
+    if (pbg_priv(bookmark_group)->trash_is_empty)
+        bookmark->icon = g_themed_icon_new("user-trash");
     else
-        bookmark->icon = g_strdup("user-trash-full");
-    thunar_vfs_info_unref(trash_info);
+        bookmark->icon = g_themed_icon_new("user-trash-full");
+    g_object_unref(trash_info);
 
     open                     = places_create_open_action(bookmark);
     bookmark->actions        = g_list_prepend(bookmark->actions, open);
@@ -185,7 +187,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     if(desktop_dir != NULL){
         bookmark                = places_bookmark_create(_("Desktop"));
         bookmark->uri           = desktop_dir;
-        bookmark->icon          = "user-desktop";
+        bookmark->icon          = g_themed_icon_new("user-desktop");
         bookmark->finalize      = pbsys_finalize_desktop_bookmark;
 
 
@@ -201,7 +203,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     /* File System (/) */
     bookmark                = places_bookmark_create(_("File System"));
     bookmark->uri           = "/";
-    bookmark->icon          = "gtk-harddisk";
+    bookmark->icon          = g_themed_icon_new("gtk-harddisk");
 
     terminal                 = places_create_open_terminal_action(bookmark);
     bookmark->actions        = g_list_prepend(bookmark->actions, terminal);
@@ -220,7 +222,7 @@ pbsys_changed(PlacesBookmarkGroup *bookmark_group)
     gchar *desktop_dir;
 #if TRASH
     gboolean trash_is_empty;
-    ThunarVfsInfo *trash_info;
+    GFileInfo *trash_info;
 #endif
 
     if(!pbg_priv(bookmark_group)->check_changed)
@@ -236,9 +238,12 @@ pbsys_changed(PlacesBookmarkGroup *bookmark_group)
 
 #if TRASH
     /* see if trash gets a different icon (e.g., was empty, now full) */
-    trash_info = thunar_vfs_info_new_for_path(pbg_priv(bookmark_group)->trash_path, NULL);
+    trash_info = g_file_query_info(pbg_priv(bookmark_group)->trash_path,
+                    "trash::*",
+                    G_FILE_QUERY_INFO_NONE,
+                    NULL, NULL);
     trash_is_empty = pbsys_trash_is_empty(trash_info);
-    thunar_vfs_info_unref(trash_info);
+    g_object_unref(trash_info);
     
     if(trash_is_empty != pbg_priv(bookmark_group)->trash_is_empty)
         return TRUE;
@@ -251,8 +256,7 @@ static void
 pbsys_finalize(PlacesBookmarkGroup *bookmark_group)
 {
 #if TRASH
-    thunar_vfs_path_unref(pbg_priv(bookmark_group)->trash_path);
-    thunar_vfs_shutdown();
+    g_object_unref(pbg_priv(bookmark_group)->trash_path);
 #endif
 
     g_free(pbg_priv(bookmark_group)->desktop_dir);
@@ -273,8 +277,7 @@ places_bookmarks_system_create(void)
     bookmark_group->priv          = g_new0(PBSysData, 1);
     
 #if TRASH
-    thunar_vfs_init();
-    pbg_priv(bookmark_group)->trash_path = thunar_vfs_path_get_for_trash();
+    pbg_priv(bookmark_group)->trash_path = g_file_new_for_uri("trash:///");
 #endif
 
     return bookmark_group;

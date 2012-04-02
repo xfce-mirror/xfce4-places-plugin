@@ -23,6 +23,7 @@
 #define _XFCE_PANEL_PLACES_MODEL_H
 
 #include <glib.h>
+#include <gio/gio.h>
 
 /* Places Bookmark Action */
 typedef struct _PlacesBookmarkAction PlacesBookmarkAction;
@@ -59,7 +60,7 @@ struct _PlacesBookmark
     gchar                 *label;          /* must not be NULL */
     gchar                 *uri;            /* may be NULL */
     places_uri_scheme      uri_scheme;    
-    gchar                 *icon;           /* may be NULL */
+    GIcon                 *icon;           /* may be NULL */
     PlacesBookmarkAction  *primary_action; /* may be NULL */
     gboolean               force_gray;
     GList                 *actions;        /* may be NULL (empty) */

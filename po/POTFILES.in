@@ -9,6 +9,7 @@ panel-plugin/model_user.c
 panel-plugin/model_user.h
 panel-plugin/model_volumes.c
 panel-plugin/model_volumes.h
+panel-plugin/model_volumes_notify.c
 panel-plugin/view.c
 panel-plugin/view.h
 panel-plugin/cfg.c

@@ -57,8 +57,6 @@
 
 #include <string.h>
 
-#include "xfce46-compat.h"
-
 #include "view.h"
 #include "support.h"
 #include "cfg.h"
@@ -68,6 +66,10 @@
 #include "model_user.h"
 #include "xfce4-popup-places.h"
 #include "button.h"
+
+#ifdef HAVE_LIBNOTIFY
+#include "model_volumes_notify.h"
+#endif
 
 struct _PlacesViewCfgIface
 {
@@ -454,6 +456,42 @@ pview_cb_recent_items_clear3(GtkWidget *clear_item, GdkEventButton *event, GtkWi
 
 /********** UI Helpers **********/
 
+static GdkPixbuf *
+pview_get_icon(GIcon *icon)
+{
+    GtkIconTheme *itheme = gtk_icon_theme_get_default();
+    GdkPixbuf *pix = NULL;
+    gint width, height, size;
+
+    g_return_val_if_fail(icon != NULL, NULL);
+
+    if (gtk_icon_size_lookup(GTK_ICON_SIZE_MENU, &width, &height))
+        size = MAX(width, height);
+    else
+        size = 32;
+
+    if (G_IS_THEMED_ICON(icon)) {
+        GtkIconInfo *icon_info = gtk_icon_theme_lookup_by_gicon(itheme,
+                                                                icon, size,
+                                                                GTK_ICON_LOOKUP_USE_BUILTIN | GTK_ICON_LOOKUP_GENERIC_FALLBACK | GTK_ICON_LOOKUP_FORCE_SIZE);
+        if (icon_info) {
+            GdkPixbuf *pix_theme = gtk_icon_info_load_icon(icon_info, NULL);
+            pix = gdk_pixbuf_copy(pix_theme);
+            gtk_icon_info_free(icon_info);
+            g_object_unref(G_OBJECT(pix_theme));
+        }
+    } else if(G_IS_LOADABLE_ICON(icon)) {
+        GInputStream *stream = g_loadable_icon_load(G_LOADABLE_ICON(icon),
+                                                    size, NULL, NULL, NULL);
+        if (stream) {
+            pix = gdk_pixbuf_new_from_stream(stream, NULL, NULL);
+            g_object_unref(stream);
+        }
+    }
+
+    return pix;
+}
+
 static void
 pview_destroy_menu(PlacesView *view)
 {
@@ -503,13 +541,7 @@ pview_add_menu_item(PlacesView *view, PlacesBookmark *bookmark)
 
     /* try to set icon */
     if(view->cfg->show_icons && bookmark->icon != NULL){
-        gint icon_size;
-        gint width, height;
-        if (gtk_icon_size_lookup(GTK_ICON_SIZE_MENU, &width, &height))
-                icon_size = MAX(width, height);
-        else
-                icon_size = 32;
-        pb = xfce_panel_pixbuf_from_source(bookmark->icon, NULL, icon_size);
+        pb = pview_get_icon(bookmark->icon);
 
         if(G_LIKELY(pb != NULL)){
             image = gtk_image_new_from_pixbuf(pb);
@@ -922,6 +954,10 @@ places_view_finalize(PlacesView *view)
     view->view_cfg_iface = NULL;
 
     g_free(view);
+
+#ifdef HAVE_LIBNOTIFY
+    pbvol_notify_uninit();
+#endif
 }
 
 /* vim: set ai et tabstop=4: */
