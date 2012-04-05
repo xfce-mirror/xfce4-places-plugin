@@ -91,7 +91,7 @@ msgstr "단추"
 
 #: ../panel-plugin/cfg.c:356
 msgid "_Show"
-msgstr "표시(_S)"
+msgstr "보이기(_S)"
 
 #: ../panel-plugin/cfg.c:362
 msgid "Icon Only"
