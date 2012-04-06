@@ -52,126 +52,192 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-05-17 01:47-0500\n"
+"POT-Creation-Date: 2012-04-07 00:20+0900\n"
 "PO-Revision-Date: 2011-01-07 18:32+0200\n"
 "Last-Translator: Spiros Georgaras <sng@hellug.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#. vim: ai et tabstop=4
+#. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
 msgstr "Προσβάσιμοι φάκελοι, έγγραφα και αφαιρέσιμα μέσα"
 
-#: ../panel-plugin/places.desktop.in.in.h:2
-#: ../panel-plugin/cfg.c:78
-#: ../panel-plugin/cfg.c:140
-#: ../panel-plugin/cfg.c:259
-#: ../panel-plugin/cfg.c:329
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:63
+#: ../panel-plugin/cfg.c:104 ../panel-plugin/cfg.c:204
+#: ../panel-plugin/cfg.c:310
 msgid "Places"
 msgstr "Τοποθεσίες"
 
-#: ../panel-plugin/model_system.c:60
+#. Trash
+#: ../panel-plugin/model_system.c:154
 msgid "Trash"
 msgstr "Απορρίμματα"
 
-#: ../panel-plugin/model_system.c:70
+#: ../panel-plugin/model_system.c:188
 msgid "Desktop"
 msgstr "Επιφάνεια Εργασίας"
 
-#: ../panel-plugin/model_system.c:78
+#. File System (/)
+#: ../panel-plugin/model_system.c:204
 msgid "File System"
 msgstr "Σύστημα αρχείων"
 
-#: ../panel-plugin/view.c:244
-#: ../panel-plugin/cfg.c:456
+#: ../panel-plugin/model_volumes.c:71
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "Αποτυχία κατά την εξαγωγή \"%s\""
+
+#: ../panel-plugin/model_volumes.c:120
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "Αποτυχία κατά την αποπροσάρτηση \"%s\""
+
+#: ../panel-plugin/model_volumes.c:170
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "Αποτυχία κατά την προσάρτηση \"%s\""
+
+#: ../panel-plugin/model_volumes.c:444
+msgid "Mount and Open"
+msgstr "Προσάρτηση και άνοιγμα"
+
+#: ../panel-plugin/model_volumes.c:457
+msgid "Mount"
+msgstr "Προσάρτηση"
+
+#: ../panel-plugin/model_volumes.c:477
+msgid "Eject"
+msgstr "Εξαγωγή"
+
+#: ../panel-plugin/model_volumes.c:487
+msgid "Unmount"
+msgstr "Απόπροσάρτηση"
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:128
+msgid "Unmounting device"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:131
+#, c-format
+msgid ""
+"The device \"%s\" is being unmounted by the system. Please do not remove the "
+"media or disconnect the drive"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:138
+#: ../panel-plugin/model_volumes_notify.c:262
+msgid "Writing data to device"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:141
+#: ../panel-plugin/model_volumes_notify.c:265
+#, c-format
+msgid ""
+"There is data that needs to be written to the device \"%s\" before it can be "
+"removed. Please do not remove the media or disconnect the drive"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:253
+msgid "Ejecting device"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:256
+#, c-format
+msgid "The device \"%s\" is being ejected. This may take some time"
+msgstr ""
+
+#: ../panel-plugin/view.c:654
+msgid "Search for Files"
+msgstr "Αναζήτηση για αρχεία"
+
+#: ../panel-plugin/view.c:707 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "Πρόσφατα έγγραφα"
 
-#: ../panel-plugin/cfg.c:345
+#: ../panel-plugin/cfg.c:347
 msgid "Button"
 msgstr "Κουμπί"
 
-#: ../panel-plugin/cfg.c:354
+#: ../panel-plugin/cfg.c:356
 msgid "_Show"
 msgstr "Εμ_φάνιση"
 
-#: ../panel-plugin/cfg.c:360
+#: ../panel-plugin/cfg.c:362
 msgid "Icon Only"
 msgstr "Μόνο εικονίδιο"
 
-#: ../panel-plugin/cfg.c:361
+#: ../panel-plugin/cfg.c:363
 msgid "Label Only"
 msgstr "Μόνο ετικέτα"
 
-#: ../panel-plugin/cfg.c:362
+#: ../panel-plugin/cfg.c:364
 msgid "Icon and Label"
 msgstr "Εικονίδιο και ετικέτα"
 
-#: ../panel-plugin/cfg.c:384
+#: ../panel-plugin/cfg.c:386
 msgid "_Label"
 msgstr "Ετ_ικέτα"
 
-#: ../panel-plugin/cfg.c:402
+#: ../panel-plugin/cfg.c:404
 msgid "Menu"
 msgstr "Μενού"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:406
+#: ../panel-plugin/cfg.c:408
 msgid "Show _icons in menu"
 msgstr "Εμφάνιση εικ_ονιδίων στο μενού"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:418
+#: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
 msgstr "Εμφάνιση αφ_αιρέσιμων μέσων"
 
+#: ../panel-plugin/cfg.c:441
+msgid "Mount and _Open on click"
+msgstr "Προσάρτηση και άν_οιγμα στο click"
+
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:429
+#: ../panel-plugin/cfg.c:455
 msgid "Show GTK _bookmarks"
 msgstr "Εμφάνιση GTK σ_ελιδοδεικτών"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:442
+#: ../panel-plugin/cfg.c:468
 msgid "Show recent _documents"
 msgstr "Εμφάνιση πρόσφατων ε_γγράφων"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:460
+#: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
 msgstr "Εμφάνιση επιλογής κ_αθαρισμού"
 
-#: ../panel-plugin/cfg.c:475
+#: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
 msgstr "Αρ_ιθμός για εμφάνιση"
 
-#~ msgid "Failed to eject \"%s\""
-#~ msgstr "Αποτυχία κατά την εξαγωγή \"%s\""
-#~ msgid "Failed to unmount \"%s\""
-#~ msgstr "Αποτυχία κατά την αποπροσάρτηση \"%s\""
-#~ msgid "Failed to mount \"%s\""
-#~ msgstr "Αποτυχία κατά την προσάρτηση \"%s\""
-#~ msgid "Mount and Open"
-#~ msgstr "Προσάρτηση και άνοιγμα"
-#~ msgid "Mount"
-#~ msgstr "Προσάρτηση"
-#~ msgid "Eject"
-#~ msgstr "Εξαγωγή"
-#~ msgid "Unmount"
-#~ msgstr "Απόπροσάρτηση"
-#~ msgid "Search for Files"
-#~ msgstr "Αναζήτηση για αρχεία"
-#~ msgid "Mount and _Open on click"
-#~ msgstr "Προσάρτηση και άν_οιγμα στο click"
-#~ msgid "Search"
-#~ msgstr "Αναζήτηση"
-#~ msgid "Co_mmand"
-#~ msgstr "Εντ_ολή"
-#~ msgid "Open"
-#~ msgstr "Άνοιγμα"
-#~ msgid "Open Terminal Here"
-#~ msgstr "Άνοιγμα τερματικού εδώ"
+#: ../panel-plugin/cfg.c:525
+msgid "Search"
+msgstr "Αναζήτηση"
 
+#: ../panel-plugin/cfg.c:533
+msgid "Co_mmand"
+msgstr "Εντ_ολή"
+
+#: ../panel-plugin/support.c:159
+msgid "Open"
+msgstr "Άνοιγμα"
+
+#: ../panel-plugin/support.c:174
+msgid "Open Terminal Here"
+msgstr "Άνοιγμα τερματικού εδώ"

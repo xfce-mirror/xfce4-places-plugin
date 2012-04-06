@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-places-plugin\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-08 12:51+0100\n"
+"POT-Creation-Date: 2012-04-07 00:20+0900\n"
 "PO-Revision-Date: 2010-12-25 22:16+0100\n"
 "Last-Translator: Michal Löffler <lofflermichalloffler@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
+"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,66 +24,101 @@ msgstr ""
 msgid "Access folders, documents, and removable media"
 msgstr "Pristupovať k priečinkom, dokumentom a vymeniteľným médiám"
 
-#: ../panel-plugin/places.desktop.in.in.h:2
-#: ../panel-plugin/cfg.c:64
-#: ../panel-plugin/cfg.c:105
-#: ../panel-plugin/cfg.c:205
-#: ../panel-plugin/cfg.c:311
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:63
+#: ../panel-plugin/cfg.c:104 ../panel-plugin/cfg.c:204
+#: ../panel-plugin/cfg.c:310
 msgid "Places"
 msgstr "Miesta"
 
 #. Trash
-#: ../panel-plugin/model_system.c:110
+#: ../panel-plugin/model_system.c:154
 msgid "Trash"
 msgstr "Kôš"
 
-#. Desktop
-#: ../panel-plugin/model_system.c:135
+#: ../panel-plugin/model_system.c:188
 msgid "Desktop"
 msgstr "Pracovná plocha"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:159
+#: ../panel-plugin/model_system.c:204
 msgid "File System"
 msgstr "Súborový systém"
 
-#: ../panel-plugin/model_volumes.c:64
+#: ../panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
 msgstr "Nepodarilo sa vysunúť  \"%s\""
 
-#: ../panel-plugin/model_volumes.c:85
+#: ../panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
 msgstr "Nepodarilo sa odpojiť \"%s\""
 
-#: ../panel-plugin/model_volumes.c:107
+#: ../panel-plugin/model_volumes.c:170
 #, c-format
 msgid "Failed to mount \"%s\""
 msgstr "Nepodarilo sa pripojiť \"%s\""
 
-#: ../panel-plugin/model_volumes.c:226
+#: ../panel-plugin/model_volumes.c:444
 msgid "Mount and Open"
 msgstr "Pripojiť a Otvoriť"
 
-#: ../panel-plugin/model_volumes.c:239
+#: ../panel-plugin/model_volumes.c:457
 msgid "Mount"
 msgstr "Pripojiť"
 
-#: ../panel-plugin/model_volumes.c:260
+#: ../panel-plugin/model_volumes.c:477
 msgid "Eject"
 msgstr "Vysunúť"
 
-#: ../panel-plugin/model_volumes.c:272
+#: ../panel-plugin/model_volumes.c:487
 msgid "Unmount"
 msgstr "Odpojiť"
 
-#: ../panel-plugin/view.c:678
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:128
+msgid "Unmounting device"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:131
+#, c-format
+msgid ""
+"The device \"%s\" is being unmounted by the system. Please do not remove the "
+"media or disconnect the drive"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:138
+#: ../panel-plugin/model_volumes_notify.c:262
+msgid "Writing data to device"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:141
+#: ../panel-plugin/model_volumes_notify.c:265
+#, c-format
+msgid ""
+"There is data that needs to be written to the device \"%s\" before it can be "
+"removed. Please do not remove the media or disconnect the drive"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:253
+msgid "Ejecting device"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:256
+#, c-format
+msgid "The device \"%s\" is being ejected. This may take some time"
+msgstr ""
+
+#: ../panel-plugin/view.c:654
 msgid "Search for Files"
 msgstr "Hľadať súbory"
 
-#: ../panel-plugin/view.c:731
-#: ../panel-plugin/cfg.c:486
+#: ../panel-plugin/view.c:707 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "Nedávne dokumenty"
 
@@ -155,11 +191,10 @@ msgstr "Hľadať"
 msgid "Co_mmand"
 msgstr "Prí_kaz"
 
-#: ../panel-plugin/support.c:148
+#: ../panel-plugin/support.c:159
 msgid "Open"
 msgstr "Otvoriť"
 
-#: ../panel-plugin/support.c:163
+#: ../panel-plugin/support.c:174
 msgid "Open Terminal Here"
 msgstr "Otvoriť v termináli"
-

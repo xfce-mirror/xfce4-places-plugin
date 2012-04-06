@@ -2,15 +2,16 @@
 # Copyright (C) 2007 THE xfce4-places-plugin'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce4-places-plugin package.
 # Terje Uriansrud <ter@operamail.com>, 2007.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-places-plugin 0.3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-08 12:51+0100\n"
+"POT-Creation-Date: 2012-04-07 00:20+0900\n"
 "PO-Revision-Date: 2007-07-02 00:12+0200\n"
 "Last-Translator: Terje Uriansrud <ter@operamail.com>\n"
 "Language-Team: Norwegian Bokmal\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,63 +22,101 @@ msgstr ""
 msgid "Access folders, documents, and removable media"
 msgstr "Få tilgang til mapper, dokumenter og flyttbare media"
 
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:64
-#: ../panel-plugin/cfg.c:105 ../panel-plugin/cfg.c:205
-#: ../panel-plugin/cfg.c:311
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:63
+#: ../panel-plugin/cfg.c:104 ../panel-plugin/cfg.c:204
+#: ../panel-plugin/cfg.c:310
 msgid "Places"
 msgstr "Steder"
 
 #. Trash
-#: ../panel-plugin/model_system.c:110
+#: ../panel-plugin/model_system.c:154
 msgid "Trash"
 msgstr "Papirkurv"
 
-#. Desktop
-#: ../panel-plugin/model_system.c:135
+#: ../panel-plugin/model_system.c:188
 msgid "Desktop"
 msgstr "Skrivebord"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:159
+#: ../panel-plugin/model_system.c:204
 msgid "File System"
 msgstr "Filsystem"
 
-#: ../panel-plugin/model_volumes.c:64
+#: ../panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
 msgstr "Klarte ikke å løse ut \"%s\""
 
-#: ../panel-plugin/model_volumes.c:85
+#: ../panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
 msgstr "Klarte ikke å avmontere \"%s\""
 
-#: ../panel-plugin/model_volumes.c:107
+#: ../panel-plugin/model_volumes.c:170
 #, c-format
 msgid "Failed to mount \"%s\""
 msgstr "Klarte ikke å montere \"%s\""
 
-#: ../panel-plugin/model_volumes.c:226
+#: ../panel-plugin/model_volumes.c:444
 msgid "Mount and Open"
 msgstr "Monter og åpne"
 
-#: ../panel-plugin/model_volumes.c:239
+#: ../panel-plugin/model_volumes.c:457
 msgid "Mount"
 msgstr "Monter"
 
-#: ../panel-plugin/model_volumes.c:260
+#: ../panel-plugin/model_volumes.c:477
 msgid "Eject"
 msgstr "Løs ut"
 
-#: ../panel-plugin/model_volumes.c:272
+#: ../panel-plugin/model_volumes.c:487
 msgid "Unmount"
 msgstr "Avmonter"
 
-#: ../panel-plugin/view.c:678
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:128
+msgid "Unmounting device"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:131
+#, c-format
+msgid ""
+"The device \"%s\" is being unmounted by the system. Please do not remove the "
+"media or disconnect the drive"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:138
+#: ../panel-plugin/model_volumes_notify.c:262
+msgid "Writing data to device"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:141
+#: ../panel-plugin/model_volumes_notify.c:265
+#, c-format
+msgid ""
+"There is data that needs to be written to the device \"%s\" before it can be "
+"removed. Please do not remove the media or disconnect the drive"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:253
+msgid "Ejecting device"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:256
+#, c-format
+msgid "The device \"%s\" is being ejected. This may take some time"
+msgstr ""
+
+#: ../panel-plugin/view.c:654
 msgid "Search for Files"
 msgstr "Søk etter filer"
 
-#: ../panel-plugin/view.c:731 ../panel-plugin/cfg.c:486
+#: ../panel-plugin/view.c:707 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "Nylig benyttede dokumenter"
 
@@ -150,10 +189,10 @@ msgstr "Søk"
 msgid "Co_mmand"
 msgstr "Ko_mmando"
 
-#: ../panel-plugin/support.c:148
+#: ../panel-plugin/support.c:159
 msgid "Open"
 msgstr "Åpne"
 
-#: ../panel-plugin/support.c:163
+#: ../panel-plugin/support.c:174
 msgid "Open Terminal Here"
 msgstr "Åpne terminal her"

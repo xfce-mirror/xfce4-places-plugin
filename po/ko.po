@@ -3,18 +3,18 @@
 # This file is distributed under the same license as the xfce4-places-plugin.master package.
 # Seong-ho, cho <darkcircle.0426@gmail.com>, 2011-2012.
 # Sung Jin Gang <ujuc@ujuc.kr>, 2012.
-
 msgid ""
 msgstr ""
-"Report-Msgid-Bugs-To: xfce4-users-kr-i18n <xfce4-users-kr-i18n@lists.sourceforge.net>\n"
-"POT-Creation-Date: 2008-06-08 12:51+0100\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-07 00:20+0900\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Seong-ho, Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: Korean\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. vim: set ai et tabstop=4:
@@ -22,66 +22,101 @@ msgstr ""
 msgid "Access folders, documents, and removable media"
 msgstr "폴더, 문서, 이동식 미디어에 접근합니다"
 
-#: ../panel-plugin/places.desktop.in.in.h:2
-#: ../panel-plugin/cfg.c:64
-#: ../panel-plugin/cfg.c:105
-#: ../panel-plugin/cfg.c:205
-#: ../panel-plugin/cfg.c:311
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:63
+#: ../panel-plugin/cfg.c:104 ../panel-plugin/cfg.c:204
+#: ../panel-plugin/cfg.c:310
 msgid "Places"
 msgstr "위치"
 
 #. Trash
-#: ../panel-plugin/model_system.c:110
+#: ../panel-plugin/model_system.c:154
 msgid "Trash"
 msgstr "휴지통"
 
-#. Desktop
-#: ../panel-plugin/model_system.c:135
+#: ../panel-plugin/model_system.c:188
 msgid "Desktop"
 msgstr "데스크톱"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:159
+#: ../panel-plugin/model_system.c:204
 msgid "File System"
 msgstr "파일 시스템"
 
-#: ../panel-plugin/model_volumes.c:64
+#: ../panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
 msgstr "\"%s\"을(를) 꺼내는데 실패"
 
-#: ../panel-plugin/model_volumes.c:85
+#: ../panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
 msgstr "\"%s\"을(를) 마운트 해제하는데 실패"
 
-#: ../panel-plugin/model_volumes.c:107
+#: ../panel-plugin/model_volumes.c:170
 #, c-format
 msgid "Failed to mount \"%s\""
 msgstr "\"%s\"을(를) 마운트하는데 실패"
 
-#: ../panel-plugin/model_volumes.c:226
+#: ../panel-plugin/model_volumes.c:444
 msgid "Mount and Open"
 msgstr "마운트하고 열기"
 
-#: ../panel-plugin/model_volumes.c:239
+#: ../panel-plugin/model_volumes.c:457
 msgid "Mount"
 msgstr "마운트"
 
-#: ../panel-plugin/model_volumes.c:260
+#: ../panel-plugin/model_volumes.c:477
 msgid "Eject"
 msgstr "꺼내기"
 
-#: ../panel-plugin/model_volumes.c:272
+#: ../panel-plugin/model_volumes.c:487
 msgid "Unmount"
 msgstr "마운트 해제"
 
-#: ../panel-plugin/view.c:678
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:128
+msgid "Unmounting device"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:131
+#, c-format
+msgid ""
+"The device \"%s\" is being unmounted by the system. Please do not remove the "
+"media or disconnect the drive"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:138
+#: ../panel-plugin/model_volumes_notify.c:262
+msgid "Writing data to device"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:141
+#: ../panel-plugin/model_volumes_notify.c:265
+#, c-format
+msgid ""
+"There is data that needs to be written to the device \"%s\" before it can be "
+"removed. Please do not remove the media or disconnect the drive"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:253
+msgid "Ejecting device"
+msgstr ""
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: ../panel-plugin/model_volumes_notify.c:256
+#, c-format
+msgid "The device \"%s\" is being ejected. This may take some time"
+msgstr ""
+
+#: ../panel-plugin/view.c:654
 msgid "Search for Files"
 msgstr "파일 검색"
 
-#: ../panel-plugin/view.c:731
-#: ../panel-plugin/cfg.c:486
+#: ../panel-plugin/view.c:707 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "최근 문서"
 
@@ -154,11 +189,10 @@ msgstr "검색"
 msgid "Co_mmand"
 msgstr "명령(_M)"
 
-#: ../panel-plugin/support.c:148
+#: ../panel-plugin/support.c:159
 msgid "Open"
 msgstr "열기"
 
-#: ../panel-plugin/support.c:163
+#: ../panel-plugin/support.c:174
 msgid "Open Terminal Here"
 msgstr "이곳에 터미널 열기"
-
