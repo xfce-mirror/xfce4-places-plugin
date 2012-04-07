@@ -87,7 +87,7 @@ msgstr "卸载"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
-msgstr "卸载设备"
+msgstr "正在卸载设备"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
