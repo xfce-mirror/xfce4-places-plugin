@@ -9,7 +9,7 @@
 # Rodrigo Coacci <rcoacci@gmail.com>, 2006.
 # Adriano Winter Bess <awbess@gmail.com>, 2006
 # Og Maciel <ogmaciel@gnome.org>, 2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce 4-battery-plugin\n"
@@ -18,10 +18,10 @@ msgstr ""
 "PO-Revision-Date: 2008-06-08 16:58-0500\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
-"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. vim: set ai et tabstop=4:
@@ -83,7 +83,7 @@ msgstr "Desmontar"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
-msgstr ""
+msgstr "Desmontando dispositivo"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
@@ -91,13 +91,13 @@ msgstr ""
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the "
 "media or disconnect the drive"
-msgstr ""
+msgstr "O dispositivo \"%s\" está sendo desmontado pelo sistema. Favor não remover a mídia ou desconectar a unidade"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
 #: ../panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
-msgstr ""
+msgstr "Gravando dados no dispositivo"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:141
@@ -106,18 +106,18 @@ msgstr ""
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be "
 "removed. Please do not remove the media or disconnect the drive"
-msgstr ""
+msgstr "Existem dados a serem gravados no dispositivo \"%s\" antes poder removê-lo. Favor não remover a mídia ou desconectar a unidade"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
-msgstr ""
+msgstr "Ejetando dispositivo"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr ""
+msgstr "O dispositivo \"%s\" está sendo ejetado. Isto pode levar algum tempo"
 
 #: ../panel-plugin/view.c:654
 msgid "Search for Files"
