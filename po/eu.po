@@ -6,10 +6,10 @@
 # Basque translations for xfce package.
 # Copyright (C) 2004-2006 Benedikt Meurer.
 # This file is distributed under the same license as the Thunar package.
-#
+# 
 # ###
 # Copyright (C) 1999, 2004, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
-#
+# 
 # Piarres Beobide <pi@beobide.net>, 2006, 2008, 2009.
 # Joseba Bidaurrazaga van Dierdonck <gcpbivaj@lg.ehu.es>, 2000.
 # Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2004.
@@ -23,12 +23,12 @@ msgstr ""
 "PO-Revision-Date: 2009-08-18 09:48+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <debian-l10n-eu@lists.debian.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
@@ -89,7 +89,7 @@ msgstr "Desmuntatu"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
-msgstr ""
+msgstr "Gailua desmuntatzen"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
@@ -98,12 +98,14 @@ msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the "
 "media or disconnect the drive"
 msgstr ""
+"\"%s\" gailua sistematik desmuntatua izaten ari da.\r\n"
+"Mesedez ez atera euskarria edo gailua desktonektatu"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
 #: ../panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
-msgstr ""
+msgstr "Gailuan datuak idatzen"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:141
@@ -112,18 +114,18 @@ msgstr ""
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be "
 "removed. Please do not remove the media or disconnect the drive"
-msgstr ""
+msgstr "\"%s\" gailuan kendu aurretik gorde behar diren datuak daude. Mesedez ez kendu euskarria edo gailua deskonektatu."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
-msgstr ""
+msgstr "Gailua egozten"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr ""
+msgstr "\"%s\" gailua egozten ari da. Denbora apur bat hartu lezake"
 
 #: ../panel-plugin/view.c:654
 msgid "Search for Files"
