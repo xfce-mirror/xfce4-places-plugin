@@ -1,7 +1,7 @@
 # Finnish translations for xfce4-places-plugin package.
 # Copyright (C) 2007 Diego Ongaro <ongardie@gmail.com>.
 # This file is distributed under the same license as the xfce4-places-plugin package.
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2007-2008.
+# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2007-2012.
 # The original file was automatically generated based on the following:
 # ###
 # Finnish translations for Thunar package.
@@ -22,10 +22,10 @@
 # ###
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-places-plugin 0.9.991\n"
+"Project-Id-Version: xfce4-places-plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-07 00:20+0900\n"
-"PO-Revision-Date: 2009-02-01 17:00+0200\n"
+"PO-Revision-Date: 2012-04-12 18:02+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish\n"
 "Language: \n"
@@ -92,7 +92,7 @@ msgstr "Irrota"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
-msgstr ""
+msgstr "Irrotetaan laitetta"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
@@ -101,12 +101,14 @@ msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the "
 "media or disconnect the drive"
 msgstr ""
+"Taltiota \"%s\" irrotetaan tiedostojärjestelmästä. Älä poista taltiota "
+"asemasta tai irrota laitetta."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
 #: ../panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
-msgstr ""
+msgstr "Kirjoitetaan laitteelle"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:141
@@ -116,17 +118,19 @@ msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be "
 "removed. Please do not remove the media or disconnect the drive"
 msgstr ""
+"Laitteelle \"%s\" täytyy kirjoittaa tietoa ennen sen irrottamista. Älä "
+"poista taltiota tai irrota laitetta."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
-msgstr ""
+msgstr "Poistetaan taltio"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr ""
+msgstr "Laittetta \"%s\" irrotetaan. Tämä voi viedä hetken."
 
 #: ../panel-plugin/view.c:654
 msgid "Search for Files"
