@@ -9,12 +9,12 @@
 # Rafaël Carré <wavael@yahoo.fr>, 2006.
 # Maximilian Schleiss <maxschleiss@solnet.ch>, 2006-2007.
 # Gérald Barré <g.barre@free.fr>, 2006.
-#
+# 
 # ###
 # French translation of gnome-panel.
 # Copyright (C) 1998-2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-panel package.
-#
+# 
 # Vincent Renardias <vincent@ldsol.com>, 1998-2000.
 # Joaquim Fellmann <joaquim@hrnet.fr>, 2000.
 # Christophe Merlet <redfox@redfoxcenter.org>, 2000-2006.
@@ -23,7 +23,7 @@
 # Benoît Dejean <benoit@placenet.org>, 2006.
 # Robert-André Mauchin <zebob.m@gmail.com>, 2006-2007.
 # Damien Durand <splinux@fedoraproject.org>, 2006
-#
+# 
 # ###
 msgid ""
 msgstr ""
@@ -33,10 +33,10 @@ msgstr ""
 "PO-Revision-Date: 2007-10-24 11:42+0100\n"
 "Last-Translator: Mike Massonnet <mmassonnet@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
@@ -97,7 +97,7 @@ msgstr "Démonter"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
-msgstr ""
+msgstr "Démontage du périphérique"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
@@ -105,13 +105,13 @@ msgstr ""
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the "
 "media or disconnect the drive"
-msgstr ""
+msgstr "Le périphérique « %s » est en train d'être retiré du système. Veuillez ne pas déconnecter le média."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
 #: ../panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
-msgstr ""
+msgstr "Écriture des données sur le périphérique"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:141
@@ -120,18 +120,18 @@ msgstr ""
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be "
 "removed. Please do not remove the media or disconnect the drive"
-msgstr ""
+msgstr "Des données doivent être écrites sur « %s » avant que ce périphérique puisse être retiré. Veuillez ne pas déconnecter le média."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
-msgstr ""
+msgstr "Éjection du périphérique"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr ""
+msgstr "Le périphérique « %s » est en cours d'éjection. Cela va prendre un instant."
 
 #: ../panel-plugin/view.c:654
 msgid "Search for Files"
