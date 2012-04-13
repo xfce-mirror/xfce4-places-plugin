@@ -1,3 +1,18 @@
+2012-04-13
+================================================================================
+xfce4-places-plugin v1.3.0 released
+
+ * Updated translations
+ * Ported to exo-1 (Bug #5754)
+ * Ported to libxfce4ui (Bug #7317)
+ * Ported to gio (Bug #6663)
+ * Use 4.10 features when available (Bug #8616)
+ * Added missing -lx11 flag (Bug #3295)
+ * Updated to xfce4-dev-tools 4.7.0
+ * Compilation warning fixes
+ * Added .gitignore
+ * Added module.xml
+
 2009-07-31
 ================================================================================
 xfce4-places-plugin v1.2.0 released
