@@ -133,7 +133,7 @@ msgstr "Gerät wird ausgeworfen"
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format, fuzzy
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr "Das Gerät »%s« wird ausgeworfen. Dies kann eine Weile dauern"
+msgstr "Das Gerät »%s« wird ausgeworfen. Dies kann einen Moment dauern"
 
 #: ../panel-plugin/view.c:654
 msgid "Search for Files"
