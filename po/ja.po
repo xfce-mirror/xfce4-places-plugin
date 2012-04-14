@@ -38,7 +38,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-13 21:45+0900\n"
-"PO-Revision-Date: 2012-04-13 21:56+0900\n"
+"PO-Revision-Date: 2012-04-14 22:12+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -215,7 +215,7 @@ msgstr "検索"
 
 #: ../panel-plugin/cfg.c:533
 msgid "Co_mmand"
-msgstr "コマンド(_O)"
+msgstr "コマンド(_M)"
 
 #: ../panel-plugin/support.c:159
 msgid "Open"
