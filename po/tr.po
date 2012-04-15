@@ -1,9 +1,9 @@
 # Turkish translation of xfce4-places-plugin
 # Copyright (C) 2008 THE xfce4-places-plugin'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the xfce4-places-plugin package.
-#
+# 
 # Gökmen Görgen <gkmngrgn@gmail.com>, 2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Last-Translator: Samed Beyribey <ras0ir@eventualis.org>\n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
@@ -43,35 +43,35 @@ msgid "File System"
 msgstr "Dosya Sistemi"
 
 #: ../panel-plugin/model_volumes.c:71
-#, c-format
+#, c-format, fuzzy
 msgid "Failed to eject \"%s\""
-msgstr ""
+msgstr "\"%s\" çıkarılması başarısız oldu"
 
 #: ../panel-plugin/model_volumes.c:120
-#, c-format
+#, c-format, fuzzy
 msgid "Failed to unmount \"%s\""
-msgstr ""
+msgstr "\"%s\" bağlantının kaldırılması başarısız oldu"
 
 #: ../panel-plugin/model_volumes.c:170
-#, c-format
+#, c-format, fuzzy
 msgid "Failed to mount \"%s\""
-msgstr ""
+msgstr "\"%s\" bağlanma başarısız oldu"
 
 #: ../panel-plugin/model_volumes.c:444
 msgid "Mount and Open"
-msgstr ""
+msgstr "Bağla ve Aç"
 
 #: ../panel-plugin/model_volumes.c:457
 msgid "Mount"
-msgstr ""
+msgstr "Bağla"
 
 #: ../panel-plugin/model_volumes.c:477
 msgid "Eject"
-msgstr ""
+msgstr "Çıkar"
 
 #: ../panel-plugin/model_volumes.c:487
 msgid "Unmount"
-msgstr ""
+msgstr "Bağlantıyı Kaldır"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:128
@@ -114,7 +114,7 @@ msgstr ""
 
 #: ../panel-plugin/view.c:654
 msgid "Search for Files"
-msgstr ""
+msgstr "Dosyaları Ara"
 
 #: ../panel-plugin/view.c:707 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
@@ -183,16 +183,17 @@ msgstr "Öğe sayı_sı"
 
 #: ../panel-plugin/cfg.c:525
 msgid "Search"
-msgstr ""
+msgstr "Ara"
 
 #: ../panel-plugin/cfg.c:533
 msgid "Co_mmand"
-msgstr ""
+msgstr "_Komut"
 
 #: ../panel-plugin/support.c:159
 msgid "Open"
-msgstr ""
+msgstr "Aç"
 
 #: ../panel-plugin/support.c:174
+#, fuzzy
 msgid "Open Terminal Here"
-msgstr ""
+msgstr "Komut Satırını Burada Aç"
