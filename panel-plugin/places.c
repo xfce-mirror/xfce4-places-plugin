@@ -68,6 +68,6 @@ places_construct(XfcePanelPlugin *plugin)
     DBG("done");
 }
 
-XFCE_PANEL_PLUGIN_REGISTER_EXTERNAL(places_construct);
+XFCE_PANEL_PLUGIN_REGISTER(places_construct);
 
 /* vim: set ai et tabstop=4: */
