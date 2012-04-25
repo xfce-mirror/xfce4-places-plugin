@@ -38,7 +38,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-13 21:45+0900\n"
-"PO-Revision-Date: 2012-04-14 22:12+0900\n"
+"PO-Revision-Date: 2012-04-25 20:38+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -203,7 +203,7 @@ msgstr "最近開いたドキュメントを表示する(_D)"
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:490
 msgid "Show cl_ear option"
-msgstr "クリアーオプションを表示する(_E)"
+msgstr "クリアオプションを表示する(_E)"
 
 #: ../panel-plugin/cfg.c:505
 msgid "_Number to display"
