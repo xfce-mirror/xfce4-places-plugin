@@ -95,29 +95,27 @@ msgstr "Aushängen"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:128
-#, fuzzy
 msgid "Unmounting device"
-msgstr "Gerät wird ausgeworfen"
+msgstr "Gerät wird ausgehängt"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
-#, c-format, fuzzy
+#, c-format
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the "
 "media or disconnect the drive"
-msgstr "Das Gerät »%s« wird vom System ausgeworfen. Bitte trennen Sie es nicht vom Rechner"
+msgstr "Das Gerät »%s« wird aus dem System ausgehängt. Bitte trennen Sie es nicht vom Rechner"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
 #: ../panel-plugin/model_volumes_notify.c:262
-#, fuzzy
 msgid "Writing data to device"
 msgstr "Das Gerät wird beschrieben"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:141
 #: ../panel-plugin/model_volumes_notify.c:265
-#, c-format, fuzzy
+#, c-format
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be "
 "removed. Please do not remove the media or disconnect the drive"
@@ -125,13 +123,12 @@ msgstr "Das Gerät »%s« muss noch komplett beschrieben werden, bis es getrennt
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
-#, fuzzy
 msgid "Ejecting device"
 msgstr "Gerät wird ausgeworfen"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:256
-#, c-format, fuzzy
+#, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr "Das Gerät »%s« wird ausgeworfen. Dies kann einen Moment dauern"
 
