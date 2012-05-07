@@ -298,6 +298,7 @@ pcfg_dialog_close_cb(GtkDialog *dialog, gint response, PlacesCfg *cfg)
 {
     gtk_widget_destroy(GTK_WIDGET(dialog));
     xfce_panel_plugin_unblock_menu(cfg->plugin);
+    places_cfg_save(cfg);
 }
 
 static GtkWidget*
