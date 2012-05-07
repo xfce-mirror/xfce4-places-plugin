@@ -32,6 +32,7 @@
 #include <glib.h>
 #include <gio/gio.h>
 
+#include <exo/exo.h>
 #include <libxfce4util/libxfce4util.h>
 
 #define TRASH          1

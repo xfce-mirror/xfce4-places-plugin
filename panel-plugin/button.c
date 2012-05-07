@@ -443,8 +443,9 @@ places_button_resize(PlacesButton *self)
                  - MAX(button_width, button_height);
     if (show_label) {
         xfce_panel_plugin_set_small(self->plugin, FALSE);
-        gtk_label_set_angle (GTK_LABEL (self->label),
-            (xfce_panel_plugin_get_mode(self->plugin) == GTK_ORIENTATION_VERTICAL) ? -90 : 0);
+        if (self->label != NULL)
+          gtk_label_set_angle (GTK_LABEL (self->label),
+                               (xfce_panel_plugin_get_mode(self->plugin) == XFCE_PANEL_PLUGIN_MODE_VERTICAL) ? -90 : 0);
     } else {
         xfce_panel_plugin_set_small(self->plugin, TRUE);
         new_size /= xfce_panel_plugin_get_nrows(self->plugin);

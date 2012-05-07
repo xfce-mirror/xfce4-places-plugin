@@ -506,7 +506,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     gtk_widget_show(tmp_label);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_label, FALSE, FALSE, 0);
 
-    adj = gtk_adjustment_new(cfg->show_recent_number, 1, 25, 1, 5, 5);
+    adj = gtk_adjustment_new(cfg->show_recent_number, 1, 25, 1, 5, 0);
 
     tmp_widget = gtk_spin_button_new(GTK_ADJUSTMENT(adj), 1, 0);
     gtk_label_set_mnemonic_widget(GTK_LABEL(tmp_label), tmp_widget);
