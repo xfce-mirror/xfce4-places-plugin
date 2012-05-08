@@ -260,10 +260,14 @@ places_button_construct(PlacesButton *self, XfcePanelPlugin *plugin)
     gtk_button_set_relief(GTK_BUTTON(self), GTK_RELIEF_NONE);
     gtk_button_set_focus_on_click(GTK_BUTTON(self), FALSE);
 
+    self->alignment = gtk_alignment_new (0.0, 0.5, 0.0, 0.0);
+    gtk_container_add(GTK_CONTAINER(self), self->alignment);
+    gtk_widget_show(self->alignment);
+
     orientation = xfce_panel_plugin_get_orientation(self->plugin);
     self->box = xfce_hvbox_new(orientation, FALSE, BOX_SPACING);
     gtk_container_set_border_width(GTK_CONTAINER(self->box), 0);
-    gtk_container_add(GTK_CONTAINER(self), self->box);
+    gtk_container_add(GTK_CONTAINER(self->alignment), self->box);
     gtk_widget_show(self->box);
 
     places_button_resize(self);
@@ -296,7 +300,7 @@ places_button_new(XfcePanelPlugin *plugin)
     button = (PlacesButton*) g_object_new(PLACES_TYPE_BUTTON, NULL);
     places_button_construct(button, plugin);
 
-    return (GtkWidget*) button;
+    return GTK_WIDGET (button);
 }
 
 static void
@@ -410,13 +414,16 @@ places_button_resize(PlacesButton *self)
 {
     gboolean show_image, show_label;
     gint new_size, image_size;
-    GtkOrientation orientation;
+    GtkOrientation panel_orientation, orientation;
 
     gint total_width,  total_height;
     gint image_width,  image_height;
     gint label_width,  label_height;
     gint button_width, button_height;
     gint box_width,    box_height;
+#ifdef HAS_PANEL_49
+    XfcePanelPluginMode mode;
+#endif
 
     if (self->plugin == NULL)
         return;
@@ -425,8 +432,6 @@ places_button_resize(PlacesButton *self)
     self->plugin_size = new_size;
     DBG("Panel size: %d", new_size);
     
-    orientation = xfce_panel_plugin_get_orientation(self->plugin);
-
     show_image = self->pixbuf_factory != NULL;
     show_label = self->label_text != NULL;
 
@@ -434,24 +439,32 @@ places_button_resize(PlacesButton *self)
     total_height = 0;
 
     /* these will be added into totals later */
-    button_width  = 2 + 2 * ((GtkWidget*) self)->style->xthickness;
-    button_height = 2 + 2 * ((GtkWidget*) self)->style->ythickness;
+    button_width  = 2 + 2 * GTK_WIDGET (self)->style->xthickness;
+    button_height = 2 + 2 * GTK_WIDGET (self)->style->ythickness;
     
     /* image */
 #ifdef HAS_PANEL_49
-    image_size = new_size / xfce_panel_plugin_get_nrows(self->plugin)
-                 - MAX(button_width, button_height);
+    mode = xfce_panel_plugin_get_mode(self->plugin);
+    new_size /= xfce_panel_plugin_get_nrows(self->plugin);
+    image_size = new_size - MAX(button_width, button_height);
     if (show_label) {
-        xfce_panel_plugin_set_small(self->plugin, FALSE);
+        xfce_panel_plugin_set_small (self->plugin,
+                                     (mode == XFCE_PANEL_PLUGIN_MODE_DESKBAR) ? FALSE : TRUE);
         if (self->label != NULL)
           gtk_label_set_angle (GTK_LABEL (self->label),
-                               (xfce_panel_plugin_get_mode(self->plugin) == XFCE_PANEL_PLUGIN_MODE_VERTICAL) ? -90 : 0);
+                               (mode == XFCE_PANEL_PLUGIN_MODE_VERTICAL) ? -90 : 0);
     } else {
         xfce_panel_plugin_set_small(self->plugin, TRUE);
-        new_size /= xfce_panel_plugin_get_nrows(self->plugin);
     }
+    gtk_alignment_set (GTK_ALIGNMENT (self->alignment),
+                       (mode == XFCE_PANEL_PLUGIN_MODE_VERTICAL) ? 0.5 : 0.0, 0.5, 0.0, 0.0);
+    orientation =
+      (mode == XFCE_PANEL_PLUGIN_MODE_VERTICAL) ?
+      GTK_ORIENTATION_VERTICAL : GTK_ORIENTATION_HORIZONTAL;
+    panel_orientation = xfce_panel_plugin_get_orientation(self->plugin);
 #else
     image_size = new_size - MAX(button_width, button_height);
+    panel_orientation = orientation = xfce_panel_plugin_get_orientation(self->plugin);
 #endif
     /* TODO: could check if anything changed
      * (though it's hard to know if the icon theme changed) */
@@ -460,10 +473,8 @@ places_button_resize(PlacesButton *self)
                                &image_width, &image_height);
     show_image = self->image != NULL;
     if (show_image) {
-        image_width  = MAX(image_width,  image_size);
-        image_height = MAX(image_height, image_size);
-        total_width  += image_width;
-        total_height += image_height;
+        total_width  += new_size;
+        total_height += new_size;
     }
 
     /* label */
@@ -484,13 +495,11 @@ places_button_resize(PlacesButton *self)
     }
     /* at this point, total width and height reflect just image and label */
     /* now, add on the button and box overhead */
-    total_width  += button_width;
-    total_height += button_height;
 
     box_width  = 0;
     box_height = 0;
-    if (show_image && show_label) {
-    
+    if (show_label) {
+
         if (orientation == GTK_ORIENTATION_HORIZONTAL)
             box_width  = BOX_SPACING;
         else
@@ -500,13 +509,14 @@ places_button_resize(PlacesButton *self)
         total_height += box_height;
     }
     
-    if (orientation == GTK_ORIENTATION_HORIZONTAL)
+    if (panel_orientation == GTK_ORIENTATION_HORIZONTAL)
         total_height = MAX(total_height, new_size);
     else
         total_width  = MAX(total_width,  new_size);
 
     DBG("width=%d, height=%d", total_width, total_height);
-    gtk_widget_set_size_request((GtkWidget*) self, total_width, total_height);
+    gtk_widget_set_size_request(GTK_WIDGET (self), total_width, total_height);
+    gtk_widget_set_size_request(GTK_WIDGET (self->plugin), total_width, total_height);
 }
 
 #ifdef HAS_PANEL_49
@@ -514,7 +524,9 @@ static void
 places_button_mode_changed(XfcePanelPlugin *plugin, XfcePanelPluginMode mode, PlacesButton *self)
 {
     DBG("orientation changed");
-    xfce_hvbox_set_orientation(XFCE_HVBOX(self->box), xfce_panel_plugin_get_orientation (plugin));
+    xfce_hvbox_set_orientation(XFCE_HVBOX(self->box),
+                               (mode == XFCE_PANEL_PLUGIN_MODE_VERTICAL) ?
+                               GTK_ORIENTATION_VERTICAL : GTK_ORIENTATION_HORIZONTAL);
     places_button_resize(self);
 }
 
