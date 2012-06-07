@@ -2,7 +2,7 @@
 # Copyright (C) 2004-2007 Benedikt Meurer.
 # This file is distributed under the same license as the Thunar package.
 # Gheyret T.Kenji <gheyret@gmail.com>, 2010.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
@@ -19,7 +19,7 @@ msgstr ""
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
 msgid "Access folders, documents, and removable media"
-msgstr "مۇندەرىجە، پۈتۈك ۋە ھەرىكەتچان media نى زىيارەت قىلىش"
+msgstr "مۇندەرىجە، پۈتۈك ۋە يۆتكىلىشچان ۋاسىتىنى زىيارەت قىلىش"
 
 #: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:63
 #: ../panel-plugin/cfg.c:104 ../panel-plugin/cfg.c:204
@@ -30,11 +30,11 @@ msgstr "ئورۇنلار"
 #. Trash
 #: ../panel-plugin/model_system.c:154
 msgid "Trash"
-msgstr "ئەخلەت ساندۇقى"
+msgstr "ئەخلەتخانا"
 
 #: ../panel-plugin/model_system.c:188
 msgid "Desktop"
-msgstr "ئۈستەليۈزى"
+msgstr "ئۈستەلئۈستى"
 
 #. File System (/)
 #: ../panel-plugin/model_system.c:204
@@ -49,20 +49,20 @@ msgstr "«%s» نى چىقىرالمىدى"
 #: ../panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
-msgstr "\"%s\" unmount قىلىش مەغلۇپ بولدى"
+msgstr "«%s» ئېگەرسىزلەش مەغلۇپ بولدى"
 
 #: ../panel-plugin/model_volumes.c:170
 #, c-format
 msgid "Failed to mount \"%s\""
-msgstr "\"%s\" mount قىلىش مەغلۇپ بولدى"
+msgstr "«%s» نى ئېگەرلەش مەغلۇپ بولدى"
 
 #: ../panel-plugin/model_volumes.c:444
 msgid "Mount and Open"
-msgstr "Mount ۋە ئېچىش"
+msgstr "ئېگەرلەش ۋە ئېچىش"
 
 #: ../panel-plugin/model_volumes.c:457
 msgid "Mount"
-msgstr "Mount"
+msgstr "ئېگەرلە"
 
 #: ../panel-plugin/model_volumes.c:477
 msgid "Eject"
@@ -70,12 +70,12 @@ msgstr "چىقار"
 
 #: ../panel-plugin/model_volumes.c:487
 msgid "Unmount"
-msgstr "Unmount"
+msgstr "ئېگەرسىزلە"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
-msgstr ""
+msgstr "ئۈسكۈنىنى ئېگەرسىزلەۋاتىدۇ"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
@@ -83,13 +83,13 @@ msgstr ""
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the "
 "media or disconnect the drive"
-msgstr ""
+msgstr "سىستېما ئۈسكۈنىسى «%s» نى ئېگەرسىزلەۋاتىدۇ. دىسكىنى چىقارماڭ ياكى ئۈسكۈنىنى كومپيۇتېردىن ئايرىۋەتمەڭ."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
 #: ../panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
-msgstr ""
+msgstr "سانلىق-ئاساسلارنى ئۈسكىنىگە يېزىۋاتىدۇ"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:141
@@ -98,18 +98,18 @@ msgstr ""
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be "
 "removed. Please do not remove the media or disconnect the drive"
-msgstr ""
+msgstr "ئۈسكۈنە \"%s\" چىقىرىشتىن بۇرۇن بىر يېزىشقا تېگىشلىك سانلىق ئاسالار بار.دىسكىنى چىقارماق ياكى ئۈسكۈنىنى كومپيۇتېردىن ئايرىۋەتمەڭ."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
-msgstr ""
+msgstr "ئۈسكۈنە چىقىرىش"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr ""
+msgstr "ئۈسكۈنە \"%s\" نى چىقىرىۋاتىدۇ. ئازراق ۋاقىت كېتىشى مۇمكىن."
 
 #: ../panel-plugin/view.c:654
 msgid "Search for Files"
@@ -150,16 +150,16 @@ msgstr "تىزىملىك"
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:408
 msgid "Show _icons in menu"
-msgstr "Menu نىڭ ئىچىدە سىنبەلگە كۆرسەت(_I):"
+msgstr "تىزىملىكنىڭ ئىچىدە سىنبەلگە كۆرسەتسۇن(_I):"
 
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:420
 msgid "Show _removable media"
-msgstr "چىقارغىلى بولىدىغان media نى كۆرسەت(_R)"
+msgstr "چىقارغىلى بولىدىغان ۋاسىتىنى كۆرسەتسۇن(_R)"
 
 #: ../panel-plugin/cfg.c:441
 msgid "Mount and _Open on click"
-msgstr "چەكسىلا Mount قىل ۋە ئاچ(_O)"
+msgstr "چېكىپلا ئېگەرلىسۇن ۋە ئاچسۇن(_O)"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:455
