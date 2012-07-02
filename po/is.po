@@ -1,14 +1,14 @@
-# translation of xfce4-places-plugin.master.xfce4-places-plugin.po to Icelandic
+# translation of is.po to Icelandic
 # Copyright (C) 2011 FSF
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Sveinn í Felli <sveinki@nett.is>, 2011.
+# Sveinn í Felli <sveinki@nett.is>, 2011, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-places-plugin.master.xfce4-places-plugin\n"
+"Project-Id-Version: is\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-07 00:20+0900\n"
-"PO-Revision-Date: 2011-12-08 22:10+0000\n"
+"PO-Revision-Date: 2012-07-02 16:57+0000\n"
 "Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "Language: is\n"
@@ -77,7 +77,7 @@ msgstr "Aftengja"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
-msgstr ""
+msgstr "Aftengi tæki"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
@@ -85,13 +85,13 @@ msgstr ""
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the "
 "media or disconnect the drive"
-msgstr ""
+msgstr "Verið er að aftengja tækið \"%s\" úr kerfinu. Ekki fjarlægja tækið eða taka það úr sambandi"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
 #: ../panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
-msgstr ""
+msgstr "Skrifa gögn á tæki"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:141
@@ -100,18 +100,18 @@ msgstr ""
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be "
 "removed. Please do not remove the media or disconnect the drive"
-msgstr ""
+msgstr "Það eru gögn sem verður að skrifa á tækið \"%s\" áður en hægt er að fjarlægja það. Ekki fjarlægja tækið eða taka úr sambandi."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
-msgstr ""
+msgstr "Spýti tæki út"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr ""
+msgstr "Verið er að spýta út tækinu \"%s\". Þetta getur tekið smátíma"
 
 #: ../panel-plugin/view.c:654
 msgid "Search for Files"
@@ -197,3 +197,4 @@ msgstr "Opna"
 #: ../panel-plugin/support.c:174
 msgid "Open Terminal Here"
 msgstr "Opna skjáhermi hér"
+
