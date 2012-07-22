@@ -6,7 +6,7 @@
 # Copyright (c) 2007 Rosetta Contributors and Canonical Ltd 2007
 # This file is distributed under the same license as the thunar package.
 # Alexander Nyakhaychyk <nyakhaychyk@gmail.com>, 2007.
-#
+# 
 # ###
 # Беларускі пераклад gnome-panel.HEAD.
 # SOME DESCRIPTIVE TITLE
@@ -14,7 +14,7 @@
 # Vital Khilko <dojlid@mova.org>, 2003.
 # Ales Nyakhaychyk <nab@mail.by>, 2004, 2005.
 # Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2006.
-#
+# 
 # ###
 msgid ""
 msgstr ""
@@ -37,16 +37,16 @@ msgstr "Месцы"
 #. Trash
 #: ../panel-plugin/model_system.c:154
 msgid "Trash"
-msgstr "Сьметніца"
+msgstr "Сметніца"
 
 #: ../panel-plugin/model_system.c:188
 msgid "Desktop"
-msgstr "Тэчка стальца"
+msgstr "Стол"
 
 #. File System (/)
 #: ../panel-plugin/model_system.c:204
 msgid "File System"
-msgstr "Файлавая сыстэма"
+msgstr "Файлавая сістэма"
 
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
@@ -124,11 +124,11 @@ msgstr ""
 
 #: ../panel-plugin/view.c:707 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
-msgstr "Ранейшыя дакумэнты"
+msgstr "Нядаўнія дакумэнты"
 
 #: ../panel-plugin/cfg.c:347
 msgid "Button"
-msgstr ""
+msgstr "Кнопка"
 
 #: ../panel-plugin/cfg.c:356
 msgid "_Show"
@@ -175,9 +175,8 @@ msgstr ""
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:468
-#, fuzzy
 msgid "Show recent _documents"
-msgstr "Ранейшыя дакумэнты"
+msgstr "Паказаць нядаўнія дакумэнты"
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:490
