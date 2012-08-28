@@ -52,12 +52,8 @@ places_load_file_browser(const gchar *path)
 
     if(path != NULL && *path != '\0'){
 
-        if(!gtk_show_uri(NULL, path, 0, &error)){
-            gchar *cmd = g_strconcat("thunar \"", path, "\"", NULL);
-            DBG("exec: %s", cmd);
-            places_gui_exec(cmd);
-            g_free(cmd);
-        }
+        DBG("Open file manager at %s", path);
+        exo_execute_preferred_application("FileManager", path, NULL, NULL, &error);
 
     }else{
 
