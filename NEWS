@@ -1,3 +1,14 @@
+2012-08-28
+================================================================================
+xfce4-places-plugin v1.4.0 released
+
+ * Updated translations
+ * Plugin is now compiled as a library/module
+ * Save settings when the configuration dialog box is closed
+ * Improved plugin button layout
+ * Use a preferred file manager as set in Xfce settings
+ * Fixed "Mount and Open" function
+
 2012-04-13
 ================================================================================
 xfce4-places-plugin v1.3.0 released
