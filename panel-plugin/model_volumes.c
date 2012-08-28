@@ -237,7 +237,6 @@ pbvol_mount(PlacesBookmarkAction *action)
 static void
 pbvol_mount_and_open(PlacesBookmarkAction *action)
 {
-    gchar *uri;
     GVolume *volume;
     GMount *mount;
 
@@ -314,7 +313,7 @@ pbvol_mount_is_internal (GMount *mount)
 #endif
 
 
-gboolean
+static gboolean
 pbvol_is_removable(GVolume *volume)
 {
     gboolean can_eject = FALSE;
@@ -359,7 +358,7 @@ pbvol_is_removable(GVolume *volume)
     return (!is_internal) && (can_eject || can_unmount || is_removable || can_mount);
 }
 
-gboolean
+static gboolean
 pbvol_is_present(GVolume *volume)
 {
     gboolean has_media = FALSE;
@@ -388,7 +387,7 @@ static inline gboolean
 pbvol_show_volume(GVolume *volume){
     GMount *mount = g_volume_get_mount(volume);
     DBG("Volume: %s [mounted=%x removable=%x present=%x]", g_volume_get_name(volume), 
-                                                           mount,
+                                                           (guint) mount,
                                                            pbvol_is_removable(volume), 
                                                            pbvol_is_present(volume));
     if (mount)
@@ -437,9 +436,11 @@ pbvol_bookmark_finalize(PlacesBookmark *bookmark)
 
 static void
 pbvol_bookmark_action_finalize(PlacesBookmarkAction *action){
+    GVolume *volume;
+
     g_assert(action != NULL && action->priv != NULL);
 
-    GVolume *volume = G_VOLUME(action->priv);
+    volume = G_VOLUME(action->priv);
     g_object_unref(volume);
     action->priv = NULL;
 }
@@ -453,7 +454,6 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     const GList *volumes;
     GVolume *volume;
     GMount *mount;
-    GIcon *icon;
 
     volumes = g_volume_monitor_get_volumes(pbg_priv(bookmark_group)->volume_monitor);
     while (volumes != NULL) {
