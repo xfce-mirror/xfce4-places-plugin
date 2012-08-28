@@ -176,6 +176,42 @@ pbvol_mount_finish(GObject *object,
 }
 
 static void
+pbvol_mount_finish_and_open(GObject *object,
+                            GAsyncResult *result,
+                            gpointer user_data)
+{
+    GVolume *volume = G_VOLUME(object);
+    GError *error = NULL;
+
+    DBG("Mount finish and open");
+
+    if (!g_volume_mount_finish(volume, result, &error)) {
+         /* ignore GIO errors handled internally */
+         if (error->domain != G_IO_ERROR || error->code != G_IO_ERROR_FAILED_HANDLED) {
+             gchar *volume_name = g_volume_get_name(volume);
+             places_show_error_dialog(error,
+                                     _("Failed to mount \"%s\""),
+                                     volume_name);
+             g_free(volume_name);
+         }
+         g_error_free (error);
+    } else {
+        GMount *mount;
+        gchar *uri;
+        mount = g_volume_get_mount(volume);
+
+        if (mount) {
+            GFile *file = g_mount_get_root(mount);
+            uri = g_file_get_uri(file);
+            places_load_file_browser(uri);
+            g_free(uri);
+            g_object_unref(file);
+            g_object_unref(mount);
+        }
+    }
+}
+
+static void
 pbvol_mount(PlacesBookmarkAction *action)
 {
     GVolume *volume;
@@ -211,16 +247,14 @@ pbvol_mount_and_open(PlacesBookmarkAction *action)
     volume = G_VOLUME(action->priv);
     mount = g_volume_get_mount(volume);
 
-    if (!mount)
-        pbvol_mount(action);
+    if (!mount) {
+        GMountOperation *operation = gtk_mount_operation_new(NULL);
 
-    if (mount) {
-        GFile *file = g_mount_get_root(mount);
-        uri = g_file_get_uri(file);
-        places_load_file_browser(uri);
-        g_free(uri);
-        g_object_unref(file);
-        g_object_unref(mount);
+        g_volume_mount(volume, G_MOUNT_MOUNT_NONE, operation, NULL,
+                       pbvol_mount_finish_and_open,
+                       g_object_ref(volume));
+
+        g_object_unref(operation);
     }
 }
 
