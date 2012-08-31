@@ -2,6 +2,6 @@
 Type=X-XFCE-PanelPlugin
 _Name=Places
 _Comment=Access folders, documents, and removable media
-Icon=file-manager
+Icon=system-file-manager
 X-XFCE-Module=places
 X-XFCE-Unique=FALSE

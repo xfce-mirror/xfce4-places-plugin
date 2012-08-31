@@ -204,7 +204,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
     /* File System (/) */
     bookmark                = places_bookmark_create(_("File System"));
     bookmark->uri           = "/";
-    bookmark->icon          = g_themed_icon_new("gtk-harddisk");
+    bookmark->icon          = g_themed_icon_new("drive-harddisk");
 
     terminal                 = places_create_open_terminal_action(bookmark);
     bookmark->actions        = g_list_prepend(bookmark->actions, terminal);
