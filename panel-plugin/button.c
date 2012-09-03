@@ -414,9 +414,6 @@ places_button_resize(PlacesButton *self)
 {
     gboolean show_image, show_label;
     gint new_size, image_size;
-    GtkOrientation panel_orientation, orientation;
-
-    gint total_width,  total_height;
     gint image_width,  image_height;
     gint label_width,  label_height;
     gint nrows;
@@ -437,9 +434,6 @@ places_button_resize(PlacesButton *self)
     show_image = self->pixbuf_factory != NULL;
     show_label = self->label_text != NULL;
 
-    total_width  = 0;
-    total_height = 0;
-
     /* image */
 #ifdef HAS_PANEL_49
     mode = xfce_panel_plugin_get_mode(self->plugin);
@@ -458,13 +452,6 @@ places_button_resize(PlacesButton *self)
       gtk_alignment_set (GTK_ALIGNMENT (self->alignment), 0.5, 0.0, 1.0, 0.0);
     else
       gtk_alignment_set (GTK_ALIGNMENT (self->alignment), 0.0, 0.5, 0.0, 1.0);
-
-    orientation =
-      (mode == XFCE_PANEL_PLUGIN_MODE_VERTICAL) ?
-      GTK_ORIENTATION_VERTICAL : GTK_ORIENTATION_HORIZONTAL;
-    panel_orientation = xfce_panel_plugin_get_orientation(self->plugin);
-#else
-    panel_orientation = orientation = xfce_panel_plugin_get_orientation(self->plugin);
 #endif
     /* TODO: could check if anything changed
      * (though it's hard to know if the icon theme changed) */
