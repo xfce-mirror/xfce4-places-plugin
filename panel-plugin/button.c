@@ -419,7 +419,6 @@ places_button_resize(PlacesButton *self)
     gint total_width,  total_height;
     gint image_width,  image_height;
     gint label_width,  label_height;
-    gint button_width, button_height;
     gint nrows;
     gint border_thickness;
     GtkStyle *style;
