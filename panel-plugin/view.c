@@ -332,6 +332,16 @@ pview_cb_menu_item_context_act(GtkWidget *item, PlacesView *pd)
 
 }
 
+static void
+pview_cb_menu_context_deact(PlacesView *pd, GtkWidget *context_menu)
+{
+    g_assert(pd != NULL);
+    g_assert(pd->menu != NULL && GTK_IS_WIDGET(pd->menu));
+
+    DBG("Context menu deactivate");
+    gtk_menu_shell_deactivate(GTK_MENU_SHELL(pd->menu));
+}
+
 static gboolean
 pview_cb_menu_item_do_alt(PlacesView *pd, GtkWidget *menu_item)
 {
@@ -367,7 +377,7 @@ pview_cb_menu_item_do_alt(PlacesView *pd, GtkWidget *menu_item)
                        0, gtk_get_current_event_time());
 
         g_signal_connect_swapped(context, "deactivate",
-                                 G_CALLBACK(pview_open_menu), pd);
+                                 G_CALLBACK(pview_cb_menu_context_deact), pd);
 
     }
 
