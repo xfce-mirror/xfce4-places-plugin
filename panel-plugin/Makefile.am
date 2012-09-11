@@ -1,21 +1,3 @@
-bin_PROGRAMS = xfce4-popup-places
-
-xfce4_popup_places_SOURCES =						\
-	xfce4-popup-places.c						\
-	xfce4-popup-places.h
-
-xfce4_popup_places_CFLAGS =						\
-	$(LIBX11_CFLAGS)						\
-	$(EXO_CFLAGS)							\
-	$(GTK_CFLAGS)
-
-xfce4_popup_places_LDADD =						\
-	$(LIBX11_LDFLAGS)						\
-	$(LIBX11_LIBS)							\
-	$(EXO_LIBS)							\
-	$(GTK_LIBS)
-
-
 
 plugindir = $(libdir)/xfce4/panel/plugins
 
@@ -90,6 +72,16 @@ libplaces_la_LDFLAGS = \
 	$(PLATFORM_LDFLAGS)
 
 #
+# xfce4-popup-places script
+#
+bin_SCRIPTS = \
+	xfce4-popup-places
+
+xfce4-popup-places: xfce4-popup-places.sh Makefile
+	$(AM_V_GEN) $(SED) -e "s,\@bindir\@,$(bindir),g" \
+	-e "s,\@localedir\@,$(localedir),g" $< >$@
+
+#
 # Desktop file
 #
 desktopdir = $(datadir)/xfce4/panel/plugins
@@ -97,8 +89,10 @@ desktop_in_files = places.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-EXTRA_DIST = $(desktop_in_files)
+EXTRA_DIST = $(desktop_in_files) \
+	xfce4-popup-places.sh
 
-CLEANFILES = $(desktop_DATA)
+CLEANFILES = $(desktop_DATA) \
+	xfce4-popup-places
 
 # vi:set ts=8 sw=8 noet ai nocindent syntax=automake:

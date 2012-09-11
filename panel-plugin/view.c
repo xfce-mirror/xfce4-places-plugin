@@ -744,7 +744,8 @@ pview_update_menu(PlacesView *pd)
 }
 
 static void
-pview_open_menu(PlacesView *pd)
+pview_open_menu_at (PlacesView   *pd,
+                    GtkWidget    *button)
 {
     /* check if menu is needed, or it needs an update */
     if(pd->menu == NULL || pview_model_changed(pd->bookmark_groups))
@@ -754,19 +755,20 @@ pview_open_menu(PlacesView *pd)
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pd->button), TRUE);
 
     /* popup menu */
+    DBG("menu: %x", (guint)pd->menu);
     gtk_menu_popup (GTK_MENU (pd->menu), NULL, NULL,
-                    xfce_panel_plugin_position_menu,
-                    pd->plugin, 0,
+                    (button != NULL) ? xfce_panel_plugin_position_menu : NULL,
+                    pd->plugin, 1,
                     gtk_get_current_event_time ());
-    
+
     /* menu timeout to poll for model changes */
     if(pd->menu_timeout_id == 0){
 #if GLIB_CHECK_VERSION(2,14,0)
-        pd->menu_timeout_id = g_timeout_add_seconds_full(G_PRIORITY_LOW, 2, 
+        pd->menu_timeout_id = g_timeout_add_seconds_full(G_PRIORITY_LOW, 2,
                                    (GSourceFunc) pview_cb_menu_timeout, pd,
                                    NULL);
 #else
-        pd->menu_timeout_id = g_timeout_add_full(G_PRIORITY_LOW, 2000, 
+        pd->menu_timeout_id = g_timeout_add_full(G_PRIORITY_LOW, 2000,
                                    (GSourceFunc) pview_cb_menu_timeout, pd,
                                    NULL);
 #endif
@@ -774,6 +776,13 @@ pview_open_menu(PlacesView *pd)
     }else{
         PLACES_DEBUG_MENU_TIMEOUT_COUNT(0);
     }
+}
+
+static void
+pview_open_menu(PlacesView *pd)
+{
+  if (pd != NULL)
+    pview_open_menu_at (pd, pd->button);
 }
 
 static GdkPixbuf*
@@ -824,6 +833,92 @@ pview_button_update(PlacesView *view)
 
 }
 /********** Handle user message **********/
+
+/* copied from xfce4-panel/common/utils.c (panel_utils_grab_available) */
+static gboolean
+pview_grab_available (void)
+{
+  GdkScreen     *screen;
+  GdkWindow     *root;
+  GdkGrabStatus  grab_pointer = GDK_GRAB_FROZEN;
+  GdkGrabStatus  grab_keyboard = GDK_GRAB_FROZEN;
+  gboolean       grab_succeed = FALSE;
+  guint          i;
+  GdkEventMask   pointer_mask = GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK
+                                | GDK_ENTER_NOTIFY_MASK | GDK_LEAVE_NOTIFY_MASK
+                                | GDK_POINTER_MOTION_MASK;
+
+  screen = xfce_gdk_screen_get_active (NULL);
+  root = gdk_screen_get_root_window (screen);
+
+  /* don't try to get the grab for longer then 1/4 second */
+  for (i = 0; i < (G_USEC_PER_SEC / 100 / 4); i++)
+    {
+      grab_keyboard = gdk_keyboard_grab (root, TRUE, GDK_CURRENT_TIME);
+      if (grab_keyboard == GDK_GRAB_SUCCESS)
+        {
+          grab_pointer = gdk_pointer_grab (root, TRUE, pointer_mask,
+                                           NULL, NULL, GDK_CURRENT_TIME);
+          if (grab_pointer == GDK_GRAB_SUCCESS)
+            {
+              grab_succeed = TRUE;
+              break;
+            }
+        }
+
+      g_usleep (100);
+    }
+
+  /* release the grab so the gtk_menu_popup() can take it */
+  if (grab_pointer == GDK_GRAB_SUCCESS)
+    gdk_pointer_ungrab (GDK_CURRENT_TIME);
+  if (grab_keyboard == GDK_GRAB_SUCCESS)
+    gdk_keyboard_ungrab (GDK_CURRENT_TIME);
+
+  if (!grab_succeed)
+    {
+      g_printerr (PACKAGE_NAME ": Unable to get keyboard and mouse "
+                  "grab. Menu popup failed.\n");
+    }
+
+  return grab_succeed;
+}
+
+
+static gboolean
+pview_remote_event(XfcePanelPlugin *panel_plugin,
+                   const gchar     *name,
+                   const GValue    *value,
+                   PlacesView      *view)
+{
+  g_return_val_if_fail (value == NULL || G_IS_VALUE (value), FALSE);
+
+  DBG("remote event: %s, %x", name, (guint) view);
+
+  if (strcmp (name, "popup") == 0
+      && GTK_WIDGET_VISIBLE (panel_plugin)
+      && !gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (view->button))
+      && pview_grab_available ()) /* checking if there is another menu on the screen */
+    {
+      if (value != NULL
+          && G_VALUE_HOLDS_BOOLEAN (value)
+          && g_value_get_boolean (value))
+        {
+          /* popup the menu under the pointer */
+          pview_open_menu_at (view, NULL);
+        }
+      else
+        {
+          /* show the menu */
+          pview_open_menu(view);
+        }
+      /* don't popup another menu */
+      return TRUE;
+    }
+
+  return FALSE;
+}
+
 static gboolean
 pview_popup_command_message_received(GtkWidget *widget,
                                      GdkEventClient *ev,
@@ -925,7 +1020,9 @@ places_view_init(XfcePanelPlugin *plugin)
     g_signal_connect_swapped(view->button, "button-press-event",
                              G_CALLBACK(pview_cb_button_pressed), view);
 
-
+    /* remote control signal */
+    g_signal_connect(G_OBJECT(view->plugin), "remote-event",
+                     G_CALLBACK(pview_remote_event), view);
 
     /* set selection for xfce4-popup-places */
     pview_popup_command_set_selection(view);
