@@ -47,6 +47,7 @@ libplaces_la_CFLAGS =							\
 	$(LIBXFCE4UI_CFLAGS)						\
 	$(LIBXFCE4PANEL_CFLAGS)						\
 	$(EXO_CFLAGS)							\
+	$(XFCONF_CFLAGS)						\
 	$(PLATFORM_CFLAGS)
 
 libplaces_la_LIBADD =							\
@@ -62,7 +63,8 @@ libplaces_la_LIBADD =							\
 	$(LIBXFCE4UI_LIBS)						\
 	$(LIBXFCE4PANEL_LIBS)						\
 	$(LIBX11_LIBS)							\
-	$(EXO_LIBS)
+	$(EXO_LIBS)							\
+	$(XFCONF_LIBS)
 
 libplaces_la_LDFLAGS = \
 	-avoid-version \

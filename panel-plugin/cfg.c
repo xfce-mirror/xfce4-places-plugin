@@ -3,6 +3,7 @@
  *  This file provides a means of configuring the plugin.
  *
  *  Copyright (c) 2007-2008 Diego Ongaro <ongardie@gmail.com>
+ *  Copyright (c) 2012 Andrzej <ndrwrdck@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -30,12 +31,48 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4panel/libxfce4panel.h>
 #include <libxfce4ui/libxfce4ui.h>
+#include <exo/exo.h>
+#include <xfconf/xfconf.h>
 
 #include "cfg.h"
 #include "view.h"
 
 static void             places_cfg_finalize              (GObject         *object);
+static void             places_cfg_get_property          (GObject         *object,
+                                                          guint            prop_id,
+                                                          GValue          *value,
+                                                          GParamSpec      *pspec);
+static void             places_cfg_set_property          (GObject         *object,
+                                                          guint            prop_id,
+                                                          const GValue    *value,
+                                                          GParamSpec      *pspec);
 
+enum
+{
+  PROP_0,
+  PROP_SHOW_BUTTON_TYPE,
+  PROP_BUTTON_LABEL,
+  PROP_SHOW_ICONS,
+  PROP_SHOW_VOLUMES,
+  PROP_MOUNT_OPEN_VOLUMES,
+  PROP_SHOW_BOOKMARKS,
+#if USE_RECENT_DOCUMENTS
+  PROP_SHOW_RECENT,
+  PROP_SHOW_RECENT_CLEAR,
+  PROP_SHOW_RECENT_NUMBER,
+#endif
+  PROP_SEARCH_CMD
+};
+
+enum
+{
+  BUTTON_CHANGED,
+  MENU_CHANGED,
+  MODEL_CHANGED,
+  LAST_SIGNAL
+};
+
+static guint places_cfg_signals[LAST_SIGNAL] = { 0, };
 
 G_DEFINE_TYPE (PlacesCfg, places_cfg, G_TYPE_OBJECT)
 
@@ -46,6 +83,102 @@ places_cfg_class_init (PlacesCfgClass *klass)
 
   gobject_class = G_OBJECT_CLASS (klass);
   gobject_class->finalize = places_cfg_finalize;
+  gobject_class->get_property = places_cfg_get_property;
+  gobject_class->set_property = places_cfg_set_property;
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_SHOW_BUTTON_TYPE,
+                                   g_param_spec_uint ("show-button-type",
+                                                      NULL, NULL,
+                                                      0,
+                                                      2,
+                                                      0,
+                                                      EXO_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_BUTTON_LABEL,
+                                   g_param_spec_string ("button-label",
+                                                        NULL, NULL,
+                                                        _("Places"),
+                                                        EXO_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_SHOW_ICONS,
+                                   g_param_spec_boolean ("show-icons", NULL, NULL,
+                                                         TRUE,
+                                                         EXO_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_SHOW_VOLUMES,
+                                   g_param_spec_boolean ("show-volumes", NULL, NULL,
+                                                         TRUE,
+                                                         EXO_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_MOUNT_OPEN_VOLUMES,
+                                   g_param_spec_boolean ("mount-open-volumes", NULL, NULL,
+                                                         FALSE,
+                                                         EXO_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_SHOW_BOOKMARKS,
+                                   g_param_spec_boolean ("show-bookmarks", NULL, NULL,
+                                                         TRUE,
+                                                         EXO_PARAM_READWRITE));
+
+#if USE_RECENT_DOCUMENTS
+  g_object_class_install_property (gobject_class,
+                                   PROP_SHOW_RECENT,
+                                   g_param_spec_boolean ("show-recent", NULL, NULL,
+                                                         TRUE,
+                                                         EXO_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_SHOW_RECENT_CLEAR,
+                                   g_param_spec_boolean ("show-recent-clear", NULL, NULL,
+                                                         TRUE,
+                                                         EXO_PARAM_READWRITE));
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_SHOW_RECENT_NUMBER,
+                                   g_param_spec_uint ("show-recent-number",
+                                                      NULL, NULL,
+                                                      1,
+                                                      25,
+                                                      10,
+                                                      EXO_PARAM_READWRITE));
+#endif
+
+  g_object_class_install_property (gobject_class,
+                                   PROP_SEARCH_CMD,
+                                   g_param_spec_string ("search-cmd",
+                                                        NULL, NULL,
+                                                        "",
+                                                        EXO_PARAM_READWRITE));
+
+  places_cfg_signals[BUTTON_CHANGED] =
+    g_signal_new (g_intern_static_string ("button-changed"),
+                  G_TYPE_FROM_CLASS (gobject_class),
+                  G_SIGNAL_RUN_LAST,
+                  0, NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
+
+  places_cfg_signals[MENU_CHANGED] =
+    g_signal_new (g_intern_static_string ("menu-changed"),
+                  G_TYPE_FROM_CLASS (gobject_class),
+                  G_SIGNAL_RUN_LAST,
+                  0, NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
+
+  places_cfg_signals[MODEL_CHANGED] =
+    g_signal_new (g_intern_static_string ("model-changed"),
+                  G_TYPE_FROM_CLASS (gobject_class),
+                  G_SIGNAL_RUN_LAST,
+                  0, NULL, NULL,
+                  g_cclosure_marshal_VOID__VOID,
+                  G_TYPE_NONE, 0);
 }
 
 
@@ -53,272 +186,214 @@ places_cfg_class_init (PlacesCfgClass *klass)
 static void
 places_cfg_init (PlacesCfg *cfg)
 {
+  cfg->show_button_icon   = TRUE;
+  cfg->show_button_label  = FALSE;
+  cfg->show_icons         = TRUE;
+  cfg->show_volumes       = TRUE;
+  cfg->mount_open_volumes = FALSE;
+  cfg->show_bookmarks     = TRUE;
+#if USE_RECENT_DOCUMENTS
+  cfg->show_recent        = TRUE;
+  cfg->show_recent_clear  = TRUE;
+  cfg->show_recent_number = 10;
+#endif
+  cfg->search_cmd = g_strdup("");
+  cfg->label = g_strdup(_("Places"));
 }
 
-
-/********** Configuration File **********/
 
 static void
-pcfg_init_defaults(PlacesCfg *cfg)
+places_cfg_get_property (GObject    *object,
+                         guint       prop_id,
+                         GValue     *value,
+                         GParamSpec *pspec)
 {
+  PlacesCfg     *cfg = XFCE_PLACES_CFG (object);
+  gint           val;
 
-    cfg->show_button_icon   = TRUE;
-    cfg->show_button_label  = FALSE;
-    cfg->show_icons         = TRUE;
-    cfg->show_volumes       = TRUE;
-    cfg->mount_open_volumes = FALSE;
-    cfg->show_bookmarks     = TRUE;
+  switch (prop_id)
+    {
+    case PROP_SHOW_BUTTON_TYPE:
+      if      ( cfg->show_button_icon && !cfg->show_button_label) val = 0;
+      else if ( cfg->show_button_icon &&  cfg->show_button_label) val = 2;
+      else                                                        val = 1;
+
+      g_value_set_uint (value, val);
+      break;
+
+    case PROP_BUTTON_LABEL:
+      g_value_set_string (value, cfg->label);
+      break;
+
+    case PROP_SHOW_ICONS:
+      g_value_set_boolean (value, cfg->show_icons);
+      break;
+
+    case PROP_SHOW_VOLUMES:
+      g_value_set_boolean (value, cfg->show_volumes);
+      break;
+
+    case PROP_MOUNT_OPEN_VOLUMES:
+      g_value_set_boolean (value, cfg->mount_open_volumes);
+      break;
+
+    case PROP_SHOW_BOOKMARKS:
+      g_value_set_boolean (value, cfg->show_bookmarks);
+      break;
+
 #if USE_RECENT_DOCUMENTS
-    cfg->show_recent        = TRUE;
-    cfg->show_recent_clear  = TRUE;
-    cfg->show_recent_number = 10;
+    case PROP_SHOW_RECENT:
+      g_value_set_boolean (value, cfg->show_recent);
+      break;
+
+    case PROP_SHOW_RECENT_CLEAR:
+      g_value_set_boolean (value, cfg->show_recent_clear);
+      break;
+
+    case PROP_SHOW_RECENT_NUMBER:
+      g_value_set_uint (value, cfg->show_recent_number);
+      break;
 #endif
 
-    if(cfg->search_cmd != NULL)
-        g_free(cfg->search_cmd);
-    cfg->search_cmd = g_strdup("");
+    case PROP_SEARCH_CMD:
+      g_value_set_string (value, cfg->search_cmd);
+      break;
 
-    if(cfg->label != NULL)
-        g_free(cfg->label);
-    cfg->label = g_strdup(_("Places"));
-
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+    }
 }
+
+
 
 static void
-pcfg_load(PlacesCfg *cfg)
+places_cfg_set_property (GObject      *object,
+                         guint         prop_id,
+                         const GValue *value,
+                         GParamSpec   *pspec)
 {
-    XfceRc *rcfile;
+  PlacesCfg     *cfg = XFCE_PLACES_CFG (object);
+  gint           val;
+  const char    *text;
 
-    g_assert(cfg != NULL);
+  DBG ("Property changed");
+  switch (prop_id)
+    {
+    case PROP_SHOW_BUTTON_TYPE:
+      val = g_value_get_uint (value);
+      if (cfg->show_button_icon != (val == 0 || val == 2))
+        {
+          cfg->show_button_icon = (val == 0 || val == 2);
+          g_signal_emit (G_OBJECT (cfg), places_cfg_signals[BUTTON_CHANGED], 0);
+        }
+      if (cfg->show_button_label != (val == 1 || val == 2))
+        {
+          cfg->show_button_label = (val == 1 || val == 2);
+          g_signal_emit (G_OBJECT (cfg), places_cfg_signals[BUTTON_CHANGED], 0);
+        }
+      break;
 
-    if(cfg->read_path == NULL){
-        pcfg_init_defaults(cfg);
-        return;
-    }
+    case PROP_BUTTON_LABEL:
+      text = g_value_get_string (value);
+      if (strcmp(cfg->label, text))
+        {
+          if (cfg->label != NULL)
+            g_free (cfg->label);
+          cfg->label = g_value_dup_string (value);
+          g_signal_emit (G_OBJECT (cfg), places_cfg_signals[BUTTON_CHANGED], 0);
+        }
+      break;
 
-    rcfile = xfce_rc_simple_open(cfg->read_path, TRUE);
-    if(rcfile == NULL){
-        pcfg_init_defaults(cfg);
-        return;
-    }
+    case PROP_SHOW_ICONS:
+      val = g_value_get_boolean (value);
+      if (cfg->show_icons != val)
+        {
+          cfg->show_icons = val;
+          g_signal_emit (G_OBJECT (cfg), places_cfg_signals[MENU_CHANGED], 0);
+        }
+      break;
 
-    cfg->show_button_label = xfce_rc_read_bool_entry(rcfile, "show_button_label", FALSE);
+    case PROP_SHOW_VOLUMES:
+      val = g_value_get_boolean (value);
+      if (cfg->show_volumes != val)
+        {
+          cfg->show_volumes = val;
+          g_signal_emit (G_OBJECT (cfg), places_cfg_signals[MODEL_CHANGED], 0);
+        }
+      break;
 
-    if(!cfg->show_button_label)
-        cfg->show_button_icon = TRUE;
-    else
-        cfg->show_button_icon = xfce_rc_read_bool_entry(rcfile, "show_button_icon", TRUE);
+    case PROP_MOUNT_OPEN_VOLUMES:
+      val = g_value_get_boolean (value);
+      if (cfg->mount_open_volumes != val)
+        {
+          cfg->mount_open_volumes = val;
+          g_signal_emit (G_OBJECT (cfg), places_cfg_signals[MODEL_CHANGED], 0);
+        }
+      break;
 
-    cfg->show_icons = xfce_rc_read_bool_entry(rcfile, "show_icons", TRUE);
-
-    cfg->show_volumes       = xfce_rc_read_bool_entry(rcfile, "show_volumes", TRUE);
-    cfg->mount_open_volumes = xfce_rc_read_bool_entry(rcfile, "mount_open_volumes", FALSE);
-
-    cfg->show_bookmarks = xfce_rc_read_bool_entry(rcfile, "show_bookmarks", TRUE);
-
-    if(cfg->label != NULL)
-        g_free(cfg->label);
-
-    cfg->label = (gchar*) xfce_rc_read_entry(rcfile, "label", NULL);
-    if(cfg->label == NULL || *cfg->label == '\0')
-        cfg->label = _("Places");
-    cfg->label = g_strdup(cfg->label);
-
-    if(cfg->search_cmd != NULL)
-        g_free(cfg->search_cmd);
-
-    cfg->search_cmd = (gchar*) xfce_rc_read_entry(rcfile, "search_cmd", NULL);
-    if(cfg->search_cmd == NULL)
-        cfg->search_cmd = "";
-    cfg->search_cmd = g_strdup(cfg->search_cmd);
+    case PROP_SHOW_BOOKMARKS:
+      val = g_value_get_boolean (value);
+      if (cfg->show_bookmarks != val)
+        {
+          cfg->show_bookmarks = val;
+          g_signal_emit (G_OBJECT (cfg), places_cfg_signals[MODEL_CHANGED], 0);
+        }
+      break;
 
 #if USE_RECENT_DOCUMENTS
-    cfg->show_recent        = xfce_rc_read_bool_entry(rcfile, "show_recent", TRUE);
-    cfg->show_recent_clear  = xfce_rc_read_bool_entry(rcfile, "show_recent_clear", TRUE);
-    cfg->show_recent_number = CLAMP(xfce_rc_read_int_entry(rcfile, "show_recent_number", 10),
-                                    1, 25);
+    case PROP_SHOW_RECENT:
+      val = g_value_get_boolean (value);
+      if (cfg->show_recent != val)
+        {
+          cfg->show_recent = val;
+          g_signal_emit (G_OBJECT (cfg), places_cfg_signals[MENU_CHANGED], 0);
+        }
+      break;
+
+    case PROP_SHOW_RECENT_CLEAR:
+      val = g_value_get_boolean (value);
+      if (cfg->show_recent_clear != val)
+        {
+          cfg->show_recent_clear = val;
+          g_signal_emit (G_OBJECT (cfg), places_cfg_signals[MENU_CHANGED], 0);
+        }
+      break;
+
+    case PROP_SHOW_RECENT_NUMBER:
+      val = g_value_get_uint (value);
+      if (cfg->show_recent_number != val)
+        {
+          cfg->show_recent_number = val;
+          g_signal_emit (G_OBJECT (cfg), places_cfg_signals[MENU_CHANGED], 0);
+        }
+      break;
 #endif
 
-    xfce_rc_close(rcfile);
+    case PROP_SEARCH_CMD:
+      text = g_value_get_string (value);
+      if (strcmp(cfg->search_cmd, text))
+        {
+          if (cfg->search_cmd != NULL)
+            g_free (cfg->search_cmd);
+          cfg->search_cmd = g_value_dup_string (value);
+          g_signal_emit (G_OBJECT (cfg), places_cfg_signals[MENU_CHANGED], 0);
+        }
+      break;
+
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+    }
 }
-
-void
-places_cfg_save(PlacesCfg *cfg)
-{
-    XfceRc *rcfile;
-
-    g_assert(cfg != NULL);
-
-    if(cfg->write_path == NULL)
-        return;
-
-    rcfile = xfce_rc_simple_open(cfg->write_path, FALSE);
-    if(rcfile == NULL)
-        return;
-
-    /* BUTTON */
-    xfce_rc_write_bool_entry(rcfile, "show_button_icon", cfg->show_button_icon);
-    xfce_rc_write_bool_entry(rcfile, "show_button_label", cfg->show_button_label);
-    xfce_rc_write_entry(rcfile, "label", cfg->label);
-
-    /* MENU */
-    xfce_rc_write_bool_entry(rcfile, "show_icons", cfg->show_icons);
-    xfce_rc_write_bool_entry(rcfile, "show_volumes", cfg->show_volumes);
-    xfce_rc_write_bool_entry(rcfile, "mount_open_volumes", cfg->mount_open_volumes);
-    xfce_rc_write_bool_entry(rcfile, "show_bookmarks", cfg->show_bookmarks);
-#if USE_RECENT_DOCUMENTS
-    xfce_rc_write_bool_entry(rcfile, "show_recent", cfg->show_recent);
-
-    /* RECENT DOCUMENTS */
-    xfce_rc_write_bool_entry(rcfile, "show_recent_clear", cfg->show_recent_clear);
-    xfce_rc_write_int_entry(rcfile, "show_recent_number", cfg->show_recent_number);
-#endif
-
-    /* SEARCH */
-    xfce_rc_write_entry(rcfile, "search_cmd", cfg->search_cmd);
-
-    xfce_rc_close(rcfile);
-
-    DBG("configuration saved");
-}
-
 
 /********** Dialog **********/
-
-static void
-pcfg_button_show_cb(GtkComboBox *combo, PlacesCfg *cfg)
-{
-    gint option = gtk_combo_box_get_active(combo);
-
-    g_assert(cfg != NULL);
-    g_assert(option >= 0 && option <= 2);
-
-    cfg->show_button_icon  = (option == 0 || option == 2);
-    cfg->show_button_label = (option == 1 || option == 2);
-
-    places_view_cfg_iface_update_button(cfg->view_iface);
-}
-
-static gboolean
-pcfg_button_label_cb(GtkWidget *label_entry, GdkEventFocus *event, PlacesCfg *cfg)
-{
-    const gchar *entry_text;
-    gchar *old_text = cfg->label;
-    gchar *new_text;
-
-    g_assert(cfg != NULL);
-
-    entry_text = gtk_entry_get_text(GTK_ENTRY(label_entry));
-    new_text = g_strstrip(g_strdup(entry_text));
-    if(old_text == NULL || (strcmp(old_text, new_text) && *new_text != '\0')){
-        cfg->label = new_text;
-
-        if(old_text != NULL)
-            g_free(old_text);
-
-        places_view_cfg_iface_update_button(cfg->view_iface);
-
-    }else{ /* we prefer the old/default text */
-
-        if(old_text == NULL)
-            cfg->label = g_strdup(_("Places"));
-
-        if(old_text == NULL || *new_text == '\0'){
-            gtk_entry_set_text(GTK_ENTRY(label_entry), cfg->label);
-            places_view_cfg_iface_update_button(cfg->view_iface);
-        }
-
-        g_free(new_text);
-    }
-
-    return FALSE;
-}
-
-static gboolean
-pcfg_search_cmd_cb(GtkWidget *label_entry, GdkEventFocus *event, PlacesCfg *cfg)
-{
-    const gchar *entry_text;
-    gchar *old_text = cfg->search_cmd;
-    gchar *new_text;
-
-    g_assert(cfg != NULL);
-
-    entry_text = gtk_entry_get_text(GTK_ENTRY(label_entry));
-    new_text = g_strstrip(g_strdup(entry_text));
-
-    if(old_text == NULL || strcmp(old_text, new_text)){
-        cfg->search_cmd = new_text;
-
-        if(old_text != NULL)
-            g_free(old_text);
-
-        places_view_cfg_iface_update_menu(cfg->view_iface);
-
-    }else /* we prefer the old text */
-        g_free(new_text);
-
-    return FALSE;
-}
-
-#if USE_RECENT_DOCUMENTS
-static void
-pcfg_recent_num_cb(GtkAdjustment *adj, PlacesCfg *cfg)
-{
-    g_assert(cfg != NULL);
-
-    cfg->show_recent_number = (gint) gtk_adjustment_get_value(adj);
-    DBG("Show %d recent documents", cfg->show_recent_number);
-
-    places_view_cfg_iface_update_menu(cfg->view_iface);
-}
-#endif
-
-static void
-pcfg_menu_cb(GtkToggleButton *toggle, PlacesCfg *cfg)
-{
-    gboolean *opt;
-    GtkWidget *transient;
-
-    g_assert(cfg != NULL);
-
-    opt = g_object_get_data(G_OBJECT(toggle), "cfg_opt");
-    g_assert(opt != NULL);
-
-    *opt = gtk_toggle_button_get_active(toggle);
-
-    transient = g_object_get_data(G_OBJECT(toggle), "cfg_transient");
-    if(transient != NULL)
-        gtk_widget_set_sensitive(transient, *opt);
-
-    places_view_cfg_iface_update_menu(cfg->view_iface);
-}
-
-static void
-pcfg_model_cb(GtkToggleButton *toggle, PlacesCfg *cfg)
-{
-    gboolean *opt;
-    GtkWidget *transient;
-
-    g_assert(cfg != NULL);
-
-    opt = g_object_get_data(G_OBJECT(toggle), "cfg_opt");
-    g_assert(opt != NULL);
-
-    *opt = gtk_toggle_button_get_active(toggle);
-
-    transient = g_object_get_data(G_OBJECT(toggle), "cfg_transient");
-    if(transient != NULL)
-        gtk_widget_set_sensitive(transient, *opt);
-
-    places_view_cfg_iface_reconfigure_model(cfg->view_iface);
-}
 
 static void
 pcfg_dialog_close_cb(GtkDialog *dialog, gint response, PlacesCfg *cfg)
 {
     gtk_widget_destroy(GTK_WIDGET(dialog));
     xfce_panel_plugin_unblock_menu(cfg->plugin);
-    places_cfg_save(cfg);
 }
 
 static GtkWidget*
@@ -355,7 +430,6 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 
     GtkWidget *tmp_box, *tmp_label, *tmp_widget;
     GtkObject * adj;
-    gint active;
 
     DBG("configure plugin");
 
@@ -384,17 +458,8 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     gtk_combo_box_append_text(GTK_COMBO_BOX(tmp_widget), _("Label Only"));
     gtk_combo_box_append_text(GTK_COMBO_BOX(tmp_widget), _("Icon and Label"));
 
-    if(cfg->show_button_label)
-        if(cfg->show_button_icon)
-            active = 2;
-        else
-            active = 1;
-    else
-        active = 0;
-    gtk_combo_box_set_active(GTK_COMBO_BOX(tmp_widget), active);
-
-    g_signal_connect(G_OBJECT(tmp_widget), "changed",
-                     G_CALLBACK(pcfg_button_show_cb), cfg);
+    exo_mutual_binding_new (G_OBJECT (cfg), "show-button-type",
+                            G_OBJECT (tmp_widget), "active");
 
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
@@ -410,10 +475,8 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 
     tmp_widget = gtk_entry_new();
     gtk_label_set_mnemonic_widget(GTK_LABEL(tmp_label), tmp_widget);
-    gtk_entry_set_text(GTK_ENTRY(tmp_widget), cfg->label);
-
-    g_signal_connect(G_OBJECT(tmp_widget), "focus-out-event",
-                     G_CALLBACK(pcfg_button_label_cb), cfg);
+    exo_mutual_binding_new (G_OBJECT (cfg), "button-label",
+                            G_OBJECT (tmp_widget), "text");
 
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
@@ -427,11 +490,8 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 
     /* MENU: Show Icons */
     tmp_widget = gtk_check_button_new_with_mnemonic(_("Show _icons in menu"));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), cfg->show_icons);
-
-    g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(cfg->show_icons));
-    g_signal_connect(G_OBJECT(tmp_widget), "toggled",
-                     G_CALLBACK(pcfg_menu_cb), cfg);
+    exo_mutual_binding_new (G_OBJECT (cfg), "show-icons",
+                            G_OBJECT (tmp_widget), "active");
 
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
@@ -439,11 +499,8 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 
     /* MENU: Show Removable Media */
     tmp_widget = gtk_check_button_new_with_mnemonic(_("Show _removable media"));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), cfg->show_volumes);
-
-    g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(cfg->show_volumes));
-    g_signal_connect(G_OBJECT(tmp_widget), "toggled",
-                     G_CALLBACK(pcfg_model_cb), cfg);
+    exo_mutual_binding_new (G_OBJECT (cfg), "show-volumes",
+                            G_OBJECT (tmp_widget), "active");
 
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
@@ -452,19 +509,16 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     tmp_box = gtk_hbox_new(FALSE, 15);
 
     /* Gray out this box when "Show removable media" is off */
-    gtk_widget_set_sensitive(tmp_box, cfg->show_volumes);
-    g_object_set_data(G_OBJECT(tmp_widget), "cfg_transient", tmp_box);
+    exo_binding_new (G_OBJECT (cfg), "show-volumes",
+                     G_OBJECT (tmp_box), "sensitive");
 
     tmp_widget = gtk_label_new(" "); /* TODO: is there a more appropriate widget? */
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
 
     tmp_widget = gtk_check_button_new_with_mnemonic(_("Mount and _Open on click"));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), cfg->mount_open_volumes);
-
-    g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(cfg->mount_open_volumes));
-    g_signal_connect(G_OBJECT(tmp_widget), "toggled",
-                     G_CALLBACK(pcfg_model_cb), cfg);
+    exo_mutual_binding_new (G_OBJECT (cfg), "mount-open-volumes",
+                            G_OBJECT (tmp_widget), "active");
 
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
@@ -474,11 +528,8 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 
     /* MENU: Show GTK Bookmarks */
     tmp_widget = gtk_check_button_new_with_mnemonic(_("Show GTK _bookmarks"));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), cfg->show_bookmarks);
-
-    g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(cfg->show_bookmarks));
-    g_signal_connect(G_OBJECT(tmp_widget), "toggled",
-                     G_CALLBACK(pcfg_model_cb), cfg);
+    exo_mutual_binding_new (G_OBJECT (cfg), "show-bookmarks",
+                            G_OBJECT (tmp_widget), "active");
 
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
@@ -487,11 +538,8 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 #if USE_RECENT_DOCUMENTS
     /* MENU: Show Recent Documents */
     tmp_widget = gtk_check_button_new_with_mnemonic(_("Show recent _documents"));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), cfg->show_recent);
-
-    g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(cfg->show_recent));
-    g_signal_connect(G_OBJECT(tmp_widget), "toggled",
-                     G_CALLBACK(pcfg_menu_cb), cfg);
+    exo_mutual_binding_new (G_OBJECT (cfg), "show-recent",
+                            G_OBJECT (tmp_widget), "active");
 
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
@@ -501,19 +549,16 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     gtk_widget_show(vbox_recent);
 
     /* Gray out this box when "Show recent documents" is off */
-    gtk_widget_set_sensitive(vbox_recent, cfg->show_recent);
-    g_object_set_data(G_OBJECT(tmp_widget), "cfg_transient", vbox_recent);
+    exo_binding_new (G_OBJECT (cfg), "show-recent",
+                     G_OBJECT (vbox_recent), "sensitive");
 
     frame_recent = xfce_gtk_frame_box_new_with_content(_("Recent Documents"), vbox_recent);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_recent, FALSE, FALSE, 0);
 
     /* RECENT DOCUMENTS: Show clear option */
     tmp_widget = gtk_check_button_new_with_mnemonic(_("Show cl_ear option"));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(tmp_widget), cfg->show_recent_clear);
-
-    g_object_set_data(G_OBJECT(tmp_widget), "cfg_opt", &(cfg->show_recent_clear));
-    g_signal_connect(G_OBJECT(tmp_widget), "toggled",
-                     G_CALLBACK(pcfg_menu_cb), cfg);
+    exo_mutual_binding_new (G_OBJECT (cfg), "show-recent-clear",
+                            G_OBJECT (tmp_widget), "active");
 
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(vbox_recent), tmp_widget, FALSE, FALSE, 0);
@@ -532,8 +577,8 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     tmp_widget = gtk_spin_button_new(GTK_ADJUSTMENT(adj), 1, 0);
     gtk_label_set_mnemonic_widget(GTK_LABEL(tmp_label), tmp_widget);
 
-    g_signal_connect(G_OBJECT(adj), "value-changed",
-                     G_CALLBACK(pcfg_recent_num_cb), cfg);
+    exo_mutual_binding_new (G_OBJECT (cfg), "show-recent-number",
+                            G_OBJECT (adj), "value");
 
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
@@ -557,10 +602,8 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 
     tmp_widget = gtk_entry_new();
     gtk_label_set_mnemonic_widget(GTK_LABEL(tmp_label), tmp_widget);
-    gtk_entry_set_text(GTK_ENTRY(tmp_widget), cfg->search_cmd);
-
-    g_signal_connect(G_OBJECT(tmp_widget), "focus-out-event",
-                     G_CALLBACK(pcfg_search_cmd_cb), cfg);
+    exo_mutual_binding_new (G_OBJECT (cfg), "search-cmd",
+                            G_OBJECT (tmp_widget), "text");
 
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
@@ -581,34 +624,66 @@ places_cfg_finalize (GObject *object)
     if(cfg->search_cmd != NULL)
         g_free(cfg->search_cmd);
 
-    if(cfg->read_path != NULL)
-        g_free(cfg->read_path);
-    if(cfg->write_path != NULL)
-        g_free(cfg->write_path);
-
+  xfconf_shutdown();
   G_OBJECT_CLASS (places_cfg_parent_class)->finalize (object);
 }
 
 PlacesCfg*
-places_cfg_new(XfcePanelPlugin *plugin, PlacesViewCfgIface *view_iface)
+places_cfg_new(XfcePanelPlugin *plugin)
 {
-    PlacesCfg *cfg;
-
-    g_assert(view_iface != NULL);
+    PlacesCfg     *cfg;
+    XfconfChannel *channel;
+    gchar         *property;
 
     cfg             = g_object_new (XFCE_TYPE_PLACES_CFG, NULL);
     cfg->plugin     = plugin;
-    cfg->view_iface = view_iface;
 
-    cfg->read_path  = xfce_panel_plugin_lookup_rc_file(plugin);
-    cfg->write_path = xfce_panel_plugin_save_location(plugin, TRUE);
+    xfconf_init(NULL);
+    channel = xfconf_channel_get ("xfce4-panel");
 
-    pcfg_load(cfg);
+    property = g_strconcat (xfce_panel_plugin_get_property_base (plugin), "/show-button-type", NULL);
+    xfconf_g_property_bind (channel, property, G_TYPE_INT, cfg, "show-button-type");
+    g_free (property);
+
+    property = g_strconcat (xfce_panel_plugin_get_property_base (plugin), "/button-label", NULL);
+    xfconf_g_property_bind (channel, property, G_TYPE_STRING, cfg, "button-label");
+    g_free (property);
+
+    property = g_strconcat (xfce_panel_plugin_get_property_base (plugin), "/show-icons", NULL);
+    xfconf_g_property_bind (channel, property, G_TYPE_BOOLEAN, cfg, "show-icons");
+    g_free (property);
+
+    property = g_strconcat (xfce_panel_plugin_get_property_base (plugin), "/show-volumes", NULL);
+    xfconf_g_property_bind (channel, property, G_TYPE_BOOLEAN, cfg, "show-volumes");
+    g_free (property);
+
+    property = g_strconcat (xfce_panel_plugin_get_property_base (plugin), "/mount-open-volumes", NULL);
+    xfconf_g_property_bind (channel, property, G_TYPE_BOOLEAN, cfg, "mount-open-volumes");
+    g_free (property);
+
+    property = g_strconcat (xfce_panel_plugin_get_property_base (plugin), "/show-bookmarks", NULL);
+    xfconf_g_property_bind (channel, property, G_TYPE_BOOLEAN, cfg, "show-bookmarks");
+    g_free (property);
+
+    property = g_strconcat (xfce_panel_plugin_get_property_base (plugin), "/show-recent", NULL);
+    xfconf_g_property_bind (channel, property, G_TYPE_BOOLEAN, cfg, "show-recent");
+    g_free (property);
+
+    property = g_strconcat (xfce_panel_plugin_get_property_base (plugin), "/show-recent-clear", NULL);
+    xfconf_g_property_bind (channel, property, G_TYPE_BOOLEAN, cfg, "show-recent-clear");
+    g_free (property);
+
+    property = g_strconcat (xfce_panel_plugin_get_property_base (plugin), "/show-recent-number", NULL);
+    xfconf_g_property_bind (channel, property, G_TYPE_INT, cfg, "show-recent-number");
+    g_free (property);
+
+    property = g_strconcat (xfce_panel_plugin_get_property_base (plugin), "/search-cmd", NULL);
+    xfconf_g_property_bind (channel, property, G_TYPE_STRING, cfg, "search-cmd");
+    g_free (property);
 
     g_signal_connect_swapped(G_OBJECT(plugin), "configure-plugin",
                              G_CALLBACK(places_cfg_open_dialog), cfg);
-    g_signal_connect_swapped(G_OBJECT(plugin), "save",
-                             G_CALLBACK(places_cfg_save), cfg);
+
     xfce_panel_plugin_menu_show_configure(plugin);
 
     return cfg;

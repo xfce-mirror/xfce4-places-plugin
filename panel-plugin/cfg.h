@@ -3,6 +3,7 @@
  *  Defines the struct holding configuration data.
  *
  *  Copyright (c) 2007-2008 Diego Ongaro <ongardie@gmail.com>
+ *  Copyright (c) 2012 Andrzej <ndrwrdck@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -44,9 +45,6 @@ struct _PlacesCfg
 
     /* "private" */
     XfcePanelPlugin     *plugin;
-    PlacesViewCfgIface  *view_iface;
-    gchar               *read_path;
-    gchar               *write_path;
 
     /* "public" for view's access */
     gboolean            show_button_icon;
@@ -80,7 +78,7 @@ void
 places_cfg_save(PlacesCfg*);
 
 PlacesCfg*
-places_cfg_new(XfcePanelPlugin*, PlacesViewCfgIface*);
+places_cfg_new(XfcePanelPlugin*);
 
 G_END_DECLS
 

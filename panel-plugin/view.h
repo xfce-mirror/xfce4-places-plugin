@@ -4,6 +4,7 @@
  *  Headers for interface by which places.c creates/destroys view.
  *
  *  Copyright (c) 2007-2008 Diego Ongaro <ongardie@gmail.com>
+ *  Copyright (c) 2012 Andrzej <ndrwrdck@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -30,19 +31,6 @@
 #define USE_RECENT_DOCUMENTS    GTK_CHECK_VERSION(2,10,0)
 
 typedef struct _PlacesView PlacesView;
-
-/* Interface for cfg */
-typedef struct _PlacesViewCfgIface PlacesViewCfgIface;
-
-inline void
-places_view_cfg_iface_update_menu(PlacesViewCfgIface*);
-
-inline void
-places_view_cfg_iface_update_button(PlacesViewCfgIface*);
-
-inline void
-places_view_cfg_iface_reconfigure_model(PlacesViewCfgIface*);
-
 
 /* Init & Finalize */
 PlacesView*

@@ -3,6 +3,7 @@
  *  This file handles the GUI. It "owns" the model and cfg.
  *
  *  Copyright (c) 2007-2009 Diego Ongaro <ongardie@gmail.com>
+ *  Copyright (c) 2012 Andrzej <ndrwrdck@gmail.com>
  *
  *  Largely based on:
  *
@@ -71,15 +72,6 @@
 #include "model_volumes_notify.h"
 #endif
 
-struct _PlacesViewCfgIface
-{
-    PlacesView          *places_view;
-
-    void                (*update_menu)              (PlacesView*);
-    void                (*update_button)            (PlacesView*);
-    void                (*reconfigure_model)        (PlacesView*);
-};
-
 struct _PlacesView
 {
     /* plugin */
@@ -87,7 +79,6 @@ struct _PlacesView
     
     /* configuration */
     PlacesCfg                 *cfg;
-    PlacesViewCfgIface        *view_cfg_iface;
     
     /* view */
     GtkWidget                 *button;
@@ -140,26 +131,6 @@ static void     pview_open_menu(PlacesView*);
 static void     pview_update_menu(PlacesView*);
 static void     pview_destroy_menu(PlacesView*);
 static void     pview_button_update(PlacesView*);
-
-/********** Interface for Cfg's Use **********/
-
-inline void
-places_view_cfg_iface_update_menu(PlacesViewCfgIface *iface)
-{
-    iface->update_menu(iface->places_view);
-}
-
-inline void
-places_view_cfg_iface_update_button(PlacesViewCfgIface *iface)
-{
-    iface->update_button(iface->places_view);
-}
-
-inline void
-places_view_cfg_iface_reconfigure_model(PlacesViewCfgIface *iface)
-{
-    iface->reconfigure_model(iface->places_view);
-}
 
 /********** Model Management **********/
 static void
@@ -435,8 +406,11 @@ pview_cb_recent_changed(GtkRecentManager *recent_manager, GtkWidget *recent_menu
         gtk_menu_popdown(GTK_MENU(recent_menu));
     }
     else {
-        while (gtk_events_pending())
-            gtk_main_iteration();
+      /* Disabled */
+      /* Causes plugin to crash when search-cmd text field is edited */
+      /* (backspace key is pressed) */
+      /* while (gtk_events_pending())*/
+      /*      gtk_main_iteration();*/
 
         gtk_menu_reposition(GTK_MENU(recent_menu));
     }
@@ -972,7 +946,6 @@ PlacesView*
 places_view_init(XfcePanelPlugin *plugin)
 {
     PlacesView *view;                   /* internal use in this file */
-    PlacesViewCfgIface *view_cfg_iface; /* given to cfg */
 
     DBG("initializing");
     g_assert(plugin != NULL);
@@ -980,14 +953,13 @@ places_view_init(XfcePanelPlugin *plugin)
     view            = g_new0(PlacesView, 1);
     view->plugin    = plugin;
     
-    view_cfg_iface                          = g_new0(PlacesViewCfgIface, 1);
-    view_cfg_iface->places_view             = view;
-    view_cfg_iface->update_menu             = pview_update_menu;
-    view_cfg_iface->update_button           = pview_button_update;
-    view_cfg_iface->reconfigure_model       = pview_reconfigure_model;
-    view->view_cfg_iface = view_cfg_iface;
-
-    view->cfg      = places_cfg_new(view->plugin, view_cfg_iface);
+    view->cfg      = places_cfg_new(view->plugin);
+    g_signal_connect_swapped (G_OBJECT (view->cfg), "button-changed",
+                              G_CALLBACK (pview_button_update), view);
+    g_signal_connect_swapped (G_OBJECT (view->cfg), "menu-changed",
+                              G_CALLBACK (pview_update_menu), view);
+    g_signal_connect_swapped (G_OBJECT (view->cfg), "model-changed",
+                              G_CALLBACK (pview_reconfigure_model), view);
 
     pview_reconfigure_model(view);
     
@@ -1056,9 +1028,6 @@ places_view_finalize(PlacesView *view)
 
     g_object_unref(view->cfg);
     view->cfg = NULL;
-
-    g_free(view->view_cfg_iface);
-    view->view_cfg_iface = NULL;
 
     g_free(view);
 
