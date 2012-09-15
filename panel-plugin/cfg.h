@@ -26,8 +26,22 @@
 #include <libxfce4panel/libxfce4panel.h>
 #include "view.h"
 
-typedef struct
+typedef struct _PlacesCfgClass PlacesCfgClass;
+typedef struct _PlacesCfg      PlacesCfg;
+
+#define XFCE_TYPE_PLACES_CFG            (places_cfg_get_type ())
+#define XFCE_PLACES_CFG(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_PLACES_CFG, PlacesCfg))
+#define XFCE_PLACES_CFG_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_PLACES_CFG, PlacesCfgClass))
+#define XFCE_IS_PLACES_CFG(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_PLACES_CFG))
+#define XFCE_IS_PLACES_CFG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_PLACES_CFG))
+#define XFCE_PLACES_CFG_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_PLACES_CFG, PlacesCfgClass))
+
+GType places_cfg_get_type      (void) G_GNUC_CONST;
+
+struct _PlacesCfg
 {
+    GObject             __parent__;
+
     /* "private" */
     XfcePanelPlugin     *plugin;
     PlacesViewCfgIface  *view_iface;
@@ -49,7 +63,12 @@ typedef struct
     gchar               *label;
     gchar               *search_cmd;
 
-} PlacesCfg;
+};
+
+struct _PlacesCfgClass
+{
+  GObjectClass __parent__;
+};
 
 void
 places_cfg_open_dialog(PlacesCfg*);
@@ -60,11 +79,10 @@ places_cfg_load(PlacesCfg*);
 void
 places_cfg_save(PlacesCfg*);
 
-void
-places_cfg_finalize(PlacesCfg*);
-
 PlacesCfg*
 places_cfg_new(XfcePanelPlugin*, PlacesViewCfgIface*);
+
+G_END_DECLS
 
 #endif
 /* vim: set ai et tabstop=4: */

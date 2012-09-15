@@ -34,6 +34,26 @@
 #include "cfg.h"
 #include "view.h"
 
+static void             places_cfg_finalize              (GObject         *object);
+
+
+G_DEFINE_TYPE (PlacesCfg, places_cfg, G_TYPE_OBJECT)
+
+static void
+places_cfg_class_init (PlacesCfgClass *klass)
+{
+  GObjectClass      *gobject_class;
+
+  gobject_class = G_OBJECT_CLASS (klass);
+  gobject_class->finalize = places_cfg_finalize;
+}
+
+
+
+static void
+places_cfg_init (PlacesCfg *cfg)
+{
+}
 
 
 /********** Configuration File **********/
@@ -550,10 +570,11 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 
 /********** Initialization & Finalization **********/
 
-void
-places_cfg_finalize(PlacesCfg *cfg)
+static void
+places_cfg_finalize (GObject *object)
 {
-    g_assert(cfg != NULL);
+  PlacesCfg *cfg = XFCE_PLACES_CFG (object);
+  DBG("PlacesCfg finalize called");
 
     if(cfg->label != NULL)
         g_free(cfg->label);
@@ -565,7 +586,7 @@ places_cfg_finalize(PlacesCfg *cfg)
     if(cfg->write_path != NULL)
         g_free(cfg->write_path);
 
-    g_free(cfg);
+  G_OBJECT_CLASS (places_cfg_parent_class)->finalize (object);
 }
 
 PlacesCfg*
@@ -575,7 +596,7 @@ places_cfg_new(XfcePanelPlugin *plugin, PlacesViewCfgIface *view_iface)
 
     g_assert(view_iface != NULL);
 
-    cfg             = g_new0(PlacesCfg, 1);
+    cfg             = g_object_new (XFCE_TYPE_PLACES_CFG, NULL);
     cfg->plugin     = plugin;
     cfg->view_iface = view_iface;
 

@@ -1054,7 +1054,7 @@ places_view_finalize(PlacesView *view)
     view->tooltips = NULL;
 #endif
 
-    places_cfg_finalize(view->cfg);
+    g_object_unref(view->cfg);
     view->cfg = NULL;
 
     g_free(view->view_cfg_iface);
