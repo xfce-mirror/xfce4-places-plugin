@@ -41,10 +41,8 @@ msgstr ""
 msgid "Access folders, documents, and removable media"
 msgstr "存取資料夾、文件、可移除式媒體"
 
-#: ../panel-plugin/places.desktop.in.in.h:2
-#: ../panel-plugin/cfg.c:63
-#: ../panel-plugin/cfg.c:104
-#: ../panel-plugin/cfg.c:204
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:63
+#: ../panel-plugin/cfg.c:104 ../panel-plugin/cfg.c:204
 #: ../panel-plugin/cfg.c:310
 msgid "Places"
 msgstr "位置"
@@ -102,7 +100,9 @@ msgstr "正在卸載裝置"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
-msgid "The device \"%s\" is being unmounted by the system. Please do not remove the media or disconnect the drive"
+msgid ""
+"The device \"%s\" is being unmounted by the system. Please do not remove the "
+"media or disconnect the drive"
 msgstr "裝置「%s」正被系統卸載。請不要移除該媒體，或是斷開該磁碟的連接"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
@@ -115,8 +115,12 @@ msgstr "正在將資料寫入裝置"
 #: ../panel-plugin/model_volumes_notify.c:141
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
-msgid "There is data that needs to be written to the device \"%s\" before it can be removed. Please do not remove the media or disconnect the drive"
-msgstr "在裝置「%s」移除前，有資料需要寫入其中。請不要移除該媒體，或是斷開該磁碟的連接"
+msgid ""
+"There is data that needs to be written to the device \"%s\" before it can be "
+"removed. Please do not remove the media or disconnect the drive"
+msgstr ""
+"在裝置「%s」移除前，有資料需要寫入其中。請不要移除該媒體，或是斷開該磁碟的連"
+"接"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -133,8 +137,7 @@ msgstr "裝置「%s」正在退出。這可能會花上一些時間"
 msgid "Search for Files"
 msgstr "搜尋檔案"
 
-#: ../panel-plugin/view.c:707
-#: ../panel-plugin/cfg.c:486
+#: ../panel-plugin/view.c:707 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "近期文件"
 
@@ -214,4 +217,3 @@ msgstr "開啟"
 #: ../panel-plugin/support.c:174
 msgid "Open Terminal Here"
 msgstr "在這裡開啟終端機"
-

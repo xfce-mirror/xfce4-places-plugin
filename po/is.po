@@ -85,7 +85,9 @@ msgstr "Aftengi tæki"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the "
 "media or disconnect the drive"
-msgstr "Verið er að aftengja tækið \"%s\" úr kerfinu. Ekki fjarlægja tækið eða taka það úr sambandi"
+msgstr ""
+"Verið er að aftengja tækið \"%s\" úr kerfinu. Ekki fjarlægja tækið eða taka "
+"það úr sambandi"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -100,7 +102,9 @@ msgstr "Skrifa gögn á tæki"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be "
 "removed. Please do not remove the media or disconnect the drive"
-msgstr "Það eru gögn sem verður að skrifa á tækið \"%s\" áður en hægt er að fjarlægja það. Ekki fjarlægja tækið eða taka úr sambandi."
+msgstr ""
+"Það eru gögn sem verður að skrifa á tækið \"%s\" áður en hægt er að "
+"fjarlægja það. Ekki fjarlægja tækið eða taka úr sambandi."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -197,4 +201,3 @@ msgstr "Opna"
 #: ../panel-plugin/support.c:174
 msgid "Open Terminal Here"
 msgstr "Opna skjáhermi hér"
-

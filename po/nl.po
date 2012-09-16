@@ -4,7 +4,7 @@
 # xfce4-places-plugin package.
 # Vincent Tunru <imnotb@gmail.com>, 2006.
 # Pjotr, 2011.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-places-plugin\n"
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2011-09-09 12:05+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch\n"
+"Language: nl (Dutch)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl (Dutch)\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. vim: set ai et tabstop=4:
@@ -86,7 +86,9 @@ msgstr "Apparaat aan het ontkoppelen"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the "
 "media or disconnect the drive"
-msgstr "Het apparaat '%s' wordt ontkoppeld door het systeem. Verwijder a.u.b. de media niet, noch verbreek de verbinding met het station."
+msgstr ""
+"Het apparaat '%s' wordt ontkoppeld door het systeem. Verwijder a.u.b. de "
+"media niet, noch verbreek de verbinding met het station."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -101,7 +103,10 @@ msgstr "Gegevens aan het schrijven naar apparaat"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be "
 "removed. Please do not remove the media or disconnect the drive"
-msgstr "Er zijn gegevens die geschreven moeten worden naar het apparaat '%' voordat het verwijderd kan worden. Verwijder a.u.b. de media niet, noch verbreek de verbinding met het station."
+msgstr ""
+"Er zijn gegevens die geschreven moeten worden naar het apparaat '%' voordat "
+"het verwijderd kan worden. Verwijder a.u.b. de media niet, noch verbreek de "
+"verbinding met het station."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253

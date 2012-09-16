@@ -7,11 +7,11 @@
 # This file is distributed under the same license as the Thunar package.
 # Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006.
 # Sergey Fedoseev <fedoseev.sergey@gmail.com>, 2006.
-# 
+#
 # ###
 # translation of ru.po to Russian
 # Copyright (C) 1998-2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
-# 
+#
 # Max Valianskiy <maxcom@vinchi.ru>, 1998-1999.
 # Sergey Panov <sipan@mit.edu>, 1999.
 # Valek Filippov <frob@df.ru>, 2000-2002.
@@ -28,10 +28,10 @@ msgstr ""
 "PO-Revision-Date: 2009-02-19 20:49+0700\n"
 "Last-Translator: Pavel Labushev <p.labushev@gmail.com>\n"
 "Language-Team: Russian <xfce-i18n-ru@xfce.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ru\n"
 "X-Poedit-Language: Russian\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 
@@ -102,7 +102,8 @@ msgstr "Отключение устройства"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the "
 "media or disconnect the drive"
-msgstr "Устройство \"%s\" будет отключено системой. Пожалуйста, не отключайте диск."
+msgstr ""
+"Устройство \"%s\" будет отключено системой. Пожалуйста, не отключайте диск."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -117,7 +118,9 @@ msgstr "Запись данных на устройство."
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be "
 "removed. Please do not remove the media or disconnect the drive"
-msgstr "Есть данные, которые должны быть записаны на устройство \"%s\" до извлечения. Пожалуйста, не извлекайте и не откючайте устройство."
+msgstr ""
+"Есть данные, которые должны быть записаны на устройство \"%s\" до "
+"извлечения. Пожалуйста, не извлекайте и не откючайте устройство."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253

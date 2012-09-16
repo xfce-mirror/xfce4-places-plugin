@@ -11,10 +11,10 @@ msgstr ""
 "PO-Revision-Date: 2009-08-22 17:33+0100\n"
 "Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: da\n"
 "X-Poedit-Language: Danish\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Country: DENMARK\n"
@@ -86,7 +86,9 @@ msgstr "Afmonterer enhed"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the "
 "media or disconnect the drive"
-msgstr "Enheden \"%s\" bliver afmonteret af systemet. Undlad at fjerne eller afbryde drevet"
+msgstr ""
+"Enheden \"%s\" bliver afmonteret af systemet. Undlad at fjerne eller afbryde "
+"drevet"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -101,7 +103,9 @@ msgstr "Skriver data til enhed"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be "
 "removed. Please do not remove the media or disconnect the drive"
-msgstr "Der er data som skal skrives til enheden \"%s\" før denne kan fjernes. Undlad at fjerne eller afbryde drevet"
+msgstr ""
+"Der er data som skal skrives til enheden \"%s\" før denne kan fjernes. "
+"Undlad at fjerne eller afbryde drevet"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253

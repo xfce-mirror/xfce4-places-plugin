@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-places-plugin.master\n"
-"Report-Msgid-Bugs-To: xfce-i18n <xfce-i18n@xfce.org>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-04-07 00:20+0900\n"
 "PO-Revision-Date: 2012-04-08 05:31+0900\n"
 "Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
@@ -25,10 +25,8 @@ msgstr ""
 msgid "Access folders, documents, and removable media"
 msgstr "폴더, 문서, 이동식 미디어에 접근합니다"
 
-#: ../panel-plugin/places.desktop.in.in.h:2
-#: ../panel-plugin/cfg.c:63
-#: ../panel-plugin/cfg.c:104
-#: ../panel-plugin/cfg.c:204
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:63
+#: ../panel-plugin/cfg.c:104 ../panel-plugin/cfg.c:204
 #: ../panel-plugin/cfg.c:310
 msgid "Places"
 msgstr "위치"
@@ -86,8 +84,12 @@ msgstr "장치 마운트 해제중"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
-msgid "The device \"%s\" is being unmounted by the system. Please do not remove the media or disconnect the drive"
-msgstr "\"%s\" 장치를 시스템에서 마운트 해제하는 중입니다. 미디어를 제거하거나 드라이브의 연결을 끊지 말아주시기 바랍니다"
+msgid ""
+"The device \"%s\" is being unmounted by the system. Please do not remove the "
+"media or disconnect the drive"
+msgstr ""
+"\"%s\" 장치를 시스템에서 마운트 해제하는 중입니다. 미디어를 제거하거나 드라이"
+"브의 연결을 끊지 말아주시기 바랍니다"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -99,8 +101,12 @@ msgstr "장치에 데이터 기록중"
 #: ../panel-plugin/model_volumes_notify.c:141
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
-msgid "There is data that needs to be written to the device \"%s\" before it can be removed. Please do not remove the media or disconnect the drive"
-msgstr "제거할 수 있는 \"%s\" 장치에 앞서 기록할 필요가 있는 데이터가 있습니다. 미디어를 제거하거나 드라이브의 연결을 끊지 말아주시기 바랍니다"
+msgid ""
+"There is data that needs to be written to the device \"%s\" before it can be "
+"removed. Please do not remove the media or disconnect the drive"
+msgstr ""
+"제거할 수 있는 \"%s\" 장치에 앞서 기록할 필요가 있는 데이터가 있습니다. 미디"
+"어를 제거하거나 드라이브의 연결을 끊지 말아주시기 바랍니다"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -117,8 +123,7 @@ msgstr "\"%s\" 장치를 꺼내는 중입니다. 시간이 좀 걸릴 것입니�
 msgid "Search for Files"
 msgstr "파일 검색"
 
-#: ../panel-plugin/view.c:707
-#: ../panel-plugin/cfg.c:486
+#: ../panel-plugin/view.c:707 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "최근 문서"
 
@@ -198,4 +203,3 @@ msgstr "열기"
 #: ../panel-plugin/support.c:174
 msgid "Open Terminal Here"
 msgstr "이곳에 터미널 열기"
-

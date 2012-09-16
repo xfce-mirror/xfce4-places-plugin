@@ -6,7 +6,7 @@
 # Copyright (c) 2007 Rosetta Contributors and Canonical Ltd 2007
 # This file is distributed under the same license as the thunar package.
 # Alexander Nyakhaychyk <nyakhaychyk@gmail.com>, 2007.
-# 
+#
 # ###
 # Беларускі пераклад gnome-panel.HEAD.
 # SOME DESCRIPTIVE TITLE
@@ -14,7 +14,7 @@
 # Vital Khilko <dojlid@mova.org>, 2003.
 # Ales Nyakhaychyk <nab@mail.by>, 2004, 2005.
 # Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2006.
-# 
+#
 # ###
 msgid ""
 msgstr ""

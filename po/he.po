@@ -37,10 +37,8 @@ msgstr ""
 msgid "Access folders, documents, and removable media"
 msgstr "גישה לתיקיות, מסמכים והתקני מדיה נשלפים."
 
-#: ../panel-plugin/places.desktop.in.in.h:2
-#: ../panel-plugin/cfg.c:63
-#: ../panel-plugin/cfg.c:104
-#: ../panel-plugin/cfg.c:204
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:63
+#: ../panel-plugin/cfg.c:104 ../panel-plugin/cfg.c:204
 #: ../panel-plugin/cfg.c:310
 msgid "Places"
 msgstr "מקומות"
@@ -98,8 +96,11 @@ msgstr "ההתקן מנותק"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
-msgid "The device \"%s\" is being unmounted by the system. Please do not remove the media or disconnect the drive"
-msgstr "ההתקן \"%s\" מנותק על ידי המערכת. נא לא להסיר את המדיה או לנתק את ההתקן"
+msgid ""
+"The device \"%s\" is being unmounted by the system. Please do not remove the "
+"media or disconnect the drive"
+msgstr ""
+"ההתקן \"%s\" מנותק על ידי המערכת. נא לא להסיר את המדיה או לנתק את ההתקן"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -111,8 +112,12 @@ msgstr "הנתונים נכתבים אל ההתקן"
 #: ../panel-plugin/model_volumes_notify.c:141
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
-msgid "There is data that needs to be written to the device \"%s\" before it can be removed. Please do not remove the media or disconnect the drive"
-msgstr "ישנם נתונים שעוד אמורים להיכתב להתקן \"%s\" בטרם הסרתו. נא לא להסיר את המדיה או לנתק את הכונן"
+msgid ""
+"There is data that needs to be written to the device \"%s\" before it can be "
+"removed. Please do not remove the media or disconnect the drive"
+msgstr ""
+"ישנם נתונים שעוד אמורים להיכתב להתקן \"%s\" בטרם הסרתו. נא לא להסיר את המדיה "
+"או לנתק את הכונן"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -129,8 +134,7 @@ msgstr "ההתקן \"%s\" נשלף כעת. פעולה זו עלולה לארוך
 msgid "Search for Files"
 msgstr "חיפוש אחר קבצים"
 
-#: ../panel-plugin/view.c:707
-#: ../panel-plugin/cfg.c:486
+#: ../panel-plugin/view.c:707 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "מסמכים אחרונים"
 
@@ -210,4 +214,3 @@ msgstr "פתיחה"
 #: ../panel-plugin/support.c:174
 msgid "Open Terminal Here"
 msgstr "פתיחת מסוף מכאן"
-

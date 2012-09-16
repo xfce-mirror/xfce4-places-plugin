@@ -22,10 +22,8 @@ msgstr ""
 msgid "Access folders, documents, and removable media"
 msgstr "Бумалар, құжаттар мен ауыстырмалы тасымалдағыштарға қатынас құру"
 
-#: ../panel-plugin/places.desktop.in.in.h:2
-#: ../panel-plugin/cfg.c:63
-#: ../panel-plugin/cfg.c:104
-#: ../panel-plugin/cfg.c:204
+#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:63
+#: ../panel-plugin/cfg.c:104 ../panel-plugin/cfg.c:204
 #: ../panel-plugin/cfg.c:310
 msgid "Places"
 msgstr "Орындар"
@@ -83,8 +81,12 @@ msgstr "Құрылғыны тіркеуден босату"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
-msgid "The device \"%s\" is being unmounted by the system. Please do not remove the media or disconnect the drive"
-msgstr "\"%s\" құрылғысын жүйе тіркеуден босатуда. Дискті не тасушыны әзірше алып тастамаңыз."
+msgid ""
+"The device \"%s\" is being unmounted by the system. Please do not remove the "
+"media or disconnect the drive"
+msgstr ""
+"\"%s\" құрылғысын жүйе тіркеуден босатуда. Дискті не тасушыны әзірше алып "
+"тастамаңыз."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -96,8 +98,12 @@ msgstr "Құрылғыға ақпаратты жазу"
 #: ../panel-plugin/model_volumes_notify.c:141
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
-msgid "There is data that needs to be written to the device \"%s\" before it can be removed. Please do not remove the media or disconnect the drive"
-msgstr "\"%s\" құрылғысы алынғанша дейін, оған жазылу керек ақпарат бар. Дискті не тасушыны әзірше алып тастамаңыз."
+msgid ""
+"There is data that needs to be written to the device \"%s\" before it can be "
+"removed. Please do not remove the media or disconnect the drive"
+msgstr ""
+"\"%s\" құрылғысы алынғанша дейін, оған жазылу керек ақпарат бар. Дискті не "
+"тасушыны әзірше алып тастамаңыз."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -114,8 +120,7 @@ msgstr "\"%s\" құрылғысы шығарылуда. Бұл әрекет бі
 msgid "Search for Files"
 msgstr "Файлдарды іздеу"
 
-#: ../panel-plugin/view.c:707
-#: ../panel-plugin/cfg.c:486
+#: ../panel-plugin/view.c:707 ../panel-plugin/cfg.c:486
 msgid "Recent Documents"
 msgstr "Соңғы құжаттар"
 
@@ -195,4 +200,3 @@ msgstr "Ашу"
 #: ../panel-plugin/support.c:174
 msgid "Open Terminal Here"
 msgstr "Осында терминалды ашу"
-
