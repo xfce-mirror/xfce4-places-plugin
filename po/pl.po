@@ -5,7 +5,7 @@
 # Tomasz Michał Łukaszewski <T.Lukaszewski@aster.pl>, 2006.
 # Szymon Kałasz <szymon_maestro@gazeta.pl>, 2007.
 # Piotr Sokół <piotr.sokol@10g.pl>, 2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
@@ -14,10 +14,10 @@ msgstr ""
 "PO-Revision-Date: 2009-04-10 12:55+0100\n"
 "Last-Translator: Piotr Sokół <piotr.sokol@10g.pl>\n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.in.h:1
@@ -86,14 +86,13 @@ msgstr "Odmontowywanie napędu"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the "
 "media or disconnect the drive"
-msgstr ""
+msgstr "Urządzenie \"%s\" jest właśnie odmontowywane przez system. Proszę nie usuwać nośnika lub nie odłączać napędu"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
 #: ../panel-plugin/model_volumes_notify.c:262
-#, fuzzy
 msgid "Writing data to device"
-msgstr "Zapisywanie danych"
+msgstr "Zapisywanie danych na urządzenie"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:141
@@ -102,7 +101,7 @@ msgstr "Zapisywanie danych"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be "
 "removed. Please do not remove the media or disconnect the drive"
-msgstr ""
+msgstr "Niektóre dane muszą zostać zapisane na urządzenie \"%s\" zanim nie zostanie ono usunięte. Proszę nie usuwać nośnika lub nie odłączać napędu"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -113,7 +112,7 @@ msgstr "Wysuwanie napędu"
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr ""
+msgstr "Urządzenie \"%s\" jest właśnie wysuwane. Może to zająć chwilę"
 
 #: ../panel-plugin/view.c:654
 msgid "Search for Files"
