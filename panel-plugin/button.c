@@ -58,7 +58,7 @@
 
 #include "button.h"
 
-#define BOX_SPACING 1
+#define BOX_SPACING 2
 
 #ifdef LIBXFCE4PANEL_CHECK_VERSION
 #if LIBXFCE4PANEL_CHECK_VERSION (4,9,0)
