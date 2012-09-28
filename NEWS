@@ -1,3 +1,14 @@
+2012-09-28
+================================================================================
+xfce4-places-plugin v1.5.0 released
+
+ * Updated translations (he, pl)
+ * Using XDG icon names (thanks Christoph)
+ * More button layout improvements + fixed regressions with panel 4.8
+ * Fixed permanent locking of panel autohiding (bugs #7039, #9209)
+ * Added a remote menu popup script (e.g. for a keyboard accelerator)
+ * Move configuration from a config file to xfconf
+
 2012-08-28
 ================================================================================
 xfce4-places-plugin v1.4.0 released
