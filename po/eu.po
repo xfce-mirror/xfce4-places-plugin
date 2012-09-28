@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-places-plugin.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-07 00:20+0900\n"
+"POT-Creation-Date: 2012-09-28 17:07+0100\n"
 "PO-Revision-Date: 2009-08-18 09:48+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <debian-l10n-eu@lists.debian.org>\n"
@@ -31,27 +31,26 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 
 #. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.in.h:1
-msgid "Access folders, documents, and removable media"
-msgstr "Eskuratu karpetan dokumentu eta euskarri aldagarriak"
-
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:63
-#: ../panel-plugin/cfg.c:104 ../panel-plugin/cfg.c:204
-#: ../panel-plugin/cfg.c:310
+#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
+#: ../panel-plugin/cfg.c:201 ../panel-plugin/cfg.c:406
 msgid "Places"
 msgstr "Kokalekuak"
 
+#: ../panel-plugin/places.desktop.in.h:2
+msgid "Access folders, documents, and removable media"
+msgstr "Eskuratu karpetan dokumentu eta euskarri aldagarriak"
+
 #. Trash
-#: ../panel-plugin/model_system.c:154
+#: ../panel-plugin/model_system.c:155
 msgid "Trash"
 msgstr "Zakarrontzia"
 
-#: ../panel-plugin/model_system.c:188
+#: ../panel-plugin/model_system.c:189
 msgid "Desktop"
 msgstr "Mahaigaina"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:204
+#: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "Fitxategi Sistema"
 
@@ -65,24 +64,24 @@ msgstr "Huts \"%s\" ateratzean"
 msgid "Failed to unmount \"%s\""
 msgstr "Huts \"%s\" desmuntatzean"
 
-#: ../panel-plugin/model_volumes.c:170
+#: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
 msgstr "Huts \"%s\" muntatzean"
 
-#: ../panel-plugin/model_volumes.c:444
+#: ../panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
 msgstr "Muntatu eta ireki"
 
-#: ../panel-plugin/model_volumes.c:457
+#: ../panel-plugin/model_volumes.c:491
 msgid "Mount"
 msgstr "Muntatu"
 
-#: ../panel-plugin/model_volumes.c:477
+#: ../panel-plugin/model_volumes.c:511
 msgid "Eject"
 msgstr "Atera"
 
-#: ../panel-plugin/model_volumes.c:487
+#: ../panel-plugin/model_volumes.c:521
 msgid "Unmount"
 msgstr "Desmuntatu"
 
@@ -129,87 +128,112 @@ msgstr "Gailua egozten"
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr "\"%s\" gailua egozten ari da. Denbora apur bat hartu lezake"
 
-#: ../panel-plugin/view.c:654
+#: ../panel-plugin/view.c:637
 msgid "Search for Files"
 msgstr "Bilatu fitxategiak"
 
-#: ../panel-plugin/view.c:707 ../panel-plugin/cfg.c:486
+#: ../panel-plugin/view.c:690 ../panel-plugin/cfg.c:555
 msgid "Recent Documents"
 msgstr "Azken dokumentuak"
 
-#: ../panel-plugin/cfg.c:347
+#: ../panel-plugin/cfg.c:442
 msgid "Button"
 msgstr "Botoia"
 
-#: ../panel-plugin/cfg.c:356
+#: ../panel-plugin/cfg.c:451
 msgid "_Show"
 msgstr "Iku_si"
 
-#: ../panel-plugin/cfg.c:362
+#: ../panel-plugin/cfg.c:457
 msgid "Icon Only"
 msgstr "Ikonoa bakarrik"
 
-#: ../panel-plugin/cfg.c:363
+#: ../panel-plugin/cfg.c:458
 msgid "Label Only"
 msgstr "Etiketa bakarrik"
 
-#: ../panel-plugin/cfg.c:364
+#: ../panel-plugin/cfg.c:459
 msgid "Icon and Label"
 msgstr "Ikono eta etiketa"
 
-#: ../panel-plugin/cfg.c:386
+#: ../panel-plugin/cfg.c:472
 msgid "_Label"
 msgstr "_Etiketa"
 
-#: ../panel-plugin/cfg.c:404
+#: ../panel-plugin/cfg.c:488
 msgid "Menu"
 msgstr "Menua"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:408
+#: ../panel-plugin/cfg.c:492
 msgid "Show _icons in menu"
 msgstr "Ikusi _ikonoak menuan"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:420
+#: ../panel-plugin/cfg.c:501
 msgid "Show _removable media"
 msgstr "Ikusi euskarri _aldagarriak"
 
-#: ../panel-plugin/cfg.c:441
+#: ../panel-plugin/cfg.c:519
 msgid "Mount and _Open on click"
 msgstr "Muntatu eta ireki _klikatzean"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:455
+#: ../panel-plugin/cfg.c:530
 msgid "Show GTK _bookmarks"
 msgstr "Ikusi GTK _laster-markak"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:468
+#: ../panel-plugin/cfg.c:540
 msgid "Show recent _documents"
 msgstr "Ikusi azken _dokumentuak"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:490
+#: ../panel-plugin/cfg.c:559
 msgid "Show cl_ear option"
 msgstr "Ikusi garbitze auk_era"
 
-#: ../panel-plugin/cfg.c:505
+#: ../panel-plugin/cfg.c:571
 msgid "_Number to display"
 msgstr "Ikusteko ze_nbakia"
 
-#: ../panel-plugin/cfg.c:525
+#: ../panel-plugin/cfg.c:591
 msgid "Search"
 msgstr "Bilatu"
 
-#: ../panel-plugin/cfg.c:533
+#: ../panel-plugin/cfg.c:599
 msgid "Co_mmand"
 msgstr "Ko_mandoa"
 
-#: ../panel-plugin/support.c:159
+#: ../panel-plugin/support.c:155
 msgid "Open"
 msgstr "Ireki"
 
-#: ../panel-plugin/support.c:174
+#: ../panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "Ireki terminala hemen"
+
+#: ../panel-plugin/xfce4-popup-places.sh:28
+msgid "Usage:"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:29
+msgid "OPTION"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:31
+msgid "Options:"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:32
+msgid "Popup menu at current mouse position"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:33
+#, fuzzy
+msgid "Show help options"
+msgstr "Ikusi garbitze auk_era"
+
+#: ../panel-plugin/xfce4-popup-places.sh:34
+msgid "Print version information and exit"
+msgstr ""

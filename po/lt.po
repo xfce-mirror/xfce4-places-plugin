@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: places\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-07 00:20+0900\n"
+"POT-Creation-Date: 2012-09-28 17:07+0100\n"
 "PO-Revision-Date: 2012-01-22 16:37+0200\n"
 "Last-Translator: Algimantas Margevičius <margevicius.algimantas@gmail.com>\n"
 "Language-Team: Lietuvių <>\n"
@@ -38,27 +38,26 @@ msgstr ""
 "%100<10 || n%100>=20) ? 1 : 2)\n"
 
 #. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.in.h:1
-msgid "Access folders, documents, and removable media"
-msgstr "Pasiekite aplankus, dokumentus ir keičiamąsias laikmenas"
-
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:63
-#: ../panel-plugin/cfg.c:104 ../panel-plugin/cfg.c:204
-#: ../panel-plugin/cfg.c:310
+#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
+#: ../panel-plugin/cfg.c:201 ../panel-plugin/cfg.c:406
 msgid "Places"
 msgstr "Vietos"
 
+#: ../panel-plugin/places.desktop.in.h:2
+msgid "Access folders, documents, and removable media"
+msgstr "Pasiekite aplankus, dokumentus ir keičiamąsias laikmenas"
+
 #. Trash
-#: ../panel-plugin/model_system.c:154
+#: ../panel-plugin/model_system.c:155
 msgid "Trash"
 msgstr "Šiukšlės"
 
-#: ../panel-plugin/model_system.c:188
+#: ../panel-plugin/model_system.c:189
 msgid "Desktop"
 msgstr "Darbastalis"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:204
+#: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "Failų sistema"
 
@@ -72,24 +71,24 @@ msgstr "Nepavyko išstumti „%s“"
 msgid "Failed to unmount \"%s\""
 msgstr "Nepavyko atjungti „%s“"
 
-#: ../panel-plugin/model_volumes.c:170
+#: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
 msgstr "Nepavyko prijungti „%s“"
 
-#: ../panel-plugin/model_volumes.c:444
+#: ../panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
 msgstr "Prijungti ir atverti"
 
-#: ../panel-plugin/model_volumes.c:457
+#: ../panel-plugin/model_volumes.c:491
 msgid "Mount"
 msgstr "Prijungti"
 
-#: ../panel-plugin/model_volumes.c:477
+#: ../panel-plugin/model_volumes.c:511
 msgid "Eject"
 msgstr "Išstumti"
 
-#: ../panel-plugin/model_volumes.c:487
+#: ../panel-plugin/model_volumes.c:521
 msgid "Unmount"
 msgstr "Atjungti"
 
@@ -134,87 +133,112 @@ msgstr "Įrenginys išstumiamas"
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr "Įrenginys „%s“ išstumiamas. Tai gali šiek tiek užtrukti"
 
-#: ../panel-plugin/view.c:654
+#: ../panel-plugin/view.c:637
 msgid "Search for Files"
 msgstr "Ieškoti failų"
 
-#: ../panel-plugin/view.c:707 ../panel-plugin/cfg.c:486
+#: ../panel-plugin/view.c:690 ../panel-plugin/cfg.c:555
 msgid "Recent Documents"
 msgstr "Paskutiniai dokumentai"
 
-#: ../panel-plugin/cfg.c:347
+#: ../panel-plugin/cfg.c:442
 msgid "Button"
 msgstr "Mygtukas"
 
-#: ../panel-plugin/cfg.c:356
+#: ../panel-plugin/cfg.c:451
 msgid "_Show"
 msgstr "_Rodyti"
 
-#: ../panel-plugin/cfg.c:362
+#: ../panel-plugin/cfg.c:457
 msgid "Icon Only"
 msgstr "Tik piktogramos"
 
-#: ../panel-plugin/cfg.c:363
+#: ../panel-plugin/cfg.c:458
 msgid "Label Only"
 msgstr "Tik etiketės"
 
-#: ../panel-plugin/cfg.c:364
+#: ../panel-plugin/cfg.c:459
 msgid "Icon and Label"
 msgstr "Tekstas ir piktogramos"
 
-#: ../panel-plugin/cfg.c:386
+#: ../panel-plugin/cfg.c:472
 msgid "_Label"
 msgstr "_Etiketė"
 
-#: ../panel-plugin/cfg.c:404
+#: ../panel-plugin/cfg.c:488
 msgid "Menu"
 msgstr "Meniu"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:408
+#: ../panel-plugin/cfg.c:492
 msgid "Show _icons in menu"
 msgstr "Rodyti _piktogramas meniu"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:420
+#: ../panel-plugin/cfg.c:501
 msgid "Show _removable media"
 msgstr "Rodyti _keičiamus įrenginius"
 
-#: ../panel-plugin/cfg.c:441
+#: ../panel-plugin/cfg.c:519
 msgid "Mount and _Open on click"
 msgstr "Paspaudus prijungti ir _atverti"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:455
+#: ../panel-plugin/cfg.c:530
 msgid "Show GTK _bookmarks"
 msgstr "Rodyti GTK ž_ymeles"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:468
+#: ../panel-plugin/cfg.c:540
 msgid "Show recent _documents"
 msgstr "Rodyti paskutinius dokumentus"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:490
+#: ../panel-plugin/cfg.c:559
 msgid "Show cl_ear option"
 msgstr "_Rodyti išvalymo parinktį"
 
-#: ../panel-plugin/cfg.c:505
+#: ../panel-plugin/cfg.c:571
 msgid "_Number to display"
 msgstr "_Skaičius rodyti"
 
-#: ../panel-plugin/cfg.c:525
+#: ../panel-plugin/cfg.c:591
 msgid "Search"
 msgstr "Ieškoti"
 
-#: ../panel-plugin/cfg.c:533
+#: ../panel-plugin/cfg.c:599
 msgid "Co_mmand"
 msgstr "Ko_manda"
 
-#: ../panel-plugin/support.c:159
+#: ../panel-plugin/support.c:155
 msgid "Open"
 msgstr "Atverti"
 
-#: ../panel-plugin/support.c:174
+#: ../panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "Atverti terminalą čia"
+
+#: ../panel-plugin/xfce4-popup-places.sh:28
+msgid "Usage:"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:29
+msgid "OPTION"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:31
+msgid "Options:"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:32
+msgid "Popup menu at current mouse position"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:33
+#, fuzzy
+msgid "Show help options"
+msgstr "_Rodyti išvalymo parinktį"
+
+#: ../panel-plugin/xfce4-popup-places.sh:34
+msgid "Print version information and exit"
+msgstr ""

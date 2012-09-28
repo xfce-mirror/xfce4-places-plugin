@@ -5,42 +5,41 @@
 # Tomasz Michał Łukaszewski <T.Lukaszewski@aster.pl>, 2006.
 # Szymon Kałasz <szymon_maestro@gazeta.pl>, 2007.
 # Piotr Sokół <piotr.sokol@10g.pl>, 2009.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-07 00:20+0900\n"
+"POT-Creation-Date: 2012-09-28 17:07+0100\n"
 "PO-Revision-Date: 2009-04-10 12:55+0100\n"
 "Last-Translator: Piotr Sokół <piotr.sokol@10g.pl>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 
 #. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.in.h:1
-msgid "Access folders, documents, and removable media"
-msgstr "Umożliwia dostęp do katalogów, dokumentów i pamięci wymiennej"
-
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:63
-#: ../panel-plugin/cfg.c:104 ../panel-plugin/cfg.c:204
-#: ../panel-plugin/cfg.c:310
+#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
+#: ../panel-plugin/cfg.c:201 ../panel-plugin/cfg.c:406
 msgid "Places"
 msgstr "Miejsca"
 
+#: ../panel-plugin/places.desktop.in.h:2
+msgid "Access folders, documents, and removable media"
+msgstr "Umożliwia dostęp do katalogów, dokumentów i pamięci wymiennej"
+
 #. Trash
-#: ../panel-plugin/model_system.c:154
+#: ../panel-plugin/model_system.c:155
 msgid "Trash"
 msgstr "Kosz"
 
-#: ../panel-plugin/model_system.c:188
+#: ../panel-plugin/model_system.c:189
 msgid "Desktop"
 msgstr "Pulpit"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:204
+#: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "System plików"
 
@@ -54,24 +53,24 @@ msgstr "Nie udało się wysunąć „%s”"
 msgid "Failed to unmount \"%s\""
 msgstr "Nie udało się odmontować „%s”"
 
-#: ../panel-plugin/model_volumes.c:170
+#: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
 msgstr "Nie udało się zamontować „%s”"
 
-#: ../panel-plugin/model_volumes.c:444
+#: ../panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
 msgstr "Zamontuj i otwórz"
 
-#: ../panel-plugin/model_volumes.c:457
+#: ../panel-plugin/model_volumes.c:491
 msgid "Mount"
 msgstr "Zamontuj"
 
-#: ../panel-plugin/model_volumes.c:477
+#: ../panel-plugin/model_volumes.c:511
 msgid "Eject"
 msgstr "Wysuń"
 
-#: ../panel-plugin/model_volumes.c:487
+#: ../panel-plugin/model_volumes.c:521
 msgid "Unmount"
 msgstr "Odmontuj"
 
@@ -86,7 +85,9 @@ msgstr "Odmontowywanie napędu"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the "
 "media or disconnect the drive"
-msgstr "Urządzenie \"%s\" jest właśnie odmontowywane przez system. Proszę nie usuwać nośnika lub nie odłączać napędu"
+msgstr ""
+"Urządzenie \"%s\" jest właśnie odmontowywane przez system. Proszę nie usuwać "
+"nośnika lub nie odłączać napędu"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -101,7 +102,9 @@ msgstr "Zapisywanie danych na urządzenie"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be "
 "removed. Please do not remove the media or disconnect the drive"
-msgstr "Niektóre dane muszą zostać zapisane na urządzenie \"%s\" zanim nie zostanie ono usunięte. Proszę nie usuwać nośnika lub nie odłączać napędu"
+msgstr ""
+"Niektóre dane muszą zostać zapisane na urządzenie \"%s\" zanim nie zostanie "
+"ono usunięte. Proszę nie usuwać nośnika lub nie odłączać napędu"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -114,87 +117,112 @@ msgstr "Wysuwanie napędu"
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr "Urządzenie \"%s\" jest właśnie wysuwane. Może to zająć chwilę"
 
-#: ../panel-plugin/view.c:654
+#: ../panel-plugin/view.c:637
 msgid "Search for Files"
 msgstr "Szukaj..."
 
-#: ../panel-plugin/view.c:707 ../panel-plugin/cfg.c:486
+#: ../panel-plugin/view.c:690 ../panel-plugin/cfg.c:555
 msgid "Recent Documents"
 msgstr "Ostatnio otwarte"
 
-#: ../panel-plugin/cfg.c:347
+#: ../panel-plugin/cfg.c:442
 msgid "Button"
 msgstr "Przycisk"
 
-#: ../panel-plugin/cfg.c:356
+#: ../panel-plugin/cfg.c:451
 msgid "_Show"
 msgstr "_Wyświetlanie:"
 
-#: ../panel-plugin/cfg.c:362
+#: ../panel-plugin/cfg.c:457
 msgid "Icon Only"
 msgstr "Ikona"
 
-#: ../panel-plugin/cfg.c:363
+#: ../panel-plugin/cfg.c:458
 msgid "Label Only"
 msgstr "Etykieta"
 
-#: ../panel-plugin/cfg.c:364
+#: ../panel-plugin/cfg.c:459
 msgid "Icon and Label"
 msgstr "Ikona i etykieta"
 
-#: ../panel-plugin/cfg.c:386
+#: ../panel-plugin/cfg.c:472
 msgid "_Label"
 msgstr "_Etykieta:"
 
-#: ../panel-plugin/cfg.c:404
+#: ../panel-plugin/cfg.c:488
 msgid "Menu"
 msgstr "Menu"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:408
+#: ../panel-plugin/cfg.c:492
 msgid "Show _icons in menu"
 msgstr "_Ikony w menu"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:420
+#: ../panel-plugin/cfg.c:501
 msgid "Show _removable media"
 msgstr "_Pamięć wymienna"
 
-#: ../panel-plugin/cfg.c:441
+#: ../panel-plugin/cfg.c:519
 msgid "Mount and _Open on click"
 msgstr "_Montowanie i otwieranie po kliknięciu"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:455
+#: ../panel-plugin/cfg.c:530
 msgid "Show GTK _bookmarks"
 msgstr "_Zakładki GTK"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:468
+#: ../panel-plugin/cfg.c:540
 msgid "Show recent _documents"
 msgstr "Ostatnio otwarte"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:490
+#: ../panel-plugin/cfg.c:559
 msgid "Show cl_ear option"
 msgstr "Polecenie „Wy_czyść”"
 
-#: ../panel-plugin/cfg.c:505
+#: ../panel-plugin/cfg.c:571
 msgid "_Number to display"
 msgstr "I_lość elementów:"
 
-#: ../panel-plugin/cfg.c:525
+#: ../panel-plugin/cfg.c:591
 msgid "Search"
 msgstr "Wyszukiwanie"
 
-#: ../panel-plugin/cfg.c:533
+#: ../panel-plugin/cfg.c:599
 msgid "Co_mmand"
 msgstr "P_olecenie:"
 
-#: ../panel-plugin/support.c:159
+#: ../panel-plugin/support.c:155
 msgid "Open"
 msgstr "Otwórz"
 
-#: ../panel-plugin/support.c:174
+#: ../panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "Otwórz w terminalu"
+
+#: ../panel-plugin/xfce4-popup-places.sh:28
+msgid "Usage:"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:29
+msgid "OPTION"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:31
+msgid "Options:"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:32
+msgid "Popup menu at current mouse position"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:33
+#, fuzzy
+msgid "Show help options"
+msgstr "Polecenie „Wy_czyść”"
+
+#: ../panel-plugin/xfce4-popup-places.sh:34
+msgid "Print version information and exit"
+msgstr ""

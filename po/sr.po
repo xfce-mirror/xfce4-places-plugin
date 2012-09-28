@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-07 00:20+0900\n"
+"POT-Creation-Date: 2012-09-28 17:07+0100\n"
 "PO-Revision-Date: 2012-07-11 09:23+0200\n"
 "Last-Translator: salepetronije <salepetronije@gmail.com>\n"
 "Language-Team: српски <xfce-i18n@xfce.org>\n"
@@ -18,27 +18,26 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.in.h:1
-msgid "Access folders, documents, and removable media"
-msgstr "Приступите фасциклама, документима, и уклоњивим уређајима"
-
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:63
-#: ../panel-plugin/cfg.c:104 ../panel-plugin/cfg.c:204
-#: ../panel-plugin/cfg.c:310
+#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
+#: ../panel-plugin/cfg.c:201 ../panel-plugin/cfg.c:406
 msgid "Places"
 msgstr "Места"
 
+#: ../panel-plugin/places.desktop.in.h:2
+msgid "Access folders, documents, and removable media"
+msgstr "Приступите фасциклама, документима, и уклоњивим уређајима"
+
 #. Trash
-#: ../panel-plugin/model_system.c:154
+#: ../panel-plugin/model_system.c:155
 msgid "Trash"
 msgstr "Смеће"
 
-#: ../panel-plugin/model_system.c:188
+#: ../panel-plugin/model_system.c:189
 msgid "Desktop"
 msgstr "Радна површ"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:204
+#: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "Систем датотека"
 
@@ -52,24 +51,24 @@ msgstr "Нисам успео да избацим „%s“"
 msgid "Failed to unmount \"%s\""
 msgstr "Нисам успео да откачим „%s“"
 
-#: ../panel-plugin/model_volumes.c:170
+#: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
 msgstr "Нисам успео да прикачим „%s“"
 
-#: ../panel-plugin/model_volumes.c:444
+#: ../panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
 msgstr "Прикачи и отвори"
 
-#: ../panel-plugin/model_volumes.c:457
+#: ../panel-plugin/model_volumes.c:491
 msgid "Mount"
 msgstr "Прикачи"
 
-#: ../panel-plugin/model_volumes.c:477
+#: ../panel-plugin/model_volumes.c:511
 msgid "Eject"
 msgstr "Избаци"
 
-#: ../panel-plugin/model_volumes.c:487
+#: ../panel-plugin/model_volumes.c:521
 msgid "Unmount"
 msgstr "Откачи"
 
@@ -116,87 +115,112 @@ msgstr "Избацујем уређај"
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr "Избацујем уређај: „%s“. Ово може да потраје"
 
-#: ../panel-plugin/view.c:654
+#: ../panel-plugin/view.c:637
 msgid "Search for Files"
 msgstr "Тражи датотеке"
 
-#: ../panel-plugin/view.c:707 ../panel-plugin/cfg.c:486
+#: ../panel-plugin/view.c:690 ../panel-plugin/cfg.c:555
 msgid "Recent Documents"
 msgstr "Скорашњи документи"
 
-#: ../panel-plugin/cfg.c:347
+#: ../panel-plugin/cfg.c:442
 msgid "Button"
 msgstr "Дугме"
 
-#: ../panel-plugin/cfg.c:356
+#: ../panel-plugin/cfg.c:451
 msgid "_Show"
 msgstr "_Прикажи"
 
-#: ../panel-plugin/cfg.c:362
+#: ../panel-plugin/cfg.c:457
 msgid "Icon Only"
 msgstr "Само иконе"
 
-#: ../panel-plugin/cfg.c:363
+#: ../panel-plugin/cfg.c:458
 msgid "Label Only"
 msgstr "Само натпис"
 
-#: ../panel-plugin/cfg.c:364
+#: ../panel-plugin/cfg.c:459
 msgid "Icon and Label"
 msgstr "Икона и натпис"
 
-#: ../panel-plugin/cfg.c:386
+#: ../panel-plugin/cfg.c:472
 msgid "_Label"
 msgstr "_Натпис"
 
-#: ../panel-plugin/cfg.c:404
+#: ../panel-plugin/cfg.c:488
 msgid "Menu"
 msgstr "Изборник"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:408
+#: ../panel-plugin/cfg.c:492
 msgid "Show _icons in menu"
 msgstr "Прикажи _иконице у изборнику"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:420
+#: ../panel-plugin/cfg.c:501
 msgid "Show _removable media"
 msgstr "Прикажи _уклоњиве уређаје"
 
-#: ../panel-plugin/cfg.c:441
+#: ../panel-plugin/cfg.c:519
 msgid "Mount and _Open on click"
 msgstr "Прикачи и _отвори на клик"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:455
+#: ../panel-plugin/cfg.c:530
 msgid "Show GTK _bookmarks"
 msgstr "Прикажи ГТК _забелешке"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:468
+#: ../panel-plugin/cfg.c:540
 msgid "Show recent _documents"
 msgstr "Прикажи скорашње _документе"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:490
+#: ../panel-plugin/cfg.c:559
 msgid "Show cl_ear option"
 msgstr "Прикажи могућност _брисања"
 
-#: ../panel-plugin/cfg.c:505
+#: ../panel-plugin/cfg.c:571
 msgid "_Number to display"
 msgstr "_Број приказаних"
 
-#: ../panel-plugin/cfg.c:525
+#: ../panel-plugin/cfg.c:591
 msgid "Search"
 msgstr "Тражи"
 
-#: ../panel-plugin/cfg.c:533
+#: ../panel-plugin/cfg.c:599
 msgid "Co_mmand"
 msgstr "На_редба"
 
-#: ../panel-plugin/support.c:159
+#: ../panel-plugin/support.c:155
 msgid "Open"
 msgstr "Отвори"
 
-#: ../panel-plugin/support.c:174
+#: ../panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "Отвори терминал овде"
+
+#: ../panel-plugin/xfce4-popup-places.sh:28
+msgid "Usage:"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:29
+msgid "OPTION"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:31
+msgid "Options:"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:32
+msgid "Popup menu at current mouse position"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:33
+#, fuzzy
+msgid "Show help options"
+msgstr "Прикажи могућност _брисања"
+
+#: ../panel-plugin/xfce4-popup-places.sh:34
+msgid "Print version information and exit"
+msgstr ""

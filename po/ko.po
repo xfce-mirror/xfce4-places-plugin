@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-places-plugin.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-07 00:20+0900\n"
+"POT-Creation-Date: 2012-09-28 17:07+0100\n"
 "PO-Revision-Date: 2012-04-08 05:31+0900\n"
 "Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: xfce-i18n <xfce-i18n@xfce.org>\n"
@@ -21,27 +21,26 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 
 #. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.in.h:1
-msgid "Access folders, documents, and removable media"
-msgstr "폴더, 문서, 이동식 미디어에 접근합니다"
-
-#: ../panel-plugin/places.desktop.in.in.h:2 ../panel-plugin/cfg.c:63
-#: ../panel-plugin/cfg.c:104 ../panel-plugin/cfg.c:204
-#: ../panel-plugin/cfg.c:310
+#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
+#: ../panel-plugin/cfg.c:201 ../panel-plugin/cfg.c:406
 msgid "Places"
 msgstr "위치"
 
+#: ../panel-plugin/places.desktop.in.h:2
+msgid "Access folders, documents, and removable media"
+msgstr "폴더, 문서, 이동식 미디어에 접근합니다"
+
 #. Trash
-#: ../panel-plugin/model_system.c:154
+#: ../panel-plugin/model_system.c:155
 msgid "Trash"
 msgstr "휴지통"
 
-#: ../panel-plugin/model_system.c:188
+#: ../panel-plugin/model_system.c:189
 msgid "Desktop"
 msgstr "데스크톱"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:204
+#: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "파일 시스템"
 
@@ -55,24 +54,24 @@ msgstr "\"%s\"을(를) 꺼내는데 실패"
 msgid "Failed to unmount \"%s\""
 msgstr "\"%s\"을(를) 마운트 해제하는데 실패"
 
-#: ../panel-plugin/model_volumes.c:170
+#: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
 msgstr "\"%s\"을(를) 마운트하는데 실패"
 
-#: ../panel-plugin/model_volumes.c:444
+#: ../panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
 msgstr "마운트하고 열기"
 
-#: ../panel-plugin/model_volumes.c:457
+#: ../panel-plugin/model_volumes.c:491
 msgid "Mount"
 msgstr "마운트"
 
-#: ../panel-plugin/model_volumes.c:477
+#: ../panel-plugin/model_volumes.c:511
 msgid "Eject"
 msgstr "꺼내기"
 
-#: ../panel-plugin/model_volumes.c:487
+#: ../panel-plugin/model_volumes.c:521
 msgid "Unmount"
 msgstr "마운트 해제"
 
@@ -119,87 +118,112 @@ msgstr "장치 꺼내는 중"
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr "\"%s\" 장치를 꺼내는 중입니다. 시간이 좀 걸릴 것입니다"
 
-#: ../panel-plugin/view.c:654
+#: ../panel-plugin/view.c:637
 msgid "Search for Files"
 msgstr "파일 검색"
 
-#: ../panel-plugin/view.c:707 ../panel-plugin/cfg.c:486
+#: ../panel-plugin/view.c:690 ../panel-plugin/cfg.c:555
 msgid "Recent Documents"
 msgstr "최근 문서"
 
-#: ../panel-plugin/cfg.c:347
+#: ../panel-plugin/cfg.c:442
 msgid "Button"
 msgstr "단추"
 
-#: ../panel-plugin/cfg.c:356
+#: ../panel-plugin/cfg.c:451
 msgid "_Show"
 msgstr "보이기(_S)"
 
-#: ../panel-plugin/cfg.c:362
+#: ../panel-plugin/cfg.c:457
 msgid "Icon Only"
 msgstr "아이콘만"
 
-#: ../panel-plugin/cfg.c:363
+#: ../panel-plugin/cfg.c:458
 msgid "Label Only"
 msgstr "레이블만"
 
-#: ../panel-plugin/cfg.c:364
+#: ../panel-plugin/cfg.c:459
 msgid "Icon and Label"
 msgstr "아이콘과 레이블"
 
-#: ../panel-plugin/cfg.c:386
+#: ../panel-plugin/cfg.c:472
 msgid "_Label"
 msgstr "레이블(_L)"
 
-#: ../panel-plugin/cfg.c:404
+#: ../panel-plugin/cfg.c:488
 msgid "Menu"
 msgstr "메뉴"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:408
+#: ../panel-plugin/cfg.c:492
 msgid "Show _icons in menu"
 msgstr "메뉴에 아이콘 표시(_I)"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:420
+#: ../panel-plugin/cfg.c:501
 msgid "Show _removable media"
 msgstr "이동식 미디어 표시(_R)"
 
-#: ../panel-plugin/cfg.c:441
+#: ../panel-plugin/cfg.c:519
 msgid "Mount and _Open on click"
 msgstr "누르면 마운트 하고 열기(_O)"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:455
+#: ../panel-plugin/cfg.c:530
 msgid "Show GTK _bookmarks"
 msgstr "GTK 북마크 표시(_B)"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:468
+#: ../panel-plugin/cfg.c:540
 msgid "Show recent _documents"
 msgstr "최근 문서 표시(_D)"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:490
+#: ../panel-plugin/cfg.c:559
 msgid "Show cl_ear option"
 msgstr "지우기 옵션 표시(_E)"
 
-#: ../panel-plugin/cfg.c:505
+#: ../panel-plugin/cfg.c:571
 msgid "_Number to display"
 msgstr "디스플레이 수(_N)"
 
-#: ../panel-plugin/cfg.c:525
+#: ../panel-plugin/cfg.c:591
 msgid "Search"
 msgstr "검색"
 
-#: ../panel-plugin/cfg.c:533
+#: ../panel-plugin/cfg.c:599
 msgid "Co_mmand"
 msgstr "명령(_M)"
 
-#: ../panel-plugin/support.c:159
+#: ../panel-plugin/support.c:155
 msgid "Open"
 msgstr "열기"
 
-#: ../panel-plugin/support.c:174
+#: ../panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "이곳에 터미널 열기"
+
+#: ../panel-plugin/xfce4-popup-places.sh:28
+msgid "Usage:"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:29
+msgid "OPTION"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:31
+msgid "Options:"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:32
+msgid "Popup menu at current mouse position"
+msgstr ""
+
+#: ../panel-plugin/xfce4-popup-places.sh:33
+#, fuzzy
+msgid "Show help options"
+msgstr "지우기 옵션 표시(_E)"
+
+#: ../panel-plugin/xfce4-popup-places.sh:34
+msgid "Print version information and exit"
+msgstr ""
