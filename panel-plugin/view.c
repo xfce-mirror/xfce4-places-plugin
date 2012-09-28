@@ -65,7 +65,6 @@
 #include "model_system.h"
 #include "model_volumes.h"
 #include "model_user.h"
-#include "xfce4-popup-places.h"
 #include "button.h"
 
 #ifdef HAVE_LIBNOTIFY
@@ -893,54 +892,6 @@ pview_remote_event(XfcePanelPlugin *panel_plugin,
   return FALSE;
 }
 
-static gboolean
-pview_popup_command_message_received(GtkWidget *widget,
-                                     GdkEventClient *ev,
-                                     PlacesView *view)
-{
-    if (G_LIKELY (ev->data_format == 8 && *(ev->data.b) != '\0'
-                  && !g_ascii_strcasecmp (PLACES_MSG_MENU, ev->data.b))){
-        DBG ("Message received: '%s'", ev->data.b);
-
-        pview_open_menu (view);
-        return TRUE;
-    }
-
-    DBG("Bad message received");
-    return FALSE;
-}
-
-static gboolean
-pview_popup_command_set_selection(PlacesView *view)
-{
-    GdkScreen          *gscreen;
-    gchar               selection_name[256];
-    Atom                selection_atom;
-    Window              id;
-
-    id = GDK_WINDOW_XID (GTK_WIDGET (view->plugin)->window);
-
-    gscreen = gtk_widget_get_screen (GTK_WIDGET(view->plugin));
-
-    g_snprintf (selection_name, 256,
-                XFCE_PLACES_SELECTION"%d",
-                gdk_screen_get_number (gscreen));
-    
-    selection_atom = XInternAtom (GDK_DISPLAY (), selection_name, FALSE);
-
-    if (XGetSelectionOwner (GDK_DISPLAY (), selection_atom))
-        return FALSE;
-
-    XSetSelectionOwner (GDK_DISPLAY (), selection_atom, id, GDK_CURRENT_TIME);
-
-    g_signal_connect (GTK_WIDGET(view->plugin),
-                      "client-event",
-                      G_CALLBACK (pview_popup_command_message_received),
-                      view);
-
-    return TRUE;
-}
-
 /********** Initialization & Finalization **********/
 PlacesView*
 places_view_init(XfcePanelPlugin *plugin)
@@ -995,9 +946,6 @@ places_view_init(XfcePanelPlugin *plugin)
     /* remote control signal */
     g_signal_connect(G_OBJECT(view->plugin), "remote-event",
                      G_CALLBACK(pview_remote_event), view);
-
-    /* set selection for xfce4-popup-places */
-    pview_popup_command_set_selection(view);
 
     DBG("done");
 

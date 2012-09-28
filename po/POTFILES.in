@@ -19,5 +19,4 @@ panel-plugin/button.c
 panel-plugin/button.h
 panel-plugin/support.c
 panel-plugin/support.h
-panel-plugin/xfce4-popup-places.c
-panel-plugin/xfce4-popup-places.h
+panel-plugin/xfce4-popup-places.sh
