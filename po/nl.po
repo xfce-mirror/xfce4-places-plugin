@@ -4,7 +4,7 @@
 # xfce4-places-plugin package.
 # Vincent Tunru <imnotb@gmail.com>, 2006.
 # Pjotr, 2011.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-places-plugin\n"
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2011-09-09 12:05+0200\n"
 "Last-Translator: Pjotr\n"
 "Language-Team: Dutch\n"
-"Language: nl (Dutch)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl (Dutch)\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. vim: set ai et tabstop=4:
@@ -205,25 +205,24 @@ msgstr "Hier een terminalvenster openen"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr ""
+msgstr "Gebruik:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr ""
+msgstr "OPTIE"
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
-msgstr ""
+msgstr "Opties:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr ""
+msgstr "Opduikmenu op de huidige muispositie"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
-#, fuzzy
 msgid "Show help options"
-msgstr "V_erwijder-optie weergeven"
+msgstr "Toon hulpopties"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr ""
+msgstr "Druk versie-informatie af en sluit af"
