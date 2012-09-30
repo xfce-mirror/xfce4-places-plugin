@@ -37,8 +37,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2012-04-25 20:38+0900\n"
+"POT-Creation-Date: 2012-09-30 13:01+0900\n"
+"PO-Revision-Date: 2012-09-30 13:09+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: \n"
 "Language: \n"
@@ -231,25 +231,24 @@ msgstr "ターミナルで開く"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr ""
+msgstr "使用法:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr ""
+msgstr "オプション"
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
-msgstr ""
+msgstr "オプション:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr ""
+msgstr "現在のマウスの位置にメニューをポップアップする"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
-#, fuzzy
 msgid "Show help options"
-msgstr "クリアオプションを表示する(_E)"
+msgstr "ヘルプオプションを表示する"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr ""
+msgstr "バージョン情報を表示して終了する"
