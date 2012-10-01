@@ -115,7 +115,7 @@ msgstr "Ejetar dispositivo"
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr "O dispositivo \"%s\" está a ser ejetado. Por favor, aguarde..."
+msgstr "O dispositivo \"%s\" está a ser ejetado. Por favor aguarde..."
 
 #: ../panel-plugin/view.c:637
 msgid "Search for Files"
@@ -170,7 +170,7 @@ msgstr "M_ontar e abrir ao clicar"
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:530
 msgid "Show GTK _bookmarks"
-msgstr "Mostrar mar_cadores GTK"
+msgstr "_Mostrar marcadores GTK"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:540
@@ -220,7 +220,7 @@ msgstr "Abrir menu na posição do cursor"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
-msgstr ""
+msgstr "Mostrar ajuda"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
