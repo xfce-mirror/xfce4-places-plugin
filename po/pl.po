@@ -6,7 +6,7 @@
 # Szymon Kałasz <szymon_maestro@gazeta.pl>, 2007.
 # Michał Jeż <michal.je2u@gmail.com>, 2012.
 # Piotr Sokół <psokol@jabster.pl>, 2009, 2012.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
@@ -19,7 +19,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bits\n"
 "Language: \n"
-"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : ((n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20)) ? 1 : 2));\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : ((n%10>=2 && n%10<=4 && (n"
+"%100<10 || n%100>=20)) ? 1 : 2));\n"
 "X-Generator: Gtranslator 2.91.5\n"
 
 #. vim: set ai et tabstop=4:
@@ -138,11 +139,11 @@ msgstr "_Wyświetlanie:"
 
 #: ../panel-plugin/cfg.c:457
 msgid "Icon Only"
-msgstr "Tylko ikona"
+msgstr "Ikona"
 
 #: ../panel-plugin/cfg.c:458
 msgid "Label Only"
-msgstr "Tylko etykieta"
+msgstr "Etykieta"
 
 #: ../panel-plugin/cfg.c:459
 msgid "Icon and Label"
