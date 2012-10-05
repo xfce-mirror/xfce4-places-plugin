@@ -11,17 +11,19 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2009-04-10 12:55+0100\n"
-"Last-Translator: Piotr Sokół <piotr.sokol@10g.pl>\n"
+"PO-Revision-Date: 2012-10-05 09:49+0100\n"
+"Last-Translator: Michał Olber <michal.olber@osworld.pl>\n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 
 #. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
-#: ../panel-plugin/cfg.c:201 ../panel-plugin/cfg.c:406
+#: ../panel-plugin/places.desktop.in.h:1
+#: ../panel-plugin/cfg.c:102
+#: ../panel-plugin/cfg.c:201
+#: ../panel-plugin/cfg.c:406
 msgid "Places"
 msgstr "Miejsca"
 
@@ -53,7 +55,8 @@ msgstr "Nie udało się wysunąć „%s”"
 msgid "Failed to unmount \"%s\""
 msgstr "Nie udało się odmontować „%s”"
 
-#: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
+#: ../panel-plugin/model_volumes.c:170
+#: ../panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
 msgstr "Nie udało się zamontować „%s”"
@@ -82,12 +85,8 @@ msgstr "Odmontowywanie napędu"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
-msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
-"Urządzenie \"%s\" jest właśnie odmontowywane przez system. Proszę nie usuwać "
-"nośnika lub nie odłączać napędu"
+msgid "The device \"%s\" is being unmounted by the system. Please do not remove the media or disconnect the drive"
+msgstr "Urządzenie \"%s\" jest właśnie odmontowywane przez system. Proszę nie usuwać nośnika lub nie odłączać napędu"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -99,12 +98,8 @@ msgstr "Zapisywanie danych na urządzenie"
 #: ../panel-plugin/model_volumes_notify.c:141
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
-msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
-"Niektóre dane muszą zostać zapisane na urządzenie \"%s\" zanim nie zostanie "
-"ono usunięte. Proszę nie usuwać nośnika lub nie odłączać napędu"
+msgid "There is data that needs to be written to the device \"%s\" before it can be removed. Please do not remove the media or disconnect the drive"
+msgstr "Niektóre dane muszą zostać zapisane na urządzenie \"%s\" zanim nie zostanie ono usunięte. Proszę nie usuwać nośnika lub nie odłączać napędu"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -121,7 +116,8 @@ msgstr "Urządzenie \"%s\" jest właśnie wysuwane. Może to zająć chwilę"
 msgid "Search for Files"
 msgstr "Szukaj..."
 
-#: ../panel-plugin/view.c:690 ../panel-plugin/cfg.c:555
+#: ../panel-plugin/view.c:690
+#: ../panel-plugin/cfg.c:555
 msgid "Recent Documents"
 msgstr "Ostatnio otwarte"
 
@@ -204,25 +200,25 @@ msgstr "Otwórz w terminalu"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr ""
+msgstr "Użycie:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr ""
+msgstr "OPCJA"
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
-msgstr ""
+msgstr "Opcje:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr ""
+msgstr "Wysuń menu pod aktualnym wskaźnikiem myszy"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
-#, fuzzy
 msgid "Show help options"
-msgstr "Polecenie „Wy_czyść”"
+msgstr "Pokaż opcje pomocy"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr ""
+msgstr "Pokaż informacje o wersji i wyjdź"
+
