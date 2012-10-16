@@ -1,14 +1,14 @@
 # Korean translation for xfce4-places-plugin.master package.
 # Copyright (c) 2005-2012 Xfce development team.
 # This file is distributed under the same license as the xfce4-places-plugin.master package.
-# Seong-ho, cho <darkcircle.0426@gmail.com>, 2011-2012.
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2012.
 # Sung Jin Gang <ujuc@ujuc.kr>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce4-places-plugin.master\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2012-04-08 05:31+0900\n"
+"PO-Revision-Date: 2012-10-16 18:48+0900\n"
 "Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: xfce-i18n <xfce-i18n@xfce.org>\n"
 "Language: ko\n"
@@ -21,8 +21,10 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 
 #. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
-#: ../panel-plugin/cfg.c:201 ../panel-plugin/cfg.c:406
+#: ../panel-plugin/places.desktop.in.h:1
+#: ../panel-plugin/cfg.c:102
+#: ../panel-plugin/cfg.c:201
+#: ../panel-plugin/cfg.c:406
 msgid "Places"
 msgstr "위치"
 
@@ -54,7 +56,8 @@ msgstr "\"%s\"을(를) 꺼내는데 실패"
 msgid "Failed to unmount \"%s\""
 msgstr "\"%s\"을(를) 마운트 해제하는데 실패"
 
-#: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
+#: ../panel-plugin/model_volumes.c:170
+#: ../panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
 msgstr "\"%s\"을(를) 마운트하는데 실패"
@@ -83,12 +86,8 @@ msgstr "장치 마운트 해제중"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
-msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
-"\"%s\" 장치를 시스템에서 마운트 해제하는 중입니다. 미디어를 제거하거나 드라이"
-"브의 연결을 끊지 말아주시기 바랍니다"
+msgid "The device \"%s\" is being unmounted by the system. Please do not remove the media or disconnect the drive"
+msgstr "\"%s\" 장치를 시스템에서 마운트 해제하는 중입니다. 미디어를 제거하거나 드라이브의 연결을 끊지 말아주시기 바랍니다"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -100,12 +99,8 @@ msgstr "장치에 데이터 기록중"
 #: ../panel-plugin/model_volumes_notify.c:141
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
-msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
-"제거할 수 있는 \"%s\" 장치에 앞서 기록할 필요가 있는 데이터가 있습니다. 미디"
-"어를 제거하거나 드라이브의 연결을 끊지 말아주시기 바랍니다"
+msgid "There is data that needs to be written to the device \"%s\" before it can be removed. Please do not remove the media or disconnect the drive"
+msgstr "제거할 수 있는 \"%s\" 장치에 앞서 기록할 필요가 있는 데이터가 있습니다. 미디어를 제거하거나 드라이브의 연결을 끊지 말아주시기 바랍니다"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -122,7 +117,8 @@ msgstr "\"%s\" 장치를 꺼내는 중입니다. 시간이 좀 걸릴 것입니�
 msgid "Search for Files"
 msgstr "파일 검색"
 
-#: ../panel-plugin/view.c:690 ../panel-plugin/cfg.c:555
+#: ../panel-plugin/view.c:690
+#: ../panel-plugin/cfg.c:555
 msgid "Recent Documents"
 msgstr "최근 문서"
 
@@ -205,25 +201,25 @@ msgstr "이곳에 터미널 열기"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr ""
+msgstr "사용법:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr ""
+msgstr "<옵션>"
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
-msgstr ""
+msgstr "옵션:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr ""
+msgstr "현재 마우스 위치에 메뉴를 띄웁니다"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
-#, fuzzy
 msgid "Show help options"
-msgstr "지우기 옵션 표시(_E)"
+msgstr "도움말 옵션 보이기"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr ""
+msgstr "버전 정보를 출력하고 나갑니다"
+
