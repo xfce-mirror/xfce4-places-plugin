@@ -1,20 +1,20 @@
-# Uyghur translations for Thunar package.
-# Copyright (C) 2004-2007 Benedikt Meurer.
-# This file is distributed under the same license as the Thunar package.
-# Gheyret T.Kenji <gheyret@gmail.com>, 2010.
-# 
+# Uyghur translation for xfce4-places-plugin.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Gheyret Kenji <gheyret@gmail.com>, YEAR.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: xfce4-places-plugin\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: \n"
-"Last-Translator: Gheyret T.Kenji <gheyret@gmail.com>\n"
+"PO-Revision-Date: 2011-11-09 16:10+0900\n"
+"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
@@ -43,7 +43,7 @@ msgstr "ھۆججەت سىستېمىسى"
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
-msgstr "«%s» نى چىقىرالمىدى"
+msgstr "«%s» نى چىقىرىش مەغلۇپ بولدى"
 
 #: ../panel-plugin/model_volumes.c:120
 #, c-format
@@ -82,15 +82,13 @@ msgstr "ئۈسكۈنىنى ئېگەرسىزلەۋاتىدۇ"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the "
 "media or disconnect the drive"
-msgstr ""
-"سىستېما ئۈسكۈنىسى «%s» نى ئېگەرسىزلەۋاتىدۇ. دىسكىنى چىقارماڭ ياكى ئۈسكۈنىنى "
-"كومپيۇتېردىن ئايرىۋەتمەڭ."
+msgstr "سىستېما ئۈسكۈنىسى «%s» نى ئېگەرسىزلەۋاتىدۇ. دىسكىنى چىقارماڭ ياكى ئۈسكۈنىنى كومپيۇتېردىن ئايرىۋەتمەڭ."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
 #: ../panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
-msgstr "سانلىق-ئاساسلارنى ئۈسكىنىگە يېزىۋاتىدۇ"
+msgstr "سانلىق-مەلۇماتلارنى ئۈسكىنىگە يېزىۋاتىدۇ"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:141
@@ -99,9 +97,7 @@ msgstr "سانلىق-ئاساسلارنى ئۈسكىنىگە يېزىۋاتىد�
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be "
 "removed. Please do not remove the media or disconnect the drive"
-msgstr ""
-"ئۈسكۈنە \"%s\" چىقىرىشتىن بۇرۇن بىر يېزىشقا تېگىشلىك سانلىق ئاسالار بار."
-"دىسكىنى چىقارماق ياكى ئۈسكۈنىنى كومپيۇتېردىن ئايرىۋەتمەڭ."
+msgstr "ئۈسكۈنە «%s» چىقىرىشتىن بۇرۇن بىر يېزىشقا تېگىشلىك سانلىق-مەلۇماتلار بار.دىسكىنى چىقارماق ياكى ئۈسكۈنىنى كومپيۇتېردىن ئايرىۋەتمەڭ."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -112,7 +108,7 @@ msgstr "ئۈسكۈنە چىقىرىش"
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr "ئۈسكۈنە \"%s\" نى چىقىرىۋاتىدۇ. ئازراق ۋاقىت كېتىشى مۇمكىن."
+msgstr "ئۈسكۈنە «%s» نى چىقىرىۋاتىدۇ. ئازراق ۋاقىت كېتىشى مۇمكىن."
 
 #: ../panel-plugin/view.c:637
 msgid "Search for Files"
@@ -205,7 +201,7 @@ msgstr "ئىشلىتىش ئۇسۇلى:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr "تاللانما"
+msgstr "OPTION"
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
@@ -213,7 +209,7 @@ msgstr "تاللانمىلار:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr "نۆۋەتتىكى چاشقىنەك ئورنىدا تىزىملىكنى سەكرەتسۇن"
+msgstr "چاشقىنەكنىڭ ھازىرقى ئورنىدا تىزىملىكنى كۆرسىتىدۇ"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
@@ -221,4 +217,4 @@ msgstr "ياردەم تاللانمىلىرىنى كۆرسىتىدۇ"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr "نەشر ئۇچۇرىنى كۆرسىتىپ ئاخىرلاشتۇرىدۇ"
+msgstr "نەشر ئۇچۇرىنى كۆرسىتىپ ئاخىرلاشتۇرۇش"
