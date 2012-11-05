@@ -8,7 +8,7 @@
 # Benedikt Meurer <benny@xfce.org>, 2005-2007.
 # Fabian Nowak <timystery@arcor.de>, 2006, 2007, 2008
 # Jannis Pohlmann <jannis@xfce.org>, 2006.
-#
+# 
 # ###
 # German gnome-panel translation.
 # Copyright (C) 1998-2004 Free Software Foundation, Inc.
@@ -22,7 +22,7 @@
 # Christian Neumair <chris@gnome-de.org>, 2002-2004.
 # Hendrik Richter <hendrikr@gnome.org>, 2004, 2005, 2006, 2007.
 # Christian Kintner <mail@christian-kintner.de>, 2006.
-#
+# 
 # ###
 msgid ""
 msgstr ""
@@ -32,10 +32,10 @@ msgstr ""
 "PO-Revision-Date: 2008-10-27 22:38+0100\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
@@ -222,25 +222,24 @@ msgstr "Befehlsfenster hier öffnen"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr ""
+msgstr "Aufruf:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr ""
+msgstr "OPTION"
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
-msgstr ""
+msgstr "Optionen:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr ""
+msgstr "Popup-Menü an der aktuellen Mauszeigerposition"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
-#, fuzzy
 msgid "Show help options"
-msgstr "_Option zum Löschen zeigen"
+msgstr "Hilfeoptionen anzeigen"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr ""
+msgstr "Versionsinformationen anzeigen und beenden"
