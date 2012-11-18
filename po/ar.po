@@ -1,16 +1,19 @@
-#
+# محمد الحرقان <malham1@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: xfce\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2008-07-15 22:20+0200\n"
-"Last-Translator: Mohamed Magdy <mohamedmk@gmail.com>\n"
-"Language-Team: Arabeyes <doc@arabeyes.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2012-11-18 17:36+0300\n"
+"Last-Translator: محمد الحرقان <malham1@gmail.com>\n"
+"Language-Team: http://www.vertaal.com.ar/files/factory/ar/list/\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Virtaal 0.7.1\n"
 "X-Poedit-Language: Arabic\n"
 
 #. vim: set ai et tabstop=4:
@@ -21,7 +24,7 @@ msgstr "أماكن"
 
 #: ../panel-plugin/places.desktop.in.h:2
 msgid "Access folders, documents, and removable media"
-msgstr "ولوج إلى المجلدات, وثائق, و وسائط قابلة للإزالة"
+msgstr "ولوج إلى المجلدات والوثائق و الوسائط القابلة للإزالة"
 
 #. Trash
 #: ../panel-plugin/model_system.c:155
@@ -71,7 +74,7 @@ msgstr "إلغاء الضم"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
-msgstr ""
+msgstr "إلغاء ضم الجهاز"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
@@ -80,12 +83,14 @@ msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the "
 "media or disconnect the drive"
 msgstr ""
+"يتم إلغاء ضم الجهاز \"%s\" من طرف النظام. الرجاء عدم إزالة الجهاز أو قطع "
+"إتصاله"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
 #: ../panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
-msgstr ""
+msgstr "كتابة البيانات إلى الجهاز"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:141
@@ -95,17 +100,19 @@ msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be "
 "removed. Please do not remove the media or disconnect the drive"
 msgstr ""
+"هنالك بيانات يجب كتابتها إلى الحهاز \"%s\" قبل إزالته. الرجاء عدم إزالة الجهاز "
+"أو قطع إتصاله"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
-msgstr ""
+msgstr "إخراج الجهاز"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr ""
+msgstr "الجهاز \"%s\" يتم إخراجه. هذا الإجراء قد يأخد بعض الوقت"
 
 #: ../panel-plugin/view.c:637
 msgid "Search for Files"
@@ -113,7 +120,7 @@ msgstr "البحث عن الملفات"
 
 #: ../panel-plugin/view.c:690 ../panel-plugin/cfg.c:555
 msgid "Recent Documents"
-msgstr "الوثائق الحديثة الإستعمال"
+msgstr "الوثائق حديثة الإستعمال"
 
 #: ../panel-plugin/cfg.c:442
 msgid "Button"
@@ -129,15 +136,15 @@ msgstr "أيقونة فقط"
 
 #: ../panel-plugin/cfg.c:458
 msgid "Label Only"
-msgstr "وسم فقط"
+msgstr "تسمية فقط"
 
 #: ../panel-plugin/cfg.c:459
 msgid "Icon and Label"
-msgstr "أيقونة و وسم"
+msgstr "أيقونة و تسمية"
 
 #: ../panel-plugin/cfg.c:472
 msgid "_Label"
-msgstr "وسم"
+msgstr "_وسم"
 
 #: ../panel-plugin/cfg.c:488
 msgid "Menu"
@@ -146,21 +153,21 @@ msgstr "قائمة"
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:492
 msgid "Show _icons in menu"
-msgstr "إظهار الأيقونات على القائمة"
+msgstr "إظهار الأيقونات في القائمة"
 
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:501
 msgid "Show _removable media"
-msgstr "_إظهار الوسائط القابلة للإزالة"
+msgstr "إظهار الوسائط القابلة للإزالة"
 
 #: ../panel-plugin/cfg.c:519
 msgid "Mount and _Open on click"
-msgstr "ضم وال_فتح عنذ النقر"
+msgstr "ضم وافتح عند النقر"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:530
 msgid "Show GTK _bookmarks"
-msgstr "عرض علامات _جتك"
+msgstr "عرض علامات GTK"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:540
@@ -174,7 +181,7 @@ msgstr "عرض خيا_رات المحو"
 
 #: ../panel-plugin/cfg.c:571
 msgid "_Number to display"
-msgstr "عدد لإظهار_ه"
+msgstr "_عدد لإظهاره"
 
 #: ../panel-plugin/cfg.c:591
 msgid "Search"
@@ -182,7 +189,7 @@ msgstr "بحث"
 
 #: ../panel-plugin/cfg.c:599
 msgid "Co_mmand"
-msgstr "_أمر"
+msgstr "أمر"
 
 #: ../panel-plugin/support.c:155
 msgid "Open"
@@ -194,25 +201,24 @@ msgstr "فتح الطرفية هنا"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr ""
+msgstr "الاستخدام:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr ""
+msgstr "خيارات"
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
-msgstr ""
+msgstr "خيارات:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr ""
+msgstr "القائمة المنبثقة في موضع الفارة الحالي"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
-#, fuzzy
 msgid "Show help options"
-msgstr "عرض خيا_رات المحو"
+msgstr "عرض خيارات المساعدة"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr ""
+msgstr "أكتب معلومات الإصدار وخرج"
