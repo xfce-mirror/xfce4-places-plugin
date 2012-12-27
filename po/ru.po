@@ -7,11 +7,11 @@
 # This file is distributed under the same license as the Thunar package.
 # Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006.
 # Sergey Fedoseev <fedoseev.sergey@gmail.com>, 2006.
-#
+# 
 # ###
 # translation of ru.po to Russian
 # Copyright (C) 1998-2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
-#
+# 
 # Max Valianskiy <maxcom@vinchi.ru>, 1998-1999.
 # Sergey Panov <sipan@mit.edu>, 1999.
 # Valek Filippov <frob@df.ru>, 2000-2002.
@@ -28,10 +28,10 @@ msgstr ""
 "PO-Revision-Date: 2009-02-19 20:49+0700\n"
 "Last-Translator: Pavel Labushev <p.labushev@gmail.com>\n"
 "Language-Team: Russian <xfce-i18n-ru@xfce.org>\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
 "X-Poedit-Language: Russian\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 
@@ -219,25 +219,24 @@ msgstr "Открыть терминал"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr ""
+msgstr "Загрузка:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr ""
+msgstr "ОПЦИЯ"
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
-msgstr ""
+msgstr "Опции:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr ""
+msgstr "Контекстное меню на текущей позиции курсора"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
-#, fuzzy
 msgid "Show help options"
-msgstr "Добавить кнопку _очистки списка"
+msgstr "Отобразить опции помощи"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr ""
+msgstr "Отображает информацию о версии"
