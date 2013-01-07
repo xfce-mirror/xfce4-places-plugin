@@ -98,7 +98,7 @@ msgstr "Zapisujem podatke na uređaj"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be "
 "removed. Please do not remove the media or disconnect the drive"
-msgstr ""
+msgstr "Postoje podaci koje treba zapisati na uređaj \"%s\" prije nego se uređaj ukloni.Molim nemojte uklanjati medij ili isključivati pogon."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -109,7 +109,7 @@ msgstr "Izbacujem uređaj"
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr ""
+msgstr "Uređaj \"%s\" se izbacuje. Ovo može potrajati"
 
 #: ../panel-plugin/view.c:637
 msgid "Search for Files"
