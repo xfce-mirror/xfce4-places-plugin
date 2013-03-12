@@ -161,7 +161,7 @@ msgstr "_Ikonok megjelenítése a menüben"
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:501
 msgid "Show _removable media"
-msgstr "_Eltávolítható adathordozók megjelenítése"
+msgstr "Cs_erélhető adathordozók megjelenítése"
 
 #: ../panel-plugin/cfg.c:519
 msgid "Mount and _Open on click"
