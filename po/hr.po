@@ -210,7 +210,7 @@ msgstr "Opcije:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr ""
+msgstr "Skočni prozor na trenutnoj poziciji miša"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
