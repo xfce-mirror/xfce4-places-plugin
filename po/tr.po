@@ -1,21 +1,23 @@
-# Turkish translation of xfce4-places-plugin
-# Copyright (C) 2008 THE xfce4-places-plugin'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfce4-places-plugin package.
-#
-# Gökmen Görgen <gkmngrgn@gmail.com>, 2008.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Gökmen Görgen <gkmngrgn@gmail.com>, 2008
+# wexaw, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: \n"
-"Last-Translator: Samed Beyribey <ras0ir@eventualis.org>\n"
-"Language-Team: \n"
-"Language: \n"
+"PO-Revision-Date: 2013-08-31 19:17+0000\n"
+"Last-Translator: wexaw\n"
+"Language-Team: Turkish (http://www.transifex.com/projects/p/xfce/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
@@ -42,19 +44,19 @@ msgid "File System"
 msgstr "Dosya Sistemi"
 
 #: ../panel-plugin/model_volumes.c:71
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to eject \"%s\""
-msgstr "\"%s\" çıkarılması başarısız oldu"
+msgstr ""
 
 #: ../panel-plugin/model_volumes.c:120
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to unmount \"%s\""
-msgstr "\"%s\" bağlantının kaldırılması başarısız oldu"
+msgstr ""
 
 #: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
-#, fuzzy, c-format
+#, c-format
 msgid "Failed to mount \"%s\""
-msgstr "\"%s\" bağlanma başarısız oldu"
+msgstr ""
 
 #: ../panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
@@ -81,8 +83,8 @@ msgstr ""
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
 msgstr ""
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
@@ -96,8 +98,8 @@ msgstr ""
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
 msgstr ""
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
@@ -193,30 +195,28 @@ msgid "Open"
 msgstr "Aç"
 
 #: ../panel-plugin/support.c:170
-#, fuzzy
 msgid "Open Terminal Here"
-msgstr "Komut Satırını Burada Aç"
+msgstr ""
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr ""
+msgstr "Kullanım:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr ""
+msgstr "SEÇENEK"
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
-msgstr ""
+msgstr "Seçenekler:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
 msgstr ""
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
-#, fuzzy
 msgid "Show help options"
-msgstr "T_emizleme seçeneğini göster"
+msgstr "Yardım seçeneklerini göster"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
