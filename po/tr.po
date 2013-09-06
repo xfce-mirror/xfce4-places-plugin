@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Gökmen Görgen <gkmngrgn@gmail.com>, 2008
+# Necdet Yücel <necdetyucel@gmail.com>, 2013
 # wexaw, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2013-08-31 19:17+0000\n"
-"Last-Translator: wexaw\n"
+"PO-Revision-Date: 2013-09-06 11:27+0000\n"
+"Last-Translator: Necdet Yücel <necdetyucel@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/xfce/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,17 +47,17 @@ msgstr "Dosya Sistemi"
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
-msgstr ""
+msgstr "\"%s\" çıkartılamadı"
 
 #: ../panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
-msgstr ""
+msgstr "\"%s\" çözülemedi"
 
 #: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
-msgstr ""
+msgstr "\"%s\" bağlanamadı"
 
 #: ../panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
@@ -77,7 +78,7 @@ msgstr "Bağlantıyı Kaldır"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
-msgstr ""
+msgstr "Aygıt çözülüyor"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
@@ -85,13 +86,13 @@ msgstr ""
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
 " media or disconnect the drive"
-msgstr ""
+msgstr "\"%s\" aygıtı sistem tarafından çözülüyor. Lütfen medyayı çıkarmayın veya aygıtın bağlantısını kesmeyin"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
 #: ../panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
-msgstr ""
+msgstr "Aygıta veri yazılıyor"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:141
@@ -100,18 +101,18 @@ msgstr ""
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
 " removed. Please do not remove the media or disconnect the drive"
-msgstr ""
+msgstr "\"%s\" aygıtının çıkarılabilmesi için önce ona yazılmayı bekleyen veriler var. Lütfen medyayı çıkarmayın veya aygıtın bağlantısını kesmeyin"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
-msgstr ""
+msgstr "Aygıt çıkartılıyor"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr ""
+msgstr "\"%s\" aygıtı çıkartılıyor. Bu işlem zaman alabilir"
 
 #: ../panel-plugin/view.c:637
 msgid "Search for Files"
@@ -161,7 +162,7 @@ msgstr "Silinebili_r ortamları göster"
 
 #: ../panel-plugin/cfg.c:519
 msgid "Mount and _Open on click"
-msgstr ""
+msgstr "Bağla ve tıklayınca _Aç"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:530
@@ -196,7 +197,7 @@ msgstr "Aç"
 
 #: ../panel-plugin/support.c:170
 msgid "Open Terminal Here"
-msgstr ""
+msgstr "Terminali Burada Aç"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
@@ -212,7 +213,7 @@ msgstr "Seçenekler:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr ""
+msgstr "Güncel fare konumunda açılır menü aç"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
@@ -220,4 +221,4 @@ msgstr "Yardım seçeneklerini göster"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr ""
+msgstr "Sürüm bilgisini yazdır ve çık"
