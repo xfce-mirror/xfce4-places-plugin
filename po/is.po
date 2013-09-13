@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2013-09-10 21:57+0000\n"
+"PO-Revision-Date: 2013-09-13 12:54+0000\n"
 "Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
 "Language-Team: Icelandic (http://www.transifex.com/projects/p/xfce/language/is/)\n"
 "MIME-Version: 1.0\n"
@@ -203,7 +203,7 @@ msgstr "Notkun:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr ""
+msgstr "VALKOSTUR"
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
@@ -211,12 +211,12 @@ msgstr "Valkostir:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr ""
+msgstr "Sprettvalmynd við staðsetningu músarbendils"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
-msgstr ""
+msgstr "Sýna valmöguleika fyrir hjálp"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr ""
+msgstr "Birta upplýsingar um útgáfu og hætta"
