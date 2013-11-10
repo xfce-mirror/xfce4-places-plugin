@@ -114,14 +114,19 @@ pbuser_destroy_bookmarks(PlacesBookmarkGroup *bookmark_group)
 static void
 pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
 {
-    /* As of 2007-04-06, this is pretty much taken from/analogous to Thunar */
+    /* As of 2013-11-09, this is pretty much taken from/analogous to Thunar */
 
     GList  *bookmarks = NULL;
     PlacesBookmark *bookmark;
+    places_uri_scheme p_uri;
     gchar  *name;
-    gchar  *path;
+    gchar  *space;
+    gchar  *uri;
     gchar   line[2048];
     FILE   *fp;
+    GFile  *file;
+    GFileInfo *fileinfo;
+    GIcon  *icon;
  
     pbuser_destroy_bookmarks(bookmark_group);
 
@@ -135,44 +140,127 @@ pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
 
     while( fgets(line, sizeof(line), fp) != NULL )
     {
-        /* strip leading/trailing whitespace */
-        g_strstrip(line);
-        
-        /* skip over the URI */
-        for (name = line; *name != '\0' && !g_ascii_isspace (*name); ++name)
-            /* pass */;
-        
-        /* zero-terminate the URI */
-        *name++ = '\0';
-        
-        /* check if we have a name */
-        for (; g_ascii_isspace (*name); ++name)
-            /* pass */;
-        
-        /* parse the URI */ /* TODO: trash:// URI's */
-        path = g_filename_from_uri(line, NULL, NULL);
-        if (G_UNLIKELY(path == NULL || *path == '\0'))
+        /* remove trailing spaces */
+        g_strchomp (line);
+
+        /* skip over empty lines */
+        if (*line == '\0' || *line == ' ')
             continue;
 
-        /* if we don't have a name, find it in the path */
-        if(*name == '\0'){
-            name = g_filename_display_basename(path);
-            if(*name == '\0'){
-                g_free(path);
-                continue;
+        /* check if there is a custom name in the line */
+        name = NULL;
+        space = strchr (line, ' ');
+        if (space != NULL){
+            /* break line */
+            *space++ = '\0';
+
+            /* get the custom name */
+            if (G_LIKELY (*space != '\0'))
+                name = g_strdup(space);
+        }
+
+        file = g_file_new_for_uri (line);
+
+        if(g_file_is_native(file)){
+
+            uri = g_filename_from_uri(line, NULL, NULL);
+
+            fileinfo = g_file_query_info(file,
+                                  G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME","
+                                  G_FILE_ATTRIBUTE_STANDARD_ICON,
+                                  0, NULL, NULL);
+
+            icon = g_file_info_get_icon(fileinfo);
+            if(icon == NULL)
+                icon = g_themed_icon_new ("folder");
+            g_object_ref(icon);
+            p_uri = PLACES_URI_SCHEME_FILE;
+
+            if(name == NULL) {
+                name = g_strdup(g_file_info_get_attribute_string(fileinfo,
+                                  G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME));
+                if(name == NULL)
+                    name = g_strdup(g_filename_display_basename(uri));
             }
+
+            g_object_unref (G_OBJECT (fileinfo));
+
         }else{
-            name = g_strdup(name);
+
+            uri = g_strdup(line);
+            icon = g_themed_icon_new ("folder-remote");
+            g_object_ref(icon);
+            p_uri = PLACES_URI_SCHEME_REMOTE;
+
+            if(name == NULL) {
+                /* I tried to make this into a separate function
+                   but it crashes evrytim... */
+                gchar       *scheme;
+                gchar       *parse_name;
+                const gchar *p;
+                const gchar *path;
+                gchar       *hostname;
+                gchar       *display_name = NULL;
+                const gchar *skip;
+                const gchar *firstdot;
+                const gchar  skip_chars[] = ":@";
+                guint        n;
+
+                scheme = g_file_get_uri_scheme (file);
+                parse_name = g_file_get_parse_name (file);
+
+                if (g_str_has_prefix (parse_name, scheme)) {
+                    /* extract the hostname */
+                    p = parse_name + strlen (scheme);
+                    while (*p == ':' || *p == '/')
+                        ++p;
+
+                    /* goto path part */
+                    path = strchr (p, '/');
+                    firstdot = strchr (p, '.');
+
+                    if (firstdot != NULL){
+                        /* skip password or login names in the hostname */
+                        for (n = 0; n < G_N_ELEMENTS (skip_chars) - 1; n++){
+                            skip = strchr (p, skip_chars[n]);
+                            if (skip != NULL
+                                   && (path == NULL || skip < path)
+                                   && (skip < firstdot))
+                                        p = skip + 1;
+                        }
+                    }
+
+                    /* extract the path and hostname from the string */
+                    if (G_LIKELY (path != NULL)){
+                        hostname = g_strndup (p, path - p);
+                    }else{
+                        hostname = g_strdup (p);
+                        path = "/";
+                    }
+
+                    /* TRANSLATORS: this will result in "<path> on <hostname>" */
+                    name = g_strdup_printf (_("%s on %s"), path, hostname);
+
+                    g_free (hostname);
+                }
+
+                g_free (scheme);
+                g_free (parse_name);
+
+            }
         }
 
         /* create the BookmarkInfo container */
-        bookmark        = places_bookmark_create(name);           /* label needs to be freed */
-        bookmark->uri   = path;                                   /* uri   needs to be freed */
-        bookmark->icon  = g_themed_icon_new("folder");
-        bookmark->priv  = GINT_TO_POINTER(pbuser_dir_exists(path));
+        bookmark        = places_bookmark_create(name);
+        bookmark->uri   = uri;
+        bookmark->uri_scheme   = p_uri;
+        bookmark->icon  = icon;
+        bookmark->priv  = GINT_TO_POINTER((p_uri==PLACES_URI_SCHEME_REMOTE)||pbuser_dir_exists(bookmark->uri));
         bookmark->finalize = pbuser_finalize_bookmark;
 
         bookmarks = g_list_prepend(bookmarks, bookmark);
+
+        g_object_unref (G_OBJECT (file));
     }
 
     fclose(fp);
@@ -216,8 +304,11 @@ pbuser_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
             clone->icon           = g_object_ref(orig->icon);
             clone->finalize       = pbuser_finalize_bookmark;
     
-            terminal              = places_create_open_terminal_action(clone);
-            clone->actions        = g_list_prepend(clone->actions, terminal);
+            if(orig->uri_scheme == PLACES_URI_SCHEME_FILE) {
+                /* terminal action only works on native files. */
+                terminal              = places_create_open_terminal_action(clone);
+                clone->actions        = g_list_prepend(clone->actions, terminal);
+            }
             open                  = places_create_open_action(clone);
             clone->actions        = g_list_prepend(clone->actions, open);
             clone->primary_action = open;
@@ -254,7 +345,7 @@ pbuser_changed(PlacesBookmarkGroup *bookmark_group)
 
     while(bookmarks != NULL){
         bookmark = bookmarks->data;
-        if(show_bookmark(bookmark) != pbuser_dir_exists(bookmark->uri)){
+        if(bookmark->uri_scheme != PLACES_URI_SCHEME_REMOTE && show_bookmark(bookmark) != pbuser_dir_exists(bookmark->uri)){
             bookmark->priv = GINT_TO_POINTER(!show_bookmark(bookmark));
             ret = TRUE;
         }

@@ -51,7 +51,8 @@ typedef enum
 {
     PLACES_URI_SCHEME_NONE=0,
     PLACES_URI_SCHEME_FILE, 
-    PLACES_URI_SCHEME_TRASH
+    PLACES_URI_SCHEME_TRASH,
+    PLACES_URI_SCHEME_REMOTE
 } places_uri_scheme;
 
 typedef struct _PlacesBookmark PlacesBookmark;
