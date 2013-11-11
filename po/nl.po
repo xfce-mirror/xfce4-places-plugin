@@ -1,22 +1,22 @@
-# Dutch translation of the xfce4-places-plugin package.
-# Copyright (C) The Xfce development team.
-# This file is distributed under the same license as the
-# xfce4-places-plugin package.
-# Vincent Tunru <imnotb@gmail.com>, 2006.
-# Pjotr <pjotrvertaalt@gmail.com> , 2011 - 2013.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
+# Translators:
+# Pjotr123 <pjotrvertaalt@gmail.com>, 2013
+# Vincent Tunru <imnotb@gmail.com>, 2006
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-places-plugin\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2011-09-09 12:05+0200\n"
-"Last-Translator: Pjotr pjotrvertaalt@gmail.com\n"
-"Language-Team: Dutch\n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2013-11-11 11:45+0000\n"
+"Last-Translator: Pjotr123 <pjotrvertaalt@gmail.com>\n"
+"Language-Team: Dutch (http://www.transifex.com/projects/p/xfce/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: nl (Dutch)\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. vim: set ai et tabstop=4:
@@ -27,7 +27,7 @@ msgstr "Locaties"
 
 #: ../panel-plugin/places.desktop.in.h:2
 msgid "Access folders, documents, and removable media"
-msgstr "Toegang tot mappen, documenten en verwijderbare media"
+msgstr "Toegang tot mappen, documenten en verwijderbare opslagmedia"
 
 #. Trash
 #: ../panel-plugin/model_system.c:155
@@ -42,6 +42,12 @@ msgstr "Bureaublad"
 #: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "Bestandssysteem"
+
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr "%s op %s"
 
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
@@ -83,11 +89,9 @@ msgstr "Apparaat aan het ontkoppelen"
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
-"Het apparaat '%s' wordt ontkoppeld door het systeem. Verwijder a.u.b. de "
-"media niet, noch verbreek de verbinding met het station."
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "Het apparaat '%s' wordt ontkoppeld door het systeem. Verwijder a.u.b. het opslagmedium niet, noch verbreek de verbinding met het station."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -100,12 +104,9 @@ msgstr "Gegevens aan het schrijven naar apparaat"
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
-"Er zijn gegevens die geschreven moeten worden naar het apparaat '%s' voordat "
-"het verwijderd kan worden. Verwijder a.u.b. de media niet, noch verbreek de "
-"verbinding met het station."
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "Er zijn gegevens die geschreven moeten worden naar het apparaat '%s' voordat het verwijderd kan worden. Verwijder a.u.b. het opslagmedium niet, noch verbreek de verbinding met het station."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
