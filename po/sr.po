@@ -1,23 +1,23 @@
-# Serbian translation of xfce4-places-plugin.master.
+# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# salepetronije <salepetronije@gmail.com>, 2012.
-# Саша Петровић <salepetronije@gmail.com>, 2013.
 # 
+# Translators:
+# salepetronije <salepetronije@gmail.com>, 2012-2013
+# salepetronije <salepetronije@gmail.com>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: master\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2013-01-03 14:55+0100\n"
-"Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
-"Language-Team: српски <xfce-i18n@xfce.org>\n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2013-11-11 10:55+0000\n"
+"Last-Translator: salepetronije <salepetronije@gmail.com>\n"
+"Language-Team: Serbian (http://www.transifex.com/projects/p/xfce/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sr\n"
-"X-Generator: Gtranslator 2.91.5\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
@@ -42,6 +42,12 @@ msgstr "Радна површ"
 #: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "Систем датотека"
+
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr "%s на %s"
 
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
@@ -83,11 +89,9 @@ msgstr "Откачујем уређај"
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
-"Уређај „%s“ је откачен са система. Молим, не уклањајте уређај и не "
-"прекидајте везу с њим"
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "Уређај „%s“ је откачен са система. Молим, не уклањајте уређај и не прекидајте везу с њим"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -100,11 +104,9 @@ msgstr "Уписујем податке на уређај"
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
-"Одређени подаци требају бити уписани на уређај „%s“, да би уређај био "
-"уклоњен. Молим, не извлачите и не уклањајте уређај"
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "Одређени подаци требају бити уписани на уређај „%s“, да би уређај био уклоњен. Молим, не извлачите и не уклањајте уређај"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
