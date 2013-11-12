@@ -1,34 +1,24 @@
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
-# ###
-# Ukrainian translation of Thunar.
-# Copyright (C) 2002-2006 The Xfce development team.
-# This file is distributed under the same license as the Thunar package.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
-# Maxim V. Dziumanenko <mvd@mylinux.ua>, 2006.
-# Dmitry Nikitin <luckas_fb@mail.ru>, 2007.
-# ###
-# Ukrainian translation of gnome-core module
-# Copyright (C) 1999-2002 Free Software Foundation, Inc.
-# Yuri Syrota <rasta@renome.rovno.ua>, 1999-2002.
-# Maxim Dziumanenko <dziumanenko@gmail.com>, 2002-2007.
-# Dmitry Nikitin <luckas_fb@mail.ru>, 2008
-# ###
+# Translators:
+# Dmitry Nikitin <luckas_fb@mail.ru>, 2007-2008
+# Maxim V. Dziumanenko <mvd@mylinux.ua>, 2006
+# Yarema aka Knedlyk <yupadmin@gmail.com>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-places-plugin\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2008-11-17 13:03+0200\n"
-"Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
-"Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2013-11-12 08:33+0000\n"
+"Last-Translator: Yarema aka Knedlyk <yupadmin@gmail.com>\n"
+"Language-Team: Ukrainian (http://www.transifex.com/projects/p/xfce/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
@@ -53,6 +43,12 @@ msgstr "Робочий стіл"
 #: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "Файлова система"
+
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr "%s на %s"
 
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
@@ -94,11 +90,9 @@ msgstr "Відмонтування пристрою"
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
-"Пристрій \"%s\" відмонтовується системою. Будь ласка, не виймайте та не "
-"від’єднуйте його."
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "Пристрій \"%s\" відмонтовується системою. Будь ласка, не виймайте та не від’єднуйте його."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -111,11 +105,9 @@ msgstr "Записування даних на пристрій"
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
-"Деякі дані потрібно записати на пристрій \"%s\" перед його вийманням. Будь "
-"ласка, не виймайте та не від’єднуйте його."
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "Деякі дані потрібно записати на пристрій \"%s\" перед його вийманням. Будь ласка, не виймайте та не від’єднуйте його."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
