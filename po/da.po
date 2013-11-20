@@ -1,23 +1,24 @@
-# translation of xfce4-places-plugin to Danish
-# Copyright (C) 2007 THE xfce4-places-plugin'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfce4-places-plugin package.
-# Jens Hyllegaard <jens.hyllegaard@gmail.com>, 2007.
-# Per Kongstad <p_kongstad@op.pl>, 2008.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# cedeel <chris@cedeel.com>, 2013
+# Jens Hyllegaard <jens.hyllegaard@gmail.com>, 2007
+# Per Kongstad <p_kongstad@op.pl>, 2008
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-places-plugin 1.1.0\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2009-08-22 17:33+0100\n"
-"Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
-"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
-"Language: da\n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2013-11-20 18:04+0000\n"
+"Last-Translator: cedeel <chris@cedeel.com>\n"
+"Language-Team: Danish (http://www.transifex.com/projects/p/xfce/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Danish\n"
-"X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-Country: DENMARK\n"
+"Language: da\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
@@ -42,6 +43,12 @@ msgstr "Skrivebord"
 #: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "Filsystem"
+
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr "%s på %s"
 
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
@@ -83,11 +90,9 @@ msgstr "Afmonterer enhed"
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
-"Enheden \"%s\" bliver afmonteret af systemet. Undlad at fjerne eller afbryde "
-"drevet"
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "Enheden \"%s\" bliver afmonteret af systemet. Undlad at fjerne eller afbryde drevet"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -100,11 +105,9 @@ msgstr "Skriver data til enhed"
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
-"Der er data som skal skrives til enheden \"%s\" før denne kan fjernes. "
-"Undlad at fjerne eller afbryde drevet"
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "Der er data som skal skrives til enheden \"%s\" før denne kan fjernes. Undlad at fjerne eller afbryde drevet"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -204,25 +207,24 @@ msgstr "Åbn Terminal her"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr ""
+msgstr "Brug:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr ""
+msgstr "VALG"
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
-msgstr ""
+msgstr "Valgmuligheder:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr ""
+msgstr "Pop-op menu ved nuværende museposition"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
-#, fuzzy
 msgid "Show help options"
-msgstr "Vis sl_ettefunktion"
+msgstr "Vis hjælpemuligheder"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr ""
+msgstr "Udskriv versionsinformation og afslut"
