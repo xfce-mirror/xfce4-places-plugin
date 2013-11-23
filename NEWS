@@ -1,3 +1,10 @@
+2013-11-23
+================================================================================
+xfce4-places-plugin v1.6.0 released
+
+ * Added support for network devices in ~/.gtk-bookmarks
+ * Updated translations
+
 2012-09-28
 ================================================================================
 xfce4-places-plugin v1.5.0 released
