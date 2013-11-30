@@ -1,39 +1,28 @@
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
-# ###
-# Russian translation of Thunar
-# Copyright (C) 2004-2006 Benedikt Meurer.
-# This file is distributed under the same license as the Thunar package.
-# Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006.
-# Sergey Fedoseev <fedoseev.sergey@gmail.com>, 2006.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
-# ###
-# translation of ru.po to Russian
-# Copyright (C) 1998-2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
-# 
-# Max Valianskiy <maxcom@vinchi.ru>, 1998-1999.
-# Sergey Panov <sipan@mit.edu>, 1999.
-# Valek Filippov <frob@df.ru>, 2000-2002.
-# Dmitry G. Mastrukov <dmitry@taurussoft.org>, 2002-2004.
-# Andrew W. Nosenko <awn@bcs.zp.ua>, 2003.
-# Leonid Kanter <leon@asplinux.ru>, 2003, 2004, 2005, 2006, 2007.
-# Pavel Labushev <p.labushev@gmail.com>, 2009.
-# ###
+# Translators:
+# Andrew W. Nosenko <awn@bcs.zp.ua>, 2003
+# Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006
+# Leonid Kanter <leon@asplinux.ru>, 2003-2007
+# Pavel Labushev <p.labushev@gmail.com>, 2009
+# Sergey Fedoseev <fedoseev.sergey@gmail.com>, 2006
+# Sergey Panov <sipan@mit.edu>, 1999
+# Velisarus <velisarus@gmail.com>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-places-plugin\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2009-02-19 20:49+0700\n"
-"Last-Translator: Pavel Labushev <p.labushev@gmail.com>\n"
-"Language-Team: Russian <xfce-i18n-ru@xfce.org>\n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2013-11-30 13:13+0000\n"
+"Last-Translator: Velisarus <velisarus@gmail.com>\n"
+"Language-Team: Russian (http://www.transifex.com/projects/p/xfce/language/ru/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
-"X-Poedit-Language: Russian\n"
-"X-Poedit-Country: RUSSIAN FEDERATION\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
@@ -58,6 +47,12 @@ msgstr "Рабочий стол"
 #: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "Файловая система"
+
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr "%s на %s"
 
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
@@ -99,10 +94,9 @@ msgstr "Отключение устройства"
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
-"Устройство \"%s\" будет отключено системой. Пожалуйста, не отключайте диск."
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "Устройство \"%s\" будет отключено системой. Пожалуйста, не отключайте диск."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -115,11 +109,9 @@ msgstr "Запись данных на устройство."
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
-"Есть данные, которые должны быть записаны на устройство \"%s\" до "
-"извлечения. Пожалуйста, не извлекайте и не откючайте устройство."
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "Есть данные, которые должны быть записаны на устройство \"%s\" до извлечения. Пожалуйста, не извлекайте и не откючайте устройство."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
