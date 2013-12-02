@@ -1,23 +1,24 @@
-# Hungarian translation of xfce4-places-plugin
-# Copyright 2009. Free Software Foundation, Inc.
-# This file is distributed under the same license as the xfce4-places-plugin package.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
-# SZERVÁC Attila <sas@321.hu>, 2005.
-# Gabor Kelemen <kelemeng at gnome dot hu>, 2009.
+# Translators:
+# Nucleo <nucleo@indamail.hu>, 2013
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2009
+# Attila SZERVÁC <sas@321.hu>, 2005
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-places-plugin\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2009-07-24 13:44+0200\n"
-"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
-"Language-Team: Hungarian <gnome at gnome dot hu>\n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2013-12-02 00:25+0000\n"
+"Last-Translator: Nucleo <nucleo@indamail.hu>\n"
+"Language-Team: Hungarian (http://www.transifex.com/projects/p/xfce/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
+"Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
@@ -42,6 +43,12 @@ msgstr "Asztal"
 #: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "Fájlrendszer"
+
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr "%s itt %s"
 
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
@@ -83,11 +90,9 @@ msgstr "Eszköz leválasztása"
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
-"A(z) „%s” eszközt leválasztja a rendszer. Ne távolítsa el az adathordozót, "
-"és ne húzza ki a meghajtót a gépből."
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "A(z) „%s” eszközt leválasztja a rendszer. Ne távolítsa el az adathordozót, és ne húzza ki a meghajtót a gépből."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -100,11 +105,9 @@ msgstr "Adatok írása az eszközre"
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
-"A(z) „%s” eszköz eltávolítása előtt bizonyos adatokat még ki kell rá írni. "
-"Ne távolítsa el az adathordozót, és ne húzza ki a meghajtót a gépből."
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "A(z) „%s” eszköz eltávolítása előtt bizonyos adatokat még ki kell rá írni. Ne távolítsa el az adathordozót, és ne húzza ki a meghajtót a gépből."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
