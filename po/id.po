@@ -1,20 +1,23 @@
-# Indonesian translations for xfce4-places-plugin package.
-# Copyright (C) 2008 xfce4-places-plugin'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfce4-places-plugin package.
-# Andhika Padmawan <andhika.padmawan@gmail.com>, 2008.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
+# Translators:
+# Andhika Padmawan <andhika.padmawan@gmail.com>, 2008
+# Ardjuna <Asyura.x@gmail.com>, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-places-plugin\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2008-06-21 11:51+0700\n"
-"Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
-"Language-Team: Indonesian <id@li.org>\n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2014-01-05 06:51+0000\n"
+"Last-Translator: Ardjuna <Asyura.x@gmail.com>\n"
+"Language-Team: Indonesian (http://www.transifex.com/projects/p/xfce/language/id/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: id\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
@@ -39,6 +42,12 @@ msgstr "Destop"
 #: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "Sistem Berkas"
+
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr "%s pada %s"
 
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
@@ -80,11 +89,9 @@ msgstr "Melepaskan divais"
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
-"Divais \"%s\" sedang dilepaskan oleh sistem. Jangan mencopot media atau "
-"melepaskan penggerak"
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "Divais \"%s\" sedang dilepaskan oleh sistem. Jangan mencopot media atau melepaskan penggerak"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -97,11 +104,9 @@ msgstr "Menulis data ke divais"
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
-"Ada data yang perlu ditulis ke divais \"%s\" sebelum divais dapat "
-"dilepaskan. Jangan mencopot media atau melepaskan penggerak"
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "Ada data yang perlu ditulis ke divais \"%s\" sebelum divais dapat dilepaskan. Jangan mencopot media atau melepaskan penggerak"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
