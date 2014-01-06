@@ -1,52 +1,38 @@
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
-# ###
-# traditional Chinese translation for Thunar.
-# Copyright (C) 2006 Benedikt Meurer.
-# This file is distributed under the same license as the Thunar package.
-# Hydonsingore Cia <hydonsingore@educities.edu.tw>, 2006.
-# Cosmo Chene <cosmolax@gmail.com>, 2006.
-#
-# ###
-# Chinese (Taiwan) translation of gnome-panel.
-# Copyright (C) 1999-2007 Free Software Foundation, Inc.
-# gnome-core:
-# Yuan-Chung Cheng <platin@linux.org.tw>, 1999.
-# Jing-Jong SHYUE <shyue@sonoma.com.tw>, 2000.
-# Chih-Wei Huang <cwhuang@linux.org.tw>, 2000.
-# Abel Cheung <abel@oaka.org>, 2001-2002.
-# gnome-panel:
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Chih-Wei Huang <cwhuang@linux.org.tw>, 2000
+# Cosmo Chene <cosmolax@gmail.com>, 2006
+# Hydonsingore Cia <hydonsingore@educities.edu.tw>, 2006
+# Jing-Jong SHYUE <shyue@sonoma.com.tw>, 2000
 # Kevin Kee <kevin@oaka.org>, 2004
-# Abel Cheung <abel@oaka.org>, 2002-2004.
-# Woodman Tuen <wmtuen@gmail.com>, 2005-07
-#
-#
-# ###
+# Walter Cheuk <wwycheuk@gmail.com>, 2014
+# Yuan-Chung Cheng <platin@linux.org.tw>, 1999
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: \n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
-"Language-Team: \n"
-"Language: \n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2014-01-06 13:39+0000\n"
+"Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/xfce/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.h:1
-#: ../panel-plugin/cfg.c:102
-#: ../panel-plugin/cfg.c:201
-#: ../panel-plugin/cfg.c:406
+#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
+#: ../panel-plugin/cfg.c:201 ../panel-plugin/cfg.c:406
 msgid "Places"
 msgstr "位置"
 
 #: ../panel-plugin/places.desktop.in.h:2
 msgid "Access folders, documents, and removable media"
-msgstr "存取資料夾、文件、可移除式媒體"
+msgstr "存取資料夾、文件、移除式媒體"
 
 #. Trash
 #: ../panel-plugin/model_system.c:155
@@ -62,6 +48,12 @@ msgstr "桌面"
 msgid "File System"
 msgstr "檔案系統"
 
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr "%s (在 %s)"
+
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
@@ -72,8 +64,7 @@ msgstr "無法退出「%s」"
 msgid "Failed to unmount \"%s\""
 msgstr "無法卸載「%s」"
 
-#: ../panel-plugin/model_volumes.c:170
-#: ../panel-plugin/model_volumes.c:193
+#: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
 msgstr "無法掛載「%s」"
@@ -102,7 +93,9 @@ msgstr "正在卸載裝置"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
-msgid "The device \"%s\" is being unmounted by the system. Please do not remove the media or disconnect the drive"
+msgid ""
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
 msgstr "裝置「%s」正被系統卸載。請不要移除該媒體，或是斷開該磁碟的連接"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
@@ -115,7 +108,9 @@ msgstr "正在將資料寫入裝置"
 #: ../panel-plugin/model_volumes_notify.c:141
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
-msgid "There is data that needs to be written to the device \"%s\" before it can be removed. Please do not remove the media or disconnect the drive"
+msgid ""
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
 msgstr "在裝置「%s」移除前，有資料需要寫入其中。請不要移除該媒體，或是斷開該磁碟的連接"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
@@ -133,8 +128,7 @@ msgstr "裝置「%s」正在退出。這可能會花上一些時間"
 msgid "Search for Files"
 msgstr "搜尋檔案"
 
-#: ../panel-plugin/view.c:690
-#: ../panel-plugin/cfg.c:555
+#: ../panel-plugin/view.c:690 ../panel-plugin/cfg.c:555
 msgid "Recent Documents"
 msgstr "近期文件"
 
@@ -238,4 +232,3 @@ msgstr "顯示幫助選項"
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
 msgstr "列印版本資訊後離開"
-
