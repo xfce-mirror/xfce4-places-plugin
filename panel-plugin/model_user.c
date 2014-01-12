@@ -119,6 +119,7 @@ pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
     GList  *bookmarks = NULL;
     PlacesBookmark *bookmark;
     places_uri_scheme p_uri;
+    gchar  *legacy_filename;
     gchar  *name;
     gchar  *space;
     gchar  *uri;
@@ -133,9 +134,18 @@ pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
     fp = fopen(pbg_priv(bookmark_group)->filename, "r");
 
     if(G_UNLIKELY(fp == NULL)){
-        DBG("Error opening gtk bookmarks file");
-        pbg_priv(bookmark_group)->loaded = 1;
-        return;
+        /* If opening the file failed, attempt to 
+           open the legacy file as a one-off. */
+
+        legacy_filename = g_build_filename (g_get_home_dir (), ".gtk-bookmarks", NULL);
+        fp = fopen(legacy_filename, "r");
+        g_free(legacy_filename);
+
+        if(G_UNLIKELY(fp == NULL)){
+            DBG("Error opening gtk bookmarks file");
+            pbg_priv(bookmark_group)->loaded = 1;
+            return;
+        }
     }
 
     while( fgets(line, sizeof(line), fp) != NULL )
@@ -388,7 +398,7 @@ places_bookmarks_user_create(void)
     bookmark_group->finalize            = pbuser_finalize;
     bookmark_group->priv                = g_new0(PBUserData, 1);
 
-    pbg_priv(bookmark_group)->filename = xfce_get_homefile(".gtk-bookmarks", NULL);
+    pbg_priv(bookmark_group)->filename = g_build_filename (g_get_user_config_dir (), "gtk-3.0", "bookmarks", NULL);
     
     return bookmark_group;
 }
