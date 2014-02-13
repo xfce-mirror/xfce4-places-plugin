@@ -1,41 +1,31 @@
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
-# ###
-# German translations for Thunar.
-# Copyright (C) 2004-2007 Benedikt Meurer.
-# This file is distributed under the same license as the Thunar package.
-# Benedikt Meurer <benny@xfce.org>, 2005-2007.
-# Fabian Nowak <timystery@arcor.de>, 2006, 2007, 2008
-# Jannis Pohlmann <jannis@xfce.org>, 2006.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
-# ###
-# German gnome-panel translation.
-# Copyright (C) 1998-2004 Free Software Foundation, Inc.
-# This file is distributed under the same license as the gnome-panel package.
-# Carsten Schaar <nhadcasc@fs-maphy.uni-hannover.de>, 1998.
-# Matthias Warkus <mawa@iname.com>, 1999-2001.
-# Karl Eichwalder <ke@suse.de>, 2000, 2001.
-# Christian Meyer <chrisime@gnome.org>, 2000, 2001.
-# Benedikt Roth <Benedikt.Roth@gmx.net>, 2000, 2001.
-# Jörgen Scheibengruber <mfcn@gmx.de>, 2002.
-# Christian Neumair <chris@gnome-de.org>, 2002-2004.
-# Hendrik Richter <hendrikr@gnome.org>, 2004, 2005, 2006, 2007.
-# Christian Kintner <mail@christian-kintner.de>, 2006.
-# 
-# ###
+# Translators:
+# Benedikt Roth <Benedikt.Roth@gmx.net>, 2000-2001
+# Carsten Schaar <nhadcasc@fs-maphy.uni-hannover.de>, 1998
+# Christian Kintner <mail@christian-kintner.de>, 2006
+# Christian Meyer <chrisime@gnome.org>, 2000-2001
+# Fabian Nowak <timystery@arcor.de>, 2006-2008
+# Hendrik Richter <hendrikr@gnome.org>, 2004-2007
+# Jannis Pohlmann <jannis@xfce.org>, 2006
+# Jörgen Scheibengruber <mfcn@gmx.de>, 2002
+# Karl Eichwalder <ke@suse.de>, 2000-2001
+# to_ba, 2014
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-places-plugin\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2008-10-27 22:38+0100\n"
-"Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
-"Language-Team: German\n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2014-02-13 01:27+0000\n"
+"Last-Translator: to_ba\n"
+"Language-Team: German (http://www.transifex.com/projects/p/xfce/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
@@ -61,20 +51,26 @@ msgstr "Schreibtisch"
 msgid "File System"
 msgstr "Dateisystem"
 
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr "%s auf %s"
+
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
-msgstr "Konnte »%s« nicht auswerfen"
+msgstr "»%s« konnte nicht ausgeworfen werden"
 
 #: ../panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
-msgstr "Konnte »%s« nicht aushängen"
+msgstr "»%s« konnte nicht aushängt werden"
 
 #: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
-msgstr "Konnten »%s« nicht einhängen"
+msgstr "»%s« nicht einhängt werden"
 
 #: ../panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
@@ -101,11 +97,9 @@ msgstr "Gerät wird ausgehängt"
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
-"Das Gerät »%s« wird aus dem System ausgehängt. Bitte trennen Sie es nicht "
-"vom Rechner"
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "Das Gerät »%s« wird aus dem System ausgehängt. Bitte trennen Sie es nicht vom Rechner"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -118,11 +112,9 @@ msgstr "Das Gerät wird beschrieben"
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
-"Das Gerät »%s« muss noch komplett beschrieben werden, bis es getrennt werden "
-"kann. Bitte trennen Sie es nicht vom Rechner"
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "Das Gerät »%s« muss noch komplett beschrieben werden, bis es getrennt werden kann. Bitte trennen Sie es nicht vom Rechner"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -149,7 +141,7 @@ msgstr "Schaltfläche"
 
 #: ../panel-plugin/cfg.c:451
 msgid "_Show"
-msgstr "_Anzeigestil:"
+msgstr "_Anzeige"
 
 #: ../panel-plugin/cfg.c:457
 msgid "Icon Only"
@@ -157,15 +149,15 @@ msgstr "Nur Symbol"
 
 #: ../panel-plugin/cfg.c:458
 msgid "Label Only"
-msgstr "Nur Text"
+msgstr "Nur Beschriftung"
 
 #: ../panel-plugin/cfg.c:459
 msgid "Icon and Label"
-msgstr "Symbol und Text"
+msgstr "Symbol und Beschriftung"
 
 #: ../panel-plugin/cfg.c:472
 msgid "_Label"
-msgstr "_Text:"
+msgstr "_Beschriftung"
 
 #: ../panel-plugin/cfg.c:488
 msgid "Menu"
@@ -188,12 +180,12 @@ msgstr "E_inhängen und öffnen bei Mausklick"
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:530
 msgid "Show GTK _bookmarks"
-msgstr "_Lesezeichen anzeigen"
+msgstr "_GTK-Lesezeichen anzeigen"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:540
 msgid "Show recent _documents"
-msgstr "Z_uletzt geöffnete Dokumente zeigen"
+msgstr "_Zuletzt geöffnete Dokumente zeigen"
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:559
@@ -202,7 +194,7 @@ msgstr "_Option zum Löschen zeigen"
 
 #: ../panel-plugin/cfg.c:571
 msgid "_Number to display"
-msgstr "_Anzahl Einträge:"
+msgstr "_Anzahl der Einträge"
 
 #: ../panel-plugin/cfg.c:591
 msgid "Search"
@@ -210,7 +202,7 @@ msgstr "Suchen"
 
 #: ../panel-plugin/cfg.c:599
 msgid "Co_mmand"
-msgstr "_Befehl:"
+msgstr "_Befehl"
 
 #: ../panel-plugin/support.c:155
 msgid "Open"
