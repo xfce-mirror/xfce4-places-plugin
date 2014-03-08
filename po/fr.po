@@ -1,50 +1,34 @@
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
-# ###
-# French translation of the thunar package.
-# Copyright (C) 2004-2006 Benedikt Meurer.
-# This file is distributed under the same license as the thunar package.
-# Stephane Roy <sroy@j2n.net>, 2005-2006.
-# Rafaël Carré <wavael@yahoo.fr>, 2006.
-# Maximilian Schleiss <maxschleiss@solnet.ch>, 2006-2007.
-# Gérald Barré <g.barre@free.fr>, 2006.
-#
-# ###
-# French translation of gnome-panel.
-# Copyright (C) 1998-2007 Free Software Foundation, Inc.
-# This file is distributed under the same license as the gnome-panel package.
-#
-# Vincent Renardias <vincent@ldsol.com>, 1998-2000.
-# Joaquim Fellmann <joaquim@hrnet.fr>, 2000.
-# Christophe Merlet <redfox@redfoxcenter.org>, 2000-2006.
-# Christophe Fergeau <teuf@users.sourceforge.net>, 2002.
-# Baptiste Mille-Mathias <bmm80@free.fr>, 2004-2005.
-# Benoît Dejean <benoit@placenet.org>, 2006.
-# Robert-André Mauchin <zebob.m@gmail.com>, 2006-2007.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Benoît Dejean <benoit@placenet.org>, 2006
+# Christophe Fergeau <teuf@users.sourceforge.net>, 2002
 # Damien Durand <splinux@fedoraproject.org>, 2006
-#
-# ###
+# Gérald Barré <g.barre@free.fr>, 2006
+# jc1 <jc1.quebecos@gmail.com>, 2013
+# Joaquim Fellmann <joaquim@hrnet.fr>, 2000
+# Rafaël Carré <wavael@yahoo.fr>, 2006
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2012-12-07 15:19+0100\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: \n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2014-03-08 16:46+0000\n"
+"Last-Translator: jc1 <jc1.quebecos@gmail.com>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/xfce/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.h:1
-#: ../panel-plugin/cfg.c:102
-#: ../panel-plugin/cfg.c:201
-#: ../panel-plugin/cfg.c:406
+#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
+#: ../panel-plugin/cfg.c:201 ../panel-plugin/cfg.c:406
 msgid "Places"
-msgstr "Raccourcis"
+msgstr "Lieux"
 
 #: ../panel-plugin/places.desktop.in.h:2
 msgid "Access folders, documents, and removable media"
@@ -64,21 +48,26 @@ msgstr "Bureau"
 msgid "File System"
 msgstr "Système de fichiers"
 
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr "%s sur %s"
+
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
-msgstr "Echec à l'éjection de « %s »"
+msgstr "Impossible d'éjecter « %s »"
 
 #: ../panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
-msgstr "Echec au démontage de « %s »"
+msgstr "Impossible de démonter « %s »"
 
-#: ../panel-plugin/model_volumes.c:170
-#: ../panel-plugin/model_volumes.c:193
+#: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
-msgstr "Echec au montage de « %s »"
+msgstr "Impossible de monter « %s »"
 
 #: ../panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
@@ -104,8 +93,10 @@ msgstr "Démontage du périphérique"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
-msgid "The device \"%s\" is being unmounted by the system. Please do not remove the media or disconnect the drive"
-msgstr "Le périphérique « %s » est en train d'être retiré du système. Veuillez ne pas déconnecter le média."
+msgid ""
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "Le périphérique « %s » est démonté par le système. S'il vous plaît ne pas retirer le média ou de déconnecter le lecteur"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -117,8 +108,10 @@ msgstr "Écriture des données sur le périphérique"
 #: ../panel-plugin/model_volumes_notify.c:141
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
-msgid "There is data that needs to be written to the device \"%s\" before it can be removed. Please do not remove the media or disconnect the drive"
-msgstr "Des données doivent être écrites sur « %s » avant que ce périphérique puisse être retiré. Veuillez ne pas déconnecter le média."
+msgid ""
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "Il y a des données qui doivent être écrites sur le périphérique « %s » avant qu'il ne puisse être enlevé. S'il vous plaît ne pas retirer le média ou de déconnecter le lecteur"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -135,8 +128,7 @@ msgstr "Le périphérique « %s » est en cours d'éjection. Cela va prendre un 
 msgid "Search for Files"
 msgstr "Recherche de fichiers"
 
-#: ../panel-plugin/view.c:690
-#: ../panel-plugin/cfg.c:555
+#: ../panel-plugin/view.c:690 ../panel-plugin/cfg.c:555
 msgid "Recent Documents"
 msgstr "Documents récents"
 
@@ -150,19 +142,19 @@ msgstr "_Afficher"
 
 #: ../panel-plugin/cfg.c:457
 msgid "Icon Only"
-msgstr "Icône"
+msgstr "Icône seulement"
 
 #: ../panel-plugin/cfg.c:458
 msgid "Label Only"
-msgstr "Label"
+msgstr "Étiquette seulement"
 
 #: ../panel-plugin/cfg.c:459
 msgid "Icon and Label"
-msgstr "Icône et Label"
+msgstr "Icône et étiquette"
 
 #: ../panel-plugin/cfg.c:472
 msgid "_Label"
-msgstr "_Label"
+msgstr "Étiquette"
 
 #: ../panel-plugin/cfg.c:488
 msgid "Menu"
@@ -171,7 +163,7 @@ msgstr "Menu"
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:492
 msgid "Show _icons in menu"
-msgstr "Afficher des _icônes dans le menu"
+msgstr "Afficher les _icônes dans le menu"
 
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:501
@@ -180,12 +172,12 @@ msgstr "Afficher les périphériques _amovibles"
 
 #: ../panel-plugin/cfg.c:519
 msgid "Mount and _Open on click"
-msgstr "Monter et _Ouvrir lors d'un click"
+msgstr "Monter et _Ouvrir lors d'un clic"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:530
 msgid "Show GTK _bookmarks"
-msgstr "Afficher les _raccourcis GTK"
+msgstr "Afficher les _marques-pages GTK"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:540
@@ -199,7 +191,7 @@ msgstr "Afficher l'option _effacer"
 
 #: ../panel-plugin/cfg.c:571
 msgid "_Number to display"
-msgstr "_Quantité à afficher"
+msgstr "_Nombre à afficher"
 
 #: ../panel-plugin/cfg.c:591
 msgid "Search"
@@ -215,7 +207,7 @@ msgstr "Ouvrir"
 
 #: ../panel-plugin/support.c:170
 msgid "Open Terminal Here"
-msgstr "Ouvrir un terminal à cet emplacement"
+msgstr "Ouvrir un terminal ici"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
@@ -239,5 +231,4 @@ msgstr "Afficher les options d'aide"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr "Affiche la version et quitter"
-
+msgstr "Affiche informations sur la version et quitter"
