@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Abel Martín <abel.martin.ruiz@gmail.com>, 2008
+# Adolfo Jayme Barrientos <fitoschido@ubuntu.com>, 2014
 # Daniel Fuertes Pérez (DaniFP) <danifp25@yahoo.es>, 2006
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003-2006
 # Francisco Javier F. Serrador <serrador@tecknolabs.com>, 2006
@@ -19,8 +20,8 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2013-11-11 20:47+0000\n"
-"Last-Translator: Pablo Lezaeta <prflr88@gmail.com>\n"
+"PO-Revision-Date: 2014-03-22 11:24+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitoschido@ubuntu.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/xfce/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,17 +62,17 @@ msgstr "%s en %s"
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
-msgstr "No se pudo expulsar \"%s\""
+msgstr "No se pudo expulsar «%s»"
 
 #: ../panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
-msgstr "No se pudo desmontar \"%s\""
+msgstr "No se pudo desmontar «%s»"
 
 #: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
-msgstr "No se pudo montar  \"%s\""
+msgstr "No se pudo montar «%s»"
 
 #: ../panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
@@ -100,7 +101,7 @@ msgstr "Desmontando dispositivo"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
 " media or disconnect the drive"
-msgstr "El dispositivo \"%s\" esta siendo desmontando por el sistema. Por favor, no extraiga el soporte o desconecte el dispositivo"
+msgstr "El sistema está desmontando el dispositivo «%s». No extraiga el soporte ni desconecte la unidad"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -115,7 +116,7 @@ msgstr "Escribiendo datos en el dispositivo"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
 " removed. Please do not remove the media or disconnect the drive"
-msgstr "Hay datos que deben ser escritos en el dispositivo \"%s\" antes que pueda ser desconectado. Por favor, no extraiga el soporte ni desconecte el dispositivo"
+msgstr "Hay datos que deben escribirse en el dispositivo «%s» antes de retirarlo. No extraiga el soporte ni desconecte la unidad"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -126,7 +127,7 @@ msgstr "Expulsando dispositivo"
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr "El dispositivo \"%s\" esta siendo expulsado. Esto puede llevar algo de tiempo"
+msgstr "Se está expulsando el dispositivo «%s». Esto puede tomar algo de tiempo"
 
 #: ../panel-plugin/view.c:637
 msgid "Search for Files"
