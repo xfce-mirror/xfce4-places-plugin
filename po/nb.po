@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2014-04-27 16:45+0000\n"
+"PO-Revision-Date: 2014-04-29 23:05+0000\n"
 "Last-Translator: haarek <haarektrans@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/xfce-panel-plugins/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgstr "Filsystem"
 #: ../panel-plugin/model_user.c:242
 #, c-format
 msgid "%s on %s"
-msgstr ""
+msgstr "%s på %s"
 
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
@@ -106,7 +106,7 @@ msgstr "Skriver data til enhet"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
 " removed. Please do not remove the media or disconnect the drive"
-msgstr ""
+msgstr "Det er data som må skrives til enheten «%s» før den kan fjernes. Vennligst ikke fjern mediumet eller koble fra stasjonen"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -210,20 +210,20 @@ msgstr "Forbruk:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr ""
+msgstr "ALTERNATIV"
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
-msgstr ""
+msgstr "Alternativer:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr ""
+msgstr "Popup-meny ved nåværende museposisjon"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
-msgstr ""
+msgstr "Vis hjelpealternativer"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr ""
+msgstr "Vis versjonsinformasjon og avslutt"
