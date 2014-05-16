@@ -460,18 +460,15 @@ places_button_resize(PlacesButton *self)
 
     new_size /= nrows;
 
-    if (show_label) {
 #ifdef HAS_PANEL_49
-        xfce_panel_plugin_set_small (self->plugin, deskbar ? FALSE : TRUE);
+    xfce_panel_plugin_set_small (self->plugin, !show_label);
 #endif
+    if (show_label) {
         if (vertical)
           gtk_alignment_set (GTK_ALIGNMENT (self->alignment), 0.5, 0.0, 0.0, 1.0);
         else
           gtk_alignment_set (GTK_ALIGNMENT (self->alignment), 0.0, 0.5, 1.0, 0.0);
     } else {
-#ifdef HAS_PANEL_49
-        xfce_panel_plugin_set_small(self->plugin, TRUE);
-#endif
         gtk_alignment_set (GTK_ALIGNMENT (self->alignment), 0.5, 0.5, 1.0, 1.0);
     }
 
