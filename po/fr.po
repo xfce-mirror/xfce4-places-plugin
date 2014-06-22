@@ -10,14 +10,15 @@
 # jc1 <jc1.quebecos@gmail.com>, 2013
 # Joaquim Fellmann <joaquim@hrnet.fr>, 2000
 # Rafaël Carré <wavael@yahoo.fr>, 2006
+# Yannick Le Guen <leguen.yannick@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2014-03-08 16:46+0000\n"
-"Last-Translator: jc1 <jc1.quebecos@gmail.com>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/xfce/language/fr/)\n"
+"PO-Revision-Date: 2014-06-22 17:38+0000\n"
+"Last-Translator: Yannick Le Guen <leguen.yannick@gmail.com>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/xfce-panel-plugins/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -79,7 +80,7 @@ msgstr "Monter"
 
 #: ../panel-plugin/model_volumes.c:511
 msgid "Eject"
-msgstr "Ejecter"
+msgstr "Éjecter"
 
 #: ../panel-plugin/model_volumes.c:521
 msgid "Unmount"
@@ -96,7 +97,7 @@ msgstr "Démontage du périphérique"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
 " media or disconnect the drive"
-msgstr "Le périphérique « %s » est démonté par le système. S'il vous plaît ne pas retirer le média ou de déconnecter le lecteur"
+msgstr "Le périphérique « %s » est en cours de démontage par le système. Veuillez ne pas retirer le support ou déconnecter le lecteur"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -111,7 +112,7 @@ msgstr "Écriture des données sur le périphérique"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
 " removed. Please do not remove the media or disconnect the drive"
-msgstr "Il y a des données qui doivent être écrites sur le périphérique « %s » avant qu'il ne puisse être enlevé. S'il vous plaît ne pas retirer le média ou de déconnecter le lecteur"
+msgstr "Des données doivent être écrites sur le périphérique « %s » avant sa déconnexion. Veuillez ne pas retirer le support ou déconnecter le lecteur"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -122,7 +123,7 @@ msgstr "Éjection du périphérique"
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr "Le périphérique « %s » est en cours d'éjection. Cela va prendre un instant."
+msgstr "Le périphérique « %s » est en cours d'éjection. Cela peut prendre un certain temps."
 
 #: ../panel-plugin/view.c:637
 msgid "Search for Files"
@@ -154,7 +155,7 @@ msgstr "Icône et étiquette"
 
 #: ../panel-plugin/cfg.c:472
 msgid "_Label"
-msgstr "Étiquette"
+msgstr "_Étiquette"
 
 #: ../panel-plugin/cfg.c:488
 msgid "Menu"
@@ -199,7 +200,7 @@ msgstr "Chercher"
 
 #: ../panel-plugin/cfg.c:599
 msgid "Co_mmand"
-msgstr "Commande"
+msgstr "Co_mmande"
 
 #: ../panel-plugin/support.c:155
 msgid "Open"
@@ -211,7 +212,7 @@ msgstr "Ouvrir un terminal ici"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr "Usage :"
+msgstr "Utilisation :"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
@@ -231,4 +232,4 @@ msgstr "Afficher les options d'aide"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr "Affiche informations sur la version et quitter"
+msgstr "Afficher les informations sur la version et quitter"
