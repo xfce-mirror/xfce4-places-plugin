@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2014-06-22 17:38+0000\n"
+"PO-Revision-Date: 2014-07-26 16:41+0000\n"
 "Last-Translator: Yannick Le Guen <leguen.yannick@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/xfce-panel-plugins/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr ""
 #: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
 #: ../panel-plugin/cfg.c:201 ../panel-plugin/cfg.c:406
 msgid "Places"
-msgstr "Lieux"
+msgstr "Emplacements"
 
 #: ../panel-plugin/places.desktop.in.h:2
 msgid "Access folders, documents, and removable media"
@@ -196,7 +196,7 @@ msgstr "_Nombre à afficher"
 
 #: ../panel-plugin/cfg.c:591
 msgid "Search"
-msgstr "Chercher"
+msgstr "Rechercher"
 
 #: ../panel-plugin/cfg.c:599
 msgid "Co_mmand"
