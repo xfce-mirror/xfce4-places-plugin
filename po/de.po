@@ -18,7 +18,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2014-06-13 11:45+0000\n"
+"PO-Revision-Date: 2014-08-08 13:44+0000\n"
 "Last-Translator: Tobias Bannert\n"
 "Language-Team: German (http://www.transifex.com/projects/p/xfce-panel-plugins/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -125,7 +125,7 @@ msgstr "Gerät wird ausgeworfen"
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr "Das Gerät »%s« wird ausgeworfen. Dies kann einen Moment dauern"
+msgstr "Das Gerät »%s« wird ausgeworfen. Dieses kann einen Moment dauern"
 
 #: ../panel-plugin/view.c:637
 msgid "Search for Files"
@@ -185,16 +185,16 @@ msgstr "_GTK-Lesezeichen anzeigen"
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:540
 msgid "Show recent _documents"
-msgstr "_Zuletzt geöffnete Dokumente zeigen"
+msgstr "_Zuletzt geöffnete Dokumente anzeigen"
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:559
 msgid "Show cl_ear option"
-msgstr "_Option zum Löschen zeigen"
+msgstr "_Option zum Löschen anzeigen"
 
 #: ../panel-plugin/cfg.c:571
 msgid "_Number to display"
-msgstr "_Anzahl der Einträge"
+msgstr "Anzahl _der Einträge"
 
 #: ../panel-plugin/cfg.c:591
 msgid "Search"
@@ -202,7 +202,7 @@ msgstr "Suchen"
 
 #: ../panel-plugin/cfg.c:599
 msgid "Co_mmand"
-msgstr "_Befehl"
+msgstr "Befe_hl"
 
 #: ../panel-plugin/support.c:155
 msgid "Open"
