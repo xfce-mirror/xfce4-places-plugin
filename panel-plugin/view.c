@@ -657,6 +657,7 @@ pview_update_menu(PlacesView *pd)
 
         gtk_recent_chooser_set_show_icons(GTK_RECENT_CHOOSER(recent_menu), pd->cfg->show_icons);
         gtk_recent_chooser_set_limit(GTK_RECENT_CHOOSER(recent_menu), pd->cfg->show_recent_number);
+        gtk_recent_chooser_set_sort_type(GTK_RECENT_CHOOSER(recent_menu), GTK_RECENT_SORT_MRU);
 
         g_signal_connect(recent_menu, "item-activated", 
                          G_CALLBACK(pview_cb_recent_item_open), pd);
