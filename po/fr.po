@@ -10,13 +10,13 @@
 # jc1 <jc1.quebecos@gmail.com>, 2013
 # Joaquim Fellmann <joaquim@hrnet.fr>, 2000
 # Rafaël Carré <wavael@yahoo.fr>, 2006
-# Yannick Le Guen <leguen.yannick@gmail.com>, 2014
+# Yannick Le Guen <leguen.yannick@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2014-07-26 16:41+0000\n"
+"PO-Revision-Date: 2015-02-08 13:31+0000\n"
 "Last-Translator: Yannick Le Guen <leguen.yannick@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/xfce-panel-plugins/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Emplacements"
 
 #: ../panel-plugin/places.desktop.in.h:2
 msgid "Access folders, documents, and removable media"
-msgstr "Accéder aux répertoires, documents, et périphériques amovibles"
+msgstr "Accéder aux dossiers, aux documents et aux périphériques amovibles"
 
 #. Trash
 #: ../panel-plugin/model_system.c:155
@@ -58,7 +58,7 @@ msgstr "%s sur %s"
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
-msgstr "Impossible d'éjecter « %s »"
+msgstr "Impossible d’éjecter « %s »"
 
 #: ../panel-plugin/model_volumes.c:120
 #, c-format
@@ -123,7 +123,7 @@ msgstr "Éjection du périphérique"
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr "Le périphérique « %s » est en cours d'éjection. Cela peut prendre un certain temps."
+msgstr "Le périphérique « %s » est en cours d’éjection. Cela peut prendre un certain temps."
 
 #: ../panel-plugin/view.c:637
 msgid "Search for Files"
@@ -155,7 +155,7 @@ msgstr "Icône et étiquette"
 
 #: ../panel-plugin/cfg.c:472
 msgid "_Label"
-msgstr "_Étiquette"
+msgstr "Éti_quette"
 
 #: ../panel-plugin/cfg.c:488
 msgid "Menu"
@@ -173,7 +173,7 @@ msgstr "Afficher les périphériques _amovibles"
 
 #: ../panel-plugin/cfg.c:519
 msgid "Mount and _Open on click"
-msgstr "Monter et _Ouvrir lors d'un clic"
+msgstr "Monter et _Ouvrir lors d’un clic"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:530
@@ -188,7 +188,7 @@ msgstr "Afficher les _documents récents"
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:559
 msgid "Show cl_ear option"
-msgstr "Afficher l'option _effacer"
+msgstr "Afficher l’option _effacer"
 
 #: ../panel-plugin/cfg.c:571
 msgid "_Number to display"
@@ -228,7 +228,7 @@ msgstr "Menu contextuel à la position actuelle de la souris"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
-msgstr "Afficher les options d'aide"
+msgstr "Afficher les options d’aide"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
