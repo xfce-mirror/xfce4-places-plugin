@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2015-02-22 14:34+0000\n"
+"PO-Revision-Date: 2015-02-23 23:09+0000\n"
 "Last-Translator: kernc\n"
 "Language-Team: Slovenian (http://www.transifex.com/projects/p/xfce-panel-plugins/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -90,7 +90,7 @@ msgstr "Odklapljanje naprave"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
 " media or disconnect the drive"
-msgstr "Sistem odklaplja napravo \"%s\". Prosim ne odstranjujte medija oz. ne izklapljajte diska."
+msgstr "Sistem odklaplja napravo \"%s\". Ne odstranjujte medija oz. ne izklapljajte diska."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -105,7 +105,7 @@ msgstr "Zapisovanje podatkov na napravo"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
 " removed. Please do not remove the media or disconnect the drive"
-msgstr "Nekaj podatkov mora biti zapisanih na napravo \"%s\", preden je lahko odstranjena. Prosim ne  odstranjujte medija oz. ne izklapljajte diska."
+msgstr "Nekaj podatkov mora biti zapisanih na napravo \"%s\", preden je lahko odstranjena. Ne odstranjujte medija oz. ne izklapljajte diska."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
