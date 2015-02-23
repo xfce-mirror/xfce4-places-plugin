@@ -1,35 +1,28 @@
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
-# ###
-# Bulgarian translation of Thunar
-# Copyright (C) 2004-2006 Benedikt Meurer.
-# This file is distributed under the same license as the Thunar package.
-# KirilKirilov (Cybercop) <cybercop_montana@abv.bg>, 2012.
-# ###
-# translation of bg.po to Bulgarian
-# Copyright (C) 1998-2003, 2004, 2005, 2006, 2007 Free Software Foundation, Inc.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Kiril Kirilov <cybercop_montana@abv.bg>, 2012
+# Kiril Kirilov <cybercop_montana@abv.bg>, 2013
+# Lyubomir Vasilev, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-places-plugin\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2013-01-28 10:47+0200\n"
-"Last-Translator: Kiril Kirilov (Cybercop) <cybercop_montana@abv.bg>\n"
-"Language-Team: Bulgarian <cybercop@montana@abv.bg>\n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2015-02-23 12:35+0000\n"
+"Last-Translator: Lyubomir Vasilev\n"
+"Language-Team: Bulgarian (http://www.transifex.com/projects/p/xfce-panel-plugins/language/bg/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: bg\n"
-"X-Poedit-Language: Bulgarian\n"
-"X-Poedit-Country: Bulgaria\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.h:1
-#: ../panel-plugin/cfg.c:102
-#: ../panel-plugin/cfg.c:201
-#: ../panel-plugin/cfg.c:406
+#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
+#: ../panel-plugin/cfg.c:201 ../panel-plugin/cfg.c:406
 msgid "Places"
 msgstr "Места"
 
@@ -51,21 +44,26 @@ msgstr "Работен плот"
 msgid "File System"
 msgstr "Файлова система"
 
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr "%s на %s"
+
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
-msgstr "Неуспешно изваждане на \"%s\""
+msgstr "Неуспешно изваждане на „%s“"
 
 #: ../panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
-msgstr "Неуспешно демонтиране на \"%s\""
+msgstr "Неуспешно демонтиране на „%s“"
 
-#: ../panel-plugin/model_volumes.c:170
-#: ../panel-plugin/model_volumes.c:193
+#: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
-msgstr "Неуспешно монтиране на \"%s\""
+msgstr "Неуспешно монтиране на „%s“"
 
 #: ../panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
@@ -91,8 +89,10 @@ msgstr "Демонтиране на устройство"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
-msgid "The device \"%s\" is being unmounted by the system. Please do not remove the media or disconnect the drive"
-msgstr "Устройството \"%s\"  се демонтира от системата. Моля, не го премахвайте."
+msgid ""
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "Устройството „%s“  се демонтира от системата. Моля, не го премахвайте."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -104,8 +104,10 @@ msgstr "Записване на данните на устройството"
 #: ../panel-plugin/model_volumes_notify.c:141
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
-msgid "There is data that needs to be written to the device \"%s\" before it can be removed. Please do not remove the media or disconnect the drive"
-msgstr "Има данни, които трябва да бъдат записани на устройство \"%s\" преди да бъде премахнато. Моля, не го премахвайте."
+msgid ""
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "Има данни, които трябва да бъдат записани на устройство „%s“ преди да бъде премахнато. Моля, не го премахвайте."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -116,14 +118,13 @@ msgstr "Изваждане на устройството"
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr "Устройството \"%s\" се изважда. Това може да отнеме известно време"
+msgstr "Устройството „%s“ се изважда. Това може да отнеме известно време"
 
 #: ../panel-plugin/view.c:637
 msgid "Search for Files"
 msgstr "Търсене на файлове"
 
-#: ../panel-plugin/view.c:690
-#: ../panel-plugin/cfg.c:555
+#: ../panel-plugin/view.c:690 ../panel-plugin/cfg.c:555
 msgid "Recent Documents"
 msgstr "Последно отваряни документи"
 
@@ -227,4 +228,3 @@ msgstr "Показване на опции за помощ"
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
 msgstr "Изписване на информация за версията и изход"
-
