@@ -1,23 +1,23 @@
-# Slovak translation for xfce4-places-plugin.
-# Copyright (C) 2010 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the xfce4-places-plugin package.
-# Michal Löffler <lofflermichalloffler@gmail.com>, 2010.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Michal Löffler <lofflermichalloffler@gmail.com>, 2010
+# Slavko <linux@slavino.sk>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-places-plugin\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2010-12-25 22:16+0100\n"
-"Last-Translator: Michal Löffler <lofflermichalloffler@gmail.com>\n"
-"Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
-"Language: sk\n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2015-02-26 11:32+0000\n"
+"Last-Translator: Slavko <linux@slavino.sk>\n"
+"Language-Team: Slovak (http://www.transifex.com/projects/p/xfce-panel-plugins/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Country: SLOVAKIA\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Poedit-Language: Slovak\n"
+"Language: sk\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
@@ -42,6 +42,12 @@ msgstr "Pracovná plocha"
 #: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "Súborový systém"
+
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr "%s na %s"
 
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
@@ -83,11 +89,9 @@ msgstr "Odpájanie zariadenia"
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
-"zariadenie „%s” je odpájané systémom. Prosím, neodstraňujte médium alebo "
-"neodpájajte zariadenie"
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "zariadenie „%s” je odpájané systémom. Prosím, neodstraňujte médium alebo neodpájajte zariadenie"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -100,12 +104,9 @@ msgstr "Zapisovanie dát na médium"
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
-"Existujú dáta, ktoré je treba zapísať na zariadenie „%s” zapísať pred tým, "
-"ako môže byť odstránené. rosím, neodstraňujte médium alebo neodpájajte "
-"zariadenie"
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "Existujú dáta, ktoré je treba zapísať na zariadenie „%s” zapísať pred tým, ako môže byť odstránené. rosím, neodstraňujte médium alebo neodpájajte zariadenie"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -205,24 +206,23 @@ msgstr "Otvoriť v termináli"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr ""
+msgstr "Použitie:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr ""
+msgstr "VOĽBA"
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
-msgstr ""
+msgstr "Voľby:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
 msgstr ""
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
-#, fuzzy
 msgid "Show help options"
-msgstr "Zobraziť voľbu _Vymazať"
+msgstr ""
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
