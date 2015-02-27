@@ -4,7 +4,8 @@
 # 
 # Translators:
 # Abel Martín <abel.martin.ruiz@gmail.com>, 2008
-# Adolfo Jayme Barrientos <fitoschido@ubuntu.com>, 2014
+# Adolfo Jayme Barrientos, 2014
+# Adolfo Jayme Barrientos, 2014
 # Daniel Fuertes Pérez (DaniFP) <danifp25@yahoo.es>, 2006
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003-2006
 # Francisco Javier F. Serrador <serrador@tecknolabs.com>, 2006
@@ -13,16 +14,16 @@
 # Miguel Angel Ruiz Manzano <debianized@gmail.com>, 2006
 # Pablo Gonzalo del Campo, 2003
 # Pablo Hernández-M. Saiz <homeless3d@gmail.com>, 2005
-# Pablo Lezaeta <prflr88@gmail.com>, 2013
+# Pablo Roberto Francisco Lezaeta Reyes <prflr88@gmail.com>, 2013
 # Yelitza Louze <ylouze@redhat.com>, 2003
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2014-03-22 11:24+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitoschido@ubuntu.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/projects/p/xfce/language/es/)\n"
+"PO-Revision-Date: 2015-02-27 11:40+0000\n"
+"Last-Translator: Manolo Díaz <diaz.manolo@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/projects/p/xfce-panel-plugins/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -204,7 +205,7 @@ msgstr "Buscar"
 
 #: ../panel-plugin/cfg.c:599
 msgid "Co_mmand"
-msgstr "Co_mando"
+msgstr "_Orden"
 
 #: ../panel-plugin/support.c:155
 msgid "Open"
