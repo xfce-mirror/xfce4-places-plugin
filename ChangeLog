@@ -1,359 +1,410 @@
-2009-09-17	Diego Ongaro <ongardie@gmail.com>
-
-	I won't be maintaining this file anymore because it's annoying.
-	You can always get this information from git's history instead.
-	If this makes your job harder, let me know.
-
-2009-07-31	Diego Ongaro <ongardie@gmail.com>
-
-	* NEWS, configure.in.in: Prep for 1.2 release
-	* model_volumes.c: Show "Eject" option when Thunar 1.0 does. See
-	bug #4136.
-	* xfce46-compat.c: Remove inconsistent static declarations
-
-2009-07-30	Diego Ongaro <ongardie@gmail.com>
-
-	* button.c: Use gtk_box_pack_{start,end} directly, as _defaults
-	variants are deprecated in GTK 2.14.
-	* view.c: Honor menu icon size. See bug #4744.
-
-2009-05-27	Diego Ongaro <ongardie@gmail.com>
-
-	* cfg.c: Makes properties dialog non-modal. See bug #4468.
-	* support.c: Fix loading file browser on xfce 4.6.
-
-2009-05-24	Diego Ongaro <ongardie@gmail.com>
-
-	* model_system.c: Use xdg-compatible icons. Thanks to
-	  Yves-Alexis Perez. See bug #5034.
-
-2008-11-23	Diego Ongaro <ongardie@gmail.com>
-
-	* view.c, xfce46-compat.{c,h}: Adds xfce46-compat files for menu
-	  positioning
-
-2008-11-21	Diego Ongaro <ongardie@gmail.com>
-
-	* support.{c,h}, model_volumes.c, view.c: Try exo_url_show
-	  before directly calling Thunar. See bug #4463.
-	* model_system.c: Add xdg user dirs support, thanks to Andea
-	  Santilli. See bug #4461.
-	* view.c: disconnect from button signals on finalize
-	* button.{c,h}: Fix warnings and segfault on plugin exit
-	* INSTALL: updated with newer version of autotools
-
-2008-06-07	Diego Ongaro <ongardie@gmail.com>
-
-	* NEWS, configure.in.in: Prep for 1.1 release
-	* view.c: Fix build for GTK versions before 2.10
-	* cfg.c: Revert "Make label insensitive when not shown" (this
-	label is used for the tooltip also)
-
-2008-05-01	Diego Ongaro <ongardie@gmail.com>
-
-	* cfg.c: Make label insensitive when not shown
-	* view.c: Disable the Recent Docs menu item if there are none.
-
-2008-04-06	Diego Ongaro <ongardie@gmail.com>
-
-	* view.c: Reposition Recent Docs submenu after "changed" signal.
-	Hide Clear option when there are no Recent Docs (Bug #3871).
-	Reposition Recent Documents submenu after Clear (Bug #3872).
-
-2008-02-16	Diego Ongaro <ongardie@gmail.com>
-
-	* model_user.c: Fix build on amd64
-
-2008-01-07	Diego Ongaro <ongardie@gmail.com>
-
-	* button.{c,h}: Created a button widget to modularize view code
-	* cfg.{c,h}: Made the interface between the view and cfg saner
-	* view.{c,h}: Moved stuff out of this file (see above)
-
-2007-12-13	Diego Ongaro <ongardie@gmail.com>
-
-	* model.h, model_volumes.c, view.c: Provide visual feedback on
-	actions that could take a long time to return
-	* model.{c,h}, support.c, model_volumes.c: add
-	places_bookmark_action_new() as counter-part to
-	places_bookmark_action_free()
-	* model*, support.c, view.c: consistent usage of _create(),
-	_finalize(), _destroy() naming convention
-
-2007-12-10	Diego Ongaro <ongardie@gmail.com>
-
-	* view.c: Bug: label didn't change when already shown
-	* view.c: Use GtkTooltip API when available
-	* model_volumes.c, support.{c,h}: Show error messages when
-	mounts/unmounts fail
-
-2007-12-09	Diego Ongaro <ongardie@gmail.com>
-
-	* *: Improve compatibility with older versions of libs
-	* xfce4-popup-places.{c,h}, view.c, Makefile.am: Bug #3672:
-	popup command (thanks to Mike for the patch)
-
-2007-12-08	Diego Ongaro <ongardie@gmail.com>
-
-	* model_user.c: Bug #3728: bookmarks may become (un)reachable
-
-2007-10-31	Diego Ongaro <ongardie@gmail.com>
-
-	* cfg.c: Bug #3637: Make options for recent documents transient
-
-2007-10-25	Diego Ongaro <ongardie@gmail.com>
-
-	* model.c: Don't debug (possibly invalid) bookmark label on free
-	* cfg.c: String change
-	* Prep for v1.0.0
-	* NEWS: fix typo
-
-2007-10-22	Diego Ongaro <ongardie@gmail.com>
-
-	* configure.ac, po/POTFILES.in: fix make distcheck errors
-
-2007-10-16	Diego Ongaro <ongardie@gmail.com>
-
-	* model_user.c: Don't always return TRUE in changed() when
-	~/.gtk-bookmarks is missing (resulted in menu "blinking")
-	* model*.c: Use places_bookmark_create() as counterpart to
-	places_bookmark_free()
-	* model_volumes.c: Added "Mount and Open" action for Bug #3565
-	* model.h, view.c: Added force_gray option to bookmarks for
-	Bug #3565
-	* cfg.{c,h}, model_volumes.c, view.c: Add "Mount and Open by
-	default" preference (closes Bug #3565)
-
-2007-10-15	Diego Ongaro <ongardie@gmail.com>
-
-	* view.c: Bug #3605 - individually show menu items instead of
-	using show_all to avoid incorrectly showing "No items found" in
-	the Recent Documents submenu on GTK 2.12
-
-2007-09-28	Diego Ongaro <ongardie@gmail.com>
-
-	* view.c: Use XfceHVBox
-
-2007-09-24	Diego Ongaro <ongardie@gmail.com>
-
-	* places.{c,h}, support.{c,h}: Created support with the parts
-	of places that didn't belong.
-	* view.c, support.{c,h}: Moved "Open" and "Open Terminal Here"
-	action creation into support.
-	* view.c, model.h: Added primary action to bookmarks
-	* view.c, model*.c: Model now defines all bookmark actions
-
-2007-09-20	Diego Ongaro <ongardie@gmail.com>
-
-	* view.c: Adopt notes plugin menu position function (better
-	behavior for floating panels)
-
-2007-09-14	Diego Ongaro <ongardie@gmail.com>
-
-	* {cfg,view,places}.c: Replace strlen with checks against '\0'
-
-2007-09-12	Diego Ongaro <ongardie@gmail.com>
-
-	* cfg.h: Don't define recent documents settings if compiled w/o.
-	* cfg.{c,h}: Clean-up, added more assertions
-	* view.{c,h}: Clean-up. Improved sizing algorithm.
-	* cfg.c: Fix: couldn't open menu with the search cmd field focused
-	* Prep for v0.9.992 (1.0beta2)
-
-2007-09-11	Diego Ongaro <ongardie@gmail.com>
-
-	* places.{c,h}, view.{c,h}, cfg.{c,h}: Large shuffling of GUI
-	code
-	* *.{c,h}: Added purpose to top of each file
-
-2007-09-07	Diego Ongaro <ongardie@gmail.com>
-
-	* view.c: places_load_thunar_wrapper() should load thunar, not
-	terminal (context menu "Open" action)
-	* view.c: improve how icon theme changes and screen changes are
-	handled
-	* *.{c,h}: removed all C++-style comments
-	* view.c: added menu timeout to poll for model changes
-
-2007-08-23	Diego Ongaro <ongardie@gmail.com>
-
-	* HACKING: updated to reflect current model
-
-2007-08-22	Diego Ongaro <ongardie@gmail.com>
-
-	* view.c: Avoid infinite icon theme changed signals on etch
-
-2007-08-18	Diego Ongaro <ongardie@gmail.com>
-
-	* view.c: Fix bug 3471 (Rightclick action pins autohidden panel)
-
-2007-08-15	Diego Ongaro <ongardie@gmail.com>
-
-	* Prep for v0.9.991 (1.0beta1)
-	* view.c: If left-click is disabled, do right-click action.
-
-2007-08-12	Diego Ongaro <ongardie@gmail.com>
-
-	* model_volumes.c: set changed when volumes added/removed
-	* view.c: free GList's of PlacesBookmarks
-
-2007-08-11	Diego Ongaro <ongardie@gmail.com>
-
-	* Large model refactoring for flexibility, maintainability.
-
-2007-08-10	Diego Ongaro <ongardie@gmail.com>
-
-	* Clicking on Recent Changes -> Clear no longer hides the menu
-
-2007-08-05	Diego Ongaro <ongardie@gmail.com>
-
-	* Improved BookmarkAction concept.
-	* Fixed bad mount points bug.
-	* Avoid failing xfce_rc_write_entry assertion when
-	cfg->search_cmd is NULL
-	* Made "Eject" actually eject
-
-2007-07-28	Diego Ongaro <ongardie@gmail.com>
-
-	* Handle alternate menu actions better.
-
-2007-07-26	Diego Ongaro <ongardie@gmail.com>
-
-	* Fixed bug #3350 (Expression compares a char* pointer with a
-	string literal)
-
-2007-07-13	Diego Ongaro <ongardie@gmail.com>
-
-	* Merged in umount branch at r1908 (now obsolete):
-	 - added "actions" to bookmarks.
-	 - added unmount/mount actions to volumes.
-	 - added Open Terminal Here action.
-
-2007-06-04	Diego Ongaro <ongardie@gmail.com>
-
-	* Fix BookmarkInfo-related memory leaks
-
-2007-06-03	Diego Ongaro <ongardie@gmail.com>
-
-	* Use exo_str_is_equal (adds direct exo dependency)
-	* Added optional search command
-	* Use thunar-vfs to get and update trash icon (empty/full)
-
-2007-05-22	Diego Ongaro <ongardie@gmail.com>
-
-	* Changed to lazily adding menu separators to avoid extra
-	trailing separator when recent documents are not shown.
-
-2007-05-17	Diego Ongaro <ongardie@gmail.com>
-
-	* Button's "Image" -> "Icon" and clarified variable names.
-	* Added cfg.c, cfg.h to POTFILES.in
-	* Ran intltool-update on po files
-	* Preparing for v0.3 release
-
-2007-05-15	Diego Ongaro <ongardie@gmail.com>
-
-	* Improved consistency of configuration dialog frames with other
-	plugins.
-	* Fixed Bug #3237 (Places won't compile on Debian testing)
-	* Open Thunar on middle-click (Bug #3239)
-
-2007-05-14	Diego Ongaro <ongardie@gmail.com>
-
-	* Moved configuration code into cfg.h, cfg.c.
-	* Don't compile in Recent Documents configuration code on older
-	versions of GTK.
-	* Set icon on and centered configuration dialog.
-
-2007-05-13	Diego Ongaro <ongardie@gmail.com>
-
-	* Added "Places" label and configuration settings for 
-	show_image, show_label, show_icons, label, 
-	show_recent, show_recent_clear, show_recent_num,
-	show_volumes, show_bookmarks.
-
-2007-04-26	Diego Ongaro <ongardie@gmail.com>
-
-	* view.c, places.h: Never draw two consecutive menu separators.
-
-2007-04-22	Diego Ongaro <ongardie@gmail.com>
-
-	* Released v0.2
-
-2007-04-21	Diego Ongaro <ongardie@gmail.com>
-
-	* Preparing for v0.2 release
-	* Releasec v0.1.9 (2.0 release candidate)
-
-2007-04-20	Diego Ongaro <ongardie@gmail.com>
-
-	* scripts/: Created script to take translations from thunar, gnome-panel.
-	* model*.c: Added include for config.h for i18n, DBG.
-	  Better memory management.
-	* view.c: Disabled Recent Documents for gtk < v2.10.
-	  Replaced gtk_image_clear() call since it's new in gtk v2.8.
-	  Now using g_object_ref_sink() and g_object_unref() on tooltips.
-	  Connects menu deactivate signal only once per menu.
-	  Registers menu with panel before every popup.
-	  Got rid of final TODOs regarding xfdesktop's code.
-	* TODO: Updated.
-
-2007-04-14	Diego Ongaro <ongardie@gmail.com>
-
-	* view.c: rewrite
-	  - Based on xfdesktop menu, launcher
-	  - Fixes bugs #3124, #3029
-	  - Removed arrow button
-	  - Added "Places" tooltip
-	  - Added listener for theme changes
-	* model_volumes.c: free volumes data in correct order
-
-2007-04-13	Diego Ongaro <ongardie@gmail.com>
-
-	* Split view into its own file
-
-2007-04-09	Diego Ongaro <ongardie@gmail.com>
-
-	* Added menu item to clear Recent Documents
-	* Accidentally had the menu always rebuilding
-	* Made some callbacks listen on more appropriate listeners
-	* Added double quotes to paths/URIs sent to Thunar
-
-2007-04-08	Diego Ongaro <ongardie@gmail.com>
-
-	* Added Recent Documents via GtkRecentChooserMenu
-
-2007-04-07	Diego Ongaro <ongardie@gmail.com>
-
-	* Added BookmarksVisitor struct
-
-2007-04-06	Diego Ongaro <ongardie@gmail.com>
-
-	* Improved consistency with Thunar for user bookmarks
-	  (reading and display)
-	* Dropped unescape_uri.c
-	* Fixed bug 3030 (Places shows missing menu items)
-	* Improved the headers mess
-
-2007-04-05	Diego Ongaro <ongardie@gmail.com>
-	
-	* Merged in volumes branch
-	* Adds Thunar VFS dependency.
-	* Uncouples model from view/controller as explained in HACKING.
-
-2007-04-05	Diego Ongaro <ongardie@gmail.com>
-
-	* Releasing version 0.1
-	* With psyBSD's help, i18n is now up and running.
-
-2007-03-25	Diego Ongaro <ongardie@gmail.com>
-
-	* Fixed bug 3053 (Plugin doesn't launch thunar) by dropping "/usr/bin/"
-	* Fixed bug 3027 (Places menu showing %20) by copying glib code
-
-2007-03-14	Diego Ongaro <ongardie@gmail.com>
-
-	* initial beta release, packaged outside svn
-
-
-# vi:set ts=8 sw=8 tw=72 noet ai nocindent:
+# created with git log --pretty=format:"%ad %h %s %aN <%aE>" --no-merges --date=short
+2015-02-27 9431b2a I18n: Update translation es (100%). Manolo Díaz <diaz.manolo@gmail.com>
+2015-02-26 9307104 I18n: Update translation sk (100%). Slavko <linux@slavino.sk>
+2015-02-26 4a62b99 I18n: Update translation sk (93%). Slavko <linux@slavino.sk>
+2015-02-24 138d43b I18n: Update translation sl (100%). Anonymous <noreply@xfce.org>
+2015-02-23 50ff731 I18n: Update translation bg (100%). Anonymous <noreply@xfce.org>
+2015-02-22 1e0d43e I18n: Add new translation sl (100%). Anonymous <noreply@xfce.org>
+2015-02-08 70674f3 I18n: Update translation fr (100%). Yannick Le Guen <leguen.yannick@gmail.com>
+2014-01-12 d60ff39 Use the new Gtk+-3.0 bookmarks location, with fallback to the legacy file. Alistair Buxton <a.j.buxton@gmail.com>
+2014-09-08 4e0cf7a Bug #11148, Patch 1.6.0 to sort recent documents by most recently used Andrzej <ndrwrdck@gmail.com>
+2014-08-30 6fd1978 I18n: Update translation pl (100%). Piotr Sokół <psokol@jabster.pl>
+2014-08-08 3089686 I18n: Update translation de (100%). Anonymous <noreply@xfce.org>
+2014-07-27 05f3c3e I18n: Update translation fr (100%). Yannick Le Guen <leguen.yannick@gmail.com>
+2014-06-23 3065e2a I18n: Update translation fr (100%). Yannick Le Guen <leguen.yannick@gmail.com>
+2014-06-13 56941c8 I18n: Update translation de (100%). Anonymous <noreply@xfce.org>
+2014-05-18 b2771fd I18n: Update translation zh_CN (100%). xiaobo zhou <zhouxiaobo.500@gmail.com>
+2014-05-17 7da5196 Make the button occupy the whole panel height/width when the label is shown. Andrzej <ndrwrdck@gmail.com>
+2014-04-30 d330718 I18n: Update translation nb (100%). haarek <haarektrans@gmail.com>
+2014-04-28 4920c88 I18n: Update translation nb (84%). haarek <haarektrans@gmail.com>
+2014-04-17 8ab275f I18n: Update translation ast (100%). Tornes Llume <l.lumex03.tornes@gmail.com>
+2014-03-22 9ed3742 I18n: Update translation es (100%). Adolfo Jayme Barrientos <fitoschido@ubuntu.com>
+2014-03-08 deedeae I18n: Update translation fr (100%). jc1 <jc1.quebecos@gmail.com>
+2014-02-26 0e0c9a3 I18n: Add new translation ms (100%). abuyop <abuyop@gmail.com>
+2014-02-17 7ab9200 I18n: Update translation sv (100%). PavelNicklasson <pavelnicklasson@bahnhof.se>
+2014-02-16 61f3b67 I18n: Update translation hr (100%). schizo <eveskovic@gmail.com>
+2014-02-13 baa9425 I18n: Update translation de (100%). Anonymous <noreply@xfce.org>
+2014-01-19 3cb37f4 I18n: Update translation cs (100%). Michal Várady <miko.vaji@gmail.com>
+2014-01-06 e3942b0 I18n: Update translation zh_TW (100%). Walter Cheuk <wwycheuk@gmail.com>
+2014-01-05 0f5d4df I18n: Update translation id (100%). Ardjuna <Asyura.x@gmail.com>
+2013-12-20 74a9a94 I18n: Update translation ar (100%). abdXelrhman <abdXelrhman@gmail.com>
+2013-12-07 1ed7f6d I18n: Add new translation oc (100%). Cedric31 <cvalmary@yahoo.fr>
+2013-12-02 86a92d7 I18n: Update translation hu (100%). Nucleo <nucleo@indamail.hu>
+2013-11-30 b2b73a1 I18n: Update translation ru (100%). Velisarus <velisarus@gmail.com>
+2013-11-30 10c4a32 I18n: Update translation ja (100%). Masato HASHIMOTO <cabezon.hashimoto@gmail.com>
+2013-11-24 1cd4544 I18n: Update translation it (100%). cri <cri.penta@gmail.com>
+2013-11-23 5c2515a Preparing for release Andrzej <ndrwrdck@gmail.com>
+2013-11-21 3d8b1a4 I18n: Update translation da (100%). cedeel <chris@cedeel.com>
+2013-11-20 9104d6c I18n: Update translation ko (100%). Darkcircle <darkcircle.0426@gmail.com>
+2013-11-14 e58f2ee I18n: Update translation kk (100%). Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+2013-11-12 3f6e252 I18n: Update translation uk (100%). Yarema aka Knedlyk <yupadmin@gmail.com>
+2013-11-12 0dc2add I18n: Update translation tr (100%). Necdet Yücel <necdetyucel@gmail.com>
+2013-11-12 579ddfa I18n: Update translation pt (100%). Sérgio Marques <smarquespt@gmail.com>
+2013-11-12 b12b898 I18n: Update translation es (100%). Pablo Lezaeta <prflr88@gmail.com>
+2013-11-11 0748e5a I18n: Update translation nl (100%). Pjotr123 <pjotrvertaalt@gmail.com>
+2013-11-11 07a9c1f I18n: Update translation th (100%). theppitak <theppitak@gmail.com>
+2013-11-11 ccb8b99 I18n: Update translation sr (100%). salepetronije <salepetronije@gmail.com>
+2013-11-11 8014d94 I18n: Update translation pl (100%). Piotr Sokół <psokol@jabster.pl>
+2013-11-11 8972a4f I18n: Update translation is (100%). Sveinn í Felli <sveinki@nett.is>
+2013-11-10 ce1bcac Add support for network devices in ~/.gtk-bookmarks Alistair Buxton <a.j.buxton@gmail.com>
+2013-11-07 41dd544 I18n: Add new translation th (100%). theppitak <theppitak@gmail.com>
+2013-09-13 0e4feb2 I18n: Update translation is (100%). Sveinn í Felli <sveinki@nett.is>
+2013-09-11 24a6a84 I18n: Update translation is (90%). Sveinn í Felli <sveinki@nett.is>
+2013-09-06 ea48a76 I18n: Update translation tr (100%). Necdet Yücel <necdetyucel@gmail.com>
+2013-09-01 bda009e I18n: Update translation tr (70%). Anonymous <noreply@xfce.org>
+2013-07-29 d64038a I18n: Add new translation en_AU (100%). k3lt01 <keltoiboy@gmail.com>
+2013-07-13 bf70ef9 Potfiles cleanup. Nick Schermer <nick@xfce.org>
+2013-07-03 b5e5d87 I18n: Remove broken / unsupported translations. Nick Schermer <nick@xfce.org>
+2013-06-15 cdf5c57 l10n: Updated Indonesian (id) translation to 100% Ardjuna <asyura.x@gmail.com>
+2013-05-12 edc31a3 l10n: Updated Korean (ko) translation to 100% Seong-ho Cho <darkcircle.0426@gmail.com>
+2013-04-27 9574303 l10n: Updated Dutch (Flemish) (nl) translation to 100% Pjotr vertaalt <pjotrvertaalt@gmail.com>
+2013-03-29 2b558e9 l10n: Updated Croatian (hr) translation to 100% Ivica  Kolić <ikoli@yahoo.com>
+2013-03-29 774d109 l10n: Updated Croatian (hr) translation to 100% Ivica  Kolić <ikoli@yahoo.com>
+2013-03-12 30d22fb l10n: Updated Hungarian (hu) translation to 100% Imre Benedek <nucleo@indamail.hu>
+2013-03-12 749e258 l10n: Updated Hungarian (hu) translation to 100% Imre Benedek <nucleo@indamail.hu>
+2013-03-06 3f733cf l10n: Updated Serbian (sr) translation to 100% Саша Петровић <salepetronije@gmail.com>
+2013-01-28 40b4e94 l10n: Updates to Bulgarian translation Kiril Kirilov <cybercop_montana@abv.bg>
+2013-01-28 19f7cf2 l10n: Updated Chinese (Taiwan) (zh_TW) translation to 100% Cheng-Chia Tseng <pswo10680@gmail.com>
+2013-01-07 3f94f63 l10n: Updated Croatian (hr) translation to 97% Ivica  Kolić <ikoli@yahoo.com>
+2013-01-03 0ecfc9a l10n: Updated Serbian (sr) translation to 100% Саша Петровић <salepetronije@gmail.com>
+2012-12-27 0a10a02 l10n: Updated Russian (ru) translation to 100% Roman K <mrdoctorwho@gmail.com>
+2012-12-07 f79da6e l10n: Updated French (fr) translation to 100% jc jc1 <jc1.quebecos@gmail.com>
+2012-12-04 53113f2 l10n: Updated Croatian (hr) translation to 93% Ivica  Kolić <ikoli@yahoo.com>
+2012-11-24 0fa6875 l10n: Updated Kazakh (kk) translation to 100% Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+2012-11-18 9c30b45 l10n: Updated Arabic (ar) translation to 100% محمد الحرقان <malham1@gmail.com>
+2012-11-18 f34ef9a l10n: Updated Spanish (Castilian) (es) translation to 100% Francisco Javier Serrador <fserrador@gmail.com>
+2012-11-14 4a7b0e5 l10n: Updated Czech (cs) translation to 100% Michal Várady <miko.vaji@gmail.com>
+2012-11-11 3ecf396 l10n: Updated Chinese (China) (zh_CN) translation to 100% Hunt Xu <mhuntxu@gmail.com>
+2012-11-10 930e7fe l10n: Updated Basque (eu) translation to 100% Piarres Beobide <pi@beobide.net>
+2012-11-05 655a414 l10n: Updated German (de) translation to 100% Mario Blättermann <mario.blaettermann@gmail.com>
+2012-10-25 d9ed798 l10n: Updated Uyghur (ug) translation to 100% Gheyret Kenji <gheyret@yahoo.com>
+2012-10-16 80a2dd5 l10n: Updated Korean (ko) translation to 100% Seong-ho Cho <darkcircle.0426@gmail.com>
+2012-10-11 6feb6ab l10n: Updated Uyghur (ug) translation to 100% Gheyret Kenji <gheyret@yahoo.com>
+2012-10-07 e39d7ab l10n: Updated Ukrainian (uk) translation to 100% Yarema aka Knedlyk <yupadmin@gmail.com>
+2012-10-06 3e2ec01 l10n: Updated Polish (pl) translation to 100% Piotr Sokół <psokol@jabster.pl>
+2012-10-05 3352d56 l10n: Updated Polish (pl) translation to 100% Piotr Strębski <strebski@o2.pl>
+2012-10-05 2c9afdf l10n: Updated Polish (pl) translation to 100% Piotr Sokół <psokol@jabster.pl>
+2012-10-05 1277840 l10n: Updated Polish (pl) translation to 100% Michał Olber <michal.olber@osworld.pl>
+2012-10-05 be3fc9f l10n: Updated Portuguese (Brazilian) (pt_BR) translation to 100% Rafael Ferreira <rafael.f.f1@gmail.com>
+2012-10-01 aadb4c7 l10n: Updated Portuguese (pt) translation to 100% Sergio Marques <smarquespt@gmail.com>
+2012-10-01 c75ed89 l10n: Updated Portuguese (pt) translation to 97% Sergio Marques <smarquespt@gmail.com>
+2012-10-01 e543dd5 l10n: Updated Croatian (hr) translation to 75% Ivica  Kolić <ikoli@yahoo.com>
+2012-09-30 6fc16d6 l10n: Updated Japanese (ja) translation to 100% Masato Hashimoto <hashimo@xfce.org>
+2012-09-29 d92d15f l10n: Updated Dutch (Flemish) (nl) translation to 100% Pjotr vertaalt <pjotrvertaalt@gmail.com>
+2012-09-29 5d10c3d l10n: Updated Italian (it) translation to 100% Cristian Marchi <cri.penta@gmail.com>
+2012-09-28 7c89343 Updates for 1.5.0 Andrzej <ndrwrdck@gmail.com>
+2012-09-28 496c2e4 Button layout improvements + 4.8 compat. Andrzej <ndrwrdck@gmail.com>
+2012-09-28 40b0ce2 Panel plugin HIG fix Andrzej <ndrwrdck@gmail.com>
+2012-09-28 4f0aac9 Update po Andrzej <ndrwrdck@gmail.com>
+2012-09-28 256c054 Clean-up after removing xfce4-popup-places.c Andrzej <ndrwrdck@gmail.com>
+2012-09-24 48bd239 l10n: Updated Polish (pl) translation to 100% Piotr Strębski <strebski@o2.pl>
+2012-09-17 e476ed1 make update-po Andrzej <ndrwrdck@gmail.com>
+2012-09-17 187a185 Updated INSTALL Andrzej <ndrwrdck@gmail.com>
+2012-09-16 19178ff Switched from a configuration file to xfconf. Andrzej <ndrwrdck@gmail.com>
+2012-09-16 362dd6e Make the PlacesCfg a GObject. Andrzej <ndrwrdck@gmail.com>
+2012-09-12 89bad7f Added a remote popup script. Andrzej <ndrwrdck@gmail.com>
+2012-09-04 4ca5e93 Removing dead code. Andrzej <ndrwrdck@gmail.com>
+2012-09-03 e2dc769 Fixed panel autohide locking (#7039, #9209). Andrzej <ndrwrdck@gmail.com>
+2012-09-03 95aced3 Compilation warning fix. Andrzej <ndrwrdck@gmail.com>
+2012-09-02 75edc2d Further button layout improvements. Andrzej <ndrwrdck@gmail.com>
+2012-08-31 29577cd Use xdg icon names Christoph Wickert <cwickert@fedoraproject.org>
+2012-08-29 bc9dca5 l10n: Updated Hebrew (he) translation to 100% GenghisKhan <genghiskhan@gmx.ca>
+2012-08-28 a09dac1 Updates for 1.4.0 Andrzej <ndrwrdck@gmail.com>
+2012-08-28 3ad1a39 Fixed compilation warnings Andrzej <ndrwrdck@gmail.com>
+2012-08-28 ae286d5 Fixed "mount and open". Andrzej <ndrwrdck@gmail.com>
+2012-08-28 69080e9 Use a preferred file manager Andrzej <ndrwrdck@gmail.com>
+2012-08-04 4c862cf l10n: Updated Kazakh (kk) translation to 100% Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+2012-07-22 fc84910 l10n: Updated Belarusian (be) translation to 18% Andrej Zakharevich <andrej@zahar.ws>
+2012-07-19 7430366 l10n: Updated Chinese (Taiwan) (zh_TW) translation to 100% Cheng-Chia Tseng <pswo10680@gmail.com>
+2012-07-11 a1a7dfb l10n: New Serbian translation, author salepetronije Мирослав Николић <miroslavnikolic@rocketmail.com>
+2012-07-02 a0d390a l10n: Updated Icelandic (is) translation to 100% Sveinn í Felli <sveinki@nett.is>
+2012-06-10 bd95f78 l10n: Updated Indonesian (id) translation to 100% Andhika Padmawan <andhika.padmawan@gmail.com>
+2012-06-07 815cf3c l10n: Updated Uyghur (ug) translation to 100% Gheyret Kenji <gheyret@yahoo.com>
+2012-05-24 5bf723f l10n: Updated Polish (pl) translation to 89% Piotr Sokół <psokol@jabster.pl>
+2012-05-20 f2e0bc1 l10n: Updated Greek (el) translation to 100% Efstathios Iosifidis <iefstathios@gmail.com>
+2012-05-09 d7ea871 Improved button layout Andrzej <ndrwrdck@gmail.com>
+2012-05-08 960a3a9 Save config file when closing preferences dialog. Andrzej <ndrwrdck@gmail.com>
+2012-05-08 35d6916 Remove some compilation and runtime warnings Andrzej <ndrwrdck@gmail.com>
+2012-05-08 1beb975 Make compilation less verbose Andrzej <ndrwrdck@gmail.com>
+2012-04-28 a13334a l10n: Updated English (United Kingdom) (en_GB) translation to 100% Jeff Bailes <thepizzaking@gmail.com>
+2012-04-25 53f9f59 l10n: Updated German (de) translation to 100% Mario Blättermann <mario.blaettermann@gmail.com>
+2012-04-25 def2a41 l10n: Updated Japanese (ja) translation to 100% Masato Hashimoto <hashimo@xfce.org>
+2012-04-21 62292c8 l10n: Updated Hungarian (hu) translation to 100% Gabor Kelemen <kelemeng@gnome.hu>
+2012-04-20 594ce7b l10n: Updated Chinese (China) (zh_CN) translation to 100% Chipong Luo <chipong.luo@yahoo.com>
+2012-04-19 a755ac5 Compile the plugin as a module Landry Breuil <landry@xfce.org>
+2012-04-19 a09b432 l10n: Updated Spanish (Castilian) (es) translation to 100% Sergio García <oigres200@gmail.com>
+2012-04-15 53593e0 l10n: Updated Turkish (tr) translation to 71% martinamca <martinamca@gmail.com>
+2012-04-14 1868d89 l10n: Updated German (de) translation to 84% Jakob Kramer <jakob.kramer@gmx.de>
+2012-04-14 4fd2820 l10n: Updated Japanese (ja) translation to 100% Masato Hashimoto <hashimo@xfce.org>
+2012-04-14 797279a l10n: Updated Russian (ru) translation to 100% Roman K <mrdoctorwho@gmail.com>
+2012-04-14 c8aecb7 l10n: Updated Italian (it) translation to 100% Cristian Marchi <cri.penta@gmail.com>
+2012-04-14 e68a084 l10n: Updated French (fr) translation to 100% Iliyas Jorio <inv.jorio@gmail.com>
+2012-04-13 939fb71 Updates for 1.3.0 Andrzej <ndrwrdck@gmail.com>
+2012-04-13 ad6906d l10n: Updated Japanese (ja) translation to 100% Masato Hashimoto <hashimo@xfce.org>
+2012-04-12 4927897 l10n: Updated Finnish (fi) translation to 100% Jari Rahkonen <jari.rahkonen@pp1.inet.fi>
+2012-04-12 2802a59 l10n: Updated Basque (eu) translation to 100% Piarres Beobide <pi@beobide.net>
+2012-04-12 7be41ed l10n: Updated Portuguese (Brazilian) (pt_BR) translation to 100% André Miranda <andreldm1989@gmail.com>
+2012-04-11 fac6dc2 l10n: Updated Italian (it) translation to 84% Enrico Polesel <polesel@poisson.phc.unipi.it>
+2012-04-10 a38489f l10n: Updated Danish (da) translation to 100% Per Kongstad <p_kongstad@op.pl>
+2012-04-10 fece68f l10n: Updated Galician (gl) translation to 100% Leandro Regueiro <leandro.regueiro@gmail.com>
+2012-04-09 eec89b8 l10n: Updated Slovak (sk) translation to 100% Slavko <linux@slavino.sk>
+2012-04-09 6c3e805 l10n: Updated Ukrainian (uk) translation to 100% Yarema aka Knedlyk <yupadmin@gmail.com>
+2012-04-08 80981ba l10n: Updated Korean (ko) translation to 100% Seong-ho Cho <darkcircle.0426@gmail.com>
+2012-04-08 02c3d7c l10n: Updated German (de) translation to 84% Jakob Kramer <jakob.kramer@gmx.de>
+2012-04-08 023c369 l10n: Updated Portuguese (pt) translation to 100% Sergio Marques <smarquespt@gmail.com>
+2012-04-08 cea3ffd l10n: Updated Czech (cs) translation to 100% Michal Várady <miko.vaji@gmail.com>
+2012-04-07 cc3ed25 l10n: Updated Dutch (Flemish) (nl) translation to 100% Pjotr Anon <pliniusminor@gmail.com>
+2012-04-07 94ff173 l10n: Updated Lithuanian (lt) translation to 100% Algimantas Margevičius <margevicius.algimantas@gmail.com>
+2012-04-07 25ceb2f l10n: Updated Chinese (China) (zh_CN) translation to 100% Chipong Luo <chipong.luo@yahoo.com>
+2012-04-07 11192f9 l10n: Updated Chinese (China) (zh_CN) translation to 100% Chipong Luo <chipong.luo@yahoo.com>
+2012-04-07 33ddac6 Updated translation files. Andrzej <ndrwrdck@gmail.com>
+2012-04-05 05e94c4 l10n: Updated Korean (ko) translation to 100% Seong-ho Cho <darkcircle.0426@gmail.com>
+2012-04-05 a1ed5b6 l10n: Updated Korean (ko) translation to 100% Seong-ho Cho <darkcircle.0426@gmail.com>
+2012-04-02 ef5ccdc Compatibility with panel v.4.9+ Andrzej <ndrwrdck@gmail.com>
+2012-04-03 606dfab port-to-gio.patch Andrzej <ndrwrdck@gmail.com>
+2012-04-03 3479fe6 port-to-libxfce4ui.patch Andrzej <ndrwrdck@gmail.com>
+2012-04-03 3644278 Description: Add missing -lx11 Origin: other, http://bugzilla.xfce.org/attachment.cgi?id=3295 Bug: http://bugzilla.xfce.org/show_bug.cgi?id=7019 Andrzej <ndrwrdck@gmail.com>
+2012-04-03 e3d56eb Description: Port to exo-1 Origin: backport, http://bugzilla.xfce.org/show_bug.cgi?id=5754 Bug: http://bugzilla.xfce.org/show_bug.cgi?id=5754 Andrzej <ndrwrdck@gmail.com>
+2012-04-01 358d621 l10n: Updated Korean (ko) translation to 100% Seong-ho Cho <darkcircle.0426@gmail.com>
+2012-03-29 80168da l10n: Updated Korean (ko) translation to 100% Seong-ho Cho <darkcircle.0426@gmail.com>
+2012-03-14 16db61a l10n: Updated Chinese (China) (zh_CN) translation to 100% Chipong Luo <chipong.luo@yahoo.com>
+2012-02-28 51f5c2f l10n: Updated Korean (ko) translation to 100% Seong-ho Cho <darkcircle.0426@gmail.com>
+2012-02-25 0c3c338 l10n: Updated Korean (ko) translation to 100% Seong-ho Cho <darkcircle.0426@gmail.com>
+2012-02-08 a76d9c4 l10n: Updated Chinese (China) (zh_CN) translation to 100% Chipong Luo <chipong.luo@yahoo.com>
+2012-01-22 906b02f l10n: Updated Lithuanian (lt) translation to 100% Algimantas Margevičius <gymka@mail.ru>
+2012-01-20 6b2cf60 l10n: Updated French (fr) translation to 100% Benoit THIBAUD <frombenny@gmail.com>
+2012-01-15 2755d41 l10n: Updated Chinese (Taiwan) (zh_TW) translation to 100% Cheng-Chia Tseng <pswo10680@gmail.com>
+2012-01-09 9589bfd l10n: Updated Portuguese (pt) translation to 100% Sergio Marques <smarquespt@gmail.com>
+2011-12-22 ceae645 l10n: Updated Arabic (ar) translation to 100% كريم أولاد الشلحة <herr.linux88@gmail.com>
+2011-12-09 9c2ceb6 l10n: Updated Chinese (China) (zh_CN) translation to 100% Chipong Luo <chipong_l@yahoo.com>
+2011-12-08 7b873d7 l10n: sett inn og klárað Sveinn í Felli <sveinki@nett.is>
+2011-11-08 70ad3e3 l10n: Updated Chinese (China) (zh_CN) translation to 100% Chipong Luo <chipong_l@yahoo.com>
+2011-09-09 143998c l10n: Updated Dutch (Flemish) (nl) translation to 100% Pjotr Anon <pliniusminor@gmail.com>
+2011-06-16 34beeb6 l10n: Updated Dutch (Flemish) (nl) translation to 100% Pjotr Anon <pliniusminor@gmail.com>
+2011-05-27 c2f9c3b l10n: Updated Dutch (Flemish) (nl) translation to 100% Pjotr Anon <pliniusminor@gmail.com>
+2011-05-25 ead678d l10n: Updated Dutch (Flemish) (nl) translation to 100% Pjotr Anon <pliniusminor@gmail.com>
+2011-01-07 831fc25 l10n: Updated Greek (el) translation to 100% Spiros Georgaras <sng@hellug.gr>
+2010-12-31 ba9f35f l10n: Updated Hebrew (he) translation to 100% Yaron Shahrabani <sh.yaron@gmail.com>
+2010-12-29 7ace8bd l10n: Updated Slovak (sk) translation to 100% Michal Löffler <lofflermichalloffler@gmail.com>
+2010-12-25 51a29e9 l10n: Slovak translation Michal Löffler <lofflermichalloffler@gmail.com>
+2010-12-09 fcd27ca l10n: Updated Norwegian Bokmal (nb) translation to 100% Terje Uriansrud <terje@uriansrud.net>
+2010-11-17 0440cd4 l10n: Updated Portuguese (pt) translation to 100% Sergio Marques <smarquespt@gmail.com>
+2010-09-15 eade72a l10n: Updated French (fr) translation to 100% Xavier Devlamynck <magicrhesus@ouranos.be>
+2010-08-31 684d808 Remove Encoding key from .desktop file Diego Ongaro <ongaro@cs.stanford.edu>
+2010-08-05 f4a0ac7 l10n: Updated Uyghur (ug) translation to 100% Gheyret Kenji <gheyret@yahoo.com>
+2010-07-30 b534f54 l10n: Uyghur translation Gheyret Kenji <gheyret@yahoo.com>
+2010-07-07 aa00551 l10n: Updated Galician (gl) translation to 100% Leandro Regueiro <leandro.regueiro@gmail.com>
+2010-06-12 1265b07 l10n: Updated Croatian (hr) translation to 100% Ivica  Kolić <ikoli@yahoo.com>
+2010-06-12 e1c43ee l10n: initial Croatian (hr) translation Ivica  Kolić <ikoli@yahoo.com>
+2010-05-23 650a4ef l10n: Updated Japanese (ja) translation to 100% Masato Hashimoto <cabezon.hashimoto@gmail.com>
+2010-04-04 b00baea l10n: Punjabi Translation Added A S  Alam <apreet.alam@gmail.com>
+2010-03-27 4771f09 l10n: Updated German (de) translation to 100% Fabian Nowak <timystery@arcor.de>
+2010-03-17 8277c92 l10n: Updated Ukrainian (uk) translation to 100% Dmitry Nikitin <luckas_fb@mail.ru>
+2010-03-15 ab44e67 l10n: New translation into Kazakh Bauzhan Muftakhidinov <baurthefirst@gmail.com>
+2010-01-11 7f6722c l10n: Updated Dutch (Flemish) (nl) translation to 100% Timo Verbeek <timoverbeek10@hotmail.com>
+2009-12-11 9aef1d2 l10n: Updates to Czech (cs) translation Michal Várady <miko.vaji@gmail.com>
+2009-11-27 9e9acee l10n: Updates to Italian (it) translation Cristian Marchi <cri.penta@gmail.com>
+2009-11-09 4e3fd82 l10n: Updates to Chinese (China) (zh_CN) translation Xu Meihong <mhuntxu@gmail.com>
+2009-10-01 171195d l10n: Updates to Galician (gl) translation Leandro Regueiro <leandro.regueiro@gmail.com>
+2009-09-18 cc9d052 l10n: Updates to Latvian (lv) translation Rihards Prieditis <rprieditis@gmail.com>
+2009-09-17 ae1ac87 Add module.xml file with repo metadata Diego Ongaro <ongardie@gmail.com>
+2009-09-17 41c3cbd Add .gitignore Diego Ongaro <ongardie@gmail.com>
+2009-09-17 245fdc5 Update to xfce4-dev-tools 4.7.0 Diego Ongaro <ongardie@gmail.com>
+2009-09-17 7a04f6a Fix GCC warnings Diego Ongaro <ongardie@gmail.com>
+2009-09-17 c84d68f Fix GCC warning, trivial memleak in xfce4-popup-places.c Diego Ongaro <ongardie@gmail.com>
+2009-09-17 810f8d4 Add stale notice to ChangeLog Diego Ongaro <ongardie@gmail.com>
+2009-08-30 d65b8be l10n: Updates to English (United Kingdom) (en_GB) translation Jeff Bailes <thepizzaking@gmail.com>
+2009-08-22 5a32c21 l10n: Updates to Danish (da) translation Per Kongstad <p_kongstad@op.pl>
+2009-08-21 6f7803c l10n: Updates to Spanish (Castilian) (es) translation Ignacio Velasco <elega@elega.com.ar>
+2009-08-18 bb94bf7 l10n: Basque translation update Piarres Beobide <pi@beobide.net>
+2009-08-08 edac66c update goodies translation Mike Massonnet <mmassonnet@xfce.org>
+2009-07-31 2533041 Prep for 1.2 release Diego Ongaro <ongardie@gmail.com>
+2009-07-31 edd9a90 xfce46-compat.c: Remove inconsistent static declarations Diego Ongaro <ongardie@gmail.com>
+2009-07-31 0f986d7 model_volumes.c: Show "Eject" when Thunar 1.0 does Diego Ongaro <ongardie@gmail.com>
+2009-07-31 83d486a view.c: Honor menu icon size. See bug #4744. Diego Ongaro <ongardie@gmail.com>
+2009-07-31 97b075d button.c: Use gtk_box_pack_{start,end} directly Diego Ongaro <ongardie@gmail.com>
+2009-07-24 ff57001 2009-07-24  Gabor Kelemen  <kelemeng@gnome.hu> Gabor Kelemen <kelemeng@gnome.hu>
+2009-06-28 d885f00 update goodies translation Mike Massonnet <mmassonnet@xfce.org>
+2009-06-09 5e46b38 Drop svn:executable bit from po files Mike Massonnet <mmassonnet@xfce.org>
+2009-05-29 4112892 update goodies translations Mike Massonnet <mmassonnet@xfce.org>
+2009-05-28 11d52f1 Makes the properties dialog non-modal. Diego Ongaro <ongardie@gmail.com>
+2009-05-28 0bfe50e Fixes loading file browser on xfce 4.6 Diego Ongaro <ongardie@gmail.com>
+2009-05-24 91eea03 Fixes checking whether trash is empty, updates changelog Diego Ongaro <ongardie@gmail.com>
+2009-05-24 9c6a811 Applies attachment 2213 from bug 5034 Diego Ongaro <ongardie@gmail.com>
+2009-05-11 dcb9bda update translations Mike Massonnet <mmassonnet@xfce.org>
+2009-04-16 7c6e477 goodies translation update Mike Massonnet <mmassonnet@xfce.org>
+2009-04-15 82a985d Updated Polish translations Piotr Sokól <piotr.sokol@10g.pl>
+2009-04-13 fea2eb4 goodies translation update Mike Massonnet <mmassonnet@xfce.org>
+2009-03-14 0d38d0e Translations updates - es fr gl it tr Maximilian Schleiss <maxschleiss@solnet.ch>
+2009-03-08 f21140d Updated Polish translations Piotr Sokól <piotr.sokol@10g.pl>
+2009-03-05 ca01794 Fix the renaming of the pt nb files -- thanks to jerome who noticed this problem Mike Massonnet <mmassonnet@xfce.org>
+2009-03-05 f324201 Renamed pt_PT to pt and nb_NO to nb (bug #4574) Mike Massonnet <mmassonnet@xfce.org>
+2009-03-01 4fdba78 Translations updates - es pl uk Maximilian Schleiss <maxschleiss@solnet.ch>
+2009-03-01 2b85f18 Romanian translation updated Dumitru Moldovan <niznaiul@gmail.com>
+2009-02-22 22e4498 Update translations -- Remove executable property on all po files (only da.po actuall) Mike Massonnet <mmassonnet@xfce.org>
+2009-02-19 4a8f5f3 	* ru.po: Russian translation updated (Pavel Lakushev) 	* ru.po: Russian translation updated (Pavel Lakushev) 	* ru.po, LINGUAS: Russian translation added (Pavel Labushev) Per Kongstad <p_kongstad@op.pl>
+2009-02-08 5573776 Translations updates - fr id it ja nb pl Maximilian Schleiss <maxschleiss@solnet.ch>
+2009-02-01 0d8571e Update Finnish translation. Jari Rahkonen <jari.rahkonen@pp1.inet.fi>
+2008-12-25 b8f01f5 Translations updates - es gl id ja uk Maximilian Schleiss <maxschleiss@solnet.ch>
+2008-12-13 d5e02c1 xfce4-systemload-plugin/trunk/po: 	* sv.po: Swedish translation update (Daniel Nylander) xfce4-netload-plugin/trunk/po: 	* sv.po: Swedish translation update (Daniel Nylander) xfce4-eyes-plugin/trunk/po: 	* sv.po: Swedish translation update (Daniel Nylander) xfbib/trunk/po: 	* sv.po: Swedish translation update (Daniel Nylander) xfce4-fsguard-plugin/trunk/po: 	* sv.po: Swedish translation update (Daniel Nylander) xfce4-places-plugin/trunk/po: 	* sv.po: Swedish translation update (Daniel Nylander) Alexander Toresson <alexander.toresson@gmail.com>
+2008-12-13 571c6b6 Translations updates - ja uk zh_CN Maximilian Schleiss <maxschleiss@solnet.ch>
+2008-11-30 0d599f0 Translations updates - ja pt_PT Maximilian Schleiss <maxschleiss@solnet.ch>
+2008-11-23 f0cd35b Translations updates - ca id nb sq uk Maximilian Schleiss <maxschleiss@solnet.ch>
+2008-11-23 8a694c2 Adds xfce46-compat files for menu positioning Diego Ongaro <ongardie@gmail.com>
+2008-11-21 c728fbb Try exo_url_show before directly calling Thunar. Diego Ongaro <ongardie@gmail.com>
+2008-11-21 b33dad6 Add xdg user dirs support, thanks to Andea Santilli. Diego Ongaro <ongardie@gmail.com>
+2008-11-21 b7a6421 view.c: disconnect from button signals on finalize Diego Ongaro <ongardie@gmail.com>
+2008-11-21 4d8b7bb button.{c,h}: Fix warnings and segfault on plugin exit Diego Ongaro <ongardie@gmail.com>
+2008-11-21 c2e6f6b Updated auto-gen INSTALL file Diego Ongaro <ongardie@gmail.com>
+2008-11-16 d24af7d Translations updates and additions - ca, nb_NO, uk, zh_CN Maximilian Schleiss <maxschleiss@solnet.ch>
+2008-11-16 127c6fe Update Turkish translation Eren Turkay <turkay.eren@gmail.com>
+2008-11-12 cef4740 Some goodies Basque translation update Piarres Beobide <pi@beobide.net>
+2008-11-09 b273a15 Translations updates for a lot of languages in a lot of packages Maximilian Schleiss <maxschleiss@solnet.ch>
+2008-11-05 38ee200 Some goodies Basque translations Piarres Beobide <pi@beobide.net>
+2008-11-04 45ede8d Update Finnish translations. Jari Rahkonen <jari.rahkonen@pp1.inet.fi>
+2008-11-02 6bb717f Translations updates and additions - de ku nl Maximilian Schleiss <maxschleiss@solnet.ch>
+2008-10-28 7f455d7 update-po Lars Nielsen <lars@mit-web.dk>
+2008-10-20 64c47df Translation udpates for German and Japanese Maximilian Schleiss <maxschleiss@solnet.ch>
+2008-08-13 480f89c Updated Finnish translation. Jari Rahkonen <jari.rahkonen@pp1.inet.fi>
+2008-08-09 8282b20 Greek translations update. Stavros Giannouris <stavrosg2002@freemail.gr>
+2008-07-16 e03cbc4 Update Arabic translations Mohamed Magdy <mohamed.m.k@gmail.com>
+2008-07-15 c6cf975 Update Arabic translations Mohamed Magdy <mohamed.m.k@gmail.com>
+2008-07-14 98dad9c Translations added and updated for most goodies (gl;pt_PT;zh_CN) Maximilian Schleiss <maxschleiss@solnet.ch>
+2008-07-11 026b700 [intl:hu] little fixes2 SZERVÁC Attila <sas@321.hu>
+2008-06-26 fa0d7b2 Translations added and updated for most goodies (gl) Maximilian Schleiss <maxschleiss@solnet.ch>
+2008-06-25 dcc45ab Translations added for most goodies (id) Maximilian Schleiss <maxschleiss@solnet.ch>
+2008-06-09 c963c1e update-translation Mike Massonnet <mmassonnet@xfce.org>
+2008-06-08 9687399 Updated Brazilian Portuguese translation Og Maciel <ogmaciel@gnome.org>
+2008-06-08 26b8588 Generated xfce4-places-plugin.pot Diego Ongaro <ongardie@gmail.com>
+2008-06-07 e05725f Prep for 1.1 release Diego Ongaro <ongardie@gmail.com>
+2008-06-07 fbc894e Fix build for GTK versions before 2.10 Diego Ongaro <ongardie@gmail.com>
+2008-06-07 703a817 Revert "Make label insensitive when not shown". Diego Ongaro <ongardie@gmail.com>
+2008-05-27 7e8a80d update-po Mike Massonnet <mmassonnet@xfce.org>
+2008-05-13 23e6f06 update en_GB translations Mike Massonnet <mmassonnet@xfce.org>
+2008-05-02 27a7e61 xfce4-fsguard-plugin, xfce4-dict and xfce4-places-plugin Basque translation updates Piarres Beobide <pi@beobide.net>
+2008-05-01 7998b29 2008-05-01	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2008-05-01 5eff605 2008-05-01	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2008-05-01 dad86cc It's been too long...forgot the ChangeLog entry Diego Ongaro <ongardie@gmail.com>
+2008-04-06 419477f Updated ChangeLog Diego Ongaro <ongardie@gmail.com>
+2008-04-06 bb1da60 Also used changed to reposition menu (see bug3872) Clean up handler disconnection Diego Ongaro <ongardie@gmail.com>
+2008-04-06 baed956 renamed argument to reflect its current usage Diego Ongaro <ongardie@gmail.com>
+2008-04-06 4f961d3 A perfect solution (read: huge hack) to fix the TODOs introduced previously for bug 3871 Diego Ongaro <ongardie@gmail.com>
+2008-04-06 7d35a87 For bug 3871, don't allow Recent Documents Clear when there's nothing there Diego Ongaro <ongardie@gmail.com>
+2008-04-06 b030c1d 2008-04-06	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2008-03-18 16c8e3c Update Portuguese translation Mike Massonnet <mmassonnet@xfce.org>
+2008-02-17 58467f7 Fixed build on amd64 Diego Ongaro <ongardie@gmail.com>
+2008-01-08 2cb5eea I left these out of the last commit, oops Diego Ongaro <ongardie@gmail.com>
+2008-01-08 cb4eac9 2008-01-07	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2008-01-03 e8149d4 Czech translations updated Michal Varady <miko.vaji@gmail.com>
+2007-12-14 a0e7cc9 2007-12-13	Diego Ongaro <ongardie@gmail.com> * model*, support.c, view.c: consistent usage of _create(),   _finalize(), _destroy() naming convention Diego Ongaro <ongardie@gmail.com>
+2007-12-14 358c4c9 2007-12-13	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-12-14 437c9c5 2007-12-13	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-12-10 3cd356a 2007-12-10	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-12-10 cca1523 2007-12-10	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-12-10 d0133a1 2007-12-10	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-12-10 ff14c8b Iterated on popup command code Diego Ongaro <ongardie@gmail.com>
+2007-12-10 5ec3374 2007-12-09	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-12-09 f3ec9b3 Moved configure.ac -> configure.in.in for compatibility Diego Ongaro <ongardie@gmail.com>
+2007-12-09 71f878a 2007-12-09	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-12-09 b1bc291 2007-12-08	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-12-03 01bd4dd Latvian and German translations added and updated respectively. Maximilian Schleiss <maxschleiss@solnet.ch>
+2007-11-08 18299e1 Updated Brazilian Portuguese translation by Fábio Nogueira <deb-user-ba@ubuntu.com> Og Maciel <ogmaciel@gnome.org>
+2007-10-31 8827476 2007-10-31	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-10-31 ba8fa18 2007-10-31	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-10-25 cff925e 2007-10-25	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-10-25 ec5d52c 2007-10-25	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-10-25 bd0178a 2007-10-25	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-10-25 e1808ef 2007-10-25	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-10-24 217328e 	* ristretto, xfce4-mount-plugin, xfce4-places-plugin, 	  xfce4-rss-plugin, xfce4-sensors-plugin, xfce4-time-out-plugin, 	  xfce4-volstatus-icon: Update french translation 	* thunar-svn-plugin, xfce4-smartpm-plugin: Add french translation Mike Massonnet <mmassonnet@xfce.org>
+2007-10-22 5020862 2007-10-22	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-10-16 07a8af2 2007-10-16	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-10-16 ef58cea 2007-10-16	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-10-16 b371bb2 2007-10-16	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-10-16 3f436dc 2007-10-16	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-10-16 1ec4076 2007-10-16	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-10-16 06965f9 2007-10-19	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-09-28 2516769 2007-09-28	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-09-25 cfbc04f 2007-09-24	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-09-24 8563a8a 2007-09-24	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-09-24 61c5115 2007-09-24	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-09-24 8994e3c 2007-09-24	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-09-20 2867ffb 2007-09-20	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-09-19 4aa862b Change to comment Diego Ongaro <ongardie@gmail.com>
+2007-09-14 9912c3f 2007-09-14	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-09-12 bf77e8d 2007-09-12	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-09-12 63ba20e 2007-09-12	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-09-12 e583bff 2007-09-12	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-09-12 adc4b76 2007-09-12	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-09-12 0a95473 Places: Added inline wrappers for cfg's interface to view. Diego Ongaro <ongardie@gmail.com>
+2007-09-12 93bea80 Places: Make recent documents show up again Destroy the menu before destroying any of the model Diego Ongaro <ongardie@gmail.com>
+2007-09-12 9466336 Places: Fix a couple #includes Diego Ongaro <ongardie@gmail.com>
+2007-09-12 4ae9173 2007-09-11	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-09-12 dff0fb5 2007-09-11	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-09-11 59b7af6 Updated Finnish translation. Jari Rahkonen <jari.rahkonen@pp1.inet.fi>
+2007-09-08 7b2f437 2007-09-07	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-09-08 42e9963 2007-09-07	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-09-08 f92aa77 2007-09-07	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-09-08 fdd4ee5 2007-09-07	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-08-23 6cf679b 2007-08-23	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-08-22 0b6e411 2007-08-22	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-08-18 34f318e 2007-08-18	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-08-15 f31ec5f 2007-08-15	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-08-15 d072265 2007-08-15	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-08-13 8f8d04b 2007-08-12	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-08-11 af5ec52 2007-08-11	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-08-10 e8f41e0 2007-08-10	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-08-05 7baff8b 2007-08-05	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-08-05 aac5f1f Minor clean up Diego Ongaro <ongardie@gmail.com>
+2007-08-05 0cf3406 2007-08-05	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-08-05 6f45adb 2007-08-05	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-07-28 84577e1 Fix bug in places plugin from previous commit. Diego Ongaro <ongardie@gmail.com>
+2007-07-28 29bb1c1 2007-07-28	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-07-26 661924a 2007-07-26	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-07-13 d0db5aa 2007-07-13	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-07-08 3fedab6 * nb_NO.po: Norwegian Bokmal translations added * pt_PT.po: European Portuguese translations added Maximilian Schleiss <maxschleiss@solnet.ch>
+2007-06-04 d5a5d68 2007-06-04	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-06-04 7e40851 2007-06-03	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-06-03 59306b6 2007-06-03	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-06-03 92d8fb2 2007-06-03	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-05-23 308143b 2007-05-22	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-05-17 6ac1e96 2007-05-17	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-05-17 134137f 2007-05-17	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-05-16 10a34c4 2007-05-15	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-05-16 1a36b8d 2007-05-15	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-05-15 cbf46e1 2007-05-15	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-05-15 584f0f0 2007-05-14	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-05-14 7dee7e2 2007-05-14	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-05-14 50b60e7 2007-05-13	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-05-13 9e0335c 2007-05-13	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-05-13 ee4a6e8 2007-05-13	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-05-13 ee61e90 2007-05-13	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-05-13 44f50b2 2007-05-13	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-05-03 1a5bb51 Updated Czech translations Michal Varady <miko.vaji@gmail.com>
+2007-04-27 52efe1b 2007-04-26	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-22 621e711 hu trunk: mount & places updated SZERVÁC Attila <sas@321.hu>
+2007-04-22 b910fd1 2007-04-22	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-21 137a762 2007-04-21	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-21 6f313ed 2007-04-20	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-20 cef3f8f 2007-04-20	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-20 be2d899 2007-04-20	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-20 f7eefc0 2007-04-20	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-20 ec19937 2007-04-20	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-20 752171d 2007-04-20	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-20 13a96f6 2007-04-20	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-15 bd78419 2007-04-14	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-15 720f014 2007-04-14	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-13 55c45d6 2007-04-13	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-10 b6d2851 2007-04-09	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-09 2d39e5f 2007-04-09	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-08 f8ef096 2007-04-08	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-07 4e69108 2007-04-07	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-07 4573ba5 Left out these new files in previous commit Diego Ongaro <ongardie@gmail.com>
+2007-04-07 2b883e6 2007-04-06	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-06 fe31fa0 2007-04-06      Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-05 c6efd74 2007-04-05      Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-04-05 55e80bb Version bump to 0.1 Diego Ongaro <ongardie@gmail.com>
+2007-04-05 b2f47ff fixed i18n and added dutch translation Stephan Arts <stephan@xfce.org>
+2007-04-05 87e14ca 2007-04-05	Diego Ongaro <ongardie@gmail.com> Diego Ongaro <ongardie@gmail.com>
+2007-03-25 350d22b Fixed bug 3053 (Plugin doesn't launch thunar) by dropping "/usr/bin/" Diego Ongaro <ongardie@gmail.com>
+2007-03-25 cf41572 Fixed bug 3027 (Places menu showing %20) by copying glib code Diego Ongaro <ongardie@gmail.com>
+2007-03-25 04ba614 Initial import of places plugin with 0.0.9 release. Diego Ongaro <ongardie@gmail.com>

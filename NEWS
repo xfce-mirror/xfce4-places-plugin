@@ -1,3 +1,12 @@
+2015-03-05
+================================================================================
+xfce4-places-plugin v1.7.0 released
+
+ * Use Gtk+-3.0 bookmark location
+ * Recent documents are sorted by most recently used
+ * Button occupies the whole panel height/width when the label is shown
+ * Updated translations
+
 2013-11-23
 ================================================================================
 xfce4-places-plugin v1.6.0 released
