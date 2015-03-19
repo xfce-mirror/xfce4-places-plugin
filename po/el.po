@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2015-03-19 00:22+0000\n"
+"PO-Revision-Date: 2015-03-19 09:10+0000\n"
 "Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/xfce-panel-plugins/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -56,7 +56,7 @@ msgstr "Σύστημα αρχείων"
 #: ../panel-plugin/model_user.c:242
 #, c-format
 msgid "%s on %s"
-msgstr ""
+msgstr "%s σε %s"
 
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
@@ -219,7 +219,7 @@ msgstr "Χρήση:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr ""
+msgstr "ΕΠΙΛΟΓΗ"
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
@@ -227,12 +227,12 @@ msgstr "Επιλογές:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr ""
+msgstr "Αναδυόμενο μενού σε τρέχουσα θέση του ποντικιού"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
-msgstr ""
+msgstr "Εμφάνιση επιλογών βοήθειας"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr ""
+msgstr "Εμφάνιση πληροφοριών έκδοσης και έξοδος"
