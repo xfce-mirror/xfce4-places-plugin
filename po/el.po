@@ -1,69 +1,32 @@
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
-# ###
-# Translation of Thunar to Greek
-# Copyright (C) 2004-2006 Benedikt Meurer.
-# This file is distributed under the same license as the Thunar package.
-#
-# ###
-# translation of el.po to
-# translation of el.po to
-# translation of el.po to Greek
-# gnome-panel Greek PO file.
-# Copyright (C) 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2008 Free Software Foundation, Inc.
-#
-# Evaggelos Balaskas <ebalaskas@ebalaskas.gr>, 2008.
-# Stavros Giannouris <stavrosg@hellug.gr>, 2005, 2006, 2007.
-# Stathis Kamperis <ekamperi@auth.gr>, 2006.
-# simos: 874 messages, 18Feb2001, (sgpbea).
-# simos: 897 messages, 01Mar2001, (regmtsgpbea).
-# simos: 959 messages, 04Jun2001, (micumple).
-# simos: 959 messages, 06Jun2001, (fixed minor typo).
-# simos: 897 messages, 28Nov2001, (feeling good to translate HEAD).
-# simos: 272 messages, 20Apr2002, 118 messages remaining.
-# kostas: 513 messages, 19Oct2002, completed translation.
-# kostas: 531 messages, 07Jan2003, updated translation for Gnome 2.1x.
-# kostas:update for Gnome 2.4, 49 strings remain 02Jun2003.
-# kostas:03Aug2003, 599 messages, updated translation.
-# Spiros Papadimitriou <sapadim+@cs.cmu.edu>, 1999.
-# Simos Xenitellis <simos@hellug.gr>, 1999, 2000, 2001, 2002.
-# Sarantis Paskalis <paskalis@di.uoa.gr>, 2000.
-# Kostas Papadimas <pkst@gnome.org>, 2002,2003, 2004, 2005, 2006.
-# Nikos Charonitakis <frolix68@yahoo.gr>, 2003, 2004.
-# Nikos Charonitakis <charosn@her.forthnet.gr>, 2005.
-# Evaggelos Balaskas <ebalaskas@ebalaskas.gr>, 2008.
-# Comment: Most of the work done by Spiros (around 600 messages).
-# Comment: Simos/Sarantis did 12%.
-# Comment: Simos/Sarantis did review.
-# Comment: Simos did 10 new/unfuzzy 30.
-# Comment: Simos did 3 new/unfuzzy 1.
-# Comment: Simos did 2 new/unfuzzy 8.
-# Comment: Simos did 6 new/unfuzzy 8.
-# Comment: Simos did 2 new/unfuzzy 5.
-# Rename of module to gnome-panel.
-# Comment: Kostas unfuzzy 1
-# Nikos:29Aug2003, review tranlation
-# kostas: 30Oct2003, update translation for Gnome 2.6
-# kostas: 12Nov2003, fixes
-# kostas:27Jan2004, update
-# ###
-# Efstathios Iosifidis <iosifidis@opensuse.org>, 2012.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Efstathios Iosifidis <iefstathios@gmail.com>, 2015
+# Efstathios Iosifidis <iosifidis@opensuse.org>, 2012
+# ebal <ebalaskas@ebalaskas.gr>, 2008
+# Kostas Papadimas <pkst@gnome.org>, 2002-2006
+# Nikos Charonitakis <charosn@her.forthnet.gr>, 2005
+# Nikos Charonitakis <frolix68@yahoo.gr>, 2003-2004
+# Sarantis Paskalis <paskalis@di.uoa.gr>, 2000
+# Simos Xenitellis <simos@hellug.gr>, 1999-2002
+# Spiros Papadimitriou <sapadim+@cs.cmu.edu>, 1999
+# Stathis Kamperis <ekamperi@auth.gr>, 2006
+# Stavros Giannouris <stavrosg@hellug.gr>, 2005-2007
 msgid ""
 msgstr ""
-"Project-Id-Version: el\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2012-05-20 09:49+0300\n"
-"Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
-"Language-Team: Ελληνικά, Σύγχρονα <opensuse-translation-el@opensuse.org>\n"
-"Language: el\n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2015-03-19 00:22+0000\n"
+"Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>\n"
+"Language-Team: Greek (http://www.transifex.com/projects/p/xfce-panel-plugins/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bits\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
@@ -88,6 +51,12 @@ msgstr "Επιφάνεια Εργασίας"
 #: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "Σύστημα αρχείων"
+
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr ""
 
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
@@ -129,11 +98,9 @@ msgstr "Αποπροσάρτηση συσκευής"
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
-"Η συσκευή \"%s\" έχει αποπροσαρτηθεί από το σύστημα. Παρακαλώ μην αφαιρέσετε "
-"το μέσο ή αποσυνδέσετε τον οδηγό"
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "Η συσκευή \"%s\" έχει αποπροσαρτηθεί από το σύστημα. Παρακαλώ μην αφαιρέσετε το μέσο ή αποσυνδέσετε τον οδηγό"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -146,11 +113,9 @@ msgstr "Εγγραφή δεδομένων στη συσκευή"
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
-"Υπάρχουν δεδομένα που πρέπει να εγγραφούν στη συσκευή \"%s\" πριν αυτή "
-"αφαιρεθεί. Παρακαλώ μην αφαιρέσετε το μέσο ή αποσυνδέσετε τον οδηγό"
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "Υπάρχουν δεδομένα που πρέπει να εγγραφούν στη συσκευή \"%s\" πριν αυτή αφαιρεθεί. Παρακαλώ μην αφαιρέσετε το μέσο ή αποσυνδέσετε τον οδηγό"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -250,7 +215,7 @@ msgstr "Άνοιγμα τερματικού εδώ"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr ""
+msgstr "Χρήση:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
@@ -258,16 +223,15 @@ msgstr ""
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
-msgstr ""
+msgstr "Επιλογές:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
 msgstr ""
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
-#, fuzzy
 msgid "Show help options"
-msgstr "Εμφάνιση επιλογής κ_αθαρισμού"
+msgstr ""
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
