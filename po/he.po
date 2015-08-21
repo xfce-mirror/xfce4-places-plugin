@@ -1,36 +1,25 @@
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
-# ###
-# translation of he.po to Hebrew
-# Yo'av Moshe <bjesusATgmailDOTcom>, 2006.
-# Yuval Tanny <tanai@int.gov.il>, 2006, 2007.
-# Hebrew translation of Thunar.
-# Copyright (C) 2004-2006 Benedikt Meurer.
-# This file is distributed under the same license as the Thunar package.
-# ###
-# translation of gnome-panel.HEAD.he.po to Hebrew
-# translation of gnome-panel.gnome-2-10.he.po to
-# translation of gnome-panel.gnome-2-10.he.po to Hebrew
-# Copyright (C) 2005 THE PACKAGE'S COPYRIGHT HOLDER.
-# Gil 'Dolfin' Osher <dolfin@rpg.org.il>, 2002-2004.
-# Yuval Tanny <tanai@int.gov.il>, 2005.
-# Yaron Shaharbani <sh.yaron@gmail.com>, 2010
-#
-#
-# ###
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# GenghisKhan <genghiskhan@gmx.ca>, 2015
+# Yaron Shahrabani <sh.yaron@gmail.com>, 2010
+# Yo'av Moshe <bjesusATgmailDOTcom>, 2006
+# Yuval Tanny <tanai@int.gov.il>, 2005-2007
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: \n"
-"Last-Translator: Isratine Citizen <genghiskhan@gmx.ca>\n"
-"Language-Team: Gezer <gezer@lists.launchpad.net>\n"
-"Language: \n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2015-08-21 19:05+0000\n"
+"Last-Translator: GenghisKhan <genghiskhan@gmx.ca>\n"
+"Language-Team: Hebrew (http://www.transifex.com/xfce/xfce-panel-plugins/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: he\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
@@ -56,6 +45,12 @@ msgstr "שולחן עבודה"
 msgid "File System"
 msgstr "מערכת קבצים"
 
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr "%s על %s"
+
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
@@ -73,65 +68,62 @@ msgstr "אירע כשל בעיגון \"%s\""
 
 #: ../panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
-msgstr "עיגון ופתיחה"
+msgstr "עגן ופתח"
 
 #: ../panel-plugin/model_volumes.c:491
 msgid "Mount"
-msgstr "עיגון"
+msgstr "עגן"
 
 #: ../panel-plugin/model_volumes.c:511
 msgid "Eject"
-msgstr "שליפה"
+msgstr "שלוף"
 
 #: ../panel-plugin/model_volumes.c:521
 msgid "Unmount"
-msgstr "ניתוק"
+msgstr "חלץ"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
-msgstr "ההתקן מנותק"
+msgstr "כעת מחלץ התקן"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
-"ההתקן \"%s\" מנותק על ידי המערכת. נא לא להסיר את המדיה או לנתק את ההתקן"
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "ההתקן \"%s\" נחלץ כעת על ידי המערכת. אנא אל תסיר את המדיה או תנתק את הכונן"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
 #: ../panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
-msgstr "הנתונים נכתבים אל ההתקן"
+msgstr "כעת כותב מידע להתקן"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:141
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
-"ישנם נתונים שעוד אמורים להיכתב להתקן \"%s\" בטרם הסרתו. נא לא להסיר את המדיה "
-"או לנתק את הכונן"
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "ישנם נתונים צריכים להיכתב להתקן \"%s\" בטרם תהא אפשרות להסירו. אנא אל תסיר את המדיה או תנתק את הכונן"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
-msgstr "ההתקן נשלף"
+msgstr "כעת שולף התקן"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr "ההתקן \"%s\" נשלף כעת. פעולה זו עלולה לארוך זמן מה"
+msgstr "ההתקן \"%s\" נשלף כעת. פעולה זה עשוי לארוך זמן מה"
 
 #: ../panel-plugin/view.c:637
 msgid "Search for Files"
-msgstr "חיפוש אחר קבצים"
+msgstr "חפש קבצים"
 
 #: ../panel-plugin/view.c:690 ../panel-plugin/cfg.c:555
 msgid "Recent Documents"
@@ -143,7 +135,7 @@ msgstr "לחצן"
 
 #: ../panel-plugin/cfg.c:451
 msgid "_Show"
-msgstr "ה_צגה"
+msgstr "ה_צג"
 
 #: ../panel-plugin/cfg.c:457
 msgid "Icon Only"
@@ -168,21 +160,21 @@ msgstr "תפריט"
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:492
 msgid "Show _icons in menu"
-msgstr "הצגת _סמלים בתפריט"
+msgstr "הצג _סמלים בתפריט"
 
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:501
 msgid "Show _removable media"
-msgstr "הצגת מדיה נ_שלפת"
+msgstr "הצג מדיה נ_שלפת"
 
 #: ../panel-plugin/cfg.c:519
 msgid "Mount and _Open on click"
-msgstr "עיגון ופתיחה ב_לחיצה"
+msgstr "עגן ופתח ב_לחיצה"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:530
 msgid "Show GTK _bookmarks"
-msgstr "הצגת _סימניות GTK"
+msgstr "הצג _סימניות GTK"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:540
@@ -192,7 +184,7 @@ msgstr "ה_צגת המסמכים האחרונים"
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:559
 msgid "Show cl_ear option"
-msgstr "הצגת אפשרות ל_נקות"
+msgstr "הצג אפשרות _טיהור"
 
 #: ../panel-plugin/cfg.c:571
 msgid "_Number to display"
@@ -208,11 +200,11 @@ msgstr "פ_קודה"
 
 #: ../panel-plugin/support.c:155
 msgid "Open"
-msgstr "פתיחה"
+msgstr "פתח"
 
 #: ../panel-plugin/support.c:170
 msgid "Open Terminal Here"
-msgstr "פתיחת מסוף מכאן"
+msgstr "פתח מסוף כאן"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
@@ -231,9 +223,8 @@ msgid "Popup menu at current mouse position"
 msgstr ""
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
-#, fuzzy
 msgid "Show help options"
-msgstr "הצגת אפשרות ל_נקות"
+msgstr ""
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
