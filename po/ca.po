@@ -1,37 +1,27 @@
-# Catalan translation of xfce4-places-plugin.
-# This file is distributed under the same license as the xfce4-places-plugin
-# package.
-# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2008.
-#
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# ###
-# translation of ca.po to Catalan
-# Catalan translation of Thunar.
-# Copyright (C) 2004-2006 Benedikt Meurer.
-# This file is distributed under the same license as the Thunar package.
-# Pau Ruŀlan Ferragut <paurullan@bulma.net> 2005, 2006, 2007
-# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2006.
-# ###
-# gnome-panel translation to Catalan.
-# Copyright © 2000-2007 Free Software Foundation, Inc.
-# Ivan Vilata i Balaguer <ivan@selidor.net>, 2000.
-# Softcatalà <info@softcatala.org>, 2000.
-# Jordi Mallach <jordi@sindominio.net>, 2002, 2003, 2004, 2005, 2006.
-# Josep Puigdemont i Casamajó <josep.puigdemont@gmail.com>, 2006, 2007.
-# ###
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Carles Muñoz Gorriz <carlesmu@internautas.org>, 2006,2008
+# Ivan Vilata i Balaguer <ivan@selidor.net>, 2000
+# Jordi Mallach <jordi@sindominio.net>, 2002-2006
+# Josep Puigdemont <josep.puigdemont@gmail.com>, 2006-2007
+# Davidmp <medipas@gmail.com>, 2016
+# Pau Ruŀlan Ferragut <paurullan@bulma.net> 2005, 2006-2007
+# Softcatalà <info@softcatala.org>, 2000
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: \n"
-"Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
-"Language-Team: Catalan <xfce-i18n@xfce.org>\n"
-"Language: ca\n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2016-04-01 12:42+0000\n"
+"Last-Translator: Davidmp <medipas@gmail.com>\n"
+"Language-Team: Catalan (http://www.transifex.com/xfce/xfce-panel-plugins/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. vim: set ai et tabstop=4:
@@ -57,6 +47,12 @@ msgstr "Escriptori"
 #: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "Sistema de fitxers"
+
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr "%s a %s"
 
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
@@ -92,41 +88,41 @@ msgstr "Desmunta"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
-msgstr ""
+msgstr "Desmuntant el dispositiu"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "El sistema està desmuntant el dispositiu \"%s\". Si us plau, no desconnecteu ni tragueu el dispositiu o el mitjà."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
 #: ../panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
-msgstr ""
+msgstr "Escrivint dades al dispositiu"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:141
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "Hi ha dades que cal escriure al dispositiu \"%s\" abans que es pugui desconnectar. Si us plau, no tragueu el mitjà ni desconnecteu el dispositiu."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
-msgstr ""
+msgstr "Expulsant el dispositiu"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr ""
+msgstr "S'està expulsant el dispositiu \"%s\". Això pot trigar una mica"
 
 #: ../panel-plugin/view.c:637
 msgid "Search for Files"
@@ -176,7 +172,7 @@ msgstr "Mostra medis ex_traïbles"
 
 #: ../panel-plugin/cfg.c:519
 msgid "Mount and _Open on click"
-msgstr "Munta i _obre al clicar"
+msgstr "Munta i _obre en clicar-hi"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:530
@@ -215,25 +211,24 @@ msgstr "Obre aquí un terminal"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr ""
+msgstr "Ús:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr ""
+msgstr "OPCIÓ"
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
-msgstr ""
+msgstr "Opcions:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr ""
+msgstr "Fes sortir un menú a la posició actual del ratolí"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
-#, fuzzy
 msgid "Show help options"
-msgstr "Mostra l'opció de nete_ja"
+msgstr "Mostra les opcions d'ajuda"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr ""
+msgstr "Imprimeix la informació de la versió i surt"
