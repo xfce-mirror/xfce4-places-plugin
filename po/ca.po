@@ -9,14 +9,15 @@
 # Josep Puigdemont <josep.puigdemont@gmail.com>, 2006-2007
 # Davidmp <medipas@gmail.com>, 2016
 # Pau Ruŀlan Ferragut <paurullan@bulma.net> 2005, 2006-2007
+# Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>, 2016
 # Softcatalà <info@softcatala.org>, 2000
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2016-04-01 12:42+0000\n"
-"Last-Translator: Davidmp <medipas@gmail.com>\n"
+"PO-Revision-Date: 2016-05-02 21:01+0000\n"
+"Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-panel-plugins/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,7 +97,7 @@ msgstr "Desmuntant el dispositiu"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
 " media or disconnect the drive"
-msgstr "El sistema està desmuntant el dispositiu \"%s\". Si us plau, no desconnecteu ni tragueu el dispositiu o el mitjà."
+msgstr "El sistema està desmuntant el dispositiu «%s». Si us plau, no desconnecteu ni tragueu el dispositiu o el mitjà."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -111,7 +112,7 @@ msgstr "Escrivint dades al dispositiu"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
 " removed. Please do not remove the media or disconnect the drive"
-msgstr "Hi ha dades que cal escriure al dispositiu \"%s\" abans que es pugui desconnectar. Si us plau, no tragueu el mitjà ni desconnecteu el dispositiu."
+msgstr "Hi ha dades que necessiten que s'escriguin al dispositiu «%s» abans que es pugui desconnectar. Si us plau, no tragueu el mitjà ni desconnecteu el dispositiu."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -122,7 +123,7 @@ msgstr "Expulsant el dispositiu"
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr "S'està expulsant el dispositiu \"%s\". Això pot trigar una mica"
+msgstr "S'està expulsant el dispositiu «%s». Això pot trigar una estona"
 
 #: ../panel-plugin/view.c:637
 msgid "Search for Files"
