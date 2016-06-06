@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2016-05-02 21:01+0000\n"
+"PO-Revision-Date: 2016-06-06 11:16+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-panel-plugins/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -159,7 +159,7 @@ msgstr "_Etiqueta"
 
 #: ../panel-plugin/cfg.c:488
 msgid "Menu"
-msgstr "Menú"
+msgstr "Menú"
 
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:492
