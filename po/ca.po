@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2016-06-06 11:16+0000\n"
+"PO-Revision-Date: 2016-06-20 14:27+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-panel-plugins/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Llocs"
 
 #: ../panel-plugin/places.desktop.in.h:2
 msgid "Access folders, documents, and removable media"
-msgstr "Accediu a documents, carpetes i medis extraïbles"
+msgstr "Accediu a documents, carpetes i mitjans extraïbles"
 
 #. Trash
 #: ../panel-plugin/model_system.c:155
@@ -164,16 +164,16 @@ msgstr "Menú"
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:492
 msgid "Show _icons in menu"
-msgstr "Mostra _icones al menú"
+msgstr "Mostra les _icones al menú"
 
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:501
 msgid "Show _removable media"
-msgstr "Mostra medis ex_traïbles"
+msgstr "Mostra els mitjans ex_traïbles"
 
 #: ../panel-plugin/cfg.c:519
 msgid "Mount and _Open on click"
-msgstr "Munta i _obre en clicar-hi"
+msgstr "Munta i _obre en fer-hi clic"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:530
