@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2016-06-24 12:43+0000\n"
+"PO-Revision-Date: 2016-09-07 14:49+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/xfce-panel-plugins/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -167,7 +167,7 @@ msgstr "Rodyti _piktogramas meniu"
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:501
 msgid "Show _removable media"
-msgstr "Rodyti _keičiamus įrenginius"
+msgstr "Rodyti _keičiamuosius įrenginius"
 
 #: ../panel-plugin/cfg.c:519
 msgid "Mount and _Open on click"
