@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2017-01-16 10:26+0000\n"
+"PO-Revision-Date: 2017-01-21 19:39+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -143,15 +143,15 @@ msgstr "Kun ikon"
 
 #: ../panel-plugin/cfg.c:458
 msgid "Label Only"
-msgstr "Kun mærkat"
+msgstr "Kun etiket"
 
 #: ../panel-plugin/cfg.c:459
 msgid "Icon and Label"
-msgstr "Ikon og mærkat"
+msgstr "Ikon og etiket"
 
 #: ../panel-plugin/cfg.c:472
 msgid "_Label"
-msgstr "_Mærkat"
+msgstr "_Etiket"
 
 #: ../panel-plugin/cfg.c:488
 msgid "Menu"
@@ -220,7 +220,7 @@ msgstr "Valgmuligheder:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr "Pop-op menu ved nuværende museposition"
+msgstr "Pop op-menu ved nuværende museposition"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
