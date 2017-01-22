@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2017-01-21 19:39+0000\n"
+"PO-Revision-Date: 2017-01-22 17:40+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -93,7 +93,7 @@ msgstr "Afmonterer enhed"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
 " media or disconnect the drive"
-msgstr "Enheden \"%s\" bliver afmonteret af systemet. Undlad at fjerne eller afbryde drevet"
+msgstr "Enheden \\\"%s\\\" bliver afmonteret af systemet. Undlad venligst at fjerne mediet eller afbryde drevet"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -108,7 +108,7 @@ msgstr "Skriver data til enhed"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
 " removed. Please do not remove the media or disconnect the drive"
-msgstr "Der er data som skal skrives til enheden \"%s\" før denne kan fjernes. Undlad at fjerne eller afbryde drevet"
+msgstr "Der er data som skal skrives til enheden \"%s\" før den kan fjernes. Undlad venligst at fjerne mediet eller afbryde drevet"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
