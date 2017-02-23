@@ -5,16 +5,16 @@
 # Translators:
 # Algimantas Margevičius <margevicius.algimantas@gmail.com>, 2012
 # Gintautas Miliauskas <gintas@akl.lt>, 2007
-# Justina Klingaitė <justina.klingaite@gmail.com>, 2005
+# Justina KP <justina.klingaite@gmail.com>, 2005
 # mantas <mantaz@users.sourceforge.net>, 2006
-# Moo, 2015-2016
+# Moo, 2015-2017
 # Vaidotas Zemlys <mpiktas@delfi.lt>, 2003
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2016-09-07 14:49+0000\n"
+"PO-Revision-Date: 2017-02-23 10:18+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/xfce-panel-plugins/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -149,7 +149,7 @@ msgstr "Tik etiketės"
 
 #: ../panel-plugin/cfg.c:459
 msgid "Icon and Label"
-msgstr "Tekstas ir piktogramos"
+msgstr "Piktograma ir etiketė"
 
 #: ../panel-plugin/cfg.c:472
 msgid "_Label"
