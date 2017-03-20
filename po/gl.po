@@ -1,29 +1,25 @@
-# Galician translation of xfce4-places-plugin
-# Copyright (C) 2008-2009 Leandro Regueiro
-# Copyright (C) 1999-2004 Jesús Bravo Álvarez
-# This file is distributed under the same license as the xfce4-places-plugin package.
-#
-# Leandro Regueiro <leandro.regueiro@gmail.com>, 2008, 2009.
-# Iván Seoane Pardo <talivan.ivan@gmail.com>, 2006.
-# Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005, 2006.
-# Jesús Bravo Álvarez <suso@trasno.net>, 1999-2004.
-#
-# Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
-# colaborar connosco, podes atopar máis información en <http://trasno.net>
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Ignacio Casal Quinteiro <nacho.resa@gmail.com>, 2005-2006
+# Iván Seoane Pardo <talivan.ivan@gmail.com>, 2006
+# Leandro Regueiro <leandro.regueiro@gmail.com>, 2008-2009
+# Xosé <xosecalvo@gmail.com>, 2017
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2009-07-15 18:00+0100\n"
-"Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
-"Language-Team: Galician <proxecto@trasno.net>\n"
-"Language: gl\n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2017-03-20 22:05+0000\n"
+"Last-Translator: Xosé <xosecalvo@gmail.com>\n"
+"Language-Team: Galician (http://www.transifex.com/xfce/xfce-panel-plugins/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Language: gl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
@@ -48,6 +44,12 @@ msgstr "Escritorio"
 #: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "Sistema de ficheiros"
+
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr "%s en %s"
 
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
@@ -89,11 +91,9 @@ msgstr "Desmontando o dispositivo"
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
-"Estase desmontando o dispositivo «%s» do sistema. Non retire o soporte nin "
-"desconecte a unidade"
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "Estase desmontando o dispositivo «%s» do sistema. Non retire o soporte nin desconecte a unidade"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -106,11 +106,9 @@ msgstr "Escribindo os datos no dispositivo"
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
-"Hai datos que teñen que escribirse no dispositivo «%s» antes de retiralo. "
-"Non retire o soporte nin desconecte a unidade"
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "Hai datos que teñen que escribirse no dispositivo «%s» antes de retiralo. Non retire o soporte nin desconecte a unidade"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -210,25 +208,24 @@ msgstr "Abrir terminal aquí"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr ""
+msgstr "Uso:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr ""
+msgstr "OPCIÓN"
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
-msgstr ""
+msgstr "Opcións:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr ""
+msgstr "Menú emerxente na posición actual do rato"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
-#, fuzzy
 msgid "Show help options"
-msgstr "Mostrar a opción de _limpar"
+msgstr "Mostrar as opcións de axuda"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr ""
+msgstr "Imprimir a información da versión e saír"
