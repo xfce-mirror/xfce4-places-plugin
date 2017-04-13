@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2017-02-23 10:18+0000\n"
+"PO-Revision-Date: 2017-04-13 14:25+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/xfce-panel-plugins/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -186,7 +186,7 @@ msgstr "Rodyti paskutinius dokumentus"
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:559
 msgid "Show cl_ear option"
-msgstr "_Rodyti išvalymo parinktį"
+msgstr "_Rodyti išvalymo parametrą"
 
 #: ../panel-plugin/cfg.c:571
 msgid "_Number to display"
@@ -214,11 +214,11 @@ msgstr "Naudojimas:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr "PARINKTIS"
+msgstr "PARAMETRAS"
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
-msgstr "Parinktys:"
+msgstr "Parametrai:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
@@ -226,7 +226,7 @@ msgstr "Iškelti meniu esamoje pelės vietoje"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
-msgstr "Rodyti pagalbos parinktis"
+msgstr "Rodyti pagalbos parametrus"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
