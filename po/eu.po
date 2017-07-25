@@ -1,34 +1,25 @@
-# translation of xfce4-places-plugin.master.po to Euskara
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
-# ###
-# Basque translations for xfce package.
-# Copyright (C) 2004-2006 Benedikt Meurer.
-# This file is distributed under the same license as the Thunar package.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # 
-# ###
-# Copyright (C) 1999, 2004, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
-# 
-# Piarres Beobide <pi@beobide.net>, 2006, 2008, 2009.
-# Joseba Bidaurrazaga van Dierdonck <gcpbivaj@lg.ehu.es>, 2000.
-# Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2004.
-# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2004, 2005, 2006, 2007.
-# ###
+# Translators:
+# Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2004
+# Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2004-2007
+# Joseba Bidaurrazaga van Dierdonck <gcpbivaj@lg.ehu.es>, 2000
+# Piarres Beobide <pi@beobide.net>, 2006,2008-2009
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-places-plugin.master\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2009-08-18 09:48+0200\n"
-"Last-Translator: Piarres Beobide <pi@beobide.net>\n"
-"Language-Team: Euskara <debian-l10n-eu@lists.debian.org>\n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2017-07-25 11:28+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"Language-Team: Basque (http://www.transifex.com/xfce/xfce-panel-plugins/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
+"Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.11.4\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
@@ -53,6 +44,12 @@ msgstr "Mahaigaina"
 #: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "Fitxategi Sistema"
+
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr ""
 
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
@@ -94,11 +91,9 @@ msgstr "Gailua desmuntatzen"
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
-"\"%s\" gailua sistematik desmuntatua izaten ari da.\r\n"
-"Mesedez ez atera euskarria edo gailua desktonektatu"
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "\"%s\" gailua sistematik desmuntatua izaten ari da.\r\nMesedez ez atera euskarria edo gailua desktonektatu"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -111,11 +106,9 @@ msgstr "Gailuan datuak idatzen"
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
-"\"%s\" gailuan kendu aurretik gorde behar diren datuak daude. Mesedez ez "
-"kendu euskarria edo gailua deskonektatu."
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "\"%s\" gailuan kendu aurretik gorde behar diren datuak daude. Mesedez ez kendu euskarria edo gailua deskonektatu."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
