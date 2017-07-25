@@ -1,37 +1,24 @@
-# Finnish translations for xfce4-places-plugin package.
-# Copyright (C) 2007 Diego Ongaro <ongardie@gmail.com>.
-# This file is distributed under the same license as the xfce4-places-plugin package.
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2007-2012.
-# The original file was automatically generated based on the following:
-# ###
-# Finnish translations for Thunar package.
-# Copyright (C) 2004-2007 Benedikt Meurer.
-# This file is distributed under the same license as the Thunar package.
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2006-2009.
-#
-# ###
-# gnome-panel Finnish translation
-# Suomennos: http://gnome-fi.sourceforge.net/
-#
-# Copyright (C) 2002 Free Software Foundation, Inc.
-# Ville Hautamäki <villeh@cs.joensuu.fi>, 1998, 2000
-# Mikko Rauhala <mjr@iki.fi>, 1999
-# Pauli Virtanen <pauli.virtanen@hut.fi>, 2000-2004
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 # Ilkka Tuohela <hile@iki.fi>, 2005
-#
-# ###
+# Mikko Rauhala <mjr@iki.fi>, 1999
+# Ville Hautamäki <villeh@cs.joensuu.fi>, 1998,2000
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce4-places-plugin\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2012-04-12 18:02+0300\n"
-"Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
-"Language-Team: Finnish\n"
-"Language: \n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2017-07-25 11:28+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"Language-Team: Finnish (http://www.transifex.com/xfce/xfce-panel-plugins/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
@@ -56,6 +43,12 @@ msgstr "Työpöytä"
 #: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "Tiedostojärjestelmä"
+
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr ""
 
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
@@ -97,11 +90,9 @@ msgstr "Irrotetaan laitetta"
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
-"Taltiota \"%s\" irrotetaan tiedostojärjestelmästä. Älä poista taltiota "
-"asemasta tai irrota laitetta."
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "Taltiota \"%s\" irrotetaan tiedostojärjestelmästä. Älä poista taltiota asemasta tai irrota laitetta."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -114,11 +105,9 @@ msgstr "Kirjoitetaan laitteelle"
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
-"Laitteelle \"%s\" täytyy kirjoittaa tietoa ennen sen irrottamista. Älä "
-"poista taltiota tai irrota laitetta."
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "Laitteelle \"%s\" täytyy kirjoittaa tietoa ennen sen irrottamista. Älä poista taltiota tai irrota laitetta."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -233,9 +222,8 @@ msgid "Popup menu at current mouse position"
 msgstr ""
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
-#, fuzzy
 msgid "Show help options"
-msgstr "Näytä ty_hjennysvalinta"
+msgstr ""
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
