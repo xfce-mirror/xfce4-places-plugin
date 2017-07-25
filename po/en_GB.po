@@ -1,33 +1,23 @@
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
-# ###
-# English/GB translation of thunar.
-# Copyright (C) 2007 THE thunar'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the thunar package.
-# Jeff Bailes <thepizzaking@gmail.com>, 2007.
-#
-#
-# ###
-# English (British) translation of gnome-core
-# Copyright (C) 1999-2000 Free Software Foundation, Inc.
-# Robert Brady <robert@susu.org.uk>, 1999-2000.
-# Gareth Owen <gowen72@yahoo.com>, David Lodge <dave@cirt.net>, 2004.
-#
-# ###
-#, fuzzy
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Gareth Owen <gowen72@yahoo.com>, David Lodge <dave@cirt.net>, 2004
+# Jeff Bailes <thepizzaking@gmail.com>, 2007
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2009-08-30 17:11+1000\n"
-"Last-Translator: Jeff Bailes <thepizzaking@gmail.com>\n"
-"Language-Team: \n"
-"Language: \n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2017-07-25 11:28+0000\n"
+"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"Language-Team: English (United Kingdom) (http://www.transifex.com/xfce/xfce-panel-plugins/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: en_GB\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
@@ -52,6 +42,12 @@ msgstr "Desktop"
 #: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "File System"
+
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr ""
 
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
@@ -93,11 +89,9 @@ msgstr "Unmounting device"
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "The device \"%s\" is being unmounted by the system. Please do not remove the media or disconnect the drive"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -110,11 +104,9 @@ msgstr "Writing data to device"
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "There is data that needs to be written to the device \"%s\" before it can be removed. Please do not remove the media or disconnect the drive"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -229,9 +221,8 @@ msgid "Popup menu at current mouse position"
 msgstr ""
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
-#, fuzzy
 msgid "Show help options"
-msgstr "Show cl_ear option"
+msgstr ""
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
