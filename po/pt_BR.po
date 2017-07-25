@@ -1,27 +1,25 @@
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
-# ###
-# Brazilian Portuguese translations for Thunar package.
-# Copyright (C) 2004-2006 Benedikt Meurer.
-# This file is distributed under the same license as the Thunar package.
-# Joao Pedrosa <joaopedrosa@gmail.com>, 2005.
-# Rodrigo Coacci <rcoacci@gmail.com>, 2006.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 # Adriano Winter Bess <awbess@gmail.com>, 2006
-# Og Maciel <ogmaciel@gnome.org>, 2008.
-#
+# Joao Pedrosa <joaopedrosa@gmail.com>, 2005
+# Og Maciel <ogmaciel@gnome.org>, 2008
+# Rafael Fontenelle <rffontenelle@gmail.com>, 2013
+# Rodrigo Coacci <rcoacci@gmail.com>, 2006
 msgid ""
 msgstr ""
-"Project-Id-Version: xfce 4-battery-plugin\n"
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
-"PO-Revision-Date: 2012-10-05 00:36-0300\n"
-"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
-"Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
-"Language: pt_BR\n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2017-07-25 11:28+0000\n"
+"Last-Translator: Rafael Fontenelle <rffontenelle@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/xfce/xfce-panel-plugins/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. vim: set ai et tabstop=4:
@@ -47,6 +45,12 @@ msgstr "Área de Trabalho"
 #: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "Sistema de arquivos"
+
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr "%s em %s"
 
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
@@ -88,11 +92,9 @@ msgstr "Desmontando dispositivo"
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
-"O dispositivo \"%s\" está sendo desmontado pelo sistema. Favor não remover a "
-"mídia ou desconectar a unidade"
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "O dispositivo \"%s\" está sendo desmontado pelo sistema. Favor não remover a mídia ou desconectar a unidade"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -105,11 +107,9 @@ msgstr "Gravando dados no dispositivo"
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
-"Existem dados a serem gravados no dispositivo \"%s\" antes poder removê-lo. "
-"Favor não remover a mídia ou desconectar a unidade"
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "Existem dados a serem gravados no dispositivo \"%s\" antes poder removê-lo. Favor não remover a mídia ou desconectar a unidade"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
