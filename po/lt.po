@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2017-07-25 11:28+0000\n"
+"PO-Revision-Date: 2017-08-31 22:10+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/xfce-panel-plugins/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -95,7 +95,7 @@ msgstr "Įrenginys atjungiamas "
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
 " media or disconnect the drive"
-msgstr "Sistema atjungia įrenginį „%s“. Neatjunkite ir neišimkite įrenginio"
+msgstr "Sistema atjungia įrenginį „%s“. Neatjunkite ir neišimkite laikmenos ar disko"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -110,7 +110,7 @@ msgstr "Duomenys rašomi į įrenginį"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
 " removed. Please do not remove the media or disconnect the drive"
-msgstr "Yra duomenų kurie turi būti įrašyti į įrenginį „%s“, prieš jį atjungiant. Neatjunkite ir neišimkite įrenginio"
+msgstr "Yra duomenų, kurie turi būti įrašyti į įrenginį „%s“, prieš jį atjungiant. Neatjunkite ir neišimkite laikmenos ar disko"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
