@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2017-07-25 11:28+0000\n"
+"PO-Revision-Date: 2017-09-13 15:12+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -93,7 +93,7 @@ msgstr "Afmonterer enhed"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
 " media or disconnect the drive"
-msgstr "Enheden \\\"%s\\\" bliver afmonteret af systemet. Undlad venligst at fjerne mediet eller afbryde drevet"
+msgstr "Enheden \"%s\" bliver afmonteret af systemet. Undlad venligst at fjerne mediet eller afbryde drevet"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -204,7 +204,7 @@ msgstr "Åbn"
 
 #: ../panel-plugin/support.c:170
 msgid "Open Terminal Here"
-msgstr "Åbn Terminal her"
+msgstr "Åbn terminal her"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
@@ -212,7 +212,7 @@ msgstr "Brug:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr "VALG"
+msgstr "TILVALG"
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
