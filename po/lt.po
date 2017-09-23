@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2017-09-19 18:06+0000\n"
+"PO-Revision-Date: 2017-09-23 15:34+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/xfce/xfce-panel-plugins/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -129,7 +129,7 @@ msgstr "Ieškoti failų"
 
 #: ../panel-plugin/view.c:690 ../panel-plugin/cfg.c:555
 msgid "Recent Documents"
-msgstr "Paskutiniai dokumentai"
+msgstr "Paskiausi dokumentai"
 
 #: ../panel-plugin/cfg.c:442
 msgid "Button"
@@ -141,15 +141,15 @@ msgstr "_Rodyti"
 
 #: ../panel-plugin/cfg.c:457
 msgid "Icon Only"
-msgstr "Tik piktogramos"
+msgstr "Tik piktogramą"
 
 #: ../panel-plugin/cfg.c:458
 msgid "Label Only"
-msgstr "Tik etiketės"
+msgstr "Tik etiketę"
 
 #: ../panel-plugin/cfg.c:459
 msgid "Icon and Label"
-msgstr "Piktograma ir etiketė"
+msgstr "Piktogramą ir etiketę"
 
 #: ../panel-plugin/cfg.c:472
 msgid "_Label"
@@ -162,7 +162,7 @@ msgstr "Meniu"
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:492
 msgid "Show _icons in menu"
-msgstr "Rodyti _piktogramas meniu"
+msgstr "Rodyti meniu _piktogramas"
 
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:501
@@ -171,7 +171,7 @@ msgstr "Rodyti _keičiamuosius įrenginius"
 
 #: ../panel-plugin/cfg.c:519
 msgid "Mount and _Open on click"
-msgstr "Spustelėjus prijungti ir _atverti"
+msgstr "Spustelėjus, prijungti ir _atverti"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:530
@@ -181,7 +181,7 @@ msgstr "Rodyti GTK ž_ymeles"
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:540
 msgid "Show recent _documents"
-msgstr "Rodyti paskutinius dokumentus"
+msgstr "Rodyti paskiausius dokumentus"
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:559
@@ -190,7 +190,7 @@ msgstr "_Rodyti išvalymo parametrą"
 
 #: ../panel-plugin/cfg.c:571
 msgid "_Number to display"
-msgstr "_Skaičius rodyti"
+msgstr "_Skaičius kiek rodyti"
 
 #: ../panel-plugin/cfg.c:591
 msgid "Search"
