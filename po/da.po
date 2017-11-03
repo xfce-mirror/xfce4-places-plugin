@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2017-11-03 11:12+0000\n"
+"PO-Revision-Date: 2017-11-03 14:01+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-panel-plugins/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -184,7 +184,7 @@ msgstr "Vis seneste _dokumenter"
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:559
 msgid "Show cl_ear option"
-msgstr "Vis sl_ettefunktion"
+msgstr "Vis _ryd-valgmuligheden"
 
 #: ../panel-plugin/cfg.c:571
 msgid "_Number to display"
@@ -208,7 +208,7 @@ msgstr "Åbn terminal her"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr "Brug:"
+msgstr "Anvendelse:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
