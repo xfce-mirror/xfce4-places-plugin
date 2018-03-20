@@ -60,12 +60,6 @@
 
 #define BOX_SPACING 2
 
-#ifdef LIBXFCE4PANEL_CHECK_VERSION
-#if LIBXFCE4PANEL_CHECK_VERSION (4,9,0)
-#define HAS_PANEL_49
-#endif
-#endif
-
 enum
 {
     PROP_0,
@@ -79,14 +73,8 @@ places_button_dispose(GObject*);
 static void
 places_button_resize(PlacesButton*);
 
-#ifdef HAS_PANEL_49
 static void
 places_button_mode_changed(XfcePanelPlugin*, XfcePanelPluginMode, PlacesButton*);
-
-#else
-static void
-places_button_orientation_changed(XfcePanelPlugin*, GtkOrientation, PlacesButton*);
-#endif
 
 static gboolean
 places_button_size_changed(XfcePanelPlugin*, gint size, PlacesButton*);
@@ -272,13 +260,8 @@ places_button_construct(PlacesButton *self, XfcePanelPlugin *plugin)
 
     places_button_resize(self);
 
-#ifdef HAS_PANEL_49
     g_signal_connect(G_OBJECT(plugin), "mode-changed",
                      G_CALLBACK(places_button_mode_changed), self);
-#else
-    g_signal_connect(G_OBJECT(plugin), "orientation-changed",
-                     G_CALLBACK(places_button_orientation_changed), self);
-#endif
     g_signal_connect(G_OBJECT(plugin), "size-changed",
                      G_CALLBACK(places_button_size_changed), self);
 
@@ -379,18 +362,13 @@ static void
 places_button_resize_label(PlacesButton *self,
                            gboolean      show)
 {
-  gboolean vertical = FALSE;
-  gboolean deskbar = FALSE;
+    gboolean vertical = FALSE;
+    gboolean deskbar = FALSE;
 
-#ifdef HAS_PANEL_49
-  if (xfce_panel_plugin_get_mode(self->plugin) == XFCE_PANEL_PLUGIN_MODE_DESKBAR)
-    deskbar = TRUE;
-  else if (xfce_panel_plugin_get_mode(self->plugin) == XFCE_PANEL_PLUGIN_MODE_VERTICAL)
-    vertical = TRUE;
-#else
-  if (xfce_panel_plugin_get_orientation(self->plugin) == GTK_ORIENTATION_VERTICAL)
-    vertical = TRUE;
-#endif
+    if (xfce_panel_plugin_get_mode(self->plugin) == XFCE_PANEL_PLUGIN_MODE_DESKBAR)
+        deskbar = TRUE;
+    else if (xfce_panel_plugin_get_mode(self->plugin) == XFCE_PANEL_PLUGIN_MODE_VERTICAL)
+        vertical = TRUE;
 
     if (self->label_text == NULL) {
         places_button_destroy_label(self);
@@ -444,25 +422,19 @@ places_button_resize(PlacesButton *self)
     show_image = self->pixbuf_factory != NULL;
     show_label = self->label_text != NULL;
 
-#ifdef HAS_PANEL_49
-  if (xfce_panel_plugin_get_mode(self->plugin) == XFCE_PANEL_PLUGIN_MODE_DESKBAR)
-    deskbar = TRUE;
-  else if (xfce_panel_plugin_get_mode(self->plugin) == XFCE_PANEL_PLUGIN_MODE_VERTICAL)
-    vertical = TRUE;
-  nrows = xfce_panel_plugin_get_nrows(self->plugin);
-#else
-  if (xfce_panel_plugin_get_orientation(self->plugin) == GTK_ORIENTATION_VERTICAL)
-    vertical = TRUE;
-#endif
+    if (xfce_panel_plugin_get_mode(self->plugin) == XFCE_PANEL_PLUGIN_MODE_DESKBAR)
+        deskbar = TRUE;
+    else if (xfce_panel_plugin_get_mode(self->plugin) == XFCE_PANEL_PLUGIN_MODE_VERTICAL)
+        vertical = TRUE;
+    nrows = xfce_panel_plugin_get_nrows(self->plugin);
 
     if (show_image && deskbar && nrows == 1)
       show_label = FALSE;
 
     new_size /= nrows;
 
-#ifdef HAS_PANEL_49
     xfce_panel_plugin_set_small (self->plugin, !show_label);
-#endif
+
     if (show_label) {
         if (vertical)
           gtk_alignment_set (GTK_ALIGNMENT (self->alignment), 0.5, 0.0, 0.0, 1.0);
@@ -482,7 +454,6 @@ places_button_resize(PlacesButton *self)
     places_button_resize_label(self, show_label);
 }
 
-#ifdef HAS_PANEL_49
 static void
 places_button_mode_changed(XfcePanelPlugin *plugin, XfcePanelPluginMode mode, PlacesButton *self)
 {
@@ -492,16 +463,6 @@ places_button_mode_changed(XfcePanelPlugin *plugin, XfcePanelPluginMode mode, Pl
                                GTK_ORIENTATION_VERTICAL : GTK_ORIENTATION_HORIZONTAL);
     places_button_resize(self);
 }
-
-#else
-static void
-places_button_orientation_changed(XfcePanelPlugin *plugin, GtkOrientation orientation, PlacesButton *self)
-{
-    DBG("orientation changed");
-    xfce_hvbox_set_orientation(XFCE_HVBOX(self->box), orientation);
-    places_button_resize(self);
-}
-#endif
 
 static gboolean
 places_button_size_changed(XfcePanelPlugin *plugin, gint size, PlacesButton *self)
