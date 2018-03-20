@@ -405,7 +405,7 @@ pcfg_make_empty_dialog(PlacesCfg *cfg)
 
     dlg = xfce_titled_dialog_new_with_buttons(_("Places"),
               NULL,
-              GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_NO_SEPARATOR,
+              GTK_DIALOG_DESTROY_WITH_PARENT,
               GTK_STOCK_CLOSE, GTK_RESPONSE_ACCEPT, NULL);
 
     gtk_window_set_position(GTK_WINDOW(dlg), GTK_WIN_POS_CENTER);
@@ -429,22 +429,22 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     GtkWidget *frame_search, *vbox_search;
 
     GtkWidget *tmp_box, *tmp_label, *tmp_widget;
-    GtkObject * adj;
+    GtkAdjustment *adj;
 
     DBG("configure plugin");
 
     dlg = pcfg_make_empty_dialog(cfg);
 
     /* BUTTON: frame, vbox */
-    vbox_button = gtk_vbox_new(FALSE, 4);
+    vbox_button = gtk_box_new(GTK_ORIENTATION_VERTICAL, 4);
     gtk_widget_show(vbox_button);
 
     frame_button = xfce_gtk_frame_box_new_with_content(_("Button"), vbox_button);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_button, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area (GTK_DIALOG(dlg))), frame_button, FALSE, FALSE, 0);
 
 
     /* BUTTON: Show Icon/Label */
-    tmp_box = gtk_hbox_new(FALSE, 15);
+    tmp_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 15);
     gtk_widget_show(tmp_box);
     gtk_box_pack_start(GTK_BOX(vbox_button), tmp_box, FALSE, FALSE, 0);
 
@@ -452,11 +452,11 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     gtk_widget_show(tmp_label);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_label, FALSE, FALSE, 0);
 
-    tmp_widget = gtk_combo_box_new_text();
+    tmp_widget = gtk_combo_box_text_new();
     gtk_label_set_mnemonic_widget(GTK_LABEL(tmp_label), tmp_widget);
-    gtk_combo_box_append_text(GTK_COMBO_BOX(tmp_widget), _("Icon Only"));
-    gtk_combo_box_append_text(GTK_COMBO_BOX(tmp_widget), _("Label Only"));
-    gtk_combo_box_append_text(GTK_COMBO_BOX(tmp_widget), _("Icon and Label"));
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(tmp_widget), _("Icon Only"));
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(tmp_widget), _("Label Only"));
+    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(tmp_widget), _("Icon and Label"));
 
     exo_mutual_binding_new (G_OBJECT (cfg), "show-button-type",
                             G_OBJECT (tmp_widget), "active");
@@ -465,7 +465,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
 
     /* BUTTON: Label text entry */
-    tmp_box = gtk_hbox_new(FALSE, 15);
+    tmp_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 15);
     gtk_widget_show(tmp_box);
     gtk_box_pack_start(GTK_BOX(vbox_button), tmp_box, FALSE, FALSE, 0);
 
@@ -482,11 +482,11 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
 
     /* MENU: frame, vbox */
-    vbox_menu = gtk_vbox_new(FALSE, 4);
+    vbox_menu = gtk_box_new(GTK_ORIENTATION_VERTICAL, 4);
     gtk_widget_show(vbox_menu);
 
     frame_menu = xfce_gtk_frame_box_new_with_content(_("Menu"), vbox_menu);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_menu, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area (GTK_DIALOG(dlg))), frame_menu, FALSE, FALSE, 0);
 
     /* MENU: Show Icons */
     tmp_widget = gtk_check_button_new_with_mnemonic(_("Show _icons in menu"));
@@ -506,7 +506,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
 
     /* MENU: - Mount and Open (indented) */
-    tmp_box = gtk_hbox_new(FALSE, 15);
+    tmp_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 15);
 
     /* Gray out this box when "Show removable media" is off */
     exo_binding_new (G_OBJECT (cfg), "show-volumes",
@@ -545,7 +545,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
 
     /* RECENT DOCUMENTS: frame, vbox */
-    vbox_recent = gtk_vbox_new(FALSE, 4);
+    vbox_recent = gtk_box_new(GTK_ORIENTATION_VERTICAL, 4);
     gtk_widget_show(vbox_recent);
 
     /* Gray out this box when "Show recent documents" is off */
@@ -553,7 +553,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
                      G_OBJECT (vbox_recent), "sensitive");
 
     frame_recent = xfce_gtk_frame_box_new_with_content(_("Recent Documents"), vbox_recent);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_recent, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area (GTK_DIALOG(dlg))), frame_recent, FALSE, FALSE, 0);
 
     /* RECENT DOCUMENTS: Show clear option */
     tmp_widget = gtk_check_button_new_with_mnemonic(_("Show cl_ear option"));
@@ -564,7 +564,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     gtk_box_pack_start(GTK_BOX(vbox_recent), tmp_widget, FALSE, FALSE, 0);
 
     /* RECENT DOCUMENTS: Number to display */
-    tmp_box = gtk_hbox_new(FALSE, 15);
+    tmp_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 15);
     gtk_widget_show(tmp_box);
     gtk_box_pack_start(GTK_BOX(vbox_recent), tmp_box, FALSE, FALSE, 0);
 
@@ -574,7 +574,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 
     adj = gtk_adjustment_new(cfg->show_recent_number, 1, 25, 1, 5, 0);
 
-    tmp_widget = gtk_spin_button_new(GTK_ADJUSTMENT(adj), 1, 0);
+    tmp_widget = gtk_spin_button_new(adj, 1, 0);
     gtk_label_set_mnemonic_widget(GTK_LABEL(tmp_label), tmp_widget);
 
     exo_mutual_binding_new (G_OBJECT (cfg), "show-recent-number",
@@ -585,14 +585,14 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 #endif
 
     /* Search: frame, vbox */
-    vbox_search = gtk_vbox_new(FALSE, 4);
+    vbox_search = gtk_box_new(GTK_ORIENTATION_VERTICAL, 4);
     gtk_widget_show(vbox_search);
 
     frame_search = xfce_gtk_frame_box_new_with_content(_("Search"), vbox_search);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame_search, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area (GTK_DIALOG(dlg))), frame_search, FALSE, FALSE, 0);
 
     /* Search: command */
-    tmp_box = gtk_hbox_new(FALSE, 15);
+    tmp_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 15);
     gtk_widget_show(tmp_box);
     gtk_box_pack_start(GTK_BOX(vbox_search), tmp_box, FALSE, FALSE, 0);
 

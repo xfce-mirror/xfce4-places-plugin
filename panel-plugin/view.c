@@ -230,7 +230,7 @@ pview_cb_menu_timeout(PlacesView *pd){
     if(!pd->menu_timeout_id)
         goto killtimeout;
 
-    if(pd->menu == NULL || !GTK_WIDGET_VISIBLE(pd->menu))
+    if(pd->menu == NULL || !gtk_widget_is_visible(pd->menu))
         goto killtimeout;
 
     if(pview_model_changed(pd->bookmark_groups))
@@ -870,7 +870,7 @@ pview_remote_event(XfcePanelPlugin *panel_plugin,
   DBG("remote event: %s, %x", name, (guint) view);
 
   if (strcmp (name, "popup") == 0
-      && GTK_WIDGET_VISIBLE (panel_plugin)
+      && gtk_widget_is_visible (GTK_WIDGET (panel_plugin))
       && !gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (view->button))
       && pview_grab_available ()) /* checking if there is another menu on the screen */
     {
