@@ -1,5 +1,7 @@
 .*.swp
 *.o
+*.lo
+*.la
 
 /Makefile
 /Makefile.in
@@ -28,6 +30,7 @@
 /intltool-update.in
 
 /panel-plugin/.deps/
+/panel-plugin/.libs/
 /panel-plugin/Makefile
 /panel-plugin/Makefile.in
 /panel-plugin/places.desktop
@@ -41,3 +44,6 @@
 /po/POTFILES
 /po/.intltool-merge-cache
 /po/stamp-it
+
+compile
+INSTALL
