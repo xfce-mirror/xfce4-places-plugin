@@ -1,37 +1,42 @@
-# This file was automatically generated for the xfce4-places-plugin (2007)
-# This file is distributed under the same license as the xfce4-places-plugin package
-# It is based on the following:
-# ###
-# Belarusian translation for thunar
-# Copyright (c) 2007 Rosetta Contributors and Canonical Ltd 2007
-# This file is distributed under the same license as the thunar package.
-# Alexander Nyakhaychyk <nyakhaychyk@gmail.com>, 2007.
-#
-# ###
-# Беларускі пераклад gnome-panel.HEAD.
-# SOME DESCRIPTIVE TITLE
-# Copyright (C) 2003, 2004 Free Software Foundation, Inc.
-# Vital Khilko <dojlid@mova.org>, 2003.
-# Ales Nyakhaychyk <nab@mail.by>, 2004, 2005.
-# Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2006.
-#
-# ###
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# nab <nab@mail.by>, 2004-2005
+# Alexander Nyakhaychyk <nyakhaychyk@gmail.com>, 2007
+# Andrew W. Nosenko <awn@bcs.zp.ua>, 2003
+# Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006
+# booxter <ihar.hrachyshka@gmail.com>, 2006
+# Pavel Labushev <p.labushev@gmail.com>, 2009
+# Sergey Fedoseev <fedoseev.sergey@gmail.com>, 2006
+# Sergey Panov <sipan@mit.edu>, 1999
+# Velisarus <velisarus@gmail.com>, 2013
+# Vital Khilko <dojlid@mova.org>, 2003
+# Zmicer Turok <zmicerturok@gmail.com >, 2018
 msgid ""
 msgstr ""
+"Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-28 17:07+0100\n"
+"POT-Creation-Date: 2013-11-10 18:31+0100\n"
+"PO-Revision-Date: 2018-06-23 18:30+0000\n"
+"Last-Translator: Zmicer Turok <zmicerturok@gmail.com>\n"
+"Language-Team: Belarusian (http://www.transifex.com/xfce/xfce-panel-plugins/language/be/)\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: be\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. vim: set ai et tabstop=4:
 #: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
 #: ../panel-plugin/cfg.c:201 ../panel-plugin/cfg.c:406
 msgid "Places"
-msgstr "Месцы"
+msgstr "Пераход"
 
 #: ../panel-plugin/places.desktop.in.h:2
 msgid "Access folders, documents, and removable media"
-msgstr ""
+msgstr "Дае хуткі доступ да каталогаў, дакументаў і рухомых носьбітаў"
 
 #. Trash
 #: ../panel-plugin/model_system.c:155
@@ -40,90 +45,96 @@ msgstr "Сметніца"
 
 #: ../panel-plugin/model_system.c:189
 msgid "Desktop"
-msgstr "Стол"
+msgstr "Працоўны стол"
 
 #. File System (/)
 #: ../panel-plugin/model_system.c:205
 msgid "File System"
 msgstr "Файлавая сістэма"
 
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: ../panel-plugin/model_user.c:242
+#, c-format
+msgid "%s on %s"
+msgstr "%s на %s"
+
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
-msgstr ""
+msgstr "Не атрымалася выняць «%s»"
 
 #: ../panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
-msgstr ""
+msgstr "Не атрымалася адмантаваць «%s»"
 
 #: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
-msgstr ""
+msgstr "Не атрымалася прымантаваць «%s»"
 
 #: ../panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
-msgstr ""
+msgstr "Прымантаваць і адкрыць"
 
 #: ../panel-plugin/model_volumes.c:491
 msgid "Mount"
-msgstr ""
+msgstr "Прымантаваць"
 
 #: ../panel-plugin/model_volumes.c:511
 msgid "Eject"
-msgstr ""
+msgstr "Выняць"
 
 #: ../panel-plugin/model_volumes.c:521
 msgid "Unmount"
-msgstr ""
+msgstr "Адмантаваць"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
-msgstr ""
+msgstr "Адмантаванне прылады"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
-"The device \"%s\" is being unmounted by the system. Please do not remove the "
-"media or disconnect the drive"
-msgstr ""
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "Прылада «%s» будзе адмантавана сістэмай. Калі ласка, не вымайце носьбіт і не адлучайце прыладу"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
 #: ../panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
-msgstr ""
+msgstr "Запіс даных на прыладу"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:141
 #: ../panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
-"There is data that needs to be written to the device \"%s\" before it can be "
-"removed. Please do not remove the media or disconnect the drive"
-msgstr ""
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "Ёсць даныя, якія неабходна запісаць на прыладу «%s» да вымання. Калі ласка, не вымайце носьбіт і не адлучайце прыладу"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
-msgstr ""
+msgstr "Выманне прылады"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr ""
+msgstr "Прылада «%s» будзе вынята. Гэта зойме пэўны час"
 
 #: ../panel-plugin/view.c:637
 msgid "Search for Files"
-msgstr ""
+msgstr "Пошук файлаў"
 
 #: ../panel-plugin/view.c:690 ../panel-plugin/cfg.c:555
 msgid "Recent Documents"
-msgstr "Нядаўнія дакумэнты"
+msgstr "Нядаўнія дакументы"
 
 #: ../panel-plugin/cfg.c:442
 msgid "Button"
@@ -131,97 +142,97 @@ msgstr "Кнопка"
 
 #: ../panel-plugin/cfg.c:451
 msgid "_Show"
-msgstr ""
+msgstr "_Выгляд"
 
 #: ../panel-plugin/cfg.c:457
 msgid "Icon Only"
-msgstr ""
+msgstr "Толькі значок"
 
 #: ../panel-plugin/cfg.c:458
 msgid "Label Only"
-msgstr ""
+msgstr "Толькі адмеціна"
 
 #: ../panel-plugin/cfg.c:459
 msgid "Icon and Label"
-msgstr ""
+msgstr "Значок і адмеціна"
 
 #: ../panel-plugin/cfg.c:472
 msgid "_Label"
-msgstr ""
+msgstr "_Адмеціна"
 
 #: ../panel-plugin/cfg.c:488
 msgid "Menu"
-msgstr ""
+msgstr "Меню"
 
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:492
 msgid "Show _icons in menu"
-msgstr ""
+msgstr "Паказваць значкі ў _меню"
 
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:501
 msgid "Show _removable media"
-msgstr ""
+msgstr "Паказваць рухомыя _носьбіты"
 
 #: ../panel-plugin/cfg.c:519
 msgid "Mount and _Open on click"
-msgstr ""
+msgstr "_Прымантоўваць і адкрываць пстрычкай кнопкай мышы"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:530
 msgid "Show GTK _bookmarks"
-msgstr ""
+msgstr "Паказваць з_акладкі"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:540
 msgid "Show recent _documents"
-msgstr "Паказаць нядаўнія дакумэнты"
+msgstr "Паказваць спіс нядаўніх _дакументаў"
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:559
 msgid "Show cl_ear option"
-msgstr ""
+msgstr "Паказваць кнопку _ачысткі спіса"
 
 #: ../panel-plugin/cfg.c:571
 msgid "_Number to display"
-msgstr ""
+msgstr "Колькасць дакументаў у _спісе"
 
 #: ../panel-plugin/cfg.c:591
 msgid "Search"
-msgstr ""
+msgstr "Пошук"
 
 #: ../panel-plugin/cfg.c:599
 msgid "Co_mmand"
-msgstr ""
+msgstr "_Загад"
 
 #: ../panel-plugin/support.c:155
 msgid "Open"
-msgstr ""
+msgstr "Адкрыць"
 
 #: ../panel-plugin/support.c:170
 msgid "Open Terminal Here"
-msgstr ""
+msgstr "Адкрыць тэрмінал"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr ""
+msgstr "Выкарыстанне:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr ""
+msgstr "ПАРАМЕТР"
 
 #: ../panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
-msgstr ""
+msgstr "Параметры:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr ""
+msgstr "Паказваць выплыўное меню на бягучай пазіцыі курсора"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
-msgstr ""
+msgstr "Паказаць параметры даведкі"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr ""
+msgstr "Вывесці інфармацыю аб версіі"
