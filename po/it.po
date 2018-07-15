@@ -5,12 +5,13 @@
 # Translators:
 # Alessio Frusciante <algol@firenze.linux.it>, 2003
 # Cristian Marchi <cri.penta@gmail.com>, 2009,2013
+# Emanuele Petriglia <inbox@emanuelepetriglia.me>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2018-07-11 15:12+0000\n"
+"PO-Revision-Date: 2018-07-15 10:45+0000\n"
 "Last-Translator: Emanuele Petriglia <inbox@emanuelepetriglia.me>\n"
 "Language-Team: Italian (http://www.transifex.com/xfce/xfce-panel-plugins/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -52,17 +53,17 @@ msgstr "%s su %s"
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
-msgstr "Impossibile espellere «%s»"
+msgstr "Impossibile espellere \"%s\""
 
 #: ../panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
-msgstr "Impossibile smontare «%s»"
+msgstr "Impossibile smontare \"%s\""
 
 #: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
-msgstr "Impossibile montare «%s»"
+msgstr "Impossibile montare \"%s\""
 
 #: ../panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
@@ -83,7 +84,7 @@ msgstr "Smonta"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
-msgstr "Smontaggio del dispositivo"
+msgstr "Smontaggio del dispositivo in corso…"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
@@ -91,13 +92,13 @@ msgstr "Smontaggio del dispositivo"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
 " media or disconnect the drive"
-msgstr "Il sistema sta smontando il dispositivo «%s»; non rimuovere o disconnettere il supporto."
+msgstr "Il sistema sta smontando il dispositivo \"%s\"; non rimuovere o disconnettere il supporto."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
 #: ../panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
-msgstr "Scrittura dei dati sul dispositivo"
+msgstr "Scrittura dei dati sul dispositivo in corso…"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:141
@@ -106,18 +107,18 @@ msgstr "Scrittura dei dati sul dispositivo"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
 " removed. Please do not remove the media or disconnect the drive"
-msgstr "Alcuni dati devono essere scritti sul dispositivo «%s» prima che possa essere rimosso; non rimuovere o disconnettere il supporto."
+msgstr "Sono presenti dei dati che devono essere scritti sul dispositivo \"%s\" prima della sua rimozione. Non rimuovere il supporto o disconnettere l'unità"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
-msgstr "Espulsione del dispositivo"
+msgstr "Espulsione del dispositivo in corso…"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr "Il dispositivo «%s» sta per essere espulso; potrebbe essere necessario un po' di tempo"
+msgstr "Il dispositivo \"%s\" sta per essere espulso. Potrebbe volerci del tempo"
 
 #: ../panel-plugin/view.c:637
 msgid "Search for Files"
