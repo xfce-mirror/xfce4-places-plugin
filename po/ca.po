@@ -9,7 +9,7 @@
 # Josep Puigdemont <josep.puigdemont@gmail.com>, 2006-2007
 # Davidmp <medipas@gmail.com>, 2016
 # Pau Ruŀlan Ferragut <paurullan@bulma.net> 2005, 2006-2007
-# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2017
+# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2017-2018
 # Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2016
 # Softcatalà <info@softcatala.org>, 2000
 msgid ""
@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2017-12-31 18:10+0000\n"
+"PO-Revision-Date: 2018-08-25 15:48+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-panel-plugins/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -179,7 +179,7 @@ msgstr "Munta i _obre en fer-hi clic"
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:530
 msgid "Show GTK _bookmarks"
-msgstr "Mostra els _preferits de GTK"
+msgstr "Mostra els _marcadors de GTK"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:540
