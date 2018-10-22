@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2018-08-25 15:48+0000\n"
+"PO-Revision-Date: 2018-10-22 11:52+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-panel-plugins/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -98,7 +98,7 @@ msgstr "Desmuntant el dispositiu"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
 " media or disconnect the drive"
-msgstr "El sistema està desmuntant el dispositiu «%s». Si us plau, no desconnecteu ni tragueu el dispositiu o el mitjà."
+msgstr "El sistema està desmuntant el dispositiu «%s». No expulseu el mitjà o desconnecteu la unitat."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -113,7 +113,7 @@ msgstr "Escrivint dades al dispositiu"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
 " removed. Please do not remove the media or disconnect the drive"
-msgstr "Hi ha dades que necessiten que s'escriguin al dispositiu «%s» abans que es pugui desconnectar. Si us plau, no tragueu el mitjà ni desconnecteu el dispositiu."
+msgstr "Hi ha dades que s'han d'escriure al dispositiu «%s» abans que es pugui expulsar. No expulseu el mitjà o desconnecteu la unitat."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
