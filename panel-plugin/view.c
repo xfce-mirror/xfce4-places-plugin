@@ -935,8 +935,13 @@ places_view_init(XfcePanelPlugin *plugin)
     pview_button_update(view);
 
     /* signals for icon theme/screen changes */
-    g_signal_connect_swapped(view->button, "style-set",
-                             G_CALLBACK(pview_destroy_menu), view);
+    /* FIXME: disable style-updated signal because it is fired whenever the
+       pointer moves over the button, so the menu is destroyed "faster" than
+       it is created. The downside is that now icons are not updated when
+       theme changes.
+    g_signal_connect_swapped(view->button, "style-updated",
+                              G_CALLBACK(pview_destroy_menu), view);
+    */
     g_signal_connect_swapped(view->button, "screen-changed",
                              G_CALLBACK(pview_destroy_menu), view);
     
