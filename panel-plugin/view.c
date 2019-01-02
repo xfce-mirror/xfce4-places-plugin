@@ -456,7 +456,7 @@ pview_get_icon(GIcon *icon)
     if (G_IS_THEMED_ICON(icon)) {
         GtkIconInfo *icon_info = gtk_icon_theme_lookup_by_gicon(itheme,
                                                                 icon, size,
-                                                                GTK_ICON_LOOKUP_USE_BUILTIN | GTK_ICON_LOOKUP_GENERIC_FALLBACK | GTK_ICON_LOOKUP_FORCE_SIZE);
+                                                                GTK_ICON_LOOKUP_USE_BUILTIN | GTK_ICON_LOOKUP_FORCE_SIZE);
         if (icon_info) {
             GdkPixbuf *pix_theme = gtk_icon_info_load_icon(icon_info, NULL);
             pix = gdk_pixbuf_copy(pix_theme);
