@@ -13,13 +13,14 @@
 # Sergey Panov <sipan@mit.edu>, 1999
 # Velisarus <velisarus@gmail.com>, 2013
 # Vital Khilko <dojlid@mova.org>, 2003
+# Zmicer Turok <zmicerturok@gmail.com>, 2019
 # Zmicer Turok <zmicerturok@gmail.com >, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2018-06-23 18:30+0000\n"
+"PO-Revision-Date: 2019-01-16 08:52+0000\n"
 "Last-Translator: Zmicer Turok <zmicerturok@gmail.com>\n"
 "Language-Team: Belarusian (http://www.transifex.com/xfce/xfce-panel-plugins/language/be/)\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +101,7 @@ msgstr "Адмантаванне прылады"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
 " media or disconnect the drive"
-msgstr "Прылада «%s» будзе адмантавана сістэмай. Калі ласка, не вымайце носьбіт і не адлучайце прыладу"
+msgstr "Прылада «%s» будзе адмантаваная сістэмай. Калі ласка, не вымайце носьбіт і не адлучайце прыладу"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -126,7 +127,7 @@ msgstr "Выманне прылады"
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr "Прылада «%s» будзе вынята. Гэта зойме пэўны час"
+msgstr "Прылада «%s» будзе вынятая. Гэта зойме пэўны час"
 
 #: ../panel-plugin/view.c:637
 msgid "Search for Files"
