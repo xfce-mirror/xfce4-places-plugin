@@ -109,7 +109,7 @@ places_load_file(const gchar *path)
 {
     GError *error = NULL;
     if(path != NULL && *path != '\0')
-        gtk_show_uri(NULL , path, 0, &error);
+        gtk_show_uri_on_window(NULL , path, 0, &error);
 }
 
 /**
