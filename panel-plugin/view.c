@@ -341,10 +341,7 @@ pview_cb_menu_item_do_alt(PlacesView *pd, GtkWidget *menu_item)
         }while(actions != NULL);
 
         gtk_widget_show(context);
-        gtk_menu_popup(GTK_MENU(context),
-                       NULL, NULL,
-                       NULL, NULL,
-                       0, gtk_get_current_event_time());
+        gtk_menu_popup_at_pointer (GTK_MENU(context), NULL);
 
         g_signal_connect_swapped(context, "deactivate",
                                  G_CALLBACK(pview_cb_menu_context_deact), pd);
@@ -740,10 +737,7 @@ pview_open_menu_at (PlacesView   *pd,
 
     /* popup menu */
     DBG("menu: %x", (guint)pd->menu);
-    gtk_menu_popup (GTK_MENU (pd->menu), NULL, NULL,
-                    (button != NULL) ? xfce_panel_plugin_position_menu : NULL,
-                    pd->plugin, 1,
-                    gtk_get_current_event_time ());
+    gtk_menu_popup_at_pointer (GTK_MENU (pd->menu), NULL);
 
     /* menu timeout to poll for model changes */
     if(pd->menu_timeout_id == 0){
