@@ -681,9 +681,7 @@ pview_update_menu(PlacesView *pd)
                 clear_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_CLEAR, NULL);
                 G_GNUC_END_IGNORE_DEPRECATIONS
             }else{
-                GtkStockItem clear_stock_item;
-                gtk_stock_lookup(GTK_STOCK_CLEAR, &clear_stock_item);
-                clear_item = gtk_menu_item_new_with_mnemonic(clear_stock_item.label);
+                clear_item = gtk_menu_item_new_with_mnemonic(_("_Clear"));
             }
 
             gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu), clear_item);
