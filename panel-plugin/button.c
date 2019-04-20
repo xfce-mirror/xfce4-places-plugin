@@ -346,7 +346,8 @@ places_button_resize_image(PlacesButton *self, gint new_size)
     else
             gtk_image_set_from_pixbuf(GTK_IMAGE(self->image), icon);
 
-    gtk_misc_set_alignment (GTK_MISC (self->image), 0.5, 0.5);
+    gtk_widget_set_halign (GTK_WIDGET (self->image), GTK_ALIGN_CENTER);
+    gtk_widget_set_valign (GTK_WIDGET (self->image), GTK_ALIGN_CENTER);
     gtk_widget_show(self->image);
     g_object_unref(G_OBJECT(icon));
 }
@@ -393,12 +394,14 @@ places_button_resize_label(PlacesButton *self,
     if (vertical)
       {
         gtk_label_set_angle (GTK_LABEL (self->label), -90);
-        gtk_misc_set_alignment (GTK_MISC (self->label), 0.5, 0.0);
+        gtk_widget_set_halign (GTK_WIDGET (self->image), GTK_ALIGN_CENTER);
+        gtk_widget_set_valign (GTK_WIDGET (self->image), GTK_ALIGN_START);
       }
     else
       {
         gtk_label_set_angle (GTK_LABEL (self->label), 0);
-        gtk_misc_set_alignment (GTK_MISC (self->label), 0.0, 0.5);
+        gtk_widget_set_halign (GTK_WIDGET (self->image), GTK_ALIGN_START);
+        gtk_widget_set_valign (GTK_WIDGET (self->image), GTK_ALIGN_CENTER);
       }
     gtk_widget_show(self->label);
 }
