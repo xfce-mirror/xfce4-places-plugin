@@ -60,7 +60,7 @@ typedef struct
 
 } PBUserData;
 
-static inline time_t
+static time_t
 pbuser_get_mtime(const gchar *filename)
 {
     struct stat buf;
@@ -70,7 +70,7 @@ pbuser_get_mtime(const gchar *filename)
         return 1;
 }
 
-static inline gboolean
+static gboolean
 pbuser_dir_exists(const gchar *path)
 {
     return g_file_test(path, G_FILE_TEST_IS_DIR);
@@ -385,7 +385,7 @@ pbuser_finalize(PlacesBookmarkGroup *bookmark_group)
 }
 
 
-/* external interface */
+/* public interface */
 
 PlacesBookmarkGroup*
 places_bookmarks_user_create(void)
