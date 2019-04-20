@@ -180,20 +180,25 @@ pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
                                   G_FILE_ATTRIBUTE_STANDARD_ICON,
                                   0, NULL, NULL);
 
-            icon = g_file_info_get_icon(fileinfo);
+            if(fileinfo != NULL)
+                icon = g_file_info_get_icon(fileinfo);
+
             if(icon == NULL)
                 icon = g_themed_icon_new ("folder");
+
             g_object_ref(icon);
             p_uri = PLACES_URI_SCHEME_FILE;
 
             if(name == NULL) {
-                name = g_strdup(g_file_info_get_attribute_string(fileinfo,
-                                  G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME));
+                if(fileinfo != NULL)
+                    name = g_strdup(g_file_info_get_attribute_string(fileinfo,
+                                    G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME));
                 if(name == NULL)
                     name = g_strdup(g_filename_display_basename(uri));
             }
 
-            g_object_unref (G_OBJECT (fileinfo));
+            if(fileinfo != NULL)
+                g_object_unref (G_OBJECT (fileinfo));
 
         }else{
 
