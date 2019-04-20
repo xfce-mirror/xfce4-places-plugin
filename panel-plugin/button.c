@@ -249,7 +249,9 @@ places_button_construct(PlacesButton *self, XfcePanelPlugin *plugin)
     gtk_button_set_relief(GTK_BUTTON(self), GTK_RELIEF_NONE);
     gtk_widget_set_focus_on_click(GTK_WIDGET(self), FALSE);
 
-    self->alignment = gtk_alignment_new (0.0, 0.5, 1.0, 1.0);
+    self->alignment = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_widget_set_halign (self->alignment, GTK_ALIGN_START);
+    gtk_widget_set_valign (self->alignment, GTK_ALIGN_CENTER);
     gtk_container_add(GTK_CONTAINER(self), self->alignment);
     gtk_widget_show(self->alignment);
 
@@ -437,12 +439,16 @@ places_button_resize(PlacesButton *self)
     xfce_panel_plugin_set_small (self->plugin, !show_label);
 
     if (show_label) {
-        if (vertical)
-          gtk_alignment_set (GTK_ALIGNMENT (self->alignment), 0.5, 0.0, 0.0, 1.0);
-        else
-          gtk_alignment_set (GTK_ALIGNMENT (self->alignment), 0.0, 0.5, 1.0, 0.0);
+        if (vertical) {
+          gtk_widget_set_halign (self->alignment, GTK_ALIGN_CENTER);
+          gtk_widget_set_valign (self->alignment, GTK_ALIGN_START);
+        } else {
+          gtk_widget_set_halign (self->alignment, GTK_ALIGN_START);
+          gtk_widget_set_valign (self->alignment, GTK_ALIGN_CENTER);
+        }
     } else {
-        gtk_alignment_set (GTK_ALIGNMENT (self->alignment), 0.5, 0.5, 1.0, 1.0);
+        gtk_widget_set_halign (self->alignment, GTK_ALIGN_CENTER);
+        gtk_widget_set_valign (self->alignment, GTK_ALIGN_CENTER);
     }
 
     /* image */
