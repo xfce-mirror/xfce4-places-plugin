@@ -460,7 +460,7 @@ pview_get_icon(GIcon *icon)
         if (icon_info) {
             GdkPixbuf *pix_theme = gtk_icon_info_load_icon(icon_info, NULL);
             pix = gdk_pixbuf_copy(pix_theme);
-            gtk_icon_info_free(icon_info);
+            g_object_unref(G_OBJECT(icon_info));
             g_object_unref(G_OBJECT(pix_theme));
         }
     } else if(G_IS_LOADABLE_ICON(icon)) {
