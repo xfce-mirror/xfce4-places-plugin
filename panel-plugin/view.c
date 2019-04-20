@@ -520,7 +520,9 @@ pview_add_menu_item(PlacesView *view, PlacesBookmark *bookmark)
         view->needs_separator = FALSE;
     }
 
+    G_GNUC_BEGIN_IGNORE_DEPRECATIONS
     item = gtk_image_menu_item_new_with_label(bookmark->label);
+    G_GNUC_END_IGNORE_DEPRECATIONS
 
     /* try to set icon */
     if(view->cfg->show_icons && bookmark->icon != NULL){
@@ -529,7 +531,9 @@ pview_add_menu_item(PlacesView *view, PlacesBookmark *bookmark)
         if(G_LIKELY(pb != NULL)){
             image = gtk_image_new_from_pixbuf(pb);
             g_object_unref(pb);
+            G_GNUC_BEGIN_IGNORE_DEPRECATIONS
             gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(item), image);
+            G_GNUC_END_IGNORE_DEPRECATIONS
         }
     }
 
@@ -634,11 +638,15 @@ pview_update_menu(PlacesView *pd)
     /* Search for files */
     if(pd->cfg->search_cmd != NULL && *pd->cfg->search_cmd != '\0'){
 
+        G_GNUC_BEGIN_IGNORE_DEPRECATIONS
         GtkWidget *search_item = gtk_image_menu_item_new_with_mnemonic(_("Search for Files"));
-        
+        G_GNUC_END_IGNORE_DEPRECATIONS
+
         if(pd->cfg->show_icons){
+            G_GNUC_BEGIN_IGNORE_DEPRECATIONS
             GtkWidget *search_image = gtk_image_new_from_icon_name("system-search", GTK_ICON_SIZE_MENU);
             gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(search_item), search_image);
+            G_GNUC_END_IGNORE_DEPRECATIONS
         }
         
         gtk_menu_shell_append(GTK_MENU_SHELL(pd->menu), search_item);
@@ -669,7 +677,9 @@ pview_update_menu(PlacesView *pd)
             gtk_widget_show(separator);
    
             if(pd->cfg->show_icons){
+                G_GNUC_BEGIN_IGNORE_DEPRECATIONS
                 clear_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_CLEAR, NULL);
+                G_GNUC_END_IGNORE_DEPRECATIONS
             }else{
                 GtkStockItem clear_stock_item;
                 gtk_stock_lookup(GTK_STOCK_CLEAR, &clear_stock_item);
@@ -687,13 +697,15 @@ pview_update_menu(PlacesView *pd)
                              G_CALLBACK(pview_cb_recent_items_clear), recent_menu);
     
         }
-    
+
+        G_GNUC_BEGIN_IGNORE_DEPRECATIONS
         recent_item = gtk_image_menu_item_new_with_label(_("Recent Documents"));
         if(pd->cfg->show_icons){
             gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(recent_item), 
                                           gtk_image_new_from_stock(GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU));
         }
-        
+        G_GNUC_END_IGNORE_DEPRECATIONS
+
         gtk_menu_item_set_submenu(GTK_MENU_ITEM(recent_item), recent_menu);
         gtk_widget_show(recent_menu);
         
