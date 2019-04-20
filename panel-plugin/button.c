@@ -413,7 +413,10 @@ places_button_resize(PlacesButton *self)
     gboolean show_image, show_label;
     gint new_size, image_size;
     gint border_thickness;
+#if LIBXFCE4PANEL_CHECK_VERSION(4, 13, 0)
+#else
     GtkStyle *style;
+#endif
     gboolean vertical = FALSE;
     gboolean deskbar = FALSE;
     gint nrows = 1;
@@ -455,9 +458,15 @@ places_button_resize(PlacesButton *self)
     }
 
     /* image */
-    style = gtk_widget_get_style (GTK_WIDGET (self));
-    border_thickness = 2 * MAX (style->xthickness, style->ythickness) + 2;
+#if LIBXFCE4PANEL_CHECK_VERSION(4, 13, 0)
+    image_size = xfce_panel_plugin_get_icon_size (self->plugin);
+#else
+    G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+    style = gtk_widget_get_style(GTK_WIDGET(self));
+    G_GNUC_END_IGNORE_DEPRECATIONS
+    border_thickness = 2 * MAX(style->xthickness, style->ythickness) + 2;
     image_size = new_size - border_thickness;
+#endif
     places_button_resize_image(self, image_size);
 
     /* label */
