@@ -383,7 +383,7 @@ pbvol_is_present(GVolume *volume)
     return has_media && !is_shadowed;
 }
 
-static inline gboolean
+static gboolean
 pbvol_show_volume(GVolume *volume){
     GMount *mount = g_volume_get_mount(volume);
     DBG("Volume: %s [mounted=%lu removable=%x present=%x]", g_volume_get_name(volume),

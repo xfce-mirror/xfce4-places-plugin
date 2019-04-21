@@ -759,15 +759,9 @@ pview_open_menu_at (PlacesView   *pd,
 
     /* menu timeout to poll for model changes */
     if(pd->menu_timeout_id == 0){
-#if GLIB_CHECK_VERSION(2,14,0)
         pd->menu_timeout_id = g_timeout_add_seconds_full(G_PRIORITY_LOW, 2,
                                    (GSourceFunc) pview_cb_menu_timeout, pd,
                                    NULL);
-#else
-        pd->menu_timeout_id = g_timeout_add_full(G_PRIORITY_LOW, 2000,
-                                   (GSourceFunc) pview_cb_menu_timeout, pd,
-                                   NULL);
-#endif
         PLACES_DEBUG_MENU_TIMEOUT_COUNT(1);
     }else{
         PLACES_DEBUG_MENU_TIMEOUT_COUNT(0);
