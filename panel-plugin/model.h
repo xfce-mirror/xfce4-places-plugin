@@ -36,13 +36,13 @@ struct _PlacesBookmarkAction
     void        (*finalize) (PlacesBookmarkAction *self);
 };
 
-extern inline PlacesBookmarkAction*
+extern PlacesBookmarkAction*
 places_bookmark_action_create(gchar *label);
 
-extern inline void
+extern void
 places_bookmark_action_destroy(PlacesBookmarkAction*);
 
-extern inline void
+extern void
 places_bookmark_action_call(PlacesBookmarkAction*);
 
 /* Places Bookmark */
@@ -70,10 +70,10 @@ struct _PlacesBookmark
     void                 (*finalize) (PlacesBookmark *self);
 };
 
-extern inline PlacesBookmark*
+extern PlacesBookmark*
 places_bookmark_create(gchar *label);
 
-extern inline void
+extern void
 places_bookmark_destroy(PlacesBookmark *bookmark);
 
 /* Places Bookmark Group */
@@ -86,16 +86,16 @@ struct _PlacesBookmarkGroup
     gpointer    priv;
 };
 
-extern inline GList*
+extern GList*
 places_bookmark_group_get_bookmarks(PlacesBookmarkGroup*);
 
-extern inline gboolean
+extern gboolean
 places_bookmark_group_changed(PlacesBookmarkGroup*);
 
-extern inline PlacesBookmarkGroup*
+extern PlacesBookmarkGroup*
 places_bookmark_group_create();
 
-extern inline void
+extern void
 places_bookmark_group_destroy(PlacesBookmarkGroup*);
 
 #endif
