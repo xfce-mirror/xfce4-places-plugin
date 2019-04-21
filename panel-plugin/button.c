@@ -237,6 +237,7 @@ static void
 places_button_construct(PlacesButton *self, XfcePanelPlugin *plugin)
 {
     GtkOrientation orientation;
+    GtkIconTheme *icon_theme;
 
     g_assert(XFCE_IS_PANEL_PLUGIN(plugin));
 
@@ -268,8 +269,9 @@ places_button_construct(PlacesButton *self, XfcePanelPlugin *plugin)
     g_signal_connect(G_OBJECT(plugin), "size-changed",
                      G_CALLBACK(places_button_size_changed), self);
 
-    self->style_set_id = g_signal_connect(G_OBJECT(self), "style-set",
-                     G_CALLBACK(places_button_theme_changed), NULL);
+    icon_theme = gtk_icon_theme_get_default ();
+    g_signal_connect_swapped(icon_theme, "changed",
+                             G_CALLBACK(places_button_theme_changed), self);
     self->screen_changed_id = g_signal_connect(G_OBJECT(self), "screen-changed",
                      G_CALLBACK(places_button_theme_changed), NULL);
 
@@ -293,11 +295,6 @@ static void
 places_button_dispose(GObject *object)
 {
     PlacesButton *self = PLACES_BUTTON(object);
-
-    if (self->style_set_id != 0) {
-        g_signal_handler_disconnect(self, self->style_set_id);
-        self->style_set_id = 0;
-    }
 
     if (self->screen_changed_id != 0) {
         g_signal_handler_disconnect(self, self->screen_changed_id);
@@ -412,10 +409,10 @@ places_button_resize(PlacesButton *self)
 {
     gboolean show_image, show_label;
     gint new_size, image_size;
-    gint border_thickness;
 #if LIBXFCE4PANEL_CHECK_VERSION(4, 13, 0)
 #else
     GtkStyle *style;
+    gint border_thickness;
 #endif
     gboolean vertical = FALSE;
     gboolean deskbar = FALSE;

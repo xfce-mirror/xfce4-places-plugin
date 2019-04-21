@@ -32,7 +32,7 @@
 #include <gio/gunixmounts.h>
 #endif
 #include <gtk/gtk.h>
- 
+
 #ifdef HAVE_LIBNOTIFY
 #include "model_volumes_notify.h"
 #endif
@@ -147,7 +147,7 @@ pbvol_unmount(PlacesBookmarkAction *action)
 #endif
         g_mount_unmount_with_operation(mount, G_MOUNT_UNMOUNT_NONE, NULL,
                             NULL,
-                            pbvol_unmount_finish, 
+                            pbvol_unmount_finish,
                             g_object_ref(volume));
     }
 }
@@ -227,7 +227,7 @@ pbvol_mount(PlacesBookmarkAction *action)
         GMountOperation *operation = gtk_mount_operation_new(NULL);
 
         g_volume_mount(volume, G_MOUNT_MOUNT_NONE, operation, NULL,
-                       pbvol_mount_finish, 
+                       pbvol_mount_finish,
                        g_object_ref(volume));
 
         g_object_unref(operation);
@@ -241,7 +241,7 @@ pbvol_mount_and_open(PlacesBookmarkAction *action)
     GMount *mount;
 
     DBG("Mount and open");
-    
+
     g_return_if_fail(G_IS_VOLUME(action->priv));
     volume = G_VOLUME(action->priv);
     mount = g_volume_get_mount(volume);
@@ -296,7 +296,7 @@ pbvol_mount_is_internal (GMount *mount)
                 if (!g_unix_mount_point_is_user_mountable(lp->data))
                     is_internal = TRUE;
             }
-                
+
             /* free the mount point, we no longer need it */
             g_unix_mount_point_free(lp->data);
         }
@@ -386,14 +386,14 @@ pbvol_is_present(GVolume *volume)
 static gboolean
 pbvol_show_volume(GVolume *volume){
     GMount *mount = g_volume_get_mount(volume);
-    DBG("Volume: %s [mounted=%x removable=%x present=%x]", g_volume_get_name(volume), 
-                                                           (guint) mount,
-                                                           pbvol_is_removable(volume), 
+    DBG("Volume: %s [mounted=%lu removable=%x present=%x]", g_volume_get_name(volume),
+                                                           (gulong) mount,
+                                                           pbvol_is_removable(volume),
                                                            pbvol_is_present(volume));
     if (mount)
        g_object_unref(mount);
 
-    return pbvol_is_removable(volume) && 
+    return pbvol_is_removable(volume) &&
            pbvol_is_present(volume);
 }
 
@@ -531,7 +531,7 @@ pbvol_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 
         volumes = volumes->next;
     }
-    
+
     pbg_priv(bookmark_group)->changed = FALSE;
 
     return g_list_reverse(bookmarks);
@@ -548,7 +548,7 @@ static void
 pbvol_finalize(PlacesBookmarkGroup *bookmark_group)
 {
     const GList *volumes;
-    
+
     volumes = g_volume_monitor_get_volumes(pbg_priv(bookmark_group)->volume_monitor);
     while(volumes != NULL){
         g_signal_handlers_disconnect_by_func(G_VOLUME(volumes->data),
@@ -563,7 +563,7 @@ pbvol_finalize(PlacesBookmarkGroup *bookmark_group)
 
     g_object_unref(pbg_priv(bookmark_group)->volume_monitor);
     pbg_priv(bookmark_group)->volume_monitor = NULL;
-    
+
     g_free(pbg_priv(bookmark_group));
     bookmark_group->priv = NULL;
 }
@@ -583,7 +583,7 @@ places_bookmarks_volumes_create(gboolean mount_and_open_by_default)
     pbg_priv(bookmark_group)->volume_monitor = g_volume_monitor_get();
     pbg_priv(bookmark_group)->changed        = TRUE;
     pbg_priv(bookmark_group)->mount_and_open_by_default = mount_and_open_by_default;
-    
+
     volumes = g_volume_monitor_get_volumes(pbg_priv(bookmark_group)->volume_monitor);
     while(volumes != NULL) {
         g_signal_connect_swapped(G_OBJECT(volumes->data), "changed",

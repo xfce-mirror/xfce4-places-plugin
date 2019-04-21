@@ -14,12 +14,12 @@
  *   - xfdesktop menu plugin
  *     desktop-menu-plugin.c - xfce4-panel plugin that displays the desktop menu
  *     Copyright (C) 2004 Brian Tarricone, <bjt23@cornell.edu>
- *  
+ *
  *   - launcher plugin
  *     launcher.c - (xfce4-panel plugin that opens programs)
  *     Copyright (c) 2005-2007 Jasper Huijsmans <jasper@xfce.org>
  *     Copyright (c) 2006-2007 Nick Schermer <nick@xfce.org>
- * 
+ *
  *  Popup command code adapted from:
  *   - windowlist plugin
  *     windowlist.c - (xfce4-panel plugin that lists open windows)
@@ -47,8 +47,6 @@
 
 #include <gtk/gtk.h>
 
-#define USE_GTK_TOOLTIP_API     GTK_CHECK_VERSION(2,12,0)
-
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4panel/libxfce4panel.h>
 #include <libxfce4ui/libxfce4ui.h>
@@ -75,25 +73,18 @@ struct _PlacesView
 {
     /* plugin */
     XfcePanelPlugin           *plugin;
-    
+
     /* configuration */
     PlacesCfg                 *cfg;
-    
+
     /* view */
     GtkWidget                 *button;
     GtkWidget                 *menu;
 
-#if !USE_GTK_TOOLTIP_API
-    GtkTooltips               *tooltips;
-#endif
-
-#if USE_RECENT_DOCUMENTS
     gulong                     recent_manager_changed_handler;
-#endif
-
     gboolean                   needs_separator;
     guint                      menu_timeout_id;
-    
+
     /* model */
     GList                     *bookmark_groups;
 };
@@ -140,7 +131,7 @@ pview_destroy_model(PlacesView *view)
 
     /* we don't want the menu items holding on to any references */
     pview_destroy_menu(view);
-   
+
     if(view->bookmark_groups != NULL){
 
         bookmark_group_li = view->bookmark_groups;
@@ -211,7 +202,7 @@ pview_bookmark_action_call_wrapper(PlacesView *view, PlacesBookmarkAction *actio
             gtk_main_iteration();
 
         places_bookmark_action_call(action);
-    
+
         gtk_widget_set_sensitive(view->button, TRUE);
 
     }else{
@@ -237,7 +228,7 @@ pview_cb_menu_timeout(PlacesView *pd){
         pview_open_menu(pd);
 
     PLACES_DEBUG_MENU_TIMEOUT_COUNT(0);
-    return TRUE;   
+    return TRUE;
 
 
   killtimeout:
@@ -251,7 +242,7 @@ pview_cb_menu_timeout(PlacesView *pd){
 
 }
 
-static void 
+static void
 pview_cb_menu_deact(PlacesView *pd, GtkWidget *menu)
 {
     /* deactivate button */
@@ -312,10 +303,50 @@ pview_cb_menu_context_deact(PlacesView *pd, GtkWidget *context_menu)
     gtk_menu_shell_deactivate(GTK_MENU_SHELL(pd->menu));
 }
 
+static void
+open_menu_at_pointer (GtkMenu *menu)
+{
+    GdkDevice    *mouse_device;
+    GdkRectangle  rect;
+    GdkSeat      *seat;
+    GdkWindow    *window;
+    gint          x, y;
+
+    window = gdk_display_get_default_group (gdk_display_get_default ());
+    seat = gdk_display_get_default_seat (gdk_display_get_default ());
+    mouse_device = gdk_seat_get_pointer (seat);
+    gdk_window_get_device_position (window,
+                                    mouse_device,
+                                    &x, &y,
+                                    NULL);
+    rect.x = x;
+    rect.y = y;
+    rect.width = gdk_window_get_width (window);
+    rect.height = gdk_window_get_height (window);
+
+    gtk_menu_popup_at_rect (menu,
+                            window,
+                            &rect,
+                            GDK_GRAVITY_NORTH_WEST,
+                            GDK_GRAVITY_NORTH_WEST,
+                            NULL);
+}
+
+static void
+open_menu_at_widget (GtkMenu   *menu,
+                     GtkWidget *widget)
+{
+    gtk_menu_popup_at_widget (menu,
+                              widget,
+                              GDK_GRAVITY_SOUTH_WEST,
+                              GDK_GRAVITY_NORTH_WEST,
+                              NULL);
+}
+
 static gboolean
 pview_cb_menu_item_do_alt(PlacesView *pd, GtkWidget *menu_item)
 {
-    
+
     PlacesBookmark *bookmark = (PlacesBookmark*) g_object_get_data(G_OBJECT(menu_item), "bookmark");
     GList *actions = bookmark->actions;
     GtkWidget *context, *context_item;
@@ -333,7 +364,7 @@ pview_cb_menu_item_do_alt(PlacesView *pd, GtkWidget *menu_item)
             g_object_set_data(G_OBJECT(context_item), "action", action);
             g_signal_connect(context_item, "activate",
                              G_CALLBACK(pview_cb_menu_item_context_act), pd);
-            
+
             gtk_menu_shell_append(GTK_MENU_SHELL(context), context_item);
             gtk_widget_show(context_item);
 
@@ -341,7 +372,7 @@ pview_cb_menu_item_do_alt(PlacesView *pd, GtkWidget *menu_item)
         }while(actions != NULL);
 
         gtk_widget_show(context);
-        gtk_menu_popup_at_pointer (GTK_MENU(context), NULL);
+        open_menu_at_pointer (GTK_MENU (context));
 
         g_signal_connect_swapped(context, "deactivate",
                                  G_CALLBACK(pview_cb_menu_context_deact), pd);
@@ -355,7 +386,7 @@ static gboolean
 pview_cb_menu_item_press(GtkWidget *menu_item, GdkEventButton *event, PlacesView *pd)
 {
 
-    gboolean ctrl =  (event->state & GDK_CONTROL_MASK) && 
+    gboolean ctrl =  (event->state & GDK_CONTROL_MASK) &&
                     !(event->state & (GDK_MOD1_MASK|GDK_SHIFT_MASK|GDK_MOD4_MASK));
     PlacesBookmark *bookmark = (PlacesBookmark*) g_object_get_data(G_OBJECT(menu_item), "bookmark");
 
@@ -375,7 +406,6 @@ pview_cb_menu_item_activate(GtkWidget *menu_item, PlacesView *view)
 
 /* Recent Documents */
 
-#if USE_RECENT_DOCUMENTS
 static void
 pview_cb_recent_item_open(GtkRecentChooser *chooser, PlacesView *pd)
 {
@@ -389,7 +419,7 @@ pview_cb_recent_changed(GtkRecentManager *recent_manager, GtkWidget *recent_menu
 {
     GtkWidget *recent_item;
     int recent_count = 0;
-    
+
     g_object_get(recent_manager,
                  "size", &recent_count,
                  NULL);
@@ -416,12 +446,12 @@ static gboolean
 pview_cb_recent_items_clear(GtkWidget *clear_item, GtkWidget *recent_menu)
 {
     GtkRecentManager *manager = gtk_recent_manager_get_default();
-    
+
     gint removed = gtk_recent_manager_purge_items(manager, NULL);
     DBG("Cleared %d recent items", removed);
 
     pview_cb_recent_changed(manager, recent_menu);
-    
+
     return TRUE;
 }
 
@@ -430,8 +460,6 @@ pview_cb_recent_items_clear3(GtkWidget *clear_item, GdkEventButton *event, GtkWi
 {
     return pview_cb_recent_items_clear(clear_item, recent_menu);
 }
-
-#endif
 
 
 /********** UI Helpers **********/
@@ -475,20 +503,16 @@ pview_get_icon(GIcon *icon)
 static void
 pview_destroy_menu(PlacesView *view)
 {
-#if USE_RECENT_DOCUMENTS
     GtkRecentManager *recent_manager = gtk_recent_manager_get_default();
-#endif
 
     if(view->menu != NULL) {
         gtk_menu_shell_deactivate(GTK_MENU_SHELL(view->menu));
 
-#if USE_RECENT_DOCUMENTS
         if (view->recent_manager_changed_handler) {
             g_signal_handler_disconnect(recent_manager,
                                         view->recent_manager_changed_handler);
             view->recent_manager_changed_handler = 0;
         }
-#endif
 
         gtk_widget_destroy(view->menu);
         view->menu = NULL;
@@ -571,13 +595,10 @@ pview_update_menu(PlacesView *pd)
     GList *bookmarks;
     PlacesBookmark *bookmark;
     GtkWidget *separator;
-
-#if USE_RECENT_DOCUMENTS
     GtkWidget *recent_menu;
     GtkWidget *clear_item;
     GtkWidget *recent_item;
     GtkRecentManager *recent_manager = gtk_recent_manager_get_default();
-#endif
 
     DBG("destroy menu");
 
@@ -588,7 +609,7 @@ pview_update_menu(PlacesView *pd)
 
     /* Create a new menu */
     pd->menu = gtk_menu_new();
-    
+
     /* make sure the menu popups up in right screen */
     /* need exo_noop for GTK 2.6 and 2.8; starting with 2.10, NULL is OK */
     gtk_menu_attach_to_widget(GTK_MENU(pd->menu), pd->button, (GtkMenuDetachFunc) exo_noop);
@@ -598,7 +619,7 @@ pview_update_menu(PlacesView *pd)
     /* add bookmarks */
     bookmark_group_li = pd->bookmark_groups;
     while(bookmark_group_li != NULL){
-        
+
         if(bookmark_group_li->data == NULL){ /* separator */
 
             pd->needs_separator = TRUE;
@@ -607,7 +628,7 @@ pview_update_menu(PlacesView *pd)
 
             bookmark_group = (PlacesBookmarkGroup*) bookmark_group_li->data;
             bookmarks = places_bookmark_group_get_bookmarks(bookmark_group);
-    
+
             while(bookmarks != NULL){
                 bookmark = (PlacesBookmark*) bookmarks->data;
                 pview_add_menu_item(pd, bookmark);
@@ -622,11 +643,7 @@ pview_update_menu(PlacesView *pd)
     }
 
     /* "Search for Files" or "Recent Documents" -> separator */
-#if USE_RECENT_DOCUMENTS
     if(pd->cfg->show_recent || (pd->cfg->search_cmd != NULL && *pd->cfg->search_cmd != '\0')){
-#else
-    if(pd->cfg->search_cmd != NULL && *pd->cfg->search_cmd != '\0'){
-#endif
         separator = gtk_separator_menu_item_new();
         gtk_menu_shell_append(GTK_MENU_SHELL(pd->menu), separator);
         gtk_widget_show(separator);
@@ -645,17 +662,16 @@ pview_update_menu(PlacesView *pd)
             gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(search_item), search_image);
             G_GNUC_END_IGNORE_DEPRECATIONS
         }
-        
+
         gtk_menu_shell_append(GTK_MENU_SHELL(pd->menu), search_item);
         gtk_widget_show(search_item);
-        
+
         g_signal_connect_swapped(search_item, "activate",
                                  G_CALLBACK(places_gui_exec), pd->cfg->search_cmd);
 
     }
 
     /* Recent Documents */
-#if USE_RECENT_DOCUMENTS
     if(pd->cfg->show_recent){
 
         recent_menu = gtk_recent_chooser_menu_new();
@@ -664,15 +680,15 @@ pview_update_menu(PlacesView *pd)
         gtk_recent_chooser_set_limit(GTK_RECENT_CHOOSER(recent_menu), pd->cfg->show_recent_number);
         gtk_recent_chooser_set_sort_type(GTK_RECENT_CHOOSER(recent_menu), GTK_RECENT_SORT_MRU);
 
-        g_signal_connect(recent_menu, "item-activated", 
+        g_signal_connect(recent_menu, "item-activated",
                          G_CALLBACK(pview_cb_recent_item_open), pd);
-            
+
         if(pd->cfg->show_recent_clear){
 
             separator = gtk_separator_menu_item_new();
             gtk_menu_shell_append(GTK_MENU_SHELL(recent_menu), separator);
             gtk_widget_show(separator);
-   
+
             if(pd->cfg->show_icons){
                 G_GNUC_BEGIN_IGNORE_DEPRECATIONS
                 clear_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_CLEAR, NULL);
@@ -690,20 +706,20 @@ pview_update_menu(PlacesView *pd)
             /* use activate when button-release-event doesn't catch it (e.g., enter key pressed) */
             g_signal_connect(clear_item, "activate",
                              G_CALLBACK(pview_cb_recent_items_clear), recent_menu);
-    
+
         }
 
         G_GNUC_BEGIN_IGNORE_DEPRECATIONS
         recent_item = gtk_image_menu_item_new_with_label(_("Recent Documents"));
         if(pd->cfg->show_icons){
-            gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(recent_item), 
+            gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(recent_item),
                                           gtk_image_new_from_stock(GTK_STOCK_OPEN, GTK_ICON_SIZE_MENU));
         }
         G_GNUC_END_IGNORE_DEPRECATIONS
 
         gtk_menu_item_set_submenu(GTK_MENU_ITEM(recent_item), recent_menu);
         gtk_widget_show(recent_menu);
-        
+
         gtk_menu_shell_append(GTK_MENU_SHELL(pd->menu), recent_item);
         gtk_widget_show(recent_item);
 
@@ -711,7 +727,6 @@ pview_update_menu(PlacesView *pd)
                                                               G_CALLBACK(pview_cb_recent_changed), recent_menu);
         pview_cb_recent_changed(recent_manager, recent_menu);
     }
-#endif
 
     /* connect deactivate signal */
     g_signal_connect_swapped(pd->menu, "deactivate",
@@ -736,8 +751,11 @@ pview_open_menu_at (PlacesView   *pd,
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pd->button), TRUE);
 
     /* popup menu */
-    DBG("menu: %x", (guint)pd->menu);
-    gtk_menu_popup_at_pointer (GTK_MENU (pd->menu), NULL);
+    DBG("menu: %lu", (gulong)pd->menu);
+    if (button == NULL)
+        open_menu_at_pointer (GTK_MENU (pd->menu));
+    else
+        open_menu_at_widget (GTK_MENU (pd->menu), button);
 
     /* menu timeout to poll for model changes */
     if(pd->menu_timeout_id == 0){
@@ -793,13 +811,7 @@ pview_button_update(PlacesView *view)
     /* tooltips */
     new_tooltip_text_hash = g_str_hash(cfg->label);
     if (new_tooltip_text_hash != tooltip_text_hash) {
-
-#if USE_GTK_TOOLTIP_API
         gtk_widget_set_tooltip_text(view->button, cfg->label);
-#else
-        gtk_tooltips_set_tip(view->tooltips, view->button, cfg->label, NULL);
-#endif
-
     }
     tooltip_text_hash = new_tooltip_text_hash;
 
@@ -810,53 +822,8 @@ pview_button_update(PlacesView *view)
 static gboolean
 pview_grab_available (void)
 {
-#if GTK_CHECK_VERSION(3, 0, 0)
     /* TODO fix for gtk3 */
     return TRUE;
-#else
-    GdkScreen *screen;
-    GdkWindow *root;
-    GdkGrabStatus grab_pointer = GDK_GRAB_FROZEN;
-    GdkGrabStatus grab_keyboard = GDK_GRAB_FROZEN;
-    gboolean grab_succeed = FALSE;
-    guint i;
-    GdkEventMask pointer_mask = GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK | GDK_ENTER_NOTIFY_MASK | GDK_LEAVE_NOTIFY_MASK | GDK_POINTER_MOTION_MASK;
-
-    screen = xfce_gdk_screen_get_active(NULL);
-    root = gdk_screen_get_root_window(screen);
-
-    /* don't try to get the grab for longer then 1/4 second */
-    for (i = 0; i < (G_USEC_PER_SEC / 100 / 4); i++)
-    {
-        grab_keyboard = gdk_keyboard_grab(root, TRUE, GDK_CURRENT_TIME);
-        if (grab_keyboard == GDK_GRAB_SUCCESS)
-        {
-            grab_pointer = gdk_pointer_grab(root, TRUE, pointer_mask,
-                                            NULL, NULL, GDK_CURRENT_TIME);
-            if (grab_pointer == GDK_GRAB_SUCCESS)
-            {
-                grab_succeed = TRUE;
-                break;
-            }
-        }
-
-        g_usleep(100);
-    }
-
-    /* release the grab so the gtk_menu_popup() can take it */
-    if (grab_pointer == GDK_GRAB_SUCCESS)
-        gdk_pointer_ungrab(GDK_CURRENT_TIME);
-    if (grab_keyboard == GDK_GRAB_SUCCESS)
-        gdk_keyboard_ungrab(GDK_CURRENT_TIME);
-
-    if (!grab_succeed)
-    {
-        g_printerr(PACKAGE_NAME ": Unable to get keyboard and mouse "
-                                "grab. Menu popup failed.\n");
-    }
-
-    return grab_succeed;
-#endif
 }
 
 
@@ -868,7 +835,7 @@ pview_remote_event(XfcePanelPlugin *panel_plugin,
 {
   g_return_val_if_fail (value == NULL || G_IS_VALUE (value), FALSE);
 
-  DBG("remote event: %s, %x", name, (guint) view);
+  DBG("remote event: %s, %lu", name, (gulong) view);
 
   if (strcmp (name, "popup") == 0
       && gtk_widget_is_visible (GTK_WIDGET (panel_plugin))
@@ -898,14 +865,15 @@ pview_remote_event(XfcePanelPlugin *panel_plugin,
 PlacesView*
 places_view_init(XfcePanelPlugin *plugin)
 {
-    PlacesView *view;                   /* internal use in this file */
+    PlacesView   *view;                   /* internal use in this file */
+    GtkIconTheme *icon_theme;
 
     DBG("initializing");
     g_assert(plugin != NULL);
 
     view            = g_new0(PlacesView, 1);
     view->plugin    = plugin;
-    
+
     view->cfg      = places_cfg_new(view->plugin);
     g_signal_connect_swapped (G_OBJECT (view->cfg), "button-changed",
                               G_CALLBACK (pview_button_update), view);
@@ -915,13 +883,6 @@ places_view_init(XfcePanelPlugin *plugin)
                               G_CALLBACK (pview_reconfigure_model), view);
 
     pview_reconfigure_model(view);
-    
-#if USE_GTK_TOOLTIP_API
-    DBG("using GtkTooltip API");
-#else
-    DBG("using GtkTooltips API");
-    view->tooltips = exo_gtk_object_ref_sink(GTK_OBJECT(gtk_tooltips_new()));
-#endif
 
     /* init button */
 
@@ -935,17 +896,14 @@ places_view_init(XfcePanelPlugin *plugin)
 
     pview_button_update(view);
 
+
     /* signals for icon theme/screen changes */
-    /* FIXME: disable style-updated signal because it is fired whenever the
-       pointer moves over the button, so the menu is destroyed "faster" than
-       it is created. The downside is that now icons are not updated when
-       theme changes.
-    g_signal_connect_swapped(view->button, "style-updated",
+    icon_theme = gtk_icon_theme_get_default ();
+    g_signal_connect_swapped (icon_theme, "changed",
                               G_CALLBACK(pview_destroy_menu), view);
-    */
     g_signal_connect_swapped(view->button, "screen-changed",
                              G_CALLBACK(pview_destroy_menu), view);
-    
+
     /* button signal */
     g_signal_connect_swapped(view->button, "button-press-event",
                              G_CALLBACK(pview_cb_button_pressed), view);
@@ -959,7 +917,7 @@ places_view_init(XfcePanelPlugin *plugin)
     return view;
 }
 
-void 
+void
 places_view_finalize(PlacesView *view)
 {
     pview_destroy_menu(view);
@@ -975,11 +933,6 @@ places_view_finalize(PlacesView *view)
         g_object_unref(view->button);
         view->button = NULL;
     }
-
-#if !USE_GTK_TOOLTIP_API
-    g_object_unref(view->tooltips);
-    view->tooltips = NULL;
-#endif
 
     g_object_unref(view->cfg);
     view->cfg = NULL;
