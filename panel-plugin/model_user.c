@@ -210,7 +210,6 @@ pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
                 const gchar *p;
                 const gchar *path;
                 gchar       *hostname;
-                gchar       *display_name = NULL;
                 const gchar *skip;
                 const gchar *firstdot;
                 const gchar  skip_chars[] = ":@";

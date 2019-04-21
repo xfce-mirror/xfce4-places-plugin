@@ -751,7 +751,7 @@ pview_open_menu_at (PlacesView   *pd,
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(pd->button), TRUE);
 
     /* popup menu */
-    DBG("menu: %x", (guint)pd->menu);
+    DBG("menu: %lu", (gulong)pd->menu);
     if (button == NULL)
         open_menu_at_pointer (GTK_MENU (pd->menu));
     else
@@ -841,7 +841,7 @@ pview_remote_event(XfcePanelPlugin *panel_plugin,
 {
   g_return_val_if_fail (value == NULL || G_IS_VALUE (value), FALSE);
 
-  DBG("remote event: %s, %x", name, (guint) view);
+  DBG("remote event: %s, %lu", name, (gulong) view);
 
   if (strcmp (name, "popup") == 0
       && gtk_widget_is_visible (GTK_WIDGET (panel_plugin))

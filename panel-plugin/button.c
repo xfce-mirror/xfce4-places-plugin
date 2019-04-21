@@ -412,10 +412,10 @@ places_button_resize(PlacesButton *self)
 {
     gboolean show_image, show_label;
     gint new_size, image_size;
-    gint border_thickness;
 #if LIBXFCE4PANEL_CHECK_VERSION(4, 13, 0)
 #else
     GtkStyle *style;
+    gint border_thickness;
 #endif
     gboolean vertical = FALSE;
     gboolean deskbar = FALSE;
