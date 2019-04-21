@@ -51,7 +51,6 @@ struct _PlacesButton
     GtkWidget *label;
     gchar *label_text;
     places_button_image_pixbuf_factory *pixbuf_factory;
-    gint plugin_size;
     gulong screen_changed_id;
 };
 
