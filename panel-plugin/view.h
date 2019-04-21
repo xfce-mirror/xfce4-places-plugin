@@ -28,8 +28,6 @@
 #include <gtk/gtk.h>
 #include <libxfce4panel/libxfce4panel.h>
 
-#define USE_RECENT_DOCUMENTS    GTK_CHECK_VERSION(2,10,0)
-
 typedef struct _PlacesView PlacesView;
 
 /* Init & Finalize */

@@ -47,8 +47,6 @@
 
 #include <gtk/gtk.h>
 
-#define USE_GTK_TOOLTIP_API     GTK_CHECK_VERSION(2,12,0)
-
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4panel/libxfce4panel.h>
 #include <libxfce4ui/libxfce4ui.h>
@@ -83,14 +81,7 @@ struct _PlacesView
     GtkWidget                 *button;
     GtkWidget                 *menu;
 
-#if !USE_GTK_TOOLTIP_API
-    GtkTooltips               *tooltips;
-#endif
-
-#if USE_RECENT_DOCUMENTS
     gulong                     recent_manager_changed_handler;
-#endif
-
     gboolean                   needs_separator;
     guint                      menu_timeout_id;
 
@@ -415,7 +406,6 @@ pview_cb_menu_item_activate(GtkWidget *menu_item, PlacesView *view)
 
 /* Recent Documents */
 
-#if USE_RECENT_DOCUMENTS
 static void
 pview_cb_recent_item_open(GtkRecentChooser *chooser, PlacesView *pd)
 {
@@ -471,8 +461,6 @@ pview_cb_recent_items_clear3(GtkWidget *clear_item, GdkEventButton *event, GtkWi
     return pview_cb_recent_items_clear(clear_item, recent_menu);
 }
 
-#endif
-
 
 /********** UI Helpers **********/
 
@@ -515,20 +503,16 @@ pview_get_icon(GIcon *icon)
 static void
 pview_destroy_menu(PlacesView *view)
 {
-#if USE_RECENT_DOCUMENTS
     GtkRecentManager *recent_manager = gtk_recent_manager_get_default();
-#endif
 
     if(view->menu != NULL) {
         gtk_menu_shell_deactivate(GTK_MENU_SHELL(view->menu));
 
-#if USE_RECENT_DOCUMENTS
         if (view->recent_manager_changed_handler) {
             g_signal_handler_disconnect(recent_manager,
                                         view->recent_manager_changed_handler);
             view->recent_manager_changed_handler = 0;
         }
-#endif
 
         gtk_widget_destroy(view->menu);
         view->menu = NULL;
@@ -611,13 +595,10 @@ pview_update_menu(PlacesView *pd)
     GList *bookmarks;
     PlacesBookmark *bookmark;
     GtkWidget *separator;
-
-#if USE_RECENT_DOCUMENTS
     GtkWidget *recent_menu;
     GtkWidget *clear_item;
     GtkWidget *recent_item;
     GtkRecentManager *recent_manager = gtk_recent_manager_get_default();
-#endif
 
     DBG("destroy menu");
 
@@ -662,11 +643,7 @@ pview_update_menu(PlacesView *pd)
     }
 
     /* "Search for Files" or "Recent Documents" -> separator */
-#if USE_RECENT_DOCUMENTS
     if(pd->cfg->show_recent || (pd->cfg->search_cmd != NULL && *pd->cfg->search_cmd != '\0')){
-#else
-    if(pd->cfg->search_cmd != NULL && *pd->cfg->search_cmd != '\0'){
-#endif
         separator = gtk_separator_menu_item_new();
         gtk_menu_shell_append(GTK_MENU_SHELL(pd->menu), separator);
         gtk_widget_show(separator);
@@ -695,7 +672,6 @@ pview_update_menu(PlacesView *pd)
     }
 
     /* Recent Documents */
-#if USE_RECENT_DOCUMENTS
     if(pd->cfg->show_recent){
 
         recent_menu = gtk_recent_chooser_menu_new();
@@ -751,7 +727,6 @@ pview_update_menu(PlacesView *pd)
                                                               G_CALLBACK(pview_cb_recent_changed), recent_menu);
         pview_cb_recent_changed(recent_manager, recent_menu);
     }
-#endif
 
     /* connect deactivate signal */
     g_signal_connect_swapped(pd->menu, "deactivate",
@@ -842,13 +817,7 @@ pview_button_update(PlacesView *view)
     /* tooltips */
     new_tooltip_text_hash = g_str_hash(cfg->label);
     if (new_tooltip_text_hash != tooltip_text_hash) {
-
-#if USE_GTK_TOOLTIP_API
         gtk_widget_set_tooltip_text(view->button, cfg->label);
-#else
-        gtk_tooltips_set_tip(view->tooltips, view->button, cfg->label, NULL);
-#endif
-
     }
     tooltip_text_hash = new_tooltip_text_hash;
 
@@ -859,53 +828,8 @@ pview_button_update(PlacesView *view)
 static gboolean
 pview_grab_available (void)
 {
-#if GTK_CHECK_VERSION(3, 0, 0)
     /* TODO fix for gtk3 */
     return TRUE;
-#else
-    GdkScreen *screen;
-    GdkWindow *root;
-    GdkGrabStatus grab_pointer = GDK_GRAB_FROZEN;
-    GdkGrabStatus grab_keyboard = GDK_GRAB_FROZEN;
-    gboolean grab_succeed = FALSE;
-    guint i;
-    GdkEventMask pointer_mask = GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK | GDK_ENTER_NOTIFY_MASK | GDK_LEAVE_NOTIFY_MASK | GDK_POINTER_MOTION_MASK;
-
-    screen = xfce_gdk_screen_get_active(NULL);
-    root = gdk_screen_get_root_window(screen);
-
-    /* don't try to get the grab for longer then 1/4 second */
-    for (i = 0; i < (G_USEC_PER_SEC / 100 / 4); i++)
-    {
-        grab_keyboard = gdk_keyboard_grab(root, TRUE, GDK_CURRENT_TIME);
-        if (grab_keyboard == GDK_GRAB_SUCCESS)
-        {
-            grab_pointer = gdk_pointer_grab(root, TRUE, pointer_mask,
-                                            NULL, NULL, GDK_CURRENT_TIME);
-            if (grab_pointer == GDK_GRAB_SUCCESS)
-            {
-                grab_succeed = TRUE;
-                break;
-            }
-        }
-
-        g_usleep(100);
-    }
-
-    /* release the grab so the gtk_menu_popup() can take it */
-    if (grab_pointer == GDK_GRAB_SUCCESS)
-        gdk_pointer_ungrab(GDK_CURRENT_TIME);
-    if (grab_keyboard == GDK_GRAB_SUCCESS)
-        gdk_keyboard_ungrab(GDK_CURRENT_TIME);
-
-    if (!grab_succeed)
-    {
-        g_printerr(PACKAGE_NAME ": Unable to get keyboard and mouse "
-                                "grab. Menu popup failed.\n");
-    }
-
-    return grab_succeed;
-#endif
 }
 
 
@@ -965,13 +889,6 @@ places_view_init(XfcePanelPlugin *plugin)
 
     pview_reconfigure_model(view);
 
-#if USE_GTK_TOOLTIP_API
-    DBG("using GtkTooltip API");
-#else
-    DBG("using GtkTooltips API");
-    view->tooltips = exo_gtk_object_ref_sink(GTK_OBJECT(gtk_tooltips_new()));
-#endif
-
     /* init button */
 
     DBG("init GUI");
@@ -1024,11 +941,6 @@ places_view_finalize(PlacesView *view)
         g_object_unref(view->button);
         view->button = NULL;
     }
-
-#if !USE_GTK_TOOLTIP_API
-    g_object_unref(view->tooltips);
-    view->tooltips = NULL;
-#endif
 
     g_object_unref(view->cfg);
     view->cfg = NULL;

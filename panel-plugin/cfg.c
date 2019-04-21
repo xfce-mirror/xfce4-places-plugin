@@ -56,11 +56,9 @@ enum
   PROP_SHOW_VOLUMES,
   PROP_MOUNT_OPEN_VOLUMES,
   PROP_SHOW_BOOKMARKS,
-#if USE_RECENT_DOCUMENTS
   PROP_SHOW_RECENT,
   PROP_SHOW_RECENT_CLEAR,
   PROP_SHOW_RECENT_NUMBER,
-#endif
   PROP_SEARCH_CMD
 };
 
@@ -126,7 +124,6 @@ places_cfg_class_init (PlacesCfgClass *klass)
                                                          TRUE,
                                                          EXO_PARAM_READWRITE));
 
-#if USE_RECENT_DOCUMENTS
   g_object_class_install_property (gobject_class,
                                    PROP_SHOW_RECENT,
                                    g_param_spec_boolean ("show-recent", NULL, NULL,
@@ -147,7 +144,6 @@ places_cfg_class_init (PlacesCfgClass *klass)
                                                       25,
                                                       10,
                                                       EXO_PARAM_READWRITE));
-#endif
 
   g_object_class_install_property (gobject_class,
                                    PROP_SEARCH_CMD,
@@ -192,11 +188,9 @@ places_cfg_init (PlacesCfg *cfg)
   cfg->show_volumes       = TRUE;
   cfg->mount_open_volumes = FALSE;
   cfg->show_bookmarks     = TRUE;
-#if USE_RECENT_DOCUMENTS
   cfg->show_recent        = TRUE;
   cfg->show_recent_clear  = TRUE;
   cfg->show_recent_number = 10;
-#endif
   cfg->search_cmd = g_strdup("");
   cfg->label = g_strdup(_("Places"));
 }
@@ -241,7 +235,6 @@ places_cfg_get_property (GObject    *object,
       g_value_set_boolean (value, cfg->show_bookmarks);
       break;
 
-#if USE_RECENT_DOCUMENTS
     case PROP_SHOW_RECENT:
       g_value_set_boolean (value, cfg->show_recent);
       break;
@@ -253,7 +246,6 @@ places_cfg_get_property (GObject    *object,
     case PROP_SHOW_RECENT_NUMBER:
       g_value_set_uint (value, cfg->show_recent_number);
       break;
-#endif
 
     case PROP_SEARCH_CMD:
       g_value_set_string (value, cfg->search_cmd);
@@ -341,7 +333,6 @@ places_cfg_set_property (GObject      *object,
         }
       break;
 
-#if USE_RECENT_DOCUMENTS
     case PROP_SHOW_RECENT:
       val = g_value_get_boolean (value);
       if (cfg->show_recent != val)
@@ -368,7 +359,6 @@ places_cfg_set_property (GObject      *object,
           g_signal_emit (G_OBJECT (cfg), places_cfg_signals[MENU_CHANGED], 0);
         }
       break;
-#endif
 
     case PROP_SEARCH_CMD:
       text = g_value_get_string (value);
@@ -423,9 +413,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     GtkWidget *dlg;
     GtkWidget *frame_button, *vbox_button;
     GtkWidget *frame_menu,   *vbox_menu;
-#if USE_RECENT_DOCUMENTS
     GtkWidget *frame_recent, *vbox_recent;
-#endif
     GtkWidget *frame_search, *vbox_search;
 
     GtkWidget *tmp_box, *tmp_label, *tmp_widget;
@@ -534,8 +522,6 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
 
-
-#if USE_RECENT_DOCUMENTS
     /* MENU: Show Recent Documents */
     tmp_widget = gtk_check_button_new_with_mnemonic(_("Show recent _documents"));
     exo_mutual_binding_new (G_OBJECT (cfg), "show-recent",
@@ -582,7 +568,6 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 
     gtk_widget_show(tmp_widget);
     gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
-#endif
 
     /* Search: frame, vbox */
     vbox_search = gtk_box_new(GTK_ORIENTATION_VERTICAL, 4);
