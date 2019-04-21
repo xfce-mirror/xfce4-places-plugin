@@ -871,7 +871,8 @@ pview_remote_event(XfcePanelPlugin *panel_plugin,
 PlacesView*
 places_view_init(XfcePanelPlugin *plugin)
 {
-    PlacesView *view;                   /* internal use in this file */
+    PlacesView   *view;                   /* internal use in this file */
+    GtkIconTheme *icon_theme;
 
     DBG("initializing");
     g_assert(plugin != NULL);
@@ -901,14 +902,11 @@ places_view_init(XfcePanelPlugin *plugin)
 
     pview_button_update(view);
 
+
     /* signals for icon theme/screen changes */
-    /* FIXME: disable style-updated signal because it is fired whenever the
-       pointer moves over the button, so the menu is destroyed "faster" than
-       it is created. The downside is that now icons are not updated when
-       theme changes.
-    g_signal_connect_swapped(view->button, "style-updated",
+    icon_theme = gtk_icon_theme_get_default ();
+    g_signal_connect_swapped (icon_theme, "changed",
                               G_CALLBACK(pview_destroy_menu), view);
-    */
     g_signal_connect_swapped(view->button, "screen-changed",
                              G_CALLBACK(pview_destroy_menu), view);
 
