@@ -407,193 +407,212 @@ pcfg_make_empty_dialog(PlacesCfg *cfg)
     return dlg;
 }
 
+static GtkWidget*
+get_label (const gchar *str,
+           gboolean     bold,
+           gboolean     upper_margin)
+{
+    GtkWidget *label;
+
+    if (bold) {
+        const char *format = "<b>\%s</b>";
+        char *markup;
+
+        label = gtk_label_new (NULL);
+        markup = g_markup_printf_escaped(format, str);
+        gtk_label_set_markup(GTK_LABEL(label), markup);
+        g_free(markup);
+    } else {
+        label = gtk_label_new_with_mnemonic(str);
+    }
+
+    gtk_label_set_xalign (GTK_LABEL (label), 0);
+
+    if (upper_margin)
+        gtk_widget_set_margin_top (label, 12);
+
+    return label;
+}
+
+static void
+attach_to_grid (GtkGrid   *grid,
+                GtkWidget *child,
+                gint       left,
+                gint       top,
+                gint       width,
+                gint       height,
+                gint       margin_start)
+{
+    gtk_grid_attach (grid, child, left, top, width, height);
+    gtk_widget_set_margin_start (child, margin_start);
+}
+
 void
 places_cfg_open_dialog(PlacesCfg *cfg)
 {
-    GtkWidget *dlg;
-    GtkWidget *frame_button, *vbox_button;
-    GtkWidget *frame_menu,   *vbox_menu;
-    GtkWidget *frame_recent, *vbox_recent;
-    GtkWidget *frame_search, *vbox_search;
-
-    GtkWidget *tmp_box, *tmp_label, *tmp_widget;
     GtkAdjustment *adj;
+    GtkWidget     *dlg;
+    GtkWidget     *grid;
+    GtkWidget     *label;
+    GtkWidget     *widget;
+
+    gint margin_size = 12;
+    gint row = 0;
 
     DBG("configure plugin");
 
     dlg = pcfg_make_empty_dialog(cfg);
 
-    /* BUTTON: frame, vbox */
-    vbox_button = gtk_box_new(GTK_ORIENTATION_VERTICAL, 4);
-    gtk_widget_show(vbox_button);
+    grid = gtk_grid_new ();
+    gtk_grid_set_row_spacing (GTK_GRID (grid), 6);
+    gtk_grid_set_column_spacing (GTK_GRID (grid), 12);
+    gtk_container_set_border_width (GTK_CONTAINER (grid), 12);
+    gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (dlg))), grid, FALSE, FALSE, 0);
 
-    frame_button = xfce_gtk_frame_box_new_with_content(_("Button"), vbox_button);
-    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area (GTK_DIALOG(dlg))), frame_button, FALSE, FALSE, 0);
-
+    /* BUTTON */
+    label = get_label (_("Button"), TRUE, FALSE);
+    attach_to_grid (GTK_GRID (grid), label, 0, row, 3, 1, 0);
+    row++;
 
     /* BUTTON: Show Icon/Label */
-    tmp_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 15);
-    gtk_widget_show(tmp_box);
-    gtk_box_pack_start(GTK_BOX(vbox_button), tmp_box, FALSE, FALSE, 0);
+    label = get_label (_("_Show"), FALSE, FALSE);
+    attach_to_grid (GTK_GRID(grid), label, 0, row, 1, 1, margin_size);
 
-    tmp_label = gtk_label_new_with_mnemonic(_("_Show"));
-    gtk_widget_show(tmp_label);
-    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_label, FALSE, FALSE, 0);
-
-    tmp_widget = gtk_combo_box_text_new();
-    gtk_label_set_mnemonic_widget(GTK_LABEL(tmp_label), tmp_widget);
-    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(tmp_widget), _("Icon Only"));
-    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(tmp_widget), _("Label Only"));
-    gtk_combo_box_text_append_text(GTK_COMBO_BOX_TEXT(tmp_widget), _("Icon and Label"));
+    widget = gtk_combo_box_text_new();
+    gtk_label_set_mnemonic_widget (GTK_LABEL (label), widget);
+    gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (widget), _("Icon Only"));
+    gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (widget), _("Label Only"));
+    gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (widget), _("Icon and Label"));
 
     exo_mutual_binding_new (G_OBJECT (cfg), "show-button-type",
-                            G_OBJECT (tmp_widget), "active");
+                            G_OBJECT (widget), "active");
 
-    gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
+    attach_to_grid (GTK_GRID (grid), widget, 1, row, 2, 1, 0);
+    row++;
 
     /* BUTTON: Label text entry */
-    tmp_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 15);
-    gtk_widget_show(tmp_box);
-    gtk_box_pack_start(GTK_BOX(vbox_button), tmp_box, FALSE, FALSE, 0);
+    label = get_label (_("_Label"), FALSE, FALSE);
+    attach_to_grid (GTK_GRID (grid), label, 0, row, 1, 1, margin_size);
 
-    tmp_label = gtk_label_new_with_mnemonic(_("_Label"));
-    gtk_widget_show(tmp_label);
-    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_label, FALSE, FALSE, 0);
-
-    tmp_widget = gtk_entry_new();
-    gtk_label_set_mnemonic_widget(GTK_LABEL(tmp_label), tmp_widget);
+    widget = gtk_entry_new();
+    gtk_label_set_mnemonic_widget (GTK_LABEL (label), widget);
     exo_mutual_binding_new (G_OBJECT (cfg), "button-label",
-                            G_OBJECT (tmp_widget), "text");
+                            G_OBJECT (widget), "text");
 
-    gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
+    attach_to_grid (GTK_GRID (grid), widget, 1, row, 2, 1, 0);
+    row++;
 
-    /* MENU: frame, vbox */
-    vbox_menu = gtk_box_new(GTK_ORIENTATION_VERTICAL, 4);
-    gtk_widget_show(vbox_menu);
-
-    frame_menu = xfce_gtk_frame_box_new_with_content(_("Menu"), vbox_menu);
-    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area (GTK_DIALOG(dlg))), frame_menu, FALSE, FALSE, 0);
+    /* MENU */
+    label = get_label (_("Menu"), TRUE, TRUE);
+    attach_to_grid (GTK_GRID (grid), label, 0, row, 3, 1, 0);
+    row++;
 
     /* MENU: Show Icons */
-    tmp_widget = gtk_check_button_new_with_mnemonic(_("Show _icons in menu"));
+    widget = gtk_check_button_new_with_mnemonic (_("Show _icons in menu"));
     exo_mutual_binding_new (G_OBJECT (cfg), "show-icons",
-                            G_OBJECT (tmp_widget), "active");
+                            G_OBJECT (widget), "active");
 
-    gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
-
+    attach_to_grid (GTK_GRID (grid), widget, 0, row, 3, 1, margin_size);
+    row++;
 
     /* MENU: Show Removable Media */
-    tmp_widget = gtk_check_button_new_with_mnemonic(_("Show _removable media"));
+    widget = gtk_check_button_new_with_mnemonic(_("Show _removable media"));
     exo_mutual_binding_new (G_OBJECT (cfg), "show-volumes",
-                            G_OBJECT (tmp_widget), "active");
+                            G_OBJECT (widget), "active");
 
-    gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
+    attach_to_grid (GTK_GRID (grid), widget, 0, row, 3, 1, margin_size);
+    row++;
 
     /* MENU: - Mount and Open (indented) */
-    tmp_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 15);
+    widget = gtk_check_button_new_with_mnemonic(_("Mount and _Open on click"));
+    exo_mutual_binding_new (G_OBJECT (cfg), "mount-open-volumes",
+                            G_OBJECT (widget), "active");
 
     /* Gray out this box when "Show removable media" is off */
     exo_binding_new (G_OBJECT (cfg), "show-volumes",
-                     G_OBJECT (tmp_box), "sensitive");
+                     G_OBJECT (widget), "sensitive");
 
-    tmp_widget = gtk_label_new(" "); /* TODO: is there a more appropriate widget? */
-    gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
-
-    tmp_widget = gtk_check_button_new_with_mnemonic(_("Mount and _Open on click"));
-    exo_mutual_binding_new (G_OBJECT (cfg), "mount-open-volumes",
-                            G_OBJECT (tmp_widget), "active");
-
-    gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
-
-    gtk_widget_show(tmp_box);
-    gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_box, FALSE, FALSE, 0);
+    attach_to_grid (GTK_GRID (grid), widget, 0, row, 3, 1, margin_size * 2);
+    row++;
 
     /* MENU: Show GTK Bookmarks */
-    tmp_widget = gtk_check_button_new_with_mnemonic(_("Show GTK _bookmarks"));
+    widget = gtk_check_button_new_with_mnemonic(_("Show GTK _bookmarks"));
     exo_mutual_binding_new (G_OBJECT (cfg), "show-bookmarks",
-                            G_OBJECT (tmp_widget), "active");
+                            G_OBJECT (widget), "active");
 
-    gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
+    attach_to_grid (GTK_GRID (grid), widget, 0, row, 3, 1, margin_size);
+    row++;
 
     /* MENU: Show Recent Documents */
-    tmp_widget = gtk_check_button_new_with_mnemonic(_("Show recent _documents"));
+    widget = gtk_check_button_new_with_mnemonic(_("Show recent _documents"));
     exo_mutual_binding_new (G_OBJECT (cfg), "show-recent",
-                            G_OBJECT (tmp_widget), "active");
+                            G_OBJECT (widget), "active");
 
-    gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(vbox_menu), tmp_widget, FALSE, FALSE, 0);
+    attach_to_grid (GTK_GRID (grid), widget, 0, row, 3, 1, margin_size);
+    row++;
 
-    /* RECENT DOCUMENTS: frame, vbox */
-    vbox_recent = gtk_box_new(GTK_ORIENTATION_VERTICAL, 4);
-    gtk_widget_show(vbox_recent);
+    /* RECENT DOCUMENTS */
+    label = get_label (_("Recent Documents"), TRUE, TRUE);
+    attach_to_grid (GTK_GRID (grid), label, 0, row, 3, 1, 0);
+    row++;
 
     /* Gray out this box when "Show recent documents" is off */
     exo_binding_new (G_OBJECT (cfg), "show-recent",
-                     G_OBJECT (vbox_recent), "sensitive");
-
-    frame_recent = xfce_gtk_frame_box_new_with_content(_("Recent Documents"), vbox_recent);
-    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area (GTK_DIALOG(dlg))), frame_recent, FALSE, FALSE, 0);
+                     G_OBJECT (label), "sensitive");
 
     /* RECENT DOCUMENTS: Show clear option */
-    tmp_widget = gtk_check_button_new_with_mnemonic(_("Show cl_ear option"));
+    widget = gtk_check_button_new_with_mnemonic(_("Show cl_ear option"));
     exo_mutual_binding_new (G_OBJECT (cfg), "show-recent-clear",
-                            G_OBJECT (tmp_widget), "active");
+                            G_OBJECT (widget), "active");
 
-    gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(vbox_recent), tmp_widget, FALSE, FALSE, 0);
+    /* Gray out this box when "Show recent documents" is off */
+    exo_binding_new (G_OBJECT (cfg), "show-recent",
+                     G_OBJECT (widget), "sensitive");
+
+    attach_to_grid (GTK_GRID (grid), widget, 0, row, 3, 1, margin_size);
+    row++;
 
     /* RECENT DOCUMENTS: Number to display */
-    tmp_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 15);
-    gtk_widget_show(tmp_box);
-    gtk_box_pack_start(GTK_BOX(vbox_recent), tmp_box, FALSE, FALSE, 0);
+    label = get_label (_("_Number to display"), FALSE, FALSE);
 
-    tmp_label = gtk_label_new_with_mnemonic(_("_Number to display"));
-    gtk_widget_show(tmp_label);
-    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_label, FALSE, FALSE, 0);
+    /* Gray out this box when "Show recent documents" is off */
+    exo_binding_new (G_OBJECT (cfg), "show-recent",
+                     G_OBJECT (label), "sensitive");
 
-    adj = gtk_adjustment_new(cfg->show_recent_number, 1, 25, 1, 5, 0);
+    attach_to_grid (GTK_GRID (grid), label, 0, row, 2, 1, margin_size);
 
-    tmp_widget = gtk_spin_button_new(adj, 1, 0);
-    gtk_label_set_mnemonic_widget(GTK_LABEL(tmp_label), tmp_widget);
+    adj = gtk_adjustment_new (cfg->show_recent_number, 1, 25, 1, 5, 0);
+
+    widget = gtk_spin_button_new (adj, 1, 0);
+    gtk_label_set_mnemonic_widget (GTK_LABEL (label), widget);
 
     exo_mutual_binding_new (G_OBJECT (cfg), "show-recent-number",
                             G_OBJECT (adj), "value");
 
-    gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
+    /* Gray out this box when "Show recent documents" is off */
+    exo_binding_new (G_OBJECT (cfg), "show-recent",
+                     G_OBJECT (widget), "sensitive");
 
-    /* Search: frame, vbox */
-    vbox_search = gtk_box_new(GTK_ORIENTATION_VERTICAL, 4);
-    gtk_widget_show(vbox_search);
+    attach_to_grid (GTK_GRID (grid), widget, 2, row, 1, 1, 0);
+    row++;
 
-    frame_search = xfce_gtk_frame_box_new_with_content(_("Search"), vbox_search);
-    gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area (GTK_DIALOG(dlg))), frame_search, FALSE, FALSE, 0);
+    /* SEARCH */
+    label = get_label (_("Search"), TRUE, TRUE);
+    attach_to_grid (GTK_GRID (grid), label, 0, row, 3, 1, 0);
+    row++;
 
     /* Search: command */
-    tmp_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 15);
-    gtk_widget_show(tmp_box);
-    gtk_box_pack_start(GTK_BOX(vbox_search), tmp_box, FALSE, FALSE, 0);
+    label = get_label (_("Co_mmand"), FALSE, FALSE);
+    attach_to_grid (GTK_GRID (grid), label, 0, row, 1, 1, margin_size);
 
-    tmp_label = gtk_label_new_with_mnemonic(_("Co_mmand"));
-    gtk_widget_show(tmp_label);
-    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_label, FALSE, FALSE, 0);
-
-    tmp_widget = gtk_entry_new();
-    gtk_label_set_mnemonic_widget(GTK_LABEL(tmp_label), tmp_widget);
+    widget = gtk_entry_new();
+    gtk_label_set_mnemonic_widget (GTK_LABEL (label), widget);
     exo_mutual_binding_new (G_OBJECT (cfg), "search-cmd",
-                            G_OBJECT (tmp_widget), "text");
+                            G_OBJECT (widget), "text");
 
-    gtk_widget_show(tmp_widget);
-    gtk_box_pack_start(GTK_BOX(tmp_box), tmp_widget, FALSE, FALSE, 0);
+    attach_to_grid (GTK_GRID (grid), widget, 1, row, 2, 1, 0);
 
-    gtk_widget_show_all(dlg);
+    gtk_widget_show_all (dlg);
 }
 
 /********** Initialization & Finalization **********/
