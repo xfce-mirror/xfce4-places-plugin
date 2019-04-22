@@ -53,11 +53,9 @@ struct _PlacesCfg
     gboolean            show_volumes;
     gboolean            mount_open_volumes;
     gboolean            show_bookmarks;
-#if USE_RECENT_DOCUMENTS
     gboolean            show_recent;
     gboolean            show_recent_clear;
     gint                show_recent_number;
-#endif
     gchar               *label;
     gchar               *search_cmd;
 

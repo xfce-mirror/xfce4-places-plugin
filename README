@@ -6,6 +6,6 @@ The plugin adds a small button to the panel. Clicking on it opens a menu, which 
  1) System folders: home directory, trash, desktop, file system
  2) Removable media
  3) User-defined bookmarks
- 4) Recent Documents (with gtk v2.10+)
+ 4) Recent Documents
 
 vim: wrap linebreak

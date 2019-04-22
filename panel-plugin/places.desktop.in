@@ -5,3 +5,5 @@ _Comment=Access folders, documents, and removable media
 Icon=system-file-manager
 X-XFCE-Module=places
 X-XFCE-Unique=FALSE
+X-XFCE-Internal=FALSE
+X-XFCE-API=2.0

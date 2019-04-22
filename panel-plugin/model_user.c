@@ -60,7 +60,7 @@ typedef struct
 
 } PBUserData;
 
-static inline time_t
+static time_t
 pbuser_get_mtime(const gchar *filename)
 {
     struct stat buf;
@@ -70,7 +70,7 @@ pbuser_get_mtime(const gchar *filename)
         return 1;
 }
 
-static inline gboolean
+static gboolean
 pbuser_dir_exists(const gchar *path)
 {
     return g_file_test(path, G_FILE_TEST_IS_DIR);
@@ -180,20 +180,25 @@ pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
                                   G_FILE_ATTRIBUTE_STANDARD_ICON,
                                   0, NULL, NULL);
 
-            icon = g_file_info_get_icon(fileinfo);
+            if(fileinfo != NULL)
+                icon = g_file_info_get_icon(fileinfo);
+
             if(icon == NULL)
                 icon = g_themed_icon_new ("folder");
+
             g_object_ref(icon);
             p_uri = PLACES_URI_SCHEME_FILE;
 
             if(name == NULL) {
-                name = g_strdup(g_file_info_get_attribute_string(fileinfo,
-                                  G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME));
+                if(fileinfo != NULL)
+                    name = g_strdup(g_file_info_get_attribute_string(fileinfo,
+                                    G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME));
                 if(name == NULL)
                     name = g_strdup(g_filename_display_basename(uri));
             }
 
-            g_object_unref (G_OBJECT (fileinfo));
+            if(fileinfo != NULL)
+                g_object_unref (G_OBJECT (fileinfo));
 
         }else{
 
@@ -210,7 +215,6 @@ pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
                 const gchar *p;
                 const gchar *path;
                 gchar       *hostname;
-                gchar       *display_name = NULL;
                 const gchar *skip;
                 const gchar *firstdot;
                 const gchar  skip_chars[] = ":@";
@@ -385,7 +389,7 @@ pbuser_finalize(PlacesBookmarkGroup *bookmark_group)
 }
 
 
-/* external interface */
+/* public interface */
 
 PlacesBookmarkGroup*
 places_bookmarks_user_create(void)

@@ -36,7 +36,6 @@
 #include <libxfce4util/libxfce4util.h>
 
 #define TRASH          1
-#define XDG_USER_DIRS  GLIB_CHECK_VERSION(2,14,0)
 
 #define pbg_priv(pbg) ((PBSysData*) pbg->priv)
 
@@ -97,7 +96,6 @@ pbsys_desktop_dir(void)
     const gchar *home_dir = xfce_get_homedir();
     gchar *desktop_dir = NULL;
 
-#if XDG_USER_DIRS
     /* get the xdg desktop directory, or possibly NULL */
     desktop_dir = g_strdup(g_get_user_special_dir(G_USER_DIRECTORY_DESKTOP));
 
@@ -106,7 +104,6 @@ pbsys_desktop_dir(void)
         g_free(desktop_dir);
         return NULL;
     }
-#endif
 
     /* fall back to ~/Desktop */
     if(desktop_dir == NULL)

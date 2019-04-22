@@ -60,12 +60,6 @@
 
 #define BOX_SPACING 2
 
-#ifdef LIBXFCE4PANEL_CHECK_VERSION
-#if LIBXFCE4PANEL_CHECK_VERSION (4,9,0)
-#define HAS_PANEL_49
-#endif
-#endif
-
 enum
 {
     PROP_0,
@@ -79,14 +73,8 @@ places_button_dispose(GObject*);
 static void
 places_button_resize(PlacesButton*);
 
-#ifdef HAS_PANEL_49
 static void
 places_button_mode_changed(XfcePanelPlugin*, XfcePanelPluginMode, PlacesButton*);
-
-#else
-static void
-places_button_orientation_changed(XfcePanelPlugin*, GtkOrientation, PlacesButton*);
-#endif
 
 static gboolean
 places_button_size_changed(XfcePanelPlugin*, gint size, PlacesButton*);
@@ -242,13 +230,13 @@ places_button_init(PlacesButton *self)
     self->box = NULL;
     self->label = NULL;
     self->image = NULL;
-    self->plugin_size = -1;
 }
 
 static void
 places_button_construct(PlacesButton *self, XfcePanelPlugin *plugin)
 {
     GtkOrientation orientation;
+    GtkIconTheme *icon_theme;
 
     g_assert(XFCE_IS_PANEL_PLUGIN(plugin));
 
@@ -256,34 +244,33 @@ places_button_construct(PlacesButton *self, XfcePanelPlugin *plugin)
     self->plugin = plugin;
 
     /* from libxfce4panel */
-    GTK_WIDGET_UNSET_FLAGS(self, GTK_CAN_DEFAULT|GTK_CAN_FOCUS);
+    gtk_widget_set_can_default (GTK_WIDGET(self), FALSE);
+    gtk_widget_set_can_focus (GTK_WIDGET(self), FALSE);
     gtk_button_set_relief(GTK_BUTTON(self), GTK_RELIEF_NONE);
-    gtk_button_set_focus_on_click(GTK_BUTTON(self), FALSE);
+    gtk_widget_set_focus_on_click(GTK_WIDGET(self), FALSE);
 
-    self->alignment = gtk_alignment_new (0.0, 0.5, 1.0, 1.0);
+    self->alignment = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+    gtk_widget_set_halign (self->alignment, GTK_ALIGN_START);
+    gtk_widget_set_valign (self->alignment, GTK_ALIGN_CENTER);
     gtk_container_add(GTK_CONTAINER(self), self->alignment);
     gtk_widget_show(self->alignment);
 
     orientation = xfce_panel_plugin_get_orientation(self->plugin);
-    self->box = xfce_hvbox_new(orientation, FALSE, BOX_SPACING);
+    self->box = gtk_box_new(orientation, BOX_SPACING);
     gtk_container_set_border_width(GTK_CONTAINER(self->box), 0);
     gtk_container_add(GTK_CONTAINER(self->alignment), self->box);
     gtk_widget_show(self->box);
 
     places_button_resize(self);
 
-#ifdef HAS_PANEL_49
     g_signal_connect(G_OBJECT(plugin), "mode-changed",
                      G_CALLBACK(places_button_mode_changed), self);
-#else
-    g_signal_connect(G_OBJECT(plugin), "orientation-changed",
-                     G_CALLBACK(places_button_orientation_changed), self);
-#endif
     g_signal_connect(G_OBJECT(plugin), "size-changed",
                      G_CALLBACK(places_button_size_changed), self);
 
-    self->style_set_id = g_signal_connect(G_OBJECT(self), "style-set",
-                     G_CALLBACK(places_button_theme_changed), NULL);
+    icon_theme = gtk_icon_theme_get_default ();
+    g_signal_connect_swapped(icon_theme, "changed",
+                             G_CALLBACK(places_button_theme_changed), self);
     self->screen_changed_id = g_signal_connect(G_OBJECT(self), "screen-changed",
                      G_CALLBACK(places_button_theme_changed), NULL);
 
@@ -307,11 +294,6 @@ static void
 places_button_dispose(GObject *object)
 {
     PlacesButton *self = PLACES_BUTTON(object);
-
-    if (self->style_set_id != 0) {
-        g_signal_handler_disconnect(self, self->style_set_id);
-        self->style_set_id = 0;
-    }
 
     if (self->screen_changed_id != 0) {
         g_signal_handler_disconnect(self, self->screen_changed_id);
@@ -354,13 +336,14 @@ places_button_resize_image(PlacesButton *self, gint new_size)
     }
 
     if (self->image == NULL) {
-            self->image = g_object_ref(gtk_image_new_from_pixbuf(icon));
-            gtk_box_pack_start(GTK_BOX(self->box), self->image, FALSE, FALSE, 0);
+        self->image = g_object_ref(gtk_image_new_from_pixbuf(icon));
+        gtk_box_pack_start(GTK_BOX(self->box), self->image, FALSE, FALSE, 0);
+    } else {
+        gtk_image_set_from_pixbuf(GTK_IMAGE(self->image), icon);
     }
-    else
-            gtk_image_set_from_pixbuf(GTK_IMAGE(self->image), icon);
 
-    gtk_misc_set_alignment (GTK_MISC (self->image), 0.5, 0.5);
+    gtk_widget_set_halign (GTK_WIDGET (self->image), GTK_ALIGN_CENTER);
+    gtk_widget_set_valign (GTK_WIDGET (self->image), GTK_ALIGN_CENTER);
     gtk_widget_show(self->image);
     g_object_unref(G_OBJECT(icon));
 }
@@ -379,18 +362,13 @@ static void
 places_button_resize_label(PlacesButton *self,
                            gboolean      show)
 {
-  gboolean vertical = FALSE;
-  gboolean deskbar = FALSE;
+    gboolean vertical = FALSE;
+    gboolean deskbar = FALSE;
 
-#ifdef HAS_PANEL_49
-  if (xfce_panel_plugin_get_mode(self->plugin) == XFCE_PANEL_PLUGIN_MODE_DESKBAR)
-    deskbar = TRUE;
-  else if (xfce_panel_plugin_get_mode(self->plugin) == XFCE_PANEL_PLUGIN_MODE_VERTICAL)
-    vertical = TRUE;
-#else
-  if (xfce_panel_plugin_get_orientation(self->plugin) == GTK_ORIENTATION_VERTICAL)
-    vertical = TRUE;
-#endif
+    if (xfce_panel_plugin_get_mode(self->plugin) == XFCE_PANEL_PLUGIN_MODE_DESKBAR)
+        deskbar = TRUE;
+    else if (xfce_panel_plugin_get_mode(self->plugin) == XFCE_PANEL_PLUGIN_MODE_VERTICAL)
+        vertical = TRUE;
 
     if (self->label_text == NULL) {
         places_button_destroy_label(self);
@@ -412,12 +390,18 @@ places_button_resize_label(PlacesButton *self,
     if (vertical)
       {
         gtk_label_set_angle (GTK_LABEL (self->label), -90);
-        gtk_misc_set_alignment (GTK_MISC (self->label), 0.5, 0.0);
+        if (self->image != NULL) {
+            gtk_widget_set_halign (GTK_WIDGET (self->image), GTK_ALIGN_CENTER);
+            gtk_widget_set_valign (GTK_WIDGET (self->image), GTK_ALIGN_START);
+        }
       }
     else
       {
         gtk_label_set_angle (GTK_LABEL (self->label), 0);
-        gtk_misc_set_alignment (GTK_MISC (self->label), 0.0, 0.5);
+        if (self->image != NULL) {
+            gtk_widget_set_halign (GTK_WIDGET (self->image), GTK_ALIGN_START);
+            gtk_widget_set_valign (GTK_WIDGET (self->image), GTK_ALIGN_CENTER);
+        }
       }
     gtk_widget_show(self->label);
 }
@@ -428,8 +412,11 @@ places_button_resize(PlacesButton *self)
 {
     gboolean show_image, show_label;
     gint new_size, image_size;
-    gint border_thickness;
+#if LIBXFCE4PANEL_CHECK_VERSION(4, 13, 0)
+#else
     GtkStyle *style;
+    gint border_thickness;
+#endif
     gboolean vertical = FALSE;
     gboolean deskbar = FALSE;
     gint nrows = 1;
@@ -438,77 +425,71 @@ places_button_resize(PlacesButton *self)
         return;
 
     new_size = xfce_panel_plugin_get_size(self->plugin);
-    self->plugin_size = new_size;
     DBG("Panel size: %d", new_size);
 
     show_image = self->pixbuf_factory != NULL;
     show_label = self->label_text != NULL;
 
-#ifdef HAS_PANEL_49
-  if (xfce_panel_plugin_get_mode(self->plugin) == XFCE_PANEL_PLUGIN_MODE_DESKBAR)
-    deskbar = TRUE;
-  else if (xfce_panel_plugin_get_mode(self->plugin) == XFCE_PANEL_PLUGIN_MODE_VERTICAL)
-    vertical = TRUE;
-  nrows = xfce_panel_plugin_get_nrows(self->plugin);
-#else
-  if (xfce_panel_plugin_get_orientation(self->plugin) == GTK_ORIENTATION_VERTICAL)
-    vertical = TRUE;
-#endif
+    if (xfce_panel_plugin_get_mode(self->plugin) == XFCE_PANEL_PLUGIN_MODE_DESKBAR)
+        deskbar = TRUE;
+    else if (xfce_panel_plugin_get_mode(self->plugin) == XFCE_PANEL_PLUGIN_MODE_VERTICAL)
+        vertical = TRUE;
+    nrows = xfce_panel_plugin_get_nrows(self->plugin);
 
     if (show_image && deskbar && nrows == 1)
       show_label = FALSE;
 
     new_size /= nrows;
 
-#ifdef HAS_PANEL_49
     xfce_panel_plugin_set_small (self->plugin, !show_label);
-#endif
+
+    if (show_image)
+        gtk_widget_set_size_request (GTK_WIDGET (self), new_size, new_size);
+    else
+        gtk_widget_set_size_request (GTK_WIDGET (self), -1, -1);
+
     if (show_label) {
-        if (vertical)
-          gtk_alignment_set (GTK_ALIGNMENT (self->alignment), 0.5, 0.0, 0.0, 1.0);
-        else
-          gtk_alignment_set (GTK_ALIGNMENT (self->alignment), 0.0, 0.5, 1.0, 0.0);
+        if (vertical) {
+          gtk_widget_set_halign (self->alignment, GTK_ALIGN_CENTER);
+          gtk_widget_set_valign (self->alignment, GTK_ALIGN_START);
+        } else {
+          gtk_widget_set_halign (self->alignment, GTK_ALIGN_START);
+          gtk_widget_set_valign (self->alignment, GTK_ALIGN_CENTER);
+        }
     } else {
-        gtk_alignment_set (GTK_ALIGNMENT (self->alignment), 0.5, 0.5, 1.0, 1.0);
+        gtk_widget_set_halign (self->alignment, GTK_ALIGN_CENTER);
+        gtk_widget_set_valign (self->alignment, GTK_ALIGN_CENTER);
     }
 
     /* image */
-    style = gtk_widget_get_style (GTK_WIDGET (self));
-    border_thickness = 2 * MAX (style->xthickness, style->ythickness) + 2;
+#if LIBXFCE4PANEL_CHECK_VERSION(4, 13, 0)
+    image_size = xfce_panel_plugin_get_icon_size (self->plugin);
+#else
+    G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+    style = gtk_widget_get_style(GTK_WIDGET(self));
+    G_GNUC_END_IGNORE_DEPRECATIONS
+    border_thickness = 2 * MAX(style->xthickness, style->ythickness) + 2;
     image_size = new_size - border_thickness;
+#endif
     places_button_resize_image(self, image_size);
 
     /* label */
     places_button_resize_label(self, show_label);
 }
 
-#ifdef HAS_PANEL_49
 static void
 places_button_mode_changed(XfcePanelPlugin *plugin, XfcePanelPluginMode mode, PlacesButton *self)
 {
     DBG("orientation changed");
-    xfce_hvbox_set_orientation(XFCE_HVBOX(self->box),
-                               (mode == XFCE_PANEL_PLUGIN_MODE_VERTICAL) ?
-                               GTK_ORIENTATION_VERTICAL : GTK_ORIENTATION_HORIZONTAL);
+    gtk_orientable_set_orientation (GTK_ORIENTABLE (self->box),
+                                    (mode == XFCE_PANEL_PLUGIN_MODE_VERTICAL) ?
+                                    GTK_ORIENTATION_VERTICAL : GTK_ORIENTATION_HORIZONTAL);
     places_button_resize(self);
 }
-
-#else
-static void
-places_button_orientation_changed(XfcePanelPlugin *plugin, GtkOrientation orientation, PlacesButton *self)
-{
-    DBG("orientation changed");
-    xfce_hvbox_set_orientation(XFCE_HVBOX(self->box), orientation);
-    places_button_resize(self);
-}
-#endif
 
 static gboolean
 places_button_size_changed(XfcePanelPlugin *plugin, gint size, PlacesButton *self)
 {
-    if (self->plugin_size == size)
-        return TRUE;
-
     DBG("size changed");
     places_button_resize(self);
     return TRUE;
