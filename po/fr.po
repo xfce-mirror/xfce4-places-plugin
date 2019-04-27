@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Benoît Dejean <benoit@placenet.org>, 2006
-# Charles Monzat <superboa@hotmail.fr>, 2018
+# Charles Monzat <c.monzat@laposte.net>, 2018
 # Christophe Fergeau <teuf@users.sourceforge.net>, 2002
 # Damien Durand <splinux@fedoraproject.org>, 2006
 # Gérald Barré <g.barre@free.fr>, 2006
@@ -12,14 +12,14 @@
 # jc1 <jc1.quebecos@gmail.com>, 2013
 # Joaquim Fellmann <joaquim@hrnet.fr>, 2000
 # Rafaël Carré <wavael@yahoo.fr>, 2006
-# Yannick Le Guen <leguen.yannick@gmail.com>, 2014-2015
+# Yannick Le Guen <leguen.yannick@gmail.com>, 2014-2015,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2018-03-17 23:01+0000\n"
-"Last-Translator: Charles Monzat <superboa@hotmail.fr>\n"
+"POT-Creation-Date: 2019-04-22 12:32+0200\n"
+"PO-Revision-Date: 2019-04-27 09:51+0000\n"
+"Last-Translator: Yannick Le Guen <leguen.yannick@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/xfce/xfce-panel-plugins/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,8 +28,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
-#: ../panel-plugin/cfg.c:201 ../panel-plugin/cfg.c:406
+#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:100
+#: ../panel-plugin/cfg.c:195 ../panel-plugin/cfg.c:396
 msgid "Places"
 msgstr "Emplacements"
 
@@ -38,21 +38,21 @@ msgid "Access folders, documents, and removable media"
 msgstr "Accéder aux dossiers, aux documents et aux périphériques amovibles"
 
 #. Trash
-#: ../panel-plugin/model_system.c:155
+#: ../panel-plugin/model_system.c:152
 msgid "Trash"
 msgstr "Corbeille"
 
-#: ../panel-plugin/model_system.c:189
+#: ../panel-plugin/model_system.c:186
 msgid "Desktop"
 msgstr "Bureau"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:205
+#: ../panel-plugin/model_system.c:202
 msgid "File System"
 msgstr "Système de fichiers"
 
 #. TRANSLATORS: this will result in "<path> on <hostname>"
-#: ../panel-plugin/model_user.c:242
+#: ../panel-plugin/model_user.c:256
 #, c-format
 msgid "%s on %s"
 msgstr "%s sur %s"
@@ -127,80 +127,97 @@ msgstr "Éjection du périphérique"
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr "Le périphérique « %s » est en cours d’éjection. Cela peut prendre un certain temps."
 
-#: ../panel-plugin/view.c:637
+#: ../panel-plugin/view.c:656
 msgid "Search for Files"
 msgstr "Recherche de fichiers"
 
-#: ../panel-plugin/view.c:690 ../panel-plugin/cfg.c:555
+#: ../panel-plugin/view.c:697
+msgid "_Clear"
+msgstr "_Effacer"
+
+#. RECENT DOCUMENTS
+#: ../panel-plugin/view.c:713 ../panel-plugin/cfg.c:555
 msgid "Recent Documents"
 msgstr "Documents récents"
 
-#: ../panel-plugin/cfg.c:442
+#: ../panel-plugin/cfg.c:399
+msgid "Close"
+msgstr "Fermer"
+
+#. BUTTON
+#: ../panel-plugin/cfg.c:473
 msgid "Button"
 msgstr "Bouton"
 
-#: ../panel-plugin/cfg.c:451
+#. BUTTON: Show Icon/Label
+#: ../panel-plugin/cfg.c:478
 msgid "_Show"
 msgstr "_Afficher"
 
-#: ../panel-plugin/cfg.c:457
+#: ../panel-plugin/cfg.c:483
 msgid "Icon Only"
 msgstr "Icône seulement"
 
-#: ../panel-plugin/cfg.c:458
+#: ../panel-plugin/cfg.c:484
 msgid "Label Only"
 msgstr "Étiquette seulement"
 
-#: ../panel-plugin/cfg.c:459
+#: ../panel-plugin/cfg.c:485
 msgid "Icon and Label"
 msgstr "Icône et étiquette"
 
-#: ../panel-plugin/cfg.c:472
+#. BUTTON: Label text entry
+#: ../panel-plugin/cfg.c:494
 msgid "_Label"
 msgstr "Éti_quette"
 
-#: ../panel-plugin/cfg.c:488
+#. MENU
+#: ../panel-plugin/cfg.c:506
 msgid "Menu"
 msgstr "Menu"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:492
+#: ../panel-plugin/cfg.c:511
 msgid "Show _icons in menu"
 msgstr "Afficher les _icônes dans le menu"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:501
+#: ../panel-plugin/cfg.c:519
 msgid "Show _removable media"
 msgstr "Afficher les périphériques _amovibles"
 
-#: ../panel-plugin/cfg.c:519
+#. MENU: - Mount and Open (indented)
+#: ../panel-plugin/cfg.c:527
 msgid "Mount and _Open on click"
-msgstr "Monter et _Ouvrir lors d’un clic"
+msgstr "Monter et _ouvrir lors d’un clic"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:530
+#: ../panel-plugin/cfg.c:539
 msgid "Show GTK _bookmarks"
 msgstr "Afficher les _marque-pages GTK"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:540
+#: ../panel-plugin/cfg.c:547
 msgid "Show recent _documents"
 msgstr "Afficher les _documents récents"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:559
+#: ../panel-plugin/cfg.c:564
 msgid "Show cl_ear option"
 msgstr "Afficher l’option _effacer"
 
-#: ../panel-plugin/cfg.c:571
+#. RECENT DOCUMENTS: Number to display
+#: ../panel-plugin/cfg.c:576
 msgid "_Number to display"
 msgstr "_Nombre à afficher"
 
-#: ../panel-plugin/cfg.c:591
+#. SEARCH
+#: ../panel-plugin/cfg.c:600
 msgid "Search"
 msgstr "Rechercher"
 
-#: ../panel-plugin/cfg.c:599
+#. Search: command
+#: ../panel-plugin/cfg.c:605
 msgid "Co_mmand"
 msgstr "Co_mmande"
 
