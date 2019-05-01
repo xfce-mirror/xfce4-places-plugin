@@ -1,4 +1,199 @@
 # created with git log --pretty=format:"%ad %h %s %aN <%aE>" --no-merges --date=short
+2019-04-30 3f7222e WIP release notes Sean Davis <smd.seandavis@gmail.com>
+2019-04-27 8a0ccad I18n: Update translation fr (100%). Yannick Le Guen <leguen.yannick@gmail.com>
+2019-04-23 9119d47 I18n: Update translation sq (100%). Besnik <besnik@programeshqip.org>
+2019-04-21 75b3d28 Update README Sean Davis <smd.seandavis@gmail.com>
+2019-04-21 f0e9308 Fix initial image size, make plugin square by default Sean Davis <smd.seandavis@gmail.com>
+2019-04-21 a5daf60 Fix reloading of icon themes Sean Davis <smd.seandavis@gmail.com>
+2019-04-21 6ca4519 Fix builds with debug=full Sean Davis <smd.seandavis@gmail.com>
+2019-04-21 5616aeb Improve appearance of preferences dialog Sean Davis <smd.seandavis@gmail.com>
+2019-04-21 2493cd6 Drop GTK_CHECK_VERSION checks, current minimum is 3.22 Sean Davis <smd.seandavis@gmail.com>
+2019-04-21 f3cab04 Drop inline function definitions Sean Davis <smd.seandavis@gmail.com>
+2019-04-21 f3056ca Replace deprecated gtk_menu_popup Sean Davis <smd.seandavis@gmail.com>
+2019-04-20 34a424a Replace gtk_menu_popup Andre Miranda <andreldm@xfce.org>
+2019-04-20 bba2a39 Fix runtime errors Andre Miranda <andreldm@xfce.org>
+2019-04-20 efe07e3 Drop inline/extern from function declarations Andre Miranda <andreldm@xfce.org>
+2019-04-20 3e27f12 Bump glib version Andre Miranda <andreldm@xfce.org>
+2019-04-20 549855a Use xfce4-panel 4.13 xfce_panel_plugin_get_icon_size or ignore deprecated gtk_widget_get_style Sean Davis <smd.seandavis@gmail.com>
+2019-04-20 b46dd74 Replace deprecated GtkMisc Sean Davis <smd.seandavis@gmail.com>
+2019-04-20 26c04d3 Sync todo from xfce4-panel panel_utils_grab_available to pview_grab_available Sean Davis <smd.seandavis@gmail.com>
+2019-04-20 4e22b99 Replace deprecated GtkAlignment Sean Davis <smd.seandavis@gmail.com>
+2019-04-20 496f9cc Replace deprecated GtkStock Sean Davis <smd.seandavis@gmail.com>
+2019-04-20 2bc8996 Ignore GtkImageMenuItem deprecations Sean Davis <smd.seandavis@gmail.com>
+2019-04-20 64c7f9f Replace deprecated gtk_icon_info_free Sean Davis <smd.seandavis@gmail.com>
+2019-04-20 c41fe6b Replace deprecated gtk_show_uri Sean Davis <smd.seandavis@gmail.com>
+2019-03-07 126df13 I18n: Update translation da (100%). Anonymous <noreply@xfce.org>
+2019-01-16 e2f7973 I18n: Update translation be (100%). Zmicer Turok <zmicerturok@gmail.com>
+2019-01-02 6f09203 Replace style-set signal by style-updated and disable it Andre Miranda <andreldm@xfce.org>
+2019-01-02 c7bd8b2 Remove GTK_ICON_LOOKUP_GENERIC_FALLBACK flag Andre Miranda <andreldm@xfce.org>
+2018-12-04 817b144 I18n: Update translation sq (73%). Besnik <besnik@programeshqip.org>
+2018-10-22 6842a4f I18n: Update translation ca (100%). Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>
+2018-09-25 f164e2d I18n: Update translation eu (100%). Aitor Beriain <beriain@bitmessage.ch>
+2018-08-25 4076901 I18n: Update translation ca (100%). Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>
+2018-07-16 e8ce97a I18n: Update translation fi (100%). Anonymous <noreply@xfce.org>
+2018-07-15 e5de0a7 I18n: Update translation it (100%). Emanuele Petriglia <inbox@emanuelepetriglia.me>
+2018-07-11 2bc3977 I18n: Update translation it (100%). Emanuele Petriglia <inbox@emanuelepetriglia.me>
+2018-06-24 0f2261c I18n: Update translation be (100%). Zmicer Turok <zmicerturok@gmail.com>
+2018-03-19 0ff1f69 Handle deprecations Andre Miranda <andreldm@xfce.org>
+2018-03-19 87a047f Update panel API version Andre Miranda <andreldm@xfce.org>
+2018-03-19 e0e9936 Remove old code (panel < 4.9) Andre Miranda <andreldm@xfce.org>
+2018-03-19 69ce621 Update .gitignore Andre Miranda <andreldm@xfce.org>
+2018-03-19 ea282fe Bump dependencies Andre Miranda <andreldm@xfce.org>
+2018-03-18 1266dcf I18n: Update translation fr (100%). Charles Monzat <superboa@hotmail.fr>
+2018-03-17 24e741b I18n: Update translation fr (100%). Charles Monzat <superboa@hotmail.fr>
+2018-02-19 7bec22f I18n: Update translation fi (93%). Jiri Grönroos <jiri.gronroos@iki.fi>
+2018-01-07 6501d74 I18n: Update translation zh_CN (100%). xiaobo zhou <zhouxiaobo.500@gmail.com>
+2018-01-01 91ba544 I18n: Update translation ca (100%). Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>
+2017-11-14 1ec06fa I18n: Update translation ko (100%). 박정규(Jung-Kyu Park) <bagjunggyu@gmail.com>
+2017-11-03 1d4fd18 I18n: Update translation da (100%). Anonymous <noreply@xfce.org>
+2017-11-03 46b5fca I18n: Update translation da (100%). Anonymous <noreply@xfce.org>
+2017-11-01 04c411f I18n: Update translation da (100%). Anonymous <noreply@xfce.org>
+2017-10-01 23e6b92 I18n: Update translation da (100%). Anonymous <noreply@xfce.org>
+2017-09-30 0d3dbf7 I18n: Update translation da (100%). Anonymous <noreply@xfce.org>
+2017-09-24 7633dab I18n: Update translation ug (97%). Xfce Bot <transifex@xfce.org>
+2017-09-24 fc9b43c I18n: Update translation th (100%). Theppitak Karoonboonyanan <theppitak@gmail.com>
+2017-09-24 02130a2 I18n: Update translation ru (100%). Sergey Alyoshin <alyoshin.s@gmail.com>
+2017-09-24 62a0867 I18n: Update translation pt_BR (100%). Michael Martins <michaelfm21@gmail.com>
+2017-09-24 88b700c I18n: Update translation pl (100%). Piotr Sokół <psokol.l10n@gmail.com>
+2017-09-24 ab5ddb4 I18n: Update translation oc (100%). Cédric Valmary <cvalmary@yahoo.fr>
+2017-09-24 be74704 I18n: Update translation nl (100%). Pjotr <pjotrvertaalt@gmail.com>
+2017-09-24 78c773e I18n: Update translation it (100%). Cristian Marchi <cri.penta@gmail.com>
+2017-09-24 d049d29 I18n: Update translation hr (100%). Ivica  Kolić <ikoli@yahoo.com>
+2017-09-24 355df9a I18n: Update translation he (100%). GenghisKhan <genghiskhan@gmx.ca>
+2017-09-24 4d0c279 I18n: Update translation fr (100%). Yannick Le Guen <leguen.yannick@gmail.com>
+2017-09-24 9a97a75 I18n: Update translation en_AU (100%). Michael Findlay <translate@cobber-linux.org>
+2017-09-23 46ac0e4 I18n: Update translation lt (100%). Anonymous <noreply@xfce.org>
+2017-09-20 a78cccc I18n: Update translation zh_TW (100%). Walter Cheuk <wwycheuk@gmail.com>
+2017-09-20 e622560 I18n: Update translation zh_CN (100%). Xiaobo Zhou <zhouxiaobo.500@gmail.com>
+2017-09-20 27c5122 I18n: Update translation ur (71%). Xfce Bot <transifex@xfce.org>
+2017-09-20 49e6321 I18n: Update translation ur_PK (71%). Xfce Bot <transifex@xfce.org>
+2017-09-20 ba79178 I18n: Update translation uk (100%). Yarema aka Knedlyk <yupadmin@gmail.com>
+2017-09-20 6d0a66c I18n: Update translation ug (97%). Xfce Bot <transifex@xfce.org>
+2017-09-20 5f6e7da I18n: Update translation tr (100%). Necdet Yücel <necdetyucel@gmail.com>
+2017-09-20 e43c6e0 I18n: Update translation th (100%). Theppitak Karoonboonyanan <theppitak@gmail.com>
+2017-09-20 244895f I18n: Update translation sv (100%). Påvel Nicklasson <pavel2@frimix.se>
+2017-09-20 6abfc0e I18n: Update translation sr (100%). Саша Петровић <salepetronije@gmail.com>
+2017-09-20 ae7970c I18n: Update translation sq (71%). Xfce Bot <transifex@xfce.org>
+2017-09-20 46fee2a I18n: Update translation sl (100%). Anonymous <noreply@xfce.org>
+2017-09-20 0aeecde I18n: Update translation sk (100%). Slavko <linux@slavino.sk>
+2017-09-20 1b26adb I18n: Update translation ru (100%). Sergey Alyoshin <alyoshin.s@gmail.com>
+2017-09-20 40b9a31 I18n: Update translation ro (71%). Xfce Bot <transifex@xfce.org>
+2017-09-20 1a369fd I18n: Update translation pt (100%). Sérgio Marques <smarquespt@gmail.com>
+2017-09-20 6100d5e I18n: Update translation pt_BR (100%). Michael Martins <michaelfm21@gmail.com>
+2017-09-20 3bd6aca I18n: Update translation pl (100%). Piotr Sokół <psokol.l10n@gmail.com>
+2017-09-20 9f3f164 I18n: Update translation pa (71%). Xfce Bot <transifex@xfce.org>
+2017-09-20 8e3050f I18n: Update translation oc (100%). Cédric Valmary <cvalmary@yahoo.fr>
+2017-09-20 c384bc7 I18n: Update translation nl (100%). Pjotr <pjotrvertaalt@gmail.com>
+2017-09-20 f9c7f71 I18n: Update translation nb (100%). Harald H <haarektrans@gmail.com>
+2017-09-20 9d92621 I18n: Update translation ms (100%). abuyop <abuyop@gmail.com>
+2017-09-20 fcd110c I18n: Update translation lv (71%). Xfce Bot <transifex@xfce.org>
+2017-09-20 e4424b0 I18n: Update translation lt (100%). Anonymous <noreply@xfce.org>
+2017-09-20 ad92862 I18n: Update translation ko (100%). Seong-ho Cho <darkcircle.0426@gmail.com>
+2017-09-20 fff1f72 I18n: Update translation kk (100%). Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+2017-09-20 39716c0 I18n: Update translation ja (100%). Masato HASHIMOTO <cabezon.hashimoto@gmail.com>
+2017-09-20 f677345 I18n: Update translation it (100%). Cristian Marchi <cri.penta@gmail.com>
+2017-09-20 0886be1 I18n: Update translation is (100%). Sveinn í Felli <sv1@fellsnet.is>
+2017-09-20 b3e65ad I18n: Update translation id (100%). Ardjuna <Asyura.x@gmail.com>
+2017-09-20 05687af I18n: Update translation hu (100%). Benedek Imre <nucleo@indamail.hu>
+2017-09-20 2a85116 I18n: Update translation hr (100%). Ivica  Kolić <ikoli@yahoo.com>
+2017-09-20 6c62423 I18n: Update translation he (100%). GenghisKhan <genghiskhan@gmx.ca>
+2017-09-20 b4e7252 I18n: Update translation gl (100%). Xosé <xosecalvo@gmail.com>
+2017-09-20 efab340 I18n: Update translation fr (100%). Yannick Le Guen <leguen.yannick@gmail.com>
+2017-09-20 d962bbd I18n: Update translation fi (84%). Xfce Bot <transifex@xfce.org>
+2017-09-20 4ffb7ba I18n: Update translation eu (97%). Xfce Bot <transifex@xfce.org>
+2017-09-20 dc4ee9f I18n: Update translation es (100%). Manolo Díaz <diaz.manolo@gmail.com>
+2017-09-20 c3d7477 I18n: Update translation en_GB (84%). Xfce Bot <transifex@xfce.org>
+2017-09-20 5d49f60 I18n: Update translation en_AU (100%). Michael Findlay <translate@cobber-linux.org>
+2017-09-20 10c1183 I18n: Update translation el (100%). Anonymous <noreply@xfce.org>
+2017-09-20 76c426b I18n: Update translation de (100%). Tobias Bannert <tobannert@gmail.com>
+2017-09-20 fdb7d67 I18n: Update translation da (100%). Anonymous <noreply@xfce.org>
+2017-09-20 0bc5000 I18n: Update translation cs (100%). Michal Várady <miko.vaji@gmail.com>
+2017-09-20 8bb3943 I18n: Update translation ca (100%). Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>
+2017-09-20 a08d744 I18n: Update translation bg (100%). Anonymous <noreply@xfce.org>
+2017-09-20 9b74607 I18n: Update translation ast (100%). Ḷḷumex03 <tornes@opmbx.org>
+2017-09-20 f825ffb I18n: Update translation ar (100%). Anonymous <noreply@xfce.org>
+2017-09-20 05e6fde I18n: Update translation am (57%). samson <sambelet@yahoo.com>
+2017-09-13 9fc3f1e I18n: Update translation da (100%). Anonymous <noreply@xfce.org>
+2017-09-01 eca4f91 I18n: Update translation lt (100%). Anonymous <noreply@xfce.org>
+2017-08-29 231dc0f I18n: Update translation pt_BR (100%). Michael Martins <michaelfm21@gmail.com>
+2017-08-08 3c05b5e I18n: Update translation nl (100%). Pjotr <pjotrvertaalt@gmail.com>
+2017-07-25 48e5251 I18n: Update translation zh_TW (100%). Walter Cheuk <wwycheuk@gmail.com>
+2017-07-25 ab57ced I18n: Update translation zh_CN (100%). Xiaobo Zhou <zhouxiaobo.500@gmail.com>
+2017-07-25 b2f4209 I18n: Update translation ur (71%). Xfce Bot <transifex@xfce.org>
+2017-07-25 0fe647d I18n: Update translation ur_PK (71%). Xfce Bot <transifex@xfce.org>
+2017-07-25 5eca6f9 I18n: Update translation uk (100%). Yarema aka Knedlyk <yupadmin@gmail.com>
+2017-07-25 b3f9b37 I18n: Update translation ug (97%). Xfce Bot <transifex@xfce.org>
+2017-07-25 d0298c3 I18n: Update translation tr (100%). Necdet Yücel <necdetyucel@gmail.com>
+2017-07-25 45e9b7a I18n: Update translation th (100%). Theppitak Karoonboonyanan <theppitak@gmail.com>
+2017-07-25 071f3f8 I18n: Update translation sv (100%). Påvel Nicklasson <pavel2@frimix.se>
+2017-07-25 7593213 I18n: Update translation sr (100%). Саша Петровић <salepetronije@gmail.com>
+2017-07-25 ac6f87c I18n: Update translation sq (71%). Xfce Bot <transifex@xfce.org>
+2017-07-25 ce98049 I18n: Update translation sl (100%). Anonymous <noreply@xfce.org>
+2017-07-25 358fbfd I18n: Update translation sk (100%). Slavko <linux@slavino.sk>
+2017-07-25 f2d76fa I18n: Update translation ru (100%). Sergey Alyoshin <alyoshin.s@gmail.com>
+2017-07-25 edba253 I18n: Update translation ro (71%). Xfce Bot <transifex@xfce.org>
+2017-07-25 9b678de I18n: Update translation pt (100%). Sérgio Marques <smarquespt@gmail.com>
+2017-07-25 f79dac0 I18n: Update translation pt_BR (100%). Rafael Fontenelle <rffontenelle@gmail.com>
+2017-07-25 32ad850 I18n: Update translation pl (100%). Piotr Sokół <psokol.l10n@gmail.com>
+2017-07-25 3e768f6 I18n: Update translation pa (71%). Xfce Bot <transifex@xfce.org>
+2017-07-25 fb0fe70 I18n: Update translation oc (100%). Cédric Valmary <cvalmary@yahoo.fr>
+2017-07-25 0c53c9e I18n: Update translation nl (100%). Pjotr <pjotrvertaalt@gmail.com>
+2017-07-25 9aaceb1 I18n: Update translation nb (100%). Harald H <haarektrans@gmail.com>
+2017-07-25 3041ebd I18n: Update translation ms (100%). abuyop <abuyop@gmail.com>
+2017-07-25 67564b7 I18n: Update translation lv (71%). Xfce Bot <transifex@xfce.org>
+2017-07-25 e3d1010 I18n: Update translation lt (100%). Anonymous <noreply@xfce.org>
+2017-07-25 fe62bbd I18n: Update translation ko (100%). Seong-ho Cho <darkcircle.0426@gmail.com>
+2017-07-25 988dcd1 I18n: Update translation kk (100%). Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+2017-07-25 4c2111b I18n: Update translation ja (100%). Masato HASHIMOTO <cabezon.hashimoto@gmail.com>
+2017-07-25 b7ee15d I18n: Update translation it (100%). Cristian Marchi <cri.penta@gmail.com>
+2017-07-25 746e4b4 I18n: Update translation is (100%). Sveinn í Felli <sv1@fellsnet.is>
+2017-07-25 2fa47b9 I18n: Update translation id (100%). Ardjuna <Asyura.x@gmail.com>
+2017-07-25 437b4b6 I18n: Update translation hu (100%). Benedek Imre <nucleo@indamail.hu>
+2017-07-25 c552ad5 I18n: Update translation hr (100%). Ivica  Kolić <ikoli@yahoo.com>
+2017-07-25 a274227 I18n: Update translation he (100%). GenghisKhan <genghiskhan@gmx.ca>
+2017-07-25 6f482ca I18n: Update translation gl (100%). Xosé <xosecalvo@gmail.com>
+2017-07-25 f146c16 I18n: Update translation fr (100%). Yannick Le Guen <leguen.yannick@gmail.com>
+2017-07-25 32b4e55 I18n: Update translation fi (84%). Xfce Bot <transifex@xfce.org>
+2017-07-25 9b3af3d I18n: Update translation eu (97%). Xfce Bot <transifex@xfce.org>
+2017-07-25 bf76786 I18n: Update translation es (100%). Manolo Díaz <diaz.manolo@gmail.com>
+2017-07-25 e85dbf4 I18n: Update translation en_GB (84%). Xfce Bot <transifex@xfce.org>
+2017-07-25 2ea2933 I18n: Update translation en_AU (100%). Michael Findlay <translate@cobber-linux.org>
+2017-07-25 fe10c57 I18n: Update translation el (100%). Anonymous <noreply@xfce.org>
+2017-07-25 3388d95 I18n: Update translation de (100%). Tobias Bannert <tobannert@gmail.com>
+2017-07-25 26c6f0e I18n: Update translation da (100%). Anonymous <noreply@xfce.org>
+2017-07-25 2b14058 I18n: Update translation cs (100%). Michal Várady <miko.vaji@gmail.com>
+2017-07-25 3dee3fd I18n: Update translation ca (100%). Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>
+2017-07-25 24207e9 I18n: Update translation bg (100%). Anonymous <noreply@xfce.org>
+2017-07-25 c38ebcf I18n: Update translation ast (100%). Ḷḷumex03 <tornes@opmbx.org>
+2017-07-25 5d8f67f I18n: Update translation ar (100%). Anonymous <noreply@xfce.org>
+2017-07-25 ef6eb85 I18n: Update translation am (57%). samson <sambelet@yahoo.com>
+2017-04-13 8cb9dd3 I18n: Update translation lt (100%). Anonymous <noreply@xfce.org>
+2017-03-21 3665e94 I18n: Update translation gl (100%). Xosé <xosecalvo@gmail.com>
+2017-02-23 9ee727c I18n: Update translation lt (100%). Anonymous <noreply@xfce.org>
+2017-01-23 3c98c66 I18n: Update translation da (100%). Anonymous <noreply@xfce.org>
+2017-01-22 96af8fe I18n: Update translation da (100%). Anonymous <noreply@xfce.org>
+2017-01-16 2049b04 I18n: Update translation da (100%). Anonymous <noreply@xfce.org>
+2017-01-06 59aaacf I18n: Update translation hr (100%). Ivica  Kolić <ikoli@yahoo.com>
+2016-09-07 813316e I18n: Update translation lt (100%). Anonymous <noreply@xfce.org>
+2016-06-24 ad026d1 I18n: Update translation lt (100%). Anonymous <noreply@xfce.org>
+2016-06-20 4df0bf2 I18n: Update translation ca (100%). Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>
+2016-06-06 43b6c9e I18n: Update translation ca (100%). Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>
+2016-05-03 0aeafb9 I18n: Update translation ca (100%). Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>
+2016-04-01 eb2f40e I18n: Update translation ca (100%). Davidmp <medipas@gmail.com>
+2016-02-27 3cf0183 I18n: Update translation am (57%). samson <sambelet@yahoo.com>
+2016-02-27 da9c5ac I18n: Add new translation am (57%). samson <sambelet@yahoo.com>
+2016-02-08 93acfba I18n: Update translation he (100%). GenghisKhan <genghiskhan@gmx.ca>
+2016-02-07 807cc93 I18n: Update translation he (100%). Elishai Eliyahu <e1907@mm.st>
+2015-11-13 a856ca4 I18n: Update translation el (100%). Anonymous <noreply@xfce.org>
+2015-08-22 3cbae95 I18n: Update translation he (86%). GenghisKhan <genghiskhan@gmx.ca>
+2015-07-20 51e770c I18n: Update translation sv (100%). Påvel Nicklasson <pavelnicklasson@bahnhof.se>
+2015-07-07 94d583d Bug 11939:  xfce4-places-plugin 1.7.0 crashes with undefined symbol Andrzej <ndrwrdck@gmail.com>
+2015-06-12 58bcfdb I18n: Update translation lt (100%). Anonymous <noreply@xfce.org>
+2015-04-17 1f92930 I18n: Update translation lt (100%). Anonymous <noreply@xfce.org>
+2015-03-19 61ac5ff I18n: Update translation el (100%). Efstathios Iosifidis <iefstathios@gmail.com>
+2015-03-19 a3de053 I18n: Update translation el (88%). Efstathios Iosifidis <iefstathios@gmail.com>
+2015-03-17 b4ef9d8 I18n: Update translation lt (91%). Anonymous <noreply@xfce.org>
+2015-03-05 08f542b Prepare for a release Andrzej <ndrwrdck@gmail.com>
 2015-02-27 9431b2a I18n: Update translation es (100%). Manolo Díaz <diaz.manolo@gmail.com>
 2015-02-26 9307104 I18n: Update translation sk (100%). Slavko <linux@slavino.sk>
 2015-02-26 4a62b99 I18n: Update translation sk (93%). Slavko <linux@slavino.sk>

@@ -1,6 +1,6 @@
-(UNRELEASED)
+2019-04-30
 ================================================================================
-xfce4-places-plugin v1.7.1
+xfce4-places-plugin v1.8.0 released
 
 * Port to GTK+ 3!
 * Bumped dependencies to modern stack:
