@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2017-09-19 18:06+0000\n"
-"Last-Translator: Benedek Imre <nucleo@indamail.hu>\n"
+"POT-Creation-Date: 2019-04-22 12:32+0200\n"
+"PO-Revision-Date: 2019-04-22 10:32+0000\n"
+"Last-Translator: Nick Schermer <nick@xfce.org>\n"
 "Language-Team: Hungarian (http://www.transifex.com/xfce/xfce-panel-plugins/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,8 +21,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
-#: ../panel-plugin/cfg.c:201 ../panel-plugin/cfg.c:406
+#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:100
+#: ../panel-plugin/cfg.c:195 ../panel-plugin/cfg.c:396
 msgid "Places"
 msgstr "Helyek"
 
@@ -31,21 +31,21 @@ msgid "Access folders, documents, and removable media"
 msgstr "Mappák, dokumentumok és cserélhető adathordozók elérése"
 
 #. Trash
-#: ../panel-plugin/model_system.c:155
+#: ../panel-plugin/model_system.c:152
 msgid "Trash"
 msgstr "Kuka"
 
-#: ../panel-plugin/model_system.c:189
+#: ../panel-plugin/model_system.c:186
 msgid "Desktop"
 msgstr "Asztal"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:205
+#: ../panel-plugin/model_system.c:202
 msgid "File System"
 msgstr "Fájlrendszer"
 
 #. TRANSLATORS: this will result in "<path> on <hostname>"
-#: ../panel-plugin/model_user.c:242
+#: ../panel-plugin/model_user.c:256
 #, c-format
 msgid "%s on %s"
 msgstr "%s itt %s"
@@ -120,80 +120,97 @@ msgstr "Eszköz kiadása"
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr "A(z) „%s” eszköz kiadása folyamatban. Ez eltarthat egy ideig."
 
-#: ../panel-plugin/view.c:637
+#: ../panel-plugin/view.c:656
 msgid "Search for Files"
 msgstr "Fájlok keresése"
 
-#: ../panel-plugin/view.c:690 ../panel-plugin/cfg.c:555
+#: ../panel-plugin/view.c:697
+msgid "_Clear"
+msgstr "_Törlés"
+
+#. RECENT DOCUMENTS
+#: ../panel-plugin/view.c:713 ../panel-plugin/cfg.c:555
 msgid "Recent Documents"
 msgstr "Legutóbbi dokumentumok"
 
-#: ../panel-plugin/cfg.c:442
+#: ../panel-plugin/cfg.c:399
+msgid "Close"
+msgstr "Bezárás"
+
+#. BUTTON
+#: ../panel-plugin/cfg.c:473
 msgid "Button"
 msgstr "Gomb"
 
-#: ../panel-plugin/cfg.c:451
+#. BUTTON: Show Icon/Label
+#: ../panel-plugin/cfg.c:478
 msgid "_Show"
 msgstr "_Megjelenítés"
 
-#: ../panel-plugin/cfg.c:457
+#: ../panel-plugin/cfg.c:483
 msgid "Icon Only"
 msgstr "Csak ikon"
 
-#: ../panel-plugin/cfg.c:458
+#: ../panel-plugin/cfg.c:484
 msgid "Label Only"
 msgstr "Csak címke"
 
-#: ../panel-plugin/cfg.c:459
+#: ../panel-plugin/cfg.c:485
 msgid "Icon and Label"
 msgstr "Ikon és címke"
 
-#: ../panel-plugin/cfg.c:472
+#. BUTTON: Label text entry
+#: ../panel-plugin/cfg.c:494
 msgid "_Label"
 msgstr "_Címke"
 
-#: ../panel-plugin/cfg.c:488
+#. MENU
+#: ../panel-plugin/cfg.c:506
 msgid "Menu"
 msgstr "Menü"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:492
+#: ../panel-plugin/cfg.c:511
 msgid "Show _icons in menu"
 msgstr "_Ikonok megjelenítése a menüben"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:501
+#: ../panel-plugin/cfg.c:519
 msgid "Show _removable media"
 msgstr "Cs_erélhető adathordozók megjelenítése"
 
-#: ../panel-plugin/cfg.c:519
+#. MENU: - Mount and Open (indented)
+#: ../panel-plugin/cfg.c:527
 msgid "Mount and _Open on click"
 msgstr "Csatolás és megnyitás _kattintásra"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:530
+#: ../panel-plugin/cfg.c:539
 msgid "Show GTK _bookmarks"
 msgstr "GTK köny_vjelzők megjelenítése"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:540
+#: ../panel-plugin/cfg.c:547
 msgid "Show recent _documents"
 msgstr "Legutóbbi _dokumentumok megjelenítése"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:559
+#: ../panel-plugin/cfg.c:564
 msgid "Show cl_ear option"
 msgstr "_Törlés lehetőség megjelenítése"
 
-#: ../panel-plugin/cfg.c:571
+#. RECENT DOCUMENTS: Number to display
+#: ../panel-plugin/cfg.c:576
 msgid "_Number to display"
 msgstr "Megjelenítendő s_zám"
 
-#: ../panel-plugin/cfg.c:591
+#. SEARCH
+#: ../panel-plugin/cfg.c:600
 msgid "Search"
 msgstr "Keresés"
 
-#: ../panel-plugin/cfg.c:599
+#. Search: command
+#: ../panel-plugin/cfg.c:605
 msgid "Co_mmand"
 msgstr "_Parancs"
 
