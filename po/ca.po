@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-10 18:31+0100\n"
-"PO-Revision-Date: 2018-10-22 11:52+0000\n"
+"POT-Creation-Date: 2019-04-22 12:32+0200\n"
+"PO-Revision-Date: 2019-04-22 10:32+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-panel-plugins/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -27,8 +27,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:102
-#: ../panel-plugin/cfg.c:201 ../panel-plugin/cfg.c:406
+#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:100
+#: ../panel-plugin/cfg.c:195 ../panel-plugin/cfg.c:396
 msgid "Places"
 msgstr "Llocs"
 
@@ -37,21 +37,21 @@ msgid "Access folders, documents, and removable media"
 msgstr "Accediu a documents, carpetes i mitjans extraïbles"
 
 #. Trash
-#: ../panel-plugin/model_system.c:155
+#: ../panel-plugin/model_system.c:152
 msgid "Trash"
 msgstr "Paperera"
 
-#: ../panel-plugin/model_system.c:189
+#: ../panel-plugin/model_system.c:186
 msgid "Desktop"
 msgstr "Escriptori"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:205
+#: ../panel-plugin/model_system.c:202
 msgid "File System"
 msgstr "Sistema de fitxers"
 
 #. TRANSLATORS: this will result in "<path> on <hostname>"
-#: ../panel-plugin/model_user.c:242
+#: ../panel-plugin/model_user.c:256
 #, c-format
 msgid "%s on %s"
 msgstr "%s a %s"
@@ -126,80 +126,97 @@ msgstr "Expulsant el dispositiu"
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr "S'està expulsant el dispositiu «%s». Això pot trigar una estona"
 
-#: ../panel-plugin/view.c:637
+#: ../panel-plugin/view.c:656
 msgid "Search for Files"
 msgstr "Cerca fitxers"
 
-#: ../panel-plugin/view.c:690 ../panel-plugin/cfg.c:555
+#: ../panel-plugin/view.c:697
+msgid "_Clear"
+msgstr "_Neteja"
+
+#. RECENT DOCUMENTS
+#: ../panel-plugin/view.c:713 ../panel-plugin/cfg.c:555
 msgid "Recent Documents"
 msgstr "Documents recents"
 
-#: ../panel-plugin/cfg.c:442
+#: ../panel-plugin/cfg.c:399
+msgid "Close"
+msgstr "Tanca"
+
+#. BUTTON
+#: ../panel-plugin/cfg.c:473
 msgid "Button"
 msgstr "Botó"
 
-#: ../panel-plugin/cfg.c:451
+#. BUTTON: Show Icon/Label
+#: ../panel-plugin/cfg.c:478
 msgid "_Show"
 msgstr "_Mostra"
 
-#: ../panel-plugin/cfg.c:457
+#: ../panel-plugin/cfg.c:483
 msgid "Icon Only"
 msgstr "Només icones"
 
-#: ../panel-plugin/cfg.c:458
+#: ../panel-plugin/cfg.c:484
 msgid "Label Only"
 msgstr "Només etiquetes"
 
-#: ../panel-plugin/cfg.c:459
+#: ../panel-plugin/cfg.c:485
 msgid "Icon and Label"
 msgstr "Icones i etiquetes"
 
-#: ../panel-plugin/cfg.c:472
+#. BUTTON: Label text entry
+#: ../panel-plugin/cfg.c:494
 msgid "_Label"
 msgstr "_Etiqueta"
 
-#: ../panel-plugin/cfg.c:488
+#. MENU
+#: ../panel-plugin/cfg.c:506
 msgid "Menu"
 msgstr "Menú"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:492
+#: ../panel-plugin/cfg.c:511
 msgid "Show _icons in menu"
 msgstr "Mostra les _icones al menú"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:501
+#: ../panel-plugin/cfg.c:519
 msgid "Show _removable media"
 msgstr "Mostra els mitjans ex_traïbles"
 
-#: ../panel-plugin/cfg.c:519
+#. MENU: - Mount and Open (indented)
+#: ../panel-plugin/cfg.c:527
 msgid "Mount and _Open on click"
 msgstr "Munta i _obre en fer-hi clic"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:530
+#: ../panel-plugin/cfg.c:539
 msgid "Show GTK _bookmarks"
 msgstr "Mostra els _marcadors de GTK"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:540
+#: ../panel-plugin/cfg.c:547
 msgid "Show recent _documents"
 msgstr "Mostra els _documents recents"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:559
+#: ../panel-plugin/cfg.c:564
 msgid "Show cl_ear option"
 msgstr "Mostra l'opció de nete_ja"
 
-#: ../panel-plugin/cfg.c:571
+#. RECENT DOCUMENTS: Number to display
+#: ../panel-plugin/cfg.c:576
 msgid "_Number to display"
 msgstr "_Nombre a mostrar"
 
-#: ../panel-plugin/cfg.c:591
+#. SEARCH
+#: ../panel-plugin/cfg.c:600
 msgid "Search"
 msgstr "Cerca"
 
-#: ../panel-plugin/cfg.c:599
+#. Search: command
+#: ../panel-plugin/cfg.c:605
 msgid "Co_mmand"
 msgstr "Or_dre:"
 
