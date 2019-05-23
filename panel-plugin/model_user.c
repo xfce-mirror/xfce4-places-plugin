@@ -127,7 +127,7 @@ pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
     FILE   *fp;
     GFile  *file;
     GFileInfo *fileinfo;
-    GIcon  *icon;
+    GIcon  *icon = NULL;
  
     pbuser_destroy_bookmarks(bookmark_group);
 
