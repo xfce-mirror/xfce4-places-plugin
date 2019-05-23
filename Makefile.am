@@ -1,10 +1,8 @@
+ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
+
 SUBDIRS =								\
 	panel-plugin							\
 	po
-
-AUTOMAKE_OPTIONS =							\
-	1.8								\
-	dist-bzip2
 
 distclean-local:
 	rm -rf *.cache *~

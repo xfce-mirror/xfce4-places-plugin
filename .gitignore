@@ -14,6 +14,7 @@
 /config.sub
 /configure
 /configure.in
+/configure.ac
 /depcomp
 /install-sh
 /libtool
@@ -22,6 +23,7 @@
 /mkinstalldirs
 /stamp-h1
 /xfce4-places-plugin-*.tar.*
+/m4
 
 /autom4te.cache/
 
