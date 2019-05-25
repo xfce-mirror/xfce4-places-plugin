@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Theppitak Karoonboonyanan <thep@linux.thai.net>, 2013
+# Theppitak Karoonboonyanan <theppitak@gmail.com>, 2013,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-22 12:32+0200\n"
-"PO-Revision-Date: 2019-04-22 10:32+0000\n"
+"PO-Revision-Date: 2019-05-25 04:18+0000\n"
 "Last-Translator: Theppitak Karoonboonyanan <theppitak@gmail.com>\n"
 "Language-Team: Thai (http://www.transifex.com/xfce/xfce-panel-plugins/language/th/)\n"
 "MIME-Version: 1.0\n"
@@ -124,7 +125,7 @@ msgstr "ค้นหาแฟ้ม"
 
 #: ../panel-plugin/view.c:697
 msgid "_Clear"
-msgstr ""
+msgstr "_ล้าง"
 
 #. RECENT DOCUMENTS
 #: ../panel-plugin/view.c:713 ../panel-plugin/cfg.c:555
