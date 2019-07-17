@@ -5,7 +5,7 @@
 # Translators:
 # Ammuu5, 2018
 # Ilkka Tuohela <hile@iki.fi>, 2005
-# Jiri Grönroos <jiri.gronroos@iki.fi>, 2018
+# Jiri Grönroos <jiri.gronroos@iki.fi>, 2018-2019
 # Mikko Rauhala <mjr@iki.fi>, 1999
 # Ville Hautamäki <villeh@cs.joensuu.fi>, 1998,2000
 msgid ""
@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-22 12:32+0200\n"
-"PO-Revision-Date: 2019-04-22 10:32+0000\n"
-"Last-Translator: Ammuu5\n"
+"PO-Revision-Date: 2019-07-17 08:26+0000\n"
+"Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish (http://www.transifex.com/xfce/xfce-panel-plugins/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +30,7 @@ msgstr "Sijainnit"
 
 #: ../panel-plugin/places.desktop.in.h:2
 msgid "Access folders, documents, and removable media"
-msgstr "Kansiot, dokumentit ja irrotettavat taltiot"
+msgstr "Kansiot, asiakirjat ja irrotettavat taltiot"
 
 #. Trash
 #: ../panel-plugin/model_system.c:152
@@ -128,7 +128,7 @@ msgstr "Etsi tiedostoja"
 
 #: ../panel-plugin/view.c:697
 msgid "_Clear"
-msgstr "T_tyhjennä"
+msgstr "T_yhjennä"
 
 #. RECENT DOCUMENTS
 #: ../panel-plugin/view.c:713 ../panel-plugin/cfg.c:555
