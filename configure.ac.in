@@ -6,7 +6,7 @@ m4_define([places_version_minor], [8])
 m4_define([places_version_micro], [1])
 m4_define([places_version_nano],  []) dnl leave this empty to have no nano version
 m4_define([places_version_build], [@REVISION@])
-m4_define([places_version_tag], [])
+m4_define([places_version_tag], [git])
 m4_define([places_version], [places_version_major().places_version_minor().places_version_micro()ifelse(places_version_nano(), [], [], [.places_version_nano()])ifelse(places_version_tag(), [git], [places_version_tag()-places_version_build()], [places_version_tag()])])
 m4_define([places_default_debug], [ifelse(places_version_tag(), [git], [yes], [minimum])])
 
