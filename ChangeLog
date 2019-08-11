@@ -1,4 +1,65 @@
 # created with git log --pretty=format:"%ad %h %s %aN <%aE>" --no-merges --date=short
+2019-07-24 1c4b510 I18n: Update translation nb (100%). Kjell Cato Heskjestad <cato@heskjestad.xyz>
+2019-07-17 9de2aa5 I18n: Update translation fi (100%). Jiri Grönroos <jiri.gronroos@iki.fi>
+2019-07-14 0ebb83e I18n: Update translation kk (100%). Baurzhan Muftakhidinov <baurthefirst@gmail.com>
+2019-06-28 ff754c6 I18n: Update translation pt_BR (100%). Michael Martins <michaelfm21@gmail.com>
+2019-05-25 338bdab I18n: Update translation th (100%). Theppitak Karoonboonyanan <theppitak@gmail.com>
+2019-05-23 1a762f8 Cleanup old xfce4-popup-places code Romain Bouvier <skunnyk@alteroot.org>
+2019-05-23 ffbde34 Fix uninitialized value Romain Bouvier <skunnyk@alteroot.org>
+2019-05-23 64eadae Update the build system to be compliant with other plugins Romain Bouvier <skunnyk@alteroot.org>
+2019-05-21 1a59fcb I18n: Update translation da (100%). Anonymous <noreply@xfce.org>
+2019-05-17 284c6e4 I18n: Add new translation ie (100%). Anonymous <noreply@xfce.org>
+2019-05-10 830435f I18n: Update translation is (100%). Sveinn í Felli <sv1@fellsnet.is>
+2019-05-02 f83b5af I18n: Update translation zh_TW (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 dbd7ead I18n: Update translation zh_CN (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 0185a57 I18n: Update translation ur (72%). Nick Schermer <nick@xfce.org>
+2019-05-02 aaec553 I18n: Update translation ur_PK (72%). Nick Schermer <nick@xfce.org>
+2019-05-02 366cfc4 I18n: Update translation uk (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 c9cb632 I18n: Update translation ug (97%). Nick Schermer <nick@xfce.org>
+2019-05-02 c51be06 I18n: Update translation tr (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 f5de4de I18n: Update translation th (97%). Theppitak Karoonboonyanan <theppitak@gmail.com>
+2019-05-02 fed6caa I18n: Update translation sv (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 c975c67 I18n: Update translation sr (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 70fc1ff I18n: Update translation sl (95%). Xfce Bot <transifex@xfce.org>
+2019-05-02 d43284f I18n: Update translation sk (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 6dbe96a I18n: Update translation ru (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 36a8af9 I18n: Update translation ro (68%). Xfce Bot <transifex@xfce.org>
+2019-05-02 584da0d I18n: Update translation pt (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 e00409a I18n: Update translation pt_BR (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 d3ece97 I18n: Update translation pl (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 29658d2 I18n: Update translation pa (68%). Xfce Bot <transifex@xfce.org>
+2019-05-02 3886e7a I18n: Update translation oc (100%). Cédric Valmary <cvalmary@yahoo.fr>
+2019-05-02 ab659ac I18n: Update translation nl (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 6c3b1c6 I18n: Update translation nb (100%). Allan Nordhøy <epost@anotheragency.no>
+2019-05-02 0ab1f21 I18n: Update translation ms (100%). abuyop <abuyop@gmail.com>
+2019-05-02 832dc8e I18n: Update translation lv (72%). Nick Schermer <nick@xfce.org>
+2019-05-02 74d6b0f I18n: Update translation lt (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 eecb14a I18n: Update translation ko (100%). 박정규(Jung-Kyu Park) <bagjunggyu@gmail.com>
+2019-05-02 2b8e91d I18n: Update translation kk (95%). Xfce Bot <transifex@xfce.org>
+2019-05-02 519d712 I18n: Update translation ja (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 fd2b9e4 I18n: Update translation it (100%). Emanuele Petriglia <transifex@emanuelepetriglia.com>
+2019-05-02 2b7a918 I18n: Update translation is (100%). Sveinn í Felli <sv1@fellsnet.is>
+2019-05-02 2c9d40d I18n: Update translation id (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 e0a5f6d I18n: Update translation hu (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 6b93f7e I18n: Update translation hr (100%). Ivica  Kolić <ikoli@yahoo.com>
+2019-05-02 06bafd2 I18n: Update translation he (100%). GenghisKhan <genghiskhan@gmx.ca>
+2019-05-02 379723b I18n: Update translation fi (100%). Anonymous <noreply@xfce.org>
+2019-05-02 03a98ea I18n: Update translation eu (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 e6b7048 I18n: Update translation es (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 1a6738d I18n: Update translation en_GB (85%). Nick Schermer <nick@xfce.org>
+2019-05-02 b271970 I18n: Update translation en_AU (100%). Michael Findlay <translate@cobber-linux.org>
+2019-05-02 b7e4349 I18n: Update translation el (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 1724153 I18n: Update translation de (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 a8f8dd4 I18n: Update translation da (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 84f2baf I18n: Update translation cs (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 545fd51 I18n: Update translation ca (100%). Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>
+2019-05-02 f798d26 I18n: Update translation bg (100%). Georgi Georgiev <georgiev_1994@abv.bg>
+2019-05-02 ee429ed I18n: Update translation be (100%). Zmicer Turok <zmicerturok@gmail.com>
+2019-05-02 d768533 I18n: Update translation ast (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 96b6416 I18n: Update translation ar (100%). Nick Schermer <nick@xfce.org>
+2019-05-02 c2d9da9 I18n: Update translation am (57%). samson <sambelet@yahoo.com>
+2019-05-02 067a133 I18n: Update translation gl (100%). Daniel Muñiz Fontoira <dani@damufo.com>
+2019-04-30 b51334d Prepare for a release Sean Davis <smd.seandavis@gmail.com>
 2019-04-30 3f7222e WIP release notes Sean Davis <smd.seandavis@gmail.com>
 2019-04-27 8a0ccad I18n: Update translation fr (100%). Yannick Le Guen <leguen.yannick@gmail.com>
 2019-04-23 9119d47 I18n: Update translation sq (100%). Besnik <besnik@programeshqip.org>

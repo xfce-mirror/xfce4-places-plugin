@@ -1,3 +1,19 @@
+2019-08-11
+================================================================================
+xfce4-places-plugin v1.8.1 released
+
+* Cleanup old xfce4-popup-places code
+* Fix uninitialized value
+* Update the build system to be compliant with other plugins
+* Updated translations: Amharic, Arabic, Asturian, Basque, Belarusian,
+  Bulgarian, Catalan, Chinese (China), Chinese (Taiwan), Croatian, Czech,
+  Danish, Dutch, English (Australia), English (United Kingdom), Finnish,
+  Galician, German, Greek, Hebrew, Hungarian, Icelandic, Indonesian,
+  Interlingue, Italian, Japanese, Kazakh, Korean, Latvian, Lithuanian, Malay,
+  Norwegian Bokmål, Occitan (post 1500), Panjabi (Punjabi), Polish, Portuguese,
+  Portuguese (Brazil), Romanian, Russian, Serbian, Slovak, Slovenian, Spanish,
+  Swedish, Thai, Turkish, Uighur, Ukrainian, Urdu, Urdu (Pakistan)
+
 2019-04-30
 ================================================================================
 xfce4-places-plugin v1.8.0 released
@@ -100,7 +116,7 @@ xfce4-places-plugin v1.0.0 released
  * Added "Mount and Open" action for removable media (Bug #3565)
  * Fixed make distcheck errors
  * Fixed menu "blinking" when ~/.gtk-bookmarks not found
- * Fixed always showing "No items found" in recent documents 
+ * Fixed always showing "No items found" in recent documents
    with GTK 2.12 (Bug #3605)
  * Adopted menu positioning from notes plugin
    for improved behavior with floating panels
