@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-22 12:32+0200\n"
-"PO-Revision-Date: 2019-05-02 10:44+0000\n"
+"PO-Revision-Date: 2019-08-15 10:00+0000\n"
 "Last-Translator: Daniel Muñiz Fontoira <dani@damufo.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/xfce-panel-plugins/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "Lugares"
 
 #: ../panel-plugin/places.desktop.in.h:2
 msgid "Access folders, documents, and removable media"
-msgstr "Acceder a cartafoles, documentos, e soportes extraíbles"
+msgstr "Acceder a cartafoles, documentos, e soportes extraíbeis"
 
 #. Trash
 #: ../panel-plugin/model_system.c:152
@@ -174,12 +174,12 @@ msgstr "Menú"
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:511
 msgid "Show _icons in menu"
-msgstr "Mostrar _iconas nos menús"
+msgstr "Amosar _iconas nos menús"
 
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:519
 msgid "Show _removable media"
-msgstr "Mostrar os _soportes extraíbles"
+msgstr "Amosar os _soportes extraíbeis"
 
 #. MENU: - Mount and Open (indented)
 #: ../panel-plugin/cfg.c:527
@@ -189,22 +189,22 @@ msgstr "Montar e _abrir cun clic"
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:539
 msgid "Show GTK _bookmarks"
-msgstr "Mostrar os _marcadores de GTK"
+msgstr "Amosar os _marcadores de GTK"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:547
 msgid "Show recent _documents"
-msgstr "Mostrar os _documentos recentes"
+msgstr "Amosar os _documentos recentes"
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:564
 msgid "Show cl_ear option"
-msgstr "Mostrar a opción de _limpar"
+msgstr "Amosar a opción de _limpar"
 
 #. RECENT DOCUMENTS: Number to display
 #: ../panel-plugin/cfg.c:576
 msgid "_Number to display"
-msgstr "_Número que se mostra"
+msgstr "_Número que se amosa"
 
 #. SEARCH
 #: ../panel-plugin/cfg.c:600
@@ -242,7 +242,7 @@ msgstr "Menú emerxente na posición actual do rato"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
-msgstr "Mostrar as opcións de axuda"
+msgstr "Amosar as opcións de axuda"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
