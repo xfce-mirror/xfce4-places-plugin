@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Arnold Marko <arnold.marko@gmail.com>, 2019
 # Kernc, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-22 12:32+0200\n"
-"PO-Revision-Date: 2019-04-22 10:32+0000\n"
-"Last-Translator: Xfce Bot <transifex@xfce.org>\n"
+"PO-Revision-Date: 2019-11-03 18:25+0000\n"
+"Last-Translator: Arnold Marko <arnold.marko@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/xfce/xfce-panel-plugins/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +52,7 @@ msgstr "%s na %s"
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
-msgstr "Neuspešno izmetavanje \"%s\""
+msgstr "Neuspešno odstranjevanje \"%s\""
 
 #: ../panel-plugin/model_volumes.c:120
 #, c-format
@@ -105,18 +106,18 @@ msgstr "Zapisovanje podatkov na napravo"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
 " removed. Please do not remove the media or disconnect the drive"
-msgstr "Nekaj podatkov mora biti zapisanih na napravo \"%s\", preden je lahko odstranjena. Ne odstranjujte medija oz. ne izklapljajte diska."
+msgstr "Nekaj podatkov se mora še zapisati na napravo \"%s\", preden je lahko odstranjena. Ne odstranjujte medija oz. ne izklapljajte diska."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
-msgstr "Izmetavam napravo..."
+msgstr "Odstranjevanje naprave..."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr "Naprava \"%s\" je v postopku izmeta. To lahko traja nekaj časa."
+msgstr "Naprava \"%s\" bo odstranjena. To lahko traja nekaj časa."
 
 #: ../panel-plugin/view.c:656
 msgid "Search for Files"
@@ -124,7 +125,7 @@ msgstr "Iskanje datotek"
 
 #: ../panel-plugin/view.c:697
 msgid "_Clear"
-msgstr ""
+msgstr "Po_čisti"
 
 #. RECENT DOCUMENTS
 #: ../panel-plugin/view.c:713 ../panel-plugin/cfg.c:555
@@ -133,7 +134,7 @@ msgstr "Nedavni dokumenti"
 
 #: ../panel-plugin/cfg.c:399
 msgid "Close"
-msgstr ""
+msgstr "Zapri"
 
 #. BUTTON
 #: ../panel-plugin/cfg.c:473
@@ -200,7 +201,7 @@ msgstr "Pokaži možnos_t Počisti"
 #. RECENT DOCUMENTS: Number to display
 #: ../panel-plugin/cfg.c:576
 msgid "_Number to display"
-msgstr "Število pred_metov za prikaz"
+msgstr "Število prikaza_nih predmetov"
 
 #. SEARCH
 #: ../panel-plugin/cfg.c:600
