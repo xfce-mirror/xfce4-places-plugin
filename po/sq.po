@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Besnik <besnik@programeshqip.org>, 2007,2019
+# Besnik <besnik@programeshqip.org>, 2007,2019-2020
 # Besnik <besnik@programeshqip.org>, 2007
 # Besnik <besnik@programeshqip.org>, 2019
 msgid ""
@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-22 12:32+0200\n"
-"PO-Revision-Date: 2019-04-23 08:13+0000\n"
+"PO-Revision-Date: 2020-01-29 13:18+0000\n"
 "Last-Translator: Besnik <besnik@programeshqip.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/xfce/xfce-panel-plugins/language/sq/)\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "Vende"
 
 #: ../panel-plugin/places.desktop.in.h:2
 msgid "Access folders, documents, and removable media"
-msgstr "Hyni në dosje, dokumente, dhe media të lëvizshme"
+msgstr "Hyni në dosje, dokumente, dhe media të heqshme"
 
 #. Trash
 #: ../panel-plugin/model_system.c:152
@@ -42,7 +42,7 @@ msgstr "Desktop"
 #. File System (/)
 #: ../panel-plugin/model_system.c:202
 msgid "File System"
-msgstr "Sistem Kartelash "
+msgstr "Sistem Kartelash"
 
 #. TRANSLATORS: this will result in "<path> on <hostname>"
 #: ../panel-plugin/model_user.c:256
@@ -53,17 +53,17 @@ msgstr "%s në %s"
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
-msgstr "Dështoi në nxjerrjen e \"%s\""
+msgstr "S’u arrit të nxirrej \"%s\""
 
 #: ../panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
-msgstr "Dështoi në çmontimin e \"%s\""
+msgstr "S’u arrit të çmontohej \"%s\""
 
 #: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
-msgstr "Dështoi në montimin e \"%s\""
+msgstr "S’u arrit të montohej \"%s\""
 
 #: ../panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
@@ -126,12 +126,12 @@ msgstr "Kërko për Kartela"
 
 #: ../panel-plugin/view.c:697
 msgid "_Clear"
-msgstr "_Pastroje"
+msgstr "_Spastroje"
 
 #. RECENT DOCUMENTS
 #: ../panel-plugin/view.c:713 ../panel-plugin/cfg.c:555
 msgid "Recent Documents"
-msgstr "Dokumentat e Fundit"
+msgstr "Dokumente Së Fundi"
 
 #: ../panel-plugin/cfg.c:399
 msgid "Close"
@@ -177,7 +177,7 @@ msgstr "Shfaq _ikona në menu"
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:519
 msgid "Show _removable media"
-msgstr "Shfaq media të _lëvizshme"
+msgstr "Shfaq media të _heqshme"
 
 #. MENU: - Mount and Open (indented)
 #: ../panel-plugin/cfg.c:527
@@ -192,12 +192,12 @@ msgstr "Shfaq _faqerojtësa GTK"
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:547
 msgid "Show recent _documents"
-msgstr "Shfaq dokumentat më të _fundit"
+msgstr "Shfaq dokumente së fundi"
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:564
 msgid "Show cl_ear option"
-msgstr "Shfaq mundësi të _pastër"
+msgstr "Shfaq mundësi _spastrimi"
 
 #. RECENT DOCUMENTS: Number to display
 #: ../panel-plugin/cfg.c:576
