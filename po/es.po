@@ -5,7 +5,7 @@
 # Translators:
 # Abel Martín <abel.martin.ruiz@gmail.com>, 2008
 # Adolfo Jayme Barrientos, 2014
-# Fito JB, 2014
+# Adolfo Jayme-Barrientos, 2014
 # Daniel Fuertes Pérez (DaniFP) <danifp25@yahoo.es>, 2006
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003-2006
 # Francisco Javier F. Serrador <serrador@tecknolabs.com>, 2006
@@ -14,7 +14,7 @@
 # Miguel Angel Ruiz Manzano <debianized@gmail.com>, 2006
 # Pablo Gonzalo del Campo, 2003
 # Pablo Hernández-M. Saiz <homeless3d@gmail.com>, 2005
-# Pablo Lezaeta Reyes [pˈaβ̞lo lˌe̞θaˈeta rˈejɛ] <prflr88@gmail.com>, 2013
+# prflr88 <prflr88@gmail.com>, 2013
 # Yelitza Louze <ylouze@redhat.com>, 2003
 msgid ""
 msgstr ""
