@@ -8,7 +8,7 @@ distclean-local:
 	rm -rf *.cache *~
 
 EXTRA_DIST = 								\
-	README								\
+	README.md								\
 	intltool-extract.in						\
 	intltool-merge.in						\
 	intltool-update.in
