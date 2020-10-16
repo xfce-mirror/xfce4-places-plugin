@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# aboo amnghr, 2013
+# d71909cd5f422d0c37a6982faa6a5240_61973aa, 2013
 # محمد الحرقان <malham1@gmail.com>, 2012
 msgid ""
 msgstr ""
