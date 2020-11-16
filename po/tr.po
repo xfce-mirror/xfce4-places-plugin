@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Emin Tufan <etcetin@gmail.com>, 2020
 # Gökmen Görgen <gkmngrgn@gmail.com>, 2008
 # Necdet Yücel <necdetyucel@gmail.com>, 2013
 # Recep, 2013
@@ -11,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-22 12:32+0200\n"
-"PO-Revision-Date: 2019-04-22 10:32+0000\n"
-"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"PO-Revision-Date: 2020-11-16 01:36+0000\n"
+"Last-Translator: Emin Tufan <etcetin@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/xfce/xfce-panel-plugins/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +29,7 @@ msgstr "Yerler"
 
 #: ../panel-plugin/places.desktop.in.h:2
 msgid "Access folders, documents, and removable media"
-msgstr "Dizinlere, belgelere ve ayrılabilir ortamlara erişin"
+msgstr "Dizinlere, belgelere ve ayrılabilir ortamlara eriş"
 
 #. Trash
 #: ../panel-plugin/model_system.c:152
@@ -48,7 +49,7 @@ msgstr "Dosya Sistemi"
 #: ../panel-plugin/model_user.c:256
 #, c-format
 msgid "%s on %s"
-msgstr "%s üzerinde %s"
+msgstr "%s (%s üstünde)"
 
 #: ../panel-plugin/model_volumes.c:71
 #, c-format
@@ -58,7 +59,7 @@ msgstr "\"%s\" çıkartılamadı"
 #: ../panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
-msgstr "\"%s\" çözülemedi"
+msgstr "\"%s\" bağı kaldırılamadı"
 
 #: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
 #, c-format
@@ -84,7 +85,7 @@ msgstr "Bağlantıyı Kaldır"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
-msgstr "Aygıt çözülüyor"
+msgstr "Aygıt bağı kaldırılıyor"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
@@ -92,7 +93,7 @@ msgstr "Aygıt çözülüyor"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
 " media or disconnect the drive"
-msgstr "\"%s\" aygıtı sistem tarafından çözülüyor. Lütfen medyayı çıkarmayın veya aygıtın bağlantısını kesmeyin"
+msgstr "\"%s\" aygıtı sistemce bağı kaldırılıyor. Lütfen ortamı çıkarmayın veya aygıtın bağlantısını kesmeyin"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -107,7 +108,7 @@ msgstr "Aygıta veri yazılıyor"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
 " removed. Please do not remove the media or disconnect the drive"
-msgstr "\"%s\" aygıtının çıkarılabilmesi için önce ona yazılmayı bekleyen veriler var. Lütfen medyayı çıkarmayın veya aygıtın bağlantısını kesmeyin"
+msgstr "\"%s\" aygıtının kaldırılabilmesi için önce yazılmayı bekleyen veri var. Lütfen ortamı çıkarmayın veya aygıtın bağlantısını kesmeyin"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -149,11 +150,11 @@ msgstr "Gö_ster"
 
 #: ../panel-plugin/cfg.c:483
 msgid "Icon Only"
-msgstr "Sadece Simge"
+msgstr "Yalnızca Simge"
 
 #: ../panel-plugin/cfg.c:484
 msgid "Label Only"
-msgstr "Sadece Etiket"
+msgstr "Yalnızca Etiket"
 
 #: ../panel-plugin/cfg.c:485
 msgid "Icon and Label"
@@ -177,17 +178,17 @@ msgstr "Menüde s_imgeleri göster"
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:519
 msgid "Show _removable media"
-msgstr "Silinebili_r ortamları göster"
+msgstr "_Çıkarılabilir ortamları göster"
 
 #. MENU: - Mount and Open (indented)
 #: ../panel-plugin/cfg.c:527
 msgid "Mount and _Open on click"
-msgstr "Bağla ve tıklayınca _Aç"
+msgstr "Tıklayınca Bağla ve Aç"
 
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:539
 msgid "Show GTK _bookmarks"
-msgstr "GTK yeri_mlerini göster"
+msgstr "GTK yer i_mlerini göster"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:547
@@ -220,7 +221,7 @@ msgstr "Aç"
 
 #: ../panel-plugin/support.c:170
 msgid "Open Terminal Here"
-msgstr "Terminali Burada Aç"
+msgstr "Burada Uçbirim aç"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
@@ -236,7 +237,7 @@ msgstr "Seçenekler:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr "Güncel fare konumunda açılır menü aç"
+msgstr "Geçerli fare konumunda açılır menü aç"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
