@@ -60,10 +60,10 @@ struct _PlacesButtonClass
 };
 
 GType
-places_button_get_type();
+places_button_get_type(void);
 
 GtkWidget*
-places_button_new();
+places_button_new(XfcePanelPlugin *plugin);
 
 void
 places_button_set_label(PlacesButton*, const gchar *label);
