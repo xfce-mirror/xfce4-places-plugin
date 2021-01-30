@@ -447,8 +447,7 @@ pview_cb_recent_items_clear(GtkWidget *clear_item, GtkWidget *recent_menu)
 {
     GtkRecentManager *manager = gtk_recent_manager_get_default();
 
-    gint removed = gtk_recent_manager_purge_items(manager, NULL);
-    DBG("Cleared %d recent items", removed);
+    DBG("Cleared %d recent items", gtk_recent_manager_purge_items(manager, NULL));
 
     pview_cb_recent_changed(manager, recent_menu);
 
