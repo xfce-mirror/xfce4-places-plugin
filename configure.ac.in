@@ -20,7 +20,7 @@ AC_CONFIG_MACRO_DIRS([m4])
 
 dnl initialize automake
 AM_INIT_AUTOMAKE([1.11 no-dist-gzip dist-bzip2 tar-ustar foreign])
-AM_CONFIG_HEADER([config.h])
+AC_CONFIG_HEADERS([config.h])
 AM_MAINTAINER_MODE()
 AM_SILENT_RULES([yes])
 
