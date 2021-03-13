@@ -25,7 +25,7 @@
 #include "model.h"
 
 PlacesBookmarkGroup*
-places_bookmarks_volumes_create();
+places_bookmarks_volumes_create(gboolean mount_and_open_by_default);
 
 #endif
 /* vim: set ai et tabstop=4: */
