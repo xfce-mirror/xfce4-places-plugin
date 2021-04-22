@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-22 12:32+0200\n"
-"PO-Revision-Date: 2021-03-13 10:29+0000\n"
+"PO-Revision-Date: 2021-04-22 18:41+0000\n"
 "Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce-panel-plugins/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -236,7 +236,7 @@ msgstr "Abrir terminal aquí"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr "Utilización:"
+msgstr "Uso:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
@@ -252,7 +252,7 @@ msgstr "Menú emergente en la posición actual del ratón"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
-msgstr "Visualizar las opciones de ayuda"
+msgstr "Mostrar las opciones de ayuda"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
