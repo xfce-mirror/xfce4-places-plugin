@@ -216,7 +216,9 @@ pview_bookmark_action_call_wrapper(PlacesView *view, PlacesBookmarkAction *actio
 
 /* Menu callbacks */
 static gboolean /* return false to stop calling it */
-pview_cb_menu_timeout(PlacesView *pd){
+pview_cb_menu_timeout(gpointer user_data)
+{
+    PlacesView *pd = user_data;
 
     if(!pd->menu_timeout_id)
         goto killtimeout;
@@ -760,7 +762,7 @@ pview_open_menu_at (PlacesView   *pd,
     /* menu timeout to poll for model changes */
     if(pd->menu_timeout_id == 0){
         pd->menu_timeout_id = g_timeout_add_seconds_full(G_PRIORITY_LOW, 2,
-                                   (GSourceFunc) pview_cb_menu_timeout, pd,
+                                   pview_cb_menu_timeout, pd,
                                    NULL);
         PLACES_DEBUG_MENU_TIMEOUT_COUNT(1);
     }else{
