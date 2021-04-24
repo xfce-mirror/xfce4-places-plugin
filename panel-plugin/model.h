@@ -85,7 +85,7 @@ GList* places_bookmark_group_get_bookmarks(PlacesBookmarkGroup*);
 
 gboolean places_bookmark_group_changed(PlacesBookmarkGroup*);
 
-PlacesBookmarkGroup* places_bookmark_group_create();
+PlacesBookmarkGroup* places_bookmark_group_create(void);
 
 void places_bookmark_group_destroy(PlacesBookmarkGroup*);
 
