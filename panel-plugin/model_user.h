@@ -25,7 +25,7 @@
 #include "model.h"
 
 PlacesBookmarkGroup*
-places_bookmarks_user_create();
+places_bookmarks_user_create(void);
 
 #endif
 /* vim: set ai et tabstop=4: */
