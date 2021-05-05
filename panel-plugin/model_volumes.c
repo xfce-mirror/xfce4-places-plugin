@@ -332,8 +332,8 @@ pbvol_is_removable(GVolume *volume)
     /* determine the drive for the volume */
     drive = g_volume_get_drive(volume);
     if (drive) {
-        /*check if the drive media can be removed */
-        is_removable = g_drive_is_media_removable(drive);
+        /*check if the drive can be removed */
+        is_removable = g_drive_is_removable(drive);
 
         /* release the drive */
         g_object_unref(drive);
