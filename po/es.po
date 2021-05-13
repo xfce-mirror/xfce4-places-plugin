@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-22 12:32+0200\n"
-"PO-Revision-Date: 2021-05-09 02:53+0000\n"
+"PO-Revision-Date: 2021-05-13 19:08+0000\n"
 "Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce-panel-plugins/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr "Lugares"
 
 #: ../panel-plugin/places.desktop.in.h:2
 msgid "Access folders, documents, and removable media"
-msgstr "Acceder a carpetas, documentos y soportes extraíbles"
+msgstr "Acceda a carpetas, documentos y soportes extraíbles"
 
 #. Trash
 #: ../panel-plugin/model_system.c:152
@@ -96,7 +96,7 @@ msgstr "Desmontar"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
-msgstr "Desmontando dispositivo"
+msgstr "Desmontando el dispositivo"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:131
@@ -119,26 +119,26 @@ msgstr "Escribiendo datos en el dispositivo"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
 " removed. Please do not remove the media or disconnect the drive"
-msgstr "Hay datos que deben escribirse en el dispositivo «%s» antes de retirarlo. No extraiga el soporte ni desconecte la unidad"
+msgstr "Hay datos que se deben escribir en el dispositivo «%s» antes de poder retirarlo. No extraiga el soporte ni desconecte la unidad"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
-msgstr "Expulsando dispositivo"
+msgstr "Expulsando el dispositivo"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr "Se está expulsando el dispositivo «%s». Esto puede tomar algo de tiempo"
+msgstr "Se está expulsando el dispositivo «%s». Esta operación puede tomar algún tiempo"
 
 #: ../panel-plugin/view.c:656
 msgid "Search for Files"
-msgstr "Buscar por archivos"
+msgstr "Buscar archivos"
 
 #: ../panel-plugin/view.c:697
 msgid "_Clear"
-msgstr "_Limpiar"
+msgstr "_Borrar"
 
 #. RECENT DOCUMENTS
 #: ../panel-plugin/view.c:713 ../panel-plugin/cfg.c:555
@@ -161,20 +161,20 @@ msgstr "_Mostrar"
 
 #: ../panel-plugin/cfg.c:483
 msgid "Icon Only"
-msgstr "Solamente icono"
+msgstr "Solo iconos"
 
 #: ../panel-plugin/cfg.c:484
 msgid "Label Only"
-msgstr "Solamente etiqueta"
+msgstr "Solo etiquetas"
 
 #: ../panel-plugin/cfg.c:485
 msgid "Icon and Label"
-msgstr "Icono y etiqueta"
+msgstr "Iconos y etiquetas"
 
 #. BUTTON: Label text entry
 #: ../panel-plugin/cfg.c:494
 msgid "_Label"
-msgstr "E_tiqueta"
+msgstr "_Etiqueta"
 
 #. MENU
 #: ../panel-plugin/cfg.c:506
@@ -184,12 +184,12 @@ msgstr "Menú"
 #. MENU: Show Icons
 #: ../panel-plugin/cfg.c:511
 msgid "Show _icons in menu"
-msgstr "Mostrar _iconos en el menú"
+msgstr "Mostrar los _iconos en el menú"
 
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:519
 msgid "Show _removable media"
-msgstr "Mostrar soportes e_xtraíbles"
+msgstr "Mostrar los soportes e_xtraíbles"
 
 #. MENU: - Mount and Open (indented)
 #: ../panel-plugin/cfg.c:527
@@ -199,22 +199,22 @@ msgstr "Montar y _abrir al hacer clic"
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:539
 msgid "Show GTK _bookmarks"
-msgstr "Mostrar ma_rcadores GTK"
+msgstr "Mostrar los _marcadores de GTK"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:547
 msgid "Show recent _documents"
-msgstr "Mostrar _documentos recientes"
+msgstr "Mostrar los _documentos recientes"
 
 #. RECENT DOCUMENTS: Show clear option
 #: ../panel-plugin/cfg.c:564
 msgid "Show cl_ear option"
-msgstr "Mostrar opción  _limpiar"
+msgstr "Mostrar la opción de _borrar"
 
 #. RECENT DOCUMENTS: Number to display
 #: ../panel-plugin/cfg.c:576
 msgid "_Number to display"
-msgstr "_Número a mostrar"
+msgstr "_Número que se mostrarán"
 
 #. SEARCH
 #: ../panel-plugin/cfg.c:600
@@ -248,7 +248,7 @@ msgstr "Opciones:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr "Menú emergente en la posición actual del ratón"
+msgstr "Menú emergente en la posición del puntero"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
@@ -256,4 +256,4 @@ msgstr "Mostrar las opciones de ayuda"
 
 #: ../panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr "Imprime la información de la versión y sale del programa"
+msgstr "Mostrar información de la versión y salir"
