@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-22 12:32+0200\n"
-"PO-Revision-Date: 2021-05-13 19:08+0000\n"
+"PO-Revision-Date: 2021-05-15 11:25+0000\n"
 "Last-Translator: Toni Estévez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/xfce/xfce-panel-plugins/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -157,7 +157,7 @@ msgstr "Botón"
 #. BUTTON: Show Icon/Label
 #: ../panel-plugin/cfg.c:478
 msgid "_Show"
-msgstr "_Mostrar"
+msgstr "_Mostrar:"
 
 #: ../panel-plugin/cfg.c:483
 msgid "Icon Only"
@@ -169,12 +169,12 @@ msgstr "Solo etiquetas"
 
 #: ../panel-plugin/cfg.c:485
 msgid "Icon and Label"
-msgstr "Iconos y etiquetas"
+msgstr "Icono y etiqueta"
 
 #. BUTTON: Label text entry
 #: ../panel-plugin/cfg.c:494
 msgid "_Label"
-msgstr "_Etiqueta"
+msgstr "_Etiqueta:"
 
 #. MENU
 #: ../panel-plugin/cfg.c:506
@@ -189,7 +189,7 @@ msgstr "Mostrar los _iconos en el menú"
 #. MENU: Show Removable Media
 #: ../panel-plugin/cfg.c:519
 msgid "Show _removable media"
-msgstr "Mostrar los soportes e_xtraíbles"
+msgstr "Mostrar los _soportes extraíbles"
 
 #. MENU: - Mount and Open (indented)
 #: ../panel-plugin/cfg.c:527
@@ -199,7 +199,7 @@ msgstr "Montar y _abrir al hacer clic"
 #. MENU: Show GTK Bookmarks
 #: ../panel-plugin/cfg.c:539
 msgid "Show GTK _bookmarks"
-msgstr "Mostrar los _marcadores de GTK"
+msgstr "Mostrar los ma_rcadores de las carpetas"
 
 #. MENU: Show Recent Documents
 #: ../panel-plugin/cfg.c:547
@@ -214,17 +214,17 @@ msgstr "Mostrar la opción de _borrar"
 #. RECENT DOCUMENTS: Number to display
 #: ../panel-plugin/cfg.c:576
 msgid "_Number to display"
-msgstr "_Número que se mostrarán"
+msgstr "_Número que se mostrarán:"
 
 #. SEARCH
 #: ../panel-plugin/cfg.c:600
 msgid "Search"
-msgstr "Buscar"
+msgstr "Búsqueda:"
 
 #. Search: command
 #: ../panel-plugin/cfg.c:605
 msgid "Co_mmand"
-msgstr "_Orden"
+msgstr "_Orden:"
 
 #: ../panel-plugin/support.c:155
 msgid "Open"
