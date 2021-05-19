@@ -535,7 +535,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 
     /* Gray out this box when "Show removable media" is off */
     g_object_bind_property (G_OBJECT (cfg), "show-volumes",
-                     G_OBJECT (widget), "sensitive",
+                            G_OBJECT (widget), "sensitive",
                             G_BINDING_SYNC_CREATE);
 
     attach_to_grid (GTK_GRID (grid), widget, 0, row, 3, 1, margin_size * 2);
@@ -566,7 +566,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 
     /* Gray out this box when "Show recent documents" is off */
     g_object_bind_property (G_OBJECT (cfg), "show-recent",
-                     G_OBJECT (label), "sensitive",
+                            G_OBJECT (label), "sensitive",
                             G_BINDING_SYNC_CREATE);
 
     /* RECENT DOCUMENTS: Show clear option */
@@ -577,7 +577,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 
     /* Gray out this box when "Show recent documents" is off */
     g_object_bind_property (G_OBJECT (cfg), "show-recent",
-                     G_OBJECT (widget), "sensitive",
+                            G_OBJECT (widget), "sensitive",
                             G_BINDING_SYNC_CREATE);
 
     attach_to_grid (GTK_GRID (grid), widget, 0, row, 3, 1, margin_size);
@@ -588,7 +588,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 
     /* Gray out this box when "Show recent documents" is off */
     g_object_bind_property (G_OBJECT (cfg), "show-recent",
-                     G_OBJECT (label), "sensitive",
+                            G_OBJECT (label), "sensitive",
                             G_BINDING_SYNC_CREATE);
 
     attach_to_grid (GTK_GRID (grid), label, 0, row, 2, 1, margin_size);
@@ -604,7 +604,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 
     /* Gray out this box when "Show recent documents" is off */
     g_object_bind_property (G_OBJECT (cfg), "show-recent",
-                     G_OBJECT (widget), "sensitive",
+                            G_OBJECT (widget), "sensitive",
                             G_BINDING_SYNC_CREATE);
 
     attach_to_grid (GTK_GRID (grid), widget, 2, row, 1, 1, 0);
