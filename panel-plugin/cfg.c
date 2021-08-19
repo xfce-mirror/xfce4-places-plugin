@@ -484,8 +484,9 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (widget), _("Label Only"));
     gtk_combo_box_text_append_text (GTK_COMBO_BOX_TEXT (widget), _("Icon and Label"));
 
-    exo_mutual_binding_new (G_OBJECT (cfg), "show-button-type",
-                            G_OBJECT (widget), "active");
+    g_object_bind_property (G_OBJECT (cfg), "show-button-type",
+                            G_OBJECT (widget), "active",
+                            G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
     attach_to_grid (GTK_GRID (grid), widget, 1, row, 2, 1, 0);
     row++;
@@ -496,8 +497,9 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 
     widget = gtk_entry_new();
     gtk_label_set_mnemonic_widget (GTK_LABEL (label), widget);
-    exo_mutual_binding_new (G_OBJECT (cfg), "button-label",
-                            G_OBJECT (widget), "text");
+    g_object_bind_property (G_OBJECT (cfg), "button-label",
+                            G_OBJECT (widget), "text",
+                            G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
     attach_to_grid (GTK_GRID (grid), widget, 1, row, 2, 1, 0);
     row++;
@@ -509,44 +511,50 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 
     /* MENU: Show Icons */
     widget = gtk_check_button_new_with_mnemonic (_("Show _icons in menu"));
-    exo_mutual_binding_new (G_OBJECT (cfg), "show-icons",
-                            G_OBJECT (widget), "active");
+    g_object_bind_property (G_OBJECT (cfg), "show-icons",
+                            G_OBJECT (widget), "active",
+                            G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
     attach_to_grid (GTK_GRID (grid), widget, 0, row, 3, 1, margin_size);
     row++;
 
     /* MENU: Show Removable Media */
     widget = gtk_check_button_new_with_mnemonic(_("Show _removable media"));
-    exo_mutual_binding_new (G_OBJECT (cfg), "show-volumes",
-                            G_OBJECT (widget), "active");
+    g_object_bind_property (G_OBJECT (cfg), "show-volumes",
+                            G_OBJECT (widget), "active",
+                            G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
     attach_to_grid (GTK_GRID (grid), widget, 0, row, 3, 1, margin_size);
     row++;
 
     /* MENU: - Mount and Open (indented) */
     widget = gtk_check_button_new_with_mnemonic(_("Mount and _Open on click"));
-    exo_mutual_binding_new (G_OBJECT (cfg), "mount-open-volumes",
-                            G_OBJECT (widget), "active");
+    g_object_bind_property (G_OBJECT (cfg), "mount-open-volumes",
+                            G_OBJECT (widget), "active",
+                            G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
     /* Gray out this box when "Show removable media" is off */
-    exo_binding_new (G_OBJECT (cfg), "show-volumes",
-                     G_OBJECT (widget), "sensitive");
+    g_object_bind_property (G_OBJECT (cfg), "show-volumes",
+                            G_OBJECT (widget), "sensitive",
+                            G_BINDING_SYNC_CREATE);
 
     attach_to_grid (GTK_GRID (grid), widget, 0, row, 3, 1, margin_size * 2);
     row++;
 
     /* MENU: Show GTK Bookmarks */
     widget = gtk_check_button_new_with_mnemonic(_("Show GTK _bookmarks"));
-    exo_mutual_binding_new (G_OBJECT (cfg), "show-bookmarks",
-                            G_OBJECT (widget), "active");
+    g_object_bind_property (G_OBJECT (cfg), "show-bookmarks",
+                            G_OBJECT (widget), "active",
+                            G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
     attach_to_grid (GTK_GRID (grid), widget, 0, row, 3, 1, margin_size);
     row++;
 
     /* MENU: Show Recent Documents */
     widget = gtk_check_button_new_with_mnemonic(_("Show recent _documents"));
-    exo_mutual_binding_new (G_OBJECT (cfg), "show-recent",
-                            G_OBJECT (widget), "active");
+    g_object_bind_property (G_OBJECT (cfg), "show-recent",
+                            G_OBJECT (widget), "active",
+                            G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
     attach_to_grid (GTK_GRID (grid), widget, 0, row, 3, 1, margin_size);
     row++;
@@ -557,17 +565,20 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     row++;
 
     /* Gray out this box when "Show recent documents" is off */
-    exo_binding_new (G_OBJECT (cfg), "show-recent",
-                     G_OBJECT (label), "sensitive");
+    g_object_bind_property (G_OBJECT (cfg), "show-recent",
+                            G_OBJECT (label), "sensitive",
+                            G_BINDING_SYNC_CREATE);
 
     /* RECENT DOCUMENTS: Show clear option */
     widget = gtk_check_button_new_with_mnemonic(_("Show cl_ear option"));
-    exo_mutual_binding_new (G_OBJECT (cfg), "show-recent-clear",
-                            G_OBJECT (widget), "active");
+    g_object_bind_property (G_OBJECT (cfg), "show-recent-clear",
+                            G_OBJECT (widget), "active",
+                            G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
     /* Gray out this box when "Show recent documents" is off */
-    exo_binding_new (G_OBJECT (cfg), "show-recent",
-                     G_OBJECT (widget), "sensitive");
+    g_object_bind_property (G_OBJECT (cfg), "show-recent",
+                            G_OBJECT (widget), "sensitive",
+                            G_BINDING_SYNC_CREATE);
 
     attach_to_grid (GTK_GRID (grid), widget, 0, row, 3, 1, margin_size);
     row++;
@@ -576,8 +587,9 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     label = get_label (_("_Number to display"), FALSE, FALSE);
 
     /* Gray out this box when "Show recent documents" is off */
-    exo_binding_new (G_OBJECT (cfg), "show-recent",
-                     G_OBJECT (label), "sensitive");
+    g_object_bind_property (G_OBJECT (cfg), "show-recent",
+                            G_OBJECT (label), "sensitive",
+                            G_BINDING_SYNC_CREATE);
 
     attach_to_grid (GTK_GRID (grid), label, 0, row, 2, 1, margin_size);
 
@@ -586,12 +598,14 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     widget = gtk_spin_button_new (adj, 1, 0);
     gtk_label_set_mnemonic_widget (GTK_LABEL (label), widget);
 
-    exo_mutual_binding_new (G_OBJECT (cfg), "show-recent-number",
-                            G_OBJECT (adj), "value");
+    g_object_bind_property (G_OBJECT (cfg), "show-recent-number",
+                            G_OBJECT (adj), "value",
+                            G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
     /* Gray out this box when "Show recent documents" is off */
-    exo_binding_new (G_OBJECT (cfg), "show-recent",
-                     G_OBJECT (widget), "sensitive");
+    g_object_bind_property (G_OBJECT (cfg), "show-recent",
+                            G_OBJECT (widget), "sensitive",
+                            G_BINDING_SYNC_CREATE);
 
     attach_to_grid (GTK_GRID (grid), widget, 2, row, 1, 1, 0);
     row++;
@@ -607,8 +621,9 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 
     widget = gtk_entry_new();
     gtk_label_set_mnemonic_widget (GTK_LABEL (label), widget);
-    exo_mutual_binding_new (G_OBJECT (cfg), "search-cmd",
-                            G_OBJECT (widget), "text");
+    g_object_bind_property (G_OBJECT (cfg), "search-cmd",
+                            G_OBJECT (widget), "text",
+                            G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
 
     attach_to_grid (GTK_GRID (grid), widget, 1, row, 2, 1, 0);
 
