@@ -32,7 +32,6 @@
 #include <glib.h>
 #include <gio/gio.h>
 
-#include <exo/exo.h>
 #include <libxfce4util/libxfce4util.h>
 
 #define TRASH          1
@@ -100,7 +99,7 @@ pbsys_desktop_dir(void)
     desktop_dir = g_strdup(g_get_user_special_dir(G_USER_DIRECTORY_DESKTOP));
 
     /* if xdg desktop is the same as home, pretend it's not there */
-    if(exo_str_is_equal(desktop_dir, home_dir)){
+    if(g_strcmp0(desktop_dir, home_dir) == 0){
         g_free(desktop_dir);
         return NULL;
     }
@@ -228,7 +227,7 @@ pbsys_changed(PlacesBookmarkGroup *bookmark_group)
     
     /* Check if desktop now exists and didn't before */
     desktop_dir = pbsys_desktop_dir();
-    if(!exo_str_is_equal(desktop_dir, pbg_priv(bookmark_group)->desktop_dir)){
+    if(g_strcmp0(desktop_dir, pbg_priv(bookmark_group)->desktop_dir) != 0){
         g_free(desktop_dir);
         return TRUE;
     }else
