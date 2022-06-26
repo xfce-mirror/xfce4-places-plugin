@@ -51,9 +51,6 @@
 #include <libxfce4panel/libxfce4panel.h>
 #include <libxfce4ui/libxfce4ui.h>
 
-#define EXO_API_SUBJECT_TO_CHANGE
-#include <exo/exo.h>
-
 #include <string.h>
 
 #include "view.h"
@@ -612,8 +609,7 @@ pview_update_menu(PlacesView *pd)
     pd->menu = gtk_menu_new();
 
     /* make sure the menu popups up in right screen */
-    /* need exo_noop for GTK 2.6 and 2.8; starting with 2.10, NULL is OK */
-    gtk_menu_attach_to_widget(GTK_MENU(pd->menu), pd->button, (GtkMenuDetachFunc) exo_noop);
+    gtk_menu_attach_to_widget(GTK_MENU(pd->menu), pd->button, NULL);
     gtk_menu_set_screen(GTK_MENU(pd->menu),
                         gtk_widget_get_screen(pd->button));
 
