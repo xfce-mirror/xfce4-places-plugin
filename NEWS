@@ -1,3 +1,23 @@
+1.8.2 (2022-09-19)
+=====
+- Remove soon-to-be-deprecated exo-string functions
+- Remove unnecessary exo_noop() dependence
+- Fix intltool lock file problem during make distcheck
+- Use the new g_drive_is_removable over g_drive_is_media_removable
+- Replace ExoBinding with GBinding
+- Remove GSourceFunc casts
+- Fix missing-prototypes
+- Fix compilation warnings
+- autoconf: Some updates
+- Delete obsolete eo.po
+- Delete obsolete et.po Bug #15547)
+- Update URLs from goodies.x.o to docs.x.o (Bug #16172)
+- Translation Updates:
+  Albanian, Arabic, Belarusian, Bulgarian, Catalan, Chinese (China),
+  Croatian, Czech, Dutch, Eastern Armenian, Estonian, Galician, Hebrew,
+  Indonesian, Interlingue, Norwegian Bokmål, Slovenian, Spanish,
+  Turkish, Uyghur
+
 2019-08-11
 ================================================================================
 xfce4-places-plugin v1.8.1 released
