@@ -37,7 +37,7 @@
 typedef struct _PlacesButton            PlacesButton;
 typedef struct _PlacesButtonClass       PlacesButtonClass;
 
-typedef GdkPixbuf* (places_button_image_pixbuf_factory) (int size);
+typedef GdkPixbuf* (places_button_image_pixbuf_factory) (int size, int scale);
 
 struct _PlacesButton
 {

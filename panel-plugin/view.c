@@ -776,7 +776,7 @@ pview_open_menu(PlacesView *pd)
 }
 
 static GdkPixbuf*
-pview_pixbuf_factory(gint size)
+pview_pixbuf_factory(gint size, gint scale)
 {
    static const gchar *icons[] = { "system-file-manager",
                                    "xfce-filemanager",
@@ -785,9 +785,10 @@ pview_pixbuf_factory(gint size)
                                    NULL };
    int i = 0;
    GdkPixbuf *pb = NULL;
+   GtkIconTheme *theme = gtk_icon_theme_get_default();
 
    while (icons[i] && !pb) {
-      pb = xfce_panel_pixbuf_from_source(icons[i], NULL, size);
+      pb = gtk_icon_theme_load_icon_for_scale(theme, icons[i], size, scale, 0, NULL);
       i++;
    }
    return pb;
