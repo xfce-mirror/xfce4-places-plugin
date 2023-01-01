@@ -321,13 +321,16 @@ static void
 places_button_resize_image(PlacesButton *self, gint new_size)
 {
     GdkPixbuf *icon;
+    cairo_surface_t *surface;
+    gint scale_factor;
 
     if (self->pixbuf_factory == NULL) {
         places_button_destroy_image(self);
         return;
     }
 
-    icon = self->pixbuf_factory(new_size);
+    scale_factor = gtk_widget_get_scale_factor(GTK_WIDGET(self));
+    icon = self->pixbuf_factory(new_size, scale_factor);
     
     if (G_UNLIKELY(icon == NULL)) {
         DBG("Could not load icon for button");
@@ -335,16 +338,18 @@ places_button_resize_image(PlacesButton *self, gint new_size)
         return;
     }
 
+    surface = gdk_cairo_surface_create_from_pixbuf(icon, scale_factor, NULL);
     if (self->image == NULL) {
-        self->image = g_object_ref(gtk_image_new_from_pixbuf(icon));
+        self->image = g_object_ref(gtk_image_new_from_surface(surface));
         gtk_box_pack_start(GTK_BOX(self->box), self->image, FALSE, FALSE, 0);
     } else {
-        gtk_image_set_from_pixbuf(GTK_IMAGE(self->image), icon);
+        gtk_image_set_from_surface(GTK_IMAGE(self->image), surface);
     }
 
     gtk_widget_set_halign (GTK_WIDGET (self->image), GTK_ALIGN_CENTER);
     gtk_widget_set_valign (GTK_WIDGET (self->image), GTK_ALIGN_CENTER);
     gtk_widget_show(self->image);
+    cairo_surface_destroy(surface);
     g_object_unref(G_OBJECT(icon));
 }
 
