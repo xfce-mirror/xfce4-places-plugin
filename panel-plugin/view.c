@@ -466,7 +466,7 @@ pview_cb_recent_items_clear3(GtkWidget *clear_item, GdkEventButton *event, GtkWi
 /********** UI Helpers **********/
 
 static GdkPixbuf *
-pview_get_icon(GIcon *icon)
+pview_get_icon(GIcon *icon, gint scale)
 {
     GtkIconTheme *itheme = gtk_icon_theme_get_default();
     GdkPixbuf *pix = NULL;
@@ -480,9 +480,9 @@ pview_get_icon(GIcon *icon)
         size = 32;
 
     if (G_IS_THEMED_ICON(icon)) {
-        GtkIconInfo *icon_info = gtk_icon_theme_lookup_by_gicon(itheme,
-                                                                icon, size,
-                                                                GTK_ICON_LOOKUP_USE_BUILTIN | GTK_ICON_LOOKUP_FORCE_SIZE);
+        GtkIconInfo *icon_info =
+            gtk_icon_theme_lookup_by_gicon_for_scale(itheme, icon, size, scale,
+                                                     GTK_ICON_LOOKUP_USE_BUILTIN | GTK_ICON_LOOKUP_FORCE_SIZE);
         if (icon_info) {
             GdkPixbuf *pix_theme = gtk_icon_info_load_icon(icon_info, NULL);
             pix = gdk_pixbuf_copy(pix_theme);
@@ -491,7 +491,7 @@ pview_get_icon(GIcon *icon)
         }
     } else if(G_IS_LOADABLE_ICON(icon)) {
         GInputStream *stream = g_loadable_icon_load(G_LOADABLE_ICON(icon),
-                                                    size, NULL, NULL, NULL);
+                                                    size * scale, NULL, NULL, NULL);
         if (stream) {
             pix = gdk_pixbuf_new_from_stream(stream, NULL, NULL);
             g_object_unref(stream);
@@ -548,10 +548,13 @@ pview_add_menu_item(PlacesView *view, PlacesBookmark *bookmark)
 
     /* try to set icon */
     if(view->cfg->show_icons && bookmark->icon != NULL){
-        pb = pview_get_icon(bookmark->icon);
+        gint scale_factor = gtk_widget_get_scale_factor(GTK_WIDGET(view->plugin));
+        pb = pview_get_icon(bookmark->icon, scale_factor);
 
         if(G_LIKELY(pb != NULL)){
-            image = gtk_image_new_from_pixbuf(pb);
+            cairo_surface_t *surface = gdk_cairo_surface_create_from_pixbuf(pb, scale_factor, NULL);
+            image = gtk_image_new_from_surface(surface);
+            cairo_surface_destroy(surface);
             g_object_unref(pb);
             G_GNUC_BEGIN_IGNORE_DEPRECATIONS
             gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(item), image);
