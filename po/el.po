@@ -6,7 +6,7 @@
 # Efstathios Iosifidis <iefstathios@gmail.com>, 2015
 # Efstathios Iosifidis <iosifidis@opensuse.org>, 2012
 # ebal <ebalaskas@ebalaskas.gr>, 2008
-# Ioannis LM, 2015
+# Ioannis LM, 2015,2023
 # Kostas Papadimas <pkst@gnome.org>, 2002-2006
 # Nikos Charonitakis <charosn@her.forthnet.gr>, 2005
 # Nikos Charonitakis <frolix68@yahoo.gr>, 2003-2004
@@ -19,9 +19,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-22 12:32+0200\n"
-"PO-Revision-Date: 2019-04-22 10:32+0000\n"
-"Last-Translator: Nick Schermer <nick@xfce.org>\n"
+"POT-Creation-Date: 2022-11-28 15:07+0100\n"
+"PO-Revision-Date: 2013-07-03 19:11+0000\n"
+"Last-Translator: Ioannis LM, 2015,2023\n"
 "Language-Team: Greek (http://www.transifex.com/xfce/xfce-panel-plugins/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,16 +40,16 @@ msgid "Access folders, documents, and removable media"
 msgstr "Προσβάσιμοι φάκελοι, έγγραφα και αφαιρέσιμα μέσα"
 
 #. Trash
-#: ../panel-plugin/model_system.c:152
+#: ../panel-plugin/model_system.c:151
 msgid "Trash"
 msgstr "Απορρίμματα"
 
-#: ../panel-plugin/model_system.c:186
+#: ../panel-plugin/model_system.c:185
 msgid "Desktop"
-msgstr "Επιφάνεια Εργασίας"
+msgstr "Επιφάνεια εργασίας"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:202
+#: ../panel-plugin/model_system.c:201
 msgid "File System"
 msgstr "Σύστημα αρχείων"
 
@@ -101,7 +101,7 @@ msgstr "Αποπροσάρτηση συσκευής"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
 " media or disconnect the drive"
-msgstr "Η συσκευή \"%s\" έχει αποπροσαρτηθεί από το σύστημα. Παρακαλώ μην αφαιρέσετε το μέσο ή αποσυνδέσετε τον οδηγό"
+msgstr "Γίνεται αποπροσάρτηση της συσκευής \"%s\" από το σύστημα. Παρακαλώ μην αφαιρέσετε το μέσο ή αποσυνδέσετε τον δίσκο"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:138
@@ -116,7 +116,7 @@ msgstr "Εγγραφή δεδομένων στη συσκευή"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
 " removed. Please do not remove the media or disconnect the drive"
-msgstr "Υπάρχουν δεδομένα που πρέπει να εγγραφούν στη συσκευή \"%s\" πριν αυτή αφαιρεθεί. Παρακαλώ μην αφαιρέσετε το μέσο ή αποσυνδέσετε τον οδηγό"
+msgstr "Πρέπει να εγγραφούν δεδομένα στη συσκευή \"%s\" πριν την αφαίρεση της. Παρακαλώ μην αφαιρέσετε το μέσο ή αποσυνδέσετε τον δίσκο"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: ../panel-plugin/model_volumes_notify.c:253
@@ -127,7 +127,7 @@ msgstr "Εξαγωγή συσκευής"
 #: ../panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr "Εξαγωγή της συσκευής \"%s\". Αυτό μπορεί να πάρει λίγη ώρα"
+msgstr "Γίνεται εξαγωγή της συσκευής \"%s\". Αυτό μπορεί να πάρει κάποιο χρόνο"
 
 #: ../panel-plugin/view.c:656
 msgid "Search for Files"
@@ -138,7 +138,7 @@ msgid "_Clear"
 msgstr "_Εκκαθάριση"
 
 #. RECENT DOCUMENTS
-#: ../panel-plugin/view.c:713 ../panel-plugin/cfg.c:555
+#: ../panel-plugin/view.c:713 ../panel-plugin/cfg.c:563
 msgid "Recent Documents"
 msgstr "Πρόσφατα έγγραφα"
 
@@ -169,57 +169,57 @@ msgid "Icon and Label"
 msgstr "Εικονίδιο και ετικέτα"
 
 #. BUTTON: Label text entry
-#: ../panel-plugin/cfg.c:494
+#: ../panel-plugin/cfg.c:495
 msgid "_Label"
 msgstr "Ετ_ικέτα"
 
 #. MENU
-#: ../panel-plugin/cfg.c:506
+#: ../panel-plugin/cfg.c:508
 msgid "Menu"
 msgstr "Μενού"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:511
+#: ../panel-plugin/cfg.c:513
 msgid "Show _icons in menu"
 msgstr "Εμφάνιση εικ_ονιδίων στο μενού"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:519
+#: ../panel-plugin/cfg.c:522
 msgid "Show _removable media"
 msgstr "Εμφάνιση αφ_αιρέσιμων μέσων"
 
 #. MENU: - Mount and Open (indented)
-#: ../panel-plugin/cfg.c:527
+#: ../panel-plugin/cfg.c:531
 msgid "Mount and _Open on click"
-msgstr "Προσάρτηση και άν_οιγμα στο click"
+msgstr "Προσάρτηση και άνοι_γμα στο κλικ"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:539
+#: ../panel-plugin/cfg.c:545
 msgid "Show GTK _bookmarks"
 msgstr "Εμφάνιση GTK σ_ελιδοδεικτών"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:547
+#: ../panel-plugin/cfg.c:554
 msgid "Show recent _documents"
 msgstr "Εμφάνιση πρόσφατων ε_γγράφων"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:564
+#: ../panel-plugin/cfg.c:573
 msgid "Show cl_ear option"
 msgstr "Εμφάνιση επιλογής κ_αθαρισμού"
 
 #. RECENT DOCUMENTS: Number to display
-#: ../panel-plugin/cfg.c:576
+#: ../panel-plugin/cfg.c:587
 msgid "_Number to display"
 msgstr "Αρ_ιθμός για εμφάνιση"
 
 #. SEARCH
-#: ../panel-plugin/cfg.c:600
+#: ../panel-plugin/cfg.c:614
 msgid "Search"
 msgstr "Αναζήτηση"
 
 #. Search: command
-#: ../panel-plugin/cfg.c:605
+#: ../panel-plugin/cfg.c:619
 msgid "Co_mmand"
 msgstr "Εντ_ολή"
 
@@ -245,7 +245,7 @@ msgstr "Επιλογές:"
 
 #: ../panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr "Αναδυόμενο μενού σε τρέχουσα θέση του ποντικιού"
+msgstr "Αναδυόμενο μενού στη τρέχουσα θέση του ποντικιού"
 
 #: ../panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
