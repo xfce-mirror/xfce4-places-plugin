@@ -237,17 +237,27 @@ places_button_construct(PlacesButton *self, XfcePanelPlugin *plugin)
 {
     GtkOrientation orientation;
     GtkIconTheme *icon_theme;
+    GtkStyleContext *context;
+    GtkCssProvider  *provider;
 
     g_assert(XFCE_IS_PANEL_PLUGIN(plugin));
 
     g_object_ref(plugin);
     self->plugin = plugin;
 
-    /* from libxfce4panel */
+    /* from xfce_panel_create_toggle_button() (libxfce4panel) */
     gtk_widget_set_can_default (GTK_WIDGET(self), FALSE);
     gtk_widget_set_can_focus (GTK_WIDGET(self), FALSE);
     gtk_button_set_relief(GTK_BUTTON(self), GTK_RELIEF_NONE);
     gtk_widget_set_focus_on_click(GTK_WIDGET(self), FALSE);
+    gtk_widget_set_name (GTK_WIDGET (self), "xfce-panel-toggle-button");
+    context = gtk_widget_get_style_context (GTK_WIDGET (self));
+    provider = gtk_css_provider_new ();
+    gtk_css_provider_load_from_data (provider, ".xfce4-panel button { padding: 1px; }", -1, NULL);
+    gtk_style_context_add_provider (context,
+                                    GTK_STYLE_PROVIDER (provider),
+                                    GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+    g_object_unref (provider);
 
     self->alignment = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
     gtk_widget_set_halign (self->alignment, GTK_ALIGN_START);
