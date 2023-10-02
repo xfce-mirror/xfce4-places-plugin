@@ -27,6 +27,8 @@
 #include <libxfce4panel/libxfce4panel.h>
 #include "view.h"
 
+G_BEGIN_DECLS
+
 typedef struct _PlacesCfgClass PlacesCfgClass;
 typedef struct _PlacesCfg      PlacesCfg;
 
