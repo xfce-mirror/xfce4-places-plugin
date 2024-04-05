@@ -27,10 +27,6 @@
 
 /autom4te.cache/
 
-/intltool-extract.in
-/intltool-merge.in
-/intltool-update.in
-
 /panel-plugin/.deps/
 /panel-plugin/.libs/
 /panel-plugin/Makefile
@@ -44,8 +40,20 @@
 /po/Makefile.in
 /po/Makefile.in.in
 /po/POTFILES
-/po/.intltool-merge-cache*
 /po/stamp-it
 
 compile
 INSTALL
+ABOUT-NLS
+config.rpath
+po/Makevars.template
+po/Rules-quot
+po/boldquot.sed
+po/en@boldquot.header
+po/en@quot.header
+po/insert-header.sin
+po/quot.sed
+po/remove-potcdate.sed
+po/remove-potcdate.sin
+po/stamp-po
+po/xfce4-places-plugin.pot
