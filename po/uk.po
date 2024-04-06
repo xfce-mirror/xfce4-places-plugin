@@ -10,37 +10,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-22 12:32+0200\n"
-"PO-Revision-Date: 2019-04-22 10:32+0000\n"
-"Last-Translator: Nick Schermer <nick@xfce.org>\n"
-"Language-Team: Ukrainian (http://www.transifex.com/xfce/xfce-panel-plugins/language/uk/)\n"
+"POT-Creation-Date: 2024-04-06 12:55+0200\n"
+"PO-Revision-Date: 2013-07-03 19:11+0000\n"
+"Last-Translator: Yarema aka Knedlyk <yupadmin@gmail.com>, 2013\n"
+"Language-Team: Ukrainian (http://app.transifex.com/xfce/xfce-panel-plugins/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
-#. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:100
-#: ../panel-plugin/cfg.c:195 ../panel-plugin/cfg.c:396
-msgid "Places"
-msgstr "Місця"
-
-#: ../panel-plugin/places.desktop.in.h:2
-msgid "Access folders, documents, and removable media"
-msgstr "Доступ до тек, документів, та з'ємних пристроїв"
-
 #. Trash
-#: ../panel-plugin/model_system.c:152
+#: ../panel-plugin/model_system.c:151
 msgid "Trash"
 msgstr "Смітник"
 
-#: ../panel-plugin/model_system.c:186
+#: ../panel-plugin/model_system.c:185
 msgid "Desktop"
 msgstr "Робочий стіл"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:202
+#: ../panel-plugin/model_system.c:201
 msgid "File System"
 msgstr "Файлова система"
 
@@ -120,18 +110,23 @@ msgstr "Витягування пристрою"
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr "Пристрій \"%s\" виймається. Це може зайняти якийсь час"
 
-#: ../panel-plugin/view.c:656
+#: ../panel-plugin/view.c:659
 msgid "Search for Files"
 msgstr "Пошук для файлів"
 
-#: ../panel-plugin/view.c:697
+#: ../panel-plugin/view.c:700
 msgid "_Clear"
 msgstr "О_чист"
 
 #. RECENT DOCUMENTS
-#: ../panel-plugin/view.c:713 ../panel-plugin/cfg.c:555
+#: ../panel-plugin/view.c:716 ../panel-plugin/cfg.c:563
 msgid "Recent Documents"
 msgstr "Недавні документи"
+
+#: ../panel-plugin/cfg.c:100 ../panel-plugin/cfg.c:195
+#: ../panel-plugin/cfg.c:396
+msgid "Places"
+msgstr "Місця"
 
 #: ../panel-plugin/cfg.c:399
 msgid "Close"
@@ -160,57 +155,57 @@ msgid "Icon and Label"
 msgstr "Значки і мітки"
 
 #. BUTTON: Label text entry
-#: ../panel-plugin/cfg.c:494
+#: ../panel-plugin/cfg.c:495
 msgid "_Label"
 msgstr "_Мітка"
 
 #. MENU
-#: ../panel-plugin/cfg.c:506
+#: ../panel-plugin/cfg.c:508
 msgid "Menu"
 msgstr "Меню"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:511
+#: ../panel-plugin/cfg.c:513
 msgid "Show _icons in menu"
 msgstr "Відображати _значки в меню"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:519
+#: ../panel-plugin/cfg.c:522
 msgid "Show _removable media"
 msgstr "Відображати з'є_мні пристрої"
 
 #. MENU: - Mount and Open (indented)
-#: ../panel-plugin/cfg.c:527
+#: ../panel-plugin/cfg.c:531
 msgid "Mount and _Open on click"
 msgstr "Монтувати і _Відкрити по клацанню"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:539
+#: ../panel-plugin/cfg.c:545
 msgid "Show GTK _bookmarks"
 msgstr "Відображати з_акладки GTK"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:547
+#: ../panel-plugin/cfg.c:554
 msgid "Show recent _documents"
 msgstr "Відображати недавні _документи"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:564
+#: ../panel-plugin/cfg.c:573
 msgid "Show cl_ear option"
 msgstr "Відображати опцію _очищення"
 
 #. RECENT DOCUMENTS: Number to display
-#: ../panel-plugin/cfg.c:576
+#: ../panel-plugin/cfg.c:587
 msgid "_Number to display"
 msgstr "_Номер для відображення"
 
 #. SEARCH
-#: ../panel-plugin/cfg.c:600
+#: ../panel-plugin/cfg.c:614
 msgid "Search"
 msgstr "Пошук"
 
 #. Search: command
-#: ../panel-plugin/cfg.c:605
+#: ../panel-plugin/cfg.c:619
 msgid "Co_mmand"
 msgstr "Ко_манда"
 
