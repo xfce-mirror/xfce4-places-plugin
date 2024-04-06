@@ -9,37 +9,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-22 12:32+0200\n"
-"PO-Revision-Date: 2019-04-22 10:32+0000\n"
-"Last-Translator: Nick Schermer <nick@xfce.org>\n"
-"Language-Team: Latvian (http://www.transifex.com/xfce/xfce-panel-plugins/language/lv/)\n"
+"POT-Creation-Date: 2024-04-06 12:55+0200\n"
+"PO-Revision-Date: 2013-07-03 19:11+0000\n"
+"Last-Translator: Rihards Priedītis <rprieditis@gmail.com>, 2009\n"
+"Language-Team: Latvian (http://app.transifex.com/xfce/xfce-panel-plugins/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: lv\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
-#. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:100
-#: ../panel-plugin/cfg.c:195 ../panel-plugin/cfg.c:396
-msgid "Places"
-msgstr "Vietas"
-
-#: ../panel-plugin/places.desktop.in.h:2
-msgid "Access folders, documents, and removable media"
-msgstr "Piekļūst mapēm, dokumentiem un noņemamiem datu nesējiem"
-
 #. Trash
-#: ../panel-plugin/model_system.c:152
+#: ../panel-plugin/model_system.c:151
 msgid "Trash"
 msgstr "Miskaste"
 
-#: ../panel-plugin/model_system.c:186
+#: ../panel-plugin/model_system.c:185
 msgid "Desktop"
 msgstr "Darbvirsma"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:202
+#: ../panel-plugin/model_system.c:201
 msgid "File System"
 msgstr "Failu sistēma"
 
@@ -119,18 +109,23 @@ msgstr ""
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr ""
 
-#: ../panel-plugin/view.c:656
+#: ../panel-plugin/view.c:659
 msgid "Search for Files"
 msgstr "Meklēt failus"
 
-#: ../panel-plugin/view.c:697
+#: ../panel-plugin/view.c:700
 msgid "_Clear"
 msgstr "_Notīrīt"
 
 #. RECENT DOCUMENTS
-#: ../panel-plugin/view.c:713 ../panel-plugin/cfg.c:555
+#: ../panel-plugin/view.c:716 ../panel-plugin/cfg.c:563
 msgid "Recent Documents"
 msgstr "Nesenie dokumenti"
+
+#: ../panel-plugin/cfg.c:100 ../panel-plugin/cfg.c:195
+#: ../panel-plugin/cfg.c:396
+msgid "Places"
+msgstr "Vietas"
 
 #: ../panel-plugin/cfg.c:399
 msgid "Close"
@@ -159,57 +154,57 @@ msgid "Icon and Label"
 msgstr "Ikonas un etiķetes"
 
 #. BUTTON: Label text entry
-#: ../panel-plugin/cfg.c:494
+#: ../panel-plugin/cfg.c:495
 msgid "_Label"
 msgstr "_Etiķete"
 
 #. MENU
-#: ../panel-plugin/cfg.c:506
+#: ../panel-plugin/cfg.c:508
 msgid "Menu"
 msgstr "Izvēlne"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:511
+#: ../panel-plugin/cfg.c:513
 msgid "Show _icons in menu"
 msgstr "Rādīt _ikonu izvēlnē"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:519
+#: ../panel-plugin/cfg.c:522
 msgid "Show _removable media"
 msgstr "Rādīt _noņemamos datu nesējus"
 
 #. MENU: - Mount and Open (indented)
-#: ../panel-plugin/cfg.c:527
+#: ../panel-plugin/cfg.c:531
 msgid "Mount and _Open on click"
 msgstr "Montēt un _atvērt uz klikšķi"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:539
+#: ../panel-plugin/cfg.c:545
 msgid "Show GTK _bookmarks"
 msgstr "Rādīt GTK _grāmatzīmes"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:547
+#: ../panel-plugin/cfg.c:554
 msgid "Show recent _documents"
 msgstr "Rādīt nesenos _dokumentus"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:564
+#: ../panel-plugin/cfg.c:573
 msgid "Show cl_ear option"
 msgstr "Rādīt _notīrīt iespēju"
 
 #. RECENT DOCUMENTS: Number to display
-#: ../panel-plugin/cfg.c:576
+#: ../panel-plugin/cfg.c:587
 msgid "_Number to display"
 msgstr "_Attēlojamo vienumu skaits"
 
 #. SEARCH
-#: ../panel-plugin/cfg.c:600
+#: ../panel-plugin/cfg.c:614
 msgid "Search"
 msgstr "Meklēt"
 
 #. Search: command
-#: ../panel-plugin/cfg.c:605
+#: ../panel-plugin/cfg.c:619
 msgid "Co_mmand"
 msgstr "Ko_manda"
 
