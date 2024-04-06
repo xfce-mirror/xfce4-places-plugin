@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-05 10:56+0200\n"
+"POT-Creation-Date: 2024-04-06 12:55+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
 "Last-Translator: Саша Петровић <salepetronije@gmail.com>, 2013\n"
 "Language-Team: Serbian (http://app.transifex.com/xfce/xfce-panel-plugins/language/sr/)\n"
@@ -18,16 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sr\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-
-#. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:100
-#: ../panel-plugin/cfg.c:195 ../panel-plugin/cfg.c:396
-msgid "Places"
-msgstr "Места"
-
-#: ../panel-plugin/places.desktop.in.h:2
-msgid "Access folders, documents, and removable media"
-msgstr "Приступите фасциклама, документима, и уклоњивим уређајима"
 
 #. Trash
 #: ../panel-plugin/model_system.c:151
@@ -131,6 +121,11 @@ msgstr "_Очисти"
 #: ../panel-plugin/view.c:716 ../panel-plugin/cfg.c:563
 msgid "Recent Documents"
 msgstr "Скорашњи документи"
+
+#: ../panel-plugin/cfg.c:100 ../panel-plugin/cfg.c:195
+#: ../panel-plugin/cfg.c:396
+msgid "Places"
+msgstr "Места"
 
 #: ../panel-plugin/cfg.c:399
 msgid "Close"
