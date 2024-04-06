@@ -9,37 +9,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-22 12:32+0200\n"
-"PO-Revision-Date: 2019-04-22 10:32+0000\n"
-"Last-Translator: Nick Schermer <nick@xfce.org>\n"
-"Language-Team: Arabic (http://www.transifex.com/xfce/xfce-panel-plugins/language/ar/)\n"
+"POT-Creation-Date: 2024-04-06 12:55+0200\n"
+"PO-Revision-Date: 2013-07-03 19:11+0000\n"
+"Last-Translator: d71909cd5f422d0c37a6982faa6a5240_61973aa, 2013\n"
+"Language-Team: Arabic (http://app.transifex.com/xfce/xfce-panel-plugins/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:100
-#: ../panel-plugin/cfg.c:195 ../panel-plugin/cfg.c:396
-msgid "Places"
-msgstr "أماكن"
-
-#: ../panel-plugin/places.desktop.in.h:2
-msgid "Access folders, documents, and removable media"
-msgstr "ولوج إلى المجلدات ، المُستندات ، والوسائط القابله للإزاله"
-
 #. Trash
-#: ../panel-plugin/model_system.c:152
+#: ../panel-plugin/model_system.c:151
 msgid "Trash"
 msgstr "مهملات"
 
-#: ../panel-plugin/model_system.c:186
+#: ../panel-plugin/model_system.c:185
 msgid "Desktop"
 msgstr "سطح المكتب"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:202
+#: ../panel-plugin/model_system.c:201
 msgid "File System"
 msgstr "نظام الملفات"
 
@@ -119,18 +109,23 @@ msgstr "إخراج الجهاز"
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr "الجهاز \"%s\" يتم إخراجه. هذا الإجراء قد يأخد بعض الوقت"
 
-#: ../panel-plugin/view.c:656
+#: ../panel-plugin/view.c:659
 msgid "Search for Files"
 msgstr "البحث عن الملفات"
 
-#: ../panel-plugin/view.c:697
+#: ../panel-plugin/view.c:700
 msgid "_Clear"
 msgstr "م_حو"
 
 #. RECENT DOCUMENTS
-#: ../panel-plugin/view.c:713 ../panel-plugin/cfg.c:555
+#: ../panel-plugin/view.c:716 ../panel-plugin/cfg.c:563
 msgid "Recent Documents"
 msgstr "الوثائق حديثة الإستعمال"
+
+#: ../panel-plugin/cfg.c:100 ../panel-plugin/cfg.c:195
+#: ../panel-plugin/cfg.c:396
+msgid "Places"
+msgstr "أماكن"
 
 #: ../panel-plugin/cfg.c:399
 msgid "Close"
@@ -159,57 +154,57 @@ msgid "Icon and Label"
 msgstr "أيقونة و تسمية"
 
 #. BUTTON: Label text entry
-#: ../panel-plugin/cfg.c:494
+#: ../panel-plugin/cfg.c:495
 msgid "_Label"
 msgstr "_وسم"
 
 #. MENU
-#: ../panel-plugin/cfg.c:506
+#: ../panel-plugin/cfg.c:508
 msgid "Menu"
 msgstr "قائمة"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:511
+#: ../panel-plugin/cfg.c:513
 msgid "Show _icons in menu"
 msgstr "إظهار الأيقونات في القائمة"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:519
+#: ../panel-plugin/cfg.c:522
 msgid "Show _removable media"
 msgstr "إظهار الوسائط القابلة للإزالة"
 
 #. MENU: - Mount and Open (indented)
-#: ../panel-plugin/cfg.c:527
+#: ../panel-plugin/cfg.c:531
 msgid "Mount and _Open on click"
 msgstr "ضم وافتح عند النقر"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:539
+#: ../panel-plugin/cfg.c:545
 msgid "Show GTK _bookmarks"
 msgstr "عرض علامات GTK"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:547
+#: ../panel-plugin/cfg.c:554
 msgid "Show recent _documents"
 msgstr "عرض الوثائق الح_ديثة الإستعمال"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:564
+#: ../panel-plugin/cfg.c:573
 msgid "Show cl_ear option"
 msgstr "عرض خيا_رات المحو"
 
 #. RECENT DOCUMENTS: Number to display
-#: ../panel-plugin/cfg.c:576
+#: ../panel-plugin/cfg.c:587
 msgid "_Number to display"
 msgstr "_عدد لإظهاره"
 
 #. SEARCH
-#: ../panel-plugin/cfg.c:600
+#: ../panel-plugin/cfg.c:614
 msgid "Search"
 msgstr "بحث"
 
 #. Search: command
-#: ../panel-plugin/cfg.c:605
+#: ../panel-plugin/cfg.c:619
 msgid "Co_mmand"
 msgstr "أمر"
 
