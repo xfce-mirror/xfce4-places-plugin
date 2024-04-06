@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-28 15:07+0100\n"
+"POT-Creation-Date: 2024-04-06 12:55+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>, 2023\n"
 "Language-Team: English (United Kingdom) (http://app.transifex.com/xfce/xfce-panel-plugins/language/en_GB/)\n"
@@ -19,16 +19,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: en_GB\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:100
-#: ../panel-plugin/cfg.c:195 ../panel-plugin/cfg.c:396
-msgid "Places"
-msgstr "Places"
-
-#: ../panel-plugin/places.desktop.in.h:2
-msgid "Access folders, documents, and removable media"
-msgstr "Access folders, documents, and removable media"
 
 #. Trash
 #: ../panel-plugin/model_system.c:151
@@ -120,18 +110,23 @@ msgstr "Ejecting device"
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr "The device \"%s\" is being ejected. This may take some time"
 
-#: ../panel-plugin/view.c:656
+#: ../panel-plugin/view.c:659
 msgid "Search for Files"
 msgstr "Search for Files"
 
-#: ../panel-plugin/view.c:697
+#: ../panel-plugin/view.c:700
 msgid "_Clear"
 msgstr "_Clear"
 
 #. RECENT DOCUMENTS
-#: ../panel-plugin/view.c:713 ../panel-plugin/cfg.c:563
+#: ../panel-plugin/view.c:716 ../panel-plugin/cfg.c:563
 msgid "Recent Documents"
 msgstr "Recent Documents"
+
+#: ../panel-plugin/cfg.c:100 ../panel-plugin/cfg.c:195
+#: ../panel-plugin/cfg.c:396
+msgid "Places"
+msgstr "Places"
 
 #: ../panel-plugin/cfg.c:399
 msgid "Close"
