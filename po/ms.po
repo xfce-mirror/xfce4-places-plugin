@@ -8,37 +8,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-22 12:32+0200\n"
-"PO-Revision-Date: 2019-04-22 10:32+0000\n"
-"Last-Translator: abuyop <abuyop@gmail.com>\n"
-"Language-Team: Malay (http://www.transifex.com/xfce/xfce-panel-plugins/language/ms/)\n"
+"POT-Creation-Date: 2024-04-06 12:55+0200\n"
+"PO-Revision-Date: 2013-07-03 19:11+0000\n"
+"Last-Translator: abuyop <abuyop@gmail.com>, 2014\n"
+"Language-Team: Malay (http://app.transifex.com/xfce/xfce-panel-plugins/language/ms/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ms\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:100
-#: ../panel-plugin/cfg.c:195 ../panel-plugin/cfg.c:396
-msgid "Places"
-msgstr "Tempat"
-
-#: ../panel-plugin/places.desktop.in.h:2
-msgid "Access folders, documents, and removable media"
-msgstr "Capai folder, dokumen, dan media boleh tanggal"
-
 #. Trash
-#: ../panel-plugin/model_system.c:152
+#: ../panel-plugin/model_system.c:151
 msgid "Trash"
 msgstr "Tong Sampah"
 
-#: ../panel-plugin/model_system.c:186
+#: ../panel-plugin/model_system.c:185
 msgid "Desktop"
 msgstr "Desktop"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:202
+#: ../panel-plugin/model_system.c:201
 msgid "File System"
 msgstr "Sistem Fail"
 
@@ -118,18 +108,23 @@ msgstr "Melenting peranti"
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr "Peranti \"%s\" sedang dilenting. Ia mengambil sedikit masa"
 
-#: ../panel-plugin/view.c:656
+#: ../panel-plugin/view.c:659
 msgid "Search for Files"
 msgstr "Gelintar Fail"
 
-#: ../panel-plugin/view.c:697
+#: ../panel-plugin/view.c:700
 msgid "_Clear"
 msgstr "_Kosongkan"
 
 #. RECENT DOCUMENTS
-#: ../panel-plugin/view.c:713 ../panel-plugin/cfg.c:555
+#: ../panel-plugin/view.c:716 ../panel-plugin/cfg.c:563
 msgid "Recent Documents"
 msgstr "Dokumen Baru-Baru Ini"
+
+#: ../panel-plugin/cfg.c:100 ../panel-plugin/cfg.c:195
+#: ../panel-plugin/cfg.c:396
+msgid "Places"
+msgstr "Tempat"
 
 #: ../panel-plugin/cfg.c:399
 msgid "Close"
@@ -158,57 +153,57 @@ msgid "Icon and Label"
 msgstr "Ikon dan Label"
 
 #. BUTTON: Label text entry
-#: ../panel-plugin/cfg.c:494
+#: ../panel-plugin/cfg.c:495
 msgid "_Label"
 msgstr "_Label"
 
 #. MENU
-#: ../panel-plugin/cfg.c:506
+#: ../panel-plugin/cfg.c:508
 msgid "Menu"
 msgstr "Menu"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:511
+#: ../panel-plugin/cfg.c:513
 msgid "Show _icons in menu"
 msgstr "Tunjuk _ikon dalam menu"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:519
+#: ../panel-plugin/cfg.c:522
 msgid "Show _removable media"
 msgstr "Tunjuk media _boleh tanggal"
 
 #. MENU: - Mount and Open (indented)
-#: ../panel-plugin/cfg.c:527
+#: ../panel-plugin/cfg.c:531
 msgid "Mount and _Open on click"
 msgstr "Lekap dan B_uka bila klik"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:539
+#: ../panel-plugin/cfg.c:545
 msgid "Show GTK _bookmarks"
 msgstr "Tunjuk _tanda buku GTK"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:547
+#: ../panel-plugin/cfg.c:554
 msgid "Show recent _documents"
 msgstr "Tunjuk _dokumen baru-baru ini"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:564
+#: ../panel-plugin/cfg.c:573
 msgid "Show cl_ear option"
 msgstr "Tunjuk pilihan _kosongkan"
 
 #. RECENT DOCUMENTS: Number to display
-#: ../panel-plugin/cfg.c:576
+#: ../panel-plugin/cfg.c:587
 msgid "_Number to display"
 msgstr "B_ilangan hendak dipapar"
 
 #. SEARCH
-#: ../panel-plugin/cfg.c:600
+#: ../panel-plugin/cfg.c:614
 msgid "Search"
 msgstr "Gelintar"
 
 #. Search: command
-#: ../panel-plugin/cfg.c:605
+#: ../panel-plugin/cfg.c:619
 msgid "Co_mmand"
 msgstr "Pe_rintah"
 
