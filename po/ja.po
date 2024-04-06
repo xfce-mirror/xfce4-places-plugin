@@ -17,37 +17,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-22 12:32+0200\n"
-"PO-Revision-Date: 2019-04-22 10:32+0000\n"
-"Last-Translator: Nick Schermer <nick@xfce.org>\n"
-"Language-Team: Japanese (http://www.transifex.com/xfce/xfce-panel-plugins/language/ja/)\n"
+"POT-Creation-Date: 2024-04-06 12:55+0200\n"
+"PO-Revision-Date: 2013-07-03 19:11+0000\n"
+"Last-Translator: Satoru SATOH <ss@gnome.gr.jp>, 2006\n"
+"Language-Team: Japanese (http://app.transifex.com/xfce/xfce-panel-plugins/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#. vim: set ai et tabstop=4:
-#: ../panel-plugin/places.desktop.in.h:1 ../panel-plugin/cfg.c:100
-#: ../panel-plugin/cfg.c:195 ../panel-plugin/cfg.c:396
-msgid "Places"
-msgstr "場所"
-
-#: ../panel-plugin/places.desktop.in.h:2
-msgid "Access folders, documents, and removable media"
-msgstr "フォルダー、ドキュメント、およびリムーバブルメディアにアクセスします"
-
 #. Trash
-#: ../panel-plugin/model_system.c:152
+#: ../panel-plugin/model_system.c:151
 msgid "Trash"
 msgstr "ゴミ箱"
 
-#: ../panel-plugin/model_system.c:186
+#: ../panel-plugin/model_system.c:185
 msgid "Desktop"
 msgstr "デスクトップ"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:202
+#: ../panel-plugin/model_system.c:201
 msgid "File System"
 msgstr "ファイルシステム"
 
@@ -127,18 +117,23 @@ msgstr "デバイスを取り出しています"
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr "デバイス \\\"%s\\\" を取り出しています。少々お待ちください。"
 
-#: ../panel-plugin/view.c:656
+#: ../panel-plugin/view.c:659
 msgid "Search for Files"
 msgstr "ファイルの検索"
 
-#: ../panel-plugin/view.c:697
+#: ../panel-plugin/view.c:700
 msgid "_Clear"
 msgstr "クリア(_C)"
 
 #. RECENT DOCUMENTS
-#: ../panel-plugin/view.c:713 ../panel-plugin/cfg.c:555
+#: ../panel-plugin/view.c:716 ../panel-plugin/cfg.c:563
 msgid "Recent Documents"
 msgstr "最近開いたドキュメント"
+
+#: ../panel-plugin/cfg.c:100 ../panel-plugin/cfg.c:195
+#: ../panel-plugin/cfg.c:396
+msgid "Places"
+msgstr "場所"
 
 #: ../panel-plugin/cfg.c:399
 msgid "Close"
@@ -167,57 +162,57 @@ msgid "Icon and Label"
 msgstr "アイコンとラベル"
 
 #. BUTTON: Label text entry
-#: ../panel-plugin/cfg.c:494
+#: ../panel-plugin/cfg.c:495
 msgid "_Label"
 msgstr "ラベル(_L)"
 
 #. MENU
-#: ../panel-plugin/cfg.c:506
+#: ../panel-plugin/cfg.c:508
 msgid "Menu"
 msgstr "メニュー"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:511
+#: ../panel-plugin/cfg.c:513
 msgid "Show _icons in menu"
 msgstr "メニューにアイコンを表示する(_I)"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:519
+#: ../panel-plugin/cfg.c:522
 msgid "Show _removable media"
 msgstr "リムーバブルメディアを表示する(_R)"
 
 #. MENU: - Mount and Open (indented)
-#: ../panel-plugin/cfg.c:527
+#: ../panel-plugin/cfg.c:531
 msgid "Mount and _Open on click"
 msgstr "クリックでマウントして開く(_O)"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:539
+#: ../panel-plugin/cfg.c:545
 msgid "Show GTK _bookmarks"
 msgstr "GTK ブックマークを表示する(_B)"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:547
+#: ../panel-plugin/cfg.c:554
 msgid "Show recent _documents"
 msgstr "最近開いたドキュメントを表示する(_D)"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:564
+#: ../panel-plugin/cfg.c:573
 msgid "Show cl_ear option"
 msgstr "クリアオプションを表示する(_E)"
 
 #. RECENT DOCUMENTS: Number to display
-#: ../panel-plugin/cfg.c:576
+#: ../panel-plugin/cfg.c:587
 msgid "_Number to display"
 msgstr "表示する数(_N)"
 
 #. SEARCH
-#: ../panel-plugin/cfg.c:600
+#: ../panel-plugin/cfg.c:614
 msgid "Search"
 msgstr "検索"
 
 #. Search: command
-#: ../panel-plugin/cfg.c:605
+#: ../panel-plugin/cfg.c:619
 msgid "Co_mmand"
 msgstr "コマンド(_M)"
 
