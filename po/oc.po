@@ -1,14 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfce-panel-plugins.xfce4-places-plugin package.
 # 
 # Translators:
 # Cédric Valmary <cvalmary@yahoo.fr>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-06 12:55+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2024-04-07 00:54+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
 "Last-Translator: Cédric Valmary <cvalmary@yahoo.fr>, 2013\n"
 "Language-Team: Occitan (post 1500) (http://app.transifex.com/xfce/xfce-panel-plugins/language/oc/)\n"
@@ -18,64 +18,73 @@ msgstr ""
 "Language: oc\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: panel-plugin/places.desktop.in:4 panel-plugin/cfg.c:100
+#: panel-plugin/cfg.c:195 panel-plugin/cfg.c:396
+msgid "Places"
+msgstr "Luòcs"
+
+#: panel-plugin/places.desktop.in:5
+msgid "Access folders, documents, and removable media"
+msgstr "Accedir als repertòris, documents, e periferics amovibles"
+
 #. Trash
-#: ../panel-plugin/model_system.c:151
+#: panel-plugin/model_system.c:151
 msgid "Trash"
 msgstr "Escobilhièr"
 
-#: ../panel-plugin/model_system.c:185
+#: panel-plugin/model_system.c:185
 msgid "Desktop"
 msgstr "Burèu"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:201
+#: panel-plugin/model_system.c:201
 msgid "File System"
 msgstr "Sistèma de fichièrs"
 
 #. TRANSLATORS: this will result in "<path> on <hostname>"
-#: ../panel-plugin/model_user.c:256
+#: panel-plugin/model_user.c:256
 #, c-format
 msgid "%s on %s"
 msgstr "%s sus %s"
 
-#: ../panel-plugin/model_volumes.c:71
+#: panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
 msgstr " Impossible d'ejectar « %s »"
 
-#: ../panel-plugin/model_volumes.c:120
+#: panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
 msgstr "Impossible de desmontar « %s »"
 
-#: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
+#: panel-plugin/model_volumes.c:170 panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
 msgstr "Impossible de montar « %s »"
 
-#: ../panel-plugin/model_volumes.c:478
+#: panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
 msgstr "Montar e dobrir"
 
-#: ../panel-plugin/model_volumes.c:491
+#: panel-plugin/model_volumes.c:491
 msgid "Mount"
 msgstr "Montar"
 
-#: ../panel-plugin/model_volumes.c:511
+#: panel-plugin/model_volumes.c:511
 msgid "Eject"
 msgstr "Ejectar"
 
-#: ../panel-plugin/model_volumes.c:521
+#: panel-plugin/model_volumes.c:521
 msgid "Unmount"
 msgstr "Desmontar"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:128
+#: panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
 msgstr "Desmontage del periferic"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:131
+#: panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
@@ -83,14 +92,14 @@ msgid ""
 msgstr "Lo periferic « %s » es demontat pel sistèma. Se vos plai, levetz pas lo mèdia o desconnectetz pas lo lector"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:138
-#: ../panel-plugin/model_volumes_notify.c:262
+#: panel-plugin/model_volumes_notify.c:138
+#: panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
 msgstr "Escritura de las donadas sul periferic"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:141
-#: ../panel-plugin/model_volumes_notify.c:265
+#: panel-plugin/model_volumes_notify.c:141
+#: panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
@@ -98,143 +107,138 @@ msgid ""
 msgstr "I a de donadas que devon èsser escrichas sul periferic « %s » abans que pòsca èsser levat. Se vos plai, levetz pas lo mèdia o desconnectetz pas lo lector"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:253
+#: panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
 msgstr "Ejeccion del periferic"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:256
+#: panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr "Lo periferic « %s » es en cors d'ejeccion. Aquò va prene un moment."
 
-#: ../panel-plugin/view.c:659
+#: panel-plugin/view.c:659
 msgid "Search for Files"
 msgstr "Recèrca de fichièrs"
 
-#: ../panel-plugin/view.c:700
+#: panel-plugin/view.c:700
 msgid "_Clear"
 msgstr "_Escafar"
 
 #. RECENT DOCUMENTS
-#: ../panel-plugin/view.c:716 ../panel-plugin/cfg.c:563
+#: panel-plugin/view.c:716 panel-plugin/cfg.c:563
 msgid "Recent Documents"
 msgstr "Documents recents"
 
-#: ../panel-plugin/cfg.c:100 ../panel-plugin/cfg.c:195
-#: ../panel-plugin/cfg.c:396
-msgid "Places"
-msgstr "Luòcs"
-
-#: ../panel-plugin/cfg.c:399
+#: panel-plugin/cfg.c:399
 msgid "Close"
 msgstr "Tampar"
 
 #. BUTTON
-#: ../panel-plugin/cfg.c:473
+#: panel-plugin/cfg.c:473
 msgid "Button"
 msgstr "Boton"
 
 #. BUTTON: Show Icon/Label
-#: ../panel-plugin/cfg.c:478
+#: panel-plugin/cfg.c:478
 msgid "_Show"
 msgstr "_Afichar"
 
-#: ../panel-plugin/cfg.c:483
+#: panel-plugin/cfg.c:483
 msgid "Icon Only"
 msgstr "Icòna solament"
 
-#: ../panel-plugin/cfg.c:484
+#: panel-plugin/cfg.c:484
 msgid "Label Only"
 msgstr "Etiqueta solament"
 
-#: ../panel-plugin/cfg.c:485
+#: panel-plugin/cfg.c:485
 msgid "Icon and Label"
 msgstr "Icòna e etiqueta"
 
 #. BUTTON: Label text entry
-#: ../panel-plugin/cfg.c:495
+#: panel-plugin/cfg.c:495
 msgid "_Label"
 msgstr "Etiqueta"
 
 #. MENU
-#: ../panel-plugin/cfg.c:508
+#: panel-plugin/cfg.c:508
 msgid "Menu"
 msgstr "Menú"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:513
+#: panel-plugin/cfg.c:513
 msgid "Show _icons in menu"
 msgstr "Afichar las _icònas dins lo menú"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:522
+#: panel-plugin/cfg.c:522
 msgid "Show _removable media"
 msgstr "Afichar los periferics _amovibles"
 
 #. MENU: - Mount and Open (indented)
-#: ../panel-plugin/cfg.c:531
+#: panel-plugin/cfg.c:531
 msgid "Mount and _Open on click"
 msgstr "Montar e _Dobrir al moment d'un clic"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:545
+#: panel-plugin/cfg.c:545
 msgid "Show GTK _bookmarks"
 msgstr "Afichar los _marcapaginas GTK"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:554
+#: panel-plugin/cfg.c:554
 msgid "Show recent _documents"
 msgstr "Afichar los _documents recents"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:573
+#: panel-plugin/cfg.c:573
 msgid "Show cl_ear option"
 msgstr "Afichar l'opcion _escafar"
 
 #. RECENT DOCUMENTS: Number to display
-#: ../panel-plugin/cfg.c:587
+#: panel-plugin/cfg.c:587
 msgid "_Number to display"
 msgstr "_Nombre d'afichar"
 
 #. SEARCH
-#: ../panel-plugin/cfg.c:614
+#: panel-plugin/cfg.c:614
 msgid "Search"
 msgstr "Cercar"
 
 #. Search: command
-#: ../panel-plugin/cfg.c:619
+#: panel-plugin/cfg.c:619
 msgid "Co_mmand"
 msgstr "Comanda"
 
-#: ../panel-plugin/support.c:155
+#: panel-plugin/support.c:155
 msgid "Open"
 msgstr "Dobrir"
 
-#: ../panel-plugin/support.c:170
+#: panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "Dobrir un terminal aicí"
 
-#: ../panel-plugin/xfce4-popup-places.sh:28
+#: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
 msgstr "Usatge :"
 
-#: ../panel-plugin/xfce4-popup-places.sh:29
+#: panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
 msgstr "OPCION"
 
-#: ../panel-plugin/xfce4-popup-places.sh:31
+#: panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
 msgstr "Opcions :"
 
-#: ../panel-plugin/xfce4-popup-places.sh:32
+#: panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
 msgstr "Menú contextual a la posicion actuala de la mirga"
 
-#: ../panel-plugin/xfce4-popup-places.sh:33
+#: panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
 msgstr "Afichar las opcions d'ajuda"
 
-#: ../panel-plugin/xfce4-popup-places.sh:34
+#: panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
 msgstr "Aficha las informacions sus la version e quitar"
