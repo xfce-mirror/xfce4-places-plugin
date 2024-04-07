@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfce-panel-plugins.xfce4-places-plugin package.
 # 
 # Translators:
 # Akira TAGOH <tagoh@gnome.gr.jp>, 2001
@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-06 12:55+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2024-04-07 00:54+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
 "Last-Translator: Satoru SATOH <ss@gnome.gr.jp>, 2006\n"
 "Language-Team: Japanese (http://app.transifex.com/xfce/xfce-panel-plugins/language/ja/)\n"
@@ -27,64 +27,73 @@ msgstr ""
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#: panel-plugin/places.desktop.in:4 panel-plugin/cfg.c:100
+#: panel-plugin/cfg.c:195 panel-plugin/cfg.c:396
+msgid "Places"
+msgstr "場所"
+
+#: panel-plugin/places.desktop.in:5
+msgid "Access folders, documents, and removable media"
+msgstr "フォルダー、ドキュメント、およびリムーバブルメディアにアクセスします"
+
 #. Trash
-#: ../panel-plugin/model_system.c:151
+#: panel-plugin/model_system.c:151
 msgid "Trash"
 msgstr "ゴミ箱"
 
-#: ../panel-plugin/model_system.c:185
+#: panel-plugin/model_system.c:185
 msgid "Desktop"
 msgstr "デスクトップ"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:201
+#: panel-plugin/model_system.c:201
 msgid "File System"
 msgstr "ファイルシステム"
 
 #. TRANSLATORS: this will result in "<path> on <hostname>"
-#: ../panel-plugin/model_user.c:256
+#: panel-plugin/model_user.c:256
 #, c-format
 msgid "%s on %s"
 msgstr "%2$s の %1$s"
 
-#: ../panel-plugin/model_volumes.c:71
+#: panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
 msgstr "\"%s\" の取り出しに失敗しました"
 
-#: ../panel-plugin/model_volumes.c:120
+#: panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
 msgstr "\"%s\" のマウント解除に失敗しました"
 
-#: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
+#: panel-plugin/model_volumes.c:170 panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
 msgstr "\"%s\" のマウントに失敗しました"
 
-#: ../panel-plugin/model_volumes.c:478
+#: panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
 msgstr "マウントして開く"
 
-#: ../panel-plugin/model_volumes.c:491
+#: panel-plugin/model_volumes.c:491
 msgid "Mount"
 msgstr "マウント"
 
-#: ../panel-plugin/model_volumes.c:511
+#: panel-plugin/model_volumes.c:511
 msgid "Eject"
 msgstr "取り出し"
 
-#: ../panel-plugin/model_volumes.c:521
+#: panel-plugin/model_volumes.c:521
 msgid "Unmount"
 msgstr "マウント解除"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:128
+#: panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
 msgstr "デバイスのマウントを解除しています"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:131
+#: panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
@@ -92,14 +101,14 @@ msgid ""
 msgstr "システムはデバイス \"%s\" のマウントを解除しています。メディアを取り出したりドライブを切り離したりしないでください。"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:138
-#: ../panel-plugin/model_volumes_notify.c:262
+#: panel-plugin/model_volumes_notify.c:138
+#: panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
 msgstr "デバイスへデータ書き込んでいます"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:141
-#: ../panel-plugin/model_volumes_notify.c:265
+#: panel-plugin/model_volumes_notify.c:141
+#: panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
@@ -107,143 +116,138 @@ msgid ""
 msgstr "デバイス \"%s\" を取り外す前に書き込まなければならないデータが存在します。メディアを取り出したりドライブを切り離したりしないでください。"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:253
+#: panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
 msgstr "デバイスを取り出しています"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:256
+#: panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr "デバイス \\\"%s\\\" を取り出しています。少々お待ちください。"
 
-#: ../panel-plugin/view.c:659
+#: panel-plugin/view.c:659
 msgid "Search for Files"
 msgstr "ファイルの検索"
 
-#: ../panel-plugin/view.c:700
+#: panel-plugin/view.c:700
 msgid "_Clear"
 msgstr "クリア(_C)"
 
 #. RECENT DOCUMENTS
-#: ../panel-plugin/view.c:716 ../panel-plugin/cfg.c:563
+#: panel-plugin/view.c:716 panel-plugin/cfg.c:563
 msgid "Recent Documents"
 msgstr "最近開いたドキュメント"
 
-#: ../panel-plugin/cfg.c:100 ../panel-plugin/cfg.c:195
-#: ../panel-plugin/cfg.c:396
-msgid "Places"
-msgstr "場所"
-
-#: ../panel-plugin/cfg.c:399
+#: panel-plugin/cfg.c:399
 msgid "Close"
 msgstr "閉じる"
 
 #. BUTTON
-#: ../panel-plugin/cfg.c:473
+#: panel-plugin/cfg.c:473
 msgid "Button"
 msgstr "ボタン"
 
 #. BUTTON: Show Icon/Label
-#: ../panel-plugin/cfg.c:478
+#: panel-plugin/cfg.c:478
 msgid "_Show"
 msgstr "表示(_S)"
 
-#: ../panel-plugin/cfg.c:483
+#: panel-plugin/cfg.c:483
 msgid "Icon Only"
 msgstr "アイコンのみ"
 
-#: ../panel-plugin/cfg.c:484
+#: panel-plugin/cfg.c:484
 msgid "Label Only"
 msgstr "ラベルのみ"
 
-#: ../panel-plugin/cfg.c:485
+#: panel-plugin/cfg.c:485
 msgid "Icon and Label"
 msgstr "アイコンとラベル"
 
 #. BUTTON: Label text entry
-#: ../panel-plugin/cfg.c:495
+#: panel-plugin/cfg.c:495
 msgid "_Label"
 msgstr "ラベル(_L)"
 
 #. MENU
-#: ../panel-plugin/cfg.c:508
+#: panel-plugin/cfg.c:508
 msgid "Menu"
 msgstr "メニュー"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:513
+#: panel-plugin/cfg.c:513
 msgid "Show _icons in menu"
 msgstr "メニューにアイコンを表示する(_I)"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:522
+#: panel-plugin/cfg.c:522
 msgid "Show _removable media"
 msgstr "リムーバブルメディアを表示する(_R)"
 
 #. MENU: - Mount and Open (indented)
-#: ../panel-plugin/cfg.c:531
+#: panel-plugin/cfg.c:531
 msgid "Mount and _Open on click"
 msgstr "クリックでマウントして開く(_O)"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:545
+#: panel-plugin/cfg.c:545
 msgid "Show GTK _bookmarks"
 msgstr "GTK ブックマークを表示する(_B)"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:554
+#: panel-plugin/cfg.c:554
 msgid "Show recent _documents"
 msgstr "最近開いたドキュメントを表示する(_D)"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:573
+#: panel-plugin/cfg.c:573
 msgid "Show cl_ear option"
 msgstr "クリアオプションを表示する(_E)"
 
 #. RECENT DOCUMENTS: Number to display
-#: ../panel-plugin/cfg.c:587
+#: panel-plugin/cfg.c:587
 msgid "_Number to display"
 msgstr "表示する数(_N)"
 
 #. SEARCH
-#: ../panel-plugin/cfg.c:614
+#: panel-plugin/cfg.c:614
 msgid "Search"
 msgstr "検索"
 
 #. Search: command
-#: ../panel-plugin/cfg.c:619
+#: panel-plugin/cfg.c:619
 msgid "Co_mmand"
 msgstr "コマンド(_M)"
 
-#: ../panel-plugin/support.c:155
+#: panel-plugin/support.c:155
 msgid "Open"
 msgstr "開く"
 
-#: ../panel-plugin/support.c:170
+#: panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "ターミナルで開く"
 
-#: ../panel-plugin/xfce4-popup-places.sh:28
+#: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
 msgstr "使用法:"
 
-#: ../panel-plugin/xfce4-popup-places.sh:29
+#: panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
 msgstr "オプション"
 
-#: ../panel-plugin/xfce4-popup-places.sh:31
+#: panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
 msgstr "オプション:"
 
-#: ../panel-plugin/xfce4-popup-places.sh:32
+#: panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
 msgstr "現在のマウスの位置にメニューをポップアップする"
 
-#: ../panel-plugin/xfce4-popup-places.sh:33
+#: panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
 msgstr "ヘルプオプションを表示する"
 
-#: ../panel-plugin/xfce4-popup-places.sh:34
+#: panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
 msgstr "バージョン情報を表示して終了する"
