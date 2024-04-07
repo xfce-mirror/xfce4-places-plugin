@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfce-panel-plugins.xfce4-places-plugin package.
 # 
 # Translators:
 # Michał Jeż <michal.je2u@gmail.com>, 2012
@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-06 12:55+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2024-04-07 00:54+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
 "Last-Translator: Piotr Sokół <psokol.l10n@gmail.com>, 2009,2012-2013\n"
 "Language-Team: Polish (http://app.transifex.com/xfce/xfce-panel-plugins/language/pl/)\n"
@@ -22,64 +22,73 @@ msgstr ""
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
+#: panel-plugin/places.desktop.in:4 panel-plugin/cfg.c:100
+#: panel-plugin/cfg.c:195 panel-plugin/cfg.c:396
+msgid "Places"
+msgstr "Miejsca"
+
+#: panel-plugin/places.desktop.in:5
+msgid "Access folders, documents, and removable media"
+msgstr "Umożliwia dostęp do katalogów, dokumentów i nośników wymiennych"
+
 #. Trash
-#: ../panel-plugin/model_system.c:151
+#: panel-plugin/model_system.c:151
 msgid "Trash"
 msgstr "Kosz"
 
-#: ../panel-plugin/model_system.c:185
+#: panel-plugin/model_system.c:185
 msgid "Desktop"
 msgstr "Pulpit"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:201
+#: panel-plugin/model_system.c:201
 msgid "File System"
 msgstr "System plików"
 
 #. TRANSLATORS: this will result in "<path> on <hostname>"
-#: ../panel-plugin/model_user.c:256
+#: panel-plugin/model_user.c:256
 #, c-format
 msgid "%s on %s"
 msgstr "%s na %s"
 
-#: ../panel-plugin/model_volumes.c:71
+#: panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
 msgstr "Nie udało się wysunąć „%s”"
 
-#: ../panel-plugin/model_volumes.c:120
+#: panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
 msgstr "Nie udało się odmontować „%s”"
 
-#: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
+#: panel-plugin/model_volumes.c:170 panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
 msgstr "Nie udało się zamontować „%s”"
 
-#: ../panel-plugin/model_volumes.c:478
+#: panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
 msgstr "Zamontuj i otwórz"
 
-#: ../panel-plugin/model_volumes.c:491
+#: panel-plugin/model_volumes.c:491
 msgid "Mount"
 msgstr "Zamontuj"
 
-#: ../panel-plugin/model_volumes.c:511
+#: panel-plugin/model_volumes.c:511
 msgid "Eject"
 msgstr "Wysuń"
 
-#: ../panel-plugin/model_volumes.c:521
+#: panel-plugin/model_volumes.c:521
 msgid "Unmount"
 msgstr "Odmontuj"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:128
+#: panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
 msgstr "Odmontowywanie urządzenia"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:131
+#: panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
@@ -87,14 +96,14 @@ msgid ""
 msgstr "Urządzenie „%s” jest w trakcie odmontowywania. Proszę nie usuwać nośnika lub nie odłączać napędu."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:138
-#: ../panel-plugin/model_volumes_notify.c:262
+#: panel-plugin/model_volumes_notify.c:138
+#: panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
 msgstr "Zapisywanie danych na urządzeniu"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:141
-#: ../panel-plugin/model_volumes_notify.c:265
+#: panel-plugin/model_volumes_notify.c:141
+#: panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
@@ -102,143 +111,138 @@ msgid ""
 msgstr "Niektóre dane muszą zostać zapisane na urządzeniu „%s” przed jego wysunięciem. Proszę nie wysuwać nośnika bądź odłączać napędu."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:253
+#: panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
 msgstr "Wysuwanie urządzenia"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:256
+#: panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr "Urządzenie „%s” jest w trakcie wysuwania. Może to chwilę potrwać."
 
-#: ../panel-plugin/view.c:659
+#: panel-plugin/view.c:659
 msgid "Search for Files"
 msgstr "Wyszukaj pliki..."
 
-#: ../panel-plugin/view.c:700
+#: panel-plugin/view.c:700
 msgid "_Clear"
 msgstr "W_yczyść"
 
 #. RECENT DOCUMENTS
-#: ../panel-plugin/view.c:716 ../panel-plugin/cfg.c:563
+#: panel-plugin/view.c:716 panel-plugin/cfg.c:563
 msgid "Recent Documents"
 msgstr "Ostatnio otwarte"
 
-#: ../panel-plugin/cfg.c:100 ../panel-plugin/cfg.c:195
-#: ../panel-plugin/cfg.c:396
-msgid "Places"
-msgstr "Miejsca"
-
-#: ../panel-plugin/cfg.c:399
+#: panel-plugin/cfg.c:399
 msgid "Close"
 msgstr "Zamknij"
 
 #. BUTTON
-#: ../panel-plugin/cfg.c:473
+#: panel-plugin/cfg.c:473
 msgid "Button"
 msgstr "Przycisk"
 
 #. BUTTON: Show Icon/Label
-#: ../panel-plugin/cfg.c:478
+#: panel-plugin/cfg.c:478
 msgid "_Show"
 msgstr "_Wyświetlanie:"
 
-#: ../panel-plugin/cfg.c:483
+#: panel-plugin/cfg.c:483
 msgid "Icon Only"
 msgstr "Ikona"
 
-#: ../panel-plugin/cfg.c:484
+#: panel-plugin/cfg.c:484
 msgid "Label Only"
 msgstr "Etykieta"
 
-#: ../panel-plugin/cfg.c:485
+#: panel-plugin/cfg.c:485
 msgid "Icon and Label"
 msgstr "Ikona i etykieta"
 
 #. BUTTON: Label text entry
-#: ../panel-plugin/cfg.c:495
+#: panel-plugin/cfg.c:495
 msgid "_Label"
 msgstr "_Etykieta:"
 
 #. MENU
-#: ../panel-plugin/cfg.c:508
+#: panel-plugin/cfg.c:508
 msgid "Menu"
 msgstr "Menu"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:513
+#: panel-plugin/cfg.c:513
 msgid "Show _icons in menu"
 msgstr "_Ikony w menu"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:522
+#: panel-plugin/cfg.c:522
 msgid "Show _removable media"
 msgstr "_Pamięć wymienna"
 
 #. MENU: - Mount and Open (indented)
-#: ../panel-plugin/cfg.c:531
+#: panel-plugin/cfg.c:531
 msgid "Mount and _Open on click"
 msgstr "_Montowanie i otwieranie po kliknięciu"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:545
+#: panel-plugin/cfg.c:545
 msgid "Show GTK _bookmarks"
 msgstr "_Zakładki"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:554
+#: panel-plugin/cfg.c:554
 msgid "Show recent _documents"
 msgstr "Ostatnio otwarte _dokumenty"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:573
+#: panel-plugin/cfg.c:573
 msgid "Show cl_ear option"
 msgstr "Polecenie „Wy_czyść”"
 
 #. RECENT DOCUMENTS: Number to display
-#: ../panel-plugin/cfg.c:587
+#: panel-plugin/cfg.c:587
 msgid "_Number to display"
 msgstr "I_lość elementów:"
 
 #. SEARCH
-#: ../panel-plugin/cfg.c:614
+#: panel-plugin/cfg.c:614
 msgid "Search"
 msgstr "Wyszukiwanie"
 
 #. Search: command
-#: ../panel-plugin/cfg.c:619
+#: panel-plugin/cfg.c:619
 msgid "Co_mmand"
 msgstr "P_olecenie:"
 
-#: ../panel-plugin/support.c:155
+#: panel-plugin/support.c:155
 msgid "Open"
 msgstr "Otwórz"
 
-#: ../panel-plugin/support.c:170
+#: panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "Otwórz w terminalu"
 
-#: ../panel-plugin/xfce4-popup-places.sh:28
+#: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
 msgstr "Użycie:"
 
-#: ../panel-plugin/xfce4-popup-places.sh:29
+#: panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
 msgstr "OPCJA"
 
-#: ../panel-plugin/xfce4-popup-places.sh:31
+#: panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
 msgstr "Opcje:"
 
-#: ../panel-plugin/xfce4-popup-places.sh:32
+#: panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
 msgstr "Wyświetla menu w bieżącym położeniu kursora myszy"
 
-#: ../panel-plugin/xfce4-popup-places.sh:33
+#: panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
 msgstr "Wypisuje komunikat pomocy"
 
-#: ../panel-plugin/xfce4-popup-places.sh:34
+#: panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
 msgstr "Wypisuje informacje o wersji i kończy"
