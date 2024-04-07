@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfce-panel-plugins.xfce4-places-plugin package.
 # 
 # Translators:
 # Ammuu5, 2018
@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-06 12:55+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2024-04-07 00:54+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>, 2018-2019\n"
 "Language-Team: Finnish (http://app.transifex.com/xfce/xfce-panel-plugins/language/fi/)\n"
@@ -22,64 +22,73 @@ msgstr ""
 "Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: panel-plugin/places.desktop.in:4 panel-plugin/cfg.c:100
+#: panel-plugin/cfg.c:195 panel-plugin/cfg.c:396
+msgid "Places"
+msgstr "Sijainnit"
+
+#: panel-plugin/places.desktop.in:5
+msgid "Access folders, documents, and removable media"
+msgstr "Kansiot, asiakirjat ja irrotettavat taltiot"
+
 #. Trash
-#: ../panel-plugin/model_system.c:151
+#: panel-plugin/model_system.c:151
 msgid "Trash"
 msgstr "Roskakori"
 
-#: ../panel-plugin/model_system.c:185
+#: panel-plugin/model_system.c:185
 msgid "Desktop"
 msgstr "Työpöytä"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:201
+#: panel-plugin/model_system.c:201
 msgid "File System"
 msgstr "Tiedostojärjestelmä"
 
 #. TRANSLATORS: this will result in "<path> on <hostname>"
-#: ../panel-plugin/model_user.c:256
+#: panel-plugin/model_user.c:256
 #, c-format
 msgid "%s on %s"
 msgstr "%s kohteessa %s"
 
-#: ../panel-plugin/model_volumes.c:71
+#: panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
 msgstr "Kohteen \"%s\" poisto epäonnistui"
 
-#: ../panel-plugin/model_volumes.c:120
+#: panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
 msgstr "Kohteen \"%s\" irrotus epäonnistui"
 
-#: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
+#: panel-plugin/model_volumes.c:170 panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
 msgstr "Kohteen \"%s\"liittäminen epäonnistui"
 
-#: ../panel-plugin/model_volumes.c:478
+#: panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
 msgstr "Liitä ja avaa"
 
-#: ../panel-plugin/model_volumes.c:491
+#: panel-plugin/model_volumes.c:491
 msgid "Mount"
 msgstr "Liitä"
 
-#: ../panel-plugin/model_volumes.c:511
+#: panel-plugin/model_volumes.c:511
 msgid "Eject"
 msgstr "Poista"
 
-#: ../panel-plugin/model_volumes.c:521
+#: panel-plugin/model_volumes.c:521
 msgid "Unmount"
 msgstr "Irrota"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:128
+#: panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
 msgstr "Irrotetaan laitetta"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:131
+#: panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
@@ -87,14 +96,14 @@ msgid ""
 msgstr "Taltiota \"%s\" irrotetaan tiedostojärjestelmästä. Älä poista taltiota asemasta tai irrota laitetta."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:138
-#: ../panel-plugin/model_volumes_notify.c:262
+#: panel-plugin/model_volumes_notify.c:138
+#: panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
 msgstr "Kirjoitetaan laitteelle"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:141
-#: ../panel-plugin/model_volumes_notify.c:265
+#: panel-plugin/model_volumes_notify.c:141
+#: panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
@@ -102,143 +111,138 @@ msgid ""
 msgstr "Laitteelle \"%s\" täytyy kirjoittaa tietoa ennen sen irrottamista. Älä poista taltiota tai irrota laitetta."
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:253
+#: panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
 msgstr "Poistetaan taltio"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:256
+#: panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr "Laittetta \"%s\" irrotetaan. Tämä voi viedä hetken."
 
-#: ../panel-plugin/view.c:659
+#: panel-plugin/view.c:659
 msgid "Search for Files"
 msgstr "Etsi tiedostoja"
 
-#: ../panel-plugin/view.c:700
+#: panel-plugin/view.c:700
 msgid "_Clear"
 msgstr "T_yhjennä"
 
 #. RECENT DOCUMENTS
-#: ../panel-plugin/view.c:716 ../panel-plugin/cfg.c:563
+#: panel-plugin/view.c:716 panel-plugin/cfg.c:563
 msgid "Recent Documents"
 msgstr "Viimeisimmät asiakirjat"
 
-#: ../panel-plugin/cfg.c:100 ../panel-plugin/cfg.c:195
-#: ../panel-plugin/cfg.c:396
-msgid "Places"
-msgstr "Sijainnit"
-
-#: ../panel-plugin/cfg.c:399
+#: panel-plugin/cfg.c:399
 msgid "Close"
 msgstr "Sulje"
 
 #. BUTTON
-#: ../panel-plugin/cfg.c:473
+#: panel-plugin/cfg.c:473
 msgid "Button"
 msgstr "Painike"
 
 #. BUTTON: Show Icon/Label
-#: ../panel-plugin/cfg.c:478
+#: panel-plugin/cfg.c:478
 msgid "_Show"
 msgstr "_Näytä"
 
-#: ../panel-plugin/cfg.c:483
+#: panel-plugin/cfg.c:483
 msgid "Icon Only"
 msgstr "Vain kuvake"
 
-#: ../panel-plugin/cfg.c:484
+#: panel-plugin/cfg.c:484
 msgid "Label Only"
 msgstr "Vain nimi"
 
-#: ../panel-plugin/cfg.c:485
+#: panel-plugin/cfg.c:485
 msgid "Icon and Label"
 msgstr "Kuvake ja nimi"
 
 #. BUTTON: Label text entry
-#: ../panel-plugin/cfg.c:495
+#: panel-plugin/cfg.c:495
 msgid "_Label"
 msgstr "Ni_mi"
 
 #. MENU
-#: ../panel-plugin/cfg.c:508
+#: panel-plugin/cfg.c:508
 msgid "Menu"
 msgstr "Valikko"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:513
+#: panel-plugin/cfg.c:513
 msgid "Show _icons in menu"
 msgstr "Näytä _kuvakkeet valikossa"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:522
+#: panel-plugin/cfg.c:522
 msgid "Show _removable media"
 msgstr "Näytä i_rrotettavat taltiot"
 
 #. MENU: - Mount and Open (indented)
-#: ../panel-plugin/cfg.c:531
+#: panel-plugin/cfg.c:531
 msgid "Mount and _Open on click"
 msgstr "Liitä ja _avaa napsauttamalla"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:545
+#: panel-plugin/cfg.c:545
 msgid "Show GTK _bookmarks"
 msgstr "Näytä GTK:n kirjanm_erkit"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:554
+#: panel-plugin/cfg.c:554
 msgid "Show recent _documents"
 msgstr "_Viimeisimmät asiakirjat"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:573
+#: panel-plugin/cfg.c:573
 msgid "Show cl_ear option"
 msgstr "Näytä ty_hjennysvalinta"
 
 #. RECENT DOCUMENTS: Number to display
-#: ../panel-plugin/cfg.c:587
+#: panel-plugin/cfg.c:587
 msgid "_Number to display"
 msgstr "Nä_ytettävä määrä"
 
 #. SEARCH
-#: ../panel-plugin/cfg.c:614
+#: panel-plugin/cfg.c:614
 msgid "Search"
 msgstr "Etsi"
 
 #. Search: command
-#: ../panel-plugin/cfg.c:619
+#: panel-plugin/cfg.c:619
 msgid "Co_mmand"
 msgstr "K_omento"
 
-#: ../panel-plugin/support.c:155
+#: panel-plugin/support.c:155
 msgid "Open"
 msgstr "Avaa"
 
-#: ../panel-plugin/support.c:170
+#: panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "Avaa pääte tässä kansiossa"
 
-#: ../panel-plugin/xfce4-popup-places.sh:28
+#: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
 msgstr "Käyttö:"
 
-#: ../panel-plugin/xfce4-popup-places.sh:29
+#: panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
 msgstr "VALINTA"
 
-#: ../panel-plugin/xfce4-popup-places.sh:31
+#: panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
 msgstr "Valinnat:"
 
-#: ../panel-plugin/xfce4-popup-places.sh:32
+#: panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
 msgstr "Ponnahdusvalikko nykyisellä hiiren kohdalla"
 
-#: ../panel-plugin/xfce4-popup-places.sh:33
+#: panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
 msgstr "Näytä ohjevalinnat"
 
-#: ../panel-plugin/xfce4-popup-places.sh:34
+#: panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
 msgstr "Tulosta versiotiedot ja poistu"
