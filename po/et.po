@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfce-panel-plugins.xfce4-places-plugin package.
 # 
 # Translators:
 # Ilmar Kerm <ikerm@hot.ee>, 2001-2002
@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-06 12:55+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2024-04-07 00:54+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
 "Last-Translator: Priit Jõerüüt <transifex@joeruut.com>, 2020\n"
 "Language-Team: Estonian (http://app.transifex.com/xfce/xfce-panel-plugins/language/et/)\n"
@@ -22,64 +22,73 @@ msgstr ""
 "Language: et\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: panel-plugin/places.desktop.in:4 panel-plugin/cfg.c:100
+#: panel-plugin/cfg.c:195 panel-plugin/cfg.c:396
+msgid "Places"
+msgstr "Asukohad"
+
+#: panel-plugin/places.desktop.in:5
+msgid "Access folders, documents, and removable media"
+msgstr "Ligipääs kaustadele, dokumentidele ja irdandmekandjatele"
+
 #. Trash
-#: ../panel-plugin/model_system.c:151
+#: panel-plugin/model_system.c:151
 msgid "Trash"
 msgstr "Prügi"
 
-#: ../panel-plugin/model_system.c:185
+#: panel-plugin/model_system.c:185
 msgid "Desktop"
 msgstr "Töölaud"
 
 #. File System (/)
-#: ../panel-plugin/model_system.c:201
+#: panel-plugin/model_system.c:201
 msgid "File System"
 msgstr "Failisüsteem"
 
 #. TRANSLATORS: this will result in "<path> on <hostname>"
-#: ../panel-plugin/model_user.c:256
+#: panel-plugin/model_user.c:256
 #, c-format
 msgid "%s on %s"
 msgstr "%s arvutis %s "
 
-#: ../panel-plugin/model_volumes.c:71
+#: panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
 msgstr "\"%s\" väljastamine ebaõnnestus "
 
-#: ../panel-plugin/model_volumes.c:120
+#: panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
 msgstr "%s lahtihaakimine ei õnnestunud"
 
-#: ../panel-plugin/model_volumes.c:170 ../panel-plugin/model_volumes.c:193
+#: panel-plugin/model_volumes.c:170 panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
 msgstr "%s haakimine ei õnnestunud"
 
-#: ../panel-plugin/model_volumes.c:478
+#: panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
 msgstr "Haagi ja ava"
 
-#: ../panel-plugin/model_volumes.c:491
+#: panel-plugin/model_volumes.c:491
 msgid "Mount"
 msgstr "Haagi"
 
-#: ../panel-plugin/model_volumes.c:511
+#: panel-plugin/model_volumes.c:511
 msgid "Eject"
 msgstr "Väljasta"
 
-#: ../panel-plugin/model_volumes.c:521
+#: panel-plugin/model_volumes.c:521
 msgid "Unmount"
 msgstr "Haagi lahti"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:128
+#: panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
 msgstr "Haagin lahti"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:131
+#: panel-plugin/model_volumes_notify.c:131
 #, c-format
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
@@ -87,14 +96,14 @@ msgid ""
 msgstr "Süsteem parasjagu haagib lahti andmekandjat „%s“. Palun ära eemalda veel seda seadet"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:138
-#: ../panel-plugin/model_volumes_notify.c:262
+#: panel-plugin/model_volumes_notify.c:138
+#: panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
 msgstr "Salvestan andmeid seadmesse"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:141
-#: ../panel-plugin/model_volumes_notify.c:265
+#: panel-plugin/model_volumes_notify.c:141
+#: panel-plugin/model_volumes_notify.c:265
 #, c-format
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
@@ -102,143 +111,138 @@ msgid ""
 msgstr "Andmeid on veel ootel seadmesse „%s“ salvestamiseks. Palun ära eemalda veel mälupulka või ketast"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:253
+#: panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
 msgstr "Väljastan seadet"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
-#: ../panel-plugin/model_volumes_notify.c:256
+#: panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
 msgstr "Seadme \"%s\" väljastamine on käimas. Võib kuluda veel natuke aega"
 
-#: ../panel-plugin/view.c:659
+#: panel-plugin/view.c:659
 msgid "Search for Files"
 msgstr "Otsi faile"
 
-#: ../panel-plugin/view.c:700
+#: panel-plugin/view.c:700
 msgid "_Clear"
 msgstr "_Kustuta"
 
 #. RECENT DOCUMENTS
-#: ../panel-plugin/view.c:716 ../panel-plugin/cfg.c:563
+#: panel-plugin/view.c:716 panel-plugin/cfg.c:563
 msgid "Recent Documents"
 msgstr "Hiljutised dokumendid"
 
-#: ../panel-plugin/cfg.c:100 ../panel-plugin/cfg.c:195
-#: ../panel-plugin/cfg.c:396
-msgid "Places"
-msgstr "Asukohad"
-
-#: ../panel-plugin/cfg.c:399
+#: panel-plugin/cfg.c:399
 msgid "Close"
 msgstr "Sulge"
 
 #. BUTTON
-#: ../panel-plugin/cfg.c:473
+#: panel-plugin/cfg.c:473
 msgid "Button"
 msgstr "Nupp"
 
 #. BUTTON: Show Icon/Label
-#: ../panel-plugin/cfg.c:478
+#: panel-plugin/cfg.c:478
 msgid "_Show"
 msgstr "_Näita"
 
-#: ../panel-plugin/cfg.c:483
+#: panel-plugin/cfg.c:483
 msgid "Icon Only"
 msgstr "Vaid ikooni"
 
-#: ../panel-plugin/cfg.c:484
+#: panel-plugin/cfg.c:484
 msgid "Label Only"
 msgstr "Vaid silti"
 
-#: ../panel-plugin/cfg.c:485
+#: panel-plugin/cfg.c:485
 msgid "Icon and Label"
 msgstr "Ikooni ja silti"
 
 #. BUTTON: Label text entry
-#: ../panel-plugin/cfg.c:495
+#: panel-plugin/cfg.c:495
 msgid "_Label"
 msgstr "_Silt"
 
 #. MENU
-#: ../panel-plugin/cfg.c:508
+#: panel-plugin/cfg.c:508
 msgid "Menu"
 msgstr "Menüü"
 
 #. MENU: Show Icons
-#: ../panel-plugin/cfg.c:513
+#: panel-plugin/cfg.c:513
 msgid "Show _icons in menu"
 msgstr "Näita menüüs _ikoone"
 
 #. MENU: Show Removable Media
-#: ../panel-plugin/cfg.c:522
+#: panel-plugin/cfg.c:522
 msgid "Show _removable media"
 msgstr "Näita menüüs _eemaldatavaid seadmeid"
 
 #. MENU: - Mount and Open (indented)
-#: ../panel-plugin/cfg.c:531
+#: panel-plugin/cfg.c:531
 msgid "Mount and _Open on click"
 msgstr "Klõpsamisel _haagi ja ava"
 
 #. MENU: Show GTK Bookmarks
-#: ../panel-plugin/cfg.c:545
+#: panel-plugin/cfg.c:545
 msgid "Show GTK _bookmarks"
 msgstr "Näita GTK _järjehoidjaid"
 
 #. MENU: Show Recent Documents
-#: ../panel-plugin/cfg.c:554
+#: panel-plugin/cfg.c:554
 msgid "Show recent _documents"
 msgstr "Näita hiljutisi _dokumente"
 
 #. RECENT DOCUMENTS: Show clear option
-#: ../panel-plugin/cfg.c:573
+#: panel-plugin/cfg.c:573
 msgid "Show cl_ear option"
 msgstr "Paku _kustutamise võimalust"
 
 #. RECENT DOCUMENTS: Number to display
-#: ../panel-plugin/cfg.c:587
+#: panel-plugin/cfg.c:587
 msgid "_Number to display"
 msgstr "_Kuvatav arv"
 
 #. SEARCH
-#: ../panel-plugin/cfg.c:614
+#: panel-plugin/cfg.c:614
 msgid "Search"
 msgstr "Otsing"
 
 #. Search: command
-#: ../panel-plugin/cfg.c:619
+#: panel-plugin/cfg.c:619
 msgid "Co_mmand"
 msgstr "_Käsk"
 
-#: ../panel-plugin/support.c:155
+#: panel-plugin/support.c:155
 msgid "Open"
 msgstr "Ava"
 
-#: ../panel-plugin/support.c:170
+#: panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "Ava siin terminal"
 
-#: ../panel-plugin/xfce4-popup-places.sh:28
+#: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
 msgstr "Kasutus:"
 
-#: ../panel-plugin/xfce4-popup-places.sh:29
+#: panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
 msgstr "VALIK"
 
-#: ../panel-plugin/xfce4-popup-places.sh:31
+#: panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
 msgstr "Seadistused:"
 
-#: ../panel-plugin/xfce4-popup-places.sh:32
+#: panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
 msgstr "Hüpikmenüü hiirekursori praeguses asukohas"
 
-#: ../panel-plugin/xfce4-popup-places.sh:33
+#: panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
 msgstr "Näita abiteabe valikuid"
 
-#: ../panel-plugin/xfce4-popup-places.sh:34
+#: panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
 msgstr "Näita versiooniteavet ja sulge programm"
