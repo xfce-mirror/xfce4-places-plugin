@@ -212,13 +212,17 @@ msgstr "Iskanje"
 msgid "Co_mmand"
 msgstr "U_kaz"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "Odpri"
 
 #: panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "Tukaj odpri terminal"
+
+#: panel-plugin/support.c:205
+msgid "Empty Trash"
+msgstr "Izprazni sm_eti"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"

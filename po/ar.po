@@ -212,13 +212,17 @@ msgstr "بحث"
 msgid "Co_mmand"
 msgstr "أمر"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "فتح"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "فتح الطرفية هنا"
+
+#: panel-plugin/support.c:205
+msgid "Empty Trash"
+msgstr "أفرغ سلة المهملات"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"

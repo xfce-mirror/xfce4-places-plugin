@@ -211,13 +211,17 @@ msgstr "Sök"
 msgid "Co_mmand"
 msgstr "Ko_mmando"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "Öppna"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "Öppna Terminal här"
+
+#: panel-plugin/support.c:205
+msgid "Empty Trash"
+msgstr "Töm pappers_korgen"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"

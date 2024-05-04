@@ -211,13 +211,17 @@ msgstr "Іздеу"
 msgid "Co_mmand"
 msgstr "Ко_манда"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "Ашу"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "Осында терминалды ашу"
+
+#: panel-plugin/support.c:205
+msgid "Empty Trash"
+msgstr "Қ_оқыс шелегін тазарту"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"

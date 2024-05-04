@@ -212,13 +212,17 @@ msgstr "መፈለጊያ"
 msgid "Co_mmand"
 msgstr "ትእ_ዛዝ"
 
-#: ../panel-plugin/support.c:155
+#: ../panel-plugin/support.c:179
 msgid "Open"
 msgstr "መክፈቻ"
 
-#: ../panel-plugin/support.c:170
+#: ../panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr ""
+
+#: panel-plugin/support.c:205
+msgid "Empty Trash"
+msgstr "ቆሻሻ ባዶ ማድረጊያ"
 
 #: ../panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
