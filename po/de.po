@@ -220,13 +220,17 @@ msgstr "Suchen"
 msgid "Co_mmand"
 msgstr "Befe_hl"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "Öffnen"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "Befehlsfenster hier öffnen"
+
+#: panel-plugin/support.c:205
+msgid "Empty Trash"
+msgstr "Papierkorb leeren"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"

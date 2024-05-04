@@ -216,13 +216,17 @@ msgstr "Ieškoti"
 msgid "Co_mmand"
 msgstr "Ko_manda"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "Atverti"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "Atverti terminalą čia"
+
+#: panel-plugin/support.c:205
+msgid "Empty Trash"
+msgstr "Išvalyti šiukšlinę"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
