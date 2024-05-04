@@ -214,13 +214,17 @@ msgstr "Търсене"
 msgid "Co_mmand"
 msgstr "Команда"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "Отваряне"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "Отваряне на терминал"
+
+#: panel-plugin/support.c:205
+msgid "Empty Trash"
+msgstr "Изпразване на кошчето"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
