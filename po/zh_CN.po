@@ -219,13 +219,17 @@ msgstr "搜索"
 msgid "Co_mmand"
 msgstr "命令(_M)"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "打开"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "在此打开终端"
+
+#: panel-plugin/support.c:205
+msgid "Empty Trash"
+msgstr "清空回收站"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
