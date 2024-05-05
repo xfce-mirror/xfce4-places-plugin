@@ -1,21 +1,15 @@
 dnl xfce4-places-plugin
 
 dnl version info
-m4_define([places_version_major], [1])
-m4_define([places_version_minor], [8])
-m4_define([places_version_micro], [3])
-m4_define([places_version_nano],  []) dnl leave this empty to have no nano version
-m4_define([places_version_build], [@REVISION@])
-m4_define([places_version_tag], [git])
-m4_define([places_version], [places_version_major().places_version_minor().places_version_micro()ifelse(places_version_nano(), [], [], [.places_version_nano()])ifelse(places_version_tag(), [git], [places_version_tag()-places_version_build()], [places_version_tag()])])
-m4_define([places_default_debug], [ifelse(places_version_tag(), [git], [yes], [minimum])])
+XDT_VERSION_INIT([1.8.3], [git])
 
 dnl initialize autoconf
 AC_COPYRIGHT([Copyright (c) 2007-2009 Diego Ongaro <ongardie@gmail.com>
-              2019 The Xfce development team. All rights reserved.])
-AC_INIT([xfce4-places-plugin], [places_version], [https://bugzilla.xfce.org/], [xfce4-places-plugin])
+              2010-2024 The Xfce development team. All rights reserved.])
+AC_INIT([xfce4-places-plugin], [xdt_version], [https://gitlab.xfce.org/panel-plugins/xfce4-places-plugin], [xfce4-places-plugin])
 
-AC_PREREQ([2.50])
+AC_PREREQ([2.69])
+AC_REVISION([xdt_version_build])
 AC_CONFIG_MACRO_DIRS([m4])
 
 dnl initialize automake
@@ -61,7 +55,7 @@ AC_SUBST([GETTEXT_PACKAGE])
 AM_GNU_GETTEXT([external])
 AM_GNU_GETTEXT_VERSION([0.19.8])
 
-XDT_FEATURE_DEBUG([places_default_debug])
+XDT_FEATURE_DEBUG([xdt_debug_default])
 
 AC_CONFIG_FILES([
 Makefile
