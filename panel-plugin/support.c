@@ -143,6 +143,30 @@ psupport_load_terminal_wrapper(PlacesBookmarkAction *act)
     places_load_terminal((gchar*) act->priv);
 }
 
+static void
+empty_trash_action(PlacesBookmarkAction *act)
+{
+    GFile *trash_file = g_file_new_for_uri("trash:///");
+    GError *error = NULL;
+    GFileInfo *info = NULL;
+    
+    GFileEnumerator *enumerator = g_file_enumerate_children(trash_file, "standard::name", G_FILE_QUERY_INFO_NONE, NULL, &error);
+    g_object_unref(trash_file);
+    if (enumerator == NULL) {
+        g_warning("Error enumerating trash contents: %s", error->message);
+        g_error_free(error);
+        return;
+    }
+    
+    while ((info = g_file_enumerator_next_file(enumerator, NULL, &error)) != NULL) {
+        GFile *file = g_file_enumerator_get_child(enumerator, info);
+        g_file_delete(file, NULL, NULL);
+        g_object_unref(file);
+        g_object_unref(info);
+    }
+    g_object_unref(enumerator);
+}
+
 
 PlacesBookmarkAction*
 places_create_open_action(const PlacesBookmark *bookmark)
@@ -174,6 +198,16 @@ places_create_open_terminal_action(const PlacesBookmark *bookmark)
     return action;
 }
 
+PlacesBookmarkAction*
+places_create_empty_trash_action(void)
+{
+    PlacesBookmarkAction *action;
+
+    action = places_bookmark_action_create(_("Empty Trash"));
+    action->action = empty_trash_action;
+
+    return action;
+}
 
 void
 places_show_error_dialog (const GError *error,
