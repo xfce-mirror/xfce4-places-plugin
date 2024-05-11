@@ -222,13 +222,17 @@ msgstr "Αναζήτηση"
 msgid "Co_mmand"
 msgstr "Εντ_ολή"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "Άνοιγμα"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "Άνοιγμα τερματικού εδώ"
+
+#: panel-plugin/support.c:205
+msgid "Empty Trash"
+msgstr "Ά_δειασμα απορριμμάτων"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
