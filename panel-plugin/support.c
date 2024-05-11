@@ -153,7 +153,7 @@ empty_trash_action(PlacesBookmarkAction *act)
     GFileEnumerator *enumerator = g_file_enumerate_children(trash_file, "standard::name", G_FILE_QUERY_INFO_NONE, NULL, &error);
     g_object_unref(trash_file);
     if (enumerator == NULL) {
-        g_warning("Error enumerating trash contents: %s\n", error->message);
+        g_warning("Error enumerating trash contents: %s", error->message);
         g_error_free(error);
         return;
     }
