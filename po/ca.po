@@ -219,17 +219,13 @@ msgstr "Cerca"
 msgid "Co_mmand"
 msgstr "Or_dre:"
 
-#: panel-plugin/support.c:179
+#: panel-plugin/support.c:155
 msgid "Open"
 msgstr "Obre"
 
-#: panel-plugin/support.c:194
+#: panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "Obre aquí un terminal"
-
-#: panel-plugin/support.c:205
-msgid "Empty Trash"
-msgstr "Buida la pap_erera"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"

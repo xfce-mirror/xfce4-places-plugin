@@ -215,17 +215,13 @@ msgstr "חיפוש"
 msgid "Co_mmand"
 msgstr "פ_קודה"
 
-#: panel-plugin/support.c:179
+#: panel-plugin/support.c:155
 msgid "Open"
 msgstr "פתח"
 
-#: panel-plugin/support.c:194
+#: panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "פתח מסוף כאן"
-
-#: panel-plugin/support.c:205
-msgid "Empty Trash"
-msgstr "רוקן אשפה"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"

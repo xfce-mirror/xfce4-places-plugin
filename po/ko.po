@@ -212,17 +212,13 @@ msgstr "검색"
 msgid "Co_mmand"
 msgstr "명령(_M)"
 
-#: panel-plugin/support.c:179
+#: panel-plugin/support.c:155
 msgid "Open"
 msgstr "열기"
 
-#: panel-plugin/support.c:194
+#: panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "이곳에 터미널 열기"
-
-#: panel-plugin/support.c:205
-msgid "Empty Trash"
-msgstr "휴지통 비우기"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"

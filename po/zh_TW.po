@@ -217,17 +217,13 @@ msgstr "搜尋"
 msgid "Co_mmand"
 msgstr "指令(_M)"
 
-#: panel-plugin/support.c:179
+#: panel-plugin/support.c:155
 msgid "Open"
 msgstr "開啟"
 
-#: panel-plugin/support.c:194
+#: panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "在這裡開啟終端機"
-
-#: panel-plugin/support.c:205
-msgid "Empty Trash"
-msgstr "倒垃圾"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"

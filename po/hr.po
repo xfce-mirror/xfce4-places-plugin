@@ -213,17 +213,13 @@ msgstr "Traži"
 msgid "Co_mmand"
 msgstr "Na_redba"
 
-#: panel-plugin/support.c:179
+#: panel-plugin/support.c:155
 msgid "Open"
 msgstr "Otvori"
 
-#: panel-plugin/support.c:194
+#: panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "Otvori terminal ovdje"
-
-#: panel-plugin/support.c:205
-msgid "Empty Trash"
-msgstr "Isprazni smeće"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
