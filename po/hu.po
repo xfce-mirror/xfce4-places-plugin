@@ -213,17 +213,13 @@ msgstr "Keresés"
 msgid "Co_mmand"
 msgstr "_Parancs"
 
-#: panel-plugin/support.c:179
+#: panel-plugin/support.c:155
 msgid "Open"
 msgstr "Megnyitás"
 
-#: panel-plugin/support.c:194
+#: panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "Terminál megnyitása itt"
-
-#: panel-plugin/support.c:205
-msgid "Empty Trash"
-msgstr "Kuka ürítése"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"

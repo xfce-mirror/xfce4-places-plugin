@@ -211,17 +211,13 @@ msgstr "Որոնել"
 msgid "Co_mmand"
 msgstr "Հրա_մանները"
 
-#: panel-plugin/support.c:179
+#: panel-plugin/support.c:155
 msgid "Open"
 msgstr "Բացել"
 
-#: panel-plugin/support.c:194
+#: panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "Բացել վահանակը այստեղ"
-
-#: panel-plugin/support.c:205
-msgid "Empty Trash"
-msgstr "Դատարկել աղբամանը"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"

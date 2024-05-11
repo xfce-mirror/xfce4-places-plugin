@@ -210,17 +210,13 @@ msgstr "تلاش"
 msgid "Co_mmand"
 msgstr "ک_مانڈ"
 
-#: panel-plugin/support.c:179
+#: panel-plugin/support.c:155
 msgid "Open"
 msgstr "کھولین"
 
-#: panel-plugin/support.c:194
+#: panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "ٹرمنل یہاں کھولیں"
-
-#: panel-plugin/support.c:205
-msgid "Empty Trash"
-msgstr "ردی خالی کریں"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"

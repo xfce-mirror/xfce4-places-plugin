@@ -212,17 +212,13 @@ msgstr "Meklēt"
 msgid "Co_mmand"
 msgstr "Ko_manda"
 
-#: panel-plugin/support.c:179
+#: panel-plugin/support.c:155
 msgid "Open"
 msgstr "Atvērt"
 
-#: panel-plugin/support.c:194
+#: panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "Atvērt termināli šeit"
-
-#: panel-plugin/support.c:205
-msgid "Empty Trash"
-msgstr "Iztukšot miskasti"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"

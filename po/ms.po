@@ -211,17 +211,13 @@ msgstr "Gelintar"
 msgid "Co_mmand"
 msgstr "Pe_rintah"
 
-#: panel-plugin/support.c:179
+#: panel-plugin/support.c:155
 msgid "Open"
 msgstr "Buka"
 
-#: panel-plugin/support.c:194
+#: panel-plugin/support.c:170
 msgid "Open Terminal Here"
 msgstr "Buka Terminal Di Sini"
-
-#: panel-plugin/support.c:205
-msgid "Empty Trash"
-msgstr "Kosongkan Tong Sampah"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
