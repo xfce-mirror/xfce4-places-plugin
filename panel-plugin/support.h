@@ -46,6 +46,9 @@ places_create_open_action(const PlacesBookmark *bookmark);
 PlacesBookmarkAction*
 places_create_open_terminal_action(const PlacesBookmark *bookmark);
 
+PlacesBookmarkAction*
+places_create_empty_trash_action(void);
+
 void
 places_show_error_dialog (const GError *error,
                           const gchar  *format,
