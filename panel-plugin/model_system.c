@@ -122,7 +122,7 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
 {
     GList *bookmarks = NULL;           /* we'll return this */
     PlacesBookmark *bookmark;
-    PlacesBookmarkAction *open, *terminal;
+    PlacesBookmarkAction *open, *terminal, *empty;
 #if TRASH
     GFileInfo *trash_info;
 #endif
@@ -164,8 +164,11 @@ pbsys_get_bookmarks(PlacesBookmarkGroup *bookmark_group)
         g_object_unref(bookmark->icon);
     if (pbg_priv(bookmark_group)->trash_is_empty)
         bookmark->icon = g_themed_icon_new("user-trash");
-    else
+    else{
         bookmark->icon = g_themed_icon_new("user-trash-full");
+        empty             = places_create_empty_trash_action();
+        bookmark->actions = g_list_prepend(bookmark->actions, empty);
+    }
     g_object_unref(trash_info);
 
     open                     = places_create_open_action(bookmark);
