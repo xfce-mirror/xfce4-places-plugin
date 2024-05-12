@@ -12,14 +12,15 @@
 # jc1 <jc1.quebecos@gmail.com>, 2013
 # Joaquim Fellmann <joaquim@hrnet.fr>, 2000
 # Rafaël Carré <wavael@yahoo.fr>, 2006
+# Wallon Wallon, 2024
 # Yannick Le Guen <leguen.yannick@gmail.com>, 2014-2015,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 00:54+0200\n"
+"POT-Creation-Date: 2024-05-12 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
-"Last-Translator: Yannick Le Guen <leguen.yannick@gmail.com>, 2014-2015,2019\n"
+"Last-Translator: Wallon Wallon, 2024\n"
 "Language-Team: French (http://app.transifex.com/xfce/xfce-panel-plugins/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,12 +42,12 @@ msgstr "Accéder aux dossiers, aux documents et aux périphériques amovibles"
 msgid "Trash"
 msgstr "Corbeille"
 
-#: panel-plugin/model_system.c:185
+#: panel-plugin/model_system.c:188
 msgid "Desktop"
 msgstr "Bureau"
 
 #. File System (/)
-#: panel-plugin/model_system.c:201
+#: panel-plugin/model_system.c:204
 msgid "File System"
 msgstr "Système de fichiers"
 
@@ -220,13 +221,17 @@ msgstr "Rechercher"
 msgid "Co_mmand"
 msgstr "Co_mmande"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "Ouvrir"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "Ouvrir un terminal ici"
+
+#: panel-plugin/support.c:206
+msgid "Empty Trash"
+msgstr "Vider la corbeille"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
