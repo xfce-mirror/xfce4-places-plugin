@@ -4,15 +4,15 @@
 # 
 # Translators:
 # Besnik Bleta <besnik@programeshqip.org>, 2007,2019-2020
-# Besnik Bleta <besnik@programeshqip.org>, 2007
+# Besnik Bleta <besnik@programeshqip.org>, 2007,2024
 # Besnik Bleta <besnik@programeshqip.org>, 2019
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 00:54+0200\n"
+"POT-Creation-Date: 2024-05-12 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
-"Last-Translator: Besnik Bleta <besnik@programeshqip.org>, 2007,2019-2020\n"
+"Last-Translator: Besnik Bleta <besnik@programeshqip.org>, 2007,2024\n"
 "Language-Team: Albanian (http://app.transifex.com/xfce/xfce-panel-plugins/language/sq/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,12 +34,12 @@ msgstr "Hyni në dosje, dokumente, dhe media të heqshme"
 msgid "Trash"
 msgstr "Hedhurina"
 
-#: panel-plugin/model_system.c:185
+#: panel-plugin/model_system.c:188
 msgid "Desktop"
 msgstr "Desktop"
 
 #. File System (/)
-#: panel-plugin/model_system.c:201
+#: panel-plugin/model_system.c:204
 msgid "File System"
 msgstr "Sistem Kartelash"
 
@@ -213,13 +213,17 @@ msgstr "Kërko"
 msgid "Co_mmand"
 msgstr "_Urdhër"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "Hap"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "Hape Terminalin Këtu"
+
+#: panel-plugin/support.c:206
+msgid "Empty Trash"
+msgstr "Zbraz Hedhurinat"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
