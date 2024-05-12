@@ -8,14 +8,15 @@
 # Justina KP <justina.klingaite@gmail.com>, 2005
 # mantas <mantaz@users.sourceforge.net>, 2006
 # Moo, 2015-2017
+# Moo, 2024
 # Vaidotas Zemlys <mpiktas@delfi.lt>, 2003
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 00:54+0200\n"
+"POT-Creation-Date: 2024-05-12 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
-"Last-Translator: Moo, 2015-2017\n"
+"Last-Translator: Moo, 2024\n"
 "Language-Team: Lithuanian (http://app.transifex.com/xfce/xfce-panel-plugins/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,12 +38,12 @@ msgstr "Pasiekite aplankus, dokumentus ir keičiamąsias laikmenas"
 msgid "Trash"
 msgstr "Šiukšlinė"
 
-#: panel-plugin/model_system.c:185
+#: panel-plugin/model_system.c:188
 msgid "Desktop"
 msgstr "Darbalaukis"
 
 #. File System (/)
-#: panel-plugin/model_system.c:201
+#: panel-plugin/model_system.c:204
 msgid "File System"
 msgstr "Failų sistema"
 
@@ -216,13 +217,17 @@ msgstr "Ieškoti"
 msgid "Co_mmand"
 msgstr "Ko_manda"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "Atverti"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "Atverti terminalą čia"
+
+#: panel-plugin/support.c:206
+msgid "Empty Trash"
+msgstr "Išvalyti šiukšlinę"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
