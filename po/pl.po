@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the xfce-panel-plugins.xfce4-places-plugin package.
 # 
 # Translators:
+# Marek Adamski, 2024
 # Michał Jeż <michal.je2u@gmail.com>, 2012
 # Piotr Maliński <admin@rk.edu.pl>, 2006
 # Piotr Sokół <psokol.l10n@gmail.com>, 2009,2012-2013
@@ -12,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 00:54+0200\n"
+"POT-Creation-Date: 2024-05-12 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
-"Last-Translator: Piotr Sokół <psokol.l10n@gmail.com>, 2009,2012-2013\n"
+"Last-Translator: Marek Adamski, 2024\n"
 "Language-Team: Polish (http://app.transifex.com/xfce/xfce-panel-plugins/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,12 +37,12 @@ msgstr "Umożliwia dostęp do katalogów, dokumentów i nośników wymiennych"
 msgid "Trash"
 msgstr "Kosz"
 
-#: panel-plugin/model_system.c:185
+#: panel-plugin/model_system.c:188
 msgid "Desktop"
 msgstr "Pulpit"
 
 #. File System (/)
-#: panel-plugin/model_system.c:201
+#: panel-plugin/model_system.c:204
 msgid "File System"
 msgstr "System plików"
 
@@ -215,13 +216,17 @@ msgstr "Wyszukiwanie"
 msgid "Co_mmand"
 msgstr "P_olecenie:"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "Otwórz"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "Otwórz w terminalu"
+
+#: panel-plugin/support.c:206
+msgid "Empty Trash"
+msgstr "Opróżnij kosz"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
