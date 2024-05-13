@@ -10,13 +10,14 @@
 # Kevin Kee <kevin@oaka.org>, 2004
 # Walter Cheuk <wwycheuk@gmail.com>, 2014
 # Yuan-Chung Cheng <platin@linux.org.tw>, 1999
+# 黃柏諺 <s8321414@gmail.com>, 2024
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 00:54+0200\n"
+"POT-Creation-Date: 2024-05-12 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
-"Last-Translator: Walter Cheuk <wwycheuk@gmail.com>, 2014\n"
+"Last-Translator: 黃柏諺 <s8321414@gmail.com>, 2024\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/xfce/xfce-panel-plugins/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,12 +39,12 @@ msgstr "存取資料夾、文件、移除式媒體"
 msgid "Trash"
 msgstr "垃圾桶"
 
-#: panel-plugin/model_system.c:185
+#: panel-plugin/model_system.c:188
 msgid "Desktop"
 msgstr "桌面"
 
 #. File System (/)
-#: panel-plugin/model_system.c:201
+#: panel-plugin/model_system.c:204
 msgid "File System"
 msgstr "檔案系統"
 
@@ -217,13 +218,17 @@ msgstr "搜尋"
 msgid "Co_mmand"
 msgstr "指令(_M)"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "開啟"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "在這裡開啟終端機"
+
+#: panel-plugin/support.c:206
+msgid "Empty Trash"
+msgstr "清空回收桶"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
