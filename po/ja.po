@@ -10,6 +10,7 @@
 # Nobuhiro Iwamatsu <iwamatsu@nigauri.org>, 2008
 # Satoru SATOH <ss@gnome.gr.jp>, 2006
 # Shingo Akagaki <dora@kondara.org>, 2000
+# UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2024
 # Yasuyuki Furukawa <yasu@on.cs.keio.ac.jp>, 1999
 # Yukihiro Nakai <Nakai@abricot.co.jp>, 1998
 # Yuusuke Tahara <tahara@gnome.gr.jp>, 2000
@@ -17,9 +18,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 00:54+0200\n"
+"POT-Creation-Date: 2024-05-12 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
-"Last-Translator: Satoru SATOH <ss@gnome.gr.jp>, 2006\n"
+"Last-Translator: UTUMI Hirosi <utuhiro78@yahoo.co.jp>, 2024\n"
 "Language-Team: Japanese (http://app.transifex.com/xfce/xfce-panel-plugins/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,12 +42,12 @@ msgstr "フォルダー、ドキュメント、およびリムーバブルメデ
 msgid "Trash"
 msgstr "ゴミ箱"
 
-#: panel-plugin/model_system.c:185
+#: panel-plugin/model_system.c:188
 msgid "Desktop"
 msgstr "デスクトップ"
 
 #. File System (/)
-#: panel-plugin/model_system.c:201
+#: panel-plugin/model_system.c:204
 msgid "File System"
 msgstr "ファイルシステム"
 
@@ -220,13 +221,17 @@ msgstr "検索"
 msgid "Co_mmand"
 msgstr "コマンド(_M)"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "開く"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "ターミナルで開く"
+
+#: panel-plugin/support.c:206
+msgid "Empty Trash"
+msgstr "ゴミ箱を空にする"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
