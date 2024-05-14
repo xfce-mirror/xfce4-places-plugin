@@ -6,13 +6,14 @@
 # Alessio Frusciante <algol@firenze.linux.it>, 2003
 # Cristian Marchi <cri.penta@gmail.com>, 2009,2013
 # Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2018
+# Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2024
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 00:54+0200\n"
+"POT-Creation-Date: 2024-05-12 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
-"Last-Translator: Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2018\n"
+"Last-Translator: Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2024\n"
 "Language-Team: Italian (http://app.transifex.com/xfce/xfce-panel-plugins/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,12 +35,12 @@ msgstr "Accesso a cartelle, documenti e supporti rimovibili"
 msgid "Trash"
 msgstr "Cestino"
 
-#: panel-plugin/model_system.c:185
+#: panel-plugin/model_system.c:188
 msgid "Desktop"
 msgstr "Scrivania"
 
 #. File System (/)
-#: panel-plugin/model_system.c:201
+#: panel-plugin/model_system.c:204
 msgid "File System"
 msgstr "File system"
 
@@ -213,13 +214,17 @@ msgstr "Cerca"
 msgid "Co_mmand"
 msgstr "Coman_do"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "Apri"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "Apri un terminale qui"
+
+#: panel-plugin/support.c:206
+msgid "Empty Trash"
+msgstr "Svuota Cestino"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
