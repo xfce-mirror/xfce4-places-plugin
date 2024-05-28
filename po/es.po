@@ -5,7 +5,8 @@
 # Translators:
 # Abel Martín <abel.martin.ruiz@gmail.com>, 2008
 # Adolfo Jayme Barrientos, 2014
-# Adolfo Jayme-Barrientos, 2014
+# Adolfo Jayme Barrientos, 2014
+# Cristian Othón Martínez Vera <cfuga@cfuga.mx>, 2024
 # Daniel Fuertes Pérez (DaniFP) <danifp25@yahoo.es>, 2006
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003-2006
 # Francisco Javier F. Serrador <serrador@tecknolabs.com>, 2006
@@ -22,9 +23,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 00:54+0200\n"
+"POT-Creation-Date: 2024-05-12 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
-"Last-Translator: Toni Estévez <toni.estevez@gmail.com>, 2021\n"
+"Last-Translator: Cristian Othón Martínez Vera <cfuga@cfuga.mx>, 2024\n"
 "Language-Team: Spanish (http://app.transifex.com/xfce/xfce-panel-plugins/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,12 +47,12 @@ msgstr "Acceda a carpetas, documentos y soportes extraíbles"
 msgid "Trash"
 msgstr "Papelera"
 
-#: panel-plugin/model_system.c:185
+#: panel-plugin/model_system.c:188
 msgid "Desktop"
 msgstr "Escritorio"
 
 #. File System (/)
-#: panel-plugin/model_system.c:201
+#: panel-plugin/model_system.c:204
 msgid "File System"
 msgstr "Sistema de archivos"
 
@@ -225,13 +226,17 @@ msgstr "Búsqueda:"
 msgid "Co_mmand"
 msgstr "_Orden:"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "Abrir"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "Abrir un terminal aquí"
+
+#: panel-plugin/support.c:206
+msgid "Empty Trash"
+msgstr "Vaciar papelera"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
