@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the xfce-panel-plugins.xfce4-places-plugin package.
 # 
 # Translators:
-# Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2013
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2013,2024
 # Sung Jin Gang <ujuc@ujuc.kr>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 00:54+0200\n"
+"POT-Creation-Date: 2024-05-12 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
-"Last-Translator: Sung Jin Gang <ujuc@ujuc.kr>, 2012\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>, 2011-2013,2024\n"
 "Language-Team: Korean (http://app.transifex.com/xfce/xfce-panel-plugins/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,12 +33,12 @@ msgstr "폴더, 문서, 이동식 미디어에 접근합니다"
 msgid "Trash"
 msgstr "휴지통"
 
-#: panel-plugin/model_system.c:185
+#: panel-plugin/model_system.c:188
 msgid "Desktop"
 msgstr "데스크톱"
 
 #. File System (/)
-#: panel-plugin/model_system.c:201
+#: panel-plugin/model_system.c:204
 msgid "File System"
 msgstr "파일 시스템"
 
@@ -212,13 +212,17 @@ msgstr "검색"
 msgid "Co_mmand"
 msgstr "명령(_M)"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "열기"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "이곳에 터미널 열기"
+
+#: panel-plugin/support.c:206
+msgid "Empty Trash"
+msgstr "휴지통 비우기"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
