@@ -290,8 +290,7 @@ places_cfg_set_property (GObject      *object,
       text = g_value_get_string (value);
       if (strcmp(cfg->label, text))
         {
-          if (cfg->label != NULL)
-            g_free (cfg->label);
+          g_free (cfg->label);
           cfg->label = g_value_dup_string (value);
           g_signal_emit (G_OBJECT (cfg), places_cfg_signals[BUTTON_CHANGED], 0);
         }
@@ -364,8 +363,7 @@ places_cfg_set_property (GObject      *object,
       text = g_value_get_string (value);
       if (strcmp(cfg->search_cmd, text))
         {
-          if (cfg->search_cmd != NULL)
-            g_free (cfg->search_cmd);
+          g_free (cfg->search_cmd);
           cfg->search_cmd = g_value_dup_string (value);
           g_signal_emit (G_OBJECT (cfg), places_cfg_signals[MENU_CHANGED], 0);
         }
