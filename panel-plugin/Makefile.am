@@ -42,7 +42,6 @@ libplaces_la_CFLAGS =							\
 	$(GTHREAD_CFLAGS)						\
 	$(GTK_CFLAGS)							\
 	$(LIBNOTIFY_CFLAGS)						\
-	$(LIBX11_CFLAGS)						\
 	$(LIBXFCE4UTIL_CFLAGS)						\
 	$(LIBXFCE4UI_CFLAGS)						\
 	$(LIBXFCE4PANEL_CFLAGS)						\
@@ -57,12 +56,9 @@ libplaces_la_LIBADD =							\
 	$(GTHREAD_LIBS)							\
 	$(GTK_LIBS)							\
 	$(LIBNOTIFY_LIBS)						\
-	$(LIBX11_LDFLAGS)						\
-	$(LIBX11_LIBS)							\
 	$(LIBXFCE4UTIL_LIBS)						\
 	$(LIBXFCE4UI_LIBS)						\
 	$(LIBXFCE4PANEL_LIBS)						\
-	$(LIBX11_LIBS)							\
 	$(EXO_LIBS)							\
 	$(XFCONF_LIBS)
 
