@@ -4,15 +4,16 @@
 # 
 # Translators:
 # Dmitry Nikitin <luckas_fb@mail.ru>, 2007-2008
+# Gordon Freeman, 2024
 # Maxim V. Dziumanenko <mvd@mylinux.ua>, 2006
 # Yarema aka Knedlyk <yupadmin@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 00:54+0200\n"
+"POT-Creation-Date: 2024-05-12 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
-"Last-Translator: Yarema aka Knedlyk <yupadmin@gmail.com>, 2013\n"
+"Last-Translator: Gordon Freeman, 2024\n"
 "Language-Team: Ukrainian (http://app.transifex.com/xfce/xfce-panel-plugins/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,12 +35,12 @@ msgstr "Доступ до тек, документів, та з'ємних пр�
 msgid "Trash"
 msgstr "Смітник"
 
-#: panel-plugin/model_system.c:185
+#: panel-plugin/model_system.c:188
 msgid "Desktop"
 msgstr "Робочий стіл"
 
 #. File System (/)
-#: panel-plugin/model_system.c:201
+#: panel-plugin/model_system.c:204
 msgid "File System"
 msgstr "Файлова система"
 
@@ -213,13 +214,17 @@ msgstr "Пошук"
 msgid "Co_mmand"
 msgstr "Ко_манда"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "Відкрити"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "Відкрити Термінал тут"
+
+#: panel-plugin/support.c:206
+msgid "Empty Trash"
+msgstr "Порожній смітник"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
