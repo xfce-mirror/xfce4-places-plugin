@@ -204,7 +204,7 @@ msgstr "Polecenie „Wy_czyść”"
 #. RECENT DOCUMENTS: Number to display
 #: panel-plugin/cfg.c:587
 msgid "_Number to display"
-msgstr "I_lość elementów:"
+msgstr "_Liczba elementów:"
 
 #. SEARCH
 #: panel-plugin/cfg.c:614
