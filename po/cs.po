@@ -6,15 +6,15 @@
 # David Šauer <davids@penguin.cz>, 1999
 # GIS <gis@academy.cas.cz>, 1999
 # Jakub Friedl <jfriedl@suse.cz>, 2006-2007
-# Michal Várady <miko.vaji@gmail.com>, 2014,2020
+# Michal Várady <miko.vaji@gmail.com>, 2014,2020,2024
 # Petr Tomeš <ptomes@gmail.com>, 2006
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 00:54+0200\n"
+"POT-Creation-Date: 2024-05-12 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
-"Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2014,2020\n"
+"Last-Translator: Michal Várady <miko.vaji@gmail.com>, 2014,2020,2024\n"
 "Language-Team: Czech (http://app.transifex.com/xfce/xfce-panel-plugins/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,12 +36,12 @@ msgstr "Přístup ke složkám, dokumentům a vyměnitelným médiím"
 msgid "Trash"
 msgstr "Koš"
 
-#: panel-plugin/model_system.c:185
+#: panel-plugin/model_system.c:188
 msgid "Desktop"
 msgstr "Pracovní plocha"
 
 #. File System (/)
-#: panel-plugin/model_system.c:201
+#: panel-plugin/model_system.c:204
 msgid "File System"
 msgstr "Systém souborů"
 
@@ -173,12 +173,12 @@ msgstr "Nabídka"
 #. MENU: Show Icons
 #: panel-plugin/cfg.c:513
 msgid "Show _icons in menu"
-msgstr "Zobrazovat _ikony v nabídce"
+msgstr "Zobrazit _ikony v nabídce"
 
 #. MENU: Show Removable Media
 #: panel-plugin/cfg.c:522
 msgid "Show _removable media"
-msgstr "Zobrazovat _vyměnitelná média"
+msgstr "Zobrazit _vyměnitelná média"
 
 #. MENU: - Mount and Open (indented)
 #: panel-plugin/cfg.c:531
@@ -188,7 +188,7 @@ msgstr "Připojit a _otevřít po kliknutí"
 #. MENU: Show GTK Bookmarks
 #: panel-plugin/cfg.c:545
 msgid "Show GTK _bookmarks"
-msgstr "Zobrazovat _záložky GTK"
+msgstr "Zobrazit _záložky GTK"
 
 #. MENU: Show Recent Documents
 #: panel-plugin/cfg.c:554
@@ -198,7 +198,7 @@ msgstr "Zobrazit nedávné _dokumenty"
 #. RECENT DOCUMENTS: Show clear option
 #: panel-plugin/cfg.c:573
 msgid "Show cl_ear option"
-msgstr "Zobrazovat vo_lbu vyčistit"
+msgstr "Zobrazit mož_nost vyčistit"
 
 #. RECENT DOCUMENTS: Number to display
 #: panel-plugin/cfg.c:587
@@ -213,15 +213,19 @@ msgstr "Hledat"
 #. Search: command
 #: panel-plugin/cfg.c:619
 msgid "Co_mmand"
-msgstr "_Příkaz"
+msgstr "Přík_az"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "Otevřít"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "Otevřít terminál zde"
+
+#: panel-plugin/support.c:206
+msgid "Empty Trash"
+msgstr "Vysypat koš"
 
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
