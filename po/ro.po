@@ -6,13 +6,14 @@
 # Igor Știrbu <igor.stirbu@gmail.com>, 2009
 # Marius Andreiana <marius galuna.ro>, 2000,2002-2003
 # Mişu Moldovan <dumol@gnome.ro>, 2003-2004
+# Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>, 2024
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 00:54+0200\n"
+"POT-Creation-Date: 2024-05-12 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
-"Last-Translator: Mişu Moldovan <dumol@gnome.ro>, 2003-2004\n"
+"Last-Translator: Remus-Gabriel Chelu <remusgabriel.chelu@disroot.org>, 2024\n"
 "Language-Team: Romanian (http://app.transifex.com/xfce/xfce-panel-plugins/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,12 +35,12 @@ msgstr "Acces la directoare, documente și medii amovibile"
 msgid "Trash"
 msgstr "Coș de gunoi"
 
-#: panel-plugin/model_system.c:185
+#: panel-plugin/model_system.c:188
 msgid "Desktop"
-msgstr "Desktop"
+msgstr "Birou"
 
 #. File System (/)
-#: panel-plugin/model_system.c:201
+#: panel-plugin/model_system.c:204
 msgid "File System"
 msgstr "Sistem de fișiere"
 
@@ -47,7 +48,7 @@ msgstr "Sistem de fișiere"
 #: panel-plugin/model_user.c:256
 #, c-format
 msgid "%s on %s"
-msgstr ""
+msgstr "%s pe %s"
 
 #: panel-plugin/model_volumes.c:71
 #, c-format
@@ -83,7 +84,7 @@ msgstr "Demontează"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
-msgstr ""
+msgstr "Se demontează dispozitivul"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: panel-plugin/model_volumes_notify.c:131
@@ -97,7 +98,7 @@ msgstr ""
 #: panel-plugin/model_volumes_notify.c:138
 #: panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
-msgstr ""
+msgstr "Se scriu date pe dispozitiv"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: panel-plugin/model_volumes_notify.c:141
@@ -111,7 +112,7 @@ msgstr ""
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
-msgstr ""
+msgstr "Se ejectează dispozitivul"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: panel-plugin/model_volumes_notify.c:256
@@ -125,7 +126,7 @@ msgstr "Căutare fișiere"
 
 #: panel-plugin/view.c:700
 msgid "_Clear"
-msgstr ""
+msgstr "_Șterge"
 
 #. RECENT DOCUMENTS
 #: panel-plugin/view.c:716 panel-plugin/cfg.c:563
@@ -134,7 +135,7 @@ msgstr "Documente recente"
 
 #: panel-plugin/cfg.c:399
 msgid "Close"
-msgstr ""
+msgstr "Închide"
 
 #. BUTTON
 #: panel-plugin/cfg.c:473
@@ -148,7 +149,7 @@ msgstr "_Aspect"
 
 #: panel-plugin/cfg.c:483
 msgid "Icon Only"
-msgstr "Doar iconiță"
+msgstr "Doar pictogramă"
 
 #: panel-plugin/cfg.c:484
 msgid "Label Only"
@@ -156,7 +157,7 @@ msgstr "Doar etichetă"
 
 #: panel-plugin/cfg.c:485
 msgid "Icon and Label"
-msgstr "Iconiță și etichetă"
+msgstr "Pictogramă și etichetă"
 
 #. BUTTON: Label text entry
 #: panel-plugin/cfg.c:495
@@ -171,12 +172,12 @@ msgstr "Meniu"
 #. MENU: Show Icons
 #: panel-plugin/cfg.c:513
 msgid "Show _icons in menu"
-msgstr "Arată _iconițe în meniu"
+msgstr "Afișează p_ictograme în meniu"
 
 #. MENU: Show Removable Media
 #: panel-plugin/cfg.c:522
 msgid "Show _removable media"
-msgstr "Arată _mediile amovibile"
+msgstr "Afișează _mediile amovibile"
 
 #. MENU: - Mount and Open (indented)
 #: panel-plugin/cfg.c:531
@@ -186,22 +187,22 @@ msgstr "Montează și deschide la _clic"
 #. MENU: Show GTK Bookmarks
 #: panel-plugin/cfg.c:545
 msgid "Show GTK _bookmarks"
-msgstr "Arată _favoritele GTK"
+msgstr "Afișează _favoritele GTK"
 
 #. MENU: Show Recent Documents
 #: panel-plugin/cfg.c:554
 msgid "Show recent _documents"
-msgstr "Arată _documentele recente"
+msgstr "Afișează _documentele recente"
 
 #. RECENT DOCUMENTS: Show clear option
 #: panel-plugin/cfg.c:573
 msgid "Show cl_ear option"
-msgstr "Arată _opțiunea de curățare"
+msgstr "Afișează _opțiunea de curățare"
 
 #. RECENT DOCUMENTS: Number to display
 #: panel-plugin/cfg.c:587
 msgid "_Number to display"
-msgstr "Elemen_te de afișat"
+msgstr "_Numărul elementor de afișat"
 
 #. SEARCH
 #: panel-plugin/cfg.c:614
@@ -213,34 +214,38 @@ msgstr "Căutare"
 msgid "Co_mmand"
 msgstr "Coma_ndă"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "Deschide"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "Deschide în terminal"
 
+#: panel-plugin/support.c:206
+msgid "Empty Trash"
+msgstr "Golește coșul"
+
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr ""
+msgstr "Utilizare:"
 
 #: panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr ""
+msgstr "OPȚIUNE"
 
 #: panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
-msgstr ""
+msgstr "Opțiuni:"
 
 #: panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr ""
+msgstr "Deschide meniul la poziția cursorului de maus"
 
 #: panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
-msgstr ""
+msgstr "Afișează opțiunile pentru ajutor"
 
 #: panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr ""
+msgstr "Afișează detaliile despre versiune și iese"
