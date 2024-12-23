@@ -121,8 +121,8 @@ void
 places_gui_exec(const gchar *cmd)
 {
     if(cmd != NULL && *cmd != '\0')
-        xfce_spawn_command_line_on_screen(gdk_screen_get_default(),
-                        cmd, FALSE, TRUE, NULL);
+        xfce_spawn_command_line(gdk_screen_get_default(),
+                        cmd, FALSE, TRUE, TRUE, NULL);
 }
 
 static void
