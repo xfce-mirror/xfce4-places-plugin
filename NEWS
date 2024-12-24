@@ -1,3 +1,30 @@
+1.8.4 (2024-12-24)
+=====
+- build: Bump dependency versions and fix deprecation warnings
+- build: Remove check for libx11
+- gcc-analyzer: Fix -Wanalyzer-deref-before-check
+- Add empty trash option
+- build: Use XDT_VERSION_INIT and get rid of configure.ac.in
+- I18n: Update po/LINGUAS list
+- scripts: Remove unused scripts
+- build: Get rid of intltool
+- Add missing G_BEGIN_DECLS
+- Bump libxfce4panel version and remove dead code
+- Replace deprecated GtkStock icon
+- Remove extra padding in some themes (Fixes #27)
+- Fix remaining blurry icons when UI scale > 1
+- Avoid inappropriate use of xfce_panel_pixbuf_from_source()
+- Translation Updates:
+  Albanian, Arabic, Basque, Belarusian, Bulgarian, Catalan, Chinese
+  (China), Chinese (Taiwan), Croatian, Czech, Danish, Dutch, Eastern
+  Armenian, English (Australia), English (United Kingdom), Estonian,
+  Finnish, French, Galician, German, Greek, Hebrew, Hungarian,
+  Icelandic, Indonesian, Interlingue, Italian, Japanese, Kazakh,
+  Korean, Latvian, Lithuanian, Malay, Norwegian Bokmål, Occitan (post
+  1500), Panjabi (Punjabi), Polish, Portuguese, Portuguese (Brazil),
+  Romanian, Russian, Serbian, Slovak, Slovenian, Spanish, Swedish,
+  Thai, Turkish, Ukrainian, Urdu, Urdu (Pakistan), Uyghur
+
 1.8.3 (2022-11-16)
 =====
 - Fix function called only in debug mode (Clear button works now)
