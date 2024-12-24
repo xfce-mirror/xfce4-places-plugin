@@ -1,7 +1,7 @@
 dnl xfce4-places-plugin
 
 dnl version info
-XDT_VERSION_INIT([1.8.4])
+XDT_VERSION_INIT([1.8.4], [git])
 
 dnl initialize autoconf
 AC_COPYRIGHT([Copyright (c) 2007-2009 Diego Ongaro <ongardie@gmail.com>
