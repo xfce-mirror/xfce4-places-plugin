@@ -1,0 +1,248 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfce-panel-plugins.xfce4-places-plugin package.
+# 
+# Translators:
+# Cas Pascal <casboi86@gmail.com>, 2024
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce Panel Plugins\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2024-05-12 00:51+0200\n"
+"PO-Revision-Date: 2013-07-03 19:11+0000\n"
+"Last-Translator: Cas Pascal <casboi86@gmail.com>, 2024\n"
+"Language-Team: Vietnamese (http://app.transifex.com/xfce/xfce-panel-plugins/language/vi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: vi\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: panel-plugin/places.desktop.in:4 panel-plugin/cfg.c:100
+#: panel-plugin/cfg.c:195 panel-plugin/cfg.c:396
+msgid "Places"
+msgstr "Lưu trữ"
+
+#: panel-plugin/places.desktop.in:5
+msgid "Access folders, documents, and removable media"
+msgstr "Truy cập các thư mục, tài liệu và thiết bị di động"
+
+#. Trash
+#: panel-plugin/model_system.c:151
+msgid "Trash"
+msgstr "Thùng rác"
+
+#: panel-plugin/model_system.c:188
+msgid "Desktop"
+msgstr "Desktop"
+
+#. File System (/)
+#: panel-plugin/model_system.c:204
+msgid "File System"
+msgstr "Hệ thống tập tin"
+
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: panel-plugin/model_user.c:256
+#, c-format
+msgid "%s on %s"
+msgstr "%s trong %s"
+
+#: panel-plugin/model_volumes.c:71
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "Không thể ngắt \"%s\""
+
+#: panel-plugin/model_volumes.c:120
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "Không thể tháo gắn \"%s\""
+
+#: panel-plugin/model_volumes.c:170 panel-plugin/model_volumes.c:193
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "Không thể gắn \"%s\""
+
+#: panel-plugin/model_volumes.c:478
+msgid "Mount and Open"
+msgstr "Gắn và Mở"
+
+#: panel-plugin/model_volumes.c:491
+msgid "Mount"
+msgstr "Gắn"
+
+#: panel-plugin/model_volumes.c:511
+msgid "Eject"
+msgstr "Ngắt"
+
+#: panel-plugin/model_volumes.c:521
+msgid "Unmount"
+msgstr "Tháo gắn"
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: panel-plugin/model_volumes_notify.c:128
+msgid "Unmounting device"
+msgstr "Đang tháo gắn kết thiết bị"
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: panel-plugin/model_volumes_notify.c:131
+#, c-format
+msgid ""
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "Thiết bị \"%s\" đang được tháo gắn kết, xin đừng rút hoặc ngắt thiết bị đó"
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: panel-plugin/model_volumes_notify.c:138
+#: panel-plugin/model_volumes_notify.c:262
+msgid "Writing data to device"
+msgstr "Đang ghi dữ liệu lên thiết bị"
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: panel-plugin/model_volumes_notify.c:141
+#: panel-plugin/model_volumes_notify.c:265
+#, c-format
+msgid ""
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "Còn dữ liệu cần phải ghi lên thiết bị \"%s\" trước khi có thể tháo. Xin đừng rút hoặc ngắt thiết bị"
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: panel-plugin/model_volumes_notify.c:253
+msgid "Ejecting device"
+msgstr "Đang ngắt thiết bị"
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: panel-plugin/model_volumes_notify.c:256
+#, c-format
+msgid "The device \"%s\" is being ejected. This may take some time"
+msgstr "Đang ngắt thiết bị \"%s\". Việc này có thể tốn ít thời gian"
+
+#: panel-plugin/view.c:659
+msgid "Search for Files"
+msgstr "Tìm kiếm tập tin"
+
+#: panel-plugin/view.c:700
+msgid "_Clear"
+msgstr "_Xoá danh sách"
+
+#. RECENT DOCUMENTS
+#: panel-plugin/view.c:716 panel-plugin/cfg.c:563
+msgid "Recent Documents"
+msgstr "Tài liệu gần đây"
+
+#: panel-plugin/cfg.c:399
+msgid "Close"
+msgstr "Đóng"
+
+#. BUTTON
+#: panel-plugin/cfg.c:473
+msgid "Button"
+msgstr "Nút"
+
+#. BUTTON: Show Icon/Label
+#: panel-plugin/cfg.c:478
+msgid "_Show"
+msgstr "Hiển thị"
+
+#: panel-plugin/cfg.c:483
+msgid "Icon Only"
+msgstr "Biểu tượng"
+
+#: panel-plugin/cfg.c:484
+msgid "Label Only"
+msgstr "Nhãn"
+
+#: panel-plugin/cfg.c:485
+msgid "Icon and Label"
+msgstr "Biểu tượng và nhãn"
+
+#. BUTTON: Label text entry
+#: panel-plugin/cfg.c:495
+msgid "_Label"
+msgstr "Nhãn"
+
+#. MENU
+#: panel-plugin/cfg.c:508
+msgid "Menu"
+msgstr "Danh sách"
+
+#. MENU: Show Icons
+#: panel-plugin/cfg.c:513
+msgid "Show _icons in menu"
+msgstr "Hiện biểu tượng trong danh sách"
+
+#. MENU: Show Removable Media
+#: panel-plugin/cfg.c:522
+msgid "Show _removable media"
+msgstr "Hiện thiết bị di động"
+
+#. MENU: - Mount and Open (indented)
+#: panel-plugin/cfg.c:531
+msgid "Mount and _Open on click"
+msgstr "Gắn kết và mở khi nhấn"
+
+#. MENU: Show GTK Bookmarks
+#: panel-plugin/cfg.c:545
+msgid "Show GTK _bookmarks"
+msgstr "Hiện các dấu trang GTK"
+
+#. MENU: Show Recent Documents
+#: panel-plugin/cfg.c:554
+msgid "Show recent _documents"
+msgstr "Hiện tài liệu gần đây"
+
+#. RECENT DOCUMENTS: Show clear option
+#: panel-plugin/cfg.c:573
+msgid "Show cl_ear option"
+msgstr "Hiện tuỳ chọn xoá danh sách"
+
+#. RECENT DOCUMENTS: Number to display
+#: panel-plugin/cfg.c:587
+msgid "_Number to display"
+msgstr "Hiển thị bao nhiêu mục"
+
+#. SEARCH
+#: panel-plugin/cfg.c:614
+msgid "Search"
+msgstr "Tìm kiếm"
+
+#. Search: command
+#: panel-plugin/cfg.c:619
+msgid "Co_mmand"
+msgstr "Lệnh"
+
+#: panel-plugin/support.c:179
+msgid "Open"
+msgstr "Mở"
+
+#: panel-plugin/support.c:194
+msgid "Open Terminal Here"
+msgstr "Mở hộp lệnh tại đây"
+
+#: panel-plugin/support.c:206
+msgid "Empty Trash"
+msgstr "Dọn thùng rác"
+
+#: panel-plugin/xfce4-popup-places.sh:28
+msgid "Usage:"
+msgstr "Tính năng:"
+
+#: panel-plugin/xfce4-popup-places.sh:29
+msgid "OPTION"
+msgstr ""
+
+#: panel-plugin/xfce4-popup-places.sh:31
+msgid "Options:"
+msgstr "Tuỳ chọn:"
+
+#: panel-plugin/xfce4-popup-places.sh:32
+msgid "Popup menu at current mouse position"
+msgstr "Hiện danh sách tại vị trí con trỏ"
+
+#: panel-plugin/xfce4-popup-places.sh:33
+msgid "Show help options"
+msgstr "Hiện trợ giúp tuỳ chọn "
+
+#: panel-plugin/xfce4-popup-places.sh:34
+msgid "Print version information and exit"
+msgstr "In thông tin phiên bản và thoát "
