@@ -52,17 +52,17 @@ msgstr "%s në %s"
 #: panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
-msgstr "S’u arrit të nxirrej \"%s\""
+msgstr "S’u arrit të nxirrej “%s”"
 
 #: panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
-msgstr "S’u arrit të çmontohej \"%s\""
+msgstr "S’u arrit të çmontohej “%s”"
 
 #: panel-plugin/model_volumes.c:170 panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
-msgstr "S’u arrit të montohej \"%s\""
+msgstr "S’u arrit të montohej “%s”"
 
 #: panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
@@ -91,7 +91,7 @@ msgstr "Po çmontohet pajisja"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
 " media or disconnect the drive"
-msgstr "Pajisja \"%s\" po çmontohet nga sistemi. Ju lutemi, mos e hiqni median ose mos e shkëputni pajisjen"
+msgstr "Pajisja “%s” po çmontohet nga sistemi. Ju lutemi, mos e hiqni median, apo të shkëputni pajisjen"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: panel-plugin/model_volumes_notify.c:138
@@ -106,7 +106,7 @@ msgstr "Po shkruhen të dhëna në pajisje"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
 " removed. Please do not remove the media or disconnect the drive"
-msgstr "Ka të dhëna që duhen shkruar te pajisja \"%s\", para se ajo të mund të hiqet. Ju lutemi, mos e hiqni median ose mos e shkëputni pajisjen"
+msgstr "Ka të dhëna që duhen shkruar te pajisja “%s”, para se ajo të mund të hiqet. Ju lutemi, mos e hiqni median, apo të shkëputni pajisjen"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: panel-plugin/model_volumes_notify.c:253
@@ -117,7 +117,7 @@ msgstr "Po nxirret pajisje"
 #: panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr "Pajisja \"%s\" po nxirret. Kjo mund të marrë pak kohë"
+msgstr "Pajisja “%s” po nxirret. Kjo mund të marrë pak kohë"
 
 #: panel-plugin/view.c:659
 msgid "Search for Files"
@@ -186,7 +186,7 @@ msgstr "Me klikimin, Montoje dhe _Hape"
 #. MENU: Show GTK Bookmarks
 #: panel-plugin/cfg.c:545
 msgid "Show GTK _bookmarks"
-msgstr "Shfaq _faqerojtësa GTK"
+msgstr "Shfaq _faqerojtës GTK"
 
 #. MENU: Show Recent Documents
 #: panel-plugin/cfg.c:554
@@ -247,4 +247,4 @@ msgstr "Shfaq mundësi ndihme"
 
 #: panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr "Shtyp të dhëna versioni dhe dil"
+msgstr "Shtyp hollësi versioni dhe dil"
