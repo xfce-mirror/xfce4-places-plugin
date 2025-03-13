@@ -28,9 +28,7 @@
 #include "support.h"
 
 #include <gio/gio.h>
-#ifdef HAVE_GIO_UNIX
 #include <gio/gunixmounts.h>
-#endif
 #include <gtk/gtk.h>
 
 #ifdef HAVE_LIBNOTIFY
@@ -257,7 +255,6 @@ pbvol_mount_and_open(PlacesBookmarkAction *action)
     }
 }
 
-#ifdef HAVE_GIO_UNIX
 static gboolean
 pbvol_mount_is_internal (GMount *mount)
 {
@@ -310,8 +307,6 @@ pbvol_mount_is_internal (GMount *mount)
 
     return is_internal;
 }
-#endif
-
 
 static gboolean
 pbvol_is_removable(GVolume *volume)
@@ -341,9 +336,7 @@ pbvol_is_removable(GVolume *volume)
     /* determine the mount for the volume (if it is mounted at all) */
     mount = g_volume_get_mount(volume);
     if (mount) {
-#ifdef HAVE_GIO_UNIX
         is_internal = pbvol_mount_is_internal (mount);
-#endif
 
         /* check if the volume can be unmounted */
         can_unmount = g_mount_can_unmount(mount);

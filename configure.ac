@@ -1,16 +1,21 @@
 dnl xfce4-places-plugin
 
 dnl version info
+m4_define([copyright_year], [2025])
 XDT_VERSION_INIT([1.8.4], [git])
 
 dnl initialize autoconf
 AC_COPYRIGHT([Copyright (c) 2007-2009 Diego Ongaro <ongardie@gmail.com>
-              2010-2024 The Xfce development team. All rights reserved.])
+              2010-copyright_year() The Xfce development team. All rights reserved.])
 AC_INIT([xfce4-places-plugin], [xdt_version], [https://gitlab.xfce.org/panel-plugins/xfce4-places-plugin], [xfce4-places-plugin])
 
 AC_PREREQ([2.69])
 AC_REVISION([xdt_version_build])
 AC_CONFIG_MACRO_DIRS([m4])
+AC_DEFINE([VERSION_FULL], [PACKAGE_VERSION], [Alias for VERSION and PACKAGE_VERSION for meson compatibility])
+COPYRIGHT_YEAR=copyright_year()
+AC_DEFINE_UNQUOTED([COPYRIGHT_YEAR], ["$COPYRIGHT_YEAR"], [Copyright year])
+AC_SUBST([COPYRIGHT_YEAR])
 
 dnl initialize automake
 AM_INIT_AUTOMAKE([1.11 no-dist-gzip dist-bzip2 tar-ustar foreign])
@@ -30,6 +35,7 @@ LT_INIT([disable-static])
 dnl check for required packages
 XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.50.0])
 XDT_CHECK_PACKAGE([GIO], [gio-2.0], [2.50.0])
+XDT_CHECK_PACKAGE([GIO_UNIX], [gio-unix-2.0], [2.50.0])
 XDT_CHECK_PACKAGE([GMODULE], [gmodule-2.0], [2.50.0])
 XDT_CHECK_PACKAGE([GOBJECT], [gobject-2.0], [2.50.0])
 XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.50.0])
@@ -39,9 +45,6 @@ XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [4.16.0])
 XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-2.0], [4.16.0])
 XDT_CHECK_PACKAGE([EXO], [exo-2], [4.16.0])
 XDT_CHECK_PACKAGE([XFCONF], [libxfconf-0], [4.16.0])
-
-XDT_CHECK_OPTIONAL_PACKAGE([GIO_UNIX], [gio-unix-2.0], [2.50.0], [gio-unix],
-    [gio-unix, for special treatment of mount points on UNIX])
 
 dnl *** Optional support for libnotify ***
 XDT_CHECK_OPTIONAL_PACKAGE([LIBNOTIFY], [libnotify], [0.7.0], [notifications],
