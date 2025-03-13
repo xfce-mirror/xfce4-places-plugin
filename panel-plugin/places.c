@@ -31,6 +31,25 @@
 #include "places.h"
 #include "view.h"
 
+static void
+places_show_about(XfcePanelPlugin *plugin, PlacesView *view)
+{
+    const gchar *auth[] = {
+        "Diego Ongaro <ongardie@gmail.com>",
+        NULL
+    };
+
+    gtk_show_about_dialog(NULL,
+        "logo-icon-name", "system-file-manager",
+        "license", xfce_get_license_text(XFCE_LICENSE_TEXT_GPL),
+        "version", PACKAGE_VERSION,
+        "program-name", PACKAGE_NAME,
+        "comments", _("Access folders, documents, and removable media"),
+        "website", PACKAGE_URL,
+        "copyright", "Copyright \302\251 2010-2025 The Xfce development team",
+        "authors", auth, NULL);
+}
+
 /**
  * Cleans up resources.
  */
@@ -60,6 +79,11 @@ places_construct(XfcePanelPlugin *plugin)
 
     /* Initialize view */
     view = places_view_init(plugin);
+
+    /* Display the about menu item */
+    xfce_panel_plugin_menu_show_about(plugin);
+    g_signal_connect(plugin, "about",
+                     G_CALLBACK(places_show_about), view);
 
     /* Connect the finalize callback */
     g_signal_connect(plugin, "free-data", 
