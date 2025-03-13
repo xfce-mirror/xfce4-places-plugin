@@ -8,5 +8,9 @@ distclean-local:
 	rm -rf *.cache *~
 
 EXTRA_DIST = 								\
-	README.md								\
+	README.md							\
+	meson.build							\
+	meson_options.txt						\
+	po/meson.build							\
+	xfce-revision.h.in						\
 	$(NULL)

@@ -89,6 +89,7 @@ $(desktop_DATA): $(desktop_in_files) Makefile
 	$(AM_V_GEN)$(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 EXTRA_DIST = $(desktop_in_files) \
+	meson.build \
 	xfce4-popup-places.sh
 
 CLEANFILES = $(desktop_DATA) \
