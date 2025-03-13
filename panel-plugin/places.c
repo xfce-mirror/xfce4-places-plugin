@@ -49,7 +49,7 @@ places_show_about(XfcePanelPlugin *plugin, PlacesView *view)
         "program-name", PACKAGE_NAME,
         "comments", _("Access folders, documents, and removable media"),
         "website", PACKAGE_URL,
-        "copyright", "Copyright \302\251 2010-2025 The Xfce development team",
+        "copyright", "Copyright \302\251 2010-" COPYRIGHT_YEAR " The Xfce development team",
         "authors", auth, NULL);
 }
 
