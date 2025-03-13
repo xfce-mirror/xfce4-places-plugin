@@ -1,11 +1,4 @@
 option(
-  'gio-unix',
-  type: 'feature',
-  value: 'auto',
-  description: 'For special treatment of mount points on UNIX',
-)
-
-option(
   'libnotify',
   type: 'feature',
   value: 'auto',

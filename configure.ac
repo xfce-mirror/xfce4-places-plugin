@@ -35,6 +35,7 @@ LT_INIT([disable-static])
 dnl check for required packages
 XDT_CHECK_PACKAGE([GLIB], [glib-2.0], [2.50.0])
 XDT_CHECK_PACKAGE([GIO], [gio-2.0], [2.50.0])
+XDT_CHECK_PACKAGE([GIO_UNIX], [gio-unix-2.0], [2.50.0])
 XDT_CHECK_PACKAGE([GMODULE], [gmodule-2.0], [2.50.0])
 XDT_CHECK_PACKAGE([GOBJECT], [gobject-2.0], [2.50.0])
 XDT_CHECK_PACKAGE([GTHREAD], [gthread-2.0], [2.50.0])
@@ -44,9 +45,6 @@ XDT_CHECK_PACKAGE([LIBXFCE4UI], [libxfce4ui-2], [4.16.0])
 XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-2.0], [4.16.0])
 XDT_CHECK_PACKAGE([EXO], [exo-2], [4.16.0])
 XDT_CHECK_PACKAGE([XFCONF], [libxfconf-0], [4.16.0])
-
-XDT_CHECK_OPTIONAL_PACKAGE([GIO_UNIX], [gio-unix-2.0], [2.50.0], [gio-unix],
-    [gio-unix, for special treatment of mount points on UNIX])
 
 dnl *** Optional support for libnotify ***
 XDT_CHECK_OPTIONAL_PACKAGE([LIBNOTIFY], [libnotify], [0.7.0], [notifications],

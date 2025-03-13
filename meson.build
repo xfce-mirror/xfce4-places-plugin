@@ -29,6 +29,7 @@ dependency_versions = {
 
 glib = dependency('glib-2.0', version: dependency_versions['glib'])
 gio = dependency('gio-2.0', version: dependency_versions['glib'])
+gio_unix = dependency('gio-unix-2.0', version: dependency_versions['glib'])
 gmodule = dependency('gmodule-2.0', version: dependency_versions['glib'])
 gobject = dependency('gobject-2.0', version: dependency_versions['glib'])
 gthread = dependency('gthread-2.0', version: dependency_versions['glib'])
@@ -38,14 +39,10 @@ libxfce4util = dependency('libxfce4util-1.0', version: dependency_versions['xfce
 libxfce4panel = dependency('libxfce4panel-2.0', version: dependency_versions['xfce4'])
 exo = dependency('exo-2', version: dependency_versions['xfce4'])
 xfconf = dependency('libxfconf-0', version: dependency_versions['xfce4'])
-gio_unix = dependency('gio-unix-2.0', version: dependency_versions['glib'], required: get_option('gio-unix'))
 libnotify = dependency('libnotify', version: dependency_versions['libnotify'], required: get_option('libnotify'))
 
 feature_cflags = []
 
-if gio_unix.found()
-  feature_cflags += '-DHAVE_GIO_UNIX=1'
-endif
 have_libnotify = libnotify.found()
 if have_libnotify
   feature_cflags += '-DHAVE_LIBNOTIFY=1'
