@@ -51,10 +51,8 @@
 
 #include <gtk/gtk.h>
 #include <libxfce4panel/libxfce4panel.h>
+#include <libxfce4util/libxfce4util.h>
 #include <string.h>
-
-#define EXO_API_SUBJECT_TO_CHANGE
-#include <exo/exo.h>
 
 #include "button.h"
 
@@ -212,7 +210,7 @@ places_button_class_init(PlacesButtonClass *klass)
             "Label",
             "Button text",
             NULL,
-            EXO_PARAM_READWRITE));
+            G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
     g_object_class_install_property(gobject_class,
         PROP_PIXBUF_FACTORY,
@@ -220,7 +218,7 @@ places_button_class_init(PlacesButtonClass *klass)
             "Pixbuf factory",
             "Factory to create icons for image to appear next to button text",
             GTK_TYPE_WIDGET,
-            EXO_PARAM_READWRITE));
+            G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 }
 
 static void

@@ -31,8 +31,10 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4ui/libxfce4ui.h>
 
+#if !LIBXFCE4UI_CHECK_VERSION(4, 21, 0)
 #define EXO_API_SUBJECT_TO_CHANGE
 #include <exo/exo.h>
+#endif
 
 #include "string.h"
 
@@ -53,8 +55,11 @@ places_load_file_browser(const gchar *path)
     if(path != NULL && *path != '\0'){
 
         DBG("Open file manager at %s", path);
+#if LIBXFCE4UI_CHECK_VERSION(4, 21, 0)
+        xfce_execute_preferred_application("FileManager", path, NULL, NULL, &error);
+#else
         exo_execute_preferred_application("FileManager", path, NULL, NULL, &error);
-
+#endif
     }else{
 
         gchar *home;
@@ -93,7 +98,11 @@ places_load_terminal(const gchar *const_path)
     }
 
     DBG("Open terminal emulator at %s", path);
+#if LIBXFCE4UI_CHECK_VERSION(4, 21, 0)
+    xfce_execute_preferred_application("TerminalEmulator", NULL, path, NULL, NULL);
+#else
     exo_execute_preferred_application("TerminalEmulator", NULL, path, NULL, NULL);
+#endif
 
     if(path_owner && path != NULL)
         g_free(path);
