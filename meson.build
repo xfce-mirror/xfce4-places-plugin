@@ -35,9 +35,13 @@ gobject = dependency('gobject-2.0', version: dependency_versions['glib'])
 gthread = dependency('gthread-2.0', version: dependency_versions['glib'])
 gtk = dependency('gtk+-3.0', version: dependency_versions['gtk'])
 libxfce4ui = dependency('libxfce4ui-2', version: dependency_versions['xfce4'])
+if libxfce4ui.version().version_compare('< 4.21.0')
+  exo = dependency('exo-2', version: dependency_versions['xfce4'])
+else
+  exo = dependency('', required: false)
+endif
 libxfce4util = dependency('libxfce4util-1.0', version: dependency_versions['xfce4'])
 libxfce4panel = dependency('libxfce4panel-2.0', version: dependency_versions['xfce4'])
-exo = dependency('exo-2', version: dependency_versions['xfce4'])
 xfconf = dependency('libxfconf-0', version: dependency_versions['xfce4'])
 libnotify = dependency('libnotify', version: dependency_versions['libnotify'], required: get_option('libnotify'))
 

@@ -31,7 +31,6 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfce4panel/libxfce4panel.h>
 #include <libxfce4ui/libxfce4ui.h>
-#include <exo/exo.h>
 #include <xfconf/xfconf.h>
 
 #include "cfg.h"
@@ -91,50 +90,50 @@ places_cfg_class_init (PlacesCfgClass *klass)
                                                       0,
                                                       2,
                                                       0,
-                                                      EXO_PARAM_READWRITE));
+                                                      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property (gobject_class,
                                    PROP_BUTTON_LABEL,
                                    g_param_spec_string ("button-label",
                                                         NULL, NULL,
                                                         _("Places"),
-                                                        EXO_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property (gobject_class,
                                    PROP_SHOW_ICONS,
                                    g_param_spec_boolean ("show-icons", NULL, NULL,
                                                          TRUE,
-                                                         EXO_PARAM_READWRITE));
+                                                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property (gobject_class,
                                    PROP_SHOW_VOLUMES,
                                    g_param_spec_boolean ("show-volumes", NULL, NULL,
                                                          TRUE,
-                                                         EXO_PARAM_READWRITE));
+                                                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property (gobject_class,
                                    PROP_MOUNT_OPEN_VOLUMES,
                                    g_param_spec_boolean ("mount-open-volumes", NULL, NULL,
                                                          FALSE,
-                                                         EXO_PARAM_READWRITE));
+                                                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property (gobject_class,
                                    PROP_SHOW_BOOKMARKS,
                                    g_param_spec_boolean ("show-bookmarks", NULL, NULL,
                                                          TRUE,
-                                                         EXO_PARAM_READWRITE));
+                                                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property (gobject_class,
                                    PROP_SHOW_RECENT,
                                    g_param_spec_boolean ("show-recent", NULL, NULL,
                                                          TRUE,
-                                                         EXO_PARAM_READWRITE));
+                                                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property (gobject_class,
                                    PROP_SHOW_RECENT_CLEAR,
                                    g_param_spec_boolean ("show-recent-clear", NULL, NULL,
                                                          TRUE,
-                                                         EXO_PARAM_READWRITE));
+                                                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property (gobject_class,
                                    PROP_SHOW_RECENT_NUMBER,
@@ -143,14 +142,14 @@ places_cfg_class_init (PlacesCfgClass *klass)
                                                       1,
                                                       25,
                                                       10,
-                                                      EXO_PARAM_READWRITE));
+                                                      G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property (gobject_class,
                                    PROP_SEARCH_CMD,
                                    g_param_spec_string ("search-cmd",
                                                         NULL, NULL,
                                                         "",
-                                                        EXO_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   places_cfg_signals[BUTTON_CHANGED] =
     g_signal_new (g_intern_static_string ("button-changed"),
