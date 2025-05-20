@@ -2,7 +2,7 @@ dnl xfce4-places-plugin
 
 dnl version info
 m4_define([copyright_year], [2025])
-XDT_VERSION_INIT([1.8.4], [git])
+XDT_VERSION_INIT([1.9.0])
 
 dnl initialize autoconf
 AC_COPYRIGHT([Copyright (c) 2007-2009 Diego Ongaro <ongardie@gmail.com>
