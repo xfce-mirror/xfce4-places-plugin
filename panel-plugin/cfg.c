@@ -376,7 +376,6 @@ static void
 pcfg_dialog_close_cb(GtkDialog *dialog, gint response, PlacesCfg *cfg)
 {
     gtk_widget_destroy(GTK_WIDGET(dialog));
-    xfce_panel_plugin_unblock_menu(cfg->plugin);
 }
 
 static GtkWidget*
@@ -384,12 +383,11 @@ pcfg_make_empty_dialog(PlacesCfg *cfg)
 {
     GtkWidget *dlg; /* we'll return this */
 
-    xfce_panel_plugin_block_menu(cfg->plugin);
-
-    dlg = xfce_titled_dialog_new_with_mixed_buttons(_("Places"),
+    cfg->dialog = dlg = xfce_titled_dialog_new_with_mixed_buttons(_("Places"),
               NULL,
               GTK_DIALOG_DESTROY_WITH_PARENT,
               "window-close-symbolic", _("Close"), GTK_RESPONSE_ACCEPT, NULL);
+    g_object_add_weak_pointer(G_OBJECT(cfg->dialog), (gpointer *)&cfg->dialog);
 
     gtk_window_set_position(GTK_WINDOW(dlg), GTK_WIN_POS_CENTER);
     gtk_window_set_icon_name(GTK_WINDOW(dlg), "xfce4-settings");
@@ -453,6 +451,11 @@ places_cfg_open_dialog(PlacesCfg *cfg)
     gint row = 0;
 
     DBG("configure plugin");
+
+    if (cfg->dialog != NULL) {
+        gtk_window_present(GTK_WINDOW(cfg->dialog));
+        return;
+    }
 
     dlg = pcfg_make_empty_dialog(cfg);
 

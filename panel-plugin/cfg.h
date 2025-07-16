@@ -47,6 +47,7 @@ struct _PlacesCfg
 
     /* "private" */
     XfcePanelPlugin     *plugin;
+    GtkWidget           *dialog;
 
     /* "public" for view's access */
     gboolean            show_button_icon;
