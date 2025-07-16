@@ -32,10 +32,6 @@
  * other things.
  */
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
-
 #include "model_user.h"
 #include "model.h"
 #include "support.h"
