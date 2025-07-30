@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the xfce-panel-plugins.xfce4-places-plugin package.
 # 
 # Translators:
-# Marek Adamski, 2024
+# Marek Adamski, 2024-2025
 # Michał Jeż <michal.je2u@gmail.com>, 2012
 # Piotr Maliński <admin@rk.edu.pl>, 2006
 # Piotr Sokół <psokol.l10n@gmail.com>, 2009,2012-2013
@@ -15,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2024-05-12 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
-"Last-Translator: Marek Adamski, 2024\n"
+"Last-Translator: Marek Adamski, 2024-2025\n"
 "Language-Team: Polish (http://app.transifex.com/xfce/xfce-panel-plugins/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,7 +30,7 @@ msgstr "Miejsca"
 
 #: panel-plugin/places.desktop.in:5
 msgid "Access folders, documents, and removable media"
-msgstr "Umożliwia dostęp do katalogów, dokumentów i nośników wymiennych"
+msgstr "Umożliwia dostęp do katalogów, dokumentów i nośników wymiennych."
 
 #. Trash
 #: panel-plugin/model_system.c:151
