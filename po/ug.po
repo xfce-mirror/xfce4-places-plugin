@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 00:54+0200\n"
+"POT-Creation-Date: 2024-05-12 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Uyghur (http://app.transifex.com/xfce/xfce-panel-plugins/language/ug/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: panel-plugin/places.desktop.in:4 panel-plugin/cfg.c:100
 #: panel-plugin/cfg.c:195 panel-plugin/cfg.c:396
 msgid "Places"
-msgstr "ئورۇنلار"
+msgstr "ئورۇن"
 
 #: panel-plugin/places.desktop.in:5
 msgid "Access folders, documents, and removable media"
@@ -31,12 +31,12 @@ msgstr "مۇندەرىجە، پۈتۈك ۋە يۆتكىلىشچان ۋاسىتى
 msgid "Trash"
 msgstr "ئەخلەتخانا"
 
-#: panel-plugin/model_system.c:185
+#: panel-plugin/model_system.c:188
 msgid "Desktop"
 msgstr "ئۈستەلئۈستى"
 
 #. File System (/)
-#: panel-plugin/model_system.c:201
+#: panel-plugin/model_system.c:204
 msgid "File System"
 msgstr "ھۆججەت سىستېمىسى"
 
@@ -44,22 +44,22 @@ msgstr "ھۆججەت سىستېمىسى"
 #: panel-plugin/model_user.c:256
 #, c-format
 msgid "%s on %s"
-msgstr ""
+msgstr "‫%2$s دىكى %1$s"
 
 #: panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
-msgstr "«%s» نى چىقىرىش مەغلۇپ بولدى"
+msgstr "«%s» نى قاڭقىتالمىدى"
 
 #: panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
-msgstr "«%s» ئېگەرسىزلەش مەغلۇپ بولدى"
+msgstr "«%s» نى ئېگەرسىزلىيەلمىدى"
 
 #: panel-plugin/model_volumes.c:170 panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
-msgstr "«%s» نى ئېگەرلەش مەغلۇپ بولدى"
+msgstr "«%s» نى ئېگەرلىيەلمىدى"
 
 #: panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
@@ -71,7 +71,7 @@ msgstr "ئېگەرلە"
 
 #: panel-plugin/model_volumes.c:511
 msgid "Eject"
-msgstr "چىقار"
+msgstr "قاڭقىت"
 
 #: panel-plugin/model_volumes.c:521
 msgid "Unmount"
@@ -88,7 +88,7 @@ msgstr "ئۈسكۈنىنى ئېگەرسىزلەۋاتىدۇ"
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
 " media or disconnect the drive"
-msgstr "سىستېما ئۈسكۈنىسى «%s» نى ئېگەرسىزلەۋاتىدۇ. دىسكىنى چىقارماڭ ياكى ئۈسكۈنىنى كومپيۇتېردىن ئايرىۋەتمەڭ."
+msgstr "سىستېما ئۈسكۈنىسى «%s» نى ئېگەرسىزلەۋاتىدۇ. دىسكىنى چىقارماڭ ياكى ئۈسكۈنىنى كومپيۇتېردىن ئايرىۋەتمەڭ"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: panel-plugin/model_volumes_notify.c:138
@@ -103,18 +103,18 @@ msgstr "سانلىق-مەلۇماتلارنى ئۈسكىنىگە يېزىۋات�
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
 " removed. Please do not remove the media or disconnect the drive"
-msgstr "ئۈسكۈنە «%s» چىقىرىشتىن بۇرۇن بىر يېزىشقا تېگىشلىك سانلىق-مەلۇماتلار بار.دىسكىنى چىقارماق ياكى ئۈسكۈنىنى كومپيۇتېردىن ئايرىۋەتمەڭ."
+msgstr "ئۈسكۈنە «%s» چىقىرىشتىن بۇرۇن بىر يېزىشقا تېگىشلىك سانلىق-مەلۇماتلار بار. دىسكىنى چىقارماق ياكى ئۈسكۈنىنى كومپيۇتېردىن ئايرىۋەتمەڭ"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
-msgstr "ئۈسكۈنە چىقىرىش"
+msgstr "ئۈسكۈنىنى قاڭقىتىۋاتىدۇ"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr "ئۈسكۈنە «%s» نى چىقىرىۋاتىدۇ. ئازراق ۋاقىت كېتىشى مۇمكىن."
+msgstr "ئۈسكۈنە «%s» قاڭقىتىلىۋاتىدۇ. ئازراق ۋاقىت كېتىشى مۇمكىن"
 
 #: panel-plugin/view.c:659
 msgid "Search for Files"
@@ -131,12 +131,12 @@ msgstr "يېقىنقى پۈتۈكلەر"
 
 #: panel-plugin/cfg.c:399
 msgid "Close"
-msgstr "تاقا"
+msgstr "ياپ"
 
 #. BUTTON
 #: panel-plugin/cfg.c:473
 msgid "Button"
-msgstr "توپچا"
+msgstr "توپچە"
 
 #. BUTTON: Show Icon/Label
 #: panel-plugin/cfg.c:478
@@ -168,22 +168,22 @@ msgstr "تىزىملىك"
 #. MENU: Show Icons
 #: panel-plugin/cfg.c:513
 msgid "Show _icons in menu"
-msgstr "تىزىملىكنىڭ ئىچىدە سىنبەلگە كۆرسەتسۇن(_I):"
+msgstr "تىزىملىكتە سىنبەلگە كۆرسەت(_I)"
 
 #. MENU: Show Removable Media
 #: panel-plugin/cfg.c:522
 msgid "Show _removable media"
-msgstr "چىقارغىلى بولىدىغان ۋاسىتىنى كۆرسەتسۇن(_R)"
+msgstr "كۆچمە ۋاسىتىنى كۆرسەت(_R)"
 
 #. MENU: - Mount and Open (indented)
 #: panel-plugin/cfg.c:531
 msgid "Mount and _Open on click"
-msgstr "چېكىپلا ئېگەرلىسۇن ۋە ئاچسۇن(_O)"
+msgstr "چېكىپلا ئېگەرلە ۋە ئاچ(_O)"
 
 #. MENU: Show GTK Bookmarks
 #: panel-plugin/cfg.c:545
 msgid "Show GTK _bookmarks"
-msgstr "GTK خەتكۈچلىرىنى كۆرسەت(_B)"
+msgstr "GTK خەتكۈشلىرىنى كۆرسەت(_B)"
 
 #. MENU: Show Recent Documents
 #: panel-plugin/cfg.c:554
@@ -210,25 +210,29 @@ msgstr "ئىزدە"
 msgid "Co_mmand"
 msgstr "بۇيرۇق(_M)"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "ئاچ"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "بۇ يەردە تېرمىنالنى ئاچ"
 
+#: panel-plugin/support.c:206
+msgid "Empty Trash"
+msgstr "ئەخلەتخانىنى تازىلاش"
+
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr "ئىشلىتىش ئۇسۇلى:"
+msgstr "ئىشلىتىشى:"
 
 #: panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr "OPTION"
+msgstr "تاللانما"
 
 #: panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
-msgstr "تاللانمىلار:"
+msgstr "تاللانما:"
 
 #: panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
@@ -240,4 +244,4 @@ msgstr "ياردەم تاللانمىلىرىنى كۆرسىتىدۇ"
 
 #: panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr "نەشر ئۇچۇرىنى كۆرسىتىپ ئاخىرلاشتۇرۇش"
+msgstr "نەشر ئۇچۇرىنى كۆرسىتىپ ئاخىرلاشتۇرىدۇ"
