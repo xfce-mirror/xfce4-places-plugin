@@ -4,6 +4,8 @@
 # 
 # Translators:
 # Cédric Valmary <cvalmary@yahoo.fr>, 2013
+# Cédric Valmary <cvalmary@yahoo.fr>, 2013
+# Quentin PAGÈS, 2024
 # Quentin PAGÈS, 2024
 msgid ""
 msgstr ""
@@ -51,7 +53,7 @@ msgstr "%s sus %s"
 #: panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
-msgstr " Impossible d'ejectar « %s »"
+msgstr "Impossible d'ejectar « %s »"
 
 #: panel-plugin/model_volumes.c:120
 #, c-format
@@ -116,7 +118,7 @@ msgstr "Ejeccion del periferic"
 #: panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr "Lo periferic « %s » es en cors d'ejeccion. Aquò va prene un moment."
+msgstr "Lo periferic « %s » es en cors d'ejeccion. Aquò pòt trigar"
 
 #: panel-plugin/view.c:659
 msgid "Search for Files"
@@ -160,7 +162,7 @@ msgstr "Icòna e etiqueta"
 #. BUTTON: Label text entry
 #: panel-plugin/cfg.c:495
 msgid "_Label"
-msgstr "Etiqueta"
+msgstr "_Etiqueta"
 
 #. MENU
 #: panel-plugin/cfg.c:508
@@ -210,7 +212,7 @@ msgstr "Cercar"
 #. Search: command
 #: panel-plugin/cfg.c:619
 msgid "Co_mmand"
-msgstr "Comanda"
+msgstr "Co_manda"
 
 #: panel-plugin/support.c:179
 msgid "Open"
