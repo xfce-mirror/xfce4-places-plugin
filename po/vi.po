@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Cas Pascal <casboi86@gmail.com>, 2024
+# Loc Huynh <https://github.com/hthienloc>, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
@@ -34,12 +35,12 @@ msgstr "Thùng rác"
 
 #: panel-plugin/model_system.c:188
 msgid "Desktop"
-msgstr "Desktop"
+msgstr "Màn hình nền"
 
 #. File System (/)
 #: panel-plugin/model_system.c:204
 msgid "File System"
-msgstr "Hệ thống tập tin"
+msgstr "Hệ thống Tệp"
 
 #. TRANSLATORS: this will result in "<path> on <hostname>"
 #: panel-plugin/model_user.c:256
@@ -142,7 +143,7 @@ msgstr "Nút"
 #. BUTTON: Show Icon/Label
 #: panel-plugin/cfg.c:478
 msgid "_Show"
-msgstr "Hiển thị"
+msgstr "_Hiển thị"
 
 #: panel-plugin/cfg.c:483
 msgid "Icon Only"
@@ -159,47 +160,47 @@ msgstr "Biểu tượng và nhãn"
 #. BUTTON: Label text entry
 #: panel-plugin/cfg.c:495
 msgid "_Label"
-msgstr "Nhãn"
+msgstr "_Nhãn"
 
 #. MENU
 #: panel-plugin/cfg.c:508
 msgid "Menu"
-msgstr "Danh sách"
+msgstr "Trình đơn"
 
 #. MENU: Show Icons
 #: panel-plugin/cfg.c:513
 msgid "Show _icons in menu"
-msgstr "Hiện biểu tượng trong danh sách"
+msgstr "H_iện biểu tượng trong danh sách"
 
 #. MENU: Show Removable Media
 #: panel-plugin/cfg.c:522
 msgid "Show _removable media"
-msgstr "Hiện thiết bị di động"
+msgstr "_Hiện thiết bị di động"
 
 #. MENU: - Mount and Open (indented)
 #: panel-plugin/cfg.c:531
 msgid "Mount and _Open on click"
-msgstr "Gắn kết và mở khi nhấn"
+msgstr "_Gắn kết và mở khi nhấn"
 
 #. MENU: Show GTK Bookmarks
 #: panel-plugin/cfg.c:545
 msgid "Show GTK _bookmarks"
-msgstr "Hiện các dấu trang GTK"
+msgstr "_Hiện các dấu trang GTK"
 
 #. MENU: Show Recent Documents
 #: panel-plugin/cfg.c:554
 msgid "Show recent _documents"
-msgstr "Hiện tài liệu gần đây"
+msgstr "_Hiện tài liệu gần đây"
 
 #. RECENT DOCUMENTS: Show clear option
 #: panel-plugin/cfg.c:573
 msgid "Show cl_ear option"
-msgstr "Hiện tuỳ chọn xoá danh sách"
+msgstr "_Hiện tuỳ chọn xoá danh sách"
 
 #. RECENT DOCUMENTS: Number to display
 #: panel-plugin/cfg.c:587
 msgid "_Number to display"
-msgstr "Hiển thị bao nhiêu mục"
+msgstr "màn hình bao _nhiêu mục"
 
 #. SEARCH
 #: panel-plugin/cfg.c:614
@@ -209,7 +210,7 @@ msgstr "Tìm kiếm"
 #. Search: command
 #: panel-plugin/cfg.c:619
 msgid "Co_mmand"
-msgstr "Lệnh"
+msgstr "_Lệnh"
 
 #: panel-plugin/support.c:179
 msgid "Open"
@@ -229,7 +230,7 @@ msgstr "Tính năng:"
 
 #: panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr ""
+msgstr "OPTION"
 
 #: panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
@@ -241,8 +242,8 @@ msgstr "Hiện danh sách tại vị trí con trỏ"
 
 #: panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
-msgstr "Hiện trợ giúp tuỳ chọn "
+msgstr "Hiện trợ giúp tuỳ chọn"
 
 #: panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr "In thông tin phiên bản và thoát "
+msgstr "In thông tin phiên bản và thoát"
