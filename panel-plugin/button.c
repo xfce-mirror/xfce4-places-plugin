@@ -236,8 +236,8 @@ places_button_construct(PlacesButton *self, XfcePanelPlugin *plugin)
 
     g_assert(XFCE_IS_PANEL_PLUGIN(plugin));
 
-    g_object_ref(plugin);
     self->plugin = plugin;
+    g_object_add_weak_pointer(G_OBJECT(plugin), (gpointer *)&self->plugin);
 
     /* from xfce_panel_create_toggle_button() (libxfce4panel) */
     gtk_widget_set_can_default (GTK_WIDGET(self), FALSE);
@@ -302,11 +302,6 @@ places_button_dispose(GObject *object)
     if (self->screen_changed_id != 0) {
         g_signal_handler_disconnect(self, self->screen_changed_id);
         self->screen_changed_id = 0;
-    }
-
-    if (self->plugin != NULL) {
-        g_object_unref(self->plugin);
-        self->plugin = NULL;
     }
 
     (*G_OBJECT_CLASS(places_button_parent_class)->dispose) (object);
