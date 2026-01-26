@@ -237,7 +237,6 @@ places_button_construct(PlacesButton *self, XfcePanelPlugin *plugin)
     g_assert(XFCE_IS_PANEL_PLUGIN(plugin));
 
     self->plugin = plugin;
-    g_object_add_weak_pointer(G_OBJECT(plugin), (gpointer *)&self->plugin);
 
     /* from xfce_panel_create_toggle_button() (libxfce4panel) */
     gtk_widget_set_can_default (GTK_WIDGET(self), FALSE);
