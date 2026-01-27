@@ -197,7 +197,7 @@ places_cfg_get_property (GObject    *object,
                          GValue     *value,
                          GParamSpec *pspec)
 {
-  PlacesCfg     *cfg = XFCE_PLACES_CFG (object);
+  PlacesCfg     *cfg = PLACES_CFG (object);
   gint           val;
 
   switch (prop_id)
@@ -260,7 +260,7 @@ places_cfg_set_property (GObject      *object,
                          const GValue *value,
                          GParamSpec   *pspec)
 {
-  PlacesCfg     *cfg = XFCE_PLACES_CFG (object);
+  PlacesCfg     *cfg = PLACES_CFG (object);
   gint           val;
   const char    *text;
 
@@ -631,7 +631,7 @@ places_cfg_open_dialog(PlacesCfg *cfg)
 static void
 places_cfg_finalize (GObject *object)
 {
-  PlacesCfg *cfg = XFCE_PLACES_CFG (object);
+  PlacesCfg *cfg = PLACES_CFG (object);
   DBG("PlacesCfg finalize called");
 
     if(cfg->label != NULL)
@@ -650,7 +650,7 @@ places_cfg_new(XfcePanelPlugin *plugin)
     XfconfChannel *channel;
     gchar         *property;
 
-    cfg             = g_object_new (XFCE_TYPE_PLACES_CFG, NULL);
+    cfg             = g_object_new (PLACES_TYPE_CFG, NULL);
     cfg->plugin     = plugin;
 
     xfconf_init(NULL);

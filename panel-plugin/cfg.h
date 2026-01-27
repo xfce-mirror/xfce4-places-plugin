@@ -32,12 +32,12 @@ G_BEGIN_DECLS
 typedef struct _PlacesCfgClass PlacesCfgClass;
 typedef struct _PlacesCfg      PlacesCfg;
 
-#define XFCE_TYPE_PLACES_CFG            (places_cfg_get_type ())
-#define XFCE_PLACES_CFG(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), XFCE_TYPE_PLACES_CFG, PlacesCfg))
-#define XFCE_PLACES_CFG_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), XFCE_TYPE_PLACES_CFG, PlacesCfgClass))
-#define XFCE_IS_PLACES_CFG(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), XFCE_TYPE_PLACES_CFG))
-#define XFCE_IS_PLACES_CFG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), XFCE_TYPE_PLACES_CFG))
-#define XFCE_PLACES_CFG_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), XFCE_TYPE_PLACES_CFG, PlacesCfgClass))
+#define PLACES_TYPE_CFG            (places_cfg_get_type ())
+#define PLACES_CFG(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), PLACES_TYPE_CFG, PlacesCfg))
+#define PLACES_CFG_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), PLACES_TYPE_CFG, PlacesCfgClass))
+#define PLACES_IS_CFG(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), PLACES_TYPE_CFG))
+#define PLACES_IS_CFG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), PLACES_TYPE_CFG))
+#define PLACES_CFG_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), PLACES_TYPE_CFG, PlacesCfgClass))
 
 GType places_cfg_get_type      (void) G_GNUC_CONST;
 
