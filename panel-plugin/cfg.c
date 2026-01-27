@@ -148,7 +148,7 @@ places_cfg_class_init (PlacesCfgClass *klass)
                                                         G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
 
   places_cfg_signals[BUTTON_CHANGED] =
-    g_signal_new (g_intern_static_string ("button-changed"),
+    g_signal_new (g_intern_string ("button-changed"),
                   G_TYPE_FROM_CLASS (gobject_class),
                   G_SIGNAL_RUN_LAST,
                   0, NULL, NULL,
@@ -156,7 +156,7 @@ places_cfg_class_init (PlacesCfgClass *klass)
                   G_TYPE_NONE, 0);
 
   places_cfg_signals[MENU_CHANGED] =
-    g_signal_new (g_intern_static_string ("menu-changed"),
+    g_signal_new (g_intern_string ("menu-changed"),
                   G_TYPE_FROM_CLASS (gobject_class),
                   G_SIGNAL_RUN_LAST,
                   0, NULL, NULL,
@@ -164,7 +164,7 @@ places_cfg_class_init (PlacesCfgClass *klass)
                   G_TYPE_NONE, 0);
 
   places_cfg_signals[MODEL_CHANGED] =
-    g_signal_new (g_intern_static_string ("model-changed"),
+    g_signal_new (g_intern_string ("model-changed"),
                   G_TYPE_FROM_CLASS (gobject_class),
                   G_SIGNAL_RUN_LAST,
                   0, NULL, NULL,
