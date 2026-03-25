@@ -24,7 +24,7 @@ msgstr "ადგილები"
 
 #: panel-plugin/places.desktop.in:5
 msgid "Access folders, documents, and removable media"
-msgstr ""
+msgstr "წვდომა საქაღალდეებთან, დოკუმენტებთან და მოხსნად მედიასთან"
 
 #. Trash
 #: panel-plugin/model_system.c:151
@@ -168,37 +168,37 @@ msgstr "მენიუ"
 #. MENU: Show Icons
 #: panel-plugin/cfg.c:513
 msgid "Show _icons in menu"
-msgstr ""
+msgstr "ხატულებ_ის ჩვენება მენიუში"
 
 #. MENU: Show Removable Media
 #: panel-plugin/cfg.c:522
 msgid "Show _removable media"
-msgstr ""
+msgstr "მო_ხსნადი მედიის ჩვენება"
 
 #. MENU: - Mount and Open (indented)
 #: panel-plugin/cfg.c:531
 msgid "Mount and _Open on click"
-msgstr ""
+msgstr "მიმაგრება და გახსნა და_წკაპუნებით"
 
 #. MENU: Show GTK Bookmarks
 #: panel-plugin/cfg.c:545
 msgid "Show GTK _bookmarks"
-msgstr ""
+msgstr "GTK-ის სანიშნეე_ბის ჩვენება"
 
 #. MENU: Show Recent Documents
 #: panel-plugin/cfg.c:554
 msgid "Show recent _documents"
-msgstr ""
+msgstr "უახლესი _დოკუმენტების ჩვენება"
 
 #. RECENT DOCUMENTS: Show clear option
 #: panel-plugin/cfg.c:573
 msgid "Show cl_ear option"
-msgstr ""
+msgstr "გასუფთავ_ების არჩევნის ჩვენება"
 
 #. RECENT DOCUMENTS: Number to display
 #: panel-plugin/cfg.c:587
 msgid "_Number to display"
-msgstr ""
+msgstr "საჩვე_ებელი რიცხვი"
 
 #. SEARCH
 #: panel-plugin/cfg.c:614
@@ -208,7 +208,7 @@ msgstr "ძებნა"
 #. Search: command
 #: panel-plugin/cfg.c:619
 msgid "Co_mmand"
-msgstr ""
+msgstr "ბრძა_ნება"
 
 #: panel-plugin/support.c:179
 msgid "Open"
@@ -236,7 +236,7 @@ msgstr "მორგება:"
 
 #: panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr ""
+msgstr "მხტუნარა მენიუ თაგუნას მიმდინარე პოზიციაზე"
 
 #: panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
