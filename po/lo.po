@@ -1,0 +1,247 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Xfce
+# This file is distributed under the same license as the xfce-panel-plugins.xfce4-places-plugin package.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: Xfce Panel Plugins\n"
+"Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
+"POT-Creation-Date: 2024-05-12 00:51+0200\n"
+"PO-Revision-Date: 2013-07-03 19:11+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Lao (http://app.transifex.com/xfce/xfce-panel-plugins/language/lo/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: lo\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: panel-plugin/places.desktop.in:4 panel-plugin/cfg.c:100
+#: panel-plugin/cfg.c:195 panel-plugin/cfg.c:396
+msgid "Places"
+msgstr "ສະຖານທີ່"
+
+#: panel-plugin/places.desktop.in:5
+msgid "Access folders, documents, and removable media"
+msgstr "ເຂົ້າເຖິງໂຟນເດີ, ເອກະສານ ແລະ ສື່ທີ່ຖອດອອກໄດ້"
+
+#. Trash
+#: panel-plugin/model_system.c:151
+msgid "Trash"
+msgstr "ຖັງຂີ້ເຫຍື້ອ"
+
+#: panel-plugin/model_system.c:188
+msgid "Desktop"
+msgstr "ໜ້າຈໍ"
+
+#. File System (/)
+#: panel-plugin/model_system.c:204
+msgid "File System"
+msgstr "ລະບົບໄຟລ໌"
+
+#. TRANSLATORS: this will result in "<path> on <hostname>"
+#: panel-plugin/model_user.c:256
+#, c-format
+msgid "%s on %s"
+msgstr "%s ຢູ່ %s"
+
+#: panel-plugin/model_volumes.c:71
+#, c-format
+msgid "Failed to eject \"%s\""
+msgstr "ບໍ່ສາມາດດັນ \"%s\" ອອກໄດ້"
+
+#: panel-plugin/model_volumes.c:120
+#, c-format
+msgid "Failed to unmount \"%s\""
+msgstr "ບໍ່ສາມາດຍົກເລີກການເຊື່ອມຕໍ່ \"%s\" ໄດ້"
+
+#: panel-plugin/model_volumes.c:170 panel-plugin/model_volumes.c:193
+#, c-format
+msgid "Failed to mount \"%s\""
+msgstr "ບໍ່ສາມາດເຊື່ອມຕໍ່ \"%s\" ໄດ້"
+
+#: panel-plugin/model_volumes.c:478
+msgid "Mount and Open"
+msgstr "ເຊື່ອມຕໍ່ ແລະ ເປີດ"
+
+#: panel-plugin/model_volumes.c:491
+msgid "Mount"
+msgstr "ເຊື່ອມຕໍ່"
+
+#: panel-plugin/model_volumes.c:511
+msgid "Eject"
+msgstr "ດັນອອກ"
+
+#: panel-plugin/model_volumes.c:521
+msgid "Unmount"
+msgstr "ຍົກເລີກການເຊື່ອມຕໍ່"
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: panel-plugin/model_volumes_notify.c:128
+msgid "Unmounting device"
+msgstr "ກຳລັງຍົກເລີກການເຊື່ອມຕໍ່ອຸປະກອນ"
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: panel-plugin/model_volumes_notify.c:131
+#, c-format
+msgid ""
+"The device \"%s\" is being unmounted by the system. Please do not remove the"
+" media or disconnect the drive"
+msgstr "ລະບົບກຳລັງຍົກເລີກການເຊື່ອມຕໍ່ອຸປະກອນ \"%s\". ກະລຸນາຢ່າຟ້າວຖອດສື່ ຫຼື ຕັດການເຊື່ອມຕໍ່ໄດຣຟ໌"
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: panel-plugin/model_volumes_notify.c:138
+#: panel-plugin/model_volumes_notify.c:262
+msgid "Writing data to device"
+msgstr "ກຳລັງຂຽນຂໍ້ມູນລົງໃນອຸປະກອນ"
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: panel-plugin/model_volumes_notify.c:141
+#: panel-plugin/model_volumes_notify.c:265
+#, c-format
+msgid ""
+"There is data that needs to be written to the device \"%s\" before it can be"
+" removed. Please do not remove the media or disconnect the drive"
+msgstr "ມີຂໍ້ມູນທີ່ຈຳເປັນຕ້ອງຂຽນລົງໃນອຸປະກອນ \"%s\" ກ່ອນທີ່ຈະຖອດອອກໄດ້. ກະລຸນາຢ່າຟ້າວຖອດສື່ ຫຼື ຕັດການເຊື່ອມຕໍ່ໄດຣຟ໌"
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: panel-plugin/model_volumes_notify.c:253
+msgid "Ejecting device"
+msgstr "ກຳລັງດັນອຸປະກອນອອກ"
+
+#. TRANSLATORS: Please use the same translation here as in Thunar
+#: panel-plugin/model_volumes_notify.c:256
+#, c-format
+msgid "The device \"%s\" is being ejected. This may take some time"
+msgstr "ກຳລັງດັນອຸປະກອນ \"%s\" ອອກ. ອາດໃຊ້ເວລາຄາວໜຶ່ງ"
+
+#: panel-plugin/view.c:659
+msgid "Search for Files"
+msgstr "ຄົ້ນຫາໄຟລ໌"
+
+#: panel-plugin/view.c:700
+msgid "_Clear"
+msgstr "_ລຶບລ້າງ"
+
+#. RECENT DOCUMENTS
+#: panel-plugin/view.c:716 panel-plugin/cfg.c:563
+msgid "Recent Documents"
+msgstr "ເອກະສານຫຼ້າສຸດ"
+
+#: panel-plugin/cfg.c:399
+msgid "Close"
+msgstr "ປິດ"
+
+#. BUTTON
+#: panel-plugin/cfg.c:473
+msgid "Button"
+msgstr "ປຸ່ມ"
+
+#. BUTTON: Show Icon/Label
+#: panel-plugin/cfg.c:478
+msgid "_Show"
+msgstr "_ສະແດງ"
+
+#: panel-plugin/cfg.c:483
+msgid "Icon Only"
+msgstr "ໄອຄອນເທົ່ານັ້ນ"
+
+#: panel-plugin/cfg.c:484
+msgid "Label Only"
+msgstr "ປ້າຍຊື່ເທົ່ານັ້ນ"
+
+#: panel-plugin/cfg.c:485
+msgid "Icon and Label"
+msgstr "ໄອຄອນ ແລະ ປ້າຍຊື່"
+
+#. BUTTON: Label text entry
+#: panel-plugin/cfg.c:495
+msgid "_Label"
+msgstr "_ປ້າຍຊື່"
+
+#. MENU
+#: panel-plugin/cfg.c:508
+msgid "Menu"
+msgstr "ເມນູ"
+
+#. MENU: Show Icons
+#: panel-plugin/cfg.c:513
+msgid "Show _icons in menu"
+msgstr "ສະແດງ_ໄອຄອນໃນເມນູ"
+
+#. MENU: Show Removable Media
+#: panel-plugin/cfg.c:522
+msgid "Show _removable media"
+msgstr "ສະແດງ_ສື່ທີ່ຖອດອອກໄດ້"
+
+#. MENU: - Mount and Open (indented)
+#: panel-plugin/cfg.c:531
+msgid "Mount and _Open on click"
+msgstr "ເຊື່ອມຕໍ່ ແລະ _ເປີດ ເມື່ອຄລິກ"
+
+#. MENU: Show GTK Bookmarks
+#: panel-plugin/cfg.c:545
+msgid "Show GTK _bookmarks"
+msgstr "ສະແດງ_ບຸກມາກ GTK"
+
+#. MENU: Show Recent Documents
+#: panel-plugin/cfg.c:554
+msgid "Show recent _documents"
+msgstr "ສະແດງ_ເອກະສານຫຼ້າສຸດ"
+
+#. RECENT DOCUMENTS: Show clear option
+#: panel-plugin/cfg.c:573
+msgid "Show cl_ear option"
+msgstr "ສະແດງຕົວເລືອກ_ລຶບລ້າງ"
+
+#. RECENT DOCUMENTS: Number to display
+#: panel-plugin/cfg.c:587
+msgid "_Number to display"
+msgstr "_ຈຳນວນທີ່ຈະສະແດງ"
+
+#. SEARCH
+#: panel-plugin/cfg.c:614
+msgid "Search"
+msgstr "ຄົ້ນຫາ"
+
+#. Search: command
+#: panel-plugin/cfg.c:619
+msgid "Co_mmand"
+msgstr "_ຄຳສັ່ງ"
+
+#: panel-plugin/support.c:179
+msgid "Open"
+msgstr "ເປີດ"
+
+#: panel-plugin/support.c:194
+msgid "Open Terminal Here"
+msgstr "ເປີດເທີມິນອລຢູ່ບ່ອນນີ້"
+
+#: panel-plugin/support.c:206
+msgid "Empty Trash"
+msgstr "ເຮັດໃຫ້ຖັງຂີ້ເຫຍື້ອວ່າງເປົ່າ"
+
+#: panel-plugin/xfce4-popup-places.sh:28
+msgid "Usage:"
+msgstr "ວິທີໃຊ້:"
+
+#: panel-plugin/xfce4-popup-places.sh:29
+msgid "OPTION"
+msgstr "ຕົວເລືອກ"
+
+#: panel-plugin/xfce4-popup-places.sh:31
+msgid "Options:"
+msgstr "ຕົວເລືອກ:"
+
+#: panel-plugin/xfce4-popup-places.sh:32
+msgid "Popup menu at current mouse position"
+msgstr "ສະແດງເມນູປ໊ອບອັບຢູ່ຕຳແໜ່ງເມົາສ໌ປັດຈຸບັນ"
+
+#: panel-plugin/xfce4-popup-places.sh:33
+msgid "Show help options"
+msgstr "ສະແດງຕົວເລືອກການຊ່ວຍເຫຼືອ"
+
+#: panel-plugin/xfce4-popup-places.sh:34
+msgid "Print version information and exit"
+msgstr "ສະແດງຂໍ້ມູນເວີຊັນ ແລະ ອອກຈາກໂປຣແກຣມ"
