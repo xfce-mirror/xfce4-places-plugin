@@ -39,7 +39,7 @@ typedef struct _PlacesCfg      PlacesCfg;
 #define PLACES_IS_CFG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), PLACES_TYPE_CFG))
 #define PLACES_CFG_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), PLACES_TYPE_CFG, PlacesCfgClass))
 
-GType places_cfg_get_type      (void) G_GNUC_CONST;
+GType places_cfg_get_type      (void);
 
 struct _PlacesCfg
 {
