@@ -76,6 +76,21 @@ places_button_size_changed(XfcePanelPlugin*, gint size, PlacesButton*);
 static void
 places_button_theme_changed(PlacesButton*);
 
+struct _PlacesButton
+{
+    GtkToggleButton parent;
+
+    /* private */
+    XfcePanelPlugin *plugin;
+    GtkWidget *alignment;
+    GtkWidget *box;
+    GtkWidget *image;
+    GtkWidget *label;
+    gchar *label_text;
+    places_button_image_pixbuf_factory *pixbuf_factory;
+    gulong screen_changed_id;
+};
+
 G_DEFINE_TYPE(PlacesButton, places_button, GTK_TYPE_TOGGLE_BUTTON);
 
 void

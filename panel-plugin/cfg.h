@@ -29,17 +29,8 @@
 
 G_BEGIN_DECLS
 
-typedef struct _PlacesCfgClass PlacesCfgClass;
-typedef struct _PlacesCfg      PlacesCfg;
-
-#define PLACES_TYPE_CFG            (places_cfg_get_type ())
-#define PLACES_CFG(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), PLACES_TYPE_CFG, PlacesCfg))
-#define PLACES_CFG_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), PLACES_TYPE_CFG, PlacesCfgClass))
-#define PLACES_IS_CFG(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), PLACES_TYPE_CFG))
-#define PLACES_IS_CFG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), PLACES_TYPE_CFG))
-#define PLACES_CFG_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), PLACES_TYPE_CFG, PlacesCfgClass))
-
-GType places_cfg_get_type      (void);
+#define PLACES_TYPE_CFG (places_cfg_get_type ())
+G_DECLARE_FINAL_TYPE (PlacesCfg, places_cfg, PLACES, CFG, GObject)
 
 struct _PlacesCfg
 {
@@ -62,11 +53,6 @@ struct _PlacesCfg
     gchar               *label;
     gchar               *search_cmd;
 
-};
-
-struct _PlacesCfgClass
-{
-  GObjectClass __parent__;
 };
 
 void
