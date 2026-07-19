@@ -27,40 +27,10 @@
 
 #include <gtk/gtk.h>
 
-#define PLACES_TYPE_BUTTON             (places_button_get_type ())
-#define PLACES_BUTTON(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), PLACES_TYPE_BUTTON, PlacesButton))
-#define PLACES_BUTTON_CLASS(obj)       (G_TYPE_CHECK_CLASS_CAST ((obj), PLACES_TYPE_BUTTON,  PlacesButtonClass))
-#define PLACES_IS_BUTTON(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), PLACES_TYPE_BUTTON))
-#define PLACES_IS_BUTTON_CLASS(obj)    (G_TYPE_CHECK_CLASS_TYPE ((obj), PLACES_TYPE_BUTTON))
-#define PLACES_BUTTON_GET_CLASS        (G_TYPE_INSTANCE_GET_CLASS ((obj), PLACES_TYPE_BUTTON, PlacesButtonClass))
-
-typedef struct _PlacesButton            PlacesButton;
-typedef struct _PlacesButtonClass       PlacesButtonClass;
+#define PLACES_TYPE_BUTTON (places_button_get_type ())
+G_DECLARE_FINAL_TYPE (PlacesButton, places_button, PLACES, BUTTON, GtkToggleButton)
 
 typedef GdkPixbuf* (places_button_image_pixbuf_factory) (int size, int scale);
-
-struct _PlacesButton
-{
-    GtkToggleButton parent;
-
-    /* private */
-    XfcePanelPlugin *plugin;
-    GtkWidget *alignment;
-    GtkWidget *box;
-    GtkWidget *image;
-    GtkWidget *label;
-    gchar *label_text;
-    places_button_image_pixbuf_factory *pixbuf_factory;
-    gulong screen_changed_id;
-};
-
-struct _PlacesButtonClass
-{
-    GtkToggleButtonClass parent_class;
-};
-
-GType
-places_button_get_type(void);
 
 GtkWidget*
 places_button_new(XfcePanelPlugin *plugin);

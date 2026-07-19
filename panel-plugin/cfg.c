@@ -283,7 +283,7 @@ places_cfg_set_property (GObject      *object,
 
     case PROP_BUTTON_LABEL:
       text = g_value_get_string (value);
-      if (strcmp(cfg->label, text))
+      if (strcmp(cfg->label, text) != 0)
         {
           g_free (cfg->label);
           cfg->label = g_value_dup_string (value);
@@ -356,7 +356,7 @@ places_cfg_set_property (GObject      *object,
 
     case PROP_SEARCH_CMD:
       text = g_value_get_string (value);
-      if (strcmp(cfg->search_cmd, text))
+      if (strcmp(cfg->search_cmd, text) != 0)
         {
           g_free (cfg->search_cmd);
           cfg->search_cmd = g_value_dup_string (value);
@@ -634,10 +634,8 @@ places_cfg_finalize (GObject *object)
   PlacesCfg *cfg = PLACES_CFG (object);
   DBG("PlacesCfg finalize called");
 
-    if(cfg->label != NULL)
-        g_free(cfg->label);
-    if(cfg->search_cmd != NULL)
-        g_free(cfg->search_cmd);
+    g_free(cfg->label);
+    g_free(cfg->search_cmd);
 
   xfconf_shutdown();
   G_OBJECT_CLASS (places_cfg_parent_class)->finalize (object);

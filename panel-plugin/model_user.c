@@ -77,14 +77,8 @@ pbuser_finalize_bookmark(PlacesBookmark *bookmark)
 {
     g_assert(bookmark != NULL);
 
-    if(bookmark->uri != NULL){
-        g_free(bookmark->uri);
-        bookmark->uri = NULL;
-    }
-    if(bookmark->label != NULL){
-        g_free(bookmark->label);
-        bookmark->label = NULL;
-    }
+    g_clear_pointer(&bookmark->uri, g_free);
+    g_clear_pointer(&bookmark->label, g_free);
 }
 
 static void
@@ -174,7 +168,7 @@ pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
             fileinfo = g_file_query_info(file,
                                   G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME","
                                   G_FILE_ATTRIBUTE_STANDARD_ICON,
-                                  0, NULL, NULL);
+                                  G_FILE_QUERY_INFO_NONE, NULL, NULL);
 
             if(fileinfo != NULL)
                 icon = g_file_info_get_icon(fileinfo);

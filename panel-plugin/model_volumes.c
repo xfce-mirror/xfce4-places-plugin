@@ -417,10 +417,7 @@ pbvol_volume_removed(GVolumeMonitor *monitor, GVolume *volume, PlacesBookmarkGro
 static void
 pbvol_bookmark_finalize(PlacesBookmark *bookmark)
 {
-    if(bookmark->uri != NULL){
-        g_free(bookmark->uri);
-        bookmark->uri = NULL;
-    }
+    g_clear_pointer(&bookmark->uri, g_free);
 }
 
 static void

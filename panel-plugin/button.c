@@ -76,6 +76,21 @@ places_button_size_changed(XfcePanelPlugin*, gint size, PlacesButton*);
 static void
 places_button_theme_changed(PlacesButton*);
 
+struct _PlacesButton
+{
+    GtkToggleButton parent;
+
+    /* private */
+    XfcePanelPlugin *plugin;
+    GtkWidget *alignment;
+    GtkWidget *box;
+    GtkWidget *image;
+    GtkWidget *label;
+    gchar *label_text;
+    places_button_image_pixbuf_factory *pixbuf_factory;
+    gulong screen_changed_id;
+};
+
 G_DEFINE_TYPE(PlacesButton, places_button, GTK_TYPE_TOGGLE_BUTTON);
 
 void
@@ -93,8 +108,7 @@ places_button_set_label(PlacesButton *self, const gchar *label)
 
     DBG("new label text: %s", label);
 
-    if (self->label_text != NULL)
-        g_free(self->label_text);
+    g_free(self->label_text);
     
     self->label_text = g_strdup(label);
 
@@ -298,10 +312,7 @@ places_button_dispose(GObject *object)
 {
     PlacesButton *self = PLACES_BUTTON(object);
 
-    if (self->screen_changed_id != 0) {
-        g_signal_handler_disconnect(self, self->screen_changed_id);
-        self->screen_changed_id = 0;
-    }
+    g_clear_signal_handler(&self->screen_changed_id, self);
 
     (*G_OBJECT_CLASS(places_button_parent_class)->dispose) (object);
 }
@@ -311,8 +322,7 @@ places_button_destroy_image(PlacesButton *self)
 {
     if (self->image != NULL) {
         gtk_widget_destroy(self->image);
-        g_object_unref(self->image);
-        self->image = NULL;
+        g_clear_object(&self->image);
     }
 }
 static void
@@ -356,8 +366,7 @@ places_button_destroy_label(PlacesButton *self)
 {
     if (self->label != NULL) {
         gtk_widget_destroy(self->label);
-        g_object_unref(self->label);
-        self->label = NULL;
+        g_clear_object(&self->label);
     }
 }
 

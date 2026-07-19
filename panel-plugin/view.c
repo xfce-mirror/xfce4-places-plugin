@@ -138,8 +138,7 @@ pview_destroy_model(PlacesView *view)
 
         }while(bookmark_group_li != NULL);
 
-        g_list_free(view->bookmark_groups);
-        view->bookmark_groups = NULL;
+        g_clear_list(&view->bookmark_groups, NULL);
     }
 
 }
@@ -245,8 +244,7 @@ pview_cb_menu_deact(PlacesView *pd, GtkWidget *menu)
 
     /* remove the timeout to save a tick */
     if(pd->menu_timeout_id){
-        g_source_remove(pd->menu_timeout_id);
-        pd->menu_timeout_id = 0;
+        g_clear_handle_id(&pd->menu_timeout_id, g_source_remove);
         PLACES_DEBUG_MENU_TIMEOUT_COUNT(-1);
     }else{
         PLACES_DEBUG_MENU_TIMEOUT_COUNT(0);
@@ -504,15 +502,8 @@ pview_destroy_menu(PlacesView *view)
 
     if(view->menu != NULL) {
         gtk_menu_shell_deactivate(GTK_MENU_SHELL(view->menu));
-
-        if (view->recent_manager_changed_handler) {
-            g_signal_handler_disconnect(recent_manager,
-                                        view->recent_manager_changed_handler);
-            view->recent_manager_changed_handler = 0;
-        }
-
-        gtk_widget_destroy(view->menu);
-        view->menu = NULL;
+        g_clear_signal_handler(&view->recent_manager_changed_handler, recent_manager);
+        g_clear_pointer(&view->menu, gtk_widget_destroy);
     }
     view->needs_separator = FALSE;
 }
@@ -818,12 +809,16 @@ pview_button_update(PlacesView *view)
 }
 /********** Handle user message **********/
 
-/* copied from xfce4-panel/common/utils.c (panel_utils_grab_available) */
+/* copied from xfce4-panel/common/utils.c (panel_utils_device_grab) */
 static gboolean
-pview_grab_available (void)
+places_view_device_grab (GtkWidget *widget)
 {
-    /* TODO fix for gtk3 */
-    return TRUE;
+  GdkScreen *screen = gtk_widget_get_screen (widget);
+  GdkDisplay *display = gdk_screen_get_display (screen);
+  GdkSeat *seat = gdk_display_get_default_seat (display);
+  GdkWindow *window = gdk_window_get_effective_toplevel (gtk_widget_get_window (widget));
+
+  return xfce_gdk_device_grab (seat, window, GDK_SEAT_CAPABILITY_ALL, NULL);
 }
 
 
@@ -837,28 +832,37 @@ pview_remote_event(XfcePanelPlugin *panel_plugin,
 
   DBG("remote event: %s, %lu", name, (gulong) view);
 
-  if (strcmp (name, "popup") == 0
-      && gtk_widget_is_visible (GTK_WIDGET (panel_plugin))
-      && !gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (view->button))
-      && pview_grab_available ()) /* checking if there is another menu on the screen */
+  if (strcmp (name, "popup") != 0
+      || gtk_widget_is_visible (GTK_WIDGET (panel_plugin)))
+    return FALSE;
+
+  GtkWidget *invisible = gtk_invisible_new ();
+  gtk_widget_show (invisible);
+
+  if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (view->button))
+      || !places_view_device_grab (invisible))
     {
-      if (value != NULL
-          && G_VALUE_HOLDS_BOOLEAN (value)
-          && g_value_get_boolean (value))
-        {
-          /* popup the menu under the pointer */
-          pview_open_menu_at (view, NULL);
-        }
-      else
-        {
-          /* show the menu */
-          pview_open_menu(view);
-        }
-      /* don't popup another menu */
-      return TRUE;
+      gtk_widget_destroy (invisible);
+      return FALSE;
     }
 
-  return FALSE;
+  if (value != NULL
+      && G_VALUE_HOLDS_BOOLEAN (value)
+      && g_value_get_boolean (value))
+    {
+      /* popup the menu under the pointer */
+      pview_open_menu_at (view, NULL);
+    }
+  else
+    {
+      /* show the menu */
+      pview_open_menu(view);
+    }
+
+  gtk_widget_destroy (invisible);
+
+  /* don't popup another menu */
+  return TRUE;
 }
 
 /********** Initialization & Finalization **********/
@@ -930,12 +934,10 @@ places_view_finalize(PlacesView *view)
         g_signal_handlers_disconnect_by_func(view->button,
                                              pview_cb_button_pressed,
                                              view);
-        g_object_unref(view->button);
-        view->button = NULL;
+        g_clear_object(&view->button);
     }
 
-    g_object_unref(view->cfg);
-    view->cfg = NULL;
+    g_clear_object(&view->cfg);
 
     g_free(view);
 
