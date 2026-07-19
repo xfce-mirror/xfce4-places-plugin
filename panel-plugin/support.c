@@ -46,15 +46,13 @@
 void
 places_load_file_browser(const gchar *path)
 {
-    GError *error = NULL;
-
     if(path != NULL && *path != '\0'){
 
         DBG("Open file manager at %s", path);
 #if LIBXFCE4UI_CHECK_VERSION(4, 21, 0)
-        xfce_execute_preferred_application("FileManager", path, NULL, NULL, &error);
+        xfce_execute_preferred_application("FileManager", path, NULL, NULL, NULL);
 #else
-        exo_execute_preferred_application("FileManager", path, NULL, NULL, &error);
+        exo_execute_preferred_application("FileManager", path, NULL, NULL, NULL);
 #endif
     }else{
 
@@ -112,9 +110,8 @@ places_load_terminal(const gchar *const_path)
 void
 places_load_file(const gchar *path)
 {
-    GError *error = NULL;
     if(path != NULL && *path != '\0')
-        gtk_show_uri_on_window(NULL , path, 0, &error);
+        gtk_show_uri_on_window(NULL , path, 0, NULL);
 }
 
 /**
