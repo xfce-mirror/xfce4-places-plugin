@@ -108,8 +108,7 @@ places_button_set_label(PlacesButton *self, const gchar *label)
 
     DBG("new label text: %s", label);
 
-    if (self->label_text != NULL)
-        g_free(self->label_text);
+    g_free(self->label_text);
     
     self->label_text = g_strdup(label);
 

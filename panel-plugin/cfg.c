@@ -634,10 +634,8 @@ places_cfg_finalize (GObject *object)
   PlacesCfg *cfg = PLACES_CFG (object);
   DBG("PlacesCfg finalize called");
 
-    if(cfg->label != NULL)
-        g_free(cfg->label);
-    if(cfg->search_cmd != NULL)
-        g_free(cfg->search_cmd);
+    g_free(cfg->label);
+    g_free(cfg->search_cmd);
 
   xfconf_shutdown();
   G_OBJECT_CLASS (places_cfg_parent_class)->finalize (object);
