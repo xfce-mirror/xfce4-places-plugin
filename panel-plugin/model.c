@@ -104,10 +104,7 @@ places_bookmark_destroy(PlacesBookmark *bookmark)
         bookmark->primary_action = NULL;
     }
 
-    if(bookmark->actions != NULL){
-        places_bookmark_actions_destroy(bookmark->actions);
-        bookmark->actions = NULL;
-    }
+    g_clear_pointer(&bookmark->actions, places_bookmark_actions_destroy);
 
     if(bookmark->finalize != NULL)
         bookmark->finalize(bookmark);

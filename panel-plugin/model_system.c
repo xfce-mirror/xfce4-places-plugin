@@ -52,10 +52,7 @@ pbsys_finalize_desktop_bookmark(PlacesBookmark *bookmark)
 {
     g_assert(bookmark != NULL);
 
-    if(bookmark->uri != NULL){
-        g_free(bookmark->uri);
-        bookmark->uri = NULL;
-    }
+    g_clear_pointer(&bookmark->uri, g_free);
 }
 
 #if TRASH
@@ -64,10 +61,7 @@ pbsys_finalize_trash_bookmark(PlacesBookmark *bookmark)
 {
     g_assert(bookmark != NULL);
 
-    if(bookmark->icon != NULL){
-        g_object_unref(bookmark->icon);
-        bookmark->icon = NULL;
-    }
+    g_clear_object(&bookmark->icon);
 }
 #endif
 

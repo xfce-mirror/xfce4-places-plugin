@@ -138,8 +138,7 @@ pview_destroy_model(PlacesView *view)
 
         }while(bookmark_group_li != NULL);
 
-        g_list_free(view->bookmark_groups);
-        view->bookmark_groups = NULL;
+        g_clear_list(&view->bookmark_groups, NULL);
     }
 
 }
@@ -245,8 +244,7 @@ pview_cb_menu_deact(PlacesView *pd, GtkWidget *menu)
 
     /* remove the timeout to save a tick */
     if(pd->menu_timeout_id){
-        g_source_remove(pd->menu_timeout_id);
-        pd->menu_timeout_id = 0;
+        g_clear_handle_id(&pd->menu_timeout_id, g_source_remove);
         PLACES_DEBUG_MENU_TIMEOUT_COUNT(-1);
     }else{
         PLACES_DEBUG_MENU_TIMEOUT_COUNT(0);
@@ -504,15 +502,8 @@ pview_destroy_menu(PlacesView *view)
 
     if(view->menu != NULL) {
         gtk_menu_shell_deactivate(GTK_MENU_SHELL(view->menu));
-
-        if (view->recent_manager_changed_handler) {
-            g_signal_handler_disconnect(recent_manager,
-                                        view->recent_manager_changed_handler);
-            view->recent_manager_changed_handler = 0;
-        }
-
-        gtk_widget_destroy(view->menu);
-        view->menu = NULL;
+        g_clear_signal_handler(&view->recent_manager_changed_handler, recent_manager);
+        g_clear_pointer(&view->menu, gtk_widget_destroy);
     }
     view->needs_separator = FALSE;
 }
@@ -930,12 +921,10 @@ places_view_finalize(PlacesView *view)
         g_signal_handlers_disconnect_by_func(view->button,
                                              pview_cb_button_pressed,
                                              view);
-        g_object_unref(view->button);
-        view->button = NULL;
+        g_clear_object(&view->button);
     }
 
-    g_object_unref(view->cfg);
-    view->cfg = NULL;
+    g_clear_object(&view->cfg);
 
     g_free(view);
 
