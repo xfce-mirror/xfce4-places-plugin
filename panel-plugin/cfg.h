@@ -72,12 +72,6 @@ struct _PlacesCfgClass
 void
 places_cfg_open_dialog(PlacesCfg*);
 
-void
-places_cfg_load(PlacesCfg*);
-
-void
-places_cfg_save(PlacesCfg*);
-
 PlacesCfg*
 places_cfg_new(XfcePanelPlugin*);
 
