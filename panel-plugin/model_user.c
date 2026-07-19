@@ -168,7 +168,7 @@ pbuser_build_bookmarks(PlacesBookmarkGroup *bookmark_group)
             fileinfo = g_file_query_info(file,
                                   G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME","
                                   G_FILE_ATTRIBUTE_STANDARD_ICON,
-                                  0, NULL, NULL);
+                                  G_FILE_QUERY_INFO_NONE, NULL, NULL);
 
             if(fileinfo != NULL)
                 icon = g_file_info_get_icon(fileinfo);
