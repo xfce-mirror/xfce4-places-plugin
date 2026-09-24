@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the xfce-panel-plugins.xfce4-places-plugin package.
 # 
 # Translators:
+# Dejweed, 2026
 # Arnold Marko <arnold.marko@gmail.com>, 2019,2024
-# Kernc, 2015
+# K, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
 "POT-Creation-Date: 2024-05-12 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
-"Last-Translator: Arnold Marko <arnold.marko@gmail.com>, 2019,2024\n"
+"Last-Translator: Dejweed, 2026\n"
 "Language-Team: Slovenian (http://app.transifex.com/xfce/xfce-panel-plugins/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -105,12 +106,12 @@ msgstr "Zapisovanje podatkov na napravo"
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
 " removed. Please do not remove the media or disconnect the drive"
-msgstr "Nekaj podatkov se mora še zapisati na napravo \"%s\", preden je lahko odstranjena. Ne odstranjujte medija oz. ne izklapljajte diska."
+msgstr "Nekaj podatkov se mora še zapisati na napravo \"%s\", preden je lahko odstranjena. Ne odstranjujte medija oz. ne odklapljajte diska"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
-msgstr "Odstranjevanje naprave..."
+msgstr "Odstranjevanje naprave"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: panel-plugin/model_volumes_notify.c:256
@@ -160,7 +161,7 @@ msgstr "Ikono in oznako"
 #. BUTTON: Label text entry
 #: panel-plugin/cfg.c:495
 msgid "_Label"
-msgstr "_Oznaka:"
+msgstr "_Oznaka"
 
 #. MENU
 #: panel-plugin/cfg.c:508
@@ -180,7 +181,7 @@ msgstr "Pokaži odst_ranljive nosilce"
 #. MENU: - Mount and Open (indented)
 #: panel-plugin/cfg.c:531
 msgid "Mount and _Open on click"
-msgstr "Priklopi in _odpri s klikom"
+msgstr "Priklopi in odpri s kliko_m"
 
 #. MENU: Show GTK Bookmarks
 #: panel-plugin/cfg.c:545
