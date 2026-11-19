@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Rihards Priedītis <rprieditis@gmail.com>, 2009
+# Rihards Priedītis <rprieditis@gmail.com>, 2007,2009,2026
 # Rihards Prieditis <rprieditis@inbox.lv>, 2007
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Panel Plugins\n"
 "Report-Msgid-Bugs-To: https://gitlab.xfce.org/\n"
-"POT-Creation-Date: 2024-04-07 00:54+0200\n"
+"POT-Creation-Date: 2024-05-12 00:51+0200\n"
 "PO-Revision-Date: 2013-07-03 19:11+0000\n"
-"Last-Translator: Rihards Priedītis <rprieditis@gmail.com>, 2009\n"
+"Last-Translator: Rihards Priedītis <rprieditis@gmail.com>, 2007,2009,2026\n"
 "Language-Team: Latvian (http://app.transifex.com/xfce/xfce-panel-plugins/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,19 +27,19 @@ msgstr "Vietas"
 
 #: panel-plugin/places.desktop.in:5
 msgid "Access folders, documents, and removable media"
-msgstr "Piekļūst mapēm, dokumentiem un noņemamiem datu nesējiem"
+msgstr "Piekļūt mapēm, dokumentiem un noņemamiem datu nesējiem"
 
 #. Trash
 #: panel-plugin/model_system.c:151
 msgid "Trash"
 msgstr "Miskaste"
 
-#: panel-plugin/model_system.c:185
+#: panel-plugin/model_system.c:188
 msgid "Desktop"
 msgstr "Darbvirsma"
 
 #. File System (/)
-#: panel-plugin/model_system.c:201
+#: panel-plugin/model_system.c:204
 msgid "File System"
 msgstr "Failu sistēma"
 
@@ -46,22 +47,22 @@ msgstr "Failu sistēma"
 #: panel-plugin/model_user.c:256
 #, c-format
 msgid "%s on %s"
-msgstr ""
+msgstr "%s datorā %s"
 
 #: panel-plugin/model_volumes.c:71
 #, c-format
 msgid "Failed to eject \"%s\""
-msgstr "Neizdevās izgrūst \"%s\""
+msgstr "Neizdevās izgrūst „%s”"
 
 #: panel-plugin/model_volumes.c:120
 #, c-format
 msgid "Failed to unmount \"%s\""
-msgstr "Neizdevās atmontēt \"%s\""
+msgstr "Neizdevās atmontēt „%s”"
 
 #: panel-plugin/model_volumes.c:170 panel-plugin/model_volumes.c:193
 #, c-format
 msgid "Failed to mount \"%s\""
-msgstr "Neizdevās nomontēt \"%s\""
+msgstr "Neizdevās montēt „%s”"
 
 #: panel-plugin/model_volumes.c:478
 msgid "Mount and Open"
@@ -82,7 +83,7 @@ msgstr "Atmontēt"
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: panel-plugin/model_volumes_notify.c:128
 msgid "Unmounting device"
-msgstr ""
+msgstr "Atmontē ierīci"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: panel-plugin/model_volumes_notify.c:131
@@ -90,13 +91,13 @@ msgstr ""
 msgid ""
 "The device \"%s\" is being unmounted by the system. Please do not remove the"
 " media or disconnect the drive"
-msgstr ""
+msgstr "Sistēma atmontē ierīci „%s”. Lūdzu, neizņemiet datu nesēju un neatvienojiet diskdzini"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: panel-plugin/model_volumes_notify.c:138
 #: panel-plugin/model_volumes_notify.c:262
 msgid "Writing data to device"
-msgstr ""
+msgstr "Raksta datus ierīcē"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: panel-plugin/model_volumes_notify.c:141
@@ -105,18 +106,18 @@ msgstr ""
 msgid ""
 "There is data that needs to be written to the device \"%s\" before it can be"
 " removed. Please do not remove the media or disconnect the drive"
-msgstr ""
+msgstr "Pirms ierīces „%s” izņemšanas tajā jāieraksta dati. Lūdzu, neizņemiet datu nesēju un neatvienojiet diskdzini"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: panel-plugin/model_volumes_notify.c:253
 msgid "Ejecting device"
-msgstr ""
+msgstr "Izgrūž ierīci"
 
 #. TRANSLATORS: Please use the same translation here as in Thunar
 #: panel-plugin/model_volumes_notify.c:256
 #, c-format
 msgid "The device \"%s\" is being ejected. This may take some time"
-msgstr ""
+msgstr "Ierīce „%s” tiek izgrūsta. Tas var aizņemt kādu laiku"
 
 #: panel-plugin/view.c:659
 msgid "Search for Files"
@@ -138,24 +139,24 @@ msgstr "Aizvērt"
 #. BUTTON
 #: panel-plugin/cfg.c:473
 msgid "Button"
-msgstr "Pogas"
+msgstr "Poga"
 
 #. BUTTON: Show Icon/Label
 #: panel-plugin/cfg.c:478
 msgid "_Show"
-msgstr "_Rādi"
+msgstr "_Rādīt"
 
 #: panel-plugin/cfg.c:483
 msgid "Icon Only"
-msgstr "Tikai ikonas"
+msgstr "Tikai ikona"
 
 #: panel-plugin/cfg.c:484
 msgid "Label Only"
-msgstr "Tikai etiķetes"
+msgstr "Tikai etiķete"
 
 #: panel-plugin/cfg.c:485
 msgid "Icon and Label"
-msgstr "Ikonas un etiķetes"
+msgstr "Ikona un etiķete"
 
 #. BUTTON: Label text entry
 #: panel-plugin/cfg.c:495
@@ -170,7 +171,7 @@ msgstr "Izvēlne"
 #. MENU: Show Icons
 #: panel-plugin/cfg.c:513
 msgid "Show _icons in menu"
-msgstr "Rādīt _ikonu izvēlnē"
+msgstr "Rādīt izvēlnē _ikonas"
 
 #. MENU: Show Removable Media
 #: panel-plugin/cfg.c:522
@@ -180,7 +181,7 @@ msgstr "Rādīt _noņemamos datu nesējus"
 #. MENU: - Mount and Open (indented)
 #: panel-plugin/cfg.c:531
 msgid "Mount and _Open on click"
-msgstr "Montēt un _atvērt uz klikšķi"
+msgstr "Noklikšķinot montēt un _atvērt"
 
 #. MENU: Show GTK Bookmarks
 #: panel-plugin/cfg.c:545
@@ -195,12 +196,12 @@ msgstr "Rādīt nesenos _dokumentus"
 #. RECENT DOCUMENTS: Show clear option
 #: panel-plugin/cfg.c:573
 msgid "Show cl_ear option"
-msgstr "Rādīt _notīrīt iespēju"
+msgstr "Rādīt _notīrīšanas opciju"
 
 #. RECENT DOCUMENTS: Number to display
 #: panel-plugin/cfg.c:587
 msgid "_Number to display"
-msgstr "_Attēlojamo vienumu skaits"
+msgstr "_Rādāmo vienumu skaits"
 
 #. SEARCH
 #: panel-plugin/cfg.c:614
@@ -212,34 +213,38 @@ msgstr "Meklēt"
 msgid "Co_mmand"
 msgstr "Ko_manda"
 
-#: panel-plugin/support.c:155
+#: panel-plugin/support.c:179
 msgid "Open"
 msgstr "Atvērt"
 
-#: panel-plugin/support.c:170
+#: panel-plugin/support.c:194
 msgid "Open Terminal Here"
 msgstr "Atvērt termināli šeit"
 
+#: panel-plugin/support.c:206
+msgid "Empty Trash"
+msgstr "Iztukšot miskasti"
+
 #: panel-plugin/xfce4-popup-places.sh:28
 msgid "Usage:"
-msgstr ""
+msgstr "Lietošana:"
 
 #: panel-plugin/xfce4-popup-places.sh:29
 msgid "OPTION"
-msgstr ""
+msgstr "OPCIJA"
 
 #: panel-plugin/xfce4-popup-places.sh:31
 msgid "Options:"
-msgstr ""
+msgstr "Opcijas:"
 
 #: panel-plugin/xfce4-popup-places.sh:32
 msgid "Popup menu at current mouse position"
-msgstr ""
+msgstr "Atvērt izvēlni pie peles pašreizējās atrašanās vietas"
 
 #: panel-plugin/xfce4-popup-places.sh:33
 msgid "Show help options"
-msgstr ""
+msgstr "Rādīt palīdzības opcijas"
 
 #: panel-plugin/xfce4-popup-places.sh:34
 msgid "Print version information and exit"
-msgstr ""
+msgstr "Izdrukāt versijas informāciju un iziet"
